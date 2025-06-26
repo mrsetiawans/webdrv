@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upgrade Google Drive Unlimited - Penawaran Spesial!</title>
+    <title>Google Drive Unlimited - Upgrade Penyimpanan Tanpa Batas Selamanya!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Pengaturan Dasar dan Font Khas Google */
@@ -16,110 +16,161 @@
         }
         body {
             font-family: 'Roboto', 'Inter', sans-serif;
-            background-color: #f8f9fa; /* Latar belakang abu-abu sangat muda khas Google */
-            color: #202124; /* Warna teks utama Google */
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8eaed 100%);
+            color: #202124;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
+            line-height: 1.6;
         }
         /* Menggunakan font Google Sans untuk judul agar lebih otentik */
         h1, h2, h3, h4 {
             font-family: 'Google Sans', 'Inter', sans-serif;
+            font-weight: 600;
         }
 
-        /* Hero Section Baru yang Lebih Bersih */
+        /* Hero Section yang Lebih Modern */
         .hero-section {
-            background-color: #ffffff;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
-        /* Elemen dekoratif abstrak dengan warna Google */
+        /* Elemen dekoratif abstrak dengan warna Google yang lebih halus */
         .hero-section::before {
             content: '';
             position: absolute;
-            width: 250px;
-            height: 250px;
-            background-color: #4285F4; /* Google Blue */
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, rgba(66, 133, 244, 0.08), rgba(52, 168, 83, 0.06));
             border-radius: 50%;
-            top: -100px;
-            left: -80px;
-            opacity: 0.1;
-            filter: blur(20px);
+            top: -200px;
+            left: -150px;
+            filter: blur(40px);
+            animation: float 6s ease-in-out infinite;
         }
         .hero-section::after {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background-color: #34A853; /* Google Green */
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(251, 188, 5, 0.06), rgba(234, 67, 53, 0.04));
             border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            bottom: -150px;
-            right: -100px;
-            opacity: 0.1;
-            filter: blur(25px);
-            animation: morph 8s ease-in-out infinite both alternate;
+            bottom: -250px;
+            right: -200px;
+            filter: blur(50px);
+            animation: morph 12s ease-in-out infinite both alternate;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
         @keyframes morph {
-            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            100% { border-radius: 60% 40% 30% 70% / 50% 60% 50% 40%; }
+            0% { 
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; 
+                transform: rotate(0deg);
+            }
+            100% { 
+                border-radius: 60% 40% 30% 70% / 50% 60% 50% 40%; 
+                transform: rotate(10deg);
+            }
         }
 
-        /* Tombol Aksi (CTA) dengan Gaya Material Design */
+        /* Tombol dengan Efek Hover yang Lebih Canggih */
         .cta-button {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 9999px; /* Tombol pil khas Google */
-            padding: 0.85rem 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            padding: 1rem 2.5rem;
             font-size: 1rem;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        .cta-button:hover::before {
+            left: 100%;
         }
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
         .google-blue-button {
-            background-color: #1A73E8;
+            background: linear-gradient(135deg, #1A73E8 0%, #1557b0 100%);
             color: white;
         }
         .google-blue-button:hover {
-            background-color: #1866d1;
+            background: linear-gradient(135deg, #1557b0 0%, #103d82 100%);
         }
 
-        /* Kartu dengan Gaya Material You */
+        /* Kartu dengan Gaya Material You yang Lebih Elegan */
         .google-card {
-            background-color: #ffffff;
-            border-radius: 16px;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-            transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(224, 224, 224, 0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .google-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         .google-card:hover {
-            border-color: #d1e3ff;
-            box-shadow: 0 4px 12px 0 rgba(60,64,67,0.15);
-            transform: translateY(-4px);
+            border-color: rgba(26, 115, 232, 0.3);
+            box-shadow: 0 12px 40px rgba(60,64,67,0.15);
+            transform: translateY(-8px);
+        }
+        .google-card:hover::before {
+            opacity: 1;
         }
         .package-card.selected {
             border-color: #1A73E8;
-            box-shadow: 0 4px 16px 0 rgba(26, 115, 232, 0.2);
-            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(26, 115, 232, 0.25);
+            transform: translateY(-8px) scale(1.02);
+        }
+        .package-card.selected::before {
+            opacity: 1;
         }
 
-        /* Skema Warna Google */
+        /* Skema Warna Google yang Diperkaya */
         .text-google-blue { color: #1A73E8; }
         .text-google-green { color: #188038; }
         .text-google-yellow { color: #f9ab00; }
         .text-google-red { color: #d93025; }
         .text-google-gray-primary { color: #202124; }
         .text-google-gray-secondary { color: #5f6368; }
+        .text-google-gray-tertiary { color: #80868b; }
 
-        /* Animasi Fade In */
+        /* Animasi yang Lebih Halus */
         .fade-in-up {
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease-out forwards;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
         }
         @keyframes fadeInUp {
             to {
@@ -128,45 +179,58 @@
             }
         }
 
-        /* Notifikasi Toast Gaya Google */
+        /* Gradient Text Effect */
+        .gradient-text {
+            background: linear-gradient(135deg, #1A73E8 0%, #34A853 50%, #FBBC05 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Notifikasi Toast dengan Desain yang Lebih Modern */
         .notif-box {
             position: fixed;
-            bottom: 24px;
+            bottom: 32px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #2e2f32; /* Warna toast gelap Google */
+            background: rgba(46, 47, 50, 0.95);
+            backdrop-filter: blur(20px);
             color: #e8eaed;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            padding: 14px 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            padding: 16px 24px;
             display: none;
             align-items: center;
             gap: 16px;
             width: auto;
-            max-width: 450px;
+            max-width: 480px;
             z-index: 1000;
             opacity: 0;
             font-family: 'Roboto', sans-serif;
-            transition: opacity 0.4s cubic-bezier(0, 0, 0.2, 1), transform 0.4s cubic-bezier(0, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0, 0, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .notif-box.show {
             display: flex;
             opacity: 1;
-            animation: slideInAndOutGoogle 5s cubic-bezier(0, 0, 0.2, 1) forwards;
+            animation: slideInAndOutGoogle 6s cubic-bezier(0, 0, 0.2, 1) forwards;
         }
         @keyframes slideInAndOutGoogle {
-            0%   { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
-            90%  { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            0%   { opacity: 0; transform: translateX(-50%) translateY(30px) scale(0.9); }
+            10%  { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+            85%  { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(0.95); }
         }
         .notif-icon-wrapper {
-            color: #8ab4f8; /* Biru muda untuk ikon */
-            font-size: 1.2rem;
+            color: #8ab4f8;
+            font-size: 1.25rem;
             flex-shrink: 0;
+            background: rgba(138, 180, 248, 0.1);
+            padding: 8px;
+            border-radius: 50%;
         }
         .notif-message {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             line-height: 1.4;
         }
         .notif-message strong {
@@ -180,469 +244,669 @@
         }
         @media (max-width: 500px) {
             .notif-box {
-                left: 16px; right: 16px;
+                left: 20px; right: 20px;
                 transform: translateX(0);
-                bottom: 16px;
+                bottom: 20px;
             }
              @keyframes slideInAndOutGoogle {
-                0%   { opacity: 0; transform: translateY(20px); }
-                10%  { opacity: 1; transform: translateY(0); }
-                90%  { opacity: 1; transform: translateY(0); }
-                100% { opacity: 0; transform: translateY(20px); }
+                0%   { opacity: 0; transform: translateY(30px) scale(0.9); }
+                10%  { opacity: 1; transform: translateY(0) scale(1); }
+                85%  { opacity: 1; transform: translateY(0) scale(1); }
+                100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
             }
         }
         
-        /* Countdown Timer yang Didesain Ulang */
+        /* Countdown Timer yang Lebih Menarik */
         .countdown-timer {
-            display: flex; justify-content: center; gap: 1rem;
+            display: flex; 
+            justify-content: center; 
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
         .countdown-timer div {
             text-align: center;
         }
         .countdown-timer span {
-            display: block; font-size: 2.25rem; font-weight: 700;
-            color: #1A73E8; background-color: #e8f0fe;
-            padding: 0.75rem; border-radius: 12px;
-            min-width: 70px; line-height: 1;
+            display: block; 
+            font-size: 2.5rem; 
+            font-weight: 700;
+            color: #ffffff; 
+            background: linear-gradient(135deg, #1A73E8 0%, #1557b0 100%);
+            padding: 1rem 1.25rem; 
+            border-radius: 16px;
+            min-width: 80px; 
+            line-height: 1;
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .countdown-timer span::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
         .countdown-timer p {
-            font-size: 0.75rem; color: #5f6368;
-            margin-top: 0.5rem; text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 0.8rem; 
+            color: #5f6368;
+            margin-top: 0.75rem; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
         }
         
-        /* Input Form Gaya Google */
+        /* Input Form dengan Gaya Material 3 */
         .form-input-google {
             width: 100%;
-            border: 1px solid #dadce0;
-            border-radius: 8px;
-            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 16px 20px;
             font-size: 1rem;
             color: #202124;
-            background-color: #f8f9fa;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background-color: #ffffff;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Roboto', sans-serif;
         }
         .form-input-google:focus {
             outline: none;
             border-color: #1A73E8;
-            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+            background-color: #f8f9fa;
         }
         .form-input-google::placeholder {
             color: #80868b;
         }
 
-        /* Bagian FAQ */
-        .faq-item { border-bottom: 1px solid #e0e0e0; }
+        /* Bagian FAQ dengan Animasi */
+        .faq-item { 
+            border-bottom: 1px solid rgba(224, 224, 224, 0.5);
+            transition: all 0.3s ease;
+        }
         .faq-item:last-child { border-bottom: none; }
+        .faq-item:hover {
+            background-color: rgba(26, 115, 232, 0.02);
+        }
         .faq-item summary {
-            font-weight: 500; font-size: 1.1rem; color: #202124;
-            padding: 1.5rem 0; cursor: pointer; list-style: none;
-            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 500; 
+            font-size: 1.1rem; 
+            color: #202124;
+            padding: 2rem 1rem; 
+            cursor: pointer; 
+            list-style: none;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            transition: color 0.3s ease;
         }
         .faq-item summary::-webkit-details-marker { display: none; }
         .faq-item summary::after {
-            content: '\f067'; /* plus icon */
-            font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            transition: transform 0.3s ease; color: #5f6368;
+            content: '\f067';
+            font-family: 'Font Awesome 6 Free'; 
+            font-weight: 900;
+            transition: all 0.3s ease; 
+            color: #5f6368;
+            background: rgba(95, 99, 104, 0.1);
+            padding: 8px;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
         }
         .faq-item[open] summary::after {
-            content: '\f068'; /* minus icon */
+            content: '\f068';
             transform: rotate(180deg);
+            background: rgba(26, 115, 232, 0.1);
+            color: #1A73E8;
         }
         .faq-content {
-            padding-bottom: 1.5rem; color: #5f6368; line-height: 1.7;
+            padding: 0 1rem 2rem 1rem; 
+            color: #5f6368; 
+            line-height: 1.7;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .faq-item[open] summary { color: #1A73E8; }
         
-        /* Footer */
+        /* Footer dengan Gradient */
         .footer-google {
-            background-color: #f8f9fa;
-            border-top: 1px solid #e0e0e0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8eaed 100%);
+            border-top: 1px solid rgba(224, 224, 224, 0.5);
             color: #5f6368;
-            padding: 2rem 0;
+            padding: 3rem 0;
             font-size: 0.9rem;
         }
         .footer-google a {
             color: #5f6368;
             text-decoration: none;
-            margin: 0 0.75rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
         }
         .footer-google a:hover {
             color: #1A73E8;
-            text-decoration: underline;
         }
 
-        /* Modal / Message Box Styling */
+        /* Modal dengan Backdrop Blur */
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
+            display: none;
+            position: fixed;
+            z-index: 1000;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
         }
         .modal-content {
-            background-color: #fefefe;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
             margin: auto;
-            padding: 24px;
-            border: 1px solid #888;
+            padding: 32px;
+            border: none;
             width: 90%;
-            max-width: 400px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             text-align: center;
             position: relative;
+            animation: modalAppear 0.3s ease;
+        }
+        @keyframes modalAppear {
+            from { opacity: 0; transform: scale(0.9) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
         .modal-content h3 {
             color: #202124;
-            margin-bottom: 15px;
-            font-size: 1.25rem;
+            margin-bottom: 16px;
+            font-size: 1.5rem;
         }
         .modal-content p {
             color: #5f6368;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            line-height: 1.6;
         }
         .modal-content .modal-ok-button {
-            background-color: #1A73E8;
+            background: linear-gradient(135deg, #1A73E8 0%, #1557b0 100%);
             color: white;
-            padding: 10px 24px;
+            padding: 12px 32px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 1rem;
             font-weight: 500;
+            transition: all 0.3s ease;
         }
         .modal-content .modal-ok-button:hover {
-            background-color: #1866d1;
+            background: linear-gradient(135deg, #1557b0 0%, #103d82 100%);
+            transform: translateY(-2px);
+        }
+
+        /* Badge dan Chip */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(52, 168, 83, 0.1);
+            color: #188038;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(52, 168, 83, 0.2);
+        }
+
+        /* Responsive Improvements */
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: auto;
+                padding: 4rem 0;
+            }
+            .countdown-timer {
+                gap: 1rem;
+            }
+            .countdown-timer span {
+                font-size: 2rem;
+                padding: 0.75rem 1rem;
+                min-width: 70px;
+            }
+        }
+
+        /* Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <header class="hero-section py-20 sm:py-24 md:py-32 fade-in-up">
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="flex justify-center mb-6">
-                <img alt="Logo Google Drive" class="h-20 sm:h-24 w-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1024px-Google_Drive_icon_%282020%29.svg.png">
+    <header class="hero-section fade-in-up">
+        <div class="container mx-auto px-6 text-center relative z-10 w-full">
+            <div class="flex justify-center mb-8">
+                <div class="relative">
+                    <img alt="Logo Google Drive" class="h-24 sm:h-28 w-auto drop-shadow-lg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1024px-Google_Drive_icon_%282020%29.svg.png">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-blue-400 to-green-400 rounded-full opacity-20 blur-xl"></div>
+                </div>
             </div>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-google-gray-primary leading-tight">
-                Upgrade Penyimpanan Google Drive Anda
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 text-google-gray-primary leading-tight">
+                Upgrade Penyimpanan <span class="gradient-text">Google Drive</span> Anda
             </h1>
-            <p class="text-lg sm:text-xl text-google-gray-secondary mb-8 max-w-3xl mx-auto">
-                Ubah Google Drive Anda dari 15GB menjadi <strong class="font-medium text-google-gray-primary">Tanpa Batas Selamanya!</strong>
+            <p class="text-xl sm:text-2xl text-google-gray-secondary mb-10 max-w-4xl mx-auto leading-relaxed">
+                Ubah Google Drive Anda dari 15GB menjadi <strong class="font-semibold text-google-gray-primary">Tanpa Batas Selamanya!</strong><br>
+                <span class="text-lg text-google-gray-tertiary">Sekali bayar, nikmati selamanya. Tidak ada biaya bulanan.</span>
             </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a class="cta-button google-blue-button shadow-md" href="#package-selection">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <a class="cta-button google-blue-button shadow-lg" href="#package-selection">
                     <i class="fas fa-rocket"></i>
                     Lihat Pilihan Paket
                 </a>
-                <a class="cta-button bg-gray-100 hover:bg-gray-200 text-google-gray-primary" href="#features">
+                <a class="cta-button bg-white hover:bg-gray-50 text-google-gray-primary shadow-md" href="#features">
                     <i class="fas fa-arrow-down"></i>
                     Lihat Keuntungan
                 </a>
             </div>
-            <div class="mt-8 text-google-gray-secondary inline-flex items-center gap-3 bg-gray-50 p-3 px-5 rounded-full border border-gray-200">
-                <i class="fas fa-users text-google-blue"></i>
+            <div class="mt-10 status-badge mx-auto">
+                <i class="fas fa-users text-google-green"></i>
                 <span id="simulatedUserCount">1783+</span> Pengguna Telah Bergabung
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 py-16 sm:py-20">
+    <main class="container mx-auto px-4 sm:px-6 py-20">
 
-        <section class="my-12 fade-in-up" style="animation-delay: 0.2s;">
+        <section class="my-20 fade-in-up" style="animation-delay: 0.2s;">
             <div class="google-card overflow-hidden">
-                <img alt="Ilustrasi Upgrade Google Drive" class="w-full h-auto" src="https://cdn.orderonline.id/uploads/images_2386651686381222113.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/800x400/e8f0fe/1A73E8?text=Ilustrasi+Penyimpanan+Aman';">
+                <img alt="Ilustrasi Upgrade Google Drive" class="w-full h-auto object-cover" src="https://cdn.orderonline.id/uploads/images_2386651686381222113.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/800x400/e8f0fe/1A73E8?text=Ilustrasi+Penyimpanan+Aman';">
             </div>
         </section>
 
         <!-- SECTION: FITUR UTAMA -->
-        <section id="features" class="my-16 sm:my-20 fade-in-up" style="animation-delay: 0.3s;">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-google-gray-primary">Keuntungan Utama yang Anda Dapatkan</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="google-card p-6 flex items-start space-x-5">
-                    <div class="flex-shrink-0 pt-1 text-2xl text-google-blue"><i class="fas fa-infinity"></i></div>
+        <section id="features" class="my-24 fade-in-up" style="animation-delay: 0.3s;">
+            <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16 text-google-gray-primary">Keuntungan Luar Biasa yang Anda Dapatkan</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="google-card p-8 flex items-start space-x-6 group">
+                    <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-blue-50 rounded-full text-2xl text-google-blue group-hover:scale-110 transition-transform duration-300"><i class="fas fa-infinity"></i></div>
                     <div>
-                        <h3 class="text-xl font-medium mb-1 text-google-gray-primary">Kapasitas Tanpa Batas</h3>
-                        <p class="text-google-gray-secondary leading-relaxed">Nikmati penyimpanan tanpa batas. Tidak perlu khawatir kehabisan ruang lagi!</p>
+                        <h3 class="text-xl font-semibold mb-3 text-google-gray-primary">Kapasitas Tanpa Batas</h3>
+                        <p class="text-google-gray-secondary leading-relaxed">Nikmati penyimpanan tanpa batas untuk semua file, foto, dan video Anda. Tidak perlu khawatir kehabisan ruang lagi!</p>
                     </div>
                 </div>
-                <div class="google-card p-6 flex items-start space-x-5">
-                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThr7qrIazsvZwJuw-uZCtLzIjaAyVW_ZrlEQ&s" alt="Gemini AI Icon" class="w-8 h-8 rounded-full">
+                <div class="google-card p-8 flex items-start space-x-6 group">
+                     <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-purple-50 rounded-full group-hover:scale-110 transition-transform duration-300">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThr7qrIazsvZwJuw-uZCtLzIjaAyVW_ZrlEQ&s" alt="Gemini AI Icon" class="w-10 h-10 rounded-full">
                     </div>
                     <div>
-                        <h3 class="text-xl font-medium mb-1 text-google-gray-primary">Akses Gemini Pro</h3>
-                        <p class="text-google-gray-secondary leading-relaxed">Tingkatkan produktivitas Anda dengan bantuan AI tercanggih dari Google.</p>
+                        <h3 class="text-xl font-semibold mb-3 text-google-gray-primary">Akses Gemini Pro</h3>
+                        <p class="text-google-gray-secondary leading-relaxed">Tingkatkan produktivitas Anda dengan bantuan AI tercanggih dari Google. Analisis data, tulis konten, dan banyak lagi.</p>
                     </div>
                 </div>
-                <div class="google-card p-6 flex items-start space-x-5">
-                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPF7IBbe6_NI-7rDvTB9jZk9tOb6JGqJ2sjA&s" alt="Google Photos Icon" class="w-8 h-8 rounded-full">
+                <div class="google-card p-8 flex items-start space-x-6 group">
+                    <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-green-50 rounded-full group-hover:scale-110 transition-transform duration-300">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPF7IBbe6_NI-7rDvTB9jZk9tOb6JGqJ2sjA&s" alt="Google Photos Icon" class="w-10 h-10 rounded-full">
                     </div>
                     <div>
-                        <h3 class="text-xl font-medium mb-1 text-google-gray-primary">Unlimited Google Photos</h3>
-                        <p class="text-google-gray-secondary leading-relaxed">Simpan semua kenangan foto dan video tanpa batas (fitur berlaku untuk Paket Akun Baru).</p>
+                        <h3 class="text-xl font-semibold mb-3 text-google-gray-primary">Unlimited Google Photos</h3>
+                        <p class="text-google-gray-secondary leading-relaxed">Simpan semua kenangan foto dan video tanpa batas dalam kualitas tinggi (fitur berlaku untuk Paket Akun Baru).</p>
                     </div>
                 </div>
-                <div class="google-card p-6 flex items-start space-x-5">
-                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center">
-                        <img src="https://fonts.gstatic.com/s/i/productlogos/meet_2020q4/v1/web-96dp/logo_meet_2020q4_color_2x_web_96dp.png" alt="Google Meet Icon" class="w-8 h-8">
+                <div class="google-card p-8 flex items-start space-x-6 group">
+                    <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-blue-50 rounded-full group-hover:scale-110 transition-transform duration-300">
+                        <img src="https://fonts.gstatic.com/s/i/productlogos/meet_2020q4/v1/web-96dp/logo_meet_2020q4_color_2x_web_96dp.png" alt="Google Meet Icon" class="w-10 h-10">
                     </div>
                     <div>
-                        <h3 class="text-xl font-medium mb-1 text-google-gray-primary">Unlimited Google Meet</h3>
-                        <p class="text-google-gray-secondary leading-relaxed">Nikmati rekaman rapat tanpa batas di Google Meet (fitur berlaku untuk Paket Akun Baru).</p>
-                    </div>
-                </div>
-                 <div class="google-card p-6 flex items-start space-x-5">
-                    <div class="flex-shrink-0 pt-1 text-2xl text-google-red"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <div>
-                        <h3 class="text-xl font-medium mb-1 text-google-gray-primary">Photos Auto Backup</h3>
-                        <p class="text-google-gray-secondary leading-relaxed">Cadangkan foto dari perangkat Anda secara otomatis dan aman.</p>
+                        <h3 class="text-xl font-semibold mb-3 text-google-gray-primary">Unlimited Google Meet</h3>
+                        <p class="text-google-gray-secondary leading-relaxed">Nikmati rekaman rapat tanpa batas di Google Meet untuk keperluan bisnis atau edukasi (fitur berlaku untuk Paket Akun Baru).</p>
                     </div>
                 </div>
-                <div class="google-card p-6 flex items-start space-x-5">
-                     <div class="flex-shrink-0 pt-1 text-2xl text-google-blue"><i class="fas fa-lock"></i></div>
+                 <div class="google-card p-8 flex items-start space-x-6 group">
+                    <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-red-50 rounded-full text-2xl text-google-red group-hover:scale-110 transition-transform duration-300"><i class="fas fa-cloud-upload-alt"></i></div>
                     <div>
-                        <h3 class="text-xl font-medium mb-1 text-google-gray-primary">Super Aman & Terpercaya</h3>
-                        <p class="text-google-gray-secondary leading-relaxed">Data Anda disimpan dengan aman di server Google dengan garansi penuh.</p>
+                        <h3 class="text-xl font-semibold mb-3 text-google-gray-primary">Photos Auto Backup</h3>
+                        <p class="text-google-gray-secondary leading-relaxed">Cadangkan foto dari semua perangkat Anda secara otomatis dan aman ke cloud Google.</p>
+                    </div>
+                </div>
+                <div class="google-card p-8 flex items-start space-x-6 group">
+                     <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-green-50 rounded-full text-2xl text-google-green group-hover:scale-110 transition-transform duration-300"><i class="fas fa-shield-alt"></i></div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-google-gray-primary">Keamanan Tingkat Dunia</h3>
+                        <p class="text-google-gray-secondary leading-relaxed">Data Anda disimpan dengan aman di server Google dengan enkripsi tingkat militer dan garansi penuh.</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section class="my-16 sm:my-20 fade-in-up" style="animation-delay: 0.4s;">
-           <div class="google-card p-8 md:p-10">
-               <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-google-gray-primary">Lebih Banyak Alasan Memilih Kami</h2>
-               <ul class="grid md:grid-cols-2 gap-x-8 gap-y-6 text-google-gray-secondary">
-                   <li class="flex items-start gap-4"><i class="fas fa-shield-alt text-google-blue mt-1"></i><span><strong>Kapasitas Tanpa Batas:</strong> Kapasitas penyimpanan unlimited sesungguhnya.</span></li>
-                   <li class="flex items-start gap-4"><i class="fas fa-hand-holding-usd text-google-green mt-1"></i><span><strong>Sekali Bayar Selamanya:</strong> Investasi jangka panjang tanpa biaya tersembunyi.</span></li>
-                   <li class="flex items-start gap-4"><i class="fas fa-calendar-times text-google-red mt-1"></i><span><strong>Tanpa Biaya Bulanan/Tahunan:</strong> Hemat anggaran Anda, nikmati layanan premium.</span></li>
-                   <li class="flex items-start gap-4"><i class="fas fa-envelope-open-text text-google-yellow mt-1"></i><span><strong>Bisa Pakai Email Lama/Baru:</strong> Fleksibilitas penuh untuk akun Google Anda.</span></li>
-                   <li class="flex items-start gap-4"><i class="fas fa-globe text-google-blue mt-1"></i><span><strong>Akses Dimana Saja:</strong> Data Anda selalu bersama Anda, hanya butuh internet.</span></li>
-                   <li class="flex items-start gap-4"><i class="fas fa-lock text-google-green mt-1"></i><span><strong>Super Aman:</strong> Data disimpan di server Google dengan keamanan tingkat dunia.</span></li>
-                   <li class="flex items-start gap-4"><i class="fab fa-google text-google-red mt-1"></i><span><strong>100% Asli Google:</strong> Keaslian dan kualitas produk terjamin.</span></li>
-                   <li class="flex items-start gap-4"><i class="fas fa-thumbs-up text-google-blue mt-1"></i><span><strong>Garansi Penuh 100%:</strong> Kepuasan Anda adalah prioritas utama kami.</span></li>
-               </ul>
+        <section class="my-24 fade-in-up" style="animation-delay: 0.4s;">
+           <div class="google-card p-10 md:p-12">
+               <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16 text-google-gray-primary">Mengapa Ribuan Orang Memilih Kami?</h2>
+               <div class="grid md:grid-cols-2 gap-x-12 gap-y-8 text-google-gray-secondary">
+                   <div class="flex items-start gap-6"><div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full"><i class="fas fa-infinity text-google-blue text-lg"></i></div><div><h4 class="font-semibold text-google-gray-primary mb-2">Kapasitas Benar-Benar Tanpa Batas</h4><p>Tidak ada batasan penyimpanan. Upload sepuasnya tanpa khawatir.</p></div></div>
+                   <div class="flex items-start gap-6"><div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-green-50 rounded-full"><i class="fas fa-hand-holding-usd text-google-green text-lg"></i></div><div><h4 class="font-semibold text-google-gray-primary mb-2">Investasi Sekali, Manfaat Selamanya</h4><p>Bayar sekali, nikmati selamanya. Hemat ribuan rupiah dibanding berlangganan.</p></div></div>
+                   <div class="flex items-start gap-6"><div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-red-50 rounded-full"><i class="fas fa-calendar-times text-google-red text-lg"></i></div><div><h4 class="font-semibold text-google-gray-primary mb-2">Bebas Biaya Bulanan</h4><p>Tidak ada tagihan berulang yang membebani budget Anda setiap bulan.</p></div></div>
+                   <div class="flex items-start gap-6"><div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-yellow-50 rounded-full"><i class="fas fa-envelope-open-text text-google-yellow text-lg"></i></div><div><h4 class="font-semibold text-google-gray-primary mb-2">Fleksibilitas Akun</h4><p>Bisa menggunakan akun lama atau mendapatkan akun baru sesuai kebutuhan.</p></div></div>
+                   <div class="flex items-start gap-6"><div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full"><i class="fas fa-globe text-google-blue text-lg"></i></div><div><h4 class="font-semibold text-google-gray-primary mb-2">Akses Global 24/7</h4><p>Data Anda selalu dapat diakses kapan saja, di mana saja, hanya butuh internet.</p></div></div>
+                   <div class="flex items-start gap-6"><div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-green-50 rounded-full"><i class="fas fa-lock text-google-green text-lg"></i></div><div><h4 class="font-semibold text-google-gray-primary mb-2">Keamanan Terdepan</h4><p>Menggunakan infrastruktur Google dengan standar keamanan internasional.</p></div></div>
+                   <div class="flex items-start gap-6"><div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-red-50 rounded-full"><i class="fab fa-google text-google-red text-lg"></i></div><div><h4 class="font-semibold text-google-gray-primary mb-2">100% Produk Google Asli</h4><p>Bukan tiruan atau emulator. Menggunakan layanan resmi Google Workspace.</p></div></div>
+                   <div class="flex items-start gap-6"><div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full"><i class="fas fa-thumbs-up text-google-blue text-lg"></i></div><div><h4 class="font-semibold text-google-gray-primary mb-2">Garansi Kepuasan 100%</h4><p>Jika tidak puas, kami berikan jaminan pengembalian atau perbaikan gratis.</p></div></div>
+               </div>
            </div>
         </section>
 
-        <section class="my-16 sm:my-20 fade-in-up" style="animation-delay: 0.5s;">
-            <div class="google-card p-8 md:p-10 text-center">
-                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4 text-google-gray-primary">Bandingkan &amp; Hemat!</h2>
-                <p class="text-lg text-google-gray-secondary mb-8 max-w-2xl mx-auto">
-                    Lihat bagaimana penawaran kami jauh lebih unggul dibandingkan biaya berlangganan resmi Google One.
+        <section class="my-24 fade-in-up" style="animation-delay: 0.5s;">
+            <div class="google-card p-10 md:p-12 text-center">
+                <h2 class="text-4xl sm:text-5xl font-bold text-center mb-6 text-google-gray-primary">Bandingkan &amp; Rasakan Perbedaannya!</h2>
+                <p class="text-xl text-google-gray-secondary mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Lihat perbandingan lengkap mengapa solusi kami jauh lebih hemat dan menguntungkan dibandingkan berlangganan Google One resmi.
                 </p>
-                <img alt="Perbandingan Harga Google One dengan Penawaran Unlimited" class="w-full max-w-2xl mx-auto rounded-lg shadow-md mb-6" onerror="this.onerror=null;this.src='https://placehold.co/700x450/F8F9FA/70757A?text=Gagal+Memuat+Gambar+Perbandingan';" src="https://cdn.orderonline.id/uploads/images_7488561686381620606.png">
-                <p class="text-google-gray-secondary italic">
-                    Dengan kami, Anda mendapatkan penyimpanan <strong class="text-google-green font-medium">BESAR</strong> dengan <strong class="text-google-green font-medium">sekali bayar</strong>, bukan biaya tahunan yang mahal!
-                </p>
+                <div class="relative group">
+                    <img alt="Perbandingan Harga Google One dengan Penawaran Unlimited" class="w-full max-w-3xl mx-auto rounded-2xl shadow-lg mb-8 group-hover:shadow-2xl transition-shadow duration-300" onerror="this.onerror=null;this.src='https://placehold.co/800x500/F8F9FA/70757A?text=Gagal+Memuat+Gambar+Perbandingan';" src="https://cdn.orderonline.id/uploads/images_7488561686381620606.png">
+                </div>
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-2xl border border-green-200">
+                    <p class="text-google-gray-secondary text-lg">
+                        Dengan paket kami, Anda menghemat <strong class="text-google-green font-semibold text-2xl">jutaan rupiah</strong> dibanding biaya berlangganan tahunan yang mahal!
+                    </p>
+                </div>
             </div>
         </section>
 
-        <section class="my-16 sm:my-20 fade-in-up" style="animation-delay: 0.6s;">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-google-gray-primary">Apa Kata Mereka?</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                 <div class="google-card p-6 flex flex-col text-center">
-                     <img class="w-16 h-16 rounded-full mx-auto mb-4 shadow-md" src="https://placehold.co/100x100/4285F4/FFFFFF?text=AS" alt="Foto Asep S.">
-                     <div class="text-yellow-500 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                     <p class="text-google-gray-secondary italic mb-4 flex-grow">"Proses upgrade super cepat, gak sampai 1 menit! CS ramah. Sekarang Drive saya lega banget, gak pusing mikirin storage lagi. Recommended!"</p>
-                     <p class="text-google-gray-primary font-medium">- Asep S., Bandung</p>
+        <section class="my-24 fade-in-up" style="animation-delay: 0.6s;">
+            <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16 text-google-gray-primary">Testimoni Pelanggan Puas</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 <div class="google-card p-8 flex flex-col text-center group">
+                     <div class="relative mb-6">
+                         <img class="w-20 h-20 rounded-full mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300" src="https://placehold.co/120x120/4285F4/FFFFFF?text=AS" alt="Foto Asep S.">
+                         <div class="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+                             <i class="fas fa-check text-white text-xs"></i>
+                         </div>
+                     </div>
+                     <div class="text-yellow-400 mb-4 text-lg">
+                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                     </div>
+                     <p class="text-google-gray-secondary italic mb-6 flex-grow leading-relaxed">"Proses upgrade super cepat, gak sampai 1 menit! Customer service sangat ramah dan responsif. Sekarang Drive saya lega banget, gak pusing mikirin storage lagi. Sangat recommended untuk yang butuh penyimpanan besar!"</p>
+                     <p class="text-google-gray-primary font-semibold">Asep Suryadi</p>
+                     <p class="text-google-gray-tertiary text-sm">Bandung, Jawa Barat</p>
                  </div>
-                 <div class="google-card p-6 flex flex-col text-center">
-                     <img class="w-16 h-16 rounded-full mx-auto mb-4 shadow-md" src="https://placehold.co/100x100/EA4335/FFFFFF?text=RW" alt="Foto Rina W.">
-                     <div class="text-yellow-500 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                     <p class="text-google-gray-secondary italic mb-4 flex-grow">"Awalnya ragu, tapi setelah lihat testimoni jadi yakin. Beneran unlimited dan permanen! Cocok banget buat backup foto & video keluarga."</p>
-                     <p class="text-google-gray-primary font-medium">- Rina W., Surabaya</p>
+                 <div class="google-card p-8 flex flex-col text-center group">
+                     <div class="relative mb-6">
+                         <img class="w-20 h-20 rounded-full mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300" src="https://placehold.co/120x120/EA4335/FFFFFF?text=RW" alt="Foto Rina W.">
+                         <div class="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+                             <i class="fas fa-check text-white text-xs"></i>
+                         </div>
+                     </div>
+                     <div class="text-yellow-400 mb-4 text-lg">
+                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                     </div>
+                     <p class="text-google-gray-secondary italic mb-6 flex-grow leading-relaxed">"Awalnya agak ragu karena harganya murah banget, tapi setelah lihat testimoni dan review jadi yakin. Ternyata beneran unlimited dan permanen! Sangat cocok buat backup foto & video keluarga dalam jumlah besar."</p>
+                     <p class="text-google-gray-primary font-semibold">Rina Wijayanti</p>
+                     <p class="text-google-gray-tertiary text-sm">Surabaya, Jawa Timur</p>
                  </div>
-                 <div class="google-card p-6 flex flex-col text-center">
-                     <img class="w-16 h-16 rounded-full mx-auto mb-4 shadow-md" src="https://placehold.co/100x100/34A853/FFFFFF?text=BP" alt="Foto Budi P.">
-                     <div class="text-yellow-500 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                     <p class="text-google-gray-secondary italic mb-4 flex-grow">"Harga sangat terjangkau untuk penyimpanan seumur hidup. Gak perlu bayar bulanan lagi. Puas banget sama layanannya, top!"</p>
-                     <p class="text-google-gray-primary font-medium">- Budi P., Jakarta</p>
+                 <div class="google-card p-8 flex flex-col text-center group">
+                     <div class="relative mb-6">
+                         <img class="w-20 h-20 rounded-full mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300" src="https://placehold.co/120x120/34A853/FFFFFF?text=BP" alt="Foto Budi P.">
+                         <div class="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+                             <i class="fas fa-check text-white text-xs"></i>
+                         </div>
+                     </div>
+                     <div class="text-yellow-400 mb-4 text-lg">
+                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                     </div>
+                     <p class="text-google-gray-secondary italic mb-6 flex-grow leading-relaxed">"Harga sangat terjangkau untuk penyimpanan seumur hidup. Gak perlu bayar bulanan lagi seperti layanan cloud lainnya. Puas banget sama layanannya, prosesnya cepat dan hasilnya sesuai ekspektasi. Top markotop!"</p>
+                     <p class="text-google-gray-primary font-semibold">Budi Prasetyo</p>
+                     <p class="text-google-gray-tertiary text-sm">Jakarta Selatan</p>
                  </div>
             </div>
         </section>
 
-        <section class="my-16 sm:my-20 fade-in-up" style="animation-delay: 0.7s;">
-            <div class="google-card p-8 md:p-12 text-center bg-gray-50">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-google-gray-primary">Penawaran Spesial Segera Berakhir!</h2>
-                <p class="text-lg text-google-gray-secondary mb-6">Jangan lewatkan kesempatan emas ini untuk mendapatkan penyimpanan Google Drive impian Anda.</p>
+        <section class="my-24 fade-in-up" style="animation-delay: 0.7s;">
+            <div class="google-card p-10 md:p-16 text-center bg-gradient-to-br from-blue-50 to-green-50">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4 text-google-gray-primary">⚡ Penawaran Terbatas Segera Berakhir!</h2>
+                <p class="text-xl text-google-gray-secondary mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Jangan sia-siakan kesempatan emas ini! Dapatkan penyimpanan Google Drive unlimited dengan harga spesial yang tidak akan terulang lagi.
+                </p>
                 
-                <div id="countdown" class="countdown-timer my-8">
+                <div id="countdown" class="countdown-timer my-12">
                     <div><span id="days">00</span><p>Hari</p></div>
                     <div><span id="hours">00</span><p>Jam</p></div>
                     <div><span id="minutes">00</span><p>Menit</p></div>
                     <div><span id="seconds">00</span><p>Detik</p></div>
                 </div>
                 
-                <a class="cta-button bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-12 text-lg shadow-lg hover:shadow-xl mt-4" href="#package-selection" style="box-shadow: 0 4px 15px rgba(52, 168, 83, 0.3);">
-                    <i class="fas fa-bolt"></i>Klaim Promo Sekarang!
+                <a class="cta-button bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 px-16 text-xl shadow-2xl mt-6" href="#package-selection">
+                    <i class="fas fa-bolt mr-2"></i>Klaim Promo Sekarang Juga!
                 </a>
-                <p class="mt-6 text-sm text-google-gray-secondary flex items-center justify-center gap-2">
-                    <i class="fas fa-shield-alt text-green-600"></i> Transaksi 100% Aman & Terenkripsi
-                </p>
+                <div class="flex items-center justify-center gap-6 mt-8 text-sm text-google-gray-secondary">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-shield-alt text-green-600"></i> 
+                        <span>Transaksi 100% Aman</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-lock text-blue-600"></i> 
+                        <span>Data Terenkripsi</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-certificate text-yellow-600"></i> 
+                        <span>Garansi Resmi</span>
+                    </div>
+                </div>
             </div>
         </section>
         
         <!-- SECTION: PILIH PAKET -->
-        <section id="package-selection" class="my-16 sm:my-20 fade-in-up" style="animation-delay: 0.8s;">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4 text-google-gray-primary">Pilih Paket Upgrade Anda</h2>
-            <p class="text-center text-google-gray-secondary mb-12 max-w-2xl mx-auto">Kami menyediakan dua pilihan terbaik yang disesuaikan untuk kebutuhan Anda. Cukup sekali bayar untuk selamanya.</p>
+        <section id="package-selection" class="my-24 fade-in-up" style="animation-delay: 0.8s;">
+            <h2 class="text-4xl sm:text-5xl font-bold text-center mb-6 text-google-gray-primary">Pilih Paket Upgrade Terbaik Anda</h2>
+            <p class="text-center text-xl text-google-gray-secondary mb-16 max-w-3xl mx-auto leading-relaxed">
+                Kami menyediakan dua pilihan terbaik yang disesuaikan untuk kebutuhan Anda. Cukup sekali bayar untuk menikmati manfaat selamanya.
+            </p>
             
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
                 <!-- Paket Akun Pribadi -->
-                <div id="paket-2tb-card" class="google-card package-card flex flex-col p-8">
-                    <h3 class="text-2xl font-bold text-google-blue mb-4">Paket Akun Pribadi</h3>
-                    <p class="text-4xl font-bold text-google-gray-primary mb-2">Rp165.000</p>
-                    <p class="text-google-gray-secondary mb-6">Sekali Bayar</p>
-                    <ul class="space-y-4 text-google-gray-secondary flex-grow">
-                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>Bisa Pakai Akun Lama:</strong> Upgrade langsung akun Google (Gmail) Anda yang sudah ada.</span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span>Akses <strong>Gemini Pro</strong></span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span>Photos <strong>Auto Backup</strong></span></li>
+                <div id="paket-2tb-card" class="google-card package-card flex flex-col p-10 relative">
+                    <div class="absolute top-6 right-6 bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">
+                        POPULER
+                    </div>
+                    <h3 class="text-3xl font-bold text-google-blue mb-6">Paket Akun Pribadi</h3>
+                    <div class="mb-8">
+                        <p class="text-5xl font-bold text-google-gray-primary mb-2">Rp165.000</p>
+                        <p class="text-google-gray-secondary text-lg">Sekali Bayar Selamanya</p>
+                    </div>
+                    <ul class="space-y-5 text-google-gray-secondary flex-grow mb-8">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-lg"></i><span><strong class="text-google-gray-primary">Bisa Pakai Akun Lama:</strong> Upgrade langsung akun Google (Gmail) Anda yang sudah ada tanpa perlu ganti.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-lg"></i><span><strong class="text-google-gray-primary">Akses Gemini Pro:</strong> AI assistant terdepan untuk produktivitas maksimal.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-lg"></i><span><strong class="text-google-gray-primary">Photos Auto Backup:</strong> Backup otomatis semua foto dari perangkat Anda.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-lg"></i><span><strong class="text-google-gray-primary">Penyimpanan Unlimited:</strong> Kapasitas tanpa batas untuk semua file.</span></li>
                     </ul>
-                    <button onclick="selectPackage('2tb')" class="cta-button google-blue-button w-full justify-center mt-8">
-                        Pilih Paket Akun Pribadi
+                    <button onclick="selectPackage('2tb')" class="cta-button google-blue-button w-full justify-center py-4 text-lg">
+                        <i class="fas fa-user mr-2"></i>Pilih Paket Akun Pribadi
                     </button>
                 </div>
 
                 <!-- Paket Akun Baru -->
-                <div id="paket-unlimited-card" class="google-card package-card flex flex-col p-8 relative">
-                    <span class="absolute top-0 right-0 -mt-3 -mr-3 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full shadow-md">Paling Laris</span>
-                    <h3 class="text-2xl font-bold text-google-green mb-4">Paket Akun Baru</h3>
-                    <p class="text-4xl font-bold text-google-gray-primary mb-2">Rp265.000</p>
-                    <p class="text-google-gray-secondary mb-6">Sekali Bayar</p>
-                    <ul class="space-y-4 text-google-gray-secondary flex-grow">
-                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>Dibuatkan Akun Baru:</strong> Anda akan mendapatkan akun baru khusus dengan penyimpanan tanpa batas.</span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>Wajib Ganti Password:</strong> Demi keamanan, Anda wajib mengganti password setelah menerima akun.</span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span>Akses <strong>Gemini Pro</strong></span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>Unlimited</strong> Google Photos</span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>Unlimited</strong> Google Meet Recording</span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span>Photos <strong>Auto Backup</strong></span></li>
+                <div id="paket-unlimited-card" class="google-card package-card flex flex-col p-10 relative border-2 border-green-300">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-sm font-bold px-6 py-2 rounded-full shadow-lg">
+                        🔥 PALING LARIS
+                    </div>
+                    <h3 class="text-3xl font-bold text-google-green mb-6">Paket Akun Baru</h3>
+                    <div class="mb-8">
+                        <p class="text-5xl font-bold text-google-gray-primary mb-2">Rp265.000</p>
+                        <p class="text-google-gray-secondary text-lg">Sekali Bayar Selamanya</p>
+                    </div>
+                    <ul class="space-y-5 text-google-gray-secondary flex-grow mb-8">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-lg"></i><span><strong class="text-google-gray-primary">Dibuatkan Akun Baru:</strong> Anda akan mendapatkan akun Gmail baru khusus dengan penyimpanan tanpa batas.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-lg"></i><span><strong class="text-google-gray-primary">Wajib Ganti Password:</strong> Demi keamanan maksimal, Anda wajib mengganti password setelah menerima akun.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-lg"></i><span><strong class="text-google-gray-primary">Akses Gemini Pro:</strong> AI assistant terdepan untuk produktivitas maksimal.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-lg"></i><span><strong class="text-google-gray-primary">Unlimited Google Photos:</strong> Simpan foto dan video tanpa batas dalam kualitas tinggi.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-lg"></i><span><strong class="text-google-gray-primary">Unlimited Google Meet Recording:</strong> Rekam semua meeting penting tanpa batasan.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-lg"></i><span><strong class="text-google-gray-primary">Photos Auto Backup:</strong> Backup otomatis semua foto dari perangkat Anda.</span></li>
                     </ul>
-                    <button onclick="selectPackage('unlimited')" class="cta-button bg-green-500 hover:bg-green-600 text-white w-full justify-center mt-8" style="box-shadow: 0 4px 15px rgba(52, 168, 83, 0.3);">
-                        Pilih Paket Akun Baru
+                    <button onclick="selectPackage('unlimited')" class="cta-button bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white w-full justify-center py-4 text-lg shadow-lg">
+                        <i class="fas fa-plus mr-2"></i>Pilih Paket Akun Baru
                     </button>
                 </div>
             </div>
         </section>
 
         <!-- SECTION: FORM PEMESANAN BARU -->
-        <section class="my-16 sm:my-20 fade-in-up" id="order-form">
-           <div class="google-card p-8 md:p-10 max-w-2xl mx-auto">
-               <h2 class="text-3xl font-bold text-center mb-2 text-google-gray-primary">Lengkapi Data Pemesanan</h2>
-               <p class="text-center text-google-gray-secondary mb-10">Isi data di bawah ini untuk melanjutkan pemesanan.</p>
+        <section class="my-24 fade-in-up" id="order-form">
+           <div class="google-card p-10 md:p-12 max-w-3xl mx-auto">
+               <h2 class="text-4xl font-bold text-center mb-4 text-google-gray-primary">Lengkapi Data Pemesanan Anda</h2>
+               <p class="text-center text-xl text-google-gray-secondary mb-12 leading-relaxed">
+                   Isi data di bawah ini dengan lengkap dan benar untuk melanjutkan proses pemesanan.
+               </p>
                
-               <form id="newOrderForm" class="space-y-6">
+               <form id="newOrderForm" class="space-y-8">
                    <!-- Pilihan Paket (Radio Button) -->
-                   <div class="space-y-2">
-                       <label class="font-medium text-google-gray-primary">Paket yang Dipilih:</label>
-                       <div class="flex flex-col sm:flex-row gap-4">
-                            <label for="radio-2tb" class="flex-1 p-4 border rounded-lg cursor-pointer transition-all" id="label-2tb">
-                                <input type="radio" id="radio-2tb" name="paket" value="2tb" class="mr-2" required>
-                                Paket Akun Pribadi (Rp165.000)
+                   <div class="space-y-4">
+                       <label class="text-lg font-semibold text-google-gray-primary">Paket yang Dipilih:</label>
+                       <div class="grid sm:grid-cols-2 gap-4">
+                            <label for="radio-2tb" class="flex-1 p-6 border-2 rounded-xl cursor-pointer transition-all hover:bg-blue-50" id="label-2tb">
+                                <input type="radio" id="radio-2tb" name="paket" value="2tb" class="mr-3" required>
+                                <div>
+                                    <div class="font-semibold text-google-gray-primary">Paket Akun Pribadi</div>
+                                    <div class="text-green-600 font-bold">Rp165.000</div>
+                                </div>
                             </label>
-                            <label for="radio-unlimited" class="flex-1 p-4 border rounded-lg cursor-pointer transition-all" id="label-unlimited">
-                                <input type="radio" id="radio-unlimited" name="paket" value="unlimited" class="mr-2">
-                                Paket Akun Baru (Rp265.000)
+                            <label for="radio-unlimited" class="flex-1 p-6 border-2 rounded-xl cursor-pointer transition-all hover:bg-green-50" id="label-unlimited">
+                                <input type="radio" id="radio-unlimited" name="paket" value="unlimited" class="mr-3">
+                                <div>
+                                    <div class="font-semibold text-google-gray-primary">Paket Akun Baru</div>
+                                    <div class="text-green-600 font-bold">Rp265.000</div>
+                                </div>
                             </label>
                        </div>
                    </div>
 
                    <!-- Input Nama -->
                    <div>
-                       <label for="nama" class="block text-sm font-medium text-google-gray-primary mb-2">Nama Lengkap</label>
-                       <input type="text" id="nama" name="nama" class="form-input-google" placeholder="Contoh: Budi Sanjaya" required>
+                       <label for="nama" class="block text-lg font-semibold text-google-gray-primary mb-3">Nama Lengkap</label>
+                       <input type="text" id="nama" name="nama" class="form-input-google" placeholder="Contoh: Budi Santoso" required>
                    </div>
                    
                    <!-- Input WhatsApp -->
                    <div>
-                       <label for="whatsapp" class="block text-sm font-medium text-google-gray-primary mb-2">Nomor WhatsApp Aktif</label>
+                       <label for="whatsapp" class="block text-lg font-semibold text-google-gray-primary mb-3">Nomor WhatsApp Aktif</label>
                        <input type="tel" id="whatsapp" name="whatsapp" class="form-input-google" placeholder="Contoh: 081234567890" required>
+                       <p class="text-sm text-google-gray-tertiary mt-2">Gunakan format 08xxxxxxxxx atau +62xxxxxxxxx</p>
                    </div>
                    
                    <!-- Input Email (Kondisional untuk Paket Akun Pribadi) -->
                    <div id="email-field" class="hidden">
-                       <label for="email" class="block text-sm font-medium text-google-gray-primary mb-2">Alamat Email Google Anda (Gmail)</label>
+                       <label for="email" class="block text-lg font-semibold text-google-gray-primary mb-3">Alamat Email Google Anda (Gmail)</label>
                        <input type="email" id="email" name="email" class="form-input-google" placeholder="contoh.email@gmail.com">
-                       <p class="text-xs text-google-gray-secondary mt-2">Pastikan email yang Anda masukkan benar. Kami hanya butuh alamat email, bukan password.</p>
+                       <p class="text-sm text-google-gray-tertiary mt-2">
+                           <i class="fas fa-info-circle mr-1"></i>
+                           Pastikan email yang Anda masukkan benar dan masih aktif. Kami hanya membutuhkan alamat email, bukan password Anda.
+                       </p>
                    </div>
                    
                    <!-- Input Username (Kondisional untuk Paket Akun Baru) -->
                    <div id="username-field" class="hidden">
-                       <label for="username" class="block text-sm font-medium text-google-gray-primary mb-2">Username yang diinginkan untuk email baru</label>
-                       <input type="text" id="username" name="username" class="form-input-google" placeholder="Contoh: budisanjaya88">
-                       <p class="text-xs text-google-gray-secondary mt-2">Username hanya boleh berisi huruf, angka, dan titik. Email Anda akan menjadi <strong class="text-google-gray-primary">username@gmail.com</strong>.</p>
+                       <label for="username" class="block text-lg font-semibold text-google-gray-primary mb-3">Username yang Diinginkan untuk Email Baru</label>
+                       <input type="text" id="username" name="username" class="form-input-google" placeholder="Contoh: budisantoso88">
+                       <p class="text-sm text-google-gray-tertiary mt-2">
+                           <i class="fas fa-info-circle mr-1"></i>
+                           Username hanya boleh berisi huruf, angka, dan titik. Email Anda akan menjadi <strong class="text-google-gray-primary">username@gmail.com</strong>
+                       </p>
                    </div>
 
                    <!-- Tombol Submit -->
-                   <button type="submit" class="cta-button google-blue-button w-full justify-center py-3 text-base shadow-lg !rounded-lg">
-                       Kirim Sekarang
+                   <button type="submit" class="cta-button google-blue-button w-full justify-center py-4 text-lg shadow-xl">
+                       <i class="fas fa-paper-plane mr-2"></i>Kirim Data Pemesanan
                    </button>
-                   <p class="text-center text-xs text-google-gray-secondary mt-4 flex items-center justify-center gap-2">
-                       <i class="fas fa-shield-alt text-green-600"></i> Transaksi 100% Aman & Terenkripsi
-                   </p>
+                   <div class="flex items-center justify-center gap-6 mt-6 text-sm text-google-gray-secondary">
+                       <div class="flex items-center gap-2">
+                           <i class="fas fa-shield-alt text-green-600"></i> 
+                           <span>Transaksi 100% Aman</span>
+                       </div>
+                       <div class="flex items-center gap-2">
+                           <i class="fas fa-lock text-blue-600"></i> 
+                           <span>Data Terenkripsi</span>
+                       </div>
+                   </div>
                </form>
            </div>
         </section>
 
         <!-- SECTION: FAQ -->
-        <section class="my-16 sm:my-20 fade-in-up" id="faq-section" style="animation-delay: 1s;">
-            <div class="google-card p-8 md:p-10">
-                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 text-google-gray-primary">Pertanyaan Umum (FAQ)</h2>
-                <div class="max-w-3xl mx-auto">
+        <section class="my-24 fade-in-up" id="faq-section" style="animation-delay: 1s;">
+            <div class="google-card p-10 md:p-12">
+                <h2 class="text-4xl sm:text-5xl font-bold text-center mb-12 text-google-gray-primary">Pertanyaan yang Sering Ditanyakan</h2>
+                <div class="max-w-4xl mx-auto">
                     <details class="faq-item">
-                        <summary>Apakah ini benar-benar unlimited?</summary>
-                        <div class="faq-content">Ya, benar sekali. Baik <strong>Paket Akun Pribadi</strong> maupun <strong>Paket Akun Baru</strong> sama-sama memberikan Anda kapasitas penyimpanan tanpa batas (unlimited). Anda bisa menyimpan file sepuasnya selama tidak melanggar kebijakan Google.</div>
+                        <summary>Apakah ini benar-benar unlimited dan permanen?</summary>
+                        <div class="faq-content">Ya, benar sekali. Baik <strong>Paket Akun Pribadi</strong> maupun <strong>Paket Akun Baru</strong> sama-sama memberikan Anda kapasitas penyimpanan tanpa batas (unlimited) yang bersifat permanen. Anda bisa menyimpan file sebanyak apapun selama tidak melanggar kebijakan penggunaan Google. Ini adalah upgrade seumur hidup, bukan trial atau sementara.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Apakah ini aman dan legal?</summary>
-                        <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode yang sah dan akun Anda tetap aman di bawah pengelolaan Google. Kami menjamin keamanan data dan privasi akun Anda.</div>
+                        <summary>Apakah ini aman dan legal? Bagaimana dengan kebijakan Google?</summary>
+                        <div class="faq-content">Tentu saja aman dan legal. Proses upgrade dilakukan melalui metode yang sah menggunakan Google Workspace Business yang memang menyediakan fitur unlimited storage. Akun Anda tetap aman di bawah pengelolaan Google dengan semua fitur keamanan standar. Kami menjamin 100% keamanan data dan privasi akun Anda sesuai dengan kebijakan Google yang berlaku.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Apakah saya bisa menggunakan email lama saya?</summary>
-                        <div class="faq-content">Ya, Anda bisa menggunakan akun Google (email Gmail) lama Anda jika memilih <strong>Paket Akun Pribadi</strong>. Untuk <strong>Paket Akun Baru</strong>, kami akan membuatkan akun baru untuk Anda demi performa dan keamanan terbaik.</div>
+                        <summary>Apakah saya bisa menggunakan email Gmail lama saya?</summary>
+                        <div class="faq-content">Ya, Anda bisa menggunakan akun Google (email Gmail) lama Anda jika memilih <strong>Paket Akun Pribadi</strong>. Semua data, email, dan file yang sudah ada akan tetap utuh dan aman. Untuk <strong>Paket Akun Baru</strong>, kami akan membuatkan akun Gmail baru khusus untuk Anda demi performa optimal dan keamanan maksimal. Anda bisa memilih username yang diinginkan.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Berapa lama prosesnya?</summary>
-                        <div class="faq-content">Prosesnya sangat cepat, biasanya hanya dalam beberapa menit hingga maksimal 1x24 jam setelah konfirmasi pembayaran dan data kami terima.</div>
+                        <summary>Berapa lama proses upgrade selesai?</summary>
+                        <div class="faq-content">Proses upgrade sangat cepat dan efisien. Biasanya hanya membutuhkan waktu beberapa menit hingga maksimal 1x24 jam setelah konfirmasi pembayaran dan data lengkap kami terima. Kami akan memberikan notifikasi melalui WhatsApp begitu proses upgrade selesai beserta panduan lengkap penggunaannya.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Apakah ada biaya bulanan atau tahunan?</summary>
-                        <div class="faq-content">Tidak ada! Ini adalah pembayaran sekali untuk selamanya. Anda tidak perlu khawatir tentang biaya langganan bulanan atau tahunan lagi untuk penyimpanan ini.</div>
+                        <summary>Apakah ada biaya bulanan, tahunan, atau biaya tersembunyi lainnya?</summary>
+                        <div class="faq-content">Tidak ada sama sekali! Ini adalah pembayaran satu kali untuk selamanya (one-time payment for lifetime). Tidak ada biaya berlangganan bulanan, tahunan, atau biaya tersembunyi lainnya. Setelah Anda membayar, layanan unlimited storage akan aktif selamanya tanpa ada tagihan tambahan di kemudian hari.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Bagaimana jika saya tidak puas dengan layanan ini?</summary>
+                        <div class="faq-content">Kami memberikan garansi kepuasan 100%. Jika layanan tidak sesuai dengan yang dijanjikan atau Anda mengalami masalah teknis, kami akan memberikan solusi terbaik termasuk perbaikan gratis atau pengembalian dana sesuai dengan ketentuan yang berlaku. Kepuasan pelanggan adalah prioritas utama kami.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apakah data saya akan aman dan terlindungi?</summary>
+                        <div class="faq-content">Absolutely! Data Anda disimpan di server Google dengan standar keamanan tingkat enterprise yang sama dengan yang digunakan oleh perusahaan-perusahaan besar dunia. Google menggunakan enkripsi tingkat militer, autentikasi multi-faktor, dan berbagai lapisan keamanan lainnya. Kami tidak pernah mengakses atau melihat isi file pribadi Anda.</div>
                     </details>
                 </div>
             </div>
         </section>
         
         <!-- Kebijakan Privasi & S&K -->
-        <section class="my-16 sm:my-20 fade-in-up" style="animation-delay: 1.1s;">
-            <div class="google-card p-8 md:p-10 text-sm text-google-gray-secondary leading-6">
-                <div class="grid lg:grid-cols-2 gap-10">
+        <section class="my-24 fade-in-up" style="animation-delay: 1.1s;">
+            <div class="google-card p-10 md:p-12 text-google-gray-secondary leading-relaxed">
+                <div class="grid lg:grid-cols-2 gap-12">
                     <div id="kebijakan-privasi">
-                        <h3 class="text-2xl font-bold mb-4 text-google-gray-primary">Kebijakan Privasi</h3>
-                        <p class="mb-4">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua data file Anda di Drive tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
-                        <h4 class="font-medium text-google-gray-primary mb-2">Poin Penting:</h4>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li>Kami hanya butuh email, bukan password.</li>
-                            <li>Informasi pembayaran diproses oleh gateway aman.</li>
-                            <li>Data Anda tidak dibagikan ke pihak lain.</li>
-                            <li>Kami tidak mengakses file di dalam Drive Anda.</li>
+                        <h3 class="text-2xl font-bold mb-6 text-google-gray-primary">🔒 Kebijakan Privasi</h3>
+                        <p class="mb-6">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua data file Anda di Drive tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
+                        <h4 class="font-semibold text-google-gray-primary mb-3 text-lg">Poin Penting Keamanan:</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3"><i class="fas fa-shield-alt text-green-500 mt-1"></i><span>Kami hanya butuh email, bukan password atau data sensitif lainnya.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-lock text-blue-500 mt-1"></i><span>Informasi pembayaran diproses oleh gateway aman berstandar internasional.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-user-shield text-purple-500 mt-1"></i><span>Data pribadi Anda tidak dibagikan ke pihak ketiga manapun.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-eye-slash text-red-500 mt-1"></i><span>Kami tidak mengakses atau melihat file di dalam Drive Anda.</span></li>
                         </ul>
                     </div>
                      <div id="syarat-ketentuan">
-                        <h3 class="text-2xl font-bold mb-4 text-google-gray-primary">Syarat & Ketentuan</h3>
-                        <p class="mb-4">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
-                         <h4 class="font-medium text-google-gray-primary mb-2">Poin Penting:</h4>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
-                            <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
-                            <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
-                            <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
+                        <h3 class="text-2xl font-bold mb-6 text-google-gray-primary">📋 Syarat & Ketentuan</h3>
+                        <p class="mb-6">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada syarat dan ketentuan kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku saat ini dan di masa depan.</p>
+                         <h4 class="font-semibold text-google-gray-primary mb-3 text-lg">Ketentuan Penting:</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-green-500 mt-1"></i><span>Layanan untuk penggunaan wajar dan tidak melanggar hukum yang berlaku.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-handshake text-blue-500 mt-1"></i><span>Garansi penuh jika upgrade gagal karena kesalahan teknis dari pihak kami.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-exclamation-triangle text-yellow-500 mt-1"></i><span>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</span></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-info-circle text-purple-500 mt-1"></i><span>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</span></li>
                         </ul>
                     </div>
                 </div>
@@ -653,20 +917,36 @@
 
     <footer class="footer-google text-center">
         <div class="container mx-auto px-6">
-            <p class="mb-2">© <span id="currentYear">2025</span> InDrive ID. Semua Hak Dilindungi.</p>
-            <div class="footer-links">
-                <a href="#kebijakan-privasi">Kebijakan Privasi</a>
-                <span class="text-gray-400">|</span>
-                <a href="#syarat-ketentuan">Syarat & Ketentuan</a>
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                <div class="flex items-center gap-4 mb-4 md:mb-0">
+                    <img alt="Logo Google Drive" class="h-8 w-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1024px-Google_Drive_icon_%282020%29.svg.png">
+                    <span class="font-semibold text-google-gray-primary">InDrive ID</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <i class="fab fa-google text-google-blue text-xl"></i>
+                    <span class="text-sm">Partner Resmi Google Workspace</span>
+                </div>
             </div>
-             <p class="text-xs mt-3">Layanan ini menggunakan platform resmi dari Google Workspace untuk menjamin keaslian dan keamanan akun Anda.</p>
+            <div class="border-t border-gray-200 pt-6">
+                <p class="mb-4 text-google-gray-primary font-medium">© <span id="currentYear">2025</span> InDrive ID. Semua Hak Dilindungi Undang-Undang.</p>
+                <div class="footer-links flex flex-wrap justify-center gap-6">
+                    <a href="#kebijakan-privasi" class="hover:text-google-blue transition-colors">Kebijakan Privasi</a>
+                    <a href="#syarat-ketentuan" class="hover:text-google-blue transition-colors">Syarat & Ketentuan</a>
+                    <a href="#faq-section" class="hover:text-google-blue transition-colors">FAQ</a>
+                    <a href="https://wa.me/6285691615383" class="hover:text-google-blue transition-colors">Kontak Support</a>
+                </div>
+                 <p class="text-xs mt-6 leading-relaxed max-w-2xl mx-auto">
+                     Layanan ini menggunakan platform resmi Google Workspace untuk menjamin keaslian, keamanan, dan keandalan akun Anda. 
+                     Kami berkomitmen memberikan layanan terbaik dengan standar internasional.
+                 </p>
+            </div>
         </div>
     </footer>
 
     <div class="notif-box" id="singleNotifBox">
         <div class="notif-icon-wrapper"><i class="fas fa-check-circle"></i></div>
         <div class="notif-content-area">
-            <div class="notif-message"><strong class="notif-name">Nama Acak</strong> telah melakukan upgrade!</div>
+            <div class="notif-message"><strong class="notif-name">Nama Acak</strong> telah berhasil melakukan upgrade!</div>
             <div class="notif-time">beberapa detik yang lalu</div>
         </div>
     </div>
@@ -676,7 +956,7 @@
         <div class="modal-content">
             <h3 id="modalTitle">Berhasil!</h3>
             <p id="modalMessage"></p>
-            <button class="modal-ok-button" onclick="closeModal()">OK</button>
+            <button class="modal-ok-button" onclick="closeModal()">OK, Mengerti</button>
         </div>
     </div>
 
@@ -720,7 +1000,7 @@
                 clearInterval(countdownFunction);
                 const countdownElement = document.getElementById("countdown");
                 if (countdownElement) {
-                    countdownElement.innerHTML = "<div class='text-center text-red-600 font-bold py-4 text-xl'>PROMO TELAH BERAKHIR</div>";
+                    countdownElement.innerHTML = "<div class='text-center text-red-600 font-bold py-8 text-2xl'>⏰ PROMO TELAH BERAKHIR</div>";
                 }
                 return;
             }
@@ -814,8 +1094,8 @@
             document.getElementById('label-2tb').classList.toggle('bg-blue-50', is2tbChecked);
             document.getElementById('paket-2tb-card').classList.toggle('selected', is2tbChecked);
 
-            document.getElementById('label-unlimited').classList.toggle('border-blue-500', isUnlimitedChecked);
-            document.getElementById('label-unlimited').classList.toggle('bg-blue-50', isUnlimitedChecked);
+            document.getElementById('label-unlimited').classList.toggle('border-green-500', isUnlimitedChecked);
+            document.getElementById('label-unlimited').classList.toggle('bg-green-50', isUnlimitedChecked);
             document.getElementById('paket-unlimited-card').classList.toggle('selected', isUnlimitedChecked);
         }
 
@@ -859,7 +1139,7 @@
                 detailPesanan = `*Username yg diinginkan:* ${username}\n`;
             }
 
-            let pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n`;
+            let pesanWA = `Halo Admin, saya ingin konfirmasi pembayaran untuk pesanan:\n\n`;
             pesanWA += `*Paket:* ${paketTerpilih}\n`;
             pesanWA += `*Nama:* ${nama}\n`;
             pesanWA += `*No. WhatsApp:* ${whatsapp}\n`;
@@ -869,59 +1149,130 @@
             const waLink = `https://wa.me/6285691615383?text=${encodeURIComponent(pesanWA)}`;
 
             const paymentHTML = `
-            <div class="google-card p-6 md:p-8 text-center max-w-2xl mx-auto">
-                <h2 class="text-2xl font-semibold mb-6 text-google-gray-primary">Terima kasih sudah melakukan order!</h2>
-                <p class="text-lg text-google-gray-secondary mb-8">Untuk menyelesaikan proses order, silahkan transfer sejumlah:</p>
+            <div class="google-card p-8 md:p-12 text-center max-w-4xl mx-auto">
                 <div class="mb-8">
-                    <p class="text-5xl sm:text-6xl font-extrabold text-google-green mb-4" id="amountToTransfer">Rp${amount}</p>
-                    <button class="cta-button bg-gray-200 hover:bg-gray-300 text-google-gray-primary text-sm py-2 px-4 !rounded-lg" onclick="copyToClipboard('amountToTransfer', 'Jumlah berhasil disalin!')">
-                        <i class="fas fa-copy"></i> Salin Jumlah
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-check text-green-600 text-3xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4 text-google-gray-primary">🎉 Terima Kasih Sudah Melakukan Pemesanan!</h2>
+                    <p class="text-xl text-google-gray-secondary mb-8 leading-relaxed">Untuk menyelesaikan proses pemesanan Anda, silahkan transfer sejumlah:</p>
+                </div>
+                
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-2xl mb-10 border border-green-200">
+                    <p class="text-6xl sm:text-7xl font-extrabold text-green-600 mb-4" id="amountToTransfer">Rp${amount}</p>
+                    <button class="cta-button bg-green-100 hover:bg-green-200 text-green-700 text-sm py-3 px-6" onclick="copyToClipboard('amountToTransfer', 'Jumlah transfer berhasil disalin!')">
+                        <i class="fas fa-copy mr-2"></i> Salin Jumlah Transfer
                     </button>
                 </div>
-                <p class="text-lg text-google-gray-secondary mb-6">ke salah satu rekening berikut ini:</p>
-                <div class="google-card p-4 md:p-6 mb-4 text-left border-gray-200">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="h-6 mb-4" />
-                    <p class="text-md text-google-gray-secondary mb-1">BCA Virtual Account</p>
-                    <div class="flex items-center justify-between gap-2">
-                        <p class="text-xl font-bold text-google-gray-primary break-all" id="bcaVaNumber">39358081299200552</p>
-                        <button class="flex-shrink-0 bg-blue-100 hover:bg-blue-200 text-google-blue text-xs font-bold py-2 px-3 rounded-lg transition-colors duration-200" onclick="copyToClipboard('bcaVaNumber', 'Nomor VA BCA berhasil disalin!')">
-                            <i class="fas fa-copy mr-1"></i> SALIN
-                        </button>
+                
+                <p class="text-xl text-google-gray-secondary mb-8">ke salah satu rekening berikut ini:</p>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-10">
+                    <div class="google-card p-6 text-left border-2 border-blue-200 hover:border-blue-400 transition-colors">
+                        <div class="flex items-center mb-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="h-8 mr-3" />
+                            <span class="font-semibold text-google-gray-primary">BCA Virtual Account</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                            <p class="text-sm text-google-gray-secondary mb-2">Nomor Virtual Account:</p>
+                            <div class="flex items-center justify-between gap-2">
+                                <p class="text-xl font-bold text-google-gray-primary break-all" id="bcaVaNumber">39358081299200552</p>
+                                <button class="flex-shrink-0 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs font-bold py-2 px-3 rounded-lg transition-colors duration-200" onclick="copyToClipboard('bcaVaNumber', 'Nomor VA BCA berhasil disalin!')">
+                                    <i class="fas fa-copy mr-1"></i> SALIN
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-sm text-google-gray-secondary">a.n. InDrive ID</p>
                     </div>
-                    <p class="text-sm text-google-gray-secondary mt-1">a.n. InDrive ID</p>
-                </div>
-                <div class="google-card p-4 md:p-6 mb-4 text-left border-gray-200">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png" alt="Logo CIMB Niaga" class="h-5 mb-4" />
-                    <p class="text-md text-google-gray-secondary mb-1">CIMB Niaga</p>
-                    <div class="flex items-center justify-between gap-2">
-                         <p class="text-xl font-bold text-google-gray-primary break-all" id="cimbAccountNumber">8099081299200552</p>
-                        <button class="flex-shrink-0 bg-blue-100 hover:bg-blue-200 text-google-blue text-xs font-bold py-2 px-3 rounded-lg transition-colors duration-200" onclick="copyToClipboard('cimbAccountNumber', 'Nomor Rekening CIMB Niaga berhasil disalin!')">
-                            <i class="fas fa-copy mr-1"></i> SALIN
-                        </button>
+                    
+                    <div class="google-card p-6 text-left border-2 border-green-200 hover:border-green-400 transition-colors">
+                        <div class="flex items-center mb-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png" alt="Logo CIMB Niaga" class="h-6 mr-3" />
+                            <span class="font-semibold text-google-gray-primary">CIMB Niaga</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                            <p class="text-sm text-google-gray-secondary mb-2">Nomor Rekening:</p>
+                            <div class="flex items-center justify-between gap-2">
+                                 <p class="text-xl font-bold text-google-gray-primary break-all" id="cimbAccountNumber">8099081299200552</p>
+                                <button class="flex-shrink-0 bg-green-100 hover:bg-green-200 text-green-700 text-xs font-bold py-2 px-3 rounded-lg transition-colors duration-200" onclick="copyToClipboard('cimbAccountNumber', 'Nomor Rekening CIMB Niaga berhasil disalin!')">
+                                    <i class="fas fa-copy mr-1"></i> SALIN
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-sm text-google-gray-secondary">a.n. InDrive ID</p>
                     </div>
-                    <p class="text-sm text-google-gray-secondary mt-1">a.n. InDrive ID</p>
-                </div>
-                <div class="google-card p-4 md:p-6 mb-8 text-left border-gray-200">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png" alt="Logo Bank Jago" class="h-5 mb-4" />
-                    <p class="text-md text-google-gray-secondary mb-1">Bank Jago</p>
-                    <div class="flex items-center justify-between gap-2">
-                        <p class="text-xl font-bold text-google-gray-primary break-all" id="jagoAccountNumber">109594117900</p>
-                         <button class="flex-shrink-0 bg-blue-100 hover:bg-blue-200 text-google-blue text-xs font-bold py-2 px-3 rounded-lg transition-colors duration-200" onclick="copyToClipboard('jagoAccountNumber', 'Nomor Rekening Bank Jago berhasil disalin!')">
-                            <i class="fas fa-copy mr-1"></i> SALIN
-                        </button>
+                    
+                    <div class="google-card p-6 text-left border-2 border-purple-200 hover:border-purple-400 transition-colors">
+                        <div class="flex items-center mb-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png" alt="Logo Bank Jago" class="h-6 mr-3" />
+                            <span class="font-semibold text-google-gray-primary">Bank Jago</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                            <p class="text-sm text-google-gray-secondary mb-2">Nomor Rekening:</p>
+                            <div class="flex items-center justify-between gap-2">
+                                <p class="text-xl font-bold text-google-gray-primary break-all" id="jagoAccountNumber">109594117900</p>
+                                 <button class="flex-shrink-0 bg-purple-100 hover:bg-purple-200 text-purple-700 text-xs font-bold py-2 px-3 rounded-lg transition-colors duration-200" onclick="copyToClipboard('jagoAccountNumber', 'Nomor Rekening Bank Jago berhasil disalin!')">
+                                    <i class="fas fa-copy mr-1"></i> SALIN
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-sm text-google-gray-secondary">a.n. Anang Dude Juliawan</p>
                     </div>
-                    <p class="text-sm text-google-gray-secondary mt-1">a.n. Anang Dude Juliawan</p>
                 </div>
-                <p class="text-sm text-google-gray-secondary mb-4">Silahkan konfirmasi pembayaran anda jika sudah melakukan transfer untuk mempercepat verifikasi.</p>
-                <a href="${waLink}" target="_blank" class="cta-button bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 text-lg !rounded-lg w-full justify-center">
-                    <i class="fab fa-whatsapp"></i> Konfirmasi Pembayaran
+                
+                <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 mb-8">
+                    <div class="flex items-center justify-center gap-3 mb-3">
+                        <i class="fas fa-info-circle text-yellow-600 text-xl"></i>
+                        <h3 class="font-semibold text-yellow-800">Penting untuk Diperhatikan</h3>
+                    </div>
+                    <p class="text-yellow-700 leading-relaxed">
+                        Pastikan jumlah transfer <strong>EXACTLY</strong> sesuai dengan nominal di atas. 
+                        Setelah transfer, segera konfirmasi pembayaran melalui WhatsApp untuk proses yang lebih cepat.
+                    </p>
+                </div>
+                
+                <a href="${waLink}" target="_blank" class="cta-button bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 px-12 text-xl shadow-2xl w-full justify-center mb-6">
+                    <i class="fab fa-whatsapp mr-3"></i> Konfirmasi Pembayaran via WhatsApp
                 </a>
+                
+                <div class="flex items-center justify-center gap-6 text-sm text-google-gray-secondary">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-clock text-blue-600"></i> 
+                        <span>Proses 1x24 Jam</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-headset text-green-600"></i> 
+                        <span>Support 24/7</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-shield-alt text-purple-600"></i> 
+                        <span>Garansi 100%</span>
+                    </div>
+                </div>
             </div>
             `;
             
             const orderFormSection = document.getElementById('order-form');
             orderFormSection.innerHTML = paymentHTML;
             orderFormSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
         });
     });
     
@@ -971,10 +1322,10 @@
 
         try {
             document.execCommand('copy');
-            showModal('Berhasil!', successMessage);
+            showModal('Berhasil! 🎉', successMessage);
         } catch (err) {
             console.error('Gagal menyalin:', err);
-            showModal('Gagal!', 'Gagal menyalin. Silakan salin secara manual.');
+            showModal('Gagal! ❌', 'Gagal menyalin. Silakan salin secara manual.');
         }
         document.body.removeChild(tempInput);
     }
