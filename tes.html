@@ -216,141 +216,211 @@
             transform: scale(1.05);
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
+        
+        /* Notifikasi Toast Gaya Google */
+        .notif-box {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2e2f32;
+            color: #e8eaed;
+            border-radius: 9999px; /* Pill shape */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            padding: 12px 24px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            width: auto;
+            max-width: 450px;
+            z-index: 1000;
+            opacity: 0;
+            font-family: 'Roboto', sans-serif;
+            transition: opacity 0.4s cubic-bezier(0, 0, 0.2, 1), transform 0.4s cubic-bezier(0, 0, 0.2, 1), bottom 0.4s ease;
+        }
+        .notif-box.show {
+            display: flex;
+            opacity: 1;
+            animation: slideInAndOutGoogle 5s cubic-bezier(0, 0, 0.2, 1) forwards;
+        }
+        @keyframes slideInAndOutGoogle {
+            0%   { opacity: 0; transform: translateX(-50%) translateY(30px); }
+            10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+            90%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(30px); }
+        }
+        .notif-icon-wrapper {
+            color: #8ab4f8;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .notif-message {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .notif-message strong {
+            font-weight: 500;
+            color: #ffffff;
+        }
+        @media (max-width: 500px) {
+            .notif-box {
+                left: 16px;  
+                right: 16px;
+                bottom: 16px;
+                transform: translateX(0);
+                width: calc(100% - 32px);
+            }
+             @keyframes slideInAndOutGoogle {
+                0%   { opacity: 0; transform: translateY(20px); }
+                10%  { opacity: 1; transform: translateY(0); }
+                90%  { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(20px); }
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="main-card">
-        <div class="grid grid-cols-1 lg:grid-cols-5">
+        <div class="flex flex-col lg:grid lg:grid-cols-5">
             <!-- Left Column (Form) -->
             <div class="lg:col-span-3 p-6 sm:p-8 md:p-10 order-2 lg:order-1">
-                <div class="flex flex-col sm:flex-row items-center justify-between mb-8 text-sm text-gray-600 gap-4">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-shield-alt text-green-600 text-xl"></i>
-                        <span>Transaksi Dijamin Aman</span>
+                 <div class="flex flex-col h-full">
+                    <!-- Top Bar -->
+                    <div class="flex-shrink-0 flex flex-col sm:flex-row items-center justify-between mb-8 text-sm text-gray-600 gap-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-shield-alt text-green-600 text-xl"></i>
+                            <span>Transaksi Dijamin Aman</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-undo text-blue-600 text-xl"></i>
+                            <span>Garansi Uang Kembali</span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-undo text-blue-600 text-xl"></i>
-                        <span>Garansi Uang Kembali</span>
-                    </div>
+                    
+                    <!-- Form -->
+                    <form id="orderForm" class="flex-grow">
+                        <!-- Package Selection -->
+                        <h2 class="text-2xl font-googlesans font-bold mb-6">1. Pilih Paket Anda</h2>
+                        <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                            <div id="paket-pribadi" class="package-option text-center">
+                                 <input type="radio" name="paket" value="pribadi" id="radio-pribadi" class="hidden" checked>
+                                 <h3 class="font-bold text-lg">Akun Pribadi</h3>
+                                 <p class="text-sm text-gray-500">Upgrade email Anda</p>
+                            </div>
+                            <div id="paket-baru" class="package-option text-center">
+                                 <div class="badge">Paling Laris</div>
+                                 <input type="radio" name="paket" value="baru" id="radio-baru" class="hidden">
+                                 <h3 class="font-bold text-lg">Akun Baru</h3>
+                                 <p class="text-sm text-gray-500">Dibuatkan email baru</p>
+                            </div>
+                        </div>
+
+                        <h2 class="text-2xl font-googlesans font-bold mb-6">2. Lengkapi Data</h2>
+                        <div class="space-y-5">
+                            <div>
+                                <label for="nama" class="block text-sm font-medium text-google-gray-primary mb-2">Nama Anda</label>
+                                <input type="text" id="nama" name="nama" class="form-input-google" placeholder="Contoh: Budi Sanjaya" required>
+                            </div>
+                            <div>
+                                <label for="whatsapp" class="block text-sm font-medium text-google-gray-primary mb-2">No. WhatsApp Anda</label>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input-google" placeholder="Contoh: 081234567890" required>
+                            </div>
+                            <div id="email-field">
+                                <label for="email" class="block text-sm font-medium text-google-gray-primary mb-2">Gmail Yang Akan Di Upgrade</label>
+                                <input type="email" id="email" name="email" class="form-input-google" placeholder="contoh.email@gmail.com" required>
+                            </div>
+                             <div id="username-field" class="hidden">
+                                <label for="username" class="block text-sm font-medium text-google-gray-primary mb-2">Username yg diinginkan (@gmail.com)</label>
+                                <input type="text" id="username" name="username" class="form-input-google" placeholder="Contoh: budisan88">
+                            </div>
+                        </div>
+
+                        <h2 class="text-2xl font-googlesans font-bold mt-10 mb-6">3. Pilih Pembayaran</h2>
+                        <div class="space-y-3">
+                            <label class="payment-method" for="bca-va">
+                                 <input type="radio" id="bca-va" name="payment" value="BCA Virtual Account" required>
+                                <span>BCA Virtual Account</span>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="payment-logo">
+                            </label>
+                             <label class="payment-method" for="cimb">
+                                 <input type="radio" id="cimb" name="payment" value="CIMB Niaga">
+                                <span>CIMB Niaga</span>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png" alt="Logo CIMB" class="payment-logo">
+                            </label>
+                            <label class="payment-method" for="jago">
+                                 <input type="radio" id="jago" name="payment" value="Bank Jago">
+                                <span>Bank Jago</span>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png" alt="Logo Jago" class="payment-logo">
+                            </label>
+                        </div>
+
+                        <div class="mt-10">
+                            <button type="submit" class="cta-button green-button">
+                                <i class="fas fa-lock"></i>
+                                Beli Sekarang
+                            </button>
+                        </div>
+                    </form>
                 </div>
-
-                <form id="orderForm">
-                    <!-- Package Selection -->
-                    <h2 class="text-2xl font-googlesans font-bold mb-6">1. Pilih Paket Anda</h2>
-                    <div class="grid sm:grid-cols-2 gap-4 mb-8">
-                        <div id="paket-pribadi" class="package-option text-center">
-                             <input type="radio" name="paket" value="pribadi" id="radio-pribadi" class="hidden" checked>
-                             <h3 class="font-bold text-lg">Akun Pribadi</h3>
-                             <p class="text-sm text-gray-500">Upgrade email Anda</p>
-                        </div>
-                        <div id="paket-baru" class="package-option text-center">
-                             <div class="badge">Paling Laris</div>
-                             <input type="radio" name="paket" value="baru" id="radio-baru" class="hidden">
-                             <h3 class="font-bold text-lg">Akun Baru</h3>
-                             <p class="text-sm text-gray-500">Dibuatkan email baru</p>
-                        </div>
-                    </div>
-
-                    <h2 class="text-2xl font-googlesans font-bold mb-6">2. Lengkapi Data</h2>
-                    <div class="space-y-5">
-                        <div>
-                            <label for="nama" class="block text-sm font-medium text-google-gray-primary mb-2">Nama Anda</label>
-                            <input type="text" id="nama" name="nama" class="form-input-google" placeholder="Contoh: Budi Sanjaya" required>
-                        </div>
-                        <div>
-                            <label for="whatsapp" class="block text-sm font-medium text-google-gray-primary mb-2">No. WhatsApp Anda</label>
-                            <input type="tel" id="whatsapp" name="whatsapp" class="form-input-google" placeholder="Contoh: 081234567890" required>
-                        </div>
-                        <div id="email-field">
-                            <label for="email" class="block text-sm font-medium text-google-gray-primary mb-2">Gmail Yang Akan Di Upgrade</label>
-                            <input type="email" id="email" name="email" class="form-input-google" placeholder="contoh.email@gmail.com" required>
-                        </div>
-                         <div id="username-field" class="hidden">
-                            <label for="username" class="block text-sm font-medium text-google-gray-primary mb-2">Username yg diinginkan (@gmail.com)</label>
-                            <input type="text" id="username" name="username" class="form-input-google" placeholder="Contoh: budisan88">
-                        </div>
-                    </div>
-
-                    <h2 class="text-2xl font-googlesans font-bold mt-10 mb-6">3. Pilih Pembayaran</h2>
-                    <div class="space-y-3">
-                        <label class="payment-method" for="bca-va">
-                             <input type="radio" id="bca-va" name="payment" value="BCA Virtual Account" required>
-                            <span>BCA Virtual Account</span>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="payment-logo">
-                        </label>
-                         <label class="payment-method" for="cimb">
-                             <input type="radio" id="cimb" name="payment" value="CIMB Niaga">
-                            <span>CIMB Niaga</span>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png" alt="Logo CIMB" class="payment-logo">
-                        </label>
-                        <label class="payment-method" for="jago">
-                             <input type="radio" id="jago" name="payment" value="Bank Jago">
-                            <span>Bank Jago</span>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png" alt="Logo Jago" class="payment-logo">
-                        </label>
-                    </div>
-
-                    <div class="mt-10">
-                        <button type="submit" class="cta-button green-button">
-                            <i class="fas fa-lock"></i>
-                            Beli Sekarang
-                        </button>
-                    </div>
-                </form>
-
             </div>
 
             <!-- Right Column (Product Info) -->
             <div class="lg:col-span-2 bg-gray-50 p-6 sm:p-8 md:p-10 flex flex-col order-1 lg:order-2">
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center sticky top-10">
-                    <h1 id="product-title" class="text-2xl font-googlesans font-bold text-gray-800">GOOGLE DRIVE UNLIMITED</h1>
-                    <p id="product-subtitle" class="text-gray-500 mb-4">GMAIL PRIBADI UPGRADE</p>
-                    <img alt="Logo Google Drive" class="h-24 w-auto mx-auto my-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1024px-Google_Drive_icon_%282020%29.svg.png">
-                    <div class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full inline-block mb-4">
-                        GARANSI 100%
-                    </div>
-                    <div id="product-price" class="text-5xl font-googlesans font-bold text-gray-900">
-                        Rp165<span class="text-3xl">.000</span>
-                    </div>
-                    <p class="text-gray-500 text-sm">Sekali Bayar Selamanya</p>
-                
-                    <div class="bg-gray-50 p-4 rounded-lg mt-6">
-                         <h3 class="text-lg font-googlesans font-bold mb-4">Rincian Pesanan</h3>
-                         <div class="space-y-2 text-sm text-left">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Harga Paket</span>
-                                <span id="harga-paket" class="font-medium">Rp165.000</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Kode Unik</span>
-                                <span id="kode-unik" class="font-medium">Rp187</span>
-                            </div>
-                            <div class="border-t my-2"></div>
-                            <div class="flex justify-between text-base font-bold">
-                                <span>Total</span>
-                                <span id="total-harga">Rp165.187</span>
-                            </div>
-                         </div>
+                <!-- Product Info Box -->
+                <div class="order-1 lg:sticky lg:top-10">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center">
+                        <h1 id="product-title" class="text-2xl font-googlesans font-bold text-gray-800">GOOGLE DRIVE UNLIMITED</h1>
+                        <p id="product-subtitle" class="text-gray-500 mb-4">GMAIL PRIBADI UPGRADE</p>
+                        <img alt="Logo Google Drive" class="h-24 w-auto mx-auto my-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1024px-Google_Drive_icon_%282020%29.svg.png">
+                        <div class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full inline-block mb-4">
+                            GARANSI 100%
+                        </div>
+                        <div id="product-price" class="text-5xl font-googlesans font-bold text-gray-900">
+                            Rp165<span class="text-3xl">.000</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Sekali Bayar Selamanya</p>
                     </div>
                 </div>
-
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 mt-6 flex-grow">
+                
+                <!-- Features -->
+                <div class="order-2 bg-white p-6 rounded-xl shadow-md border border-gray-200 mt-6 flex-grow">
                     <h3 class="text-xl font-googlesans font-bold mb-4">Yang Anda Dapatkan:</h3>
                     <ul id="feature-list" class="space-y-3 text-gray-600 text-sm">
                         <!-- Features will be populated by JS -->
                     </ul>
                 </div>
                 
-                <div class="mt-8">
+                <!-- Order Details -->
+                <div class="order-3 bg-white p-6 rounded-xl shadow-md border border-gray-200 mt-6">
+                     <h3 class="text-lg font-googlesans font-bold mb-4">Rincian Pesanan</h3>
+                     <div class="space-y-2 text-sm text-left">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Harga Paket</span>
+                            <span id="harga-paket" class="font-medium">Rp165.000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Kode Unik</span>
+                            <span id="kode-unik" class="font-medium">Rp187</span>
+                        </div>
+                        <div class="border-t my-2"></div>
+                        <div class="flex justify-between text-base font-bold">
+                            <span>Total</span>
+                            <span id="total-harga">Rp165.187</span>
+                        </div>
+                     </div>
+                </div>
+                
+                <!-- Testimonials -->
+                <div class="order-4 mt-8">
                     <h3 class="text-xl font-googlesans font-bold mb-4 text-center">Testimoni Pelanggan</h3>
                     <div class="testimonial-grid">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+1" alt="Testimonial 1">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+2" alt="Testimonial 2">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+3" alt="Testimonial 3">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+4" alt="Testimonial 4">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+5" alt="Testimonial 5">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+6" alt="Testimonial 6">
+                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+1" alt="Testimonial 1" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+2" alt="Testimonial 2" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+3" alt="Testimonial 3" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+4" alt="Testimonial 4" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+5" alt="Testimonial 5" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+6" alt="Testimonial 6" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
                     </div>
                 </div>
 
@@ -369,6 +439,15 @@
             <button class="modal-ok-button" onclick="closeModal()">OK</button>
         </div>
     </div>
+    
+    <!-- Notification Popup -->
+    <div class="notif-box" id="notifBox">
+        <div class="notif-icon-wrapper"><i class="fas fa-check-circle"></i></div>
+        <div class="notif-content-area">
+            <div class="notif-message"><strong class="notif-name">Nama Acak</strong> baru saja membeli!</div>
+        </div>
+    </div>
+
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -392,6 +471,8 @@
             paketBaruBtn: document.getElementById('paket-baru'),
             radioPribadi: document.getElementById('radio-pribadi'),
             radioBaru: document.getElementById('radio-baru'),
+            notifBox: document.getElementById('notifBox'),
+            notifName: document.querySelector('#notifBox .notif-name'),
         };
 
         // --- CONFIGURATION ---
@@ -430,6 +511,9 @@
                 ]
             }
         };
+        const FIRST_NAMES = ["Adelia", "Aditya", "Agung", "Ahmad", "Aisha", "Ajeng", "Akbar", "Amanda", "Amelia", "Andi", "Andre", "Angga", "Ani", "Annisa", "Ari", "Arif", "Asep", "Ayu", "Bayu", "Bella", "Bima", "Budi", "Cahya", "Candra", "Chandra", "Citra", "Daniel", "David", "Dedi", "Desi", "Dewi", "Dian", "Dimas", "Dina", "Dinda", "Doni", "Eka", "Eko", "Elisa", "Erik", "Erwin", "Fajar", "Farah", "Farhan", "Fatima", "Fauzan", "Febri", "Felix", "Fernando", "Fikri", "Fitri", "Galih", "Gilang", "Hadi", "Hafiz", "Hana", "Handoko", "Hari", "Hasan", "Hendra", "Heru", "Hidayat", "Ibrahim", "Ichsan", "Ida", "Ihsan", "Ilham", "Imam", "Indah", "Indra", "Iqbal", "Irfan", "Irwan", "Ismail", "Ivan", "Jaka", "Jamal", "Jefri", "Joko", "Joni", "Julia", "Kamal", "Kartika", "Kevin", "Khairul", "Krisna", "Kurniawan", "Lestari", "Lia", "Lina", "Lisa", "Lukman", "Lutfi", "Made", "Maulana", "Mega", "Michael", "Mila", "Mira", "Mochammad", "Monica", "Muhammad", "Mukti", "Muslim", "Nadia", "Nana", "Nanda", "Nia", "Nina", "Novi", "Novita", "Nur", "Nurul", "Putra", "Putri", "Rachmat", "Raden", "Radit", "Rafli", "Rahayu", "Rahman", "Rahmat", "Rama", "Rangga", "Rani", "Ratna", "Reza", "Rian", "Rico", "Ridwan", "Rina", "Rini", "Rio", "Riri", "Riska", "Rizki", "Rizky", "Robby", "Robert", "Roni", "Rossa", "Rudi", "Ryan", "Sakti", "Samuel", "Sari", "Satria", "Selly", "Septian", "Setiawan", "Sinta", "Siti", "Sofia", "Sonia", "Sri", "Sugeng", "Sugiarto", "Suharto", "Sujatmiko", "Sukma", "Sulaiman", "Sumardi", "Sunarto", "Surya", "Susanto", "Susi", "Tania", "Taufik", "Tedi", "Thomas", "Tian", "Tika", "Tina", "Tono", "Tony", "Tri", "Umar", "Usman", "Utami", "Vera", "Vicky", "Vina", "Wahyu", "Wahyudi", "Wawan", "Wibowo", "Widi", "Widodo", "Wijaya", "Wulan", "Yani", "Yanto", "Yoga", "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi", "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra", "Zainal", "Zaki"];
+        const LAST_NAMES = ["S.", "W.", "P.", "K.", "H."];
+
 
         // --- FUNCTIONS ---
         function formatCurrency(value) {
@@ -507,6 +591,37 @@
             window.open(waLink, '_blank');
             showModal('Pesanan Diterima!', 'Anda akan dialihkan ke WhatsApp untuk menyelesaikan pesanan. Silakan lakukan pembayaran dan konfirmasi agar pesanan segera kami proses.');
         }
+        
+        // --- NOTIFICATION FUNCTIONS ---
+        function getRandomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function generateRandomName() {
+            const firstName = getRandomElement(FIRST_NAMES);
+            const lastNameInitial = getRandomElement(LAST_NAMES);
+            return `${firstName} ${lastNameInitial}`;
+        }
+        
+        function showNextNotification() {
+            if (!elements.notifBox || !elements.notifName) return;
+            
+            elements.notifName.textContent = generateRandomName();
+            elements.notifBox.classList.remove('show');
+            // Use a timeout to allow the browser to remove the class before re-adding it
+            setTimeout(() => {
+                elements.notifBox.classList.add('show');
+            }, 100);
+        }
+
+        function scheduleNextNotification() {
+            const randomDelay = Math.floor(Math.random() * 10000) + 8000; // 8-18 seconds
+            setTimeout(() => {
+                showNextNotification();
+                scheduleNextNotification();
+            }, randomDelay);
+        }
+
 
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
@@ -526,6 +641,10 @@
 
         // Initial display setup
         updateDisplay('pribadi');
+        
+        // Start notifications
+        setTimeout(scheduleNextNotification, 6000); // Start after 6 seconds
+
     });
 
     // --- GLOBAL MODAL FUNCTIONS ---
