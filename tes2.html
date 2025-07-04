@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade Google Drive Unlimited - Order Cepat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f5f7;
+            color: #172b4d;
+        }
+        .form-input {
+            border: 1px solid #dfe1e6;
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        }
+        .form-input:focus {
+            border-color: #4c9aff;
+            background-color: #fff;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 154, 255, 0.2);
+        }
+        .payment-radio:checked + label {
+            border-color: #0065ff;
+            background-color: #f0f6ff;
+            box-shadow: 0 0 0 1px #0065ff;
+        }
+        .product-card {
+            background-color: #172b4d;
+            color: #ffffff;
+        }
+        .testimonial-image {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .testimonial-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-6xl">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+            <!-- Kolom Kiri: Form & Pembayaran -->
+            <div class="lg:col-span-3 bg-white p-6 sm:p-8 rounded-xl shadow-sm">
+                
+                <!-- Header Keamanan -->
+                <div class="grid grid-cols-2 gap-4 text-center border-b pb-6 mb-6">
+                    <div class="flex flex-col items-center justify-center">
+                        <i class="fas fa-shield-alt text-blue-600 text-2xl mb-2"></i>
+                        <h3 class="font-semibold text-sm">TRANSAKSI DIJAMIN AMAN</h3>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                        <i class="fas fa-hand-holding-usd text-green-600 text-2xl mb-2"></i>
+                        <h3 class="font-semibold text-sm">GARANSI UANG KEMBALI</h3>
+                    </div>
+                </div>
+
+                <form id="orderForm">
+                    <!-- Data Penerima -->
+                    <div class="mb-8">
+                        <h2 class="text-xl font-bold mb-4">Data Penerima</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="nama" class="block text-sm font-medium mb-1">Nama Anda <span class="text-red-500">*</span></label>
+                                <input type="text" id="nama" name="nama" class="form-input w-full p-3 rounded-lg text-base" placeholder="Masukkan nama lengkap Anda" required>
+                            </div>
+                            <div>
+                                <label for="whatsapp" class="block text-sm font-medium mb-1">No. WhatsApp Anda <span class="text-red-500">*</span></label>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full p-3 rounded-lg text-base" placeholder="Contoh: 081234567890" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-1">Gmail yang Akan Di Upgrade <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" class="form-input w-full p-3 rounded-lg text-base" placeholder="contoh.email@gmail.com" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metode Pembayaran -->
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">Metode Pembayaran</h2>
+                        <div class="space-y-3">
+                            <input type="radio" name="payment" id="bca-va" class="hidden payment-radio" value="BCA Virtual Account" checked>
+                            <label for="bca-va" class="flex items-center p-4 border rounded-lg cursor-pointer transition-all">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="BCA" class="h-5 mr-4">
+                                <span class="font-medium">BCA Virtual Account</span>
+                            </label>
+
+                            <input type="radio" name="payment" id="cimb" class="hidden payment-radio" value="CIMB Niaga">
+                            <label for="cimb" class="flex items-center p-4 border rounded-lg cursor-pointer transition-all">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png" alt="CIMB Niaga" class="h-5 mr-4">
+                                <span class="font-medium">CIMB Niaga</span>
+                            </label>
+                            
+                            <input type="radio" name="payment" id="jago" class="hidden payment-radio" value="Bank Jago">
+                            <label for="jago" class="flex items-center p-4 border rounded-lg cursor-pointer transition-all">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png" alt="Bank Jago" class="h-5 mr-4">
+                                <span class="font-medium">Bank Jago</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold text-lg py-4 px-6 rounded-lg mt-8 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        Beli Sekarang
+                    </button>
+                </form>
+            </div>
+
+            <!-- Kolom Kanan: Detail Produk -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Product Card -->
+                <div class="product-card p-6 rounded-xl shadow-lg relative overflow-hidden">
+                    <h2 class="text-2xl font-bold mb-1">GOOGLE DRIVE UNLIMITED</h2>
+                    <p class="text-blue-300 font-medium mb-4">GMAIL PRIBADI UPGRADE</p>
+                    
+                    <div class="flex justify-between items-center my-6">
+                        <img alt="Logo Google Drive" class="h-20 w-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1024px-Google_Drive_icon_%282020%29.svg.png">
+                        <div class="bg-white text-blue-600 font-bold text-3xl py-2 px-5 rounded-lg shadow-md">
+                            165 RB
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center text-center leading-tight font-bold text-yellow-900 p-2" style="transform: rotate(-15deg);">
+                        GARANSI 100%
+                    </div>
+                </div>
+
+                <!-- Rincian Pesanan -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                     <h3 class="text-lg font-bold mb-4">Rincian Pesanan</h3>
+                     <div class="space-y-3 text-gray-600">
+                         <div class="flex justify-between">
+                             <span>Gdrive Unlimited (1x)</span>
+                             <span class="font-medium text-gray-800">Rp165.000</span>
+                         </div>
+                         <div class="flex justify-between">
+                             <span>Kode Unik</span>
+                             <span id="unique-code" class="font-medium text-gray-800">Rp0</span>
+                         </div>
+                         <div class="border-t my-2"></div>
+                         <div class="flex justify-between font-bold text-lg">
+                             <span>Total</span>
+                             <span id="total-price">Rp165.000</span>
+                         </div>
+                     </div>
+                </div>
+
+                <!-- Keuntungan -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-lg font-bold mb-4">Yang Anda Dapatkan:</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>Sekali Bayar</strong> Bisa Dipakai Seumur Hidup.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span>Bisa Menggunakan <strong>Email Pribadi Anda.</strong></span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span>Akun yang kita jual adalah akun yang sudah <strong>verified by Google.</strong></span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span><strong>100% produk genuine</strong> dari Google.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span>Tidak Boleh Menyimpan Data Hacker, Phising, Hal-hal yang Berhubungan Dengan Porn.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimoni -->
+        <div class="mt-12 bg-white p-6 sm:p-8 rounded-xl shadow-sm">
+            <h2 class="text-2xl font-bold text-center mb-6">Testimoni Pelanggan</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <img src="https://placehold.co/300x400/e2e8f0/64748b?text=Testimoni+1" alt="Testimoni 1" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]">
+                <img src="https://placehold.co/300x400/e2e8f0/64748b?text=Testimoni+2" alt="Testimoni 2" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]">
+                <img src="https://placehold.co/300x400/e2e8f0/64748b?text=Testimoni+3" alt="Testimoni 3" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]">
+                <img src="https://placehold.co/300x400/e2e8f0/64748b?text=Testimoni+4" alt="Testimoni 4" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]">
+                <img src="https://placehold.co/300x400/e2e8f0/64748b?text=Testimoni+5" alt="Testimoni 5" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]">
+                <img src="https://placehold.co/300x400/e2e8f0/64748b?text=Testimoni+6" alt="Testimoni 6" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]">
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center mt-8 text-gray-500 text-sm">
+            <p>Copyright © <span id="currentYear"></span> InDrive ID. Semua Hak Dilindungi.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set tahun saat ini
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Kalkulasi Kode Unik dan Total
+            const basePrice = 165000;
+            const uniqueCode = Math.floor(Math.random() * 900) + 100; // Random 100-999
+            const totalPrice = basePrice + uniqueCode;
+
+            const formatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            });
+
+            document.getElementById('unique-code').textContent = formatter.format(uniqueCode);
+            document.getElementById('total-price').textContent = formatter.format(totalPrice);
+
+            // Handle Form Submission
+            const orderForm = document.getElementById('orderForm');
+            orderForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const nama = document.getElementById('nama').value;
+                const whatsapp = document.getElementById('whatsapp').value;
+                const email = document.getElementById('email').value;
+                const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+                // Validasi sederhana
+                if (!nama || !whatsapp || !email) {
+                    alert('Mohon lengkapi semua data penerima.');
+                    return;
+                }
+
+                const message = `Halo, saya ingin order Google Drive Unlimited.\n\n*Nama:* ${nama}\n*No. WhatsApp:* ${whatsapp}\n*Email untuk Upgrade:* ${email}\n*Metode Pembayaran:* ${paymentMethod}\n*Total Transfer:* ${formatter.format(totalPrice)}\n\nMohon info lanjut untuk pembayarannya. Terima kasih!`;
+                
+                // Ganti dengan nomor WhatsApp Anda
+                const waNumber = '6285691615383';
+                const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+
+                // Buka link WhatsApp di tab baru
+                window.open(waLink, '_blank');
+            });
+        });
+    </script>
+
+</body>
+</html>
