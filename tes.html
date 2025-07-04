@@ -359,17 +359,17 @@
                             <h2 class="text-2xl font-googlesans font-bold mt-10 mb-6">3. Pilih Pembayaran</h2>
                             <div class="space-y-3">
                                 <label class="payment-method" for="bca-va">
-                                     <input type="radio" id="bca-va" name="payment" value="BCA Virtual Account">
+                                     <input type="radio" id="bca-va" name="payment" value="bca">
                                     <span>BCA Virtual Account</span>
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="payment-logo">
                                 </label>
                                  <label class="payment-method" for="cimb">
-                                     <input type="radio" id="cimb" name="payment" value="CIMB Niaga">
+                                     <input type="radio" id="cimb" name="payment" value="cimb">
                                     <span>CIMB Niaga</span>
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png" alt="Logo CIMB" class="payment-logo">
                                 </label>
                                 <label class="payment-method" for="jago">
-                                     <input type="radio" id="jago" name="payment" value="Bank Jago">
+                                     <input type="radio" id="jago" name="payment" value="jago">
                                     <span>Bank Jago</span>
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png" alt="Logo Jago" class="payment-logo">
                                 </label>
@@ -503,6 +503,28 @@
                 ]
             }
         };
+        
+        const paymentAccounts = {
+            bca: {
+                name: 'InDrive ID',
+                number: '39358081299200552',
+                bank: 'BCA Virtual Account',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png'
+            },
+            cimb: {
+                name: 'InDrive ID',
+                number: '8099081299200552',
+                bank: 'CIMB Niaga',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png'
+            },
+            jago: {
+                name: 'Anang Dude Juliawan',
+                number: '109594117900',
+                bank: 'Bank Jago',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png'
+            }
+        };
+
         const FIRST_NAMES = ["Adelia", "Aditya", "Agung", "Ahmad", "Aisha", "Ajeng", "Akbar", "Amanda", "Amelia", "Andi", "Andre", "Angga", "Ani", "Annisa", "Ari", "Arif", "Asep", "Ayu", "Bayu", "Bella", "Bima", "Budi", "Cahya", "Candra", "Chandra", "Citra", "Daniel", "David", "Dedi", "Desi", "Dewi", "Dian", "Dimas", "Dina", "Dinda", "Doni", "Eka", "Eko", "Elisa", "Erik", "Erwin", "Fajar", "Farah", "Farhan", "Fatima", "Fauzan", "Febri", "Felix", "Fernando", "Fikri", "Fitri", "Galih", "Gilang", "Hadi", "Hafiz", "Hana", "Handoko", "Hari", "Hasan", "Hendra", "Heru", "Hidayat", "Ibrahim", "Ichsan", "Ida", "Ihsan", "Ilham", "Imam", "Indah", "Indra", "Iqbal", "Irfan", "Irwan", "Ismail", "Ivan", "Jaka", "Jamal", "Jefri", "Joko", "Joni", "Julia", "Kamal", "Kartika", "Kevin", "Khairul", "Krisna", "Kurniawan", "Lestari", "Lia", "Lina", "Lisa", "Lukman", "Lutfi", "Made", "Maulana", "Mega", "Michael", "Mila", "Mira", "Mochammad", "Monica", "Muhammad", "Mukti", "Muslim", "Nadia", "Nana", "Nanda", "Nia", "Nina", "Novi", "Novita", "Nur", "Nurul", "Putra", "Putri", "Rachmat", "Raden", "Radit", "Rafli", "Rahayu", "Rahman", "Rahmat", "Rama", "Rangga", "Rani", "Ratna", "Reza", "Rian", "Rico", "Ridwan", "Rina", "Rini", "Rio", "Riri", "Riska", "Rizki", "Rizky", "Robby", "Robert", "Roni", "Rossa", "Rudi", "Ryan", "Sakti", "Samuel", "Sari", "Satria", "Selly", "Septian", "Setiawan", "Sinta", "Siti", "Sofia", "Sonia", "Sri", "Sugeng", "Sugiarto", "Suharto", "Sujatmiko", "Sukma", "Sulaiman", "Sumardi", "Sunarto", "Surya", "Susanto", "Susi", "Tania", "Taufik", "Tedi", "Thomas", "Tian", "Tika", "Tina", "Tono", "Tony", "Tri", "Umar", "Usman", "Utami", "Vera", "Vicky", "Vina", "Wahyu", "Wahyudi", "Wawan", "Wibowo", "Widi", "Widodo", "Wijaya", "Wulan", "Yani", "Yanto", "Yoga", "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi", "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra", "Zainal", "Zaki"];
         const LAST_NAMES = ["S.", "W.", "P.", "K.", "H."];
 
@@ -623,7 +645,7 @@
             const email = formData.get('email').trim();
             const username = formData.get('username').trim();
             const selectedPackageKey = document.querySelector('input[name="paket"]:checked').value;
-            const selectedPayment = document.querySelector('input[name="payment"]:checked');
+            const selectedPaymentMethodKey = document.querySelector('input[name="payment"]:checked');
 
             // --- Validation Checks ---
             if (!nama) {
@@ -649,7 +671,7 @@
                 return;
             }
             
-            if (!selectedPayment) {
+            if (!selectedPaymentMethodKey) {
                 showInfoModal('Pembayaran Belum Dipilih', 'Silakan pilih salah satu metode pembayaran.');
                 return;
             }
@@ -657,15 +679,21 @@
 
             const pkg = packages[selectedPackageKey];
             const totalPrice = pkg.price + uniqueCode;
+            const paymentAccount = paymentAccounts[selectedPaymentMethodKey.value];
 
             elements.mainContentContainer.style.display = 'none';
             elements.footer.style.display = 'none';
 
+            const paymentMethodText = paymentAccount.bank.includes('Virtual Account') 
+                ? `ke nomor ${paymentAccount.bank}` 
+                : `ke rekening ${paymentAccount.bank}`;
 
             const waLink = generateWaLink(formData, pkg, totalPrice);
             const paymentViewHTML = `
                 <div class="p-6 sm:p-8 md:p-10 flex flex-col items-center text-center max-w-2xl mx-auto">
-                    <img src="https://storage.googleapis.com/gemini-prod-us-west1-assets/generated/100x100/e8f0fe/1A73E8/image_celebration_icon.png" alt="Ikon perayaan" class="w-24 h-24 mb-6 rounded-full">
+                    <div class="w-24 h-24 mb-6 rounded-full bg-blue-100 flex items-center justify-center">
+                        <span class="text-5xl">🎉</span>
+                    </div>
                     <h2 class="text-3xl font-googlesans font-bold mb-2">Terimakasih sudah pesan Gdrive Unlimited</h2>
                     <p class="text-gray-600 mb-6">Orderan kamu sedang Kami proses, silakan transfer sejumlah</p>
                     
@@ -673,16 +701,16 @@
                         ${formatCurrency(totalPrice)}
                     </div>
                     
-                    <p class="text-gray-600 mb-6">Ke salah satu bank berikut ini:</p>
+                    <p class="text-gray-600 mb-6">Ke ${paymentMethodText} berikut ini:</p>
                     
                     <div class="w-full bg-white p-6 rounded-xl shadow-md border border-gray-200 text-left mb-6">
                         <div class="flex justify-between items-start">
                             <div>
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="h-6 mb-4">
-                                <p class="font-bold text-lg">Rhizan Mahadyan Yaman</p>
-                                <p class="text-gray-600">2801721968 • BCA</p>
+                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.bank}" class="h-6 mb-4">
+                                <p class="font-bold text-lg">${paymentAccount.name}</p>
+                                <p class="text-gray-600">${paymentAccount.number} • ${paymentAccount.bank}</p>
                             </div>
-                            <button onclick="copyToClipboard('2801721968', 'Nomor Rekening')" class="text-gray-500 hover:text-blue-600 transition-colors">
+                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening')" class="text-gray-500 hover:text-blue-600 transition-colors">
                                 <i class="far fa-copy text-2xl"></i>
                             </button>
                         </div>
