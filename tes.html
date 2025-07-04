@@ -284,6 +284,29 @@
                 100% { opacity: 0; transform: translateY(20px); }
             }
         }
+
+        /* Bagian FAQ */
+        .faq-item { border-bottom: 1px solid #e0e0e0; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item summary {
+            font-weight: 500; font-size: 1.1rem; color: #202124;
+            padding: 1.25rem 0.5rem; cursor: pointer; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '\f067'; /* plus icon */
+            font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            transition: transform 0.3s ease; color: #5f6368;
+        }
+        .faq-item[open] summary::after {
+            content: '\f068'; /* minus icon */
+            transform: rotate(180deg);
+        }
+        .faq-content {
+            padding: 0 0.5rem 1.25rem 0.5rem; color: #5f6368; line-height: 1.7;
+        }
+        .faq-item[open] summary { color: #1A73E8; }
     </style>
 </head>
 <body>
@@ -388,9 +411,15 @@
                             </div>
                         </form>
                         
-                        <!-- Testimonials (Mobile Only) -->
+                        <!-- Testimonials, FAQ, Policy (Mobile Only) -->
                         <div class="lg:hidden mt-8">
                            <div id="testimonials-mobile"></div>
+                        </div>
+                        <div class="lg:hidden mt-8">
+                           <div id="faq-mobile"></div>
+                        </div>
+                        <div class="lg:hidden mt-8">
+                           <div id="policy-mobile"></div>
                         </div>
 
                     </div>
@@ -405,6 +434,10 @@
                         <div id="order-details-desktop"></div>
                         <!-- Testimonials (Desktop) -->
                         <div id="testimonials-desktop"></div>
+                        <!-- FAQ (Desktop) -->
+                        <div id="faq-desktop"></div>
+                        <!-- Policy (Desktop) -->
+                        <div id="policy-desktop"></div>
                     </div>
                 </div>
             </div>
@@ -452,6 +485,10 @@
             orderDetailsDesktop: document.getElementById('order-details-desktop'),
             testimonialsMobile: document.getElementById('testimonials-mobile'),
             testimonialsDesktop: document.getElementById('testimonials-desktop'),
+            faqMobile: document.getElementById('faq-mobile'),
+            faqDesktop: document.getElementById('faq-desktop'),
+            policyMobile: document.getElementById('policy-mobile'),
+            policyDesktop: document.getElementById('policy-desktop'),
 
             emailField: document.getElementById('email-field'),
             usernameField: document.getElementById('username-field'),
@@ -579,6 +616,59 @@
                 </div>
             </div>`;
 
+        const getFaqHTML = () => `
+             <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                <h3 class="text-xl font-googlesans font-bold mb-4 text-center">Pertanyaan Umum (FAQ)</h3>
+                <details class="faq-item">
+                    <summary>Apakah ini benar-benar unlimited?</summary>
+                    <div class="faq-content">Ya, benar sekali. Baik <strong>Paket Akun Pribadi</strong> maupun <strong>Paket Akun Baru</strong> sama-sama memberikan Anda kapasitas penyimpanan tanpa batas (unlimited).</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Apakah ini aman dan legal?</summary>
+                    <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode yang sah dan akun Anda tetap aman di bawah pengelolaan Google. Kami menjamin keamanan data dan privasi akun Anda.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Apakah saya bisa menggunakan email lama saya?</summary>
+                    <div class="faq-content">Ya, Anda bisa menggunakan akun Google (email Gmail) lama Anda jika memilih <strong>Paket Akun Pribadi</strong>.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Berapa lama prosesnya?</summary>
+                    <div class="faq-content">Prosesnya sangat cepat, biasanya hanya dalam beberapa menit hingga maksimal 1x24 jam setelah konfirmasi pembayaran dan data kami terima.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Apakah ada biaya bulanan atau tahunan?</summary>
+                    <div class="faq-content">Tidak ada! Ini adalah pembayaran sekali untuk selamanya. Anda tidak perlu khawatir tentang biaya langganan bulanan atau tahunan lagi.</div>
+                </details>
+             </div>
+        `;
+        
+        const getPolicyHTML = () => `
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 text-sm text-gray-600">
+                <div class="mb-6">
+                    <h3 class="text-lg font-googlesans font-bold mb-2 text-gray-800">Kebijakan Privasi</h3>
+                    <p class="mb-4">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua data file Anda di Drive tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
+                    <h4 class="font-medium text-gray-800 mb-2">Poin Penting:</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Kami hanya butuh email, bukan password.</li>
+                        <li>Informasi pembayaran diproses oleh gateway aman.</li>
+                        <li>Data Anda tidak dibagikan ke pihak lain.</li>
+                        <li>Kami tidak mengakses file di dalam Drive Anda.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-googlesans font-bold mb-2 text-gray-800">Syarat & Ketentuan</h3>
+                     <p class="mb-4">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
+                    <h4 class="font-medium text-gray-800 mb-2">Poin Penting:</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
+                        <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
+                        <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
+                        <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+
         // --- FUNCTIONS ---
         function formatCurrency(value) {
             return `Rp${value.toLocaleString('id-ID')}`;
@@ -593,6 +683,8 @@
             const featuresHTML = getFeaturesHTML(pkg);
             const orderDetailsHTML = getOrderDetailsHTML(pkg, totalPrice);
             const testimonialsHTML = getTestimonialsHTML();
+            const faqHTML = getFaqHTML();
+            const policyHTML = getPolicyHTML();
 
             elements.productInfoMobile.innerHTML = productInfoHTML;
             elements.productInfoDesktop.innerHTML = productInfoHTML;
@@ -602,6 +694,11 @@
             elements.orderDetailsDesktop.innerHTML = orderDetailsHTML;
             elements.testimonialsMobile.innerHTML = testimonialsHTML;
             elements.testimonialsDesktop.innerHTML = testimonialsHTML;
+            elements.faqMobile.innerHTML = faqHTML;
+            elements.faqDesktop.innerHTML = faqHTML;
+            elements.policyMobile.innerHTML = policyHTML;
+            elements.policyDesktop.innerHTML = policyHTML;
+
 
             const isPribadi = selectedPackageKey === 'pribadi';
             elements.emailField.style.display = isPribadi ? 'block' : 'none';
@@ -701,7 +798,7 @@
                         ${formatCurrency(totalPrice)}
                     </div>
                     
-                    <p class="text-gray-600 mb-6">Ke ${paymentMethodText} berikut ini:</p>
+                    <p class="text-gray-600 mb-6">${paymentMethodText} berikut ini:</p>
                     
                     <div class="w-full bg-white p-6 rounded-xl shadow-md border border-gray-200 text-left mb-6">
                         <div class="flex justify-between items-start">
