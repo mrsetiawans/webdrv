@@ -141,6 +141,13 @@
         .green-button:hover {
             background-color: #136c2e;
         }
+        .blue-button {
+            background-color: #1A73E8;
+            color: white;
+        }
+        .blue-button:hover {
+            background-color: #1866d1;
+        }
 
         /* Modal / Message Box Styling */
         .modal {
@@ -282,164 +289,138 @@
 <body>
 
     <div class="main-card">
-        <div class="p-6 sm:p-8 md:p-10 flex flex-col lg:grid lg:grid-cols-5 lg:gap-x-10">
-            
-            <!-- Top Bar -->
-            <div class="order-1 lg:col-span-5 flex flex-col sm:flex-row items-center justify-between mb-8 text-gray-700 gap-4 font-semibold text-base">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
-                    <span>Transaksi Dijamin Aman</span>
-                </div>
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-undo text-blue-600 text-2xl"></i>
-                    <span>Garansi Uang Kembali</span>
-                </div>
-            </div>
-
-            <!-- Package Selection -->
-            <div class="order-2 lg:col-span-3 lg:order-2">
-                <h2 class="text-2xl font-googlesans font-bold mb-6">1. Pilih Paket Anda</h2>
-                <div class="grid sm:grid-cols-2 gap-4">
-                    <div id="paket-pribadi" class="package-option text-center">
-                         <input type="radio" name="paket" value="pribadi" id="radio-pribadi" class="hidden" checked>
-                         <h3 class="font-bold text-lg">Akun Pribadi</h3>
-                         <p class="text-sm text-gray-500">Upgrade email Anda</p>
+        <div id="main-content-container">
+            <div class="p-6 sm:p-8 md:p-10">
+                <!-- Top Bar -->
+                <div class="flex flex-col sm:flex-row items-center justify-between mb-8 text-gray-700 gap-4 font-semibold text-base">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
+                        <span>Transaksi Dijamin Aman</span>
                     </div>
-                    <div id="paket-baru" class="package-option text-center">
-                         <div class="badge">Paling Laris</div>
-                         <input type="radio" name="paket" value="baru" id="radio-baru" class="hidden">
-                         <h3 class="font-bold text-lg">Akun Baru</h3>
-                         <p class="text-sm text-gray-500">Dibuatkan email baru</p>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-undo text-blue-600 text-2xl"></i>
+                        <span>Garansi Uang Kembali</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Product Info Box -->
-            <div class="order-3 lg:col-span-2 lg:order-1 lg:row-span-2">
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center my-8 lg:my-0">
-                    <h1 id="product-title" class="text-2xl font-googlesans font-bold text-gray-800">GOOGLE DRIVE UNLIMITED</h1>
-                    <p id="product-subtitle" class="text-gray-500 mb-4">GMAIL PRIBADI UPGRADE</p>
-                    <img alt="Logo Google Drive" class="h-24 w-auto mx-auto my-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1024px-Google_Drive_icon_%282020%29.svg.png">
-                    <div class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full inline-block mb-4">
-                        GARANSI 100%
-                    </div>
-                    <div id="product-price" class="text-5xl font-googlesans font-bold text-gray-900">
-                        Rp165<span class="text-3xl">.000</span>
-                    </div>
-                    <p class="text-gray-500 text-sm">Sekali Bayar Selamanya</p>
-                </div>
-            </div>
+                <div class="flex flex-col lg:grid lg:grid-cols-5 lg:gap-x-10">
+                    <!-- Left Column -->
+                    <div class="lg:col-span-3 flex flex-col">
+                        <!-- Package Selection -->
+                        <div class="mb-8">
+                            <h2 class="text-2xl font-googlesans font-bold mb-6">1. Pilih Paket Anda</h2>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div id="paket-pribadi" class="package-option text-center">
+                                     <input type="radio" name="paket" value="pribadi" id="radio-pribadi" class="hidden" checked>
+                                     <h3 class="font-bold text-lg">Akun Pribadi</h3>
+                                     <p class="text-sm text-gray-500">Upgrade email Anda</p>
+                                </div>
+                                <div id="paket-baru" class="package-option text-center">
+                                     <div class="badge">Paling Laris</div>
+                                     <input type="radio" name="paket" value="baru" id="radio-baru" class="hidden">
+                                     <h3 class="font-bold text-lg">Akun Baru</h3>
+                                     <p class="text-sm text-gray-500">Dibuatkan email baru</p>
+                                </div>
+                            </div>
+                        </div>
 
-            <!-- Features -->
-            <div class="order-4 lg:col-span-2 lg:order-2">
-                 <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
-                    <h3 class="text-xl font-googlesans font-bold mb-4">Yang Anda Dapatkan:</h3>
-                    <ul id="feature-list" class="space-y-3 text-gray-600 text-sm">
-                        <!-- Features will be populated by JS -->
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Form -->
-            <div class="order-5 lg:col-span-3 lg:order-3">
-                <form id="orderForm" class="mt-8 lg:mt-6">
-                    <h2 class="text-2xl font-googlesans font-bold mb-6">2. Lengkapi Data</h2>
-                    <div class="space-y-5">
-                        <div>
-                            <label for="nama" class="block text-sm font-medium text-google-gray-primary mb-2">Nama Anda</label>
-                            <input type="text" id="nama" name="nama" class="form-input-google" placeholder="Contoh: Budi Sanjaya" required>
+                        <!-- Product Info (Mobile Only) -->
+                        <div class="lg:hidden mb-8">
+                            <div id="product-info-mobile"></div>
                         </div>
-                        <div>
-                            <label for="whatsapp" class="block text-sm font-medium text-google-gray-primary mb-2">No. WhatsApp Anda</label>
-                            <input type="tel" id="whatsapp" name="whatsapp" class="form-input-google" placeholder="Contoh: 081234567890" required>
+
+                        <!-- Features (Mobile Only) -->
+                        <div class="lg:hidden mb-8">
+                            <div id="features-mobile"></div>
                         </div>
-                        <div id="email-field">
-                            <label for="email" class="block text-sm font-medium text-google-gray-primary mb-2">Gmail Yang Akan Di Upgrade</label>
-                            <input type="email" id="email" name="email" class="form-input-google" placeholder="contoh.email@gmail.com" required>
+                        
+                        <!-- Form -->
+                        <form id="orderForm" class="mt-8 lg:mt-0">
+                            <h2 class="text-2xl font-googlesans font-bold mb-6">2. Lengkapi Data</h2>
+                            <div class="space-y-5">
+                                <div>
+                                    <label for="nama" class="block text-sm font-medium text-google-gray-primary mb-2">Nama Anda</label>
+                                    <input type="text" id="nama" name="nama" class="form-input-google" placeholder="Contoh: Budi Sanjaya">
+                                </div>
+                                <div>
+                                    <label for="whatsapp" class="block text-sm font-medium text-google-gray-primary mb-2">No. WhatsApp Anda</label>
+                                    <input type="tel" id="whatsapp" name="whatsapp" class="form-input-google" placeholder="Contoh: 081234567890">
+                                </div>
+                                <div id="email-field">
+                                    <label for="email" class="block text-sm font-medium text-google-gray-primary mb-2">Gmail Yang Akan Di Upgrade</label>
+                                    <input type="email" id="email" name="email" class="form-input-google" placeholder="contoh.email@gmail.com">
+                                </div>
+                                 <div id="username-field" class="hidden">
+                                    <label for="username" class="block text-sm font-medium text-google-gray-primary mb-2">Username yg diinginkan (@gmail.com)</label>
+                                    <input type="text" id="username" name="username" class="form-input-google" placeholder="Contoh: budisan88">
+                                </div>
+                            </div>
+
+                            <h2 class="text-2xl font-googlesans font-bold mt-10 mb-6">3. Pilih Pembayaran</h2>
+                            <div class="space-y-3">
+                                <label class="payment-method" for="bca-va">
+                                     <input type="radio" id="bca-va" name="payment" value="BCA Virtual Account">
+                                    <span>BCA Virtual Account</span>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="payment-logo">
+                                </label>
+                                 <label class="payment-method" for="cimb">
+                                     <input type="radio" id="cimb" name="payment" value="CIMB Niaga">
+                                    <span>CIMB Niaga</span>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png" alt="Logo CIMB" class="payment-logo">
+                                </label>
+                                <label class="payment-method" for="jago">
+                                     <input type="radio" id="jago" name="payment" value="Bank Jago">
+                                    <span>Bank Jago</span>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png" alt="Logo Jago" class="payment-logo">
+                                </label>
+                            </div>
+
+                            <!-- Order Details (Mobile Only) -->
+                            <div class="lg:hidden mt-8">
+                                <div id="order-details-mobile"></div>
+                            </div>
+
+                            <div class="mt-10">
+                                <button type="button" id="submit-btn" class="cta-button green-button">
+                                    <i class="fas fa-lock"></i>
+                                    Beli Sekarang
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <!-- Testimonials (Mobile Only) -->
+                        <div class="lg:hidden mt-8">
+                           <div id="testimonials-mobile"></div>
                         </div>
-                         <div id="username-field" class="hidden">
-                            <label for="username" class="block text-sm font-medium text-google-gray-primary mb-2">Username yg diinginkan (@gmail.com)</label>
-                            <input type="text" id="username" name="username" class="form-input-google" placeholder="Contoh: budisan88">
-                        </div>
+
                     </div>
 
-                    <h2 class="text-2xl font-googlesans font-bold mt-10 mb-6">3. Pilih Pembayaran</h2>
-                    <div class="space-y-3">
-                        <label class="payment-method" for="bca-va">
-                             <input type="radio" id="bca-va" name="payment" value="BCA Virtual Account" required>
-                            <span>BCA Virtual Account</span>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="payment-logo">
-                        </label>
-                         <label class="payment-method" for="cimb">
-                             <input type="radio" id="cimb" name="payment" value="CIMB Niaga">
-                            <span>CIMB Niaga</span>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png" alt="Logo CIMB" class="payment-logo">
-                        </label>
-                        <label class="payment-method" for="jago">
-                             <input type="radio" id="jago" name="payment" value="Bank Jago">
-                            <span>Bank Jago</span>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png" alt="Logo Jago" class="payment-logo">
-                        </label>
-                    </div>
-
-                    <div class="mt-10">
-                        <button type="submit" class="cta-button green-button">
-                            <i class="fas fa-lock"></i>
-                            Beli Sekarang
-                        </button>
-                    </div>
-                </form>
-            </div>
-            
-            <!-- Order Details -->
-            <div class="order-6 lg:col-span-2 lg:order-3">
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 mt-8 lg:mt-6">
-                     <h3 class="text-lg font-googlesans font-bold mb-4">Rincian Pesanan</h3>
-                     <div class="space-y-2 text-sm text-left">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Harga Paket</span>
-                            <span id="harga-paket" class="font-medium">Rp165.000</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Kode Unik</span>
-                            <span id="kode-unik" class="font-medium">Rp187</span>
-                        </div>
-                        <div class="border-t my-2"></div>
-                        <div class="flex justify-between text-base font-bold">
-                            <span>Total</span>
-                            <span id="total-harga">Rp165.187</span>
-                        </div>
-                     </div>
-                </div>
-            </div>
-
-            <!-- Testimonials -->
-            <div class="order-7 lg:col-span-2 lg:order-4">
-                <div class="mt-8 lg:mt-6">
-                    <h3 class="text-xl font-googlesans font-bold mb-4 text-center">Testimoni Pelanggan</h3>
-                    <div class="testimonial-grid">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+1" alt="Testimonial 1" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+2" alt="Testimonial 2" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+3" alt="Testimonial 3" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+4" alt="Testimonial 4" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+5" alt="Testimonial 5" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
-                        <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+6" alt="Testimonial 6" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                    <!-- Right Column -->
+                    <div class="hidden lg:flex lg:col-span-2 lg:flex-col lg:gap-y-6">
+                        <!-- Product Info (Desktop) -->
+                        <div id="product-info-desktop"></div>
+                        <!-- Features (Desktop) -->
+                        <div id="features-desktop"></div>
+                        <!-- Order Details (Desktop) -->
+                        <div id="order-details-desktop"></div>
+                        <!-- Testimonials (Desktop) -->
+                        <div id="testimonials-desktop"></div>
                     </div>
                 </div>
             </div>
-
         </div>
-        <footer class="text-center p-4 bg-gray-100 border-t">
+        <div id="payment-instruction-container"></div>
+        <footer id="footer" class="text-center p-4 bg-gray-100 border-t">
             <p class="text-xs text-gray-500">Copyright © <span id="currentYear"></span> InDrive ID. All Rights Reserved.</p>
         </footer>
     </div>
 
-    <!-- Modal for Confirmation -->
-    <div id="confirmModal" class="modal">
+    <!-- Modal for Info/Confirmation -->
+    <div id="infoModal" class="modal">
         <div class="modal-content">
-            <h3 id="modalTitle">Pesanan Diterima!</h3>
-            <p id="modalMessage">Langkah terakhir, silakan lakukan pembayaran dan konfirmasi melalui WhatsApp agar pesanan Anda segera kami proses.</p>
-            <button class="modal-ok-button" onclick="closeModal()">OK</button>
+            <h3 id="modalTitle"></h3>
+            <p id="modalMessage"></p>
+            <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
         </div>
     </div>
     
@@ -457,19 +438,27 @@
 
         // --- ELEMENTS ---
         const elements = {
+            mainContentContainer: document.getElementById('main-content-container'),
+            paymentInstructionContainer: document.getElementById('payment-instruction-container'),
+            footer: document.getElementById('footer'),
             currentYear: document.getElementById('currentYear'),
-            kodeUnik: document.getElementById('kode-unik'),
-            totalHarga: document.getElementById('total-harga'),
-            hargaPaket: document.getElementById('harga-paket'),
-            productTitle: document.getElementById('product-title'),
-            productSubtitle: document.getElementById('product-subtitle'),
-            productPrice: document.getElementById('product-price'),
-            featureList: document.getElementById('feature-list'),
+            
+            // Placeholder for duplicated content
+            productInfoMobile: document.getElementById('product-info-mobile'),
+            productInfoDesktop: document.getElementById('product-info-desktop'),
+            featuresMobile: document.getElementById('features-mobile'),
+            featuresDesktop: document.getElementById('features-desktop'),
+            orderDetailsMobile: document.getElementById('order-details-mobile'),
+            orderDetailsDesktop: document.getElementById('order-details-desktop'),
+            testimonialsMobile: document.getElementById('testimonials-mobile'),
+            testimonialsDesktop: document.getElementById('testimonials-desktop'),
+
             emailField: document.getElementById('email-field'),
             usernameField: document.getElementById('username-field'),
             emailInput: document.getElementById('email'),
             usernameInput: document.getElementById('username'),
             orderForm: document.getElementById('orderForm'),
+            submitBtn: document.getElementById('submit-btn'),
             paketPribadiBtn: document.getElementById('paket-pribadi'),
             paketBaruBtn: document.getElementById('paket-baru'),
             radioPribadi: document.getElementById('radio-pribadi'),
@@ -518,6 +507,56 @@
         const LAST_NAMES = ["S.", "W.", "P.", "K.", "H."];
 
 
+        // --- TEMPLATE FUNCTIONS ---
+        const getProductInfoHTML = (pkg) => `
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center">
+                <h1 class="text-2xl font-googlesans font-bold text-gray-800">${pkg.title}</h1>
+                <p class="text-gray-500 mb-4">${pkg.subtitle}</p>
+                <img alt="Logo Google Drive" class="h-24 w-auto mx-auto my-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1024px-Google_Drive_icon_%282020%29.svg.png">
+                <div class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full inline-block mb-4">GARANSI 100%</div>
+                <div class="text-5xl font-googlesans font-bold text-gray-900">${pkg.priceDisplay}</div>
+                <p class="text-gray-500 text-sm">Sekali Bayar Selamanya</p>
+            </div>`;
+
+        const getFeaturesHTML = (pkg) => `
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                <h3 class="text-xl font-googlesans font-bold mb-4">Yang Anda Dapatkan:</h3>
+                <ul class="space-y-3 text-gray-600 text-sm">${pkg.features.map(f => `<li class="flex items-start gap-3"><i class="fas fa-check-circle text-green-500 mt-1"></i><span>${f}</span></li>`).join('')}</ul>
+            </div>`;
+
+        const getOrderDetailsHTML = (pkg, totalPrice) => `
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                 <h3 class="text-lg font-googlesans font-bold mb-4">Rincian Pesanan</h3>
+                 <div class="space-y-2 text-sm text-left">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Harga Paket</span>
+                        <span class="font-medium harga-paket">${formatCurrency(pkg.price)}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Kode Unik</span>
+                        <span class="font-medium kode-unik">${formatCurrency(uniqueCode)}</span>
+                    </div>
+                    <div class="border-t my-2"></div>
+                    <div class="flex justify-between text-base font-bold">
+                        <span>Total</span>
+                        <span class="total-harga">${formatCurrency(totalPrice)}</span>
+                    </div>
+                 </div>
+            </div>`;
+
+        const getTestimonialsHTML = () => `
+            <div>
+                <h3 class="text-xl font-googlesans font-bold mb-4 text-center">Testimoni Pelanggan</h3>
+                <div class="testimonial-grid">
+                    <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+1" alt="Testimonial 1" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                    <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+2" alt="Testimonial 2" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                    <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+3" alt="Testimonial 3" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                    <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+4" alt="Testimonial 4" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                    <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+5" alt="Testimonial 5" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                    <img src="https://placehold.co/100x100/e0e0e0/333?text=Testi+6" alt="Testimonial 6" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333?text=Gagal+Muat'">
+                </div>
+            </div>`;
+
         // --- FUNCTIONS ---
         function formatCurrency(value) {
             return `Rp${value.toLocaleString('id-ID')}`;
@@ -527,29 +566,25 @@
             const pkg = packages[selectedPackageKey];
             const totalPrice = pkg.price + uniqueCode;
 
-            // Update right column info
-            elements.productTitle.textContent = pkg.title;
-            elements.productSubtitle.textContent = pkg.subtitle;
-            elements.productPrice.innerHTML = pkg.priceDisplay;
-            
-            // Update features
-            elements.featureList.innerHTML = pkg.features.map(feature => 
-                `<li class="flex items-start gap-3"><i class="fas fa-check-circle text-green-500 mt-1"></i><span>${feature}</span></li>`
-            ).join('');
+            // Populate content for both mobile and desktop
+            const productInfoHTML = getProductInfoHTML(pkg);
+            const featuresHTML = getFeaturesHTML(pkg);
+            const orderDetailsHTML = getOrderDetailsHTML(pkg, totalPrice);
+            const testimonialsHTML = getTestimonialsHTML();
 
-            // Update order details
-            elements.hargaPaket.textContent = formatCurrency(pkg.price);
-            elements.kodeUnik.textContent = formatCurrency(uniqueCode);
-            elements.totalHarga.textContent = formatCurrency(totalPrice);
+            elements.productInfoMobile.innerHTML = productInfoHTML;
+            elements.productInfoDesktop.innerHTML = productInfoHTML;
+            elements.featuresMobile.innerHTML = featuresHTML;
+            elements.featuresDesktop.innerHTML = featuresHTML;
+            elements.orderDetailsMobile.innerHTML = orderDetailsHTML;
+            elements.orderDetailsDesktop.innerHTML = orderDetailsHTML;
+            elements.testimonialsMobile.innerHTML = testimonialsHTML;
+            elements.testimonialsDesktop.innerHTML = testimonialsHTML;
 
-            // Update form fields
             const isPribadi = selectedPackageKey === 'pribadi';
             elements.emailField.style.display = isPribadi ? 'block' : 'none';
-            elements.emailInput.required = isPribadi;
             elements.usernameField.style.display = !isPribadi ? 'block' : 'none';
-            elements.usernameInput.required = !isPribadi;
             
-            // Update package selection UI
             elements.paketPribadiBtn.classList.toggle('selected', isPribadi);
             elements.paketBaruBtn.classList.toggle('selected', !isPribadi);
         }
@@ -564,35 +599,109 @@
             updateDisplay(selectedValue);
         }
 
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            const formData = new FormData(orderForm);
-            const selectedPackageKey = formData.get('paket');
-            const pkg = packages[selectedPackageKey];
-            
-            const selectedPayment = document.querySelector('input[name="payment"]:checked');
-            if (!selectedPayment) {
-                showModal('Perhatian!', 'Silakan pilih metode pembayaran terlebih dahulu.');
-                return;
-            }
-
-            let detailPesanan = selectedPackageKey === 'pribadi' 
+        function generateWaLink(formData, pkg, totalPrice) {
+            let detailPesanan = pkg.name === "Paket Akun Pribadi (Upgrade)"
                 ? `*Email Google:* ${formData.get('email')}\n`
                 : `*Username yg diinginkan:* ${formData.get('username')}@gmail.com\n`;
 
-            let pesanWA = `Halo, saya ingin order Google Drive Unlimited.\n\n`;
+            let pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n`;
+            pesanWA += `*ID Pesanan:* ${Date.now()}\n`;
             pesanWA += `*Paket:* ${pkg.name}\n`;
             pesanWA += `*Nama:* ${formData.get('nama')}\n`;
             pesanWA += `*No. WhatsApp:* ${formData.get('whatsapp')}\n`;
             pesanWA += detailPesanan;
-            pesanWA += `*Metode Pembayaran:* ${selectedPayment.value}\n`;
-            pesanWA += `*Total Transfer:* ${formatCurrency(pkg.price + uniqueCode)}\n\n`;
-            pesanWA += `Mohon info lanjut untuk proses pembayarannya. Terima kasih.`;
+            pesanWA += `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n`;
+            pesanWA += `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
+            
+            return `https://wa.me/6285691615383?text=${encodeURIComponent(pesanWA)}`;
+        }
 
-            const waLink = `https://wa.me/6285691615383?text=${encodeURIComponent(pesanWA)}`;
-            window.open(waLink, '_blank');
-            showModal('Pesanan Diterima!', 'Anda akan dialihkan ke WhatsApp untuk menyelesaikan pesanan. Silakan lakukan pembayaran dan konfirmasi agar pesanan segera kami proses.');
+        function handleFormSubmit() {
+            const formData = new FormData(elements.orderForm);
+            const nama = formData.get('nama').trim();
+            const whatsapp = formData.get('whatsapp').trim();
+            const email = formData.get('email').trim();
+            const username = formData.get('username').trim();
+            const selectedPackageKey = document.querySelector('input[name="paket"]:checked').value;
+            const selectedPayment = document.querySelector('input[name="payment"]:checked');
+
+            // --- Validation Checks ---
+            if (!nama) {
+                showInfoModal('Data Belum Lengkap', 'Silakan isi Nama Anda.');
+                elements.orderForm.querySelector('#nama').focus();
+                return;
+            }
+            if (!whatsapp) {
+                showInfoModal('Data Belum Lengkap', 'Silakan isi Nomor WhatsApp Anda.');
+                elements.orderForm.querySelector('#whatsapp').focus();
+                return;
+            }
+
+            if (selectedPackageKey === 'pribadi' && !email) {
+                showInfoModal('Data Belum Lengkap', 'Silakan isi alamat Gmail yang akan di-upgrade.');
+                elements.emailInput.focus();
+                return;
+            }
+
+            if (selectedPackageKey === 'baru' && !username) {
+                showInfoModal('Data Belum Lengkap', 'Silakan isi username yang Anda inginkan untuk akun baru.');
+                elements.usernameInput.focus();
+                return;
+            }
+            
+            if (!selectedPayment) {
+                showInfoModal('Pembayaran Belum Dipilih', 'Silakan pilih salah satu metode pembayaran.');
+                return;
+            }
+            // --- End Validation ---
+
+            const pkg = packages[selectedPackageKey];
+            const totalPrice = pkg.price + uniqueCode;
+
+            elements.mainContentContainer.style.display = 'none';
+            elements.footer.style.display = 'none';
+
+
+            const waLink = generateWaLink(formData, pkg, totalPrice);
+            const paymentViewHTML = `
+                <div class="p-6 sm:p-8 md:p-10 flex flex-col items-center text-center max-w-2xl mx-auto">
+                    <img src="https://storage.googleapis.com/gemini-prod-us-west1-assets/generated/100x100/e8f0fe/1A73E8/image_celebration_icon.png" alt="Ikon perayaan" class="w-24 h-24 mb-6 rounded-full">
+                    <h2 class="text-3xl font-googlesans font-bold mb-2">Terimakasih sudah pesan Gdrive Unlimited</h2>
+                    <p class="text-gray-600 mb-6">Orderan kamu sedang Kami proses, silakan transfer sejumlah</p>
+                    
+                    <div class="bg-blue-50 text-blue-800 font-bold text-4xl rounded-xl py-4 px-8 mb-6">
+                        ${formatCurrency(totalPrice)}
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">Ke salah satu bank berikut ini:</p>
+                    
+                    <div class="w-full bg-white p-6 rounded-xl shadow-md border border-gray-200 text-left mb-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="h-6 mb-4">
+                                <p class="font-bold text-lg">Rhizan Mahadyan Yaman</p>
+                                <p class="text-gray-600">2801721968 • BCA</p>
+                            </div>
+                            <button onclick="copyToClipboard('2801721968', 'Nomor Rekening')" class="text-gray-500 hover:text-blue-600 transition-colors">
+                                <i class="far fa-copy text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="w-full flex justify-between items-center bg-white p-4 rounded-xl shadow-md border border-gray-200 mb-8">
+                        <span class="text-gray-600">Total transfer</span>
+                        <div class="flex items-center gap-4">
+                            <span class="font-bold text-xl">${formatCurrency(totalPrice)}</span>
+                            <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="text-gray-500 hover:text-blue-600 transition-colors">
+                                <i class="far fa-copy text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <a href="${waLink}" target="_blank" class="cta-button blue-button w-full">Konfirmasi Pembayaran</a>
+                </div>
+            `;
+            elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
         }
         
         // --- NOTIFICATION FUNCTIONS ---
@@ -611,7 +720,6 @@
             
             elements.notifName.textContent = generateRandomName();
             elements.notifBox.classList.remove('show');
-            // Use a timeout to allow the browser to remove the class before re-adding it
             setTimeout(() => {
                 elements.notifBox.classList.add('show');
             }, 100);
@@ -624,7 +732,6 @@
                 scheduleNextNotification();
             }, randomDelay);
         }
-
 
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
@@ -640,34 +747,46 @@
             });
         });
         
-        elements.orderForm.addEventListener('submit', handleFormSubmit);
+        elements.submitBtn.addEventListener('click', handleFormSubmit);
 
-        // Initial display setup
         updateDisplay('pribadi');
         
-        // Start notifications
-        setTimeout(scheduleNextNotification, 6000); // Start after 6 seconds
+        setTimeout(scheduleNextNotification, 6000);
 
     });
 
-    // --- GLOBAL MODAL FUNCTIONS ---
-    const modal = document.getElementById('confirmModal');
-    function showModal(title, message) {
-        if (!modal) return;
-        modal.querySelector('#modalTitle').textContent = title;
-        modal.querySelector('#modalMessage').textContent = message;
-        modal.style.display = 'flex';
+    // --- GLOBAL HELPER FUNCTIONS ---
+    const infoModal = document.getElementById('infoModal');
+    function showInfoModal(title, message) {
+        if (!infoModal) return;
+        infoModal.querySelector('#modalTitle').textContent = title;
+        infoModal.querySelector('#modalMessage').textContent = message;
+        infoModal.style.display = 'flex';
     }
 
-    function closeModal() {
-        if (!modal) return;
-        modal.style.display = 'none';
+    function closeInfoModal() {
+        if (!infoModal) return;
+        infoModal.style.display = 'none';
     }
 
     window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
+        if (event.target == infoModal) {
+            closeInfoModal();
         }
+    }
+
+    function copyToClipboard(text, entityName) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showInfoModal('Berhasil Disalin!', `${entityName} (${text}) telah disalin ke clipboard.`);
+        } catch (err) {
+            showInfoModal('Gagal!', 'Gagal menyalin. Silakan coba secara manual.');
+        }
+        document.body.removeChild(textArea);
     }
     </script>
 
