@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tingkatkan Penyimpanan Google Photos Anda - Penawaran Spesial!</title>
-    <link rel="icon" type="image/png" href="https://1000logos.net/wp-content/uploads/2020/05/Google-Photos-logo.png">
+    <title>Upgrade Google Drive Unlimited - Penawaran Spesial!</title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/2295px-Google_Drive_icon_%282020%29.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,13 +34,6 @@
             box-shadow: 0 0 0 1px #1a73e8;
         }
         
-        /* Pilihan Metode Pembayaran */
-        .payment-radio:checked + label {
-            border-color: #1a73e8;
-            background-color: #e8f0fe;
-            box-shadow: none;
-        }
-        
         /* Tombol Aksi (CTA) dengan warna Google Blue */
         .cta-button {
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -68,7 +61,7 @@
         /* Modal / Message Box Styling */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            overflow: auto; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center;
+            overflow: auto; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center;
         }
         .modal-content {
             background-color: #fefefe; margin: auto; padding: 24px 32px; width: 90%; max-width: 450px;
@@ -94,29 +87,33 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
         
-        /* Modal Testimoni */
-        .testimonial-modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-        }
-        .testimonial-modal-content {
-            display: block;
+        /* Modal untuk Zoom Gambar Testimoni */
+        #imageModal .modal-content-image {
             margin: auto;
+            display: block;
+            width: auto;
             max-width: 90%;
-            max-height: 90%;
+            max-height: 85vh;
             animation: zoomIn 0.3s ease;
         }
+        .close-image-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-image-modal:hover,
+        .close-image-modal:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
         @keyframes zoomIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
+            from {transform: scale(0)}
+            to {transform: scale(1)}
         }
         
         /* Notifikasi Toast */
@@ -235,7 +232,7 @@
         </div>
         <div id="payment-instruction-container"></div>
         <footer id="footer" class="text-center mt-16 text-gray-500 text-sm">
-            <p>Copyright © <span id="currentYear"></span> InDrive ID. Semua Hak Dilindungi.</p>
+            <p>Copyright © <span id="currentYear"></span> Drive Unlimited ID. Semua Hak Dilindungi.</p>
         </footer>
     </div>
 
@@ -246,6 +243,12 @@
             <p id="modalMessage"></p>
             <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
         </div>
+    </div>
+
+    <!-- Modal untuk Zoom Gambar -->
+    <div id="imageModal" class="modal" onclick="closeImageModal()">
+        <span class="close-image-modal" onclick="closeImageModal()">&times;</span>
+        <img class="modal-content-image" id="modalImage">
     </div>
     
     <!-- Notification Popup -->
@@ -259,11 +262,6 @@
         </div>
     </div>
 
-    <!-- Testimonial Modal -->
-    <div id="testimonialModal" class="testimonial-modal">
-        <img class="testimonial-modal-content" id="testimonialModalImage">
-    </div>
-
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -274,40 +272,33 @@
             paymentInstructionContainer: document.getElementById('payment-instruction-container'),
             footer: document.getElementById('footer'),
             currentYear: document.getElementById('currentYear'),
-            
-            // Updated element references
             productInfoFormTop: document.getElementById('product-info-form-top'),
             featuresBeforeForm: document.getElementById('features-before-form'),
             orderDetailsInForm: document.getElementById('order-details-in-form'),
-
             testimonialsFull: document.getElementById('testimonials-full'),
             faqFull: document.getElementById('faq-full'),
             policyFull: document.getElementById('policy-full'),
-
             orderForm: document.getElementById('orderForm'),
             submitBtn: document.getElementById('submit-btn'),
             notifBox: document.getElementById('notifBox'),
             notifName: document.querySelector('#notifBox .notif-name'),
-
-            // Testimonial Modal Elements
-            testimonialModal: document.getElementById('testimonialModal'),
-            testimonialModalImage: document.getElementById('testimonialModalImage'),
         };
 
         // --- CONFIGURATION ---
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
         const packageInfo = {
-                name: "Upgrade Google Photos Unlimited",
+                name: "Upgrade Google Drive Unlimited",
                 price: 165000,
-                title: "GOOGLE PHOTOS UNLIMITED",
+                title: "GOOGLE DRIVE UNLIMITED",
                 priceDisplay: `Rp165.000`,
                 features: [
-                    "<strong>Penyimpanan Tanpa Batas:</strong> Simpan semua foto & video tanpa khawatir kehabisan ruang.",
-                    "<strong>Kualitas Asli:</strong> Cadangkan semua kenangan Anda dalam resolusi penuh.",
-                    "<strong>Sekali Bayar Seumur Hidup:</strong> Tidak ada lagi biaya langganan bulanan atau tahunan.",
-                    "<strong>Akses di Mana Saja:</strong> Lihat foto Anda di perangkat apa pun, kapan pun.",
-                    "<strong>Gunakan Akun Pribadi:</strong> Upgrade langsung ke akun Google utama Anda.",
-                    "<strong>Pencarian Canggih:</strong> Temukan foto berdasarkan orang, tempat, dan objek.",
+                    "<strong>Penyimpanan Cloud Tanpa Batas:</strong> Simpan semua file, dokumen, foto, dan video tanpa khawatir kehabisan ruang.",
+                    "<strong>Akses File Di Mana Saja:</strong> Buka dan edit file Anda dari komputer, tablet, atau smartphone.",
+                    "<strong>Berbagi & Kolaborasi Mudah:</strong> Bagikan file dan folder dengan mudah, serta bekerja bersama secara real-time.",
+                    "<strong>Keamanan Kelas Dunia:</strong> File Anda dilindungi oleh infrastruktur keamanan canggih dari Google.",
+                    "<strong>Integrasi Penuh:</strong> Terhubung dengan Google Docs, Sheets, Slides, dan aplikasi favorit lainnya.",
+                    "<strong>Sekali Bayar Seumur Hidup:</strong> Nikmati semua keuntungan tanpa biaya langganan bulanan.",
+                    "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Google yang sudah Anda miliki.",
                     "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
                 ]
             };
@@ -324,15 +315,15 @@
         // --- TEMPLATE FUNCTIONS ---
         const getProductInfoHTML = (pkg) => `
             <div class="text-center">
-                <img alt="Logo Google Photos" class="h-16 w-auto mx-auto mb-4" src="https://1000logos.net/wp-content/uploads/2020/05/Google-Photos-logo.png">
+                <img alt="Logo Google Drive" class="h-16 w-auto mx-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/2295px-Google_Drive_icon_%282020%29.svg.png">
                 <h1 class="text-3xl md:text-4xl font-bold text-gray-800">${pkg.title}</h1>
-                <p class="text-lg text-gray-600 mt-2">Simpan semua kenangan Anda selamanya.</p>
+                <p class="text-lg text-gray-600 mt-2">Penyimpanan cloud tanpa batas untuk semua file Anda.</p>
                 <div class="text-5xl font-bold text-gray-900 mt-6">${pkg.priceDisplay}</div>
                 <p class="text-gray-500 text-sm mt-1">Sekali Bayar untuk Seumur Hidup</p>
             </div>`;
 
         const getFeaturesHTML = (pkg) => {
-            const colors = ['text-blue-500', 'text-red-500', 'text-yellow-500', 'text-green-500'];
+            const colors = ['text-blue-500', 'text-green-500', 'text-yellow-500', 'text-red-500'];
             return `<div>
                 <h3 class="text-lg font-bold mb-4 text-gray-800">Yang Anda Dapatkan:</h3>
                 <ul class="space-y-4">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3"></i><span class="text-gray-600">${f}</span></li>`).join('')}</ul>
@@ -363,10 +354,10 @@
             <div>
                 <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">Testimoni Pelanggan</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
-                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gphotos%20(1).png?raw=true" alt="Testimonial 1" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]">
-                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gphotos%20(2).png?raw=true" alt="Testimonial 2" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]">
-                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gphotos%20(3).png?raw=true" alt="Testimonial 3" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]">
-                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gphotos%20(4).png?raw=true" alt="Testimonial 4" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]">
+                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(1).png?raw=true" alt="Testimonial 1" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(2).png?raw=true" alt="Testimonial 2" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(3).png?raw=true" alt="Testimonial 3" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(4).png?raw=true" alt="Testimonial 4" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
                 </div>
             </div>`;
 
@@ -375,11 +366,15 @@
                  <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Pertanyaan Umum (FAQ)</h3>
                  <details class="faq-item">
                      <summary>Apakah ini benar-benar unlimited?</summary>
-                     <div class="faq-content">Ya, benar sekali. Anda akan mendapatkan kapasitas penyimpanan tanpa batas (unlimited) untuk semua foto dan video Anda di Google Photos.</div>
+                     <div class="faq-content">Ya, ini adalah upgrade untuk mendapatkan penyimpanan tanpa batas di Google Drive Anda. Anda bisa menyimpan file apa saja (dokumen, video, musik, file desain, dll) tanpa khawatir mengenai batas kuota.</div>
                  </details>
                  <details class="faq-item">
                      <summary>Apakah ini aman dan legal?</summary>
-                     <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode yang sah dan akun Anda tetap aman di bawah pengelolaan Google. Kami menjamin keamanan data dan privasi akun Anda.</div>
+                     <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode yang sah dan akun Anda tetap aman di bawah pengelolaan Google. Kami tidak pernah meminta password Anda, hanya alamat email. Privasi file Anda 100% terjamin.</div>
+                 </details>
+                 <details class="faq-item">
+                     <summary>Apa bedanya dengan langganan Google One?</summary>
+                     <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misalnya 2TB, 5TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan <strong>unlimited</strong> dengan sistem sekali bayar untuk selamanya.</div>
                  </details>
                  <details class="faq-item">
                      <summary>Berapa lama prosesnya?</summary>
@@ -389,7 +384,7 @@
                      <summary>Apakah ada biaya bulanan atau tahunan?</summary>
                      <div class="faq-content">Tidak ada! Ini adalah pembayaran sekali untuk selamanya. Anda tidak perlu khawatir tentang biaya langganan bulanan atau tahunan lagi.</div>
                  </details>
-               </div>
+              </div>
         `;
         
         const getPolicyHTML = () => `
@@ -398,7 +393,7 @@
                 <div class="grid md:grid-cols-1 gap-8 text-sm text-gray-600">
                     <div class="mb-6">
                         <h4 class="text-lg font-bold mb-2 text-gray-800">Kebijakan Privasi</h4>
-                        <p class="mb-4">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua foto dan video Anda tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
+                        <p class="mb-4">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua file Anda tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Kami hanya butuh email, bukan password.</li>
                             <li>Informasi pembayaran diproses oleh gateway aman.</li>
@@ -428,41 +423,24 @@
         function updateDisplay() {
             const pkg = packageInfo;
             const totalPrice = pkg.price + uniqueCode;
-
-            // Populate content
-            const productInfoHTML = getProductInfoHTML(pkg);
-            const featuresHTML = getFeaturesHTML(pkg);
-            const orderDetailsHTML = getOrderDetailsHTML(pkg, totalPrice);
-            const testimonialsHTML = getTestimonialsHTML();
-            const faqHTML = getFaqHTML();
-            const policyHTML = getPolicyHTML();
-
-            // Populate new locations
-            elements.productInfoFormTop.innerHTML = productInfoHTML;
-            elements.featuresBeforeForm.innerHTML = featuresHTML;
-            elements.orderDetailsInForm.innerHTML = orderDetailsHTML;
-            
-            // Populate right column
-            elements.testimonialsFull.innerHTML = testimonialsHTML;
-            elements.faqFull.innerHTML = faqHTML;
-            elements.policyFull.innerHTML = policyHTML;
-
-            // Add event listeners for new testimonial images
-            addTestimonialClickListeners();
+            elements.productInfoFormTop.innerHTML = getProductInfoHTML(pkg);
+            elements.featuresBeforeForm.innerHTML = getFeaturesHTML(pkg);
+            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+            elements.testimonialsFull.innerHTML = getTestimonialsHTML();
+            elements.faqFull.innerHTML = getFaqHTML();
+            elements.policyFull.innerHTML = getPolicyHTML();
         }
 
         function generateWaLink(formData, pkg, totalPrice) {
             let detailPesanan = `*Email Google:* ${formData.get('email')}\n`;
-
-            let pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n`;
-            pesanWA += `*ID Pesanan:* ${Date.now()}\n`;
-            pesanWA += `*Paket:* ${pkg.name}\n`;
-            pesanWA += `*Nama:* ${formData.get('nama')}\n`;
-            pesanWA += `*No. WhatsApp:* ${formData.get('whatsapp')}\n`;
-            pesanWA += detailPesanan;
-            pesanWA += `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n`;
-            pesanWA += `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
-            
+            let pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
+                         `*ID Pesanan:* ${Date.now()}\n` +
+                         `*Paket:* ${pkg.name}\n` +
+                         `*Nama:* ${formData.get('nama')}\n` +
+                         `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
+                         detailPesanan +
+                         `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
+                         `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
             return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
         }
 
@@ -472,7 +450,6 @@
             const whatsapp = formData.get('whatsapp').trim();
             const email = formData.get('email').trim();
 
-            // --- Validation Checks ---
             if (!nama) {
                 showInfoModal('Data Belum Lengkap', 'Silakan isi Nama Anda.');
                 elements.orderForm.querySelector('#nama').focus();
@@ -488,33 +465,22 @@
                 elements.orderForm.querySelector('#email').focus();
                 return;
             }
-            // --- End Validation ---
 
             const pkg = packageInfo;
             const totalPrice = pkg.price + uniqueCode;
-            const paymentAccount = paymentAccounts['jago']; // Default to Bank Jago
-
+            const paymentAccount = paymentAccounts['jago'];
             elements.mainContentContainer.style.display = 'none';
             elements.footer.style.display = 'none';
-
             const waLink = generateWaLink(formData, pkg, totalPrice);
             
             const paymentViewHTML = `
                 <div class="p-6 sm:p-8 md:p-10 flex flex-col items-center text-center max-w-lg mx-auto">
-                    <div class="w-24 h-24 mb-6 rounded-full bg-blue-100 flex items-center justify-center">
-                        <span class="text-5xl">🎉</span>
-                    </div>
+                    <div class="w-24 h-24 mb-6 rounded-full bg-blue-100 flex items-center justify-center"><span class="text-5xl">🎉</span></div>
                     <h2 class="text-2xl font-bold text-gray-800 mb-2">Terimakasih sudah melakukan order ${pkg.name}</h2>
                     <p class="text-gray-600 mb-4">Orderan kamu sedang Kami proses, silakan transfer sejumlah</p>
-                    
-                    <div class="bg-blue-100 text-blue-800 font-bold text-3xl rounded-lg py-3 px-6 mb-6 inline-block">
-                        ${formatCurrency(totalPrice)}
-                    </div>
-                    
+                    <div class="bg-blue-100 text-blue-800 font-bold text-3xl rounded-lg py-3 px-6 mb-6 inline-block">${formatCurrency(totalPrice)}</div>
                     <p class="text-gray-600 mb-6">Ke rekening Bank Jago berikut ini:</p>
-                    
                     <div class="w-full bg-white p-6 rounded-xl shadow-sm border text-left space-y-4 mb-8">
-                        <!-- Account Details Section -->
                         <div class="flex justify-between items-center">
                             <div class="flex items-center gap-4">
                                 <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.bank}" class="h-8 w-auto">
@@ -523,77 +489,31 @@
                                     <p class="text-gray-600">${paymentAccount.number} • ${paymentAccount.bank}</p>
                                 </div>
                             </div>
-                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening')" class="text-gray-400 hover:text-blue-600 transition-colors p-2">
-                                <i class="far fa-copy text-xl"></i>
-                            </button>
+                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening')" class="text-gray-400 hover:text-blue-600 transition-colors p-2"><i class="far fa-copy text-xl"></i></button>
                         </div>
-
                         <hr>
-
-                        <!-- Total Transfer Section -->
                         <div class="flex justify-between items-center">
                             <span class="text-gray-600">Total transfer</span>
                             <div class="flex items-center gap-3">
                                 <span class="font-bold text-2xl text-gray-800">${formatCurrency(totalPrice)}</span>
-                                <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="text-gray-400 hover:text-blue-600 transition-colors p-2">
-                                    <i class="far fa-copy text-xl"></i>
-                                </button>
+                                <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="text-gray-400 hover:text-blue-600 transition-colors p-2"><i class="far fa-copy text-xl"></i></button>
                             </div>
                         </div>
                     </div>
-
-                    <a href="${waLink}" target="_blank" class="cta-button blue-button w-full">
-                        <i class="fab fa-whatsapp"></i>
-                        Konfirmasi Pembayaran
-                    </a>
+                    <a href="${waLink}" target="_blank" class="cta-button blue-button w-full"><i class="fab fa-whatsapp"></i> Konfirmasi Pembayaran</a>
                 </div>
             `;
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
         }
-
-        // --- TESTIMONIAL MODAL FUNCTIONS ---
-        function addTestimonialClickListeners() {
-            const testimonialImages = document.querySelectorAll('.testimonial-image');
-            testimonialImages.forEach(img => {
-                img.addEventListener('click', () => {
-                    elements.testimonialModalImage.src = img.src;
-                    elements.testimonialModal.style.display = 'flex';
-                });
-            });
-        }
-
-        function closeTestimonialModal() {
-            elements.testimonialModal.style.display = 'none';
-        }
         
         // --- NOTIFICATION FUNCTIONS ---
         const FIRST_NAMES = ["Adelia", "Aditya", "Agung", "Ahmad", "Aisha", "Ajeng", "Akbar", "Amanda", "Amelia", "Andi", "Andre", "Angga", "Ani", "Annisa", "Ari", "Arif", "Asep", "Ayu", "Bayu", "Bella", "Bima", "Budi", "Cahya", "Candra", "Chandra", "Citra", "Daniel", "David", "Dedi", "Desi", "Dewi", "Dian", "Dimas", "Dina", "Dinda", "Doni", "Eka", "Eko", "Elisa", "Erik", "Erwin", "Fajar", "Farah", "Farhan", "Fatima", "Fauzan", "Febri", "Felix", "Fernando", "Fikri", "Fitri", "Galih", "Gilang", "Hadi", "Hafiz", "Hana", "Handoko", "Hari", "Hasan", "Hendra", "Heru", "Hidayat", "Ibrahim", "Ichsan", "Ida", "Ihsan", "Ilham", "Imam", "Indah", "Indra", "Iqbal", "Irfan", "Irwan", "Ismail", "Ivan", "Jaka", "Jamal", "Jefri", "Joko", "Joni", "Julia", "Kamal", "Kartika", "Kevin", "Khairul", "Krisna", "Kurniawan", "Lestari", "Lia", "Lina", "Lisa", "Lukman", "Lutfi", "Made", "Maulana", "Mega", "Michael", "Mila", "Mira", "Mochammad", "Monica", "Muhammad", "Mukti", "Muslim", "Nadia", "Nana", "Nanda", "Nia", "Nina", "Novi", "Novita", "Nur", "Nurul", "Putra", "Putri", "Rachmat", "Raden", "Radit", "Rafli", "Rahayu", "Rahman", "Rahmat", "Rama", "Rangga", "Rani", "Ratna", "Reza", "Rian", "Rico", "Ridwan", "Rina", "Rini", "Rio", "Riri", "Riska", "Rizki", "Rizky", "Robby", "Robert", "Roni", "Rossa", "Rudi", "Ryan", "Sakti", "Samuel", "Sari", "Satria", "Selly", "Septian", "Setiawan", "Sinta", "Siti", "Sofia", "Sonia", "Sri", "Sugeng", "Sugiarto", "Suharto", "Sujatmiko", "Sukma", "Sulaiman", "Sumardi", "Sunarto", "Surya", "Susanto", "Susi", "Tania", "Taufik", "Tedi", "Thomas", "Tian", "Tika", "Tina", "Tono", "Tony", "Tri", "Umar", "Usman", "Utami", "Vera", "Vicky", "Vina", "Wahyu", "Wahyudi", "Wawan", "Wibowo", "Widi", "Widodo", "Wijaya", "Wulan", "Yani", "Yanto", "Yoga", "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi", "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra", "Zainal", "Zaki"];
-        const MIDDLE_NAMES = ["Aditama", "Wijaya", "Putra", "Kurniawan", "Saputra", "Pratama", "Setiawan", "Nugroho", "Gunawan", "Maulana", "Hidayat", "Firmansyah", "Ramadhan", "Santoso", "Wibowo", "Susanto", "Hartono", "Purnama", "Lesmana", "Sari", "Dewi", "Lestari", "Rahayu", "Utami", "Wati", "Indah", "Cahya", "Dharma", "Jaya", "Kusuma"];
-        const LAST_NAMES = ["Abdullah", "Adriansyah", "Siregar", "Lubis", "Nasution", "Harahap", "Simatupang", "Tanjung", "Pohan", "Sitompul", "Hutagalung", "Siregar", "Hasibuan", "Sinaga", "Silalahi", "Manurung", "Ginting", "Nainggolan", "Pane", "Sitorus", "Tarihoran", "Marpaung", "Simanjuntak", "Sitohang", "Hutabarat", "Lumbantoruan", "Purba", "Sihombing", "Lumbanraja", "Lumbangaol", "Hutapea", "Panggabean", "Aritonang", "Pasaribu", "Situmorang", "Zulkarnain"];
         
-        function getRandomElement(arr) {
-            return arr[Math.floor(Math.random() * arr.length)];
-        }
-
-        function generateRandomName() {
-            const nameType = Math.floor(Math.random() * 3); // 0, 1, or 2
-            const firstName = getRandomElement(FIRST_NAMES);
-
-            if (nameType === 0) { 
-                return firstName;
-            } else if (nameType === 1) { 
-                const lastName = getRandomElement(LAST_NAMES);
-                return `${firstName} ${lastName.charAt(0)}.`;
-            } else { 
-                const middleName = getRandomElement(MIDDLE_NAMES);
-                const lastName = getRandomElement(LAST_NAMES);
-                return `${firstName} ${middleName} ${lastName}`;
-            }
-        }
+        function getRandomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+        function generateRandomName() { return `${getRandomElement(FIRST_NAMES)}`; }
         
         function showNextNotification() {
             if (!elements.notifBox || !elements.notifName) return;
-            
             elements.notifName.textContent = generateRandomName();
             elements.notifBox.classList.remove('show');
             void elements.notifBox.offsetWidth; // Trigger reflow
@@ -610,14 +530,8 @@
 
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
-        
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-
-        // Close testimonial modal when clicked
-        elements.testimonialModal.addEventListener('click', closeTestimonialModal);
-
         updateDisplay();
-        
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
         }
@@ -626,6 +540,9 @@
 
     // --- GLOBAL HELPER FUNCTIONS ---
     const infoModal = document.getElementById('infoModal');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+
     function showInfoModal(title, message) {
         if (!infoModal) return;
         infoModal.querySelector('#modalTitle').textContent = title;
@@ -638,9 +555,25 @@
         infoModal.style.display = 'none';
     }
 
+    function openImageModal(event, src) {
+        event.stopPropagation(); // Mencegah event klik menyebar ke parent (latar belakang modal)
+        if (!imageModal || !modalImage) return;
+        imageModal.style.display = "flex";
+        modalImage.src = src;
+    }
+
+    function closeImageModal() {
+        if (!imageModal) return;
+        imageModal.style.display = "none";
+    }
+
     window.onclick = function(event) {
         if (event.target == infoModal) {
             closeInfoModal();
+        }
+        // Jangan tutup image modal jika yang diklik adalah gambar di dalamnya
+        if (event.target == imageModal) {
+            closeImageModal();
         }
     }
 
