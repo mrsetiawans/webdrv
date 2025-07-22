@@ -10,6 +10,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- === KODE FACEBOOK PIXEL DIMULAI DI SINI === -->
+    <!-- Ganti kode di bawah ini dengan kode Pixel yang Anda dapatkan dari Facebook Events Manager -->
+    <script>
+      // Ini adalah contoh, JANGAN DIGUNAKAN. Dapatkan kode asli dari akun Facebook Anda.
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'MASUKKAN_ID_PIXEL_ANDA_DI_SINI');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=MASUKKAN_ID_PIXEL_ANDA_DI_SINI&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
+
     <style>
         /* Pengaturan Dasar dan Font Google */
         body {
@@ -469,39 +490,71 @@
             const pkg = packageInfo;
             const totalPrice = pkg.price + uniqueCode;
             const paymentAccount = paymentAccounts['jago'];
+            
+            // --- PELACAKAN EVENT FACEBOOK PIXEL ---
+            if (typeof fbq === 'function') {
+                fbq('track', 'AddPaymentInfo', {
+                    content_name: pkg.name,
+                    content_category: 'Software',
+                    currency: 'IDR',
+                    value: totalPrice
+                });
+            }
+            // --- AKHIR PELACAKAN EVENT ---
+
             elements.mainContentContainer.style.display = 'none';
             elements.footer.style.display = 'none';
             const waLink = generateWaLink(formData, pkg, totalPrice);
             
             const paymentViewHTML = `
-                <div class="p-6 sm:p-8 md:p-10 flex flex-col items-center text-center max-w-lg mx-auto">
-                    <div class="w-24 h-24 mb-6 rounded-full bg-blue-100 flex items-center justify-center"><span class="text-5xl">🎉</span></div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Terimakasih sudah melakukan order ${pkg.name}</h2>
-                    <p class="text-gray-600 mb-4">Orderan kamu sedang Kami proses, silakan transfer sejumlah</p>
-                    <div class="bg-blue-100 text-blue-800 font-bold text-3xl rounded-lg py-3 px-6 mb-6 inline-block">${formatCurrency(totalPrice)}</div>
-                    <p class="text-gray-600 mb-6">Ke rekening Bank Jago berikut ini:</p>
-                    <div class="w-full bg-white p-6 rounded-xl shadow-sm border text-left space-y-4 mb-8">
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center gap-4">
-                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.bank}" class="h-8 w-auto">
-                                <div>
-                                    <p class="font-bold text-lg text-gray-800">${paymentAccount.name}</p>
-                                    <p class="text-gray-600">${paymentAccount.number} • ${paymentAccount.bank}</p>
+            <div class="max-w-2xl mx-auto py-8 sm:py-12 px-4">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Terima kasih sudah melakukan order!</h2>
+                    <p class="text-gray-600 mb-2">Untuk menyelesaikan order, silakan transfer sejumlah</p>
+                    
+                    <div class="inline-flex items-center gap-4 bg-gray-100 p-3 sm:p-4 rounded-xl mb-4 border border-gray-200">
+                        <span class="text-3xl sm:text-4xl font-bold text-blue-600">${formatCurrency(totalPrice)}</span>
+                        <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-2 px-3 sm:px-4 rounded-lg flex items-center gap-2 transition-colors">
+                            <i class="far fa-copy"></i>
+                            <span class="hidden sm:inline">Salin Jumlah</span>
+                        </button>
+                    </div>
+
+                    <p class="text-gray-600 mt-6 mb-4">ke rekening Bank Jago berikut ini:</p>
+                </div>
+
+                <div class="mt-6 flex justify-center">
+                    <div class="w-full max-w-md">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm text-left flex flex-col">
+                            <div class="flex-grow">
+                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.bank}" class="h-7 sm:h-8 mb-5">
+                                
+                                <div class="space-y-4">
+                                    <div>
+                                        <p class="text-sm text-gray-500">No. Rekening ${paymentAccount.bank}</p>
+                                        <p class="text-xl font-semibold text-gray-800">${paymentAccount.number}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Atas Nama</p>
+                                        <p class="text-xl font-semibold text-gray-800">${paymentAccount.name}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening')" class="text-gray-400 hover:text-blue-600 transition-colors p-2"><i class="far fa-copy text-xl"></i></button>
-                        </div>
-                        <hr>
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-600">Total transfer</span>
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold text-2xl text-gray-800">${formatCurrency(totalPrice)}</span>
-                                <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="text-gray-400 hover:text-blue-600 transition-colors p-2"><i class="far fa-copy text-xl"></i></button>
-                            </div>
+                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening ${paymentAccount.bank}')" class="mt-6 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-lg transition-colors">
+                                Salin No. Rek.
+                            </button>
                         </div>
                     </div>
-                    <a href="${waLink}" target="_blank" class="cta-button blue-button w-full"><i class="fab fa-whatsapp"></i> Konfirmasi Pembayaran</a>
                 </div>
+
+                <div class="text-center mt-10">
+                    <p class="text-gray-600 mb-4">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
+                    <a href="${waLink}" target="_blank" class="cta-button blue-button max-w-md mx-auto">
+                        <i class="fab fa-whatsapp text-xl"></i> 
+                        <span>Konfirmasi via WhatsApp</span>
+                    </a>
+                </div>
+            </div>
             `;
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
         }
@@ -571,7 +624,6 @@
         if (event.target == infoModal) {
             closeInfoModal();
         }
-        // Jangan tutup image modal jika yang diklik adalah gambar di dalamnya
         if (event.target == imageModal) {
             closeImageModal();
         }
@@ -584,7 +636,7 @@
         textArea.select();
         try {
             document.execCommand('copy');
-            showInfoModal('Berhasil Disalin!', `${entityName} (${text}) telah disalin ke clipboard.`);
+            showInfoModal('Berhasil Disalin!', `${entityName} telah disalin ke clipboard.`);
         } catch (err) {
             showInfoModal('Gagal!', 'Gagal menyalin. Silakan coba secara manual.');
         }
