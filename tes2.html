@@ -141,11 +141,32 @@
             transition: opacity 0.4s ease, transform 0.4s ease, top 0.4s ease;
         }
         .notif-box.show { display: flex; opacity: 1; animation: slideInAndOut 5s ease-in-out forwards; }
+        
         @keyframes slideInAndOut {
             0%   { opacity: 0; transform: translateX(-50%) translateY(-30px); }
             10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
             90%  { opacity: 1; transform: translateX(-50%) translateY(0); }
             100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+        }
+
+        /* Penyesuaian Notifikasi Toast untuk Mobile */
+        @media (max-width: 640px) {
+            .notif-box {
+                left: 1rem;
+                right: 1rem;
+                width: auto;
+                transform: translateX(0);
+                max-width: none;
+            }
+            .notif-box.show {
+                animation: slideInAndOutMobile 5s ease-in-out forwards;
+            }
+            @keyframes slideInAndOutMobile {
+                0%   { opacity: 0; transform: translateY(-30px); }
+                10%  { opacity: 1; transform: translateY(0); }
+                90%  { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(-30px); }
+            }
         }
         
         /* Bagian FAQ */
@@ -622,4 +643,4 @@
     </script>
 
 </body>
-</html>
+</ht
