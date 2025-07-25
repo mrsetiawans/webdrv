@@ -44,16 +44,15 @@
         }
 
         /* Pengaturan Dasar dan Font */
-        html, body {
-            width: 100%;
+        html {
             overflow-x: hidden;
         }
-        
+
         body {
             font-family: 'Inter', 'Helvetica Neue', sans-serif;
             background-color: var(--canva-background);
             color: var(--canva-text-primary);
-            position: relative; /* Diperlukan untuk pseudo-elements agar tidak menyebabkan overflow */
+            position: relative;
         }
         
         /* Efek Gradien Aurora di Latar Belakang */
@@ -176,7 +175,7 @@
             background: #25282e;
             color: #ffffff; border-radius: 9999px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             padding: 12px 24px; display: none; align-items: center; gap: 12px; width: auto;
-            max-width: 450px; z-index: 1000; opacity: 0;
+            max-width: 90%; z-index: 1000; opacity: 0;
             transition: opacity 0.4s ease, transform 0.4s ease, top 0.4s ease;
         }
         .notif-box.show { 
@@ -197,7 +196,12 @@
             100% { opacity: 0; transform: translateY(-20px); }
         }
         .notif-icon-wrapper { color: var(--canva-accent-teal); font-size: 1.2rem; flex-shrink: 0; }
-        .notif-message { font-size: 0.9rem; line-height: 1.2; }
+        .notif-content-area { flex: 1; min-width: 0; } 
+        .notif-message { 
+            font-size: 0.9rem; 
+            line-height: 1.2;
+            word-break: break-word;
+        }
         .notif-message strong { font-weight: 600; }
         .notif-time { font-size: 0.75rem; color: #b0b8c8; margin-top: 2px; }
         
@@ -207,7 +211,8 @@
                 right: 16px; 
                 top: 16px; 
                 transform: translateX(0); 
-                width: calc(100% - 32px); 
+                width: calc(100% - 32px);
+                max-width: calc(100% - 32px);
             }
             .notif-box.show {
                 animation-name: slideInAndOutMobile;
@@ -422,7 +427,7 @@
             </div>`;
 
         const getPackagesHTML = (packages) => {
-            let html = '<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">';
+            let html = '<div class="grid grid-cols-2 gap-4">'; // PERBAIKAN: Mengubah grid menjadi 2 kolom di semua ukuran layar
             packages.forEach((pkg, index) => {
                 const isChecked = pkg.id === '1y'; // Default selection
                 html += `
