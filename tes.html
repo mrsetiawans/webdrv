@@ -44,11 +44,16 @@
         }
 
         /* Pengaturan Dasar dan Font */
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
         body {
             font-family: 'Inter', 'Helvetica Neue', sans-serif;
             background-color: var(--canva-background);
             color: var(--canva-text-primary);
-            overflow-x: hidden;
+            position: relative; /* Diperlukan untuk pseudo-elements agar tidak menyebabkan overflow */
         }
         
         /* Efek Gradien Aurora di Latar Belakang */
