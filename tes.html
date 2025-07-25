@@ -24,7 +24,7 @@
       fbq('init', '630583642253416');
       fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display=none"
+    <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1"
     /></noscript>
     <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
@@ -174,22 +174,38 @@
             max-width: 450px; z-index: 1000; opacity: 0;
             transition: opacity 0.4s ease, transform 0.4s ease, top 0.4s ease;
         }
-        .notif-box.show { display: flex; opacity: 1; animation: slideInAndOut 5s ease-in-out forwards; }
-        @keyframes slideInAndOut {
+        .notif-box.show { 
+            display: flex; 
+            opacity: 1; 
+            animation: slideInAndOutDesktop 5s ease-in-out forwards; 
+        }
+        @keyframes slideInAndOutDesktop {
             0%   { opacity: 0; transform: translateX(-50%) translateY(-30px); }
             10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
             90%  { opacity: 1; transform: translateX(-50%) translateY(0); }
             100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
         }
+        @keyframes slideInAndOutMobile {
+            0%   { opacity: 0; transform: translateY(-20px); }
+            10%  { opacity: 1; transform: translateY(0); }
+            90%  { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
         .notif-icon-wrapper { color: var(--canva-accent-teal); font-size: 1.2rem; flex-shrink: 0; }
         .notif-message { font-size: 0.9rem; line-height: 1.2; }
         .notif-message strong { font-weight: 600; }
         .notif-time { font-size: 0.75rem; color: #b0b8c8; margin-top: 2px; }
+        
         @media (max-width: 500px) {
-            .notif-box { left: 16px; right: 16px; top: 16px; transform: translateX(0); width: calc(100% - 32px); }
-            @keyframes slideInAndOut {
-                0%   { opacity: 0; transform: translateY(-20px); } 10%  { opacity: 1; transform: translateY(0); }
-                90%  { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); }
+            .notif-box { 
+                left: 16px; 
+                right: 16px; 
+                top: 16px; 
+                transform: translateX(0); 
+                width: calc(100% - 32px); 
+            }
+            .notif-box.show {
+                animation-name: slideInAndOutMobile;
             }
         }
 
