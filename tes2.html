@@ -151,7 +151,7 @@
         /* Bagian FAQ */
         .faq-item { background-color: #303030; margin-bottom: 8px; }
         .faq-item summary {
-            font-weight: 500; font-size: 1.25rem; color: #ffffff;
+            font-weight: 500; font-size: 1.1rem; sm:font-size: 1.25rem; color: #ffffff;
             padding: 1.25rem 1.5rem; cursor: pointer; list-style: none;
             display: flex; justify-content: space-between; align-items: center;
             transition: background-color 0.2s ease;
@@ -174,7 +174,7 @@
         <div id="main-content-container">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8">
                 <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 bg-black/50 p-8 md:p-10 rounded-lg border border-gray-800">
+                <div class="lg:col-span-1 bg-black/50 p-6 md:p-10 rounded-lg border border-gray-800">
                     <!-- Header Keamanan -->
                     <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-800 pb-6 mb-8">
                         <div class="flex items-center justify-center gap-3">
@@ -195,7 +195,7 @@
 
                     <!-- Form -->
                     <form id="orderForm">
-                        <h2 class="text-3xl font-bold mb-5 text-white text-center">BELI AKUN NETFLIX SEKARANG</h2>
+                        <h2 class="text-2xl sm:text-3xl font-bold mb-5 text-white text-center">BELI AKUN NETFLIX SEKARANG</h2>
                         <div class="space-y-4">
                             <div>
                                 <label for="nama" class="block text-sm font-medium mb-1 text-gray-400">Nama Anda <span class="text-red-500">*</span></label>
@@ -226,7 +226,7 @@
                      <div class="mt-12">
                          <div id="faq-full"></div>
                      </div>
-                     <div class="mt-12 bg-black/50 p-8 md:p-10 rounded-lg border border-gray-800">
+                     <div class="mt-12 bg-black/50 p-6 md:p-10 rounded-lg border border-gray-800">
                          <div id="policy-full"></div>
                      </div>
                 </div>
@@ -324,10 +324,11 @@
             <div class="text-center">
                  <svg viewBox="0 0 115 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-10 w-auto mx-auto mb-2" fill="#E50914"><path d="M105.016 29.3438V0.65625H115V29.3438H105.016ZM94.9844 29.3438V0.65625H104.969V5.03125H100V25H104.969V29.3438H94.9844ZM85.625 29.3438V0.65625H94.9844V25.9688L85.625 0.65625V29.3438ZM74.9844 29.3438V0.65625H84.9688V25H79.9844V5.03125H74.9844V29.3438ZM65.0156 29.3438V0.65625H74.9844V5.03125H70V29.3438H65.0156ZM55.0156 29.3438V0.65625H65.0156V12.5L59.3281 29.3438H55.0156ZM45.0156 29.3438V0.65625H55.0156V12.5L49.3281 29.3438H45.0156ZM34.9844 29.3438V0.65625H44.9688V5.03125H39.9844V12.5H44.3125V16.875H39.9844V25H44.9688V29.3438H34.9844ZM25.0156 29.3438V0.65625H34.9844V5.03125H30.0156V29.3438H25.0156ZM15.0156 29.3438V0.65625H25.0156V12.5L19.3281 29.3438H15.0156ZM0 29.3438V0.65625H10.0156V29.3438H5.01562V16.875H0V29.3438Z"/></svg>
                 
+                <!-- Curved Title for All Devices -->
                 <div class="my-2">
                     <svg viewBox="0 0 600 100" class="w-full h-auto" style="max-width: 600px; margin-left: auto; margin-right: auto;">
                         <defs>
-                            <path id="curve" d="M25,65 Q300,40 575,65" fill="transparent" />
+                            <path id="curve" d="M10,70 Q300,20 590,70" fill="transparent" />
                         </defs>
                         <text width="600" style="font-family: 'Bebas Neue', sans-serif; font-size: 72px; letter-spacing: 0.05em;">
                             <textPath xlink:href="#curve" startOffset="50%" text-anchor="middle">
@@ -338,21 +339,21 @@
                     </svg>
                 </div>
 
-                <p class="text-xl text-gray-300 -mt-4">Akses Penuh Selama 1 Tahun.</p>
-                <div class="text-6xl font-bold text-white mt-6">${pkg.priceDisplay}</div>
+                <p class="text-lg sm:text-xl text-gray-300 -mt-2 sm:-mt-4">Akses Penuh Selama 1 Tahun.</p>
+                <div class="text-5xl sm:text-6xl font-bold text-white mt-6">${pkg.priceDisplay}</div>
                 <p class="text-gray-400 text-sm mt-1 tracking-wider">PEMBAYARAN SEKALI UNTUK 1 TAHUN</p>
             </div>`;
         }
 
         const getFeaturesHTML = (pkg) => `
             <div>
-                <h3 class="text-3xl mb-4 text-white">APA YANG ANDA DAPATKAN:</h3>
+                <h3 class="text-2xl sm:text-3xl mb-4 text-white">APA YANG ANDA DAPATKAN:</h3>
                 <ul class="space-y-3">${pkg.features.map((f) => `<li class="flex items-start"><i class="fas fa-check text-red-600 mt-1 mr-4"></i><span class="text-gray-300">${f}</span></li>`).join('')}</ul>
             </div>`;
 
         const getOrderDetailsHTML = (pkg, totalPrice) => `
             <div class="mt-8 pt-6 border-t border-gray-800">
-                 <h3 class="text-2xl mb-4 text-white">Rincian Pesanan</h3>
+                 <h3 class="text-xl sm:text-2xl mb-4 text-white">Rincian Pesanan</h3>
                  <div class="space-y-3 text-gray-300">
                      <div class="flex justify-between">
                          <span>Harga Paket</span>
@@ -363,7 +364,7 @@
                          <span class="font-medium text-white">${formatCurrency(uniqueCode)}</span>
                      </div>
                      <hr class="my-2 border-gray-700">
-                     <div class="flex justify-between font-bold text-xl text-white">
+                     <div class="flex justify-between font-bold text-lg sm:text-xl text-white">
                          <span>Total</span>
                          <span>${formatCurrency(totalPrice)}</span>
                      </div>
@@ -372,8 +373,8 @@
 
         const getTestimonialsHTML = () => `
             <div>
-                <h2 class="text-4xl text-center mb-8 text-white">APA KATA MEREKA</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
+                <h2 class="text-3xl sm:text-4xl text-center mb-8 text-white">APA KATA MEREKA</h2>
+                <div class="grid grid-cols-2 gap-4">
                     <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(1).png?raw=true" alt="Testimonial 1" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
                     <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(2).png?raw=true" alt="Testimonial 2" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
                     <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(3).png?raw=true" alt="Testimonial 3" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
@@ -383,7 +384,7 @@
 
         const getFaqHTML = () => `
              <div>
-                 <h2 class="text-4xl font-bold mb-6 text-center text-white">PERTANYAAN UMUM</h2>
+                 <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-center text-white">PERTANYAAN UMUM</h2>
                  <div class="space-y-2">
                     <details class="faq-item">
                         <summary>Apakah ini akun baru atau upgrade akun lama?</summary>
@@ -411,7 +412,7 @@
         
         const getPolicyHTML = () => `
             <div>
-                <h3 class="text-3xl mb-4 text-center text-white">Kebijakan & Ketentuan</h3>
+                <h3 class="text-2xl sm:text-3xl mb-4 text-center text-white">Kebijakan & Ketentuan</h3>
                 <div class="space-y-6 text-sm text-gray-400">
                     <div>
                         <h4 class="text-xl font-bold mb-2 text-white">Kebijakan Privasi</h4>
@@ -490,7 +491,7 @@
             const paymentViewHTML = `
             <div class="max-w-2xl mx-auto py-8 sm:py-12 px-4">
                 <div class="text-center">
-                    <h2 class="text-4xl md:text-5xl text-white mb-4">SEDIKIT LAGI SELESAI!</h2>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl text-white mb-4">SEDIKIT LAGI SELESAI!</h2>
                     <p class="text-gray-300 mb-2">Untuk menyelesaikan pesanan, silakan transfer sejumlah</p>
                     
                     <div class="inline-flex items-center gap-4 bg-black p-3 sm:p-4 rounded-lg mb-4 border-2 border-gray-700">
@@ -508,7 +509,7 @@
                     <div class="w-full max-w-md">
                         <div class="bg-gray-900 p-6 rounded-lg border border-gray-700 text-left flex flex-col">
                             <div class="flex-grow">
-                                <h4 class="text-2xl text-white mb-5">TRANSFER BANK</h4>
+                                <h4 class="text-xl sm:text-2xl text-white mb-5">TRANSFER BANK</h4>
                                 <div class="space-y-4">
                                     <div>
                                         <p class="text-sm text-gray-400">No. Rekening Bank Jago</p>
