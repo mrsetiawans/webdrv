@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upgrade Akun Canva Pro - Penawaran Seumur Hidup!</title>
-    <link rel="icon" type="image/png" href="https://static.canva.com/static/images/favicon.ico">
+    <title>Upgrade Canva Pro - Penawaran Spesial!</title>
+    <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/0/08/Canva_icon_2021.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <!-- === KODE FACEBOOK PIXEL DIMULAI DI SINI === -->
@@ -30,82 +30,91 @@
     <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
 
     <style>
-        /* Variabel Warna Khas Canva */
+        /* Pengaturan Dasar dan Font dengan Gaya Canva */
         :root {
-            --canva-primary: #8d33ff; /* Ungu Khas Canva */
-            --canva-primary-darker: #7b29e0; /* Ungu lebih gelap untuk hover */
-            --canva-accent-teal: #00caca;
-            --canva-background: #f1f2f4; /* Latar belakang abu-abu netral */
-            --canva-surface: #ffffff; /* Warna dasar untuk kartu/kontainer */
-            --canva-text-primary: #18191a; /* Teks utama yang sangat gelap */
-            --canva-text-secondary: #5a6372; /* Teks sekunder */
-            --canva-border: #dcdfe4; /* Border netral */
-            --canva-form-bg: #f8f9fa; /* Latar belakang input form */
-        }
-
-        /* Pengaturan Dasar dan Font */
-        html {
-            overflow-x: hidden;
+            --primary-color: #8C30F5; /* Canva Purple */
+            --secondary-color: #05A3B8; /* Canva Teal */
+            --light-bg: #F9FAFB; /* Light Gray Background */
+            --card-bg: #FFFFFF;
+            --border-color: #E5E7EB; /* Light Gray Border */
+            --text-dark: #111827;
+            --text-light: #6B7280;
         }
 
         body {
-            font-family: 'Inter', 'Helvetica Neue', sans-serif;
-            background-color: var(--canva-background);
-            color: var(--canva-text-primary);
-            position: relative;
-        }
-        
-        /* Efek Gradien Aurora di Latar Belakang */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 30vw;
-            height: 30vw;
-            background: radial-gradient(circle, rgba(141, 51, 255, 0.15) 0%, rgba(141, 51, 255, 0) 70%);
-            z-index: -1;
-            pointer-events: none;
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
         }
 
-        body::after {
-            content: '';
-            position: absolute;
-            bottom: -15%;
-            right: -15%;
-            width: 40vw;
-            height: 40vw;
-            background: radial-gradient(circle, rgba(0, 202, 202, 0.1) 0%, rgba(0, 202, 202, 0) 70%);
-            z-index: -1;
-            pointer-events: none;
+        /* Teks Gradien Khas Canva */
+        .canva-gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
 
-        /* Input Form */
-        .form-input {
-            border: 1px solid var(--canva-border);
-            transition: all 0.2s ease-in-out;
+        /* Pilihan Paket */
+        .package-option {
+            border: 2px solid var(--border-color);
+            padding: 1rem;
             border-radius: 12px;
-            padding: 0.9rem 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            position: relative;
+            background-color: var(--card-bg);
+        }
+        .package-option:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        .package-option.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(140, 48, 245, 0.05);
+            box-shadow: 0 0 15px rgba(140, 48, 245, 0.1);
+        }
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* Input Form dengan gaya baru */
+        .form-input {
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease-in-out;
+            border-radius: 8px;
+            padding: 0.9rem 1rem;
             width: 100%;
-            background-color: var(--canva-form-bg);
-            font-weight: 500;
-            color: var(--canva-text-primary);
+            background-color: var(--card-bg);
+            color: var(--text-dark);
         }
         .form-input::placeholder {
-            color: #8a919e;
+            color: #9CA3AF;
         }
         .form-input:focus {
-            border-color: var(--canva-primary);
-            background-color: var(--canva-surface);
+            border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(141, 51, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(140, 48, 245, 0.2);
         }
         
-        /* Tombol Aksi (CTA) */
+        /* Tombol Aksi (CTA) dengan gaya baru */
         .cta-button {
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 12px;
-            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            padding: 0.85rem 2rem;
             font-size: 1rem;
             font-weight: 700;
             display: inline-flex;
@@ -115,200 +124,148 @@
             cursor: pointer;
             width: 100%;
             border: none;
+            text-transform: uppercase;
         }
-        .purple-button {
-            background-color: var(--canva-primary);
+        .canva-button {
+            background: linear-gradient(90deg, var(--primary-color), #5f4ff7);
             color: white;
-            box-shadow: 0 4px 12px rgba(141, 51, 255, 0.2);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
         }
-        .purple-button:hover {
-            background-color: var(--canva-primary-darker);
+        .canva-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(141, 51, 255, 0.25);
+            box-shadow: 0 4px 20px rgba(140, 48, 245, 0.25);
         }
 
-        /* Modal / Message Box */
+        /* Modal / Message Box Styling */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            overflow: auto; background-color: rgba(10, 10, 20, 0.7); backdrop-filter: blur(5px); justify-content: center; align-items: center;
+            overflow: auto; background-color: rgba(17, 24, 39, 0.6); justify-content: center; align-items: center;
         }
         .modal-content {
-            background-color: var(--canva-surface); margin: auto; padding: 24px 32px; width: 90%; max-width: 450px;
-            border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center; position: relative;
+            background-color: var(--card-bg); border: 1px solid var(--border-color); margin: auto; padding: 24px 32px; width: 90%; max-width: 450px;
+            border-radius: 16px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); text-align: center; position: relative;
             animation: fadeIn 0.3s ease;
         }
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        .modal-content h3 { color: var(--canva-text-primary); margin-bottom: 15px; font-size: 1.5rem; font-weight: 800; }
-        .modal-content p { color: var(--canva-text-secondary); margin-bottom: 25px; line-height: 1.6; }
+        .modal-content h3 { color: var(--text-dark); margin-bottom: 15px; font-size: 1.5rem; font-weight: 700; }
+        .modal-content p { color: var(--text-light); margin-bottom: 20px; line-height: 1.6; }
         .modal-ok-button {
-            background-color: var(--canva-primary); color: white; padding: 12px 28px; border: none; border-radius: 8px;
-            cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.2s ease;
+            background: var(--primary-color); color: white; padding: 10px 24px; border: none; border-radius: 8px;
+            cursor: pointer; font-size: 1rem; font-weight: 600; transition: background-color 0.2s ease;
         }
-        .modal-ok-button:hover { background-color: var(--canva-primary-darker); }
+        .modal-ok-button:hover { background-color: #7A28D8; }
 
-        /* Testimonial */
+        /* Testimonial Section */
         .testimonial-image {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             cursor: pointer;
-            border: 1px solid #e8eaf0;
+            border: 2px solid transparent;
         }
         .testimonial-image:hover {
-            transform: scale(1.03) rotate(-1deg);
-            box-shadow: 0 15px 25px rgba(30, 30, 40, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
         }
         
-        /* Modal Zoom Gambar */
+        /* Modal untuk Zoom Gambar Testimoni */
         #imageModal .modal-content-image {
-            margin: auto; display: block; width: auto; max-width: 90%; max-height: 85vh;
-            animation: zoomIn 0.3s ease; border-radius: 12px;
+            margin: auto; display: block; width: auto; max-width: 90%;
+            max-height: 85vh; animation: zoomIn 0.3s ease;
         }
         .close-image-modal {
-            position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px;
-            font-weight: bold; transition: 0.3s; cursor: pointer;
+            position: absolute; top: 20px; right: 35px; color: #f1f1f1;
+            font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer;
         }
-        .close-image-modal:hover, .close-image-modal:focus { color: #bbb; text-decoration: none; }
+        .close-image-modal:hover, .close-image-modal:focus {
+            color: #bbb; text-decoration: none;
+        }
         @keyframes zoomIn { from {transform: scale(0)} to {transform: scale(1)} }
         
         /* Notifikasi Toast */
         .notif-box {
-            position: fixed; top: 24px; left: 50%; transform: translateX(-50%); 
-            background: #25282e;
-            color: #ffffff; border-radius: 9999px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background-color: var(--card-bg);
+            color: var(--text-dark); border-radius: 9999px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             padding: 12px 24px; display: none; align-items: center; gap: 12px; width: auto;
-            max-width: 90%; z-index: 1000; opacity: 0;
+            max-width: 450px; z-index: 1000; opacity: 0; border: 1px solid var(--border-color);
             transition: opacity 0.4s ease, transform 0.4s ease, top 0.4s ease;
         }
-        .notif-box.show { 
-            display: flex; 
-            opacity: 1; 
-            animation: slideInAndOutDesktop 5s ease-in-out forwards; 
-        }
-        @keyframes slideInAndOutDesktop {
+        .notif-box.show { display: flex; opacity: 1; animation: slideInAndOut 5s ease-in-out forwards; }
+        @keyframes slideInAndOut {
             0%   { opacity: 0; transform: translateX(-50%) translateY(-30px); }
             10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
             90%  { opacity: 1; transform: translateX(-50%) translateY(0); }
             100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
         }
-        @keyframes slideInAndOutMobile {
-            0%   { opacity: 0; transform: translateY(-20px); }
-            10%  { opacity: 1; transform: translateY(0); }
-            90%  { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
-        }
-        .notif-icon-wrapper { color: var(--canva-accent-teal); font-size: 1.2rem; flex-shrink: 0; }
-        .notif-content-area { flex: 1; min-width: 0; } 
-        .notif-message { 
-            font-size: 0.9rem; 
-            line-height: 1.2;
-            word-break: break-word;
-        }
-        .notif-message strong { font-weight: 600; }
-        .notif-time { font-size: 0.75rem; color: #b0b8c8; margin-top: 2px; }
-        
+        .notif-icon-wrapper { color: var(--primary-color); font-size: 1.2rem; flex-shrink: 0; }
+        .notif-message { font-size: 0.9rem; line-height: 1.2; }
+        .notif-message strong { font-weight: 600; color: var(--primary-color); }
+        .notif-time { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
         @media (max-width: 500px) {
-            .notif-box { 
-                left: 16px; 
-                right: 16px; 
-                top: 16px; 
-                transform: translateX(0); 
-                width: calc(100% - 32px);
-                max-width: calc(100% - 32px);
-            }
-            .notif-box.show {
-                animation-name: slideInAndOutMobile;
+            .notif-box { left: 16px; right: 16px; top: 16px; transform: translateX(0); width: calc(100% - 32px); }
+            @keyframes slideInAndOut {
+                0%   { opacity: 0; transform: translateY(-20px); } 10%  { opacity: 1; transform: translateY(0); }
+                90%  { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); }
             }
         }
 
         /* Bagian FAQ */
-        .faq-item { border-bottom: 1px solid #e8eaf0; }
+        .faq-item { border-bottom: 1px solid var(--border-color); }
         .faq-item:last-child { border-bottom: none; }
         .faq-item summary {
-            font-weight: 600; font-size: 1rem; color: var(--canva-text-primary);
+            font-weight: 600; font-size: 1rem; color: var(--text-dark);
             padding: 1.25rem 0.5rem; cursor: pointer; list-style: none;
             display: flex; justify-content: space-between; align-items: center;
-            transition: color 0.2s ease;
         }
-        .faq-item summary:hover { color: var(--canva-primary); }
         .faq-item summary::-webkit-details-marker { display: none; }
         .faq-item summary::after {
             content: '\f078'; /* chevron-down */
             font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            transition: transform 0.3s ease; color: #8a919e;
+            transition: transform 0.3s ease; color: #9CA3AF;
         }
-        .faq-item[open] summary::after { transform: rotate(180deg); color: var(--canva-primary); }
-        .faq-content { padding: 0 0.5rem 1.25rem 0.5rem; color: var(--canva-text-secondary); line-height: 1.7; }
-        .faq-item[open] summary { color: var(--canva-primary); font-weight: 700; }
-
-        /* Styling untuk Pilihan Paket */
-        .package-option {
-            border: 2px solid var(--canva-border);
-            border-radius: 12px;
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            position: relative;
-        }
-        .package-option:hover {
-            border-color: var(--canva-primary);
-            transform: translateY(-2px);
-        }
-        input[type="radio"]:checked + .package-option {
-            border-color: var(--canva-primary);
-            box-shadow: 0 0 0 2px var(--canva-primary);
-        }
-        .package-badge {
-            position: absolute;
-            top: -12px;
-            right: 12px;
-            background-color: var(--canva-primary);
-            color: white;
-            padding: 2px 10px;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
+        .faq-item[open] summary::after { transform: rotate(180deg); }
+        .faq-content { padding: 0 0.5rem 1.25rem 0.5rem; color: var(--text-light); line-height: 1.7; }
+        .faq-item[open] summary { color: var(--primary-color); }
     </style>
 </head>
 <body class="antialiased">
 
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl relative z-10">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
         <div id="main-content-container">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8">
                 <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 bg-white p-8 md:p-10 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100">
+                <div class="lg:col-span-1 bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-[#E5E7EB]">
                     <!-- Header Keamanan -->
                     <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-200 pb-6 mb-8">
                         <div class="flex items-center justify-center gap-3">
                             <i class="fas fa-shield-alt text-green-500 text-xl"></i>
-                            <h3 class="font-medium text-sm text-gray-600">TRANSAKSI AMAN</h3>
+                            <h3 class="font-medium text-sm text-gray-500">TRANSAKSI AMAN</h3>
                         </div>
                         <div class="flex items-center justify-center gap-3">
-                            <i class="fas fa-hand-holding-dollar text-purple-500 text-xl"></i>
-                            <h3 class="font-medium text-sm text-gray-600">GARANSI 100%</h3>
+                            <i class="fas fa-hand-holding-usd text-blue-500 text-xl"></i>
+                            <h3 class="font-medium text-sm text-gray-500">GARANSI UANG KEMBALI</h3>
                         </div>
                     </div>
 
                     <!-- Info Produk & Pilihan Paket -->
                     <div id="product-info-form-top" class="mb-8"></div>
-                    <div id="package-selection" class="mb-8"></div>
 
                     <!-- Fitur -->
                     <div id="features-before-form" class="mb-8 border-t border-gray-200 pt-8"></div>
 
                     <!-- Form -->
                     <form id="orderForm">
-                        <h2 class="text-xl font-bold mb-5 text-gray-800">Lengkapi Data Pesanan</h2>
+                        <h2 class="text-xl font-bold mb-5 text-gray-900">Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
-                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Lengkap <span class="text-red-500">*</span></label>
-                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama Anda">
+                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
+                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
                             </div>
                             <div>
-                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Aktif <span class="text-red-500">*</span></label>
+                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
                                 <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
                             </div>
                             <div>
-                                <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Email Akun Canva <span class="text-red-500">*</span></label>
+                                <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Email Login Canva <span class="text-red-500">*</span></label>
                                 <input type="email" id="email" name="email" class="form-input w-full" placeholder="Email yang terdaftar di Canva">
                             </div>
                         </div>
@@ -316,9 +273,8 @@
                         <!-- Rincian Pesanan -->
                         <div id="order-details-in-form" class="mt-8"></div>
                         
-                        <button type="button" id="submit-btn" class="cta-button purple-button mt-8">
-                            <i class="fas fa-magic-wand-sparkles"></i>
-                            Upgrade ke Pro Sekarang
+                        <button type="button" id="submit-btn" class="cta-button canva-button mt-8">
+                            Beli Sekarang
                         </button>
                     </form>
                 </div>
@@ -326,10 +282,10 @@
                 <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
                 <div class="lg:col-span-1 py-8">
                      <div id="testimonials-full"></div>
-                     <div class="mt-12 bg-white p-8 md:p-10 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100">
+                     <div class="mt-12 bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-[#E5E7EB]">
                          <div id="faq-full"></div>
                      </div>
-                     <div class="mt-12 bg-white p-8 md:p-10 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100">
+                     <div class="mt-12 bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-[#E5E7EB]">
                          <div id="policy-full"></div>
                      </div>
                 </div>
@@ -346,7 +302,7 @@
         <div class="modal-content">
             <h3 id="modalTitle"></h3>
             <p id="modalMessage"></p>
-            <button class="modal-ok-button" onclick="closeInfoModal()">Mengerti</button>
+            <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
         </div>
     </div>
 
@@ -358,7 +314,7 @@
     
     <!-- Notification Popup -->
     <div class="notif-box" id="notifBox">
-        <div class="notif-icon-wrapper"><i class="fas fa-check-circle"></i></div>
+        <div class="notif-icon-wrapper"><i class="far fa-check-circle"></i></div>
         <div class="notif-content-area">
              <div class="notif-message">
                  <div><strong class="notif-name">Nama Acak</strong> baru saja upgrade!</div>
@@ -378,7 +334,6 @@
             footer: document.getElementById('footer'),
             currentYear: document.getElementById('currentYear'),
             productInfoFormTop: document.getElementById('product-info-form-top'),
-            packageSelection: document.getElementById('package-selection'),
             featuresBeforeForm: document.getElementById('features-before-form'),
             orderDetailsInForm: document.getElementById('order-details-in-form'),
             testimonialsFull: document.getElementById('testimonials-full'),
@@ -390,23 +345,54 @@
             notifName: document.querySelector('#notifBox .notif-name'),
         };
 
-        // --- CONFIGURATION ---
+        // --- KONFIGURASI ---
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
-        const packages = [
-            { id: '1m', name: 'Canva Pro 1 Bulan', price: 29000, badge: null },
-            { id: '6m', name: 'Canva Pro 6 Bulan', price: 59000, badge: null },
-            { id: '1y', name: 'Canva Pro 1 Tahun', price: 79000, badge: 'Paling Populer' },
-            { id: 'life', name: 'Canva Pro Lifetime', price: 99000, badge: 'Penawaran Terbaik' }
-        ];
+        const packages = {
+            '1-month': {
+                id: '1-month',
+                name: "Canva Pro 1 Bulan",
+                duration: "1 Bulan",
+                price: 29000,
+                priceDisplay: "Rp29.000",
+                isBestValue: false,
+            },
+            '6-months': {
+                id: '6-months',
+                name: "Canva Pro 6 Bulan",
+                duration: "6 Bulan",
+                price: 59000,
+                priceDisplay: "Rp59.000",
+                isBestValue: false,
+            },
+            '1-year': {
+                id: '1-year',
+                name: "Canva Pro 1 Tahun",
+                duration: "1 Tahun",
+                price: 79000,
+                priceDisplay: "Rp79.000",
+                isBestValue: false,
+            },
+            'lifetime': {
+                id: 'lifetime',
+                name: "Canva Pro Lifetime",
+                duration: "Lifetime",
+                price: 99000,
+                priceDisplay: "Rp99.000",
+                isBestValue: true,
+            }
+        };
 
-        const features = [
-            "<strong>100+ Juta Aset Premium:</strong> Akses tak terbatas ke foto, video, audio, dan grafis premium.",
-            "<strong>Magic Studio:</strong> Semua kekuatan AI dalam satu tempat. Termasuk Magic Resize, Magic Write, dll.",
-            "<strong>Penghapus Latar Belakang:</strong> Hapus background foto atau video dengan sekali klik.",
-            "<strong>Brand Kit Pro:</strong> Simpan logo, warna, dan font brand Anda tanpa batas.",
-            "<strong>Penyimpanan Cloud 1TB:</strong> Ruang penyimpanan super besar untuk semua proyek Anda.",
-            "<strong>Penjadwal Konten:</strong> Rencanakan dan jadwalkan postingan ke 8 platform media sosial.",
-            "<strong>Proses Aman & Cepat:</strong> Upgrade langsung pada akun Canva pribadi Anda dalam hitungan menit."
+        let selectedPackageId = 'lifetime'; // Pilihan default
+
+        const generalFeatures = [
+            "<strong>100+ Juta Aset Premium:</strong> Akses foto, video, audio & grafis tanpa batas.",
+            "<strong>Magic Resize:</strong> Ubah ukuran desain secara instan ke format apa pun.",
+            "<strong>Penghapus Latar Belakang:</strong> Hapus background foto dengan sekali klik.",
+            "<strong>1 TB Cloud Storage:</strong> Simpan semua proyek dan aset Anda dengan aman.",
+            "<strong>Brand Kit:</strong> Simpan logo, warna, dan font brand Anda untuk konsistensi.",
+            "<strong>Content Planner:</strong> Jadwalkan postingan media sosial langsung dari Canva.",
+            "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Canva yang sudah Anda miliki.",
+            "<strong>100% Aman & Bergaransi:</strong> Proses cepat dengan jaminan privasi penuh."
         ];
         
         const paymentAccounts = {
@@ -418,139 +404,152 @@
             }
         };
 
-        // --- TEMPLATE FUNCTIONS ---
-        const getProductInfoHTML = () => `
-            <div class="text-center">
-                <img alt="Logo Canva Pro" class="h-20 w-auto mx-auto mb-4 rounded-lg" src="https://5.imimg.com/data5/SELLER/Default/2025/1/483342275/ZM/IJ/RO/233734855/canva-pro-lifetime-access-selar-co-65b6705f9cd19-jpeg-500x500.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/200x200/8d33ff/ffffff?text=Canva+Pro';">
-                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Pilih Paket Canva Pro Anda</h1>
-                <p class="text-lg text-gray-600 mt-2">Buka semua potensi kreativitas Anda tanpa batas.</p>
-            </div>`;
+        // --- FUNGSI TEMPLATE ---
 
-        const getPackagesHTML = (packages) => {
-            let html = '<div class="grid grid-cols-2 gap-4">'; // PERBAIKAN: Mengubah grid menjadi 2 kolom di semua ukuran layar
-            packages.forEach((pkg, index) => {
-                const isChecked = pkg.id === '1y'; // Default selection
-                html += `
-                    <div>
-                        <input type="radio" id="${pkg.id}" name="package" value="${pkg.id}" class="hidden" ${isChecked ? 'checked' : ''}>
-                        <label for="${pkg.id}" class="package-option block text-center">
-                            ${pkg.badge ? `<div class="package-badge">${pkg.badge}</div>` : ''}
-                            <div class="font-bold text-lg">${pkg.name.replace('Canva Pro ', '')}</div>
-                            <div class="text-2xl font-extrabold my-2 text-purple-600">${formatCurrency(pkg.price)}</div>
-                        </label>
+        function renderPackageSelection() {
+            const container = elements.productInfoFormTop;
+            const packageOptionsHTML = Object.values(packages).map(pkg => `
+                <div class="package-option ${pkg.id === selectedPackageId ? 'selected' : ''}" data-package-id="${pkg.id}">
+                    ${pkg.isBestValue ? '<span class="badge">Paling Hemat</span>' : ''}
+                    <h4 class="font-bold text-lg text-gray-900 pt-4">${pkg.duration}</h4>
+                    <p class="font-semibold text-gray-600">${pkg.priceDisplay}</p>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="text-center mb-8">
+                     <img alt="Logo Canva Pro" class="h-20 w-auto mx-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Canva_icon_2021.svg">
+                     <h1 class="text-4xl md:text-5xl font-black text-gray-900 uppercase tracking-wider">UPGRADE <span class="canva-gradient-text">CANVA PRO</span></h1>
+                     <p class="text-lg text-gray-500 mt-3">Buka semua fitur desain premium tanpa batas.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-gray-900">Pilih Paket Anda</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        ${packageOptionsHTML}
                     </div>
-                `;
-            });
-            html += '</div>';
-            return html;
-        };
+                </div>
+            `;
+        }
 
-        const getFeaturesHTML = (features) => {
-            const colors = ['text-purple-500', 'text-pink-500', 'text-sky-500', 'text-emerald-500', 'text-amber-500', 'text-red-500', 'text-indigo-500', 'text-green-500'];
+        const getFeaturesHTML = () => {
+            const colors = ['text-purple-500', 'text-blue-500', 'text-teal-500'];
             return `<div>
-                <h3 class="text-lg font-bold mb-4 text-gray-800">Semua Fitur Pro yang Anda Dapatkan:</h3>
-                <ul class="space-y-4">${features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-4 text-base"></i><span class="text-gray-700">${f}</span></li>`).join('')}</ul>
+                <h3 class="text-lg font-bold mb-4 text-gray-900">Yang Anda Dapatkan:</h3>
+                <ul class="space-y-4">${generalFeatures.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3"></i><span class="text-gray-600">${f}</span></li>`).join('')}</ul>
             </div>`;
         }
 
-        const getOrderDetailsHTML = (pkg, totalPrice) => {
-            if (!pkg) return '';
-            return `
-            <div class="pt-6 border-t border-gray-200">
-                 <h3 class="text-lg font-bold mb-4 text-gray-800">Rincian Pesanan</h3>
+        const getOrderDetailsHTML = (pkg, totalPrice) => `
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                 <h3 class="text-lg font-bold mb-4 text-gray-900">Rincian Pesanan</h3>
                  <div class="space-y-3 text-gray-600">
-                      <div class="flex justify-between">
-                          <span>Paket Pilihan</span>
-                          <span class="font-medium text-gray-800">${pkg.name}</span>
-                      </div>
-                      <div class="flex justify-between">
-                          <span>Harga Paket</span>
-                          <span class="font-medium text-gray-800">${formatCurrency(pkg.price)}</span>
-                      </div>
-                      <div class="flex justify-between">
-                          <span>Kode Unik</span>
-                          <span class="font-medium text-gray-800">${formatCurrency(uniqueCode)}</span>
-                      </div>
-                      <hr class="my-2 border-dashed">
-                      <div class="flex justify-between font-bold text-xl text-gray-900">
-                          <span>Total</span>
-                          <span class="text-purple-600">${formatCurrency(totalPrice)}</span>
-                      </div>
+                     <div class="flex justify-between">
+                         <span>Paket ${pkg.duration}</span>
+                         <span class="font-medium text-gray-800">${formatCurrency(pkg.price)}</span>
+                     </div>
+                     <div class="flex justify-between">
+                         <span>Kode Unik</span>
+                         <span class="font-medium text-gray-800">${formatCurrency(uniqueCode)}</span>
+                     </div>
+                     <hr class="my-2 border-gray-200">
+                     <div class="flex justify-between font-bold text-lg text-gray-900">
+                         <span>Total</span>
+                         <span class="canva-gradient-text">${formatCurrency(totalPrice)}</span>
+                     </div>
                  </div>
             </div>`;
-        }
 
         const getTestimonialsHTML = () => `
             <div>
-                <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">Apa Kata Mereka?</h2>
+                <h2 class="text-2xl font-bold text-center mb-8 text-gray-900">Testimoni Pelanggan</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
-                    <img src="https://placehold.co/400x700/ffffff/333333?text=Testimoni+Pelanggan%0A%0A'Mantap,+akun+Canva+Pro%0Alangsung+aktif!%0ASangat+membantu%0Apekerjaan+saya.'%0A%0A-+Budi,+Desainer" alt="Testimonial 1" class="testimonial-image rounded-xl w-full h-auto object-cover aspect-[9/16]" onclick="openImageModal(event, this.src)">
-                    <img src="https://placehold.co/400x700/ffffff/333333?text=Testimoni+Pelanggan%0A%0A'Prosesnya+cepat+banget,%0Aadminnya+ramah.%0AFitur+Pro-nya+ngebantu%0Abanget+buat+konten.%0ARecommended!'%0A%0A-+Citra,+Content+Creator" alt="Testimonial 2" class="testimonial-image rounded-xl w-full h-auto object-cover aspect-[9/16]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/E9D5FF/8C30F5?text=Testimoni+1" alt="Testimonial 1" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/D1FAE5/10B981?text=Testimoni+2" alt="Testimonial 2" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/DBEAFE/3B82F6?text=Testimoni+3" alt="Testimonial 3" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/FEF3C7/F59E0B?text=Testimoni+4" alt="Testimonial 4" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
                 </div>
             </div>`;
 
         const getFaqHTML = () => `
              <div>
-                 <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Pertanyaan Umum (FAQ)</h3>
-                 <details class="faq-item" open>
+                 <h3 class="text-2xl font-bold mb-4 text-center text-gray-900">Pertanyaan Umum (FAQ)</h3>
+                 <details class="faq-item">
                      <summary>Apakah ini benar-benar seumur hidup?</summary>
-                     <div class="faq-content">Betul. Paket lifetime adalah pembayaran sekali untuk mengaktifkan Canva Pro di akun Anda selamanya. Paket lainnya berlaku sesuai durasi yang dipilih.</div>
+                     <div class="faq-content">Betul. Paket Lifetime adalah pembayaran sekali untuk mengaktifkan fitur Pro di akun Canva Anda selamanya, tanpa biaya langganan bulanan atau tahunan lagi.</div>
                  </details>
                  <details class="faq-item">
                      <summary>Apakah ini aman dan legal?</summary>
-                     <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode yang sah dan akun Anda tetap aman. Kami tidak pernah meminta password Anda, hanya alamat email yang terdaftar di Canva. Privasi Anda 100% terjamin.</div>
+                     <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode yang sah dan akun Anda tetap aman. Kami tidak pernah meminta password Anda, hanya alamat email yang terdaftar di Canva.</div>
                  </details>
                  <details class="faq-item">
-                     <summary>Apa bedanya dengan langganan resmi di web Canva?</summary>
-                     <div class="faq-content">Langganan resmi di web Canva bersifat periodik (bulanan/tahunan). Produk kami memberikan Anda semua fitur Pro yang sama dengan sistem pembayaran yang lebih fleksibel dan hemat.</div>
+                     <summary>Apa bedanya dengan versi gratis?</summary>
+                     <div class="faq-content">Versi Pro membuka semua batasan: 100+ juta aset premium, penghapus latar belakang, Brand Kit, penyimpanan 1TB, dan ribuan template premium yang tidak tersedia di versi gratis.</div>
                  </details>
                  <details class="faq-item">
-                     <summary>Berapa lama proses aktivasinya?</summary>
-                     <div class="faq-content">Prosesnya sangat cepat, biasanya hanya dalam 5-15 menit setelah konfirmasi pembayaran dan data kami terima (maksimal 1x24 jam).</div>
+                     <summary>Berapa lama prosesnya?</summary>
+                     <div class="faq-content">Prosesnya sangat cepat, biasanya hanya dalam beberapa menit hingga maksimal 1x24 jam setelah konfirmasi pembayaran dan data kami terima.</div>
                  </details>
                  <details class="faq-item">
-                     <summary>Apakah ini sistem gonta-ganti tim?</summary>
-                     <div class="faq-content">Tidak. Akun Anda akan diundang ke dalam tim privat kami secara permanen (untuk paket lifetime) atau sesuai durasi yang Anda pilih. Anda tidak akan dipindahkan atau berganti-ganti tim.</div>
+                     <summary>Bisakah digunakan di HP dan Komputer?</summary>
+                     <div class="faq-content">Ya, status Pro akan aktif di akun Anda dan bisa digunakan di semua perangkat (Android, iOS, dan PC/Laptop) selama Anda login dengan akun yang sama.</div>
                  </details>
              </div>
         `;
         
         const getPolicyHTML = () => `
             <div>
-                <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Kebijakan & Ketentuan</h3>
-                <div class="space-y-6 text-sm text-gray-600">
-                    <div>
-                        <h4 class="text-lg font-bold mb-2 text-gray-800">Kebijakan Privasi</h4>
-                        <p class="mb-4">Informasi yang Anda berikan (alamat email Canva) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua desain dan data Anda tetap sepenuhnya pribadi di bawah kendali Anda.</p>
+                <h3 class="text-2xl font-bold mb-4 text-center text-gray-900">Kebijakan & Ketentuan</h3>
+                <div class="grid md:grid-cols-1 gap-8 text-sm text-gray-600">
+                    <div class="mb-6">
+                        <h4 class="text-lg font-bold mb-2 text-gray-900">Kebijakan Privasi</h4>
+                        <p class="mb-4">Informasi yang Anda berikan (email login Canva) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda.</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Kami hanya butuh email, bukan password.</li>
+                            <li>Informasi pembayaran diproses oleh gateway aman.</li>
+                            <li>Data Anda tidak dibagikan ke pihak lain.</li>
+                        </ul>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold mb-2 text-gray-800">Syarat & Ketentuan</h4>
-                         <p class="mb-4">Layanan ini adalah pembayaran satu kali untuk manfaat sesuai durasi yang dipilih. Garansi penuh berlaku jika upgrade gagal karena kesalahan dari pihak kami.</p>
+                        <h4 class="text-lg font-bold mb-2 text-gray-900">Syarat & Ketentuan</h4>
+                        <p class="mb-4">Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup. Garansi penuh jika upgrade gagal karena kesalahan kami. Garansi tidak mencakup pemblokiran akun akibat pelanggaran kebijakan oleh pengguna.</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
+                            <li>Garansi penuh jika upgrade gagal dari sisi kami.</li>
+                            <li>Perubahan kebijakan Canva di masa depan berada di luar kendali kami.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         `;
 
-        // --- FUNCTIONS ---
+        // --- FUNGSI ---
         function formatCurrency(value) {
             return `Rp${value.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`;
         }
 
         function updateOrderDetails() {
-            const selectedId = document.querySelector('input[name="package"]:checked').value;
-            const selectedPackage = packages.find(p => p.id === selectedId);
-            const totalPrice = selectedPackage.price + uniqueCode;
-            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(selectedPackage, totalPrice);
+            const pkg = packages[selectedPackageId];
+            const totalPrice = pkg.price + uniqueCode;
+            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
         }
 
         function updateDisplay() {
-            elements.productInfoFormTop.innerHTML = getProductInfoHTML();
-            elements.packageSelection.innerHTML = getPackagesHTML(packages);
-            elements.featuresBeforeForm.innerHTML = getFeaturesHTML(features);
+            renderPackageSelection();
+            updateOrderDetails();
+
+            document.querySelectorAll('.package-option').forEach(el => {
+                el.addEventListener('click', () => {
+                    selectedPackageId = el.dataset.packageId;
+                    document.querySelectorAll('.package-option').forEach(opt => opt.classList.remove('selected'));
+                    el.classList.add('selected');
+                    updateOrderDetails();
+                });
+            });
+
+            elements.featuresBeforeForm.innerHTML = getFeaturesHTML();
             elements.testimonialsFull.innerHTML = getTestimonialsHTML();
             elements.faqFull.innerHTML = getFaqHTML();
             elements.policyFull.innerHTML = getPolicyHTML();
-            updateOrderDetails(); // Initial call
         }
 
         function generateWaLink(formData, pkg, totalPrice) {
@@ -571,11 +570,9 @@
             const nama = formData.get('nama').trim();
             const whatsapp = formData.get('whatsapp').trim();
             const email = formData.get('email').trim();
-            const selectedId = document.querySelector('input[name="package"]:checked').value;
-            const selectedPackage = packages.find(p => p.id === selectedId);
 
             if (!nama) {
-                showInfoModal('Data Belum Lengkap', 'Silakan isi Nama Lengkap Anda.');
+                showInfoModal('Data Belum Lengkap', 'Silakan isi Nama Anda.');
                 elements.orderForm.querySelector('#nama').focus();
                 return;
             }
@@ -590,68 +587,67 @@
                 return;
             }
 
-            const totalPrice = selectedPackage.price + uniqueCode;
+            const pkg = packages[selectedPackageId];
+            const totalPrice = pkg.price + uniqueCode;
             const paymentAccount = paymentAccounts['jago'];
             
-            // --- PELACAKAN EVENT FACEBOOK PIXEL ---
             if (typeof fbq === 'function') {
                 fbq('track', 'AddPaymentInfo', {
-                    content_name: selectedPackage.name,
+                    content_name: pkg.name,
                     content_category: 'Software',
                     currency: 'IDR',
                     value: totalPrice
                 });
             }
-            // --- AKHIR PELACAKAN EVENT ---
 
             elements.mainContentContainer.style.display = 'none';
             elements.footer.style.display = 'none';
-            const waLink = generateWaLink(formData, selectedPackage, totalPrice);
+            const waLink = generateWaLink(formData, pkg, totalPrice);
             
             const paymentViewHTML = `
             <div class="max-w-2xl mx-auto py-8 sm:py-12 px-4">
                 <div class="text-center">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Satu Langkah Lagi!</h2>
-                    <p class="text-gray-600 mb-2">Untuk menyelesaikan pesanan, silakan transfer sejumlah</p>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Terima kasih sudah order!</h2>
+                    <p class="text-gray-500 mb-2">Untuk menyelesaikan order, silakan transfer sejumlah</p>
                     
-                    <div class="inline-flex items-center gap-4 bg-purple-50 p-3 sm:p-4 rounded-xl mb-4 border border-purple-200">
-                        <span class="text-3xl sm:text-4xl font-bold text-purple-600">${formatCurrency(totalPrice)}</span>
-                        <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-2 px-3 sm:px-4 rounded-lg flex items-center gap-2 transition-colors">
+                    <div class="inline-flex items-center gap-4 bg-white p-3 sm:p-4 rounded-xl mb-4 border border-gray-200 shadow-sm">
+                        <span class="text-3xl sm:text-4xl font-bold text-gray-900 canva-gradient-text">${formatCurrency(totalPrice)}</span>
+                        <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="bg-gray-100 border border-gray-300 hover:bg-gray-200 text-gray-700 font-medium py-2 px-3 sm:px-4 rounded-lg flex items-center gap-2 transition-colors">
                             <i class="far fa-copy"></i>
-                            <span class="hidden sm:inline">Salin</span>
+                            <span class="hidden sm:inline">Salin Jumlah</span>
                         </button>
                     </div>
 
-                    <p class="text-gray-600 mt-6 mb-4">ke rekening Bank Jago berikut ini:</p>
+                    <p class="text-gray-500 mt-6 mb-4">ke rekening Bank Jago berikut ini:</p>
                 </div>
 
                 <div class="mt-6 flex justify-center">
                     <div class="w-full max-w-md">
-                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-lg shadow-gray-200/50 text-left flex flex-col">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-lg text-left flex flex-col">
                             <div class="flex-grow">
                                 <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.bank}" class="h-7 sm:h-8 mb-5">
                                 
                                 <div class="space-y-4">
                                     <div>
                                         <p class="text-sm text-gray-500">No. Rekening ${paymentAccount.bank}</p>
-                                        <p class="text-xl font-semibold text-gray-800">${paymentAccount.number}</p>
+                                        <p class="text-xl font-semibold text-gray-900">${paymentAccount.number}</p>
                                     </div>
                                     <div>
                                         <p class="text-sm text-gray-500">Atas Nama</p>
-                                        <p class="text-xl font-semibold text-gray-800">${paymentAccount.name}</p>
+                                        <p class="text-xl font-semibold text-gray-900">${paymentAccount.name}</p>
                                     </div>
                                 </div>
                             </div>
-                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening ${paymentAccount.bank}')" class="mt-6 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-lg transition-colors">
-                                Salin No. Rekening
+                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening ${paymentAccount.bank}')" class="mt-6 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-4 rounded-lg transition-colors border border-gray-300">
+                                Salin No. Rek.
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center mt-10">
-                    <p class="text-gray-600 mb-4 font-semibold">PENTING: Setelah transfer, jangan lupa konfirmasi.</p>
-                    <a href="${waLink}" target="_blank" class="cta-button purple-button max-w-md mx-auto">
+                    <p class="text-gray-500 mb-4">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
+                    <a href="${waLink}" target="_blank" class="cta-button canva-button max-w-md mx-auto">
                         <i class="fab fa-whatsapp text-xl"></i> 
                         <span>Konfirmasi via WhatsApp</span>
                     </a>
@@ -661,7 +657,7 @@
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
         }
         
-        // --- NOTIFICATION FUNCTIONS ---
+        // --- FUNGSI NOTIFIKASI ---
         const FIRST_NAMES = ["Adelia", "Aditya", "Agung", "Ahmad", "Aisha", "Ajeng", "Akbar", "Amanda", "Amelia", "Andi", "Andre", "Angga", "Ani", "Annisa", "Ari", "Arif", "Asep", "Ayu", "Bayu", "Bella", "Bima", "Budi", "Cahya", "Candra", "Chandra", "Citra", "Daniel", "David", "Dedi", "Desi", "Dewi", "Dian", "Dimas", "Dina", "Dinda", "Doni", "Eka", "Eko", "Elisa", "Erik", "Erwin", "Fajar", "Farah", "Farhan", "Fatima", "Fauzan", "Febri", "Felix", "Fernando", "Fikri", "Fitri", "Galih", "Gilang", "Hadi", "Hafiz", "Hana", "Handoko", "Hari", "Hasan", "Hendra", "Heru", "Hidayat", "Ibrahim", "Ichsan", "Ida", "Ihsan", "Ilham", "Imam", "Indah", "Indra", "Iqbal", "Irfan", "Irwan", "Ismail", "Ivan", "Jaka", "Jamal", "Jefri", "Joko", "Joni", "Julia", "Kamal", "Kartika", "Kevin", "Khairul", "Krisna", "Kurniawan", "Lestari", "Lia", "Lina", "Lisa", "Lukman", "Lutfi", "Made", "Maulana", "Mega", "Michael", "Mila", "Mira", "Mochammad", "Monica", "Muhammad", "Mukti", "Muslim", "Nadia", "Nana", "Nanda", "Nia", "Nina", "Novi", "Novita", "Nur", "Nurul", "Putra", "Putri", "Rachmat", "Raden", "Radit", "Rafli", "Rahayu", "Rahman", "Rahmat", "Rama", "Rangga", "Rani", "Ratna", "Reza", "Rian", "Rico", "Ridwan", "Rina", "Rini", "Rio", "Riri", "Riska", "Rizki", "Rizky", "Robby", "Robert", "Roni", "Rossa", "Rudi", "Ryan", "Sakti", "Samuel", "Sari", "Satria", "Selly", "Septian", "Setiawan", "Sinta", "Siti", "Sofia", "Sonia", "Sri", "Sugeng", "Sugiarto", "Suharto", "Sujatmiko", "Sukma", "Sulaiman", "Sumardi", "Sunarto", "Surya", "Susanto", "Susi", "Tania", "Taufik", "Tedi", "Thomas", "Tian", "Tika", "Tina", "Tono", "Tony", "Tri", "Umar", "Usman", "Utami", "Vera", "Vicky", "Vina", "Wahyu", "Wahyudi", "Wawan", "Wibowo", "Widi", "Widodo", "Wijaya", "Wulan", "Yani", "Yanto", "Yoga", "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi", "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra", "Zainal", "Zaki"];
         
         function getRandomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
@@ -683,20 +679,17 @@
             }, randomDelay);
         }
 
-        // --- INITIALIZATION ---
+        // --- INISIALISASI ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
         updateDisplay();
-        document.querySelectorAll('input[name="package"]').forEach(radio => {
-            radio.addEventListener('change', updateOrderDetails);
-        });
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
         }
 
     });
 
-    // --- GLOBAL HELPER FUNCTIONS ---
+    // --- FUNGSI PEMBANTU GLOBAL ---
     const infoModal = document.getElementById('infoModal');
     const imageModal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
