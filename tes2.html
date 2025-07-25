@@ -3,51 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tingkatkan Penyimpanan Google Photos Anda - Penawaran Spesial!</title>
-    <link rel="icon" type="image/png" href="https://1000logos.net/wp-content/uploads/2020/05/Google-Photos-logo.png">
+    <title>Jual Akun Netflix Premium - Langganan 1 Tahun</title>
+    <link rel="icon" type="image/png" href="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- === KODE FACEBOOK PIXEL (Tidak diubah) === -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '630583642253416');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
+
     <style>
-        /* Pengaturan Dasar dan Font Google */
+        /* Pengaturan Dasar dan Font Tema Netflix */
         body {
-            font-family: 'Inter', 'Roboto', sans-serif;
-            background-color: #f8f9fa; /* Latar belakang abu-abu sangat terang khas Google */
-            color: #3c4043; /* Warna teks utama Google */
+            font-family: 'Montserrat', sans-serif;
+            background-color: #141414; /* Latar belakang hitam khas Netflix */
+            color: #ffffff; /* Warna teks utama putih */
+        }
+        
+        /* Judul dengan font sinematik */
+        h1, h2, h3, h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.05em;
         }
 
-        /* Input Form dengan gaya Google Material Design */
+        /* Input Form dengan gaya Netflix */
         .form-input {
-            border: 1px solid #dadce0;
+            background-color: #333333;
+            border: 1px solid #333333;
+            color: #ffffff;
             transition: all 0.2s ease-in-out;
-            border-radius: 8px;
-            padding: 0.9rem 1rem;
+            border-radius: 4px;
+            padding: 1rem;
             width: 100%;
-            background-color: #f1f3f4;
+        }
+        .form-input::placeholder {
+            color: #8c8c8c;
         }
         .form-input:focus {
-            border-color: #1a73e8;
-            background-color: #fff;
+            background-color: #454545;
+            border-color: #e50914;
             outline: none;
-            box-shadow: 0 0 0 1px #1a73e8;
+            box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.5);
         }
         
-        /* Pilihan Metode Pembayaran */
-        .payment-radio:checked + label {
-            border-color: #1a73e8;
-            background-color: #e8f0fe;
-            box-shadow: none;
-        }
-        
-        /* Tombol Aksi (CTA) dengan warna Google Blue */
+        /* Tombol Aksi (CTA) dengan warna Merah Netflix */
         .cta-button {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 8px;
+            transition: background-color 0.2s ease-in-out;
+            border-radius: 4px;
             padding: 0.85rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.125rem; /* 18px */
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -55,54 +77,65 @@
             cursor: pointer;
             width: 100%;
             border: none;
+            text-transform: uppercase;
         }
-        .blue-button {
-            background-color: #1a73e8;
+        .red-button {
+            background-color: #e50914;
             color: white;
         }
-        .blue-button:hover {
-            background-color: #185abc;
-            box-shadow: 0 1px 3px 1px rgba(66,64,67,.15),0 1px 2px 0 rgba(60,64,67,.3);
+        .red-button:hover {
+            background-color: #f40612;
         }
 
         /* Modal / Message Box Styling */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            overflow: auto; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center;
+            overflow: auto; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center;
         }
         .modal-content {
-            background-color: #fefefe; margin: auto; padding: 24px 32px; width: 90%; max-width: 450px;
-            border-radius: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: center; position: relative;
+            background-color: #1f1f1f; margin: auto; padding: 24px 32px; width: 90%; max-width: 450px;
+            border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); text-align: center; position: relative;
+            border: 1px solid #333;
             animation: fadeIn 0.3s ease;
         }
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        .modal-content h3 { color: #202124; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700; }
-        .modal-content p { color: #5f6368; margin-bottom: 20px; line-height: 1.6; }
+        .modal-content h3 { color: #ffffff; margin-bottom: 15px; font-size: 2rem; }
+        .modal-content p { color: #dcdcdc; margin-bottom: 20px; line-height: 1.6; }
         .modal-ok-button {
-            background-color: #1a73e8; color: white; padding: 10px 24px; border: none; border-radius: 8px;
-            cursor: pointer; font-size: 1rem; font-weight: 500; transition: background-color 0.2s ease;
+            background-color: #e50914; color: white; padding: 10px 24px; border: none; border-radius: 4px;
+            cursor: pointer; font-size: 1rem; font-weight: 700; transition: background-color 0.2s ease;
+            text-transform: uppercase;
         }
-        .modal-ok-button:hover { background-color: #185abc; }
+        .modal-ok-button:hover { background-color: #f40612; }
 
         /* Testimonial Section */
         .testimonial-image {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
         }
         .testimonial-image:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border-color: #e50914;
         }
         
-        /* Image Popup Modal */
-        #imageModal {
-            background-color: rgba(0, 0, 0, 0.85);
-            cursor: pointer;
+        /* Modal untuk Zoom Gambar Testimoni */
+        #imageModal .modal-content-image {
+            margin: auto; display: block; width: auto; max-width: 90%; max-height: 85vh;
+            animation: zoomIn 0.3s ease;
         }
-
+        .close-image-modal {
+            position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px;
+            font-weight: bold; transition: 0.3s; cursor: pointer;
+        }
+        .close-image-modal:hover, .close-image-modal:focus { color: #bbb; text-decoration: none; }
+        @keyframes zoomIn { from {transform: scale(0)} to {transform: scale(1)} }
+        
         /* Notifikasi Toast */
         .notif-box {
-            position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background-color: #4285F4;
-            color: #ffffff; border-radius: 9999px; box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background-color: #e50914;
+            color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             padding: 12px 24px; display: none; align-items: center; gap: 12px; width: auto;
             max-width: 450px; z-index: 1000; opacity: 0;
             transition: opacity 0.4s ease, transform 0.4s ease, top 0.4s ease;
@@ -114,39 +147,25 @@
             90%  { opacity: 1; transform: translateX(-50%) translateY(0); }
             100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
         }
-        .notif-icon-wrapper { color: #ffffff; font-size: 1.2rem; flex-shrink: 0; }
-        .notif-message { font-size: 0.9rem; line-height: 1.2; }
-        .notif-message strong { font-weight: 600; }
-        .notif-time {
-            font-size: 0.75rem;
-            color: #e2e8f0;
-            margin-top: 2px;
-        }
-        @media (max-width: 500px) {
-            .notif-box { left: 16px; right: 16px; top: 16px; transform: translateX(0); width: calc(100% - 32px); }
-            @keyframes slideInAndOut {
-                0%   { opacity: 0; transform: translateY(-20px); } 10%  { opacity: 1; transform: translateY(0); }
-                90%  { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); }
-            }
-        }
-
+        
         /* Bagian FAQ */
-        .faq-item { border-bottom: 1px solid #dfe1e6; }
-        .faq-item:last-child { border-bottom: none; }
+        .faq-item { background-color: #303030; margin-bottom: 8px; }
         .faq-item summary {
-            font-weight: 600; font-size: 1rem; color: #3c4043;
-            padding: 1.25rem 0.5rem; cursor: pointer; list-style: none;
+            font-weight: 500; font-size: 1.25rem; color: #ffffff;
+            padding: 1.25rem 1.5rem; cursor: pointer; list-style: none;
             display: flex; justify-content: space-between; align-items: center;
+            transition: background-color 0.2s ease;
         }
+        .faq-item summary:hover { background-color: #404040; }
         .faq-item summary::-webkit-details-marker { display: none; }
         .faq-item summary::after {
-            content: '\f078'; /* chevron-down */
-            font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            transition: transform 0.3s ease; color: #5f6368;
+            content: '\2b'; /* Plus sign */
+            font-size: 2rem; font-weight: 300;
+            transition: transform 0.3s ease;
         }
-        .faq-item[open] summary::after { transform: rotate(180deg); }
-        .faq-content { padding: 0 0.5rem 1.25rem 0.5rem; color: #5f6368; line-height: 1.7; }
-        .faq-item[open] summary { color: #1a73e8; }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-content { padding: 0 1.5rem 1.25rem 1.5rem; color: #ffffff; line-height: 1.7; border-top: 2px solid #141414; }
+        .faq-item[open] summary { background-color: #404040; }
     </style>
 </head>
 <body class="antialiased">
@@ -155,16 +174,16 @@
         <div id="main-content-container">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8">
                 <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 bg-white p-8 md:p-10 rounded-2xl shadow-sm">
+                <div class="lg:col-span-1 bg-black/50 p-8 md:p-10 rounded-lg border border-gray-800">
                     <!-- Header Keamanan -->
-                    <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-200 pb-6 mb-8">
+                    <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-800 pb-6 mb-8">
                         <div class="flex items-center justify-center gap-3">
                             <i class="fas fa-shield-alt text-green-500 text-xl"></i>
-                            <h3 class="font-medium text-sm text-gray-600">TRANSAKSI AMAN</h3>
+                            <h3 class="font-medium text-sm text-gray-300 tracking-wider">TRANSAKSI AMAN</h3>
                         </div>
                         <div class="flex items-center justify-center gap-3">
-                            <i class="fas fa-hand-holding-usd text-blue-500 text-xl"></i>
-                            <h3 class="font-medium text-sm text-gray-600">GARANSI UANG KEMBALI</h3>
+                            <i class="fas fa-hand-holding-usd text-red-500 text-xl"></i>
+                            <h3 class="font-medium text-sm text-gray-300 tracking-wider">GARANSI UANG KEMBALI</h3>
                         </div>
                     </div>
 
@@ -172,31 +191,31 @@
                     <div id="product-info-form-top" class="mb-8"></div>
 
                     <!-- Fitur -->
-                    <div id="features-before-form" class="mb-8 border-t border-gray-200 pt-8"></div>
+                    <div id="features-before-form" class="mb-8 border-t border-gray-800 pt-8"></div>
 
                     <!-- Form -->
                     <form id="orderForm">
-                        <h2 class="text-xl font-bold mb-5 text-gray-800">Lengkapi Data</h2>
+                        <h2 class="text-3xl font-bold mb-5 text-white text-center">BELI AKUN NETFLIX SEKARANG</h2>
                         <div class="space-y-4">
                             <div>
-                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
+                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-400">Nama Anda <span class="text-red-500">*</span></label>
                                 <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
                             </div>
                             <div>
-                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
+                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-400">No. WhatsApp Anda <span class="text-red-500">*</span></label>
                                 <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
                             </div>
                             <div>
-                                <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Gmail Anda <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com">
+                                <label for="email" class="block text-sm font-medium mb-1 text-gray-400">Email Anda (untuk pengiriman akun) <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="Kami akan kirim detail akun ke email ini">
                             </div>
                         </div>
                         
                         <!-- Rincian Pesanan -->
                         <div id="order-details-in-form" class="mt-8"></div>
                         
-                        <button type="button" id="submit-btn" class="cta-button blue-button mt-8">
-                            Beli Sekarang
+                        <button type="button" id="submit-btn" class="cta-button red-button mt-8">
+                            Dapatkan Akun Sekarang
                         </button>
                     </form>
                 </div>
@@ -204,10 +223,10 @@
                 <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
                 <div class="lg:col-span-1 py-8">
                      <div id="testimonials-full"></div>
-                     <div class="mt-12 bg-white p-8 md:p-10 rounded-2xl shadow-sm">
+                     <div class="mt-12">
                          <div id="faq-full"></div>
                      </div>
-                     <div class="mt-12 bg-white p-8 md:p-10 rounded-2xl shadow-sm">
+                     <div class="mt-12 bg-black/50 p-8 md:p-10 rounded-lg border border-gray-800">
                          <div id="policy-full"></div>
                      </div>
                 </div>
@@ -215,7 +234,7 @@
         </div>
         <div id="payment-instruction-container"></div>
         <footer id="footer" class="text-center mt-16 text-gray-500 text-sm">
-            <p>Copyright © <span id="currentYear"></span> InDrive ID. Semua Hak Dilindungi.</p>
+            <p>Copyright © <span id="currentYear"></span> Netflix Premium ID. Semua Hak Dilindungi.</p>
         </footer>
     </div>
 
@@ -227,19 +246,20 @@
             <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
         </div>
     </div>
-    
-    <!-- Modal for Image Popup -->
-    <div id="imageModal" class="modal">
-        <img id="modalImage" class="max-w-[90vw] max-h-[90vh] rounded-lg" src="" alt="Testimoni Diperbesar">
-    </div>
 
+    <!-- Modal untuk Zoom Gambar -->
+    <div id="imageModal" class="modal" onclick="closeImageModal()">
+        <span class="close-image-modal" onclick="closeImageModal()">&times;</span>
+        <img class="modal-content-image" id="modalImage">
+    </div>
+    
     <!-- Notification Popup -->
     <div class="notif-box" id="notifBox">
         <div class="notif-icon-wrapper"><i class="far fa-check-circle"></i></div>
         <div class="notif-content-area">
              <div class="notif-message">
-                 <div><strong class="notif-name">Nama Acak</strong> baru saja membeli!</div>
-                 <div class="notif-time">beberapa detik lalu</div>
+                 <div><strong class="notif-name">Nama Acak</strong> baru saja membeli akun!</div>
+                 <div class="notif-time" style="font-size: 0.75rem; color: #e2e8f0; margin-top: 2px;">beberapa detik lalu</div>
              </div>
         </div>
     </div>
@@ -254,16 +274,12 @@
             paymentInstructionContainer: document.getElementById('payment-instruction-container'),
             footer: document.getElementById('footer'),
             currentYear: document.getElementById('currentYear'),
-            
-            // Updated element references
             productInfoFormTop: document.getElementById('product-info-form-top'),
             featuresBeforeForm: document.getElementById('features-before-form'),
             orderDetailsInForm: document.getElementById('order-details-in-form'),
-
             testimonialsFull: document.getElementById('testimonials-full'),
             faqFull: document.getElementById('faq-full'),
             policyFull: document.getElementById('policy-full'),
-
             orderForm: document.getElementById('orderForm'),
             submitBtn: document.getElementById('submit-btn'),
             notifBox: document.getElementById('notifBox'),
@@ -273,20 +289,21 @@
         // --- CONFIGURATION ---
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
         const packageInfo = {
-                name: "Upgrade Google Photos Unlimited",
-                price: 165000,
-                title: "GOOGLE PHOTOS UNLIMITED",
-                priceDisplay: `Rp165.000`,
-                features: [
-                    "<strong>Penyimpanan Tanpa Batas:</strong> Simpan semua foto & video tanpa khawatir kehabisan ruang.",
-                    "<strong>Kualitas Asli:</strong> Cadangkan semua kenangan Anda dalam resolusi penuh.",
-                    "<strong>Sekali Bayar Seumur Hidup:</strong> Tidak ada lagi biaya langganan bulanan atau tahunan.",
-                    "<strong>Akses di Mana Saja:</strong> Lihat foto Anda di perangkat apa pun, kapan pun.",
-                    "<strong>Gunakan Akun Pribadi:</strong> Upgrade langsung ke akun Google utama Anda.",
-                    "<strong>Pencarian Canggih:</strong> Temukan foto berdasarkan orang, tempat, dan objek.",
-                    "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
-                ]
-            };
+            name: "Akun Netflix Premium 1 Tahun",
+            price: 179000,
+            title: "NETFLIX PREMIUM",
+            priceDisplay: `Rp179.000`,
+            features: [
+                "<strong>Akun Baru Siap Pakai:</strong> Anda akan menerima email & password akun baru.",
+                "<strong>Tonton Tanpa Batas:</strong> Film, acara TV, dan lainnya tanpa henti.",
+                "<strong>Kualitas Ultra HD (4K):</strong> Nikmati resolusi terbaik di perangkat yang mendukung.",
+                "<strong>Tonton di Semua Perangkat:</strong> Akses akun Anda di TV, laptop, HP, atau tablet.",
+                "<strong>Download & Tonton Offline:</strong> Simpan tontonan favorit Anda untuk ditonton tanpa internet.",
+                "<strong>Bebas Iklan 100%:</strong> Streaming tanpa gangguan iklan sama sekali.",
+                "<strong>Langganan 1 Tahun Penuh:</strong> Cukup sekali bayar untuk akses setahun.",
+                "<strong>Proses Cepat & Bergaransi:</strong> Akun dikirim dalam hitungan menit."
+            ]
+        };
         
         const paymentAccounts = {
             jago: {
@@ -298,37 +315,55 @@
         };
 
         // --- TEMPLATE FUNCTIONS ---
-        const getProductInfoHTML = (pkg) => `
-            <div class="text-center">
-                <img alt="Logo Google Photos" class="h-16 w-auto mx-auto mb-4" src="https://1000logos.net/wp-content/uploads/2020/05/Google-Photos-logo.png">
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800">${pkg.title}</h1>
-                <p class="text-lg text-gray-600 mt-2">Simpan semua kenangan Anda selamanya.</p>
-                <div class="text-5xl font-bold text-gray-900 mt-6">${pkg.priceDisplay}</div>
-                <p class="text-gray-500 text-sm mt-1">Sekali Bayar untuk Seumur Hidup</p>
-            </div>`;
+        const getProductInfoHTML = (pkg) => {
+            const titleParts = pkg.title.split(' ');
+            const netflixPart = titleParts[0];
+            const premiumPart = titleParts.slice(1).join(' ');
 
-        const getFeaturesHTML = (pkg) => {
-            const colors = ['text-blue-500', 'text-red-500', 'text-yellow-500', 'text-green-500'];
-            return `<div>
-                <h3 class="text-lg font-bold mb-4 text-gray-800">Yang Anda Dapatkan:</h3>
-                <ul class="space-y-4">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3"></i><span class="text-gray-600">${f}</span></li>`).join('')}</ul>
+            return `
+            <div class="text-center">
+                 <svg viewBox="0 0 115 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-10 w-auto mx-auto mb-2" fill="#E50914"><path d="M105.016 29.3438V0.65625H115V29.3438H105.016ZM94.9844 29.3438V0.65625H104.969V5.03125H100V25H104.969V29.3438H94.9844ZM85.625 29.3438V0.65625H94.9844V25.9688L85.625 0.65625V29.3438ZM74.9844 29.3438V0.65625H84.9688V25H79.9844V5.03125H74.9844V29.3438ZM65.0156 29.3438V0.65625H74.9844V5.03125H70V29.3438H65.0156ZM55.0156 29.3438V0.65625H65.0156V12.5L59.3281 29.3438H55.0156ZM45.0156 29.3438V0.65625H55.0156V12.5L49.3281 29.3438H45.0156ZM34.9844 29.3438V0.65625H44.9688V5.03125H39.9844V12.5H44.3125V16.875H39.9844V25H44.9688V29.3438H34.9844ZM25.0156 29.3438V0.65625H34.9844V5.03125H30.0156V29.3438H25.0156ZM15.0156 29.3438V0.65625H25.0156V12.5L19.3281 29.3438H15.0156ZM0 29.3438V0.65625H10.0156V29.3438H5.01562V16.875H0V29.3438Z"/></svg>
+                
+                <div class="my-2">
+                    <svg viewBox="0 0 600 100" class="w-full h-auto" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                        <defs>
+                            <path id="curve" d="M25,65 Q300,40 575,65" fill="transparent" />
+                        </defs>
+                        <text width="600" style="font-family: 'Bebas Neue', sans-serif; font-size: 72px; letter-spacing: 0.05em;">
+                            <textPath xlink:href="#curve" startOffset="50%" text-anchor="middle">
+                                <tspan fill="#E50914">${netflixPart}</tspan>
+                                <tspan fill="#FFFFFF"> ${premiumPart}</tspan>
+                            </textPath>
+                        </text>
+                    </svg>
+                </div>
+
+                <p class="text-xl text-gray-300 -mt-4">Akses Penuh Selama 1 Tahun.</p>
+                <div class="text-6xl font-bold text-white mt-6">${pkg.priceDisplay}</div>
+                <p class="text-gray-400 text-sm mt-1 tracking-wider">PEMBAYARAN SEKALI UNTUK 1 TAHUN</p>
             </div>`;
         }
 
+        const getFeaturesHTML = (pkg) => `
+            <div>
+                <h3 class="text-3xl mb-4 text-white">APA YANG ANDA DAPATKAN:</h3>
+                <ul class="space-y-3">${pkg.features.map((f) => `<li class="flex items-start"><i class="fas fa-check text-red-600 mt-1 mr-4"></i><span class="text-gray-300">${f}</span></li>`).join('')}</ul>
+            </div>`;
+
         const getOrderDetailsHTML = (pkg, totalPrice) => `
-            <div class="mt-8 pt-6 border-t border-gray-200">
-                 <h3 class="text-lg font-bold mb-4 text-gray-800">Rincian Pesanan</h3>
-                 <div class="space-y-3 text-gray-600">
+            <div class="mt-8 pt-6 border-t border-gray-800">
+                 <h3 class="text-2xl mb-4 text-white">Rincian Pesanan</h3>
+                 <div class="space-y-3 text-gray-300">
                      <div class="flex justify-between">
                          <span>Harga Paket</span>
-                         <span class="font-medium text-gray-800">${formatCurrency(pkg.price)}</span>
+                         <span class="font-medium text-white">${formatCurrency(pkg.price)}</span>
                      </div>
                      <div class="flex justify-between">
                          <span>Kode Unik</span>
-                         <span class="font-medium text-gray-800">${formatCurrency(uniqueCode)}</span>
+                         <span class="font-medium text-white">${formatCurrency(uniqueCode)}</span>
                      </div>
-                     <hr class="my-2">
-                     <div class="flex justify-between font-bold text-lg text-gray-900">
+                     <hr class="my-2 border-gray-700">
+                     <div class="flex justify-between font-bold text-xl text-white">
                          <span>Total</span>
                          <span>${formatCurrency(totalPrice)}</span>
                      </div>
@@ -337,64 +372,61 @@
 
         const getTestimonialsHTML = () => `
             <div>
-                <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">Testimoni Pelanggan</h2>
+                <h2 class="text-4xl text-center mb-8 text-white">APA KATA MEREKA</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
-                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gphotos%20(1).png?raw=true" alt="Testimonial 1" class="testimonial-image popup-image rounded-lg w-full h-auto object-cover aspect-[3/4] cursor-pointer">
-                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gphotos%20(2).png?raw=true" alt="Testimonial 2" class="testimonial-image popup-image rounded-lg w-full h-auto object-cover aspect-[3/4] cursor-pointer">
-                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gphotos%20(3).png?raw=true" alt="Testimonial 3" class="testimonial-image popup-image rounded-lg w-full h-auto object-cover aspect-[3/4] cursor-pointer">
-                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gphotos%20(4).png?raw=true" alt="Testimonial 4" class="testimonial-image popup-image rounded-lg w-full h-auto object-cover aspect-[3/4] cursor-pointer">
+                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(1).png?raw=true" alt="Testimonial 1" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(2).png?raw=true" alt="Testimonial 2" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(3).png?raw=true" alt="Testimonial 3" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://github.com/mrsetiawans/webdrv/blob/main/testi/gdrive%20(4).png?raw=true" alt="Testimonial 4" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
                 </div>
             </div>`;
 
         const getFaqHTML = () => `
              <div>
-                 <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Pertanyaan Umum (FAQ)</h3>
-                 <details class="faq-item">
-                     <summary>Apakah ini benar-benar unlimited?</summary>
-                     <div class="faq-content">Ya, benar sekali. Anda akan mendapatkan kapasitas penyimpanan tanpa batas (unlimited) untuk semua foto dan video Anda di Google Photos.</div>
-                 </details>
-                 <details class="faq-item">
-                     <summary>Apakah ini aman dan legal?</summary>
-                     <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode yang sah dan akun Anda tetap aman di bawah pengelolaan Google. Kami menjamin keamanan data dan privasi akun Anda.</div>
-                 </details>
-                 <details class="faq-item">
-                     <summary>Berapa lama prosesnya?</summary>
-                     <div class="faq-content">Prosesnya sangat cepat, biasanya hanya dalam beberapa menit hingga maksimal 1x24 jam setelah konfirmasi pembayaran dan data kami terima.</div>
-                 </details>
-                 <details class="faq-item">
-                     <summary>Apakah ada biaya bulanan atau tahunan?</summary>
-                     <div class="faq-content">Tidak ada! Ini adalah pembayaran sekali untuk selamanya. Anda tidak perlu khawatir tentang biaya langganan bulanan atau tahunan lagi.</div>
-                 </details>
-               </div>
+                 <h2 class="text-4xl font-bold mb-6 text-center text-white">PERTANYAAN UMUM</h2>
+                 <div class="space-y-2">
+                    <details class="faq-item">
+                        <summary>Apakah ini akun baru atau upgrade akun lama?</summary>
+                        <div class="faq-content">Ini adalah layanan penjualan <strong>akun baru</strong>. Anda akan menerima detail login (email dan password) dari kami yang sudah premium dan siap pakai.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Berapa lama durasi langganan ini?</summary>
+                        <div class="faq-content">Langganan ini berlaku selama 1 tahun penuh. Ini adalah pembayaran satu kali untuk akses selama setahun tanpa biaya bulanan tambahan.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apakah akun ini aman dan legal?</summary>
+                        <div class="faq-content">100% aman. Akun yang kami berikan dibuat dan diaktifkan melalui metode yang sah. Akun ini sepenuhnya menjadi milik Anda selama masa aktif dan bergaransi.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Berapa lama prosesnya?</summary>
+                        <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan pembayaran dan konfirmasi, detail akun akan dikirimkan ke email Anda dalam waktu 5-15 menit.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apa bedanya dengan langganan Netflix biasa?</summary>
+                        <div class="faq-content">Langganan biasa bersifat bulanan dan akan terus menagih Anda. Penawaran spesial ini adalah promosi di mana Anda membayar sekali untuk mendapatkan akun premium selama satu tahun penuh.</div>
+                    </details>
+                 </div>
+             </div>
         `;
         
         const getPolicyHTML = () => `
             <div>
-                <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Kebijakan & Ketentuan</h3>
-                <div class="grid md:grid-cols-1 gap-8 text-sm text-gray-600">
-                    <div class="mb-6">
-                        <h4 class="text-lg font-bold mb-2 text-gray-800">Kebijakan Privasi</h4>
-                        <p class="mb-4">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua foto dan video Anda tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li>Kami hanya butuh email, bukan password.</li>
-                            <li>Informasi pembayaran diproses oleh gateway aman.</li>
-                            <li>Data Anda tidak dibagikan ke pihak lain.</li>
-                            <li>Kami tidak mengakses file di dalam Drive Anda.</li>
-                        </ul>
+                <h3 class="text-3xl mb-4 text-center text-white">Kebijakan & Ketentuan</h3>
+                <div class="space-y-6 text-sm text-gray-400">
+                    <div>
+                        <h4 class="text-xl font-bold mb-2 text-white">Kebijakan Privasi</h4>
+                        <p>Informasi yang Anda berikan (nama, email, no. WhatsApp) hanya digunakan untuk keperluan pengiriman akun dan komunikasi terkait pesanan. Kami menjamin kerahasiaan data Anda.</p>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold mb-2 text-gray-800">Syarat & Ketentuan</h4>
-                         <p class="mb-4">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
+                        <h4 class="text-xl font-bold mb-2 text-white">Syarat & Ketentuan</h4>
                         <ul class="list-disc list-inside space-y-1">
-                            <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
-                            <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
-                            <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
-                            <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
+                            <li>Akun yang diberikan untuk penggunaan pribadi dan tidak untuk diperjualbelikan kembali.</li>
+                            <li>Garansi penuh selama 1 tahun jika terjadi masalah pada akun yang bukan disebabkan oleh kelalaian pengguna.</li>
+                            <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran kebijakan Netflix oleh pengguna (misal: penggunaan VPN yang dilarang, mengubah detail login).</li>
                         </ul>
                     </div>
                 </div>
-            </div>
-        `;
+            </div>`;
 
         // --- FUNCTIONS ---
         function formatCurrency(value) {
@@ -404,38 +436,24 @@
         function updateDisplay() {
             const pkg = packageInfo;
             const totalPrice = pkg.price + uniqueCode;
-
-            // Populate content
-            const productInfoHTML = getProductInfoHTML(pkg);
-            const featuresHTML = getFeaturesHTML(pkg);
-            const orderDetailsHTML = getOrderDetailsHTML(pkg, totalPrice);
-            const testimonialsHTML = getTestimonialsHTML();
-            const faqHTML = getFaqHTML();
-            const policyHTML = getPolicyHTML();
-
-            // Populate new locations
-            elements.productInfoFormTop.innerHTML = productInfoHTML;
-            elements.featuresBeforeForm.innerHTML = featuresHTML;
-            elements.orderDetailsInForm.innerHTML = orderDetailsHTML;
-            
-            // Populate right column
-            elements.testimonialsFull.innerHTML = testimonialsHTML;
-            elements.faqFull.innerHTML = faqHTML;
-            elements.policyFull.innerHTML = policyHTML;
+            elements.productInfoFormTop.innerHTML = getProductInfoHTML(pkg);
+            elements.featuresBeforeForm.innerHTML = getFeaturesHTML(pkg);
+            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+            elements.testimonialsFull.innerHTML = getTestimonialsHTML();
+            elements.faqFull.innerHTML = getFaqHTML();
+            elements.policyFull.innerHTML = getPolicyHTML();
         }
 
         function generateWaLink(formData, pkg, totalPrice) {
-            let detailPesanan = `*Email Google:* ${formData.get('email')}\n`;
-
-            let pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n`;
-            pesanWA += `*ID Pesanan:* ${Date.now()}\n`;
-            pesanWA += `*Paket:* ${pkg.name}\n`;
-            pesanWA += `*Nama:* ${formData.get('nama')}\n`;
-            pesanWA += `*No. WhatsApp:* ${formData.get('whatsapp')}\n`;
-            pesanWA += detailPesanan;
-            pesanWA += `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n`;
-            pesanWA += `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
-            
+            let detailPesanan = `*Email Penerima Akun:* ${formData.get('email')}\n`;
+            let pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
+                          `*ID Pesanan:* NFX-${Date.now()}\n` +
+                          `*Paket:* ${pkg.name}\n` +
+                          `*Nama:* ${formData.get('nama')}\n` +
+                          `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
+                          detailPesanan +
+                          `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
+                          `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
             return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
         }
 
@@ -445,133 +463,90 @@
             const whatsapp = formData.get('whatsapp').trim();
             const email = formData.get('email').trim();
 
-            // --- Validation Checks ---
-            if (!nama) {
-                showInfoModal('Data Belum Lengkap', 'Silakan isi Nama Anda.');
-                elements.orderForm.querySelector('#nama').focus();
+            if (!nama || !whatsapp || !email) {
+                showInfoModal('Data Tidak Lengkap', 'Mohon isi semua kolom yang wajib diisi.');
                 return;
             }
-            if (!whatsapp) {
-                showInfoModal('Data Belum Lengkap', 'Silakan isi Nomor WhatsApp Anda.');
-                elements.orderForm.querySelector('#whatsapp').focus();
-                return;
-            }
-            if (!email) {
-                showInfoModal('Data Belum Lengkap', 'Silakan isi alamat Gmail Anda.');
-                elements.orderForm.querySelector('#email').focus();
-                return;
-            }
-            // --- End Validation ---
 
             const pkg = packageInfo;
             const totalPrice = pkg.price + uniqueCode;
-            const paymentAccount = paymentAccounts['jago']; // Default to Bank Jago
+            const paymentAccount = paymentAccounts['jago'];
+            
+            // --- PELACAKAN EVENT FACEBOOK PIXEL ---
+            if (typeof fbq === 'function') {
+                fbq('track', 'AddPaymentInfo', {
+                    content_name: pkg.name,
+                    content_category: 'Entertainment',
+                    currency: 'IDR',
+                    value: totalPrice
+                });
+            }
+            // --- AKHIR PELACAKAN EVENT ---
 
             elements.mainContentContainer.style.display = 'none';
             elements.footer.style.display = 'none';
-
             const waLink = generateWaLink(formData, pkg, totalPrice);
             
             const paymentViewHTML = `
-                <div class="p-6 sm:p-8 md:p-10 flex flex-col items-center text-center max-w-lg mx-auto">
-                    <div class="w-24 h-24 mb-6 rounded-full bg-blue-100 flex items-center justify-center">
-                        <span class="text-5xl">🎉</span>
+            <div class="max-w-2xl mx-auto py-8 sm:py-12 px-4">
+                <div class="text-center">
+                    <h2 class="text-4xl md:text-5xl text-white mb-4">SEDIKIT LAGI SELESAI!</h2>
+                    <p class="text-gray-300 mb-2">Untuk menyelesaikan pesanan, silakan transfer sejumlah</p>
+                    
+                    <div class="inline-flex items-center gap-4 bg-black p-3 sm:p-4 rounded-lg mb-4 border-2 border-gray-700">
+                        <span class="text-3xl sm:text-4xl font-bold text-white">${formatCurrency(totalPrice)}</span>
+                        <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-3 sm:px-4 rounded-md flex items-center gap-2 transition-colors">
+                            <i class="far fa-copy"></i>
+                            <span class="hidden sm:inline">Salin</span>
+                        </button>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Terimakasih sudah melakukan order ${pkg.name}</h2>
-                    <p class="text-gray-600 mb-4">Orderan kamu sedang Kami proses, silakan transfer sejumlah</p>
-                    
-                    <div class="bg-blue-100 text-blue-800 font-bold text-3xl rounded-lg py-3 px-6 mb-6 inline-block">
-                        ${formatCurrency(totalPrice)}
-                    </div>
-                    
-                    <p class="text-gray-600 mb-6">Ke rekening Bank Jago berikut ini:</p>
-                    
-                    <div class="w-full bg-white p-6 rounded-xl shadow-sm border text-left space-y-4 mb-8">
-                        <!-- Account Details Section -->
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center gap-4">
-                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.bank}" class="h-8 w-auto">
-                                <div>
-                                    <p class="font-bold text-lg text-gray-800">${paymentAccount.name}</p>
-                                    <p class="text-gray-600">${paymentAccount.number} • ${paymentAccount.bank}</p>
+
+                    <p class="text-gray-300 mt-6 mb-4">ke rekening Bank Jago berikut:</p>
+                </div>
+
+                <div class="mt-6 flex justify-center">
+                    <div class="w-full max-w-md">
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-700 text-left flex flex-col">
+                            <div class="flex-grow">
+                                <h4 class="text-2xl text-white mb-5">TRANSFER BANK</h4>
+                                <div class="space-y-4">
+                                    <div>
+                                        <p class="text-sm text-gray-400">No. Rekening Bank Jago</p>
+                                        <p class="text-xl font-semibold text-white">${paymentAccount.number}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Atas Nama</p>
+                                        <p class="text-xl font-semibold text-white">${paymentAccount.name}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening')" class="text-gray-400 hover:text-blue-600 transition-colors p-2">
-                                <i class="far fa-copy text-xl"></i>
+                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening ${paymentAccount.bank}')" class="mt-6 w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-4 rounded-md transition-colors">
+                                Salin Nomor Rekening
                             </button>
                         </div>
-
-                        <hr>
-
-                        <!-- Total Transfer Section -->
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-600">Total transfer</span>
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold text-2xl text-gray-800">${formatCurrency(totalPrice)}</span>
-                                <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="text-gray-400 hover:text-blue-600 transition-colors p-2">
-                                    <i class="far fa-copy text-xl"></i>
-                                </button>
-                            </div>
-                        </div>
                     </div>
+                </div>
 
-                    <a href="${waLink}" target="_blank" class="cta-button blue-button w-full">
-                        <i class="fab fa-whatsapp"></i>
-                        Konfirmasi Pembayaran
+                <div class="text-center mt-10">
+                    <p class="text-gray-300 mb-4">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
+                    <a href="${waLink}" target="_blank" class="cta-button red-button max-w-md mx-auto">
+                        <i class="fab fa-whatsapp text-2xl"></i> 
+                        <span>Konfirmasi via WhatsApp</span>
                     </a>
                 </div>
+            </div>
             `;
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
         }
         
-        function setupImagePopup() {
-            const imageModal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const testimonialsContainer = document.getElementById('testimonials-full');
-
-            if (!imageModal || !modalImage || !testimonialsContainer) return;
-
-            testimonialsContainer.addEventListener('click', function(event) {
-                if (event.target.classList.contains('popup-image')) {
-                    modalImage.src = event.target.src;
-                    imageModal.style.display = 'flex';
-                }
-            });
-
-            imageModal.addEventListener('click', function() {
-                imageModal.style.display = 'none';
-                modalImage.src = ''; // Clear src
-            });
-        }
-
         // --- NOTIFICATION FUNCTIONS ---
         const FIRST_NAMES = ["Adelia", "Aditya", "Agung", "Ahmad", "Aisha", "Ajeng", "Akbar", "Amanda", "Amelia", "Andi", "Andre", "Angga", "Ani", "Annisa", "Ari", "Arif", "Asep", "Ayu", "Bayu", "Bella", "Bima", "Budi", "Cahya", "Candra", "Chandra", "Citra", "Daniel", "David", "Dedi", "Desi", "Dewi", "Dian", "Dimas", "Dina", "Dinda", "Doni", "Eka", "Eko", "Elisa", "Erik", "Erwin", "Fajar", "Farah", "Farhan", "Fatima", "Fauzan", "Febri", "Felix", "Fernando", "Fikri", "Fitri", "Galih", "Gilang", "Hadi", "Hafiz", "Hana", "Handoko", "Hari", "Hasan", "Hendra", "Heru", "Hidayat", "Ibrahim", "Ichsan", "Ida", "Ihsan", "Ilham", "Imam", "Indah", "Indra", "Iqbal", "Irfan", "Irwan", "Ismail", "Ivan", "Jaka", "Jamal", "Jefri", "Joko", "Joni", "Julia", "Kamal", "Kartika", "Kevin", "Khairul", "Krisna", "Kurniawan", "Lestari", "Lia", "Lina", "Lisa", "Lukman", "Lutfi", "Made", "Maulana", "Mega", "Michael", "Mila", "Mira", "Mochammad", "Monica", "Muhammad", "Mukti", "Muslim", "Nadia", "Nana", "Nanda", "Nia", "Nina", "Novi", "Novita", "Nur", "Nurul", "Putra", "Putri", "Rachmat", "Raden", "Radit", "Rafli", "Rahayu", "Rahman", "Rahmat", "Rama", "Rangga", "Rani", "Ratna", "Reza", "Rian", "Rico", "Ridwan", "Rina", "Rini", "Rio", "Riri", "Riska", "Rizki", "Rizky", "Robby", "Robert", "Roni", "Rossa", "Rudi", "Ryan", "Sakti", "Samuel", "Sari", "Satria", "Selly", "Septian", "Setiawan", "Sinta", "Siti", "Sofia", "Sonia", "Sri", "Sugeng", "Sugiarto", "Suharto", "Sujatmiko", "Sukma", "Sulaiman", "Sumardi", "Sunarto", "Surya", "Susanto", "Susi", "Tania", "Taufik", "Tedi", "Thomas", "Tian", "Tika", "Tina", "Tono", "Tony", "Tri", "Umar", "Usman", "Utami", "Vera", "Vicky", "Vina", "Wahyu", "Wahyudi", "Wawan", "Wibowo", "Widi", "Widodo", "Wijaya", "Wulan", "Yani", "Yanto", "Yoga", "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi", "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra", "Zainal", "Zaki"];
-        const MIDDLE_NAMES = ["Aditama", "Wijaya", "Putra", "Kurniawan", "Saputra", "Pratama", "Setiawan", "Nugroho", "Gunawan", "Maulana", "Hidayat", "Firmansyah", "Ramadhan", "Santoso", "Wibowo", "Susanto", "Hartono", "Purnama", "Lesmana", "Sari", "Dewi", "Lestari", "Rahayu", "Utami", "Wati", "Indah", "Cahya", "Dharma", "Jaya", "Kusuma"];
-        const LAST_NAMES = ["Abdullah", "Adriansyah", "Siregar", "Lubis", "Nasution", "Harahap", "Simatupang", "Tanjung", "Pohan", "Sitompul", "Hutagalung", "Siregar", "Hasibuan", "Sinaga", "Silalahi", "Manurung", "Ginting", "Nainggolan", "Pane", "Sitorus", "Tarihoran", "Marpaung", "Simanjuntak", "Sitohang", "Hutabarat", "Lumbantoruan", "Purba", "Sihombing", "Lumbanraja", "Lumbangaol", "Hutapea", "Panggabean", "Aritonang", "Pasaribu", "Situmorang", "Zulkarnain"];
         
-        function getRandomElement(arr) {
-            return arr[Math.floor(Math.random() * arr.length)];
-        }
-
-        function generateRandomName() {
-            const nameType = Math.floor(Math.random() * 3); // 0, 1, or 2
-            const firstName = getRandomElement(FIRST_NAMES);
-
-            if (nameType === 0) { 
-                return firstName;
-            } else if (nameType === 1) { 
-                const lastName = getRandomElement(LAST_NAMES);
-                return `${firstName} ${lastName.charAt(0)}.`;
-            } else { 
-                const middleName = getRandomElement(MIDDLE_NAMES);
-                const lastName = getRandomElement(LAST_NAMES);
-                return `${firstName} ${middleName} ${lastName}`;
-            }
-        }
+        function getRandomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+        function generateRandomName() { return `${getRandomElement(FIRST_NAMES)}`; }
         
         function showNextNotification() {
             if (!elements.notifBox || !elements.notifName) return;
-            
             elements.notifName.textContent = generateRandomName();
             elements.notifBox.classList.remove('show');
             void elements.notifBox.offsetWidth; // Trigger reflow
@@ -588,12 +563,8 @@
 
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
-        
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-
         updateDisplay();
-        setupImagePopup(); // Call the new function
-        
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
         }
@@ -602,6 +573,9 @@
 
     // --- GLOBAL HELPER FUNCTIONS ---
     const infoModal = document.getElementById('infoModal');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+
     function showInfoModal(title, message) {
         if (!infoModal) return;
         infoModal.querySelector('#modalTitle').textContent = title;
@@ -614,10 +588,21 @@
         infoModal.style.display = 'none';
     }
 
+    function openImageModal(event, src) {
+        event.stopPropagation();
+        if (!imageModal || !modalImage) return;
+        imageModal.style.display = "flex";
+        modalImage.src = src;
+    }
+
+    function closeImageModal() {
+        if (!imageModal) return;
+        imageModal.style.display = "none";
+    }
+
     window.onclick = function(event) {
-        if (event.target == infoModal) {
-            closeInfoModal();
-        }
+        if (event.target == infoModal) closeInfoModal();
+        if (event.target == imageModal) closeImageModal();
     }
 
     function copyToClipboard(text, entityName) {
@@ -627,7 +612,7 @@
         textArea.select();
         try {
             document.execCommand('copy');
-            showInfoModal('Berhasil Disalin!', `${entityName} (${text}) telah disalin ke clipboard.`);
+            showInfoModal('Berhasil!', `${entityName} telah disalin ke clipboard.`);
         } catch (err) {
             showInfoModal('Gagal!', 'Gagal menyalin. Silakan coba secara manual.');
         }
