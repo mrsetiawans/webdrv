@@ -385,14 +385,16 @@
         let selectedPackageId = 'lifetime'; // Pilihan default
 
         const generalFeatures = [
-            "<strong>100+ Juta Aset Premium:</strong> Akses foto, video, audio & grafis tanpa batas.",
-            "<strong>Magic Resize:</strong> Ubah ukuran desain secara instan ke format apa pun.",
-            "<strong>Penghapus Latar Belakang:</strong> Hapus background foto dengan sekali klik.",
-            "<strong>1 TB Cloud Storage:</strong> Simpan semua proyek dan aset Anda dengan aman.",
-            "<strong>Brand Kit:</strong> Simpan logo, warna, dan font brand Anda untuk konsistensi.",
-            "<strong>Content Planner:</strong> Jadwalkan postingan media sosial langsung dari Canva.",
-            "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Canva yang sudah Anda miliki.",
-            "<strong>100% Aman & Bergaransi:</strong> Proses cepat dengan jaminan privasi penuh."
+            "<strong>Fitur Ajaib (Canva AI):</strong> Manfaatkan kekuatan AI untuk membuat tulisan, gambar, dan presentasi secara otomatis.",
+            "<strong>Konten Premium Tanpa Batas:</strong> Akses seluruh pustaka kami yang berisi 100+ juta foto, elemen, video, dan audio premium.",
+            "<strong>Penghapus Latar Belakang Cerdas:</strong> Hapus background foto & video dengan sekali klik, sempurna untuk membuat PNG transparan.",
+            "<strong>Ribuan Template Premium:</strong> Mulai desain Anda lebih cepat dengan akses ke ribuan template profesional untuk setiap kesempatan.",
+            "<strong>Animasi Instan:</strong> Saksikan desain Anda menjadi hidup dengan cara termudah untuk menganimasikan grafik dan teks.",
+            "<strong>Ubah Ukuran Ajaib:</strong> Ubah ukuran desain Anda ke format apa pun secara instan hanya dengan satu klik.",
+            "<strong>Penjadwal Konten Media Sosial:</strong> Rencanakan dan jadwalkan postingan ke Facebook, Instagram, & lainnya langsung dari Canva.",
+            "<strong>Kit Merek Profesional:</strong> Pastikan konten selalu konsisten dengan mengunggah logo, font, dan palet warna merek Anda.",
+            "<strong>Penyimpanan Cloud 1 TB:</strong> Simpan semua proyek dan aset berharga Anda dengan aman di cloud.",
+            "<strong>Upgrade Akun Pribadi Anda:</strong> Proses 100% aman, cepat, dan bergaransi langsung pada akun yang sudah Anda miliki."
         ];
         
         const paymentAccounts = {
@@ -418,7 +420,7 @@
 
             container.innerHTML = `
                 <div class="text-center mb-8">
-                     <img alt="Logo Canva Pro" class="h-20 w-auto mx-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Canva_icon_2021.svg">
+                     <img alt="Logo Canva Pro" class="h-20 w-auto mx-auto mb-4" src="https://5.imimg.com/data5/SELLER/Default/2025/1/483342275/ZM/IJ/RO/233734855/canva-pro-lifetime-access-selar-co-65b6705f9cd19-jpeg-500x500.jpeg">
                      <h1 class="text-4xl md:text-5xl font-black text-gray-900 uppercase tracking-wider">UPGRADE <span class="canva-gradient-text">CANVA PRO</span></h1>
                      <p class="text-lg text-gray-500 mt-3">Buka semua fitur desain premium tanpa batas.</p>
                 </div>
@@ -432,7 +434,7 @@
         }
 
         const getFeaturesHTML = () => {
-            const colors = ['text-purple-500', 'text-blue-500', 'text-teal-500'];
+            const colors = ['text-purple-500', 'text-teal-500', 'text-blue-500', 'text-pink-500', 'text-indigo-500'];
             return `<div>
                 <h3 class="text-lg font-bold mb-4 text-gray-900">Yang Anda Dapatkan:</h3>
                 <ul class="space-y-4">${generalFeatures.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3"></i><span class="text-gray-600">${f}</span></li>`).join('')}</ul>
@@ -474,16 +476,12 @@
              <div>
                  <h3 class="text-2xl font-bold mb-4 text-center text-gray-900">Pertanyaan Umum (FAQ)</h3>
                  <details class="faq-item">
-                     <summary>Apakah ini benar-benar seumur hidup?</summary>
-                     <div class="faq-content">Betul. Paket Lifetime adalah pembayaran sekali untuk mengaktifkan fitur Pro di akun Canva Anda selamanya, tanpa biaya langganan bulanan atau tahunan lagi.</div>
-                 </details>
-                 <details class="faq-item">
                      <summary>Apakah ini aman dan legal?</summary>
-                     <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode yang sah dan akun Anda tetap aman. Kami tidak pernah meminta password Anda, hanya alamat email yang terdaftar di Canva.</div>
+                     <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode undangan resmi yang sah dan akun Anda tetap aman. Kami tidak pernah meminta password Anda, hanya alamat email yang terdaftar di Canva.</div>
                  </details>
                  <details class="faq-item">
-                     <summary>Apa bedanya dengan versi gratis?</summary>
-                     <div class="faq-content">Versi Pro membuka semua batasan: 100+ juta aset premium, penghapus latar belakang, Brand Kit, penyimpanan 1TB, dan ribuan template premium yang tidak tersedia di versi gratis.</div>
+                     <summary>Apakah ini sistem tim yang sering berganti?</summary>
+                     <div class="faq-content">Tidak sama sekali. Anda akan diundang ke dalam tim privat kami yang bersifat permanen dan stabil. Jadi, Anda tidak perlu khawatir akan dikeluarkan atau berganti-ganti tim, yang bisa menyebabkan desain Anda hilang.</div>
                  </details>
                  <details class="faq-item">
                      <summary>Berapa lama prosesnya?</summary>
@@ -492,6 +490,10 @@
                  <details class="faq-item">
                      <summary>Bisakah digunakan di HP dan Komputer?</summary>
                      <div class="faq-content">Ya, status Pro akan aktif di akun Anda dan bisa digunakan di semua perangkat (Android, iOS, dan PC/Laptop) selama Anda login dengan akun yang sama.</div>
+                 </details>
+                 <details class="faq-item">
+                     <summary>Apakah ini benar-benar seumur hidup?</summary>
+                     <div class="faq-content">Betul. Paket Lifetime adalah pembayaran sekali untuk mengaktifkan fitur Pro di akun Canva Anda selamanya, tanpa biaya langganan bulanan atau tahunan lagi selama tim kami masih aktif.</div>
                  </details>
              </div>
         `;
