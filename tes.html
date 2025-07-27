@@ -30,21 +30,29 @@
     <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
 
     <style>
-        /* Pengaturan Dasar dan Font dengan Gaya Canva */
+        /* --- TEMA BARU TERINSPIRASI DARI CANVA (VIBRANT) --- */
+        
+        /* Variabel Warna Utama */
         :root {
-            --primary-color: #8C30F5; /* Canva Purple */
-            --secondary-color: #05A3B8; /* Canva Teal */
-            --light-bg: #F9FAFB; /* Light Gray Background */
+            --primary-color: #8C30F5; /* Ungu khas Canva yang vibrant */
+            --primary-color-darker: #7A28D8; /* Versi lebih gelap untuk hover */
+            --secondary-color: #05A3B8; /* Teal khas Canva */
             --card-bg: #FFFFFF;
-            --border-color: #E5E7EB; /* Light Gray Border */
-            --text-dark: #111827;
+            --border-color: #E5E7EB;
+            --text-dark: #0D0C22; /* Teks hitam pekat untuk kontras tinggi */
             --text-light: #6B7280;
         }
 
+        /* Pengaturan Dasar Body dengan Gradien Latar */
         body {
             font-family: 'Inter', 'Roboto', sans-serif;
-            background-color: var(--light-bg);
+            background: linear-gradient(120deg, #F4E7FF 0%, #E8F7FF 100%);
             color: var(--text-dark);
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
         }
 
         /* Teks Gradien Khas Canva */
@@ -55,12 +63,32 @@
             background-clip: text;
             text-fill-color: transparent;
         }
+        
+        /* Kartu Konten Utama */
+        .main-card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 10px 50px -15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* Header Keamanan */
+        .security-header {
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        .security-header i {
+            color: var(--primary-color);
+            opacity: 0.8;
+        }
 
         /* Pilihan Paket */
         .package-option {
             border: 2px solid var(--border-color);
             padding: 1rem;
-            border-radius: 12px;
+            border-radius: 16px;
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
@@ -68,53 +96,54 @@
             background-color: var(--card-bg);
         }
         .package-option:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(140, 48, 245, 0.1);
         }
         .package-option.selected {
             border-color: var(--primary-color);
-            background-color: rgba(140, 48, 245, 0.05);
-            box-shadow: 0 0 15px rgba(140, 48, 245, 0.1);
+            background-color: #F4E7FF; /* Warna ungu muda yang cocok dengan gradien */
+            box-shadow: 0 0 0 3px rgba(140, 48, 245, 0.2);
         }
         .badge {
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 50%;
             transform: translateX(-50%);
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 4px 12px;
-            font-size: 0.7rem;
+            padding: 5px 16px;
+            font-size: 0.75rem;
             font-weight: 700;
             border-radius: 9999px;
             text-transform: uppercase;
             white-space: nowrap;
         }
 
-        /* Input Form dengan gaya baru */
+        /* Input Form */
         .form-input {
-            border: 1px solid var(--border-color);
+            border: 2px solid #E5E7EB;
             transition: all 0.2s ease-in-out;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 0.9rem 1rem;
             width: 100%;
-            background-color: var(--card-bg);
+            background-color: #F7F7F9;
             color: var(--text-dark);
+            font-weight: 500;
         }
-        .form-input::placeholder {
-            color: #9CA3AF;
-        }
+        .form-input::placeholder { color: #9CA3AF; }
         .form-input:focus {
             border-color: var(--primary-color);
             outline: none;
             box-shadow: 0 0 0 3px rgba(140, 48, 245, 0.2);
+            background-color: var(--card-bg);
         }
         
-        /* Tombol Aksi (CTA) dengan gaya baru */
+        /* Tombol Aksi (CTA) */
         .cta-button {
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 8px;
-            padding: 0.85rem 2rem;
+            border-radius: 12px;
+            padding: 1rem 2rem;
             font-size: 1rem;
             font-weight: 700;
             display: inline-flex;
@@ -127,16 +156,17 @@
             text-transform: uppercase;
         }
         .canva-button {
-            background: linear-gradient(90deg, var(--primary-color), #5f4ff7);
+            background: var(--primary-color);
             color: white;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px -5px rgba(140, 48, 245, 0.6);
         }
         .canva-button:hover {
+            background: var(--primary-color-darker);
             transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(140, 48, 245, 0.25);
+            box-shadow: 0 6px 25px -5px rgba(140, 48, 245, 0.7);
         }
 
-        /* Modal / Message Box Styling */
+        /* Modal / Kotak Pesan */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
             overflow: auto; background-color: rgba(17, 24, 39, 0.6); justify-content: center; align-items: center;
@@ -153,21 +183,20 @@
             background: var(--primary-color); color: white; padding: 10px 24px; border: none; border-radius: 8px;
             cursor: pointer; font-size: 1rem; font-weight: 600; transition: background-color 0.2s ease;
         }
-        .modal-ok-button:hover { background-color: #7A28D8; }
+        .modal-ok-button:hover { background-color: var(--primary-color-darker); }
 
-        /* Testimonial Section */
+        /* Bagian Testimoni */
         .testimonial-image {
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            border: 2px solid transparent;
+            border-radius: 16px;
         }
         .testimonial-image:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.15);
         }
         
-        /* Modal untuk Zoom Gambar Testimoni */
+        /* Modal Zoom Gambar */
         #imageModal .modal-content-image {
             margin: auto; display: block; width: auto; max-width: 90%;
             max-height: 85vh; animation: zoomIn 0.3s ease;
@@ -176,9 +205,7 @@
             position: absolute; top: 20px; right: 35px; color: #f1f1f1;
             font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer;
         }
-        .close-image-modal:hover, .close-image-modal:focus {
-            color: #bbb; text-decoration: none;
-        }
+        .close-image-modal:hover, .close-image-modal:focus { color: #bbb; text-decoration: none; }
         @keyframes zoomIn { from {transform: scale(0)} to {transform: scale(1)} }
         
         /* Notifikasi Toast */
@@ -220,7 +247,7 @@
         .faq-item summary::after {
             content: '\f078'; /* chevron-down */
             font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            transition: transform 0.3s ease; color: #9CA3AF;
+            transition: transform 0.3s ease; color: var(--primary-color); opacity: 0.6;
         }
         .faq-item[open] summary::after { transform: rotate(180deg); }
         .faq-content { padding: 0 0.5rem 1.25rem 0.5rem; color: var(--text-light); line-height: 1.7; }
@@ -233,16 +260,16 @@
         <div id="main-content-container">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8">
                 <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-[#E5E7EB]">
+                <div class="lg:col-span-1 main-card p-8 md:p-10">
                     <!-- Header Keamanan -->
                     <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-200 pb-6 mb-8">
-                        <div class="flex items-center justify-center gap-3">
-                            <i class="fas fa-shield-alt text-green-500 text-xl"></i>
-                            <h3 class="font-medium text-sm text-gray-500">TRANSAKSI AMAN</h3>
+                        <div class="flex items-center justify-center gap-3 security-header">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                            <h3>Transaksi Aman</h3>
                         </div>
-                        <div class="flex items-center justify-center gap-3">
-                            <i class="fas fa-hand-holding-usd text-blue-500 text-xl"></i>
-                            <h3 class="font-medium text-sm text-gray-500">GARANSI UANG KEMBALI</h3>
+                        <div class="flex items-center justify-center gap-3 security-header">
+                            <i class="fas fa-hand-holding-usd text-xl"></i>
+                            <h3>Garansi Uang Kembali</h3>
                         </div>
                     </div>
 
@@ -282,10 +309,10 @@
                 <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
                 <div class="lg:col-span-1 py-8">
                      <div id="testimonials-full"></div>
-                     <div class="mt-12 bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-[#E5E7EB]">
+                     <div class="mt-12 main-card p-8 md:p-10">
                          <div id="faq-full"></div>
                      </div>
-                     <div class="mt-12 bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-[#E5E7EB]">
+                     <div class="mt-12 main-card p-8 md:p-10">
                          <div id="policy-full"></div>
                      </div>
                 </div>
@@ -420,8 +447,8 @@
 
             container.innerHTML = `
                 <div class="text-center mb-8">
-                     <img alt="Logo Canva Pro" class="h-20 w-auto mx-auto mb-4" src="https://5.imimg.com/data5/SELLER/Default/2025/1/483342275/ZM/IJ/RO/233734855/canva-pro-lifetime-access-selar-co-65b6705f9cd19-jpeg-500x500.jpeg">
-                     <h1 class="text-4xl md:text-5xl font-black text-gray-900 uppercase tracking-wider">UPGRADE <span class="canva-gradient-text">CANVA PRO</span></h1>
+                     <img alt="Logo Canva" class="h-12 w-auto mx-auto mb-4" src="https://public.canva.site/logo/media/dfb96cc174513093cd6ed61489ccb750.svg">
+                     <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 uppercase tracking-wide">UPGRADE <span class="canva-gradient-text">CANVA PRO</span></h1>
                      <p class="text-lg text-gray-500 mt-3">Buka semua fitur desain premium tanpa batas.</p>
                 </div>
                 <div>
@@ -465,10 +492,10 @@
             <div>
                 <h2 class="text-2xl font-bold text-center mb-8 text-gray-900">Testimoni Pelanggan</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
-                    <img src="https://placehold.co/600x800/E9D5FF/8C30F5?text=Testimoni+1" alt="Testimonial 1" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
-                    <img src="https://placehold.co/600x800/D1FAE5/10B981?text=Testimoni+2" alt="Testimonial 2" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
-                    <img src="https://placehold.co/600x800/DBEAFE/3B82F6?text=Testimoni+3" alt="Testimonial 3" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
-                    <img src="https://placehold.co/600x800/FEF3C7/F59E0B?text=Testimoni+4" alt="Testimonial 4" class="testimonial-image rounded-lg w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/E9D5FF/8C30F5?text=Template+Presentasi" alt="Testimonial 1" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/C9E9FF/05A3B8?text=Desain+Instagram" alt="Testimonial 2" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/DBEAFE/8C30F5?text=Logo+Bisnis" alt="Testimonial 3" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/FEF3C7/F59E0B?text=Konten+Video" alt="Testimonial 4" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
                 </div>
             </div>`;
 
