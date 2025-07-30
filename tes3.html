@@ -85,6 +85,80 @@
             text-transform: uppercase;
             white-space: nowrap;
         }
+        
+        /* Metode Pembayaran */
+        .payment-method-option {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .payment-method-option:first-child {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .payment-method-option:last-child {
+            border-bottom: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        .payment-method-option:hover {
+            background-color: #252525;
+        }
+        .payment-method-option.selected {
+            background-color: rgba(249, 41, 109, 0.1);
+        }
+        .payment-method-option .radio {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #757575;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .payment-method-option.selected .radio {
+            border-color: var(--primary-color);
+        }
+        .payment-method-option .radio .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            transform: scale(0);
+            transition: transform 0.2s ease;
+        }
+        .payment-method-option.selected .radio .dot {
+            transform: scale(1);
+        }
+        .payment-logo-container {
+            margin-left: 1rem;
+            height: 32px; /* Disesuaikan */
+            width: 80px; /* Disesuaikan */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .payment-logo {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .payment-logo-wrapper {
+            background-color: white;
+            padding: 4px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+
 
         /* Input Form dengan gaya baru */
         .form-input {
@@ -266,6 +340,9 @@
                             </div>
                         </div>
                         
+                        <!-- Metode Pembayaran -->
+                        <div id="payment-method-selection" class="mt-8"></div>
+
                         <!-- Rincian Pesanan -->
                         <div id="order-details-in-form" class="mt-8"></div>
                         
@@ -331,6 +408,7 @@
             currentYear: document.getElementById('currentYear'),
             productInfoFormTop: document.getElementById('product-info-form-top'),
             featuresBeforeForm: document.getElementById('features-before-form'),
+            paymentMethodSelection: document.getElementById('payment-method-selection'),
             orderDetailsInForm: document.getElementById('order-details-in-form'),
             testimonialsFull: document.getElementById('testimonials-full'),
             faqFull: document.getElementById('faq-full'),
@@ -344,38 +422,10 @@
         // --- KONFIGURASI ---
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
         const packages = {
-            '1-month': {
-                id: '1-month',
-                name: "CapCut Pro 1 Bulan",
-                duration: "1 Bulan",
-                price: 29000,
-                priceDisplay: "Rp29.000",
-                isBestValue: false,
-            },
-            '6-months': {
-                id: '6-months',
-                name: "CapCut Pro 6 Bulan",
-                duration: "6 Bulan",
-                price: 59000,
-                priceDisplay: "Rp59.000",
-                isBestValue: false,
-            },
-            '1-year': {
-                id: '1-year',
-                name: "CapCut Pro 1 Tahun",
-                duration: "1 Tahun",
-                price: 79000,
-                priceDisplay: "Rp79.000",
-                isBestValue: false,
-            },
-            'lifetime': {
-                id: 'lifetime',
-                name: "CapCut Pro Lifetime",
-                duration: "Lifetime",
-                price: 99000,
-                priceDisplay: "Rp99.000",
-                isBestValue: true,
-            }
+            '1-month': { id: '1-month', name: "CapCut Pro 1 Bulan", duration: "1 Bulan", price: 29000, priceDisplay: "Rp29.000", isBestValue: false },
+            '6-months': { id: '6-months', name: "CapCut Pro 6 Bulan", duration: "6 Bulan", price: 59000, priceDisplay: "Rp59.000", isBestValue: false },
+            '1-year': { id: '1-year', name: "CapCut Pro 1 Tahun", duration: "1 Tahun", price: 79000, priceDisplay: "Rp79.000", isBestValue: false },
+            'lifetime': { id: 'lifetime', name: "CapCut Pro Lifetime", duration: "Lifetime", price: 99000, priceDisplay: "Rp99.000", isBestValue: true }
         };
 
         let selectedPackageId = 'lifetime'; // Pilihan default
@@ -391,13 +441,16 @@
         ];
         
         const paymentAccounts = {
-            jago: {
-                name: 'Anang Dude Juliawan',
-                number: '109594117900',
-                bank: 'Bank Jago',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png'
-            }
+            jago: { id: 'jago', name: 'Bank Jago', number: '109594117900', accountName: 'Anang Dude Juliawan', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png', needsWhiteBg: true },
+            cimb: { id: 'cimb', name: 'Cimb Niaga', number: '6289510639366', accountName: 'Octo Pay - 6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png', needsWhiteBg: true },
+            permata: { id: 'permata', name: 'Permata Bank', number: '8528089510639366', accountName: 'DNID089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Permata_Bank_%282024%29.svg/768px-Permata_Bank_%282024%29.svg.png', needsWhiteBg: true },
+            bca: { id: 'bca', name: 'BCA Virtual Account', number: '39358089510639366', accountName: 'Epayment', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png', needsWhiteBg: true },
+            gopay: { id: 'gopay', name: 'Gopay', number: '089510639366', accountName: null, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Logo_Gopay.svg/768px-Logo_Gopay.svg.png', needsWhiteBg: true },
+            dana: { id: 'dana', name: 'Dana', number: '089510639366', accountName: null, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/768px-Logo_dana_blue.svg.png', needsWhiteBg: true },
+            ovo: { id: 'ovo', name: 'Ovo', number: '089510639366', accountName: 'OVO Epayment', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/768px-Logo_ovo_purple.svg.png', needsWhiteBg: true }
         };
+
+        let selectedPaymentMethodId = 'jago'; // Default payment
 
         // --- FUNGSI TEMPLATE ---
 
@@ -422,6 +475,28 @@
                     <div class="grid grid-cols-2 gap-3">
                         ${packageOptionsHTML}
                     </div>
+                </div>
+            `;
+        }
+
+        function renderPaymentMethods() {
+            const container = elements.paymentMethodSelection;
+            const paymentOptionsHTML = Object.values(paymentAccounts).map(method => `
+                <div class="payment-method-option ${method.id === selectedPaymentMethodId ? 'selected' : ''}" data-method-id="${method.id}">
+                    <div class="radio"><div class="dot"></div></div>
+                    <div class="payment-logo-container">
+                        <div class="${method.needsWhiteBg ? 'payment-logo-wrapper' : ''}">
+                            <img src="${method.logo}" alt="${method.name}" class="payment-logo">
+                        </div>
+                    </div>
+                    <span class="ml-4 font-semibold text-gray-300">${method.name}</span>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <h3 class="text-lg font-bold mb-4 text-white">Metode Pembayaran</h3>
+                <div class="border border-[#2a2a32] rounded-lg">
+                    ${paymentOptionsHTML}
                 </div>
             `;
         }
@@ -528,10 +603,7 @@
             elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
         }
 
-        function updateDisplay() {
-            renderPackageSelection();
-            updateOrderDetails();
-
+        function addEventListeners() {
             document.querySelectorAll('.package-option').forEach(el => {
                 el.addEventListener('click', () => {
                     selectedPackageId = el.dataset.packageId;
@@ -540,6 +612,21 @@
                     updateOrderDetails();
                 });
             });
+
+            document.querySelectorAll('.payment-method-option').forEach(el => {
+                el.addEventListener('click', () => {
+                    selectedPaymentMethodId = el.dataset.methodId;
+                    document.querySelectorAll('.payment-method-option').forEach(opt => opt.classList.remove('selected'));
+                    el.classList.add('selected');
+                });
+            });
+        }
+
+        function updateDisplay() {
+            renderPackageSelection();
+            renderPaymentMethods();
+            updateOrderDetails();
+            addEventListeners();
 
             elements.featuresBeforeForm.innerHTML = getFeaturesHTML();
             elements.testimonialsFull.innerHTML = getTestimonialsHTML();
@@ -584,7 +671,7 @@
 
             const pkg = packages[selectedPackageId];
             const totalPrice = pkg.price + uniqueCode;
-            const paymentAccount = paymentAccounts['jago'];
+            const paymentAccount = paymentAccounts[selectedPaymentMethodId];
             
             if (typeof fbq === 'function') {
                 fbq('track', 'AddPaymentInfo', {
@@ -613,27 +700,30 @@
                         </button>
                     </div>
 
-                    <p class="text-gray-400 mt-6 mb-4">ke rekening Bank Jago berikut ini:</p>
+                    <p class="text-gray-400 mt-6 mb-4">ke rekening ${paymentAccount.name} berikut ini:</p>
                 </div>
 
                 <div class="mt-6 flex justify-center">
                     <div class="w-full max-w-md">
                         <div class="bg-[#1A1A1F] p-6 rounded-2xl border border-[#2a2a32] shadow-lg text-left flex flex-col">
                             <div class="flex-grow">
-                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.bank}" class="h-7 sm:h-8 mb-5">
+                                <div class="${paymentAccount.needsWhiteBg ? 'bg-white' : ''} p-2 rounded-lg inline-block mb-5">
+                                    <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.name}" class="h-8">
+                                </div>
                                 
                                 <div class="space-y-4">
                                     <div>
-                                        <p class="text-sm text-gray-400">No. Rekening ${paymentAccount.bank}</p>
+                                        <p class="text-sm text-gray-400">No. Rekening / No. HP</p>
                                         <p class="text-xl font-semibold text-white">${paymentAccount.number}</p>
                                     </div>
+                                    ${paymentAccount.accountName ? `
                                     <div>
                                         <p class="text-sm text-gray-400">Atas Nama</p>
-                                        <p class="text-xl font-semibold text-white">${paymentAccount.name}</p>
-                                    </div>
+                                        <p class="text-xl font-semibold text-white">${paymentAccount.accountName}</p>
+                                    </div>` : ''}
                                 </div>
                             </div>
-                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening ${paymentAccount.bank}')" class="mt-6 w-full bg-[#282828] hover:bg-gray-700 text-gray-200 font-semibold py-3 px-4 rounded-lg transition-colors">
+                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening ${paymentAccount.name}')" class="mt-6 w-full bg-[#282828] hover:bg-gray-700 text-gray-200 font-semibold py-3 px-4 rounded-lg transition-colors">
                                 Salin No. Rek.
                             </button>
                         </div>
