@@ -166,7 +166,7 @@
             }
         }
 
-        /* Bagian FAQ & Accordion Pembayaran */
+        /* Bagian FAQ */
         .faq-item { border-bottom: 1px solid #dfe1e6; }
         .faq-item:last-child { border-bottom: none; }
         .faq-item summary {
@@ -183,9 +183,6 @@
         .faq-item[open] summary::after { transform: rotate(180deg); }
         .faq-content { padding: 0 0.5rem 1.25rem 0.5rem; color: #5f6368; line-height: 1.7; }
         .faq-item[open] summary { color: #1a73e8; }
-        .payment-accordion summary { font-weight: 600; font-size: 1rem; color: #3c4043; padding: 1rem; }
-        .payment-accordion .faq-content { padding: 0 1rem 1rem 1rem; }
-
 
         /* Pilihan Paket & Metode Pembayaran */
         .package-radio,
@@ -214,6 +211,8 @@
         }
         .payment-logo {
             height: 24px;
+            width: 80px; /* Lebar tetap untuk semua logo */
+            object-fit: contain; /* Agar gambar tidak gepeng */
             margin-right: 1rem;
             margin-left: 0.5rem;
         }
@@ -242,6 +241,66 @@
         .package-radio:checked + .package-label .custom-radio-button .dot,
         .payment-radio:checked + .payment-label .custom-radio-button .dot {
             background-color: #1a73e8; /* Warna titik biru Google saat dipilih */
+        }
+
+        /* NEW: Payment Instruction Layout Styles */
+        .payment-instruction-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 480px;
+            margin: 2rem auto;
+        }
+        .payment-instruction-header {
+            background-color: #1a202c; /* Dark Header */
+            color: #fff;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .payment-instruction-body {
+            padding: 1.5rem;
+        }
+        .payment-instruction-footer {
+            padding: 1.5rem;
+            background-color: #f7fafc; /* Light gray footer */
+            border-top: 1px solid #e2e8f0;
+        }
+        .payment-accordion summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            padding: 1rem 0;
+            cursor: pointer;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .payment-accordion summary::after {
+            content: '\f078'; /* chevron-down */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: transform 0.3s ease;
+        }
+        .payment-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        .payment-accordion-content {
+            padding: 1rem 0.5rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        .payment-accordion-content ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+        .copy-button {
+            color: #1a73e8;
+            font-weight: 600;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -320,30 +379,20 @@
                     <div id="features-before-form" class="mb-8 border-t border-gray-200 pt-8"></div>
 
                     <!-- Form -->
-                    <form id="orderForm" action="https://formsubmit.co/rizalsetiawan101@gmail.com" method="POST">
-                        <!-- Konfigurasi FormSubmit -->
-                        <input type="hidden" name="_subject" value="Pesanan Baru Google Drive/Photos">
-                        <input type="hidden" name="_captcha" value="false">
-                        
-                        <!-- Hidden fields untuk data dinamis yang akan diisi oleh JS -->
-                        <input type="hidden" id="form-package-name" name="Paket">
-                        <input type="hidden" id="form-total-price" name="Total_Bayar">
-                        <input type="hidden" id="form-order-id" name="Order_ID">
-                        <input type="hidden" id="form-payment-method" name="Metode_Pembayaran">
-
+                    <form id="orderForm">
                         <h2 class="text-xl font-bold mb-5 text-gray-800">2. Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
                                 <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
-                                <input type="text" id="nama" name="Nama_Lengkap" class="form-input w-full" placeholder="Masukkan nama lengkap Anda" required>
+                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
                             </div>
                             <div>
                                 <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
-                                <input type="tel" id="whatsapp" name="Nomor_WhatsApp" class="form-input w-full" placeholder="Contoh: 081234567890" required>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Gmail Anda <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="Email_Gmail" class="form-input w-full" placeholder="contoh.email@gmail.com" required>
+                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com">
                             </div>
                         </div>
                         
@@ -353,7 +402,6 @@
                         <!-- Rincian Pesanan -->
                         <div id="order-details-in-form" class="mt-8"></div>
                         
-                        <!-- Tombol Beli Sekarang (type="button" agar dihandle JS) -->
                         <button type="button" id="submit-btn" class="cta-button blue-button mt-8">
                             Beli Sekarang
                         </button>
@@ -429,6 +477,7 @@
 
         // --- CONFIGURATION ---
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
+        let countdownInterval;
         
         // *** TESTIMONIALS COMBINED ***
         const allTestimonials = [
@@ -471,7 +520,7 @@
                 normalPrice: 399000,
                 title: "GOOGLE PHOTOS UNLIMITED",
                 priceDisplay: `Rp165.000`,
-                logo: 'https://1000logos.net/wp-content/uploads/2020/05/Google-Photos-logo.png',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/480px-Google_Photos_icon_%282020%29.svg.png',
                 description: "Simpan semua foto & video kualitas asli tanpa kompresi.",
                 features: [
                     "<strong>Penyimpanan Foto & Video Tanpa Batas:</strong> Upload semua kenangan Anda dalam kualitas asli tanpa kompresi.",
@@ -508,14 +557,15 @@
 
         let currentPackageId = 'drive'; // Paket default yang dipilih
         
+        // --- UPDATED: Categorized Payment Accounts ---
         const paymentAccounts = {
-            jago: { displayName: 'Bank Jago', accountHolder: 'Anang Dude Juliawan', number: '109594117900', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png' },
-            cimb: { displayName: 'CIMB Niaga', accountHolder: 'Octo Pay - 6289510639366', number: '6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png' },
-            permata: { displayName: 'Permata Bank', accountHolder: 'DNID089510639366', number: '8528089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Permata_Bank_%282024%29.svg/768px-Permata_Bank_%282024%29.svg.png' },
-            bca: { displayName: 'BCA Virtual Account', accountHolder: 'Epayment', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png' },
-            gopay: { displayName: 'Gopay', accountHolder: null, number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Logo_Gopay.svg/768px-Logo_Gopay.svg.png' },
-            dana: { displayName: 'DANA', accountHolder: null, number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/768px-Logo_dana_blue.svg.png' },
-            ovo: { displayName: 'OVO', accountHolder: 'OVO Epayment', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/768px-Logo_ovo_purple.svg.png' }
+            bca: { displayName: 'BCA Virtual Account', accountHolder: 'Epayment', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png', type: 'va' },
+            jago: { displayName: 'Bank Jago', accountHolder: 'Anang Dude Juliawan', number: '109594117900', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png', type: 'bank' },
+            cimb: { displayName: 'CIMB Niaga', accountHolder: 'Octo Pay - 6289510639366', number: '6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png', type: 'bank' },
+            permata: { displayName: 'Permata Bank', accountHolder: 'DNID089510639366', number: '8528089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Permata_Bank_%282024%29.svg/768px-Permata_Bank_%282024%29.svg.png', type: 'bank' },
+            gopay: { displayName: 'Gopay', accountHolder: null, number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/462px-Gopay_logo.svg.png', type: 'ewallet' },
+            dana: { displayName: 'DANA', accountHolder: null, number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/768px-Logo_dana_blue.svg.png', type: 'ewallet' },
+            ovo: { displayName: 'OVO', accountHolder: 'OVO Epayment', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/768px-Logo_ovo_purple.svg.png', type: 'ewallet' }
         };
 
         // --- TEMPLATE FUNCTIONS ---
@@ -530,7 +580,7 @@
                     </div>
                 `;
             } else {
-                logoHtml = `<img alt="Logo ${pkg.name}" class="h-16 w-auto mx-auto" src="${pkg.logo}">`;
+                logoHtml = `<div class="flex justify-center"><img alt="Logo ${pkg.name}" class="h-16 w-auto" src="${pkg.logo}"></div>`;
             }
 
             return `
@@ -678,25 +728,15 @@
             elements.policyFull.innerHTML = getPolicyHTML();
         }
 
-        function generateOrderId(pkg, uniqueCode) {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const date = String(now.getDate()).padStart(2, '0');
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const year = String(now.getFullYear()).slice(-2);
-            const packageCodes = { drive: 'GD', photos: 'GP', bundle: 'PL' };
-            const packageCode = packageCodes[pkg.id];
-            return `${hours}${date}${month}${year}${packageCode}${uniqueCode}`;
-        }
-
-        function generateWaLink(orderId, formData, pkg, totalPrice, paymentAccount) {
+        function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
+            const detailPesanan = `*Email Google:* ${formData.get('email')}\n`;
             const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
-                          `*ID Pesanan:* ${orderId}\n` +
+                          `*ID Pembayaran:* ${paymentId}\n` +
                           `*Paket:* ${pkg.name}\n` +
-                          `*Nama:* ${formData.get('Nama_Lengkap')}\n` +
-                          `*No. WhatsApp:* ${formData.get('Nomor_WhatsApp')}\n` +
-                          `*Email Google:* ${formData.get('Email_Gmail')}\n` +
-                          `*Metode Pembayaran:* ${paymentAccount.displayName}\n` +
+                          `*Metode Pembayaran:* ${paymentMethodName}\n` +
+                          `*Nama:* ${formData.get('nama')}\n` +
+                          `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
+                          detailPesanan +
                           `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
                           `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
             return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
@@ -704,135 +744,247 @@
 
         function handleFormSubmit() {
             const formData = new FormData(elements.orderForm);
-            const nama = formData.get('Nama_Lengkap').trim();
-            const whatsapp = formData.get('Nomor_WhatsApp').trim();
-            const email = formData.get('Email_Gmail').trim();
-            const paymentMethodKey = document.querySelector('input[name="payment-method"]:checked')?.value;
+            const nama = formData.get('nama').trim();
+            const whatsapp = formData.get('whatsapp').trim();
+            const email = formData.get('email').trim();
+            const paymentMethodKey = formData.get('payment-method');
 
-
-            if (!nama || !whatsapp || !email || !paymentMethodKey) {
-                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan dan pilih metode pembayaran.');
-                return;
-            }
+            if (!nama) { showInfoModal('Data Belum Lengkap', 'Silakan isi Nama Anda.'); elements.orderForm.querySelector('#nama').focus(); return; }
+            if (!whatsapp) { showInfoModal('Data Belum Lengkap', 'Silakan isi Nomor WhatsApp Anda.'); elements.orderForm.querySelector('#whatsapp').focus(); return; }
+            if (!email) { showInfoModal('Data Belum Lengkap', 'Silakan isi alamat Gmail Anda.'); elements.orderForm.querySelector('#email').focus(); return; }
+            if (!paymentMethodKey) { showInfoModal('Pilih Pembayaran', 'Silakan pilih metode pembayaran.'); return; }
 
             const pkg = packages[currentPackageId];
             const totalPrice = pkg.price + uniqueCode;
             const paymentAccount = paymentAccounts[paymentMethodKey];
-            const orderId = generateOrderId(pkg, uniqueCode);
             
-            // Populate hidden fields for email submission
-            document.getElementById('form-package-name').value = pkg.name;
-            document.getElementById('form-total-price').value = formatCurrency(totalPrice);
-            document.getElementById('form-order-id').value = orderId;
-            document.getElementById('form-payment-method').value = paymentAccount.displayName;
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = String(now.getFullYear()).slice(-2);
             
-            // Atur halaman 'terima kasih' FormSubmit ke halaman ini agar pengguna tidak dialihkan
-            const currentUrl = window.location.href.split('?')[0]; // Hapus parameter jika ada
-            elements.orderForm.querySelector('input[name="_next"]').value = currentUrl;
+            let packageCode = '';
+            if (pkg.id === 'drive') packageCode = 'GD';
+            else if (pkg.id === 'photos') packageCode = 'GP';
+            else if (pkg.id === 'bundle') packageCode = 'PL';
 
-            // Submit form
-            elements.orderForm.submit();
+            const lastThreeDigits = String(totalPrice).slice(-3);
+            const paymentId = `${hours}${day}${month}${year}${packageCode}${lastThreeDigits}`;
 
-
-            // --- PELACAKAN EVENT FACEBOOK PIXEL ---
             if (typeof fbq === 'function') {
-                fbq('track', 'AddPaymentInfo', {
-                    content_name: pkg.name,
-                    content_category: 'Software',
-                    currency: 'IDR',
-                    value: totalPrice
-                });
+                fbq('track', 'AddPaymentInfo', { content_name: pkg.name, content_category: 'Software', currency: 'IDR', value: totalPrice });
             }
-            // --- AKHIR PELACAKAN EVENT ---
+
+            // --- FormSubmit Integration ---
+            const formSubmitData = new FormData();
+            let cleanWhatsapp = whatsapp.replace(/\D/g, '');
+            if (cleanWhatsapp.startsWith('0')) {
+                cleanWhatsapp = '62' + cleanWhatsapp.substring(1);
+            }
+            const waFollowUpLink = `https://wa.me/${cleanWhatsapp}?text=Halo%20kak%20${nama},%20kami%20ingin%20menginformasikan%20mengenai%20pesanan%20Anda%20dengan%20ID%20${paymentId}.%20Mohon%20segera%20selesaikan%20pembayaran%20Anda.%20Terima%20kasih.`;
+
+            formSubmitData.append('_subject', `Pesanan Baru: ${pkg.name} - ${nama}`);
+            formSubmitData.append('_template', 'table');
+            formSubmitData.append('_captcha', 'false');
+            
+            formSubmitData.append('Nama Pemesan', nama);
+            formSubmitData.append('Email', email);
+            formSubmitData.append('No. WhatsApp', whatsapp);
+            formSubmitData.append('---', '---'); // Separator
+            formSubmitData.append('ID Pembayaran', paymentId);
+            formSubmitData.append('Paket Dipesan', pkg.name);
+            formSubmitData.append('Total Pembayaran', formatCurrency(totalPrice));
+            formSubmitData.append('Metode Pembayaran', paymentAccount.displayName);
+            formSubmitData.append('---', '---'); // Separator
+            formSubmitData.append('Link Follow Up WA', waFollowUpLink);
+            
+            fetch('https://formsubmit.co/el/talicu', {
+                method: 'POST',
+                body: formSubmitData
+            }).catch(error => console.error('Form submission error:', error));
+            // --- End of FormSubmit Integration ---
 
             elements.mainContentContainer.style.display = 'none';
             elements.footer.style.display = 'none';
-            const waLink = generateWaLink(orderId, formData, pkg, totalPrice, paymentAccount);
             
+            const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId);
+            
+            let accountLabel = '';
+            let instructionAccordionHTML = '';
+
+            switch (paymentAccount.type) {
+                case 'va':
+                    accountLabel = 'Nomor Virtual Account';
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion">
+                            <summary>Cara Bayar via ATM</summary>
+                            <div class="payment-accordion-content">
+                                <ol class="space-y-2">
+                                    <li>Pilih menu <strong>Transaksi Lainnya</strong>.</li>
+                                    <li>Pilih menu <strong>Transfer</strong>.</li>
+                                    <li>Pilih menu <strong>Ke Rekening BCA Virtual Account</strong>.</li>
+                                    <li>Masukkan Nomor Virtual Account: <strong>${paymentAccount.number}</strong>.</li>
+                                    <li>Masukkan jumlah yang akan dibayar, lalu konfirmasi.</li>
+                                    <li>Pembayaran berhasil. Simpan struk sebagai bukti.</li>
+                                </ol>
+                            </div>
+                        </details>
+                        <details class="payment-accordion">
+                            <summary>Cara Bayar via m-BCA</summary>
+                             <div class="payment-accordion-content">
+                                <ol class="space-y-2">
+                                    <li>Login ke aplikasi m-BCA Anda.</li>
+                                    <li>Pilih menu <strong>m-Transfer</strong>.</li>
+                                    <li>Pilih <strong>BCA Virtual Account</strong>.</li>
+                                    <li>Masukkan Nomor Virtual Account: <strong>${paymentAccount.number}</strong>.</li>
+                                    <li>Masukkan PIN m-BCA Anda.</li>
+                                    <li>Pembayaran berhasil.</li>
+                                </ol>
+                            </div>
+                        </details>
+                    `;
+                    break;
+                case 'ewallet':
+                    accountLabel = `Nomor ${paymentAccount.displayName}`;
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion" open>
+                            <summary>Cara Bayar via ${paymentAccount.displayName}</summary>
+                            <div class="payment-accordion-content">
+                                <ol class="space-y-2">
+                                    <li>Buka aplikasi <strong>${paymentAccount.displayName}</strong> Anda.</li>
+                                    <li>Pilih menu <strong>Bayar</strong> atau <strong>Transfer</strong>.</li>
+                                    <li>Masukkan nomor tujuan: <strong>${paymentAccount.number}</strong>.</li>
+                                    <li>Masukkan nominal transfer sebesar <strong>${formatCurrency(totalPrice)}</strong>.</li>
+                                    <li>Pastikan nama penerima (jika ada) sudah sesuai.</li>
+                                    <li>Masukkan PIN Anda untuk menyelesaikan pembayaran.</li>
+                                </ol>
+                            </div>
+                        </details>
+                    `;
+                    break;
+                default: // 'bank'
+                    accountLabel = 'Nomor Rekening';
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion">
+                            <summary>Cara Bayar via ATM</summary>
+                            <div class="payment-accordion-content">
+                                <ol class="space-y-2">
+                                    <li>Pilih menu <strong>Transfer</strong>.</li>
+                                    <li>Pilih <strong>Transfer ke Bank Lain</strong> (jika beda bank).</li>
+                                    <li>Masukkan kode bank tujuan diikuti nomor rekening: <strong>${paymentAccount.number}</strong>.</li>
+                                    <li>Masukkan nominal transfer sebesar <strong>${formatCurrency(totalPrice)}</strong>.</li>
+                                    <li>Konfirmasi detail transfer dan selesaikan transaksi.</li>
+                                </ol>
+                            </div>
+                        </details>
+                        <details class="payment-accordion">
+                            <summary>Cara Bayar via Mobile Banking</summary>
+                             <div class="payment-accordion-content">
+                                <ol class="space-y-2">
+                                    <li>Login ke aplikasi Mobile Banking Anda.</li>
+                                    <li>Pilih menu <strong>Transfer</strong>.</li>
+                                    <li>Pilih <strong>Transfer Antar Bank</strong> atau ke rekening tujuan.</li>
+                                    <li>Masukkan nomor rekening tujuan: <strong>${paymentAccount.number}</strong>.</li>
+                                    <li>Masukkan nominal transfer sebesar <strong>${formatCurrency(totalPrice)}</strong>.</li>
+                                    <li>Masukkan PIN atau password transaksi Anda.</li>
+                                </ol>
+                            </div>
+                        </details>
+                    `;
+                    break;
+            }
+
             const paymentViewHTML = `
-            <div class="max-w-md mx-auto my-8 bg-white rounded-xl shadow-lg overflow-hidden">
-                <div class="p-4 bg-gray-800 text-white flex justify-between items-center">
+            <div class="payment-instruction-card">
+                <div class="payment-instruction-header">
                     <h2 class="text-lg font-bold">Instruksi Pembayaran</h2>
-                    <button onclick="location.reload()" class="text-2xl">&times;</button>
+                    <button onclick="window.location.reload()" class="text-2xl">&times;</button>
                 </div>
-                <div class="p-6">
-                    <div class="text-center">
+                
+                <div class="payment-instruction-body">
+                    <div class="text-center border-b border-gray-200 pb-6">
                         <p class="text-sm text-gray-500">Total Pembayaran</p>
-                        <div class="flex items-center justify-center gap-2">
-                            <p class="text-3xl font-bold text-gray-800">${formatCurrency(totalPrice)}</p>
-                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="text-gray-500 hover:text-blue-600 transition-colors">
+                        <div class="flex justify-center items-center gap-2 mt-1">
+                            <h3 class="text-3xl font-bold text-gray-800">${formatCurrency(totalPrice)}</h3>
+                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="text-gray-500 hover:text-blue-600">
                                 <i class="far fa-copy"></i>
                             </button>
                         </div>
-                        <p class="text-xs text-gray-400 mt-1">Order ID: ${orderId}</p>
+                        <p class="text-sm text-gray-500 mt-4">Order ID: <strong class="text-gray-700">${paymentId}</strong></p>
                     </div>
-                    <div class="text-center my-4">
-                         <p class="text-sm text-red-500 font-semibold" id="countdown-timer">Bayar dalam 23:59:59</p>
+
+                    <div class="text-center py-4">
+                        <p class="text-sm text-red-600 font-semibold">
+                            Bayar dalam <span id="countdown-timer">23:59:59</span>
+                        </p>
                     </div>
-                    <hr class="mb-4">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-bold text-lg">${paymentAccount.displayName}</h3>
-                        <img src="${paymentAccount.logo}" alt="${paymentAccount.displayName}" class="h-6">
-                    </div>
-                    <p class="text-sm text-gray-600 mb-4">Lakukan pembayaran ke tujuan berikut.</p>
-                    
-                    <div class="space-y-3">
-                        <div>
-                            <p class="text-xs text-gray-500">Nomor Rekening</p>
+
+                    <div class="border-t border-b border-gray-200 py-6">
+                        <div class="flex justify-between items-center">
+                            <p class="font-bold text-gray-800">${paymentAccount.displayName}</p>
+                            <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-6">
+                        </div>
+                        <p class="text-sm text-gray-600 mt-4">Lakukan pembayaran ke tujuan berikut.</p>
+                        
+                        <div class="mt-4">
+                            <p class="text-xs text-gray-500">${accountLabel}</p>
                             <div class="flex justify-between items-center">
-                                <p class="text-lg font-semibold">${paymentAccount.number}</p>
-                                <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening')" class="text-blue-600 font-semibold text-sm">Salin</button>
+                                <p class="text-lg font-semibold text-gray-800">${paymentAccount.number}</p>
+                                <button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="copy-button">Salin</button>
                             </div>
                         </div>
-                        ${paymentAccount.accountHolder ? `
-                        <div>
-                            <p class="text-xs text-gray-500">Atas Nama</p>
-                            <p class="text-lg font-semibold">${paymentAccount.accountHolder}</p>
-                        </div>
+                         ${paymentAccount.accountHolder ? `
+                            <div class="mt-2">
+                                <p class="text-xs text-gray-500">Atas Nama</p>
+                                <p class="text-lg font-semibold text-gray-800">${paymentAccount.accountHolder}</p>
+                            </div>
                         ` : ''}
                     </div>
 
-                    <div class="mt-6 space-y-2">
-                        <details class="payment-accordion faq-item border-t">
-                            <summary>Cara Bayar via ATM</summary>
-                            <div class="faq-content">
-                                <ol class="list-decimal list-inside text-sm text-gray-600 space-y-1">
-                                    <li>Pilih <strong>Transaksi Lainnya</strong> pada menu utama.</li>
-                                    <li>Pilih <strong>Transfer</strong>.</li>
-                                    <li>Pilih <strong>Ke Rekening Bank Lain</strong>.</li>
-                                    <li>Masukkan nomor rekening tujuan.</li>
-                                    <li>Masukkan jumlah yang akan dibayar, lalu konfirmasi.</li>
-                                    <li>Pembayaran berhasil.</li>
-                                </ol>
-                            </div>
-                        </details>
-                        <details class="payment-accordion faq-item">
-                            <summary>Cara Bayar via Mobile Banking</summary>
-                             <div class="faq-content">
-                                <ol class="list-decimal list-inside text-sm text-gray-600 space-y-1">
-                                    <li>Login ke aplikasi Mobile Banking Anda.</li>
-                                    <li>Pilih menu <strong>Transfer</strong>.</li>
-                                    <li>Pilih <strong>Transfer ke Bank Lain</strong>.</li>
-                                    <li>Masukkan nomor rekening tujuan.</li>
-                                    <li>Masukkan jumlah yang akan dibayar, lalu konfirmasi.</li>
-                                    <li>Pembayaran berhasil.</li>
-                                </ol>
-                            </div>
-                        </details>
+                    <div>
+                        ${instructionAccordionHTML}
                     </div>
                 </div>
-                <div class="p-4 bg-gray-50">
-                    <p class="text-xs text-center text-gray-500 mb-2">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
-                     <a href="${waLink}" target="_blank" class="cta-button blue-button">
-                        <i class="fab fa-whatsapp text-xl"></i> 
-                        <span>Konfirmasi via WhatsApp</span>
-                    </a>
+
+                <div class="payment-instruction-footer text-center">
+                     <p class="text-gray-600 mb-4 text-sm">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
+                     <a href="${waLink}" target="_blank" class="cta-button blue-button w-full">
+                         <i class="fab fa-whatsapp text-xl"></i> 
+                         <span>Konfirmasi Pembayaran</span>
+                     </a>
                 </div>
-            </div>`;
+            </div>
+            `;
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
-            startCountdown();
+            startCountdown(); // Start the countdown timer
         }
         
+        // --- NEW: Countdown Timer Function ---
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown-timer');
+            if (!countdownElement) return;
+
+            let timeInSeconds = 24 * 60 * 60; // 24 hours
+
+            countdownInterval = setInterval(() => {
+                timeInSeconds--;
+                if (timeInSeconds < 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.textContent = "Waktu Habis";
+                    return;
+                }
+
+                const hours = Math.floor(timeInSeconds / 3600);
+                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                const seconds = timeInSeconds % 60;
+
+                countdownElement.textContent = 
+                    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            }, 1000);
+        }
+
         // --- NOTIFICATION FUNCTIONS ---
         const FIRST_NAMES = ["Adelia", "Aditya", "Agung", "Ahmad", "Aisha", "Ajeng", "Akbar", "Amanda", "Amelia", "Andi", "Andre", "Angga", "Ani", "Annisa", "Ari", "Arif", "Asep", "Ayu", "Bayu", "Bella", "Bima", "Budi", "Cahya", "Candra", "Chandra", "Citra", "Daniel", "David", "Dedi", "Desi", "Dewi", "Dian", "Dimas", "Dina", "Dinda", "Doni", "Eka", "Eko", "Elisa", "Erik", "Erwin", "Fajar", "Farah", "Farhan", "Fatima", "Fauzan", "Febri", "Felix", "Fernando", "Fikri", "Fitri", "Galih", "Gilang", "Hadi", "Hafiz", "Hana", "Handoko", "Hari", "Hasan", "Hendra", "Heru", "Hidayat", "Ibrahim", "Ichsan", "Ida", "Ihsan", "Ilham", "Imam", "Indah", "Indra", "Iqbal", "Irfan", "Irwan", "Ismail", "Ivan", "Jaka", "Jamal", "Jefri", "Joko", "Joni", "Julia", "Kamal", "Kartika", "Kevin", "Khairul", "Krisna", "Kurniawan", "Lestari", "Lia", "Lina", "Lisa", "Lukman", "Lutfi", "Made", "Maulana", "Mega", "Michael", "Mila", "Mira", "Mochammad", "Monica", "Muhammad", "Mukti", "Muslim", "Nadia", "Nana", "Nanda", "Nia", "Nina", "Novi", "Novita", "Nur", "Nurul", "Putra", "Putri", "Rachmat", "Raden", "Radit", "Rafli", "Rahayu", "Rahman", "Rahmat", "Rama", "Rangga", "Rani", "Ratna", "Reza", "Rian", "Rico", "Ridwan", "Rina", "Rini", "Rio", "Riri", "Riska", "Rizki", "Rizky", "Robby", "Robert", "Roni", "Rossa", "Rudi", "Ryan", "Sakti", "Samuel", "Sari", "Satria", "Selly", "Septian", "Setiawan", "Sinta", "Siti", "Sofia", "Sonia", "Sri", "Sugeng", "Sugiarto", "Suharto", "Sujatmiko", "Sukma", "Sulaiman", "Sumardi", "Sunarto", "Surya", "Susanto", "Susi", "Tania", "Taufik", "Tedi", "Thomas", "Tian", "Tika", "Tina", "Tono", "Tony", "Tri", "Umar", "Usman", "Utami", "Vera", "Vicky", "Vina", "Wahyu", "Wahyudi", "Wawan", "Wibowo", "Widi", "Widodo", "Wijaya", "Wulan", "Yani", "Yanto", "Yoga", "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi", "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra", "Zainal", "Zaki"];
         
@@ -859,7 +1011,6 @@
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
 
-        // Tambahkan event listener untuk radio button paket
         document.querySelectorAll('input[name="package"]').forEach(radio => {
             radio.addEventListener('change', (event) => {
                 currentPackageId = event.target.value;
@@ -867,7 +1018,7 @@
             });
         });
 
-        updateDisplay(); // Panggil untuk render awal
+        updateDisplay();
         
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
@@ -879,29 +1030,6 @@
     const infoModal = document.getElementById('infoModal');
     const imageModal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
-    let countdownInterval;
-
-    function startCountdown() {
-        const timerElement = document.getElementById('countdown-timer');
-        if (!timerElement) return;
-
-        let duration = 24 * 60 * 60; // 24 hours in seconds
-        clearInterval(countdownInterval);
-
-        countdownInterval = setInterval(() => {
-            if (duration <= 0) {
-                clearInterval(countdownInterval);
-                timerElement.textContent = "Waktu pembayaran habis.";
-            } else {
-                duration--;
-                const hours = Math.floor(duration / 3600);
-                const minutes = Math.floor((duration % 3600) / 60);
-                const seconds = duration % 60;
-                
-                timerElement.textContent = `Bayar dalam ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            }
-        }, 1000);
-    }
 
     function showInfoModal(title, message) {
         if (!infoModal) return;
@@ -916,7 +1044,7 @@
     }
 
     function openImageModal(event, src) {
-        event.stopPropagation(); // Mencegah event klik menyebar ke parent (latar belakang modal)
+        event.stopPropagation();
         if (!imageModal || !modalImage) return;
         imageModal.style.display = "flex";
         modalImage.src = src;
@@ -928,12 +1056,8 @@
     }
 
     window.onclick = function(event) {
-        if (event.target == infoModal) {
-            closeInfoModal();
-        }
-        if (event.target == imageModal) {
-            closeImageModal();
-        }
+        if (event.target == infoModal) { closeInfoModal(); }
+        if (event.target == imageModal) { closeImageModal(); }
     }
 
     function copyToClipboard(text, entityName) {
