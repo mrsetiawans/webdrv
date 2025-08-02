@@ -324,7 +324,7 @@
                         <!-- Konfigurasi FormSubmit -->
                         <input type="hidden" name="_subject" value="Pesanan Baru Google Drive/Photos">
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://www.google.com"> <!-- Ganti dengan halaman terima kasih Anda -->
+                        <input type="hidden" name="_next" value=""> <!-- Dikosongkan agar JS bisa mengisinya -->
                         
                         <!-- Hidden fields untuk data dinamis yang akan diisi oleh JS -->
                         <input type="hidden" id="form-package-name" name="Paket">
@@ -355,8 +355,8 @@
                         <!-- Rincian Pesanan -->
                         <div id="order-details-in-form" class="mt-8"></div>
                         
-                        <!-- Tombol Beli Sekarang (type="button" agar dihandle JS) -->
-                        <button type="button" id="submit-btn" class="cta-button blue-button mt-8">
+                        <!-- Tombol Beli Sekarang (type="submit" untuk mengirim form) -->
+                        <button type="submit" id="submit-btn" class="cta-button blue-button mt-8">
                             Beli Sekarang
                         </button>
                     </form>
@@ -704,50 +704,8 @@
             return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
         }
 
-        function handleFormSubmit() {
-            const formData = new FormData(elements.orderForm);
-            const nama = formData.get('Nama_Lengkap').trim();
-            const whatsapp = formData.get('Nomor_WhatsApp').trim();
-            const email = formData.get('Email_Gmail').trim();
-            const paymentMethodKey = document.querySelector('input[name="payment-method"]:checked')?.value;
-
-
-            if (!nama || !whatsapp || !email || !paymentMethodKey) {
-                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan dan pilih metode pembayaran.');
-                return;
-            }
-
-            const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price + uniqueCode;
-            const paymentAccount = paymentAccounts[paymentMethodKey];
-            const orderId = generateOrderId(pkg, uniqueCode);
-            
-            // Membuat pesan follow up untuk dikirim ke email
-            const followUpMessage = `Halo kak ${nama}, kami ingin mengingatkan mengenai pesanan Anda:\n\n` +
-                                  `*ID Pesanan:* ${orderId}\n` +
-                                  `*Paket:* ${pkg.name}\n` +
-                                  `*Total:* ${formatCurrency(totalPrice)}\n` +
-                                  `*Metode Pembayaran:* ${paymentAccount.displayName} (${paymentAccount.number})\n\n` +
-                                  `Silakan selesaikan pembayaran Anda agar pesanan dapat segera kami proses. Jika ada kendala, jangan ragu untuk membalas pesan ini ya. Terima kasih!`;
-
-            let formattedWhatsapp = whatsapp.startsWith('0') ? '62' + whatsapp.substring(1) : whatsapp;
-            if (!formattedWhatsapp.startsWith('62')) {
-                formattedWhatsapp = '62' + formattedWhatsapp;
-            }
-            const followUpWaLink = `https://wa.me/${formattedWhatsapp}?text=${encodeURIComponent(followUpMessage)}`;
-
-            // Populate hidden fields for email submission
-            document.getElementById('form-package-name').value = pkg.name;
-            document.getElementById('form-total-price').value = formatCurrency(totalPrice);
-            document.getElementById('form-order-id').value = orderId;
-            document.getElementById('form-payment-method').value = paymentAccount.displayName;
-            document.getElementById('form-whatsapp-link').value = followUpWaLink;
-
-            // Submit form
-            elements.orderForm.submit();
-
-
-            // --- PELACAKAN EVENT FACEBOOK PIXEL ---
+        function showPaymentInstructions(orderId, formData, pkg, totalPrice, paymentAccount) {
+             // --- PELACAKAN EVENT FACEBOOK PIXEL ---
             if (typeof fbq === 'function') {
                 fbq('track', 'AddPaymentInfo', {
                     content_name: pkg.name,
@@ -845,6 +803,54 @@
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
             startCountdown();
         }
+
+        elements.orderForm.addEventListener('submit', function(event) {
+            const formData = new FormData(elements.orderForm);
+            const nama = formData.get('Nama_Lengkap').trim();
+            const whatsapp = formData.get('Nomor_WhatsApp').trim();
+            const email = formData.get('Email_Gmail').trim();
+            const paymentMethodKey = document.querySelector('input[name="payment-method"]:checked')?.value;
+
+            if (!nama || !whatsapp || !email || !paymentMethodKey) {
+                event.preventDefault(); // Hentikan pengiriman jika validasi gagal
+                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan dan pilih metode pembayaran.');
+                return;
+            }
+
+            const pkg = packages[currentPackageId];
+            const totalPrice = pkg.price + uniqueCode;
+            const paymentAccount = paymentAccounts[paymentMethodKey];
+            const orderId = generateOrderId(pkg, uniqueCode);
+            
+            const followUpMessage = `Halo kak ${nama}, kami ingin mengingatkan mengenai pesanan Anda:\n\n` +
+                                  `*ID Pesanan:* ${orderId}\n` +
+                                  `*Paket:* ${pkg.name}\n` +
+                                  `*Total:* ${formatCurrency(totalPrice)}\n` +
+                                  `*Metode Pembayaran:* ${paymentAccount.displayName} (${paymentAccount.number})\n\n` +
+                                  `Silakan selesaikan pembayaran Anda agar pesanan dapat segera kami proses. Jika ada kendala, jangan ragu untuk membalas pesan ini ya. Terima kasih!`;
+
+            let formattedWhatsapp = whatsapp.startsWith('0') ? '62' + whatsapp.substring(1) : whatsapp;
+            if (!formattedWhatsapp.startsWith('62')) {
+                formattedWhatsapp = '62' + formattedWhatsapp;
+            }
+            const followUpWaLink = `https://wa.me/${formattedWhatsapp}?text=${encodeURIComponent(followUpMessage)}`;
+
+            // Populate hidden fields for email submission
+            document.getElementById('form-package-name').value = pkg.name;
+            document.getElementById('form-total-price').value = formatCurrency(totalPrice);
+            document.getElementById('form-order-id').value = orderId;
+            document.getElementById('form-payment-method').value = paymentAccount.displayName;
+            document.getElementById('form-whatsapp-link').value = followUpWaLink;
+            
+            // Atur halaman 'terima kasih' FormSubmit ke halaman ini agar pengguna tidak dialihkan
+            const currentUrl = window.location.href;
+            elements.orderForm.querySelector('input[name="_next"]').value = currentUrl;
+
+            // Tunda tampilan halaman pembayaran untuk memberi waktu form submit
+            setTimeout(() => {
+                showPaymentInstructions(orderId, formData, pkg, totalPrice, paymentAccount);
+            }, 500); // Tunda 0.5 detik
+        });
         
         // --- NOTIFICATION FUNCTIONS ---
         const FIRST_NAMES = ["Adelia", "Aditya", "Agung", "Ahmad", "Aisha", "Ajeng", "Akbar", "Amanda", "Amelia", "Andi", "Andre", "Angga", "Ani", "Annisa", "Ari", "Arif", "Asep", "Ayu", "Bayu", "Bella", "Bima", "Budi", "Cahya", "Candra", "Chandra", "Citra", "Daniel", "David", "Dedi", "Desi", "Dewi", "Dian", "Dimas", "Dina", "Dinda", "Doni", "Eka", "Eko", "Elisa", "Erik", "Erwin", "Fajar", "Farah", "Farhan", "Fatima", "Fauzan", "Febri", "Felix", "Fernando", "Fikri", "Fitri", "Galih", "Gilang", "Hadi", "Hafiz", "Hana", "Handoko", "Hari", "Hasan", "Hendra", "Heru", "Hidayat", "Ibrahim", "Ichsan", "Ida", "Ihsan", "Ilham", "Imam", "Indah", "Indra", "Iqbal", "Irfan", "Irwan", "Ismail", "Ivan", "Jaka", "Jamal", "Jefri", "Joko", "Joni", "Julia", "Kamal", "Kartika", "Kevin", "Khairul", "Krisna", "Kurniawan", "Lestari", "Lia", "Lina", "Lisa", "Lukman", "Lutfi", "Made", "Maulana", "Mega", "Michael", "Mila", "Mira", "Mochammad", "Monica", "Muhammad", "Mukti", "Muslim", "Nadia", "Nana", "Nanda", "Nia", "Nina", "Novi", "Novita", "Nur", "Nurul", "Putra", "Putri", "Rachmat", "Raden", "Radit", "Rafli", "Rahayu", "Rahman", "Rahmat", "Rama", "Rangga", "Rani", "Ratna", "Reza", "Rian", "Rico", "Ridwan", "Rina", "Rini", "Rio", "Riri", "Riska", "Rizki", "Rizky", "Robby", "Robert", "Roni", "Rossa", "Rudi", "Ryan", "Sakti", "Samuel", "Sari", "Satria", "Selly", "Septian", "Setiawan", "Sinta", "Siti", "Sofia", "Sonia", "Sri", "Sugeng", "Sugiarto", "Suharto", "Sujatmiko", "Sukma", "Sulaiman", "Sumardi", "Sunarto", "Surya", "Susanto", "Susi", "Tania", "Taufik", "Tedi", "Thomas", "Tian", "Tika", "Tina", "Tono", "Tony", "Tri", "Umar", "Usman", "Utami", "Vera", "Vicky", "Vina", "Wahyu", "Wahyudi", "Wawan", "Wibowo", "Widi", "Widodo", "Wijaya", "Wulan", "Yani", "Yanto", "Yoga", "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi", "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra", "Zainal", "Zaki"];
@@ -870,7 +876,8 @@
 
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
-        elements.submitBtn.addEventListener('click', handleFormSubmit);
+        // Ganti event listener dari tombol ke form
+        // elements.submitBtn.addEventListener('click', handleFormSubmit);
 
         // Tambahkan event listener untuk radio button paket
         document.querySelectorAll('input[name="package"]').forEach(radio => {
