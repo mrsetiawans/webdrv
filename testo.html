@@ -779,45 +779,31 @@
                 fbq('track', 'AddPaymentInfo', { content_name: pkg.name, content_category: 'Software', currency: 'IDR', value: totalPrice });
             }
 
-            // --- Static Forms Integration ---
-            let cleanWhatsapp = whatsapp.replace(/\D/g, '');
-            if (cleanWhatsapp.startsWith('0')) {
-                cleanWhatsapp = '62' + cleanWhatsapp.substring(1);
-            }
-            const waFollowUpLink = `https://wa.me/${cleanWhatsapp}?text=Halo%20kak%20${nama},%20kami%20ingin%20menginformasikan%20mengenai%20pesanan%20Anda%20dengan%20ID%20${paymentId}.%20Mohon%20segera%20selesaikan%20pembayaran%20Anda.%20Terima%20kasih.`;
+            // --- submit-form.com Integration ---
+            const submitFormData = new FormData();
+            submitFormData.append('nama', nama);
+            submitFormData.append('email', email);
+            submitFormData.append('whatsapp', whatsapp);
+            submitFormData.append('ID Pembayaran', paymentId);
+            submitFormData.append('Paket Dipesan', pkg.name);
+            submitFormData.append('Total Pembayaran', formatCurrency(totalPrice));
+            submitFormData.append('Metode Pembayaran', paymentAccount.displayName);
 
-            const formDataObject = {
-                apiKey: "sf_87aj6dmak79mm56kif2cjh15",
-                subject: `Pesanan Baru: ${pkg.name} - ${nama}`,
-                replyTo: email,
-                honeypot: formData.get('honeypot'), // Include honeypot field
-                name: nama,
-                email: email,
-                whatsapp: whatsapp,
-                "$ID Pembayaran": paymentId,
-                "$Paket Dipesan": pkg.name,
-                "$Total Pembayaran": formatCurrency(totalPrice),
-                "$Metode Pembayaran": paymentAccount.displayName,
-                "$Link Follow Up WA": waFollowUpLink
-            };
-
-            fetch("https://api.staticforms.xyz/submit", {
+            fetch("https://submit-form.com/ZgZ1cRsfP", {
                 method: "POST",
-                body: JSON.stringify(formDataObject),
-                headers: { 'Content-Type': 'application/json' }
+                body: submitFormData
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    console.log("Form submitted successfully to Static Forms.");
+            .then(response => {
+                if (response.ok) {
+                    console.log("Form submitted successfully to submit-form.com.");
                 } else {
-                    console.error("Static Forms submission failed.", data);
+                    console.error("submit-form.com submission failed.", response);
                 }
             })
             .catch(error => {
-                console.error('Error submitting form to Static Forms:', error);
+                console.error('Error submitting form to submit-form.com:', error);
             });
-            // --- End of Static Forms Integration ---
+            // --- End of submit-form.com Integration ---
 
             showPaymentInstructions(formData);
         }
