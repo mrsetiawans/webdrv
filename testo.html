@@ -320,17 +320,17 @@
                     <div id="features-before-form" class="mb-8 border-t border-gray-200 pt-8"></div>
 
                     <!-- Form -->
-                    <!-- Ganti email 'your-email@example.com' dengan alamat email Anda -->
                     <form id="orderForm" action="https://formsubmit.co/rizalsetiawan101@gmail.com" method="POST">
                         <!-- Konfigurasi FormSubmit -->
                         <input type="hidden" name="_subject" value="Pesanan Baru Google Drive/Photos">
-                        <input type="hidden" name="_captcha" value="false"> <!-- Nonaktifkan captcha jika Anda mau -->
+                        <input type="hidden" name="_captcha" value="false">
                         
                         <!-- Hidden fields untuk data dinamis yang akan diisi oleh JS -->
                         <input type="hidden" id="form-package-name" name="Paket">
                         <input type="hidden" id="form-total-price" name="Total_Bayar">
                         <input type="hidden" id="form-order-id" name="Order_ID">
                         <input type="hidden" id="form-payment-method" name="Metode_Pembayaran">
+                        <input type="hidden" id="form-whatsapp-link" name="Link_WhatsApp">
 
                         <h2 class="text-xl font-bold mb-5 text-gray-800">2. Lengkapi Data</h2>
                         <div class="space-y-4">
@@ -721,10 +721,17 @@
             const orderId = generateOrderId(pkg, uniqueCode);
             
             // Populate hidden fields for email submission
+            let formattedWhatsapp = whatsapp.startsWith('0') ? '62' + whatsapp.substring(1) : whatsapp;
+            if (!formattedWhatsapp.startsWith('62')) {
+                formattedWhatsapp = '62' + formattedWhatsapp;
+            }
+            const whatsappLink = `https://wa.me/${formattedWhatsapp}`;
+
             document.getElementById('form-package-name').value = pkg.name;
             document.getElementById('form-total-price').value = formatCurrency(totalPrice);
             document.getElementById('form-order-id').value = orderId;
             document.getElementById('form-payment-method').value = paymentAccount.displayName;
+            document.getElementById('form-whatsapp-link').value = whatsappLink;
 
             // Submit form data in the background using fetch
             fetch(elements.orderForm.action, {
