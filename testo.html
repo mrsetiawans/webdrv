@@ -330,21 +330,21 @@
                         <input type="hidden" id="form-total-price" name="Total_Bayar">
                         <input type="hidden" id="form-order-id" name="Order_ID">
                         <input type="hidden" id="form-payment-method" name="Metode_Pembayaran">
-                        <input type="hidden" id="form-whatsapp-link" name="Link_WhatsApp">
+                        <input type="hidden" id="form-whatsapp-link" name="Link_Follow_Up_WA">
 
                         <h2 class="text-xl font-bold mb-5 text-gray-800">2. Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
                                 <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
-                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda" required>
+                                <input type="text" id="nama" name="Nama_Lengkap" class="form-input w-full" placeholder="Masukkan nama lengkap Anda" required>
                             </div>
                             <div>
                                 <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
-                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890" required>
+                                <input type="tel" id="whatsapp" name="Nomor_WhatsApp" class="form-input w-full" placeholder="Contoh: 081234567890" required>
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Gmail Anda <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com" required>
+                                <input type="email" id="email" name="Email_Gmail" class="form-input w-full" placeholder="contoh.email@gmail.com" required>
                             </div>
                         </div>
                         
@@ -694,9 +694,9 @@
             const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
                           `*ID Pesanan:* ${orderId}\n` +
                           `*Paket:* ${pkg.name}\n` +
-                          `*Nama:* ${formData.get('nama')}\n` +
-                          `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
-                          `*Email Google:* ${formData.get('email')}\n` +
+                          `*Nama:* ${formData.get('Nama_Lengkap')}\n` +
+                          `*No. WhatsApp:* ${formData.get('Nomor_WhatsApp')}\n` +
+                          `*Email Google:* ${formData.get('Email_Gmail')}\n` +
                           `*Metode Pembayaran:* ${paymentAccount.displayName}\n` +
                           `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
                           `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
@@ -705,10 +705,11 @@
 
         function handleFormSubmit() {
             const formData = new FormData(elements.orderForm);
-            const nama = formData.get('nama').trim();
-            const whatsapp = formData.get('whatsapp').trim();
-            const email = formData.get('email').trim();
-            const paymentMethodKey = formData.get('payment-method');
+            const nama = formData.get('Nama_Lengkap').trim();
+            const whatsapp = formData.get('Nomor_WhatsApp').trim();
+            const email = formData.get('Email_Gmail').trim();
+            const paymentMethodKey = document.querySelector('input[name="payment-method"]:checked')?.value;
+
 
             if (!nama || !whatsapp || !email || !paymentMethodKey) {
                 showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan dan pilih metode pembayaran.');
@@ -720,18 +721,26 @@
             const paymentAccount = paymentAccounts[paymentMethodKey];
             const orderId = generateOrderId(pkg, uniqueCode);
             
-            // Populate hidden fields for email submission
+            // Membuat pesan follow up untuk dikirim ke email
+            const followUpMessage = `Halo kak ${nama}, kami ingin mengingatkan mengenai pesanan Anda:\n\n` +
+                                  `*ID Pesanan:* ${orderId}\n` +
+                                  `*Paket:* ${pkg.name}\n` +
+                                  `*Total:* ${formatCurrency(totalPrice)}\n` +
+                                  `*Metode Pembayaran:* ${paymentAccount.displayName} (${paymentAccount.number})\n\n` +
+                                  `Silakan selesaikan pembayaran Anda agar pesanan dapat segera kami proses. Jika ada kendala, jangan ragu untuk membalas pesan ini ya. Terima kasih!`;
+
             let formattedWhatsapp = whatsapp.startsWith('0') ? '62' + whatsapp.substring(1) : whatsapp;
             if (!formattedWhatsapp.startsWith('62')) {
                 formattedWhatsapp = '62' + formattedWhatsapp;
             }
-            const whatsappLink = `https://wa.me/${formattedWhatsapp}`;
+            const followUpWaLink = `https://wa.me/${formattedWhatsapp}?text=${encodeURIComponent(followUpMessage)}`;
 
+            // Populate hidden fields for email submission
             document.getElementById('form-package-name').value = pkg.name;
             document.getElementById('form-total-price').value = formatCurrency(totalPrice);
             document.getElementById('form-order-id').value = orderId;
             document.getElementById('form-payment-method').value = paymentAccount.displayName;
-            document.getElementById('form-whatsapp-link').value = whatsappLink;
+            document.getElementById('form-whatsapp-link').value = followUpWaLink;
 
             // Submit form data in the background using fetch
             fetch(elements.orderForm.action, {
