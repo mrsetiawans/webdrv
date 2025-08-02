@@ -742,14 +742,25 @@
             document.getElementById('form-payment-method').value = paymentAccount.displayName;
             document.getElementById('form-whatsapp-link').value = followUpWaLink;
 
-            // Submit form data in the background using fetch
+            // Convert FormData to a plain object for JSON submission
+            const formEntries = new FormData(elements.orderForm).entries();
+            const jsonObject = Object.fromEntries(formEntries);
+
+            // Submit form data in the background using fetch for AJAX
             fetch(elements.orderForm.action, {
                 method: 'POST',
-                body: new FormData(elements.orderForm)
-            }).then(response => {
-                if (!response.ok) console.error("FormSubmit submission failed.");
-                else console.log("FormSubmit submission successful.");
-            }).catch(error => console.error('Error submitting form via Fetch:', error));
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(jsonObject)
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('FormSubmit Success:', data);
+              })
+              .catch(error => {
+                  console.error('FormSubmit Error:', error);
+              });
 
 
             // --- PELACAKAN EVENT FACEBOOK PIXEL ---
