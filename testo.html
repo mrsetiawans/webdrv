@@ -384,15 +384,15 @@
                         <div class="space-y-4">
                             <div>
                                 <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
-                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
+                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda" required>
                             </div>
                             <div>
                                 <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
-                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890" required>
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Gmail Anda <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com">
+                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com" required>
                             </div>
                         </div>
                         
@@ -742,13 +742,15 @@
             return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
         }
 
-        function handleFormSubmit() {
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+
             const form = elements.orderForm;
             const formData = new FormData(form);
             const nama = formData.get('nama').trim();
             const whatsapp = formData.get('whatsapp').trim();
             const email = formData.get('email').trim();
-            const paymentMethodKey = formData.get('payment-method');
+            const paymentMethodKey = document.querySelector('input[name="payment-method"]:checked')?.value;
 
             if (!nama || !whatsapp || !email || !paymentMethodKey) {
                 showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan dan pilih metode pembayaran.');
@@ -777,7 +779,7 @@
                 fbq('track', 'AddPaymentInfo', { content_name: pkg.name, content_category: 'Software', currency: 'IDR', value: totalPrice });
             }
 
-            // --- Web3Forms Integration ---
+            // --- Static Forms Integration ---
             let cleanWhatsapp = whatsapp.replace(/\D/g, '');
             if (cleanWhatsapp.startsWith('0')) {
                 cleanWhatsapp = '62' + cleanWhatsapp.substring(1);
@@ -785,41 +787,61 @@
             const waFollowUpLink = `https://wa.me/${cleanWhatsapp}?text=Halo%20kak%20${nama},%20kami%20ingin%20menginformasikan%20mengenai%20pesanan%20Anda%20dengan%20ID%20${paymentId}.%20Mohon%20segera%20selesaikan%20pembayaran%20Anda.%20Terima%20kasih.`;
 
             const formDataObject = {
-                access_key: "88ff7fad-2cce-4aad-b520-03601f1d5002",
+                apiKey: "sf_87aj6dmak79mm56kif2cjh15",
                 subject: `Pesanan Baru: ${pkg.name} - ${nama}`,
-                "Nama Pemesan": nama,
-                "Email": email,
-                "No. WhatsApp": whatsapp,
-                "---": "---", // Separator
-                "ID Pembayaran": paymentId,
-                "Paket Dipesan": pkg.name,
-                "Total Pembayaran": formatCurrency(totalPrice),
-                "Metode Pembayaran": paymentAccount.displayName,
-                "--- ": "---", // Another separator, key must be unique
-                "Link Follow Up WA": waFollowUpLink
+                replyTo: email,
+                honeypot: formData.get('honeypot'), // Include honeypot field
+                name: nama,
+                email: email,
+                whatsapp: whatsapp,
+                "$ID Pembayaran": paymentId,
+                "$Paket Dipesan": pkg.name,
+                "$Total Pembayaran": formatCurrency(totalPrice),
+                "$Metode Pembayaran": paymentAccount.displayName,
+                "$Link Follow Up WA": waFollowUpLink
             };
 
-            fetch("https://api.web3forms.com/submit", {
+            fetch("https://api.staticforms.xyz/submit", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(formDataObject)
+                body: JSON.stringify(formDataObject),
+                headers: { 'Content-Type': 'application/json' }
             })
-            .then(async (response) => {
-                let json = await response.json();
-                if (response.status == 200) {
-                    console.log("Form submitted successfully to Web3Forms.");
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    console.log("Form submitted successfully to Static Forms.");
                 } else {
-                    console.error("Web3Forms submission failed.", json);
+                    console.error("Static Forms submission failed.", data);
                 }
             })
             .catch(error => {
-                console.error('Error submitting form to Web3Forms:', error);
+                console.error('Error submitting form to Static Forms:', error);
             });
-            // --- End of Web3Forms Integration ---
+            // --- End of Static Forms Integration ---
 
+            showPaymentInstructions(formData);
+        }
+
+        function showPaymentInstructions(formData) {
+            const pkg = packages[currentPackageId];
+            const totalPrice = pkg.price + uniqueCode;
+            const paymentMethodKey = document.querySelector('input[name="payment-method"]:checked')?.value;
+            const paymentAccount = paymentAccounts[paymentMethodKey];
+            
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = String(now.getFullYear()).slice(-2);
+            
+            let packageCode = '';
+            if (pkg.id === 'drive') packageCode = 'GD';
+            else if (pkg.id === 'photos') packageCode = 'GP';
+            else if (pkg.id === 'bundle') packageCode = 'PL';
+
+            const lastThreeDigits = String(totalPrice).slice(-3);
+            const paymentId = `${hours}${day}${month}${year}${packageCode}${lastThreeDigits}`;
+            
             elements.mainContentContainer.style.display = 'none';
             elements.footer.style.display = 'none';
             
@@ -975,7 +997,7 @@
             startCountdown(); // Start the countdown timer
         }
         
-        // --- NEW: Countdown Timer Function ---
+        // --- Countdown Timer Function ---
         function startCountdown() {
             const countdownElement = document.getElementById('countdown-timer');
             if (!countdownElement) return;
@@ -1025,7 +1047,7 @@
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-
+        
         document.querySelectorAll('input[name="package"]').forEach(radio => {
             radio.addEventListener('change', (event) => {
                 currentPackageId = event.target.value;
