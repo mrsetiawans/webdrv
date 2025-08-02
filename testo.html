@@ -379,20 +379,20 @@
                     <div id="features-before-form" class="mb-8 border-t border-gray-200 pt-8"></div>
 
                     <!-- Form -->
-                    <form id="orderForm">
+                    <form id="orderForm" action="https://formsubmit.co/rizalsetiawan101@gmail.com" method="POST">
                         <h2 class="text-xl font-bold mb-5 text-gray-800">2. Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
                                 <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
-                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
+                                <input type="text" id="nama" name="name" class="form-input w-full" placeholder="Masukkan nama lengkap Anda" required>
                             </div>
                             <div>
                                 <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
-                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890" required>
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Gmail Anda <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com">
+                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com" required>
                             </div>
                         </div>
                         
@@ -734,7 +734,7 @@
                           `*ID Pembayaran:* ${paymentId}\n` +
                           `*Paket:* ${pkg.name}\n` +
                           `*Metode Pembayaran:* ${paymentMethodName}\n` +
-                          `*Nama:* ${formData.get('nama')}\n` +
+                          `*Nama:* ${formData.get('name')}\n` +
                           `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
                           detailPesanan +
                           `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
@@ -743,16 +743,17 @@
         }
 
         function handleFormSubmit() {
-            const formData = new FormData(elements.orderForm);
-            const nama = formData.get('nama').trim();
+            const form = elements.orderForm;
+            const formData = new FormData(form);
+            const nama = formData.get('name').trim();
             const whatsapp = formData.get('whatsapp').trim();
             const email = formData.get('email').trim();
             const paymentMethodKey = formData.get('payment-method');
 
-            if (!nama) { showInfoModal('Data Belum Lengkap', 'Silakan isi Nama Anda.'); elements.orderForm.querySelector('#nama').focus(); return; }
-            if (!whatsapp) { showInfoModal('Data Belum Lengkap', 'Silakan isi Nomor WhatsApp Anda.'); elements.orderForm.querySelector('#whatsapp').focus(); return; }
-            if (!email) { showInfoModal('Data Belum Lengkap', 'Silakan isi alamat Gmail Anda.'); elements.orderForm.querySelector('#email').focus(); return; }
-            if (!paymentMethodKey) { showInfoModal('Pilih Pembayaran', 'Silakan pilih metode pembayaran.'); return; }
+            if (!nama || !whatsapp || !email || !paymentMethodKey) {
+                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan dan pilih metode pembayaran.');
+                return;
+            }
 
             const pkg = packages[currentPackageId];
             const totalPrice = pkg.price + uniqueCode;
@@ -799,8 +800,8 @@
             formSubmitData.append('---', '---'); // Separator
             formSubmitData.append('Link Follow Up WA', waFollowUpLink);
             
-            fetch('https://formsubmit.co/rizalsetiawan101@gmail.com', {
-                method: 'POST',
+            fetch(form.action, {
+                method: form.method,
                 body: formSubmitData
             }).catch(error => console.error('Form submission error:', error));
             // --- End of FormSubmit Integration ---
