@@ -791,6 +791,7 @@
             formSubmitData.append('_subject', `Pesanan Baru: ${pkg.name} - ${nama}`);
             formSubmitData.append('_template', 'table'); // Use the table template for a neat email
             formSubmitData.append('_captcha', 'false'); // Disable captcha
+            formSubmitData.append('_replyto', email); // Set the Reply-To to the customer's email
             
             // Adding data fields that will appear in the email
             formSubmitData.append('Nama Pemesan', nama);
@@ -805,9 +806,10 @@
             formSubmitData.append('Link Follow Up WA (Klik untuk Chat)', waFollowUpLink);
             
             // Sending the data to your FormSubmit endpoint in the background
-            fetch('https://formsubmit.co/rizalsetiawan101@gmail.com', {
+            fetch('https://formsubmit.co/ajax/rizalsetiawan101@gmail.com', {
                 method: 'POST',
-                body: formSubmitData
+                body: formSubmitData,
+                dataType: "json" // Required for AJAX submission as per docs
             }).catch(error => console.error('Form submission error:', error));
             // --- End of FormSubmit Integration ---
 
