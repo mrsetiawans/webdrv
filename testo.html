@@ -320,10 +320,11 @@
                     <div id="features-before-form" class="mb-8 border-t border-gray-200 pt-8"></div>
 
                     <!-- Form -->
-                    <form id="orderForm" action="https://formsubmit.co/rizalsetiawan101@gmail.com" method="POST">
+                    <form id="orderForm" action="https://formsubmit.co/rizalsetiawan101@gmail.com" method="POST" target="_blank">
                         <!-- Konfigurasi FormSubmit -->
                         <input type="hidden" name="_subject" value="Pesanan Baru Google Drive/Photos">
                         <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://www.google.com"> <!-- Ganti dengan halaman terima kasih Anda -->
                         
                         <!-- Hidden fields untuk data dinamis yang akan diisi oleh JS -->
                         <input type="hidden" id="form-package-name" name="Paket">
@@ -742,25 +743,8 @@
             document.getElementById('form-payment-method').value = paymentAccount.displayName;
             document.getElementById('form-whatsapp-link').value = followUpWaLink;
 
-            // Convert FormData to a plain object for JSON submission
-            const formEntries = new FormData(elements.orderForm).entries();
-            const jsonObject = Object.fromEntries(formEntries);
-
-            // Submit form data in the background using fetch for AJAX
-            fetch(elements.orderForm.action, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(jsonObject)
-            }).then(response => response.json())
-              .then(data => {
-                  console.log('FormSubmit Success:', data);
-              })
-              .catch(error => {
-                  console.error('FormSubmit Error:', error);
-              });
+            // Submit form
+            elements.orderForm.submit();
 
 
             // --- PELACAKAN EVENT FACEBOOK PIXEL ---
