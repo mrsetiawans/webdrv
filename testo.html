@@ -379,21 +379,20 @@
                     <div id="features-before-form" class="mb-8 border-t border-gray-200 pt-8"></div>
 
                     <!-- Form -->
-                    <!-- The form action and method are handled by JavaScript fetch, not standard submission -->
                     <form id="orderForm">
                         <h2 class="text-xl font-bold mb-5 text-gray-800">2. Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
                                 <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
-                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda" required>
+                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
                             </div>
                             <div>
                                 <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
-                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890" required>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Gmail Anda <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com" required>
+                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com">
                             </div>
                         </div>
                         
@@ -744,17 +743,17 @@
         }
 
         function handleFormSubmit() {
-            const formData = new FormData(elements.orderForm);
+            const form = elements.orderForm;
+            const formData = new FormData(form);
             const nama = formData.get('nama').trim();
             const whatsapp = formData.get('whatsapp').trim();
             const email = formData.get('email').trim();
-            const paymentMethodKey = document.querySelector('input[name="payment-method"]:checked')?.value;
+            const paymentMethodKey = formData.get('payment-method');
 
-
-            if (!nama) { showInfoModal('Data Belum Lengkap', 'Silakan isi Nama Anda.'); elements.orderForm.querySelector('#nama').focus(); return; }
-            if (!whatsapp) { showInfoModal('Data Belum Lengkap', 'Silakan isi Nomor WhatsApp Anda.'); elements.orderForm.querySelector('#whatsapp').focus(); return; }
-            if (!email) { showInfoModal('Data Belum Lengkap', 'Silakan isi alamat Gmail Anda.'); elements.orderForm.querySelector('#email').focus(); return; }
-            if (!paymentMethodKey) { showInfoModal('Pilih Pembayaran', 'Silakan pilih metode pembayaran.'); return; }
+            if (!nama || !whatsapp || !email || !paymentMethodKey) {
+                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan dan pilih metode pembayaran.');
+                return;
+            }
 
             const pkg = packages[currentPackageId];
             const totalPrice = pkg.price + uniqueCode;
@@ -778,61 +777,49 @@
                 fbq('track', 'AddPaymentInfo', { content_name: pkg.name, content_category: 'Software', currency: 'IDR', value: totalPrice });
             }
 
-            // --- FormSubmit Integration ---
-            const formSubmitData = new FormData();
+            // --- Web3Forms Integration ---
             let cleanWhatsapp = whatsapp.replace(/\D/g, '');
             if (cleanWhatsapp.startsWith('0')) {
                 cleanWhatsapp = '62' + cleanWhatsapp.substring(1);
             }
-            
-            // --- NEW: Detailed Follow-up Message for Seller ---
-            let paymentDetailsText = `*Metode:* ${paymentAccount.displayName}\n` +
-                                     `*Nomor:* ${paymentAccount.number}\n`;
-            if (paymentAccount.accountHolder) {
-                paymentDetailsText += `*Atas Nama:* ${paymentAccount.accountHolder}\n`;
-            }
+            const waFollowUpLink = `https://wa.me/${cleanWhatsapp}?text=Halo%20kak%20${nama},%20kami%20ingin%20menginformasikan%20mengenai%20pesanan%20Anda%20dengan%20ID%20${paymentId}.%20Mohon%20segera%20selesaikan%20pembayaran%20Anda.%20Terima%20kasih.`;
 
-            const followUpMessage = `Halo kak ${nama},\n\n` +
-                `Terima kasih telah memesan *${pkg.name}*.\n\n` +
-                `Berikut adalah rincian pembayaran untuk pesanan Anda:\n` +
-                `*- ID Pesanan:* ${paymentId}\n` +
-                `*- Total Pembayaran:* *${formatCurrency(totalPrice)}*\n\n` +
-                `Mohon segera selesaikan pembayaran Anda ke:\n` +
-                `${paymentDetailsText}\n` +
-                `*Penting:* Mohon transfer sesuai dengan jumlah total di atas (termasuk kode unik) agar pesanan Anda dapat kami proses secara otomatis.\n\n` +
-                `Setelah transfer, silakan balas pesan ini untuk konfirmasi.\n\n` +
-                `Terima kasih!`;
+            const formDataObject = {
+                access_key: "88ff7fad-2cce-4aad-b520-03601f1d5002",
+                subject: `Pesanan Baru: ${pkg.name} - ${nama}`,
+                "Nama Pemesan": nama,
+                "Email": email,
+                "No. WhatsApp": whatsapp,
+                "---": "---", // Separator
+                "ID Pembayaran": paymentId,
+                "Paket Dipesan": pkg.name,
+                "Total Pembayaran": formatCurrency(totalPrice),
+                "Metode Pembayaran": paymentAccount.displayName,
+                "--- ": "---", // Another separator, key must be unique
+                "Link Follow Up WA": waFollowUpLink
+            };
 
-            const waFollowUpLink = `https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(followUpMessage)}`;
+            fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(formDataObject)
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    console.log("Form submitted successfully to Web3Forms.");
+                } else {
+                    console.error("Web3Forms submission failed.", json);
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting form to Web3Forms:', error);
+            });
+            // --- End of Web3Forms Integration ---
 
-
-            // Setting up the email content for FormSubmit
-            formSubmitData.append('_subject', `Pesanan Baru: ${pkg.name} - ${nama}`);
-            formSubmitData.append('_template', 'table'); // Use the table template for a neat email
-            formSubmitData.append('_captcha', 'false'); // Disable captcha
-            formSubmitData.append('_replyto', email); // Set the Reply-To to the customer's email
-            
-            // Adding data fields that will appear in the email
-            formSubmitData.append('Nama Pemesan', nama);
-            formSubmitData.append('Email', email);
-            formSubmitData.append('No. WhatsApp', whatsapp);
-            formSubmitData.append('---', '---'); // Separator for visual clarity in the email
-            formSubmitData.append('ID Pembayaran', paymentId);
-            formSubmitData.append('Paket Dipesan', pkg.name);
-            formSubmitData.append('Total Pembayaran', formatCurrency(totalPrice));
-            formSubmitData.append('Metode Pembayaran', paymentAccount.displayName);
-            formSubmitData.append('---', '---'); // Separator
-            formSubmitData.append('Link Follow Up WA (Klik untuk Chat)', waFollowUpLink);
-            
-            // Sending the data to your FormSubmit endpoint in the background
-            fetch('https://formsubmit.co/ajax/rizalsetiawan101@gmail.com', {
-                method: 'POST',
-                body: formSubmitData,
-                dataType: "json" // Required for AJAX submission as per docs
-            }).catch(error => console.error('Form submission error:', error));
-            // --- End of FormSubmit Integration ---
-
-            // Hide the form and show the payment instructions page
             elements.mainContentContainer.style.display = 'none';
             elements.footer.style.display = 'none';
             
@@ -976,11 +963,11 @@
                 </div>
 
                 <div class="payment-instruction-footer text-center">
-                      <p class="text-gray-600 mb-4 text-sm">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
-                      <a href="${waLink}" target="_blank" class="cta-button blue-button w-full">
-                         <i class="fab fa-whatsapp text-xl"></i>&nbsp;
+                     <p class="text-gray-600 mb-4 text-sm">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
+                     <a href="${waLink}" target="_blank" class="cta-button blue-button w-full">
+                         <i class="fab fa-whatsapp text-xl"></i> 
                          <span>Konfirmasi Pembayaran</span>
-                      </a>
+                     </a>
                 </div>
             </div>
             `;
