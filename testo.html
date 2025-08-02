@@ -402,6 +402,18 @@
                         <!-- Rincian Pesanan -->
                         <div id="order-details-in-form" class="mt-8"></div>
                         
+                        <!-- Hidden inputs for FormSubmit -->
+                        <input type="hidden" name="_subject" value="Pesanan Baru Diterima!">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <!-- Hidden inputs for order details (values will be set by JS) -->
+                        <input type="hidden" name="ID Pembayaran" id="fs-payment-id">
+                        <input type="hidden" name="Paket Dipesan" id="fs-package-name">
+                        <input type="hidden" name="Total Pembayaran" id="fs-total-price">
+                        <input type="hidden" name="Metode Pembayaran" id="fs-payment-method">
+                        <input type="hidden" name="Link Follow Up WA" id="fs-wa-link">
+
                         <button type="button" id="submit-btn" class="cta-button blue-button mt-8">
                             Beli Sekarang
                         </button>
@@ -778,32 +790,39 @@
             }
 
             // --- FormSubmit Integration ---
-            const formSubmitData = new FormData();
             let cleanWhatsapp = whatsapp.replace(/\D/g, '');
             if (cleanWhatsapp.startsWith('0')) {
                 cleanWhatsapp = '62' + cleanWhatsapp.substring(1);
             }
             const waFollowUpLink = `https://wa.me/${cleanWhatsapp}?text=Halo%20kak%20${nama},%20kami%20ingin%20menginformasikan%20mengenai%20pesanan%20Anda%20dengan%20ID%20${paymentId}.%20Mohon%20segera%20selesaikan%20pembayaran%20Anda.%20Terima%20kasih.`;
 
-            formSubmitData.append('_subject', `Pesanan Baru: ${pkg.name} - ${nama}`);
-            formSubmitData.append('_template', 'table');
-            formSubmitData.append('_captcha', 'false');
+            // Set values for hidden inputs before creating FormData
+            document.getElementById('fs-payment-id').value = paymentId;
+            document.getElementById('fs-package-name').value = pkg.name;
+            document.getElementById('fs-total-price').value = formatCurrency(totalPrice);
+            document.getElementById('fs-payment-method').value = paymentAccount.displayName;
+            document.getElementById('fs-wa-link').value = waFollowUpLink;
             
-            formSubmitData.append('Nama Pemesan', nama);
-            formSubmitData.append('Email', email);
-            formSubmitData.append('No. WhatsApp', whatsapp);
-            formSubmitData.append('---', '---'); // Separator
-            formSubmitData.append('ID Pembayaran', paymentId);
-            formSubmitData.append('Paket Dipesan', pkg.name);
-            formSubmitData.append('Total Pembayaran', formatCurrency(totalPrice));
-            formSubmitData.append('Metode Pembayaran', paymentAccount.displayName);
-            formSubmitData.append('---', '---'); // Separator
-            formSubmitData.append('Link Follow Up WA', waFollowUpLink);
-            
+            // Create FormData directly from the form element which now includes hidden inputs
+            const formSubmitData = new FormData(form);
+
             fetch(form.action, {
                 method: form.method,
-                body: formSubmitData
-            }).catch(error => console.error('Form submission error:', error));
+                body: formSubmitData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Form submitted successfully to FormSubmit.');
+                } else {
+                    console.error('FormSubmit submission failed.', response);
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting form to FormSubmit:', error);
+            });
             // --- End of FormSubmit Integration ---
 
             elements.mainContentContainer.style.display = 'none';
