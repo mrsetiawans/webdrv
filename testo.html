@@ -780,25 +780,29 @@
             }
 
             // --- Nocodeform.io Integration ---
-            const submitFormData = new FormData();
             let cleanWhatsapp = whatsapp.replace(/\D/g, '');
             if (cleanWhatsapp.startsWith('0')) {
                 cleanWhatsapp = '62' + cleanWhatsapp.substring(1);
             }
             const waFollowUpLink = `https://wa.me/${cleanWhatsapp}?text=Halo%20kak%20${nama},%20kami%20ingin%20menginformasikan%20mengenai%20pesanan%20Anda%20dengan%20ID%20${paymentId}.%20Mohon%20segera%20selesaikan%20pembayaran%20Anda.%20Terima%20kasih.`;
 
-            submitFormData.append('nama', nama);
-            submitFormData.append('email', email);
-            submitFormData.append('whatsapp', whatsapp);
-            submitFormData.append('ID Pembayaran', paymentId);
-            submitFormData.append('Paket Dipesan', pkg.name);
-            submitFormData.append('Total Pembayaran', formatCurrency(totalPrice));
-            submitFormData.append('Metode Pembayaran', paymentAccount.displayName);
-            submitFormData.append('Link Follow Up WA', waFollowUpLink);
+            const formDataObject = {
+                'nama': nama,
+                'email': email,
+                'whatsapp': whatsapp,
+                'ID Pembayaran': paymentId,
+                'Paket Dipesan': pkg.name,
+                'Total Pembayaran': formatCurrency(totalPrice),
+                'Metode Pembayaran': paymentAccount.displayName,
+                'Link Follow Up WA': waFollowUpLink
+            };
 
             fetch("https://nocodeform.io/f/688ebecd11a17fd247c32c33", {
                 method: "POST",
-                body: submitFormData
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formDataObject)
             })
             .then(response => {
                 if (response.ok) {
