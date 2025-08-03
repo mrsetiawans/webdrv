@@ -76,6 +76,10 @@
             background-color: #185abc;
             box-shadow: 0 1px 3px 1px rgba(66,64,67,.15),0 1px 2px 0 rgba(60,64,67,.3);
         }
+        .cta-button:disabled {
+            background-color: #9e9e9e;
+            cursor: not-allowed;
+        }
 
         /* Modal / Message Box Styling */
         .modal {
@@ -384,18 +388,21 @@
                         <div class="space-y-4">
                             <div>
                                 <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
-                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda" required>
+                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
                             </div>
                             <div>
                                 <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
-                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890" required>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Gmail Anda <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com" required>
+                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com">
                             </div>
                         </div>
                         
+                        <!-- Honeypot field for anti-spam -->
+                        <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
+
                         <!-- Metode Pembayaran -->
                         <div id="payment-method-selection" class="mt-8"></div>
                         
@@ -659,27 +666,41 @@
 
         const getFaqHTML = () => `
              <div>
-                 <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Pertanyaan Umum (FAQ)</h3>
-                 <details class="faq-item">
-                     <summary>Apakah ini benar-benar unlimited?</summary>
-                     <div class="faq-content">Ya, ini adalah upgrade untuk mendapatkan penyimpanan tanpa batas sesuai paket yang Anda pilih. Anda bisa menyimpan file (Drive) atau foto/video (Photos) tanpa khawatir mengenai batas kuota.</div>
-                 </details>
-                 <details class="faq-item">
-                     <summary>Apakah ini aman dan legal?</summary>
-                     <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode yang sah dan akun Anda tetap aman di bawah pengelolaan Google. Kami tidak pernah meminta password Anda, hanya alamat email. Privasi file Anda 100% terjamin.</div>
-                 </details>
-                 <details class="faq-item">
-                     <summary>Apa bedanya dengan langganan Google One?</summary>
-                     <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misalnya 2TB, 5TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan <strong>unlimited</strong> dengan sistem sekali bayar untuk selamanya.</div>
-                 </details>
-                 <details class="faq-item">
-                     <summary>Berapa lama prosesnya?</summary>
-                     <div class="faq-content">Prosesnya sangat cepat, biasanya hanya dalam beberapa menit hingga maksimal 1x24 jam setelah konfirmasi pembayaran dan data kami terima.</div>
-                 </details>
-                 <details class="faq-item">
-                     <summary>Apakah ada biaya bulanan atau tahunan?</summary>
-                     <div class="faq-content">Tidak ada! Ini adalah pembayaran sekali untuk selamanya. Anda tidak perlu khawatir tentang biaya langganan bulanan atau tahunan lagi.</div>
-                 </details>
+                 <h3 class="text-2xl font-bold mb-6 text-center text-gray-800">Pertanyaan Umum (FAQ)</h3>
+                 <div class="space-y-2">
+                    <details class="faq-item" open>
+                        <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
+                        <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
+                        <div class="faq-content">Untuk Google Drive, kami akan mengundang akun Gmail pribadi Anda untuk bergabung ke dalam "Shared Drive" khusus yang memiliki kapasitas unlimited. Anda tidak perlu memberikan password, cukup alamat email saja. Shared Drive ini akan muncul di akun Drive Anda dan bisa digunakan untuk menyimpan file apa pun.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Bagaimana proses untuk Google Photos?</summary>
+                        <div class="faq-content">Untuk Google Photos Unlimited, Anda akan mendapatkan sebuah akun Google baru yang sudah memiliki fitur penyimpanan foto/video kualitas asli tanpa batas. Anda akan menerima email dan password akun baru tersebut, dan Anda bisa langsung mengganti passwordnya demi keamanan. Akun ini terpisah dari akun utama Anda.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apakah ini aman dan legal?</summary>
+                        <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apa bedanya dengan langganan Google One?</summary>
+                        <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, memanfaatkan fitur Shared Drive.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Bisakah saya memindahkan file lama saya?</summary>
+                        <div class="faq-content">Tentu bisa. Anda dapat dengan mudah memindahkan file dan folder dari penyimpanan Drive pribadi Anda ke dalam Shared Drive unlimited yang baru. Untuk Google Photos, Anda perlu memindahkan foto secara manual ke akun baru yang kami berikan.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Berapa lama proses aktivasinya?</summary>
+                        <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apakah ada garansi?</summary>
+                        <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal, virus, dll).</div>
+                    </details>
+                 </div>
              </div>
         `;
         
@@ -742,117 +763,11 @@
             return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
         }
 
-        function handleFormSubmit(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const form = elements.orderForm;
-            const formData = new FormData(form);
-            const nama = formData.get('nama').trim();
-            const whatsapp = formData.get('whatsapp').trim();
-            const email = formData.get('email').trim();
-            const paymentMethodKey = document.querySelector('input[name="payment-method"]:checked')?.value;
-
-            if (!nama || !whatsapp || !email || !paymentMethodKey) {
-                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan dan pilih metode pembayaran.');
-                return;
-            }
-
-            const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price + uniqueCode;
-            const paymentAccount = paymentAccounts[paymentMethodKey];
-            
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const year = String(now.getFullYear()).slice(-2);
-            
-            let packageCode = '';
-            if (pkg.id === 'drive') packageCode = 'GD';
-            else if (pkg.id === 'photos') packageCode = 'GP';
-            else if (pkg.id === 'bundle') packageCode = 'PL';
-
-            const lastThreeDigits = String(totalPrice).slice(-3);
-            const paymentId = `${hours}${day}${month}${year}${packageCode}${lastThreeDigits}`;
-
+        function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId) {
             if (typeof fbq === 'function') {
                 fbq('track', 'AddPaymentInfo', { content_name: pkg.name, content_category: 'Software', currency: 'IDR', value: totalPrice });
             }
 
-            // --- Static Forms Integration ---
-            let cleanWhatsapp = whatsapp.replace(/\D/g, '');
-            if (cleanWhatsapp.startsWith('0')) {
-                cleanWhatsapp = '62' + cleanWhatsapp.substring(1);
-            }
-            
-            let followUpMessage = `Halo kak ${nama}, kami ingin mengingatkan mengenai pesanan Anda.\n\nBerikut adalah detail tagihan Anda:\n`;
-            followUpMessage += `*ID Pembayaran:* ${paymentId}\n`;
-            followUpMessage += `*Paket Dipesan:* ${pkg.name}\n`;
-            followUpMessage += `*Total Pembayaran:* ${formatCurrency(totalPrice)}\n\n`;
-            followUpMessage += `Mohon selesaikan pembayaran ke:\n`;
-            followUpMessage += `*Metode:* ${paymentAccount.displayName}\n`;
-            followUpMessage += `*Nomor:* ${paymentAccount.number}\n`;
-            if (paymentAccount.accountHolder) {
-                followUpMessage += `*Atas Nama:* ${paymentAccount.accountHolder}\n`;
-            }
-            followUpMessage += `\nSetelah melakukan pembayaran, mohon konfirmasi agar pesanan Anda dapat segera kami proses. Terima kasih!`;
-
-            const waFollowUpLink = `https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(followUpMessage)}`;
-
-            const formDataObject = {
-                apiKey: "sf_87aj6dmak79mm56kif2cjh15",
-                replyTo: "@",
-                name: nama,
-                email: email,
-                whatsapp: whatsapp,
-                "$ID Pembayaran": paymentId,
-                "$Paket Dipesan": pkg.name,
-                "$Total Pembayaran": formatCurrency(totalPrice),
-                "$Metode Pembayaran": paymentAccount.displayName,
-                "$Link Follow Up WA": waFollowUpLink
-            };
-
-            fetch("https://api.staticforms.xyz/submit", {
-                method: "POST",
-                body: JSON.stringify(formDataObject),
-                headers: { 'Content-Type': 'application/json' }
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    console.log("Form submitted successfully to Static Forms.");
-                } else {
-                    console.error("Static Forms submission failed.", data);
-                }
-            })
-            .catch(error => {
-                console.error('Error submitting form to Static Forms:', error);
-            });
-            // --- End of Static Forms Integration ---
-
-            showPaymentInstructions(formData);
-        }
-
-        function showPaymentInstructions(formData) {
-            const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price + uniqueCode;
-            const paymentMethodKey = document.querySelector('input[name="payment-method"]:checked')?.value;
-            const paymentAccount = paymentAccounts[paymentMethodKey];
-            
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const year = String(now.getFullYear()).slice(-2);
-            
-            let packageCode = '';
-            if (pkg.id === 'drive') packageCode = 'GD';
-            else if (pkg.id === 'photos') packageCode = 'GP';
-            else if (pkg.id === 'bundle') packageCode = 'PL';
-
-            const lastThreeDigits = String(totalPrice).slice(-3);
-            const paymentId = `${hours}${day}${month}${year}${packageCode}${lastThreeDigits}`;
-            
             elements.mainContentContainer.style.display = 'none';
             elements.footer.style.display = 'none';
             
@@ -996,19 +911,97 @@
                 </div>
 
                 <div class="payment-instruction-footer text-center">
-                     <p class="text-gray-600 mb-4 text-sm">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
-                     <a href="${waLink}" target="_blank" class="cta-button blue-button w-full">
+                      <p class="text-gray-600 mb-4 text-sm">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
+                      <a href="${waLink}" target="_blank" class="cta-button blue-button w-full">
                          <i class="fab fa-whatsapp text-xl"></i> 
                          <span>Konfirmasi Pembayaran</span>
-                     </a>
+                      </a>
                 </div>
             </div>
             `;
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
             startCountdown(); // Start the countdown timer
         }
+
+        async function handleFormSubmit() {
+            // 1. Validate Form
+            const formData = new FormData(elements.orderForm);
+            const nama = formData.get('nama').trim();
+            const whatsapp = formData.get('whatsapp').trim();
+            const email = formData.get('email').trim();
+            const paymentMethodKey = formData.get('payment-method');
+
+            if (!nama || !whatsapp || !email || !paymentMethodKey) {
+                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan sebelum melanjutkan.');
+                return;
+            }
+
+            // 2. Set Loading State
+            elements.submitBtn.disabled = true;
+            elements.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+
+            // 3. Prepare Data for UI and Submission
+            const pkg = packages[currentPackageId];
+            const totalPrice = pkg.price + uniqueCode;
+            const paymentAccount = paymentAccounts[paymentMethodKey];
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = String(now.getFullYear()).slice(-2);
+            let packageCode = '';
+            if (pkg.id === 'drive') packageCode = 'GD';
+            else if (pkg.id === 'photos') packageCode = 'GP';
+            else if (pkg.id === 'bundle') packageCode = 'PL';
+            const lastThreeDigits = String(totalPrice).slice(-3);
+            const paymentId = `${hours}${day}${month}${year}${packageCode}${lastThreeDigits}`;
+
+            // 4. Submit to Static Forms
+            let submissionSuccess = false;
+            try {
+                const formDataForStaticForms = {
+                    apiKey: 'sf_195b5fj92dge8l9b391mng1g',
+                    replyTo: email,
+                    honeypot: formData.get('honeypot'),
+                    name: nama,
+                    email: email,
+                    whatsapp: whatsapp,
+                    '$ID Pembayaran': paymentId,
+                    '$Paket': pkg.name,
+                    '$Metode Pembayaran': paymentAccount.displayName,
+                    '$Total Transfer': formatCurrency(totalPrice)
+                };
+
+                const response = await fetch('https://api.staticforms.xyz/submit', {
+                    method: 'POST',
+                    body: JSON.stringify(formDataForStaticForms),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                // If response status is OK (2xx), we consider it a success
+                if (response.ok) {
+                    submissionSuccess = true;
+                } else {
+                    console.error("Static Forms server error:", response.status, await response.text());
+                }
+
+            } catch (e) {
+                console.error("Network error during form submission:", e);
+            }
+
+            // 5. Restore Button State
+            elements.submitBtn.disabled = false;
+            elements.submitBtn.innerHTML = 'Beli Sekarang';
+
+            // 6. Update UI based on submission result
+            if (submissionSuccess) {
+                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId);
+            } else {
+                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan saat mengirim data Anda. Silakan coba lagi.');
+            }
+        }
         
-        // --- Countdown Timer Function ---
+        // --- NEW: Countdown Timer Function ---
         function startCountdown() {
             const countdownElement = document.getElementById('countdown-timer');
             if (!countdownElement) return;
@@ -1058,7 +1051,7 @@
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-        
+
         document.querySelectorAll('input[name="package"]').forEach(radio => {
             radio.addEventListener('change', (event) => {
                 currentPackageId = event.target.value;
