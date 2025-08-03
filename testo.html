@@ -779,7 +779,7 @@
                 fbq('track', 'AddPaymentInfo', { content_name: pkg.name, content_category: 'Software', currency: 'IDR', value: totalPrice });
             }
 
-            // --- submit-form.com Integration ---
+            // --- Nocodeform.io Integration ---
             const submitFormData = new FormData();
             submitFormData.append('nama', nama);
             submitFormData.append('email', email);
@@ -789,21 +789,21 @@
             submitFormData.append('Total Pembayaran', formatCurrency(totalPrice));
             submitFormData.append('Metode Pembayaran', paymentAccount.displayName);
 
-            fetch("https://submit-form.com/ZgZ1cRsfP", {
+            fetch("https://nocodeform.io/f/688ebecd11a17fd247c32c33", {
                 method: "POST",
                 body: submitFormData
             })
             .then(response => {
                 if (response.ok) {
-                    console.log("Form submitted successfully to submit-form.com.");
+                    console.log("Form submitted successfully to Nocodeform.io.");
                 } else {
-                    console.error("submit-form.com submission failed.", response);
+                    console.error("Nocodeform.io submission failed.", response);
                 }
             })
             .catch(error => {
-                console.error('Error submitting form to submit-form.com:', error);
+                console.error('Error submitting form to Nocodeform.io:', error);
             });
-            // --- End of submit-form.com Integration ---
+            // --- End of Nocodeform.io Integration ---
 
             showPaymentInstructions(formData);
         }
