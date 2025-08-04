@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <!-- === KODE FACEBOOK PIXEL DIMULAI DI SINI === -->
@@ -30,75 +30,24 @@
     <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
 
     <style>
-        /* --- DESAIN PREMIUM TERINSPIRASI CANVA 2025 --- */
+        /* --- TEMA BARU TERINSPIRASI DARI CANVA (VIBRANT) --- */
         
-        /* Variabel Warna Premium */
+        /* Variabel Warna Utama */
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --canva-purple: #8B5FBF;
-            --canva-purple-light: #A084CA;
-            --canva-purple-dark: #6B46C1;
-            --canva-teal: #06D6A0;
-            --canva-teal-light: #4ECDC4;
-            --canva-orange: #FFB84D;
-            --canva-pink: #FF6B9D;
-            --canva-blue: #4DABF7;
-            
-            --gradient-primary: linear-gradient(135deg, var(--canva-purple) 0%, var(--canva-teal) 100%);
-            --gradient-secondary: linear-gradient(135deg, var(--canva-orange) 0%, var(--canva-pink) 100%);
-            --gradient-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --card-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
-            --card-shadow-hover: 0 30px 60px -12px rgba(139, 95, 191, 0.25);
-            
-            --text-primary: #2D3748;
-            --text-secondary: #4A5568;
-            --text-muted: #718096;
-            --border-light: rgba(226, 232, 240, 0.8);
-            
-            --glassmorphism: rgba(255, 255, 255, 0.25);
-            --glassmorphism-border: rgba(255, 255, 255, 0.18);
+            --primary-color: #8C30F5; /* Ungu khas Canva yang vibrant */
+            --primary-color-darker: #7A28D8; /* Versi lebih gelap untuk hover */
+            --secondary-color: #05A3B8; /* Teal khas Canva */
+            --card-bg: #FFFFFF;
+            --border-color: #E5E7EB;
+            --text-dark: #0D0C22; /* Teks hitam pekat untuk kontras tinggi */
+            --text-light: #6B7280;
         }
 
-        /* Animasi Modern */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(139, 95, 191, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(139, 95, 191, 0.6); }
-        }
-        
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Background dengan Efek Modern */
+        /* Pengaturan Dasar Body dengan Gradien Latar */
         body {
-            font-family: 'Inter', 'Sora', sans-serif;
-            background: var(--gradient-bg);
-            color: var(--text-primary);
-            position: relative;
-            overflow-x: hidden;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(139, 95, 191, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(6, 214, 160, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 184, 77, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #F4E7FF 0%, #E8F7FF 100%);
+            color: var(--text-dark);
         }
         
         .container {
@@ -106,539 +55,262 @@
             z-index: 1;
         }
 
-        /* Teks Gradien Premium */
+        /* Teks Gradien Khas Canva */
         .canva-gradient-text {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-        
-        .canva-gradient-text-secondary {
-            background: var(--gradient-secondary);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-fill-color: transparent;
         }
         
-        /* Kartu Glassmorphism */
+        /* Kartu Konten Utama */
         .main-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 32px;
-            border: 1px solid var(--glassmorphism-border);
-            box-shadow: var(--card-shadow);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: slideInUp 0.8s ease-out;
-        }
-        
-        .main-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--card-shadow-hover);
-        }
-
-        /* Header Keamanan dengan Ikon Modern */
-        .security-header {
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 16px;
-            background: linear-gradient(135deg, rgba(139, 95, 191, 0.1) 0%, rgba(6, 214, 160, 0.1) 100%);
-            border-radius: 16px;
-            border: 1px solid var(--glassmorphism-border);
-            transition: all 0.3s ease;
-        }
-        
-        .security-header:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 95, 191, 0.15);
-        }
-        
-        .security-header i {
-            color: var(--canva-purple);
-            font-size: 1.5rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        /* Pilihan Paket Premium */
-        .package-option {
-            border: 2px solid var(--border-light);
-            padding: 24px 16px;
+            background-color: var(--card-bg);
             border-radius: 24px;
+            box-shadow: 0 10px 50px -15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* Header Keamanan */
+        .security-header {
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        .security-header i {
+            color: var(--primary-color);
+            opacity: 0.8;
+        }
+
+        /* Pilihan Paket */
+        .package-option {
+            border: 2px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 16px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
             text-align: center;
             position: relative;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            overflow: hidden;
+            background-color: var(--card-bg);
         }
-        
-        .package-option::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-        
         .package-option:hover {
-            border-color: var(--canva-purple);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(139, 95, 191, 0.2);
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(140, 48, 245, 0.1);
         }
-        
-        .package-option:hover::before {
-            opacity: 0.1;
-        }
-        
         .package-option.selected {
-            border-color: var(--canva-purple);
-            background: linear-gradient(135deg, rgba(139, 95, 191, 0.1) 0%, rgba(6, 214, 160, 0.05) 100%);
-            box-shadow: 0 0 0 4px rgba(139, 95, 191, 0.2);
-            animation: glow 2s ease-in-out infinite;
+            border-color: var(--primary-color);
+            background-color: #F4E7FF; /* Warna ungu muda yang cocok dengan gradien */
+            box-shadow: 0 0 0 3px rgba(140, 48, 245, 0.2);
         }
-        
-        .package-option h4 {
-            font-family: 'Sora', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-        
-        .package-option p {
-            font-weight: 700;
-            font-size: 1.125rem;
-            color: var(--canva-purple);
-        }
-        
         .badge {
             position: absolute;
-            top: -16px;
+            top: -14px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--gradient-secondary);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 8px 20px;
+            padding: 5px 16px;
             font-size: 0.75rem;
-            font-weight: 800;
-            border-radius: 50px;
+            font-weight: 700;
+            border-radius: 9999px;
             text-transform: uppercase;
             white-space: nowrap;
-            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
-            animation: float 3s ease-in-out infinite;
         }
 
-        /* Input Form Modern */
+        /* Input Form */
         .form-input {
-            border: 2px solid var(--border-light);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 16px;
-            padding: 16px 20px;
+            border: 2px solid #E5E7EB;
+            transition: all 0.2s ease-in-out;
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
             width: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            color: var(--text-primary);
+            background-color: #F7F7F9;
+            color: var(--text-dark);
             font-weight: 500;
-            font-size: 1rem;
         }
-        
-        .form-input::placeholder { 
-            color: var(--text-muted); 
-            font-weight: 400;
-        }
-        
+        .form-input::placeholder { color: #9CA3AF; }
         .form-input:focus {
-            border-color: var(--canva-purple);
+            border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 4px rgba(139, 95, 191, 0.1);
-            background: rgba(255, 255, 255, 0.95);
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 3px rgba(140, 48, 245, 0.2);
+            background-color: var(--card-bg);
         }
         
-        /* Tombol CTA Premium */
+        /* Tombol Aksi (CTA) */
         .cta-button {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 20px;
-            padding: 18px 32px;
-            font-size: 1.125rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
             font-weight: 700;
-            font-family: 'Sora', sans-serif;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 0.75rem;
             cursor: pointer;
             width: 100%;
             border: none;
             text-transform: uppercase;
-            letter-spacing: 0.025em;
-            position: relative;
-            overflow: hidden;
         }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
         .canva-button {
-            background: var(--gradient-primary);
+            background: var(--primary-color);
             color: white;
-            box-shadow: 0 10px 30px rgba(139, 95, 191, 0.4);
+            box-shadow: 0 4px 20px -5px rgba(140, 48, 245, 0.6);
         }
-        
         .canva-button:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(139, 95, 191, 0.5);
-        }
-
-        /* Modal Premium */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1000; 
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%;
-            overflow: auto; 
-            background: rgba(45, 55, 72, 0.8);
-            backdrop-filter: blur(5px);
-            justify-content: center; 
-            align-items: center;
-        }
-        
-        .modal-content {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glassmorphism-border);
-            margin: auto; 
-            padding: 32px; 
-            width: 90%; 
-            max-width: 480px;
-            border-radius: 24px; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-            text-align: center; 
-            position: relative;
-            animation: slideInUp 0.4s ease;
-        }
-        
-        .modal-content h3 { 
-            color: var(--text-primary); 
-            margin-bottom: 16px; 
-            font-size: 1.75rem; 
-            font-weight: 700;
-            font-family: 'Sora', sans-serif;
-        }
-        
-        .modal-content p { 
-            color: var(--text-secondary); 
-            margin-bottom: 24px; 
-            line-height: 1.6;
-            font-size: 1.125rem;
-        }
-        
-        .modal-ok-button {
-            background: var(--gradient-primary); 
-            color: white; 
-            padding: 14px 28px; 
-            border: none; 
-            border-radius: 16px;
-            cursor: pointer; 
-            font-size: 1rem; 
-            font-weight: 600; 
-            transition: all 0.3s ease;
-            font-family: 'Sora', sans-serif;
-        }
-        
-        .modal-ok-button:hover { 
+            background: var(--primary-color-darker);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(139, 95, 191, 0.3);
+            box-shadow: 0 6px 25px -5px rgba(140, 48, 245, 0.7);
         }
 
-        /* Testimoni dengan Efek Hover */
-        .testimonial-image {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Metode Pembayaran */
+        .payment-method-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
             cursor: pointer;
-            border-radius: 24px;
-            overflow: hidden;
-            position: relative;
+            transition: all 0.2s ease;
         }
-        
-        .testimonial-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
+        .payment-method-option:not(:last-child) {
+            margin-bottom: 0.75rem;
         }
-        
+        .payment-method-option.selected {
+            border-color: var(--primary-color);
+            background-color: #F4E7FF;
+        }
+        .payment-method-option input[type="radio"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.25em;
+            height: 1.25em;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            transform: translateY(-0.075em);
+            display: grid;
+            place-content: center;
+            transition: all 0.1s ease-in-out;
+        }
+        .payment-method-option input[type="radio"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em var(--primary-color);
+        }
+        .payment-method-option input[type="radio"]:checked {
+            border-color: var(--primary-color);
+        }
+        .payment-method-option input[type="radio"]:checked::before {
+            transform: scale(1);
+        }
+        .payment-method-logo {
+            height: 24px;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+        .payment-method-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+
+        /* Modal / Kotak Pesan */
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+            overflow: auto; background-color: rgba(17, 24, 39, 0.6); justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background-color: var(--card-bg); border: 1px solid var(--border-color); margin: auto; padding: 24px 32px; width: 90%; max-width: 450px;
+            border-radius: 16px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); text-align: center; position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .modal-content h3 { color: var(--text-dark); margin-bottom: 15px; font-size: 1.5rem; font-weight: 700; }
+        .modal-content p { color: var(--text-light); margin-bottom: 20px; line-height: 1.6; }
+        .modal-ok-button {
+            background: var(--primary-color); color: white; padding: 10px 24px; border: none; border-radius: 8px;
+            cursor: pointer; font-size: 1rem; font-weight: 600; transition: background-color 0.2s ease;
+        }
+        .modal-ok-button:hover { background-color: var(--primary-color-darker); }
+
+        /* Bagian Testimoni */
+        .testimonial-image {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-radius: 16px;
+        }
         .testimonial-image:hover {
-            transform: translateY(-12px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(139, 95, 191, 0.3);
-        }
-        
-        .testimonial-image:hover::before {
-            opacity: 0.1;
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.15);
         }
         
         /* Modal Zoom Gambar */
         #imageModal .modal-content-image {
-            margin: auto; 
-            display: block; 
-            width: auto; 
-            max-width: 90%;
-            max-height: 85vh; 
-            animation: slideInUp 0.4s ease;
-            border-radius: 16px;
+            margin: auto; display: block; width: auto; max-width: 90%;
+            max-height: 85vh; animation: zoomIn 0.3s ease;
         }
-        
         .close-image-modal {
-            position: absolute; 
-            top: 20px; 
-            right: 35px; 
-            color: #f1f1f1;
-            font-size: 40px; 
-            font-weight: bold; 
-            transition: 0.3s; 
-            cursor: pointer;
+            position: absolute; top: 20px; right: 35px; color: #f1f1f1;
+            font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer;
         }
+        .close-image-modal:hover, .close-image-modal:focus { color: #bbb; text-decoration: none; }
+        @keyframes zoomIn { from {transform: scale(0)} to {transform: scale(1)} }
         
-        .close-image-modal:hover, 
-        .close-image-modal:focus { 
-            color: var(--canva-orange); 
-            text-decoration: none; 
-        }
-        
-        /* Notifikasi Premium */
+        /* Notifikasi Toast */
         .notif-box {
-            position: fixed; 
-            top: 24px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            color: var(--text-primary); 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            padding: 16px 24px; 
-            display: none; 
-            align-items: center; 
-            gap: 16px; 
-            width: auto;
-            max-width: 480px; 
-            z-index: 1000; 
-            opacity: 0; 
-            border: 1px solid var(--glassmorphism-border);
-            transition: all 0.4s ease;
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background-color: var(--card-bg);
+            color: var(--text-dark); border-radius: 9999px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 12px 24px; display: none; align-items: center; gap: 12px; width: auto;
+            max-width: 450px; z-index: 1000; opacity: 0; border: 1px solid var(--border-color);
+            transition: opacity 0.4s ease, transform 0.4s ease, top 0.4s ease;
         }
-        
-        .notif-box.show { 
-            display: flex; 
-            opacity: 1; 
-            animation: slideInAndOut 5s ease-in-out forwards; 
-        }
-        
+        .notif-box.show { display: flex; opacity: 1; animation: slideInAndOut 5s ease-in-out forwards; }
         @keyframes slideInAndOut {
             0%   { opacity: 0; transform: translateX(-50%) translateY(-30px); }
             10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
             90%  { opacity: 1; transform: translateX(-50%) translateY(0); }
             100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
         }
-        
-        .notif-icon-wrapper { 
-            color: var(--canva-teal); 
-            font-size: 1.5rem; 
-            flex-shrink: 0; 
-        }
-        
-        .notif-message { 
-            font-size: 0.95rem; 
-            line-height: 1.4; 
-        }
-        
-        .notif-message strong { 
-            font-weight: 700; 
-            color: var(--canva-purple); 
-        }
-        
-        .notif-time { 
-            font-size: 0.8rem; 
-            color: var(--text-muted); 
-            margin-top: 4px; 
+        .notif-icon-wrapper { color: var(--primary-color); font-size: 1.2rem; flex-shrink: 0; }
+        .notif-message { font-size: 0.9rem; line-height: 1.2; }
+        .notif-message strong { font-weight: 600; color: var(--primary-color); }
+        .notif-time { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
+        @media (max-width: 500px) {
+            .notif-box { left: 16px; right: 16px; top: 16px; transform: translateX(0); width: calc(100% - 32px); }
+            @keyframes slideInAndOut {
+                0%   { opacity: 0; transform: translateY(-20px); } 10%  { opacity: 1; transform: translateY(0); }
+                90%  { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); }
+            }
         }
 
-        /* FAQ Premium */
-        .faq-item { 
-            border-bottom: 1px solid var(--border-light);
-            transition: all 0.3s ease;
-        }
-        
-        .faq-item:last-child { 
-            border-bottom: none; 
-        }
-        
-        .faq-item:hover {
-            background: rgba(139, 95, 191, 0.02);
-            border-radius: 12px;
-            padding: 0 12px;
-        }
-        
+        /* Bagian FAQ */
+        .faq-item { border-bottom: 1px solid var(--border-color); }
+        .faq-item:last-child { border-bottom: none; }
         .faq-item summary {
-            font-weight: 600; 
-            font-size: 1.125rem; 
-            color: var(--text-primary);
-            padding: 20px 0; 
-            cursor: pointer; 
-            list-style: none;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            font-family: 'Sora', sans-serif;
+            font-weight: 600; font-size: 1rem; color: var(--text-dark);
+            padding: 1.25rem 0.5rem; cursor: pointer; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        
-        .faq-item summary::-webkit-details-marker { 
-            display: none; 
-        }
-        
+        .faq-item summary::-webkit-details-marker { display: none; }
         .faq-item summary::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free'; 
-            font-weight: 900;
-            transition: transform 0.3s ease; 
-            color: var(--canva-purple); 
-            font-size: 0.875rem;
+            content: '\f078'; /* chevron-down */
+            font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            transition: transform 0.3s ease; color: var(--primary-color); opacity: 0.6;
         }
-        
-        .faq-item[open] summary::after { 
-            transform: rotate(180deg); 
-        }
-        
-        .faq-content { 
-            padding: 0 0 20px 0; 
-            color: var(--text-secondary); 
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-        
-        .faq-item[open] summary { 
-            color: var(--canva-purple); 
-        }
-
-        /* Logo dengan Efek */
-        .logo-container {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .logo-container::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: float 4s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        /* Heading Premium */
-        .premium-heading {
-            font-family: 'Sora', sans-serif;
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        /* Copy Button dengan Efek */
-        .copy-button {
-            background: linear-gradient(135deg, rgba(139, 95, 191, 0.1) 0%, rgba(6, 214, 160, 0.1) 100%);
-            border: 2px solid var(--glassmorphism-border);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        .copy-button:hover {
-            background: var(--gradient-primary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 95, 191, 0.3);
-        }
-
-        /* Responsive Improvements */
-        @media (max-width: 768px) {
-            .main-card {
-                border-radius: 24px;
-                margin: 16px;
-            }
-            
-            .package-option {
-                padding: 20px 12px;
-            }
-            
-            .cta-button {
-                padding: 16px 24px;
-                font-size: 1rem;
-            }
-            
-            .premium-heading {
-                font-size: 2.5rem;
-            }
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--gradient-primary);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--canva-purple-dark);
-        }
+        .faq-item[open] summary::after { transform: rotate(180deg); }
+        .faq-content { padding: 0 0.5rem 1.25rem 0.5rem; color: var(--text-light); line-height: 1.7; }
+        .faq-item[open] summary { color: var(--primary-color); }
     </style>
 </head>
 <body class="antialiased">
@@ -650,12 +322,12 @@
                 <div class="lg:col-span-1 main-card p-8 md:p-10">
                     <!-- Header Keamanan -->
                     <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-200 pb-6 mb-8">
-                        <div class="security-header">
-                            <i class="fas fa-shield-alt"></i>
+                        <div class="flex items-center justify-center gap-3 security-header">
+                            <i class="fas fa-shield-alt text-xl"></i>
                             <h3>Transaksi Aman</h3>
                         </div>
-                        <div class="security-header">
-                            <i class="fas fa-hand-holding-usd"></i>
+                        <div class="flex items-center justify-center gap-3 security-header">
+                            <i class="fas fa-hand-holding-usd text-xl"></i>
                             <h3>Garansi Uang Kembali</h3>
                         </div>
                     </div>
@@ -668,27 +340,29 @@
 
                     <!-- Form -->
                     <form id="orderForm">
-                        <h2 class="text-xl font-bold mb-5 text-gray-900 font-sora">Lengkapi Data</h2>
+                        <h2 class="text-xl font-bold mb-5 text-gray-900">Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
-                                <label for="nama" class="block text-sm font-medium mb-2 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
+                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
                                 <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
                             </div>
                             <div>
-                                <label for="whatsapp" class="block text-sm font-medium mb-2 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
+                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
                                 <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
                             </div>
                             <div>
-                                <label for="email" class="block text-sm font-medium mb-2 text-gray-700">Email Login Canva <span class="text-red-500">*</span></label>
+                                <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Email Login Canva <span class="text-red-500">*</span></label>
                                 <input type="email" id="email" name="email" class="form-input w-full" placeholder="Email yang terdaftar di Canva">
                             </div>
                         </div>
                         
+                        <!-- Metode Pembayaran -->
+                        <div id="payment-method-selection" class="mt-8"></div>
+
                         <!-- Rincian Pesanan -->
                         <div id="order-details-in-form" class="mt-8"></div>
                         
                         <button type="button" id="submit-btn" class="cta-button canva-button mt-8">
-                            <i class="fas fa-rocket"></i>
                             Beli Sekarang
                         </button>
                     </form>
@@ -729,7 +403,7 @@
     
     <!-- Notification Popup -->
     <div class="notif-box" id="notifBox">
-        <div class="notif-icon-wrapper"><i class="fas fa-star"></i></div>
+        <div class="notif-icon-wrapper"><i class="far fa-check-circle"></i></div>
         <div class="notif-content-area">
              <div class="notif-message">
                  <div><strong class="notif-name">Nama Acak</strong> baru saja upgrade!</div>
@@ -737,6 +411,7 @@
              </div>
         </div>
     </div>
+
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -748,510 +423,412 @@
             footer: document.getElementById('footer'),
             currentYear: document.getElementById('currentYear'),
             productInfoFormTop: document.getElementById('product-info-form-top'),
-featuresBeforeForm: document.getElementById('features-before-form'),
-           orderDetailsInForm: document.getElementById('order-details-in-form'),
-           testimonialsFull: document.getElementById('testimonials-full'),
-           faqFull: document.getElementById('faq-full'),
-           policyFull: document.getElementById('policy-full'),
-           orderForm: document.getElementById('orderForm'),
-           submitBtn: document.getElementById('submit-btn'),
-           notifBox: document.getElementById('notifBox'),
-           notifName: document.querySelector('#notifBox .notif-name'),
-       };
+            featuresBeforeForm: document.getElementById('features-before-form'),
+            paymentMethodSelection: document.getElementById('payment-method-selection'),
+            orderDetailsInForm: document.getElementById('order-details-in-form'),
+            testimonialsFull: document.getElementById('testimonials-full'),
+            faqFull: document.getElementById('faq-full'),
+            policyFull: document.getElementById('policy-full'),
+            orderForm: document.getElementById('orderForm'),
+            submitBtn: document.getElementById('submit-btn'),
+            notifBox: document.getElementById('notifBox'),
+            notifName: document.querySelector('#notifBox .notif-name'),
+        };
 
-       // --- KONFIGURASI ---
-       const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
-       const packages = {
-           '1-month': {
-               id: '1-month',
-               name: "Canva Pro 1 Bulan",
-               duration: "1 Bulan",
-               price: 29000,
-               priceDisplay: "Rp29.000",
-               isBestValue: false,
-           },
-           '6-months': {
-               id: '6-months',
-               name: "Canva Pro 6 Bulan",
-               duration: "6 Bulan",
-               price: 59000,
-               priceDisplay: "Rp59.000",
-               isBestValue: false,
-           },
-           '1-year': {
-               id: '1-year',
-               name: "Canva Pro 1 Tahun",
-               duration: "1 Tahun",
-               price: 79000,
-               priceDisplay: "Rp79.000",
-               isBestValue: false,
-           },
-           'lifetime': {
-               id: 'lifetime',
-               name: "Canva Pro Lifetime",
-               duration: "Lifetime",
-               price: 99000,
-               priceDisplay: "Rp99.000",
-               isBestValue: true,
-           }
-       };
+        // --- KONFIGURASI ---
+        const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
+        const packages = {
+            '1-month': { id: '1-month', name: "Canva Pro 1 Bulan", duration: "1 Bulan", price: 29000, priceDisplay: "Rp29.000", isBestValue: false },
+            '6-months': { id: '6-months', name: "Canva Pro 6 Bulan", duration: "6 Bulan", price: 59000, priceDisplay: "Rp59.000", isBestValue: false },
+            '1-year': { id: '1-year', name: "Canva Pro 1 Tahun", duration: "1 Tahun", price: 79000, priceDisplay: "Rp79.000", isBestValue: false },
+            'lifetime': { id: 'lifetime', name: "Canva Pro Lifetime", duration: "Lifetime", price: 99000, priceDisplay: "Rp99.000", isBestValue: true }
+        };
 
-       let selectedPackageId = 'lifetime'; // Pilihan default
+        const paymentAccounts = {
+            jago: { id: 'jago', displayName: 'Bank Jago', name: 'Anang Dude Juliawan', number: '109594117900', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png' },
+            cimb: { id: 'cimb', displayName: 'CIMB Niaga', name: 'Octo Pay - 6289510639366', number: '6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png' },
+            permata: { id: 'permata', displayName: 'Permata Bank', name: 'DNID089510639366', number: '8528089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Permata_Bank_%282024%29.svg/768px-Permata_Bank_%282024%29.svg.png' },
+            bca: { id: 'bca', displayName: 'BCA Virtual Account', name: 'Epayment', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png' },
+            gopay: { id: 'gopay', displayName: 'Gopay', name: null, number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Logo_Gopay.svg/768px-Logo_Gopay.svg.png' },
+            dana: { id: 'dana', displayName: 'DANA', name: null, number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/768px-Logo_dana_blue.svg.png' },
+            ovo: { id: 'ovo', displayName: 'OVO', name: 'OVO Epayment', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/768px-Logo_ovo_purple.svg.png' }
+        };
 
-       const generalFeatures = [
-           "<strong>🎨 Fitur Ajaib (Canva AI):</strong> Manfaatkan kekuatan AI untuk membuat tulisan, gambar, dan presentasi secara otomatis.",
-           "<strong>📸 Konten Premium Tanpa Batas:</strong> Akses seluruh pustaka kami yang berisi 100+ juta foto, elemen, video, dan audio premium.",
-           "<strong>✂️ Penghapus Latar Belakang Cerdas:</strong> Hapus background foto & video dengan sekali klik, sempurna untuk membuat PNG transparan.",
-           "<strong>🎯 Ribuan Template Premium:</strong> Mulai desain Anda lebih cepat dengan akses ke ribuan template profesional untuk setiap kesempatan.",
-           "<strong>⚡ Animasi Instan:</strong> Saksikan desain Anda menjadi hidup dengan cara termudah untuk menganimasikan grafik dan teks.",
-           "<strong>🔄 Ubah Ukuran Ajaib:</strong> Ubah ukuran desain Anda ke format apa pun secara instan hanya dengan satu klik.",
-           "<strong>📱 Penjadwal Konten Media Sosial:</strong> Rencanakan dan jadwalkan postingan ke Facebook, Instagram, & lainnya langsung dari Canva.",
-           "<strong>🏢 Kit Merek Profesional:</strong> Pastikan konten selalu konsisten dengan mengunggah logo, font, dan palet warna merek Anda.",
-           "<strong>☁️ Penyimpanan Cloud 1 TB:</strong> Simpan semua proyek dan aset berharga Anda dengan aman di cloud.",
-           "<strong>🔐 Upgrade Akun Pribadi Anda:</strong> Proses 100% aman, cepat, dan bergaransi langsung pada akun yang sudah Anda miliki."
-       ];
-       
-       const paymentAccounts = {
-           jago: {
-               name: 'Anang Dude Juliawan',
-               number: '109594117900',
-               bank: 'Bank Jago',
-               logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png'
-           }
-       };
+        let selectedPackageId = 'lifetime'; // Pilihan default
+        let selectedPaymentMethodId = 'jago'; // Pilihan default
 
-       // --- FUNGSI TEMPLATE ---
+        const generalFeatures = [
+            "<strong>Fitur Ajaib (Canva AI):</strong> Manfaatkan kekuatan AI untuk membuat tulisan, gambar, dan presentasi secara otomatis.",
+            "<strong>Konten Premium Tanpa Batas:</strong> Akses seluruh pustaka kami yang berisi 100+ juta foto, elemen, video, dan audio premium.",
+            "<strong>Penghapus Latar Belakang Cerdas:</strong> Hapus background foto & video dengan sekali klik, sempurna untuk membuat PNG transparan.",
+            "<strong>Ribuan Template Premium:</strong> Mulai desain Anda lebih cepat dengan akses ke ribuan template profesional untuk setiap kesempatan.",
+            "<strong>Animasi Instan:</strong> Saksikan desain Anda menjadi hidup dengan cara termudah untuk menganimasikan grafik dan teks.",
+            "<strong>Ubah Ukuran Ajaib:</strong> Ubah ukuran desain Anda ke format apa pun secara instan hanya dengan satu klik.",
+            "<strong>Penjadwal Konten Media Sosial:</strong> Rencanakan dan jadwalkan postingan ke Facebook, Instagram, & lainnya langsung dari Canva.",
+            "<strong>Kit Merek Profesional:</strong> Pastikan konten selalu konsisten dengan mengunggah logo, font, dan palet warna merek Anda.",
+            "<strong>Penyimpanan Cloud 1 TB:</strong> Simpan semua proyek dan aset berharga Anda dengan aman di cloud.",
+            "<strong>Upgrade Akun Pribadi Anda:</strong> Proses 100% aman, cepat, dan bergaransi langsung pada akun yang sudah Anda miliki."
+        ];
+        
+        // --- FUNGSI TEMPLATE ---
 
-       function renderPackageSelection() {
-           const container = elements.productInfoFormTop;
-           const packageOptionsHTML = Object.values(packages).map(pkg => `
-               <div class="package-option ${pkg.id === selectedPackageId ? 'selected' : ''}" data-package-id="${pkg.id}">
-                   ${pkg.isBestValue ? '<span class="badge">🔥 Paling Hemat</span>' : ''}
-                   <h4 class="font-bold text-lg text-gray-900 pt-4">${pkg.duration}</h4>
-                   <p class="font-semibold text-gray-600">${pkg.priceDisplay}</p>
-               </div>
-           `).join('');
+        function renderPackageSelection() {
+            const container = elements.productInfoFormTop;
+            const packageOptionsHTML = Object.values(packages).map(pkg => `
+                <div class="package-option ${pkg.id === selectedPackageId ? 'selected' : ''}" data-package-id="${pkg.id}">
+                    ${pkg.isBestValue ? '<span class="badge">Paling Hemat</span>' : ''}
+                    <h4 class="font-bold text-lg text-gray-900 pt-4">${pkg.duration}</h4>
+                    <p class="font-semibold text-gray-600">${pkg.priceDisplay}</p>
+                </div>
+            `).join('');
 
-           container.innerHTML = `
-               <div class="text-center mb-10">
-                   <div class="logo-container mb-6">
-                       <img alt="Logo Canva" class="h-16 w-auto mx-auto" src="https://public.canva.site/logo/media/dfb96cc174513093cd6ed61489ccb750.svg">
-                   </div>
-                   <h1 class="premium-heading text-4xl md:text-6xl font-extrabold text-gray-900 uppercase tracking-wide mb-4">
-                       UPGRADE <span class="canva-gradient-text">CANVA PRO</span>
-                   </h1>
-                   <p class="text-xl text-gray-600 mb-2 font-medium">Buka semua fitur desain premium tanpa batas</p>
-                   <div class="flex items-center justify-center gap-2 text-sm">
-                       <i class="fas fa-users canva-gradient-text-secondary"></i>
-                       <span class="text-gray-500">Sudah dipercaya 50.000+ pengguna</span>
-                   </div>
-               </div>
-               <div>
-                   <h3 class="text-xl font-bold mb-6 text-gray-900 font-sora flex items-center gap-3">
-                       <i class="fas fa-gem canva-gradient-text"></i>
-                       Pilih Paket Premium Anda
-                   </h3>
-                   <div class="grid grid-cols-2 gap-4">
-                       ${packageOptionsHTML}
-                   </div>
-               </div>
-           `;
-       }
+            container.innerHTML = `
+                <div class="text-center mb-8">
+                     <img alt="Logo Canva" class="h-12 w-auto mx-auto mb-4" src="https://public.canva.site/logo/media/dfb96cc174513093cd6ed61489ccb750.svg">
+                     <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 uppercase tracking-wide">UPGRADE <span class="canva-gradient-text">CANVA PRO</span></h1>
+                     <p class="text-lg text-gray-500 mt-3">Buka semua fitur desain premium tanpa batas.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-gray-900">Pilih Paket Anda</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        ${packageOptionsHTML}
+                    </div>
+                </div>
+            `;
+        }
 
-       const getFeaturesHTML = () => {
-           const colors = ['text-purple-600', 'text-teal-500', 'text-blue-500', 'text-pink-500', 'text-indigo-500', 'text-orange-500', 'text-green-500', 'text-red-500', 'text-yellow-600', 'text-gray-600'];
-           return `<div>
-               <h3 class="text-xl font-bold mb-6 text-gray-900 font-sora flex items-center gap-3">
-                   <i class="fas fa-star canva-gradient-text"></i>
-                   Yang Anda Dapatkan
-               </h3>
-               <ul class="space-y-5">${generalFeatures.map((f, index) => `<li class="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-purple-50 to-teal-50 border border-purple-100 hover:shadow-lg transition-all duration-300"><i class="fas fa-check-circle ${colors[index % colors.length]} text-xl mt-1 flex-shrink-0"></i><span class="text-gray-700 leading-relaxed">${f}</span></li>`).join('')}</ul>
-           </div>`;
-       }
+        function renderPaymentMethodSelection() {
+            const container = elements.paymentMethodSelection;
+            const paymentOptionsHTML = Object.values(paymentAccounts).map(acc => `
+                <label class="payment-method-option ${acc.id === selectedPaymentMethodId ? 'selected' : ''}" for="payment-${acc.id}" data-payment-id="${acc.id}">
+                    <input type="radio" id="payment-${acc.id}" name="paymentMethod" value="${acc.id}" ${acc.id === selectedPaymentMethodId ? 'checked' : ''}>
+                    <img src="${acc.logo}" alt="Logo ${acc.displayName}" class="payment-method-logo">
+                    <span class="payment-method-name">${acc.displayName}</span>
+                </label>
+            `).join('');
 
-       const getOrderDetailsHTML = (pkg, totalPrice) => `
-           <div class="mt-8 pt-8 border-t-2 border-gradient-to-r from-purple-200 to-teal-200">
-               <h3 class="text-xl font-bold mb-6 text-gray-900 font-sora flex items-center gap-3">
-                   <i class="fas fa-receipt canva-gradient-text"></i>
-                   Rincian Pesanan
-               </h3>
-               <div class="bg-gradient-to-r from-purple-50 to-teal-50 p-6 rounded-2xl border border-purple-100">
-                   <div class="space-y-4 text-gray-700">
-                       <div class="flex justify-between items-center">
-                           <span class="font-medium">Paket Premium ${pkg.duration}</span>
-                           <span class="font-bold text-gray-900">${formatCurrency(pkg.price)}</span>
-                       </div>
-                       <div class="flex justify-between items-center">
-                           <span class="font-medium">Kode Unik</span>
-                           <span class="font-bold text-gray-900">${formatCurrency(uniqueCode)}</span>
-                       </div>
-                       <hr class="border-purple-200">
-                       <div class="flex justify-between items-center font-bold text-xl">
-                           <span class="text-gray-900">Total Pembayaran</span>
-                           <span class="canva-gradient-text text-2xl">${formatCurrency(totalPrice)}</span>
-                       </div>
-                   </div>
-               </div>
-           </div>`;
+            container.innerHTML = `
+                <div class="pt-8 border-t border-gray-200">
+                    <h3 class="text-lg font-bold mb-4 text-gray-900">Pilih Metode Pembayaran</h3>
+                    <div>
+                        ${paymentOptionsHTML}
+                    </div>
+                </div>
+            `;
+        }
 
-       const getTestimonialsHTML = () => `
-           <div class="main-card p-8 md:p-10">
-               <h2 class="text-3xl font-bold text-center mb-8 text-gray-900 font-sora flex items-center justify-center gap-3">
-                   <i class="fas fa-heart canva-gradient-text"></i>
-                   Testimoni Pelanggan
-               </h2>
-               <div class="grid grid-cols-2 sm:grid-cols-2 gap-6">
-                   <img src="https://placehold.co/600x800/E9D5FF/8C30F5?text=✨+Template+Presentasi+Pro" alt="Testimonial 1" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
-                   <img src="https://placehold.co/600x800/C9E9FF/05A3B8?text=🎨+Desain+Instagram+Premium" alt="Testimonial 2" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
-                   <img src="https://placehold.co/600x800/DBEAFE/8C30F5?text=🏢+Logo+Bisnis+Profesional" alt="Testimonial 3" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
-                   <img src="https://placehold.co/600x800/FEF3C7/F59E0B?text=🎬+Konten+Video+Viral" alt="Testimonial 4" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
-               </div>
-               <div class="text-center mt-8">
-                   <p class="text-gray-600 italic">"Ribuan pelanggan telah merasakan manfaat Canva Pro Premium"</p>
-               </div>
-           </div>`;
+        const getFeaturesHTML = () => {
+            const colors = ['text-purple-500', 'text-teal-500', 'text-blue-500', 'text-pink-500', 'text-indigo-500'];
+            return `<div>
+                <h3 class="text-lg font-bold mb-4 text-gray-900">Yang Anda Dapatkan:</h3>
+                <ul class="space-y-4">${generalFeatures.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3"></i><span class="text-gray-600">${f}</span></li>`).join('')}</ul>
+            </div>`;
+        }
 
-       const getFaqHTML = () => `
+        const getOrderDetailsHTML = (pkg, totalPrice) => `
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                 <h3 class="text-lg font-bold mb-4 text-gray-900">Rincian Pesanan</h3>
+                 <div class="space-y-3 text-gray-600">
+                     <div class="flex justify-between">
+                         <span>Paket ${pkg.duration}</span>
+                         <span class="font-medium text-gray-800">${formatCurrency(pkg.price)}</span>
+                     </div>
+                     <div class="flex justify-between">
+                         <span>Kode Unik</span>
+                         <span class="font-medium text-gray-800">${formatCurrency(uniqueCode)}</span>
+                     </div>
+                     <hr class="my-2 border-gray-200">
+                     <div class="flex justify-between font-bold text-lg text-gray-900">
+                         <span>Total</span>
+                         <span class="canva-gradient-text">${formatCurrency(totalPrice)}</span>
+                     </div>
+                 </div>
+            </div>`;
+
+        const getTestimonialsHTML = () => `
             <div>
-                <h3 class="text-3xl font-bold mb-8 text-center text-gray-900 font-sora flex items-center justify-center gap-3">
-                    <i class="fas fa-question-circle canva-gradient-text"></i>
-                    Pertanyaan Umum (FAQ)
-                </h3>
-                <details class="faq-item">
-                    <summary>🔒 Apakah ini aman dan legal?</summary>
-                    <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode undangan resmi yang sah dan akun Anda tetap aman. Kami tidak pernah meminta password Anda, hanya alamat email yang terdaftar di Canva.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>👥 Apakah ini sistem tim yang sering berganti?</summary>
-                    <div class="faq-content">Tidak sama sekali. Anda akan diundang ke dalam tim privat kami yang bersifat permanen dan stabil. Jadi, Anda tidak perlu khawatir akan dikeluarkan atau berganti-ganti tim, yang bisa menyebabkan desain Anda hilang.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>⚡ Berapa lama prosesnya?</summary>
-                    <div class="faq-content">Prosesnya sangat cepat, biasanya hanya dalam beberapa menit hingga maksimal 1x24 jam setelah konfirmasi pembayaran dan data kami terima.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>📱 Bisakah digunakan di HP dan Komputer?</summary>
-                    <div class="faq-content">Ya, status Pro akan aktif di akun Anda dan bisa digunakan di semua perangkat (Android, iOS, dan PC/Laptop) selama Anda login dengan akun yang sama.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>♾️ Apakah ini benar-benar seumur hidup?</summary>
-                    <div class="faq-content">Betul. Paket Lifetime adalah pembayaran sekali untuk mengaktifkan fitur Pro di akun Canva Anda selamanya, tanpa biaya langganan bulanan atau tahunan lagi selama tim kami masih aktif.</div>
-                </details>
+                <h2 class="text-2xl font-bold text-center mb-8 text-gray-900">Testimoni Pelanggan</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
+                    <img src="https://placehold.co/600x800/E9D5FF/8C30F5?text=Template+Presentasi" alt="Testimonial 1" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/C9E9FF/05A3B8?text=Desain+Instagram" alt="Testimonial 2" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/DBEAFE/8C30F5?text=Logo+Bisnis" alt="Testimonial 3" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                    <img src="https://placehold.co/600x800/FEF3C7/F59E0B?text=Konten+Video" alt="Testimonial 4" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+                </div>
+            </div>`;
+
+        const getFaqHTML = () => `
+             <div>
+                 <h3 class="text-2xl font-bold mb-4 text-center text-gray-900">Pertanyaan Umum (FAQ)</h3>
+                 <details class="faq-item">
+                     <summary>Apakah ini aman dan legal?</summary>
+                     <div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode undangan resmi yang sah dan akun Anda tetap aman. Kami tidak pernah meminta password Anda, hanya alamat email yang terdaftar di Canva.</div>
+                 </details>
+                 <details class="faq-item">
+                     <summary>Apakah ini sistem tim yang sering berganti?</summary>
+                     <div class="faq-content">Tidak sama sekali. Anda akan diundang ke dalam tim privat kami yang bersifat permanen dan stabil. Jadi, Anda tidak perlu khawatir akan dikeluarkan atau berganti-ganti tim, yang bisa menyebabkan desain Anda hilang.</div>
+                 </details>
+                 <details class="faq-item">
+                     <summary>Berapa lama prosesnya?</summary>
+                     <div class="faq-content">Prosesnya sangat cepat, biasanya hanya dalam beberapa menit hingga maksimal 1x24 jam setelah konfirmasi pembayaran dan data kami terima.</div>
+                 </details>
+                 <details class="faq-item">
+                     <summary>Bisakah digunakan di HP dan Komputer?</summary>
+                     <div class="faq-content">Ya, status Pro akan aktif di akun Anda dan bisa digunakan di semua perangkat (Android, iOS, dan PC/Laptop) selama Anda login dengan akun yang sama.</div>
+                 </details>
+                 <details class="faq-item">
+                     <summary>Apakah ini benar-benar seumur hidup?</summary>
+                     <div class="faq-content">Betul. Paket Lifetime adalah pembayaran sekali untuk mengaktifkan fitur Pro di akun Canva Anda selamanya, tanpa biaya langganan bulanan atau tahunan lagi selama tim kami masih aktif.</div>
+                 </details>
+             </div>
+        `;
+        
+        const getPolicyHTML = () => `
+            <div>
+                <h3 class="text-2xl font-bold mb-4 text-center text-gray-900">Kebijakan & Ketentuan</h3>
+                <div class="grid md:grid-cols-1 gap-8 text-sm text-gray-600">
+                    <div class="mb-6">
+                        <h4 class="text-lg font-bold mb-2 text-gray-900">Kebijakan Privasi</h4>
+                        <p class="mb-4">Informasi yang Anda berikan (email login Canva) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda.</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Kami hanya butuh email, bukan password.</li>
+                            <li>Informasi pembayaran diproses oleh gateway aman.</li>
+                            <li>Data Anda tidak dibagikan ke pihak lain.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2 text-gray-900">Syarat & Ketentuan</h4>
+                        <p class="mb-4">Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup. Garansi penuh jika upgrade gagal karena kesalahan kami. Garansi tidak mencakup pemblokiran akun akibat pelanggaran kebijakan oleh pengguna.</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
+                            <li>Garansi penuh jika upgrade gagal dari sisi kami.</li>
+                            <li>Perubahan kebijakan Canva di masa depan berada di luar kendali kami.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-       `;
-       
-       const getPolicyHTML = () => `
-           <div>
-               <h3 class="text-3xl font-bold mb-8 text-center text-gray-900 font-sora flex items-center justify-center gap-3">
-                   <i class="fas fa-shield-alt canva-gradient-text"></i>
-                   Kebijakan & Ketentuan
-               </h3>
-               <div class="grid md:grid-cols-1 gap-8 text-gray-600">
-                   <div class="bg-gradient-to-r from-purple-50 to-teal-50 p-6 rounded-2xl border border-purple-100">
-                       <h4 class="text-xl font-bold mb-4 text-gray-900 font-sora flex items-center gap-3">
-                           <i class="fas fa-user-shield text-purple-600"></i>
-                           Kebijakan Privasi
-                       </h4>
-                       <p class="mb-4 leading-relaxed">Informasi yang Anda berikan (email login Canva) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda.</p>
-                       <ul class="space-y-3">
-                           <li class="flex items-start gap-3"><i class="fas fa-check text-green-500 mt-1"></i><span>Kami hanya butuh email, bukan password.</span></li>
-                           <li class="flex items-start gap-3"><i class="fas fa-check text-green-500 mt-1"></i><span>Informasi pembayaran diproses oleh gateway aman.</span></li>
-                           <li class="flex items-start gap-3"><i class="fas fa-check text-green-500 mt-1"></i><span>Data Anda tidak dibagikan ke pihak lain.</span></li>
-                       </ul>
-                   </div>
-                   <div class="bg-gradient-to-r from-teal-50 to-blue-50 p-6 rounded-2xl border border-teal-100">
-                       <h4 class="text-xl font-bold mb-4 text-gray-900 font-sora flex items-center gap-3">
-                           <i class="fas fa-file-contract text-teal-600"></i>
-                           Syarat & Ketentuan
-                       </h4>
-                       <p class="mb-4 leading-relaxed">Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup. Garansi penuh jika upgrade gagal karena kesalahan kami. Garansi tidak mencakup pemblokiran akun akibat pelanggaran kebijakan oleh pengguna.</p>
-                       <ul class="space-y-3">
-                           <li class="flex items-start gap-3"><i class="fas fa-check text-green-500 mt-1"></i><span>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</span></li>
-                           <li class="flex items-start gap-3"><i class="fas fa-check text-green-500 mt-1"></i><span>Garansi penuh jika upgrade gagal dari sisi kami.</span></li>
-                           <li class="flex items-start gap-3"><i class="fas fa-check text-green-500 mt-1"></i><span>Perubahan kebijakan Canva di masa depan berada di luar kendali kami.</span></li>
-                       </ul>
-                   </div>
-               </div>
-           </div>
-       `;
+        `;
 
-       // --- FUNGSI ---
-       function formatCurrency(value) {
-           return `Rp${value.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`;
-       }
+        // --- FUNGSI ---
+        function formatCurrency(value) {
+            return `Rp${value.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`;
+        }
 
-       function updateOrderDetails() {
-           const pkg = packages[selectedPackageId];
-           const totalPrice = pkg.price + uniqueCode;
-           elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
-       }
+        function updateOrderDetails() {
+            const pkg = packages[selectedPackageId];
+            const totalPrice = pkg.price + uniqueCode;
+            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+        }
 
-       function updateDisplay() {
-           renderPackageSelection();
-           updateOrderDetails();
+        function addEventListeners() {
+             document.querySelectorAll('.package-option').forEach(el => {
+                el.addEventListener('click', () => {
+                    selectedPackageId = el.dataset.packageId;
+                    document.querySelectorAll('.package-option').forEach(opt => opt.classList.remove('selected'));
+                    el.classList.add('selected');
+                    updateOrderDetails();
+                });
+            });
 
-           document.querySelectorAll('.package-option').forEach(el => {
-               el.addEventListener('click', () => {
-                   selectedPackageId = el.dataset.packageId;
-                   document.querySelectorAll('.package-option').forEach(opt => opt.classList.remove('selected'));
-                   el.classList.add('selected');
-                   updateOrderDetails();
-               });
-           });
+            document.querySelectorAll('.payment-method-option').forEach(el => {
+                el.addEventListener('click', () => {
+                    selectedPaymentMethodId = el.dataset.paymentId;
+                    document.querySelectorAll('.payment-method-option').forEach(opt => opt.classList.remove('selected'));
+                    el.classList.add('selected');
+                    // Ensure the radio inside is checked
+                    el.querySelector('input[type="radio"]').checked = true;
+                });
+            });
+        }
 
-           elements.featuresBeforeForm.innerHTML = getFeaturesHTML();
-           elements.testimonialsFull.innerHTML = getTestimonialsHTML();
-           elements.faqFull.innerHTML = getFaqHTML();
-           elements.policyFull.innerHTML = getPolicyHTML();
-       }
+        function updateDisplay() {
+            renderPackageSelection();
+            renderPaymentMethodSelection();
+            updateOrderDetails();
+            addEventListeners();
 
-       function generateWaLink(formData, pkg, totalPrice) {
-           let detailPesanan = `*Email Canva:* ${formData.get('email')}\n`;
-           let pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
-                         `*ID Pesanan:* ${Date.now()}\n` +
-                         `*Paket:* ${pkg.name}\n` +
-                         `*Nama:* ${formData.get('nama')}\n` +
-                         `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
-                         detailPesanan +
-                         `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
-                         `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
-           return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
-       }
+            elements.featuresBeforeForm.innerHTML = getFeaturesHTML();
+            elements.testimonialsFull.innerHTML = getTestimonialsHTML();
+            elements.faqFull.innerHTML = getFaqHTML();
+            elements.policyFull.innerHTML = getPolicyHTML();
+        }
 
-       function handleFormSubmit() {
-           const formData = new FormData(elements.orderForm);
-           const nama = formData.get('nama').trim();
-           const whatsapp = formData.get('whatsapp').trim();
-           const email = formData.get('email').trim();
+        function generateWaLink(formData, pkg, totalPrice, paymentMethod) {
+            let detailPesanan = `*Email Canva:* ${formData.get('email')}\n`;
+            let pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
+                          `*ID Pesanan:* ${Date.now()}\n` +
+                          `*Paket:* ${pkg.name}\n` +
+                          `*Metode Pembayaran:* ${paymentMethod.displayName}\n` +
+                          `*Nama:* ${formData.get('nama')}\n` +
+                          `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
+                          detailPesanan +
+                          `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
+                          `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
+            return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
+        }
 
-           if (!nama) {
-               showInfoModal('Data Belum Lengkap', 'Silakan isi Nama Anda.');
-               elements.orderForm.querySelector('#nama').focus();
-               return;
-           }
-           if (!whatsapp) {
-               showInfoModal('Data Belum Lengkap', 'Silakan isi Nomor WhatsApp Anda.');
-               elements.orderForm.querySelector('#whatsapp').focus();
-               return;
-           }
-           if (!email) {
-               showInfoModal('Data Belum Lengkap', 'Silakan isi alamat email Canva Anda.');
-               elements.orderForm.querySelector('#email').focus();
-               return;
-           }
+        function handleFormSubmit() {
+            const formData = new FormData(elements.orderForm);
+            const nama = formData.get('nama').trim();
+            const whatsapp = formData.get('whatsapp').trim();
+            const email = formData.get('email').trim();
 
-           const pkg = packages[selectedPackageId];
-           const totalPrice = pkg.price + uniqueCode;
-           const paymentAccount = paymentAccounts['jago'];
-           
-           if (typeof fbq === 'function') {
-               fbq('track', 'AddPaymentInfo', {
-                   content_name: pkg.name,
-                   content_category: 'Software',
-                   currency: 'IDR',
-                   value: totalPrice
-               });
-           }
+            if (!nama) { showInfoModal('Data Belum Lengkap', 'Silakan isi Nama Anda.'); elements.orderForm.querySelector('#nama').focus(); return; }
+            if (!whatsapp) { showInfoModal('Data Belum Lengkap', 'Silakan isi Nomor WhatsApp Anda.'); elements.orderForm.querySelector('#whatsapp').focus(); return; }
+            if (!email) { showInfoModal('Data Belum Lengkap', 'Silakan isi alamat email Canva Anda.'); elements.orderForm.querySelector('#email').focus(); return; }
 
-           elements.mainContentContainer.style.display = 'none';
-           elements.footer.style.display = 'none';
-           const waLink = generateWaLink(formData, pkg, totalPrice);
-           
-           const paymentViewHTML = `
-           <div class="max-w-3xl mx-auto py-8 sm:py-12 px-4">
-               <div class="main-card p-8 md:p-12">
-                   <div class="text-center mb-8">
-                       <div class="mb-6">
-                           <i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i>
-                       </div>
-                       <h2 class="text-4xl font-bold text-gray-900 mb-4 font-sora">Terima kasih sudah order! 🎉</h2>
-                       <p class="text-lg text-gray-600 mb-6">Untuk menyelesaikan order, silakan transfer sejumlah</p>
-                       
-                       <div class="inline-flex items-center gap-6 bg-gradient-to-r from-purple-50 to-teal-50 p-6 rounded-2xl mb-6 border-2 border-purple-200 shadow-lg">
-                           <span class="text-4xl sm:text-5xl font-bold canva-gradient-text font-sora">${formatCurrency(totalPrice)}</span>
-                           <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="copy-button hover:bg-gradient-primary text-gray-700 font-semibold py-3 px-6 rounded-xl flex items-center gap-3 transition-all duration-300">
-                               <i class="far fa-copy text-lg"></i>
-                               <span>Salin Jumlah</span>
-                           </button>
-                       </div>
+            const pkg = packages[selectedPackageId];
+            const paymentAccount = paymentAccounts[selectedPaymentMethodId];
+            const totalPrice = pkg.price + uniqueCode;
+            
+            if (typeof fbq === 'function') {
+                fbq('track', 'AddPaymentInfo', { content_name: pkg.name, content_category: 'Software', currency: 'IDR', value: totalPrice });
+            }
 
-                       <p class="text-lg text-gray-600 mb-8">ke rekening Bank Jago berikut ini:</p>
-                   </div>
+            elements.mainContentContainer.style.display = 'none';
+            elements.footer.style.display = 'none';
+            const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount);
+            
+            const atasNamaHTML = paymentAccount.name 
+                ? `<div>
+                       <p class="text-sm text-gray-500">Atas Nama</p>
+                       <p class="text-xl font-semibold text-gray-900">${paymentAccount.name}</p>
+                   </div>`
+                : '';
 
-                   <div class="flex justify-center mb-10">
-                       <div class="w-full max-w-md">
-                           <div class="bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl border-2 border-gray-200 shadow-xl">
-                               <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.bank}" class="h-10 mb-6 mx-auto">
-                               
-                               <div class="space-y-6">
-                                   <div class="text-center">
-                                       <p class="text-sm text-gray-500 mb-2">No. Rekening ${paymentAccount.bank}</p>
-                                       <p class="text-2xl font-bold text-gray-900 font-mono">${paymentAccount.number}</p>
-                                   </div>
-                                   <div class="text-center">
-                                       <p class="text-sm text-gray-500 mb-2">Atas Nama</p>
-                                       <p class="text-xl font-bold text-gray-900">${paymentAccount.name}</p>
-                                   </div>
-                               </div>
-                               <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening ${paymentAccount.bank}')" class="mt-8 w-full copy-button text-gray-700 font-semibold py-4 px-6 rounded-xl transition-all duration-300 border-2 border-gray-300">
-                                   <i class="far fa-copy mr-2"></i>
-                                   Salin No. Rekening
-                               </button>
-                           </div>
-                       </div>
-                   </div>
+            const paymentViewHTML = `
+            <div class="max-w-2xl mx-auto py-8 sm:py-12 px-4">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Selesaikan Pembayaran Anda</h2>
+                    <p class="text-gray-500 mb-2">Silakan transfer sejumlah</p>
+                    
+                    <div class="inline-flex items-center gap-4 bg-white p-3 sm:p-4 rounded-xl mb-4 border border-gray-200 shadow-sm">
+                        <span class="text-3xl sm:text-4xl font-bold text-gray-900 canva-gradient-text">${formatCurrency(totalPrice)}</span>
+                        <button onclick="copyToClipboard('${totalPrice}', 'Total Transfer')" class="bg-gray-100 border border-gray-300 hover:bg-gray-200 text-gray-700 font-medium py-2 px-3 sm:px-4 rounded-lg flex items-center gap-2 transition-colors">
+                            <i class="far fa-copy"></i>
+                            <span class="hidden sm:inline">Salin</span>
+                        </button>
+                    </div>
 
-                   <div class="text-center">
-                       <p class="text-lg text-gray-600 mb-6">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
-                       <a href="${waLink}" target="_blank" class="cta-button canva-button max-w-md mx-auto text-xl">
-                           <i class="fab fa-whatsapp text-2xl"></i> 
-                           <span>Konfirmasi via WhatsApp</span>
-                       </a>
-                       <p class="text-sm text-gray-500 mt-4">
-                           <i class="fas fa-clock mr-2"></i>
-                           Tim support kami siap membantu 24/7
-                       </p>
-                   </div>
-               </div>
-           </div>
-           `;
-           elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
-       }
-       
-       // --- FUNGSI NOTIFIKASI ---
-       const FIRST_NAMES = ["Adelia", "Aditya", "Agung", "Ahmad", "Aisha", "Ajeng", "Akbar", "Amanda", "Amelia", "Andi", "Andre", "Angga", "Ani", "Annisa", "Ari", "Arif", "Asep", "Ayu", "Bayu", "Bella", "Bima", "Budi", "Cahya", "Candra", "Chandra", "Citra", "Daniel", "David", "Dedi", "Desi", "Dewi", "Dian", "Dimas", "Dina", "Dinda", "Doni", "Eka", "Eko", "Elisa", "Erik", "Erwin", "Fajar", "Farah", "Farhan", "Fatima", "Fauzan", "Febri", "Felix", "Fernando", "Fikri", "Fitri", "Galih", "Gilang", "Hadi", "Hafiz", "Hana", "Handoko", "Hari", "Hasan", "Hendra", "Heru", "Hidayat", "Ibrahim", "Ichsan", "Ida", "Ihsan", "Ilham", "Imam", "Indah", "Indra", "Iqbal", "Irfan", "Irwan", "Ismail", "Ivan", "Jaka", "Jamal", "Jefri", "Joko", "Joni", "Julia", "Kamal", "Kartika", "Kevin", "Khairul", "Krisna", "Kurniawan", "Lestari", "Lia", "Lina", "Lisa", "Lukman", "Lutfi", "Made", "Maulana", "Mega", "Michael", "Mila", "Mira", "Mochammad", "Monica", "Muhammad", "Mukti", "Muslim", "Nadia", "Nana", "Nanda", "Nia", "Nina", "Novi", "Novita", "Nur", "Nurul", "Putra", "Putri", "Rachmat", "Raden", "Radit", "Rafli", "Rahayu", "Rahman", "Rahmat", "Rama", "Rangga", "Rani", "Ratna", "Reza", "Rian", "Rico", "Ridwan", "Rina", "Rini", "Rio", "Riri", "Riska", "Rizki", "Rizky", "Robby", "Robert", "Roni", "Rossa", "Rudi", "Ryan", "Sakti", "Samuel", "Sari", "Satria", "Selly", "Septian", "Setiawan", "Sinta", "Siti", "Sofia", "Sonia", "Sri", "Sugeng", "Sugiarto", "Suharto", "Sujatmiko", "Sukma", "Sulaiman", "Sumardi", "Sunarto", "Surya", "Susanto", "Susi", "Tania", "Taufik", "Tedi", "Thomas", "Tian", "Tika", "Tina", "Tono", "Tony", "Tri", "Umar", "Usman", "Utami", "Vera", "Vicky", "Vina", "Wahyu", "Wahyudi", "Wawan", "Wibowo", "Widi", "Widodo", "Wijaya", "Wulan", "Yani", "Yanto", "Yoga", "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi", "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra", "Zainal", "Zaki"];
-       
-       function getRandomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-       function generateRandomName() { return `${getRandomElement(FIRST_NAMES)}`; }
-       
-       function showNextNotification() {
-           if (!elements.notifBox || !elements.notifName) return;
-           elements.notifName.textContent = generateRandomName();
-           elements.notifBox.classList.remove('show');
-           void elements.notifBox.offsetWidth; // Trigger reflow
-           elements.notifBox.classList.add('show');
-       }
+                    <p class="text-gray-500 mt-6 mb-4">ke rekening tujuan berikut:</p>
+                </div>
 
-       function scheduleNextNotification() {
-           const randomDelay = Math.floor(Math.random() * 10000) + 8000;
-           setTimeout(() => {
-               showNextNotification();
-               scheduleNextNotification();
-           }, randomDelay);
-       }
+                <div class="mt-6 flex justify-center">
+                    <div class="w-full max-w-md">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-lg text-left flex flex-col">
+                            <div class="flex-grow">
+                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-7 sm:h-8 mb-5 object-contain self-start">
+                                
+                                <div class="space-y-4">
+                                    <div>
+                                        <p class="text-sm text-gray-500">Nomor Rekening / Telepon</p>
+                                        <p class="text-xl font-semibold text-gray-900">${paymentAccount.number}</p>
+                                    </div>
+                                    ${atasNamaHTML}
+                                </div>
+                            </div>
+                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening')" class="mt-6 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-4 rounded-lg transition-colors border border-gray-300">
+                                Salin Nomor
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-       // --- INISIALISASI ---
-       elements.currentYear.textContent = new Date().getFullYear();
-       elements.submitBtn.addEventListener('click', handleFormSubmit);
-       updateDisplay();
-       if (elements.notifBox && elements.notifName) {
-           setTimeout(scheduleNextNotification, 6000);
-       }
+                <div class="text-center mt-10">
+                    <p class="text-gray-500 mb-4">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
+                    <a href="${waLink}" target="_blank" class="cta-button canva-button max-w-md mx-auto">
+                        <i class="fab fa-whatsapp text-xl"></i> 
+                        <span>Konfirmasi via WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+            `;
+            elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
+        }
+        
+        // --- FUNGSI NOTIFIKASI ---
+        const FIRST_NAMES = ["Adelia", "Aditya", "Agung", "Ahmad", "Aisha", "Ajeng", "Akbar", "Amanda", "Amelia", "Andi", "Andre", "Angga", "Ani", "Annisa", "Ari", "Arif", "Asep", "Ayu", "Bayu", "Bella", "Bima", "Budi", "Cahya", "Candra", "Chandra", "Citra", "Daniel", "David", "Dedi", "Desi", "Dewi", "Dian", "Dimas", "Dina", "Dinda", "Doni", "Eka", "Eko", "Elisa", "Erik", "Erwin", "Fajar", "Farah", "Farhan", "Fatima", "Fauzan", "Febri", "Felix", "Fernando", "Fikri", "Fitri", "Galih", "Gilang", "Hadi", "Hafiz", "Hana", "Handoko", "Hari", "Hasan", "Hendra", "Heru", "Hidayat", "Ibrahim", "Ichsan", "Ida", "Ihsan", "Ilham", "Imam", "Indah", "Indra", "Iqbal", "Irfan", "Irwan", "Ismail", "Ivan", "Jaka", "Jamal", "Jefri", "Joko", "Joni", "Julia", "Kamal", "Kartika", "Kevin", "Khairul", "Krisna", "Kurniawan", "Lestari", "Lia", "Lina", "Lisa", "Lukman", "Lutfi", "Made", "Maulana", "Mega", "Michael", "Mila", "Mira", "Mochammad", "Monica", "Muhammad", "Mukti", "Muslim", "Nadia", "Nana", "Nanda", "Nia", "Nina", "Novi", "Novita", "Nur", "Nurul", "Putra", "Putri", "Rachmat", "Raden", "Radit", "Rafli", "Rahayu", "Rahman", "Rahmat", "Rama", "Rangga", "Rani", "Ratna", "Reza", "Rian", "Rico", "Ridwan", "Rina", "Rini", "Rio", "Riri", "Riska", "Rizki", "Rizky", "Robby", "Robert", "Roni", "Rossa", "Rudi", "Ryan", "Sakti", "Samuel", "Sari", "Satria", "Selly", "Septian", "Setiawan", "Sinta", "Siti", "Sofia", "Sonia", "Sri", "Sugeng", "Sugiarto", "Suharto", "Sujatmiko", "Sukma", "Sulaiman", "Sumardi", "Sunarto", "Surya", "Susanto", "Susi", "Tania", "Taufik", "Tedi", "Thomas", "Tian", "Tika", "Tina", "Tono", "Tony", "Tri", "Umar", "Usman", "Utami", "Vera", "Vicky", "Vina", "Wahyu", "Wahyudi", "Wawan", "Wibowo", "Widi", "Widodo", "Wijaya", "Wulan", "Yani", "Yanto", "Yoga", "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi", "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra", "Zainal", "Zaki"];
+        
+        function getRandomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+        function generateRandomName() { return `${getRandomElement(FIRST_NAMES)}`; }
+        
+        function showNextNotification() {
+            if (!elements.notifBox || !elements.notifName) return;
+            elements.notifName.textContent = generateRandomName();
+            elements.notifBox.classList.remove('show');
+            void elements.notifBox.offsetWidth; // Trigger reflow
+            elements.notifBox.classList.add('show');
+        }
 
-   });
+        function scheduleNextNotification() {
+            const randomDelay = Math.floor(Math.random() * 10000) + 8000;
+            setTimeout(() => {
+                showNextNotification();
+                scheduleNextNotification();
+            }, randomDelay);
+        }
 
-   // --- FUNGSI PEMBANTU GLOBAL ---
-   const infoModal = document.getElementById('infoModal');
-   const imageModal = document.getElementById('imageModal');
-   const modalImage = document.getElementById('modalImage');
+        // --- INISIALISASI ---
+        elements.currentYear.textContent = new Date().getFullYear();
+        elements.submitBtn.addEventListener('click', handleFormSubmit);
+        updateDisplay();
+        if (elements.notifBox && elements.notifName) {
+            setTimeout(scheduleNextNotification, 6000);
+        }
 
-function showInfoModal(title, message) {
-       if (!infoModal) return;
-       infoModal.querySelector('#modalTitle').textContent = title;
-       infoModal.querySelector('#modalMessage').textContent = message;
-       infoModal.style.display = 'flex';
-   }
+    });
 
-   function closeInfoModal() {
-       if (!infoModal) return;
-       infoModal.style.display = 'none';
-   }
+    // --- FUNGSI PEMBANTU GLOBAL ---
+    const infoModal = document.getElementById('infoModal');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
 
-   function openImageModal(event, src) {
-       event.stopPropagation();
-       if (!imageModal || !modalImage) return;
-       imageModal.style.display = "flex";
-       modalImage.src = src;
-   }
+    function showInfoModal(title, message) {
+        if (!infoModal) return;
+        infoModal.querySelector('#modalTitle').textContent = title;
+        infoModal.querySelector('#modalMessage').textContent = message;
+        infoModal.style.display = 'flex';
+    }
 
-   function closeImageModal() {
-       if (!imageModal) return;
-       imageModal.style.display = "none";
-   }
+    function closeInfoModal() {
+        if (!infoModal) return;
+        infoModal.style.display = 'none';
+    }
 
-   window.onclick = function(event) {
-       if (event.target == infoModal) {
-           closeInfoModal();
-       }
-       if (event.target == imageModal) {
-           closeImageModal();
-       }
-   }
+    function openImageModal(event, src) {
+        event.stopPropagation();
+        if (!imageModal || !modalImage) return;
+        imageModal.style.display = "flex";
+        modalImage.src = src;
+    }
 
-   function copyToClipboard(text, entityName) {
-       const textArea = document.createElement('textarea');
-       textArea.value = text;
-       document.body.appendChild(textArea);
-       textArea.select();
-       try {
-           document.execCommand('copy');
-           showInfoModal('Berhasil Disalin! ✅', `${entityName} telah disalin ke clipboard.`);
-       } catch (err) {
-           showInfoModal('Gagal! ❌', 'Gagal menyalin. Silakan coba secara manual.');
-       }
-       document.body.removeChild(textArea);
-   }
+    function closeImageModal() {
+        if (!imageModal) return;
+        imageModal.style.display = "none";
+    }
 
-   // Tambahan efek smooth scroll untuk link internal
-   document.addEventListener('click', function(e) {
-       if (e.target.matches('a[href^="#"]')) {
-           e.preventDefault();
-           const target = document.querySelector(e.target.getAttribute('href'));
-           if (target) {
-               target.scrollIntoView({
-                   behavior: 'smooth',
-                   block: 'start'
-               });
-           }
-       }
-   });
+    window.onclick = function(event) {
+        if (event.target == infoModal) {
+            closeInfoModal();
+        }
+        if (event.target == imageModal) {
+            closeImageModal();
+        }
+    }
 
-   // Efek parallax ringan untuk background
-   window.addEventListener('scroll', () => {
-       const scrolled = window.pageYOffset;
-       const parallax = document.querySelector('body::before');
-       if (parallax) {
-           const speed = scrolled * 0.5;
-           parallax.style.transform = `translateY(${speed}px)`;
-       }
-   });
-
-   // Tambahan animasi fade-in untuk elemen saat scroll
-   const observerOptions = {
-       threshold: 0.1,
-       rootMargin: '0px 0px -50px 0px'
-   };
-
-   const observer = new IntersectionObserver((entries) => {
-       entries.forEach(entry => {
-           if (entry.isIntersecting) {
-               entry.target.style.opacity = '1';
-               entry.target.style.transform = 'translateY(0)';
-           }
-       });
-   }, observerOptions);
-
-   // Observe all main cards
-   document.addEventListener('DOMContentLoaded', () => {
-       const cards = document.querySelectorAll('.main-card');
-       cards.forEach(card => {
-           card.style.opacity = '0';
-           card.style.transform = 'translateY(30px)';
-           card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-           observer.observe(card);
-       });
-   });
-   </script>
+    function copyToClipboard(text, entityName) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showInfoModal('Berhasil Disalin!', `${entityName} telah disalin ke clipboard.`);
+        } catch (err) {
+            showInfoModal('Gagal!', 'Gagal menyalin. Silakan coba secara manual.');
+        }
+        document.body.removeChild(textArea);
+    }
+    </script>
 
 </body>
 </html>
