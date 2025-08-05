@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade Canva Pro - Penawaran Spesial!</title>
+    <link rel="icon" type="image/svg+xml" href="https://public.canva.site/logo/media/dfb96cc174513093cd6ed61489ccb750.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- === KODE FACEBOOK PIXEL DIMULAI DI SINI === -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '630583642253416');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
+
+    <style>
+        /* --- TEMA CANVA (VIBRANT) --- */
+        :root {
+            --primary-color: #8C30F5;
+            --primary-color-darker: #7A28D8;
+            --secondary-color: #05A3B8;
+            --card-bg: #FFFFFF;
+            --border-color: #E5E7EB;
+            --text-dark: #0D0C22;
+            --text-light: #6B7280;
+        }
+
+        body {
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #F4E7FF 0%, #E8F7FF 100%);
+            color: var(--text-dark);
+        }
+        
+        .container { position: relative; z-index: 1; }
+        .canva-gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-fill-color: transparent;
+        }
+        .main-card {
+            background-color: var(--card-bg); border-radius: 24px;
+            box-shadow: 0 10px 50px -15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .security-header {
+            color: var(--text-light); font-weight: 600; font-size: 0.8rem; text-transform: uppercase;
+        }
+        .security-header i { color: var(--primary-color); opacity: 0.8; }
+
+        /* --- Fungsionalitas Baru (Diadaptasi dari Google Theme) --- */
+        .package-radio { position: absolute; opacity: 0; width: 0; height: 0; }
+        .package-label {
+            display: flex; align-items: center; padding: 1rem;
+            border: 2px solid var(--border-color); border-radius: 16px;
+            transition: all 0.2s ease-in-out; cursor: pointer; background-color: var(--card-bg);
+            position: relative;
+        }
+        .package-radio:checked + .package-label {
+            border-color: var(--primary-color); background-color: #F4E7FF;
+            box-shadow: 0 0 0 3px rgba(140, 48, 245, 0.2);
+        }
+        .badge {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white; padding: 5px 16px; font-size: 0.75rem; font-weight: 700;
+            border-radius: 9999px; text-transform: uppercase; white-space: nowrap;
+        }
+        .custom-radio-button {
+            height: 20px; width: 20px; border: 2px solid #d1d5db; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease-in-out; flex-shrink: 0;
+        }
+        .custom-radio-button .dot {
+            height: 10px; width: 10px; border-radius: 50%; background-color: transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .package-radio:checked + .package-label .custom-radio-button,
+        .payment-method-option input[type="radio"]:checked ~ .custom-radio-button { 
+            border-color: var(--primary-color); 
+        }
+        .package-radio:checked + .package-label .custom-radio-button .dot,
+        .payment-method-option input[type="radio"]:checked ~ .custom-radio-button .dot { 
+            background-color: var(--primary-color); 
+        }
+
+        .form-input {
+            border: 2px solid #E5E7EB; transition: all 0.2s ease-in-out; border-radius: 12px;
+            padding: 0.9rem 1rem; width: 100%; background-color: #F7F7F9;
+            color: var(--text-dark); font-weight: 500;
+        }
+        .form-input::placeholder { color: #9CA3AF; }
+        .form-input:focus {
+            border-color: var(--primary-color); outline: none;
+            box-shadow: 0 0 0 3px rgba(140, 48, 245, 0.2); background-color: var(--card-bg);
+        }
+        
+        .cta-button {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 12px;
+            padding: 1rem 2rem; font-size: 1rem; font-weight: 700;
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.75rem; cursor: pointer; width: 100%; border: none; text-transform: uppercase;
+        }
+        .canva-button {
+            background: var(--primary-color); color: white;
+            box-shadow: 0 4px 20px -5px rgba(140, 48, 245, 0.6);
+        }
+        .canva-button:hover {
+            background: var(--primary-color-darker); transform: translateY(-2px);
+            box-shadow: 0 6px 25px -5px rgba(140, 48, 245, 0.7);
+        }
+        .cta-button:disabled { background-color: #9e9e9e; cursor: not-allowed; box-shadow: none; }
+
+        /* --- PERBAIKAN LAYOUT METODE PEMBAYARAN --- */
+        .payment-group-container {
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .payment-method-option {
+            display: flex; align-items: center; padding: 1rem;
+            cursor: pointer; transition: background-color 0.2s ease;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .payment-group-container > div:last-child .payment-method-option {
+            border-bottom: none;
+        }
+        .payment-method-option.selected { 
+            background-color: #F4E7FF; 
+        }
+        .payment-method-option input[type="radio"] { display: none; }
+        .payment-method-logo { height: 24px; margin-left: 1rem; margin-right: 1rem; object-fit: contain; }
+        .payment-method-name { font-weight: 600; color: var(--text-dark); flex-grow: 1; }
+        /* --- AKHIR PERBAIKAN --- */
+
+        .payment-instruction-card {
+            background-color: #fff; border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1); overflow: hidden;
+            max-width: 500px; margin: 2rem auto;
+        }
+        .payment-instruction-header {
+            background: var(--primary-color); color: #fff; padding: 1.25rem 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .payment-instruction-body { padding: 1.5rem; }
+        .payment-instruction-footer {
+            padding: 1.5rem; background-color: #f9fafb; border-top: 1px solid #e2e8f0;
+        }
+        .payment-accordion summary {
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 600; padding: 1rem 0; cursor: pointer; border-bottom: 1px solid #e2e8f0;
+        }
+        .payment-accordion summary::after {
+            content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            transition: transform 0.3s ease; color: var(--primary-color);
+        }
+        .payment-accordion[open] summary::after { transform: rotate(180deg); }
+        .payment-accordion-content { padding: 1rem 0.5rem; color: #4a5568; line-height: 1.6; }
+        .payment-accordion-content ol { list-style-type: decimal; padding-left: 1.5rem; }
+        .copy-button {
+            color: var(--primary-color); font-weight: 600; background: none; border: none; cursor: pointer;
+        }
+
+        /* --- Sisa Style (Modal, FAQ, dll) --- */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(17, 24, 39, 0.6); justify-content: center; align-items: center; }
+        .modal-content { background-color: var(--card-bg); border: 1px solid var(--border-color); margin: auto; padding: 24px 32px; width: 90%; max-width: 450px; border-radius: 16px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); text-align: center; position: relative; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .modal-content h3 { color: var(--text-dark); margin-bottom: 15px; font-size: 1.5rem; font-weight: 700; }
+        .modal-content p { color: var(--text-light); margin-bottom: 20px; line-height: 1.6; }
+        .modal-ok-button { background: var(--primary-color); color: white; padding: 10px 24px; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: background-color 0.2s ease; }
+        .modal-ok-button:hover { background-color: var(--primary-color-darker); }
+        .testimonial-image { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; border-radius: 16px; }
+        .testimonial-image:hover { transform: scale(1.05); box-shadow: 0 15px 30px -5px rgba(0,0,0,0.15); }
+        #imageModal .modal-content-image { margin: auto; display: block; width: auto; max-width: 90%; max-height: 85vh; animation: zoomIn 0.3s ease; }
+        .close-image-modal { position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .close-image-modal:hover, .close-image-modal:focus { color: #bbb; text-decoration: none; }
+        @keyframes zoomIn { from {transform: scale(0)} to {transform: scale(1)} }
+        .notif-box { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background-color: var(--card-bg); color: var(--text-dark); border-radius: 9999px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 12px 24px; display: none; align-items: center; gap: 12px; width: auto; max-width: 450px; z-index: 1000; opacity: 0; border: 1px solid var(--border-color); transition: opacity 0.4s ease, transform 0.4s ease, top 0.4s ease; }
+        .notif-box.show { display: flex; opacity: 1; animation: slideInAndOut 5s ease-in-out forwards; }
+        @keyframes slideInAndOut { 0% { opacity: 0; transform: translateX(-50%) translateY(-30px); } 10% { opacity: 1; transform: translateX(-50%) translateY(0); } 90% { opacity: 1; transform: translateX(-50%) translateY(0); } 100% { opacity: 0; transform: translateX(-50%) translateY(-30px); } }
+        .notif-icon-wrapper { color: var(--primary-color); font-size: 1.2rem; flex-shrink: 0; }
+        .notif-message { font-size: 0.9rem; line-height: 1.2; }
+        .notif-message strong { font-weight: 600; color: var(--primary-color); }
+        .notif-time { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
+        @media (max-width: 500px) { .notif-box { left: 16px; right: 16px; top: 16px; transform: translateX(0); width: calc(100% - 32px); } @keyframes slideInAndOut { 0% { opacity: 0; transform: translateY(-20px); } 10% { opacity: 1; transform: translateY(0); } 90% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); } } }
+        .faq-item { border-bottom: 1px solid var(--border-color); }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item summary { font-weight: 600; font-size: 1rem; color: var(--text-dark); padding: 1.25rem 0.5rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; transition: transform 0.3s ease; color: var(--primary-color); opacity: 0.6; }
+        .faq-item[open] summary::after { transform: rotate(180deg); }
+        .faq-content { padding: 0 0.5rem 1.25rem 0.5rem; color: var(--text-light); line-height: 1.7; }
+        .faq-item[open] summary { color: var(--primary-color); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
+        <div id="main-content-container">
+            <div class="text-center mb-12">
+                <img alt="Logo Canva" class="h-12 w-auto mx-auto mb-4" src="https://public.canva.site/logo/media/dfb96cc174513093cd6ed61489ccb750.svg">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 uppercase tracking-wide">UPGRADE <span class="canva-gradient-text">CANVA PRO</span></h1>
+                <p class="text-lg text-gray-500 mt-3">Buka semua fitur desain premium tanpa batas.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8">
+                <!-- Kolom Kiri: Form & Pembayaran -->
+                <div class="lg:col-span-1 main-card p-8 md:p-10">
+                    <!-- Header Keamanan -->
+                    <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-200 pb-6 mb-8">
+                        <div class="flex items-center justify-center gap-3 security-header"> <i class="fas fa-shield-alt text-xl"></i> <h3>Transaksi Aman</h3> </div>
+                        <div class="flex items-center justify-center gap-3 security-header"> <i class="fas fa-hand-holding-usd text-xl"></i> <h3>Garansi Uang Kembali</h3> </div>
+                    </div>
+                    
+                    <!-- Form -->
+                    <form id="orderForm">
+                        <!-- Pemilihan Paket -->
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-5 text-gray-800">1. Pilih Paket Anda</h2>
+                            <div id="package-selection">
+                                <!-- Opsi paket akan dirender oleh JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Form Data Diri -->
+                        <h2 class="text-xl font-bold mb-5 text-gray-800 border-t border-gray-200 pt-8">2. Lengkapi Data</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
+                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
+                            </div>
+                            <div>
+                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Email Login Canva <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="Email yang terdaftar di Canva">
+                            </div>
+                        </div>
+                        
+                        <!-- Metode Pembayaran -->
+                        <div id="payment-method-selection" class="mt-8"></div>
+
+                        <!-- Rincian Pesanan -->
+                        <div id="order-details-in-form" class="mt-8"></div>
+                        
+                        <button type="button" id="submit-btn" class="cta-button canva-button mt-8"> Beli Sekarang </button>
+                    </form>
+                </div>
+
+                <!-- Kolom Kanan: Fitur, FAQ, dll. -->
+                <div class="lg:col-span-1 space-y-12">
+                    <div id="features-full" class="main-card p-8 md:p-10"></div>
+                    <div id="testimonials-full"></div>
+                    <div id="faq-full" class="main-card p-8 md:p-10"></div>
+                    <div id="policy-full" class="main-card p-8 md:p-10"></div>
+                </div>
+            </div>
+        </div>
+        <div id="payment-instruction-container"></div>
+        <footer id="footer" class="text-center mt-16 text-gray-500 text-sm">
+            <p>Copyright © <span id="currentYear"></span> Canva Pro ID. Semua Hak Dilindungi.</p>
+        </footer>
+    </div>
+
+    <!-- Modal & Notifikasi -->
+    <div id="infoModal" class="modal"> <div class="modal-content"> <h3 id="modalTitle"></h3> <p id="modalMessage"></p> <button class="modal-ok-button" onclick="closeInfoModal()">OK</button> </div> </div>
+    <div id="imageModal" class="modal" onclick="closeImageModal()"> <span class="close-image-modal" onclick="closeImageModal()">&times;</span> <img class="modal-content-image" id="modalImage"> </div>
+    <div class="notif-box" id="notifBox"> <div class="notif-icon-wrapper"><i class="far fa-check-circle"></i></div> <div class="notif-content-area"> <div class="notif-message"> <div><strong class="notif-name">Nama Acak</strong> baru saja upgrade!</div> <div class="notif-time">beberapa detik lalu</div> </div> </div> </div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const elements = {
+            mainContentContainer: document.getElementById('main-content-container'),
+            paymentInstructionContainer: document.getElementById('payment-instruction-container'),
+            footer: document.getElementById('footer'),
+            currentYear: document.getElementById('currentYear'),
+            packageSelection: document.getElementById('package-selection'),
+            featuresFull: document.getElementById('features-full'),
+            paymentMethodSelection: document.getElementById('payment-method-selection'),
+            orderDetailsInForm: document.getElementById('order-details-in-form'),
+            testimonialsFull: document.getElementById('testimonials-full'),
+            faqFull: document.getElementById('faq-full'),
+            policyFull: document.getElementById('policy-full'),
+            orderForm: document.getElementById('orderForm'),
+            submitBtn: document.getElementById('submit-btn'),
+            notifBox: document.getElementById('notifBox'),
+            notifName: document.querySelector('#notifBox .notif-name'),
+        };
+
+        const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
+        let countdownInterval;
+
+        const packages = {
+            '1-month': { id: '1-month', name: "Canva Pro 1 Bulan", duration: "1 Bulan", price: 29000, priceDisplay: "Rp29.000", isBestValue: false },
+            '6-months': { id: '6-months', name: "Canva Pro 6 Bulan", duration: "6 Bulan", price: 59000, priceDisplay: "Rp59.000", isBestValue: false },
+            '1-year': { id: '1-year', name: "Canva Pro 1 Tahun", duration: "1 Tahun", price: 79000, priceDisplay: "Rp79.000", isBestValue: false },
+            'lifetime': { id: 'lifetime', name: "Canva Pro Lifetime", duration: "Lifetime", price: 99000, priceDisplay: "Rp99.000", isBestValue: true }
+        };
+
+        const paymentAccounts = {
+            jago: { id: 'jago', displayName: 'Bank Jago', name: 'Anang Dude Juliawan', number: '109594117900', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png' },
+            cimb: { id: 'cimb', displayName: 'CIMB Niaga', name: 'Octo Pay - 6289510639366', number: '6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/1920px-CIMB_Niaga_logo.svg.png' },
+            permata: { id: 'permata', displayName: 'Permata Bank', name: 'DNID089510639366', number: '8528089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Permata_Bank_%282024%29.svg/768px-Permata_Bank_%282024%29.svg.png' },
+            bca: { id: 'bca', displayName: 'BCA Virtual Account', name: 'Epayment', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png' },
+            gopay: { id: 'gopay', displayName: 'Gopay', name: null, number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Logo_Gopay.svg/768px-Logo_Gopay.svg.png' },
+            dana: { id: 'dana', displayName: 'DANA', name: null, number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/768px-Logo_dana_blue.svg.png' },
+            ovo: { id: 'ovo', displayName: 'OVO', name: 'OVO Epayment', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/768px-Logo_ovo_purple.svg.png' }
+        };
+
+        let currentPackageId = 'lifetime';
+
+        const generalFeatures = [
+            "<strong>Fitur Ajaib (Canva AI):</strong> Manfaatkan kekuatan AI untuk membuat tulisan, gambar, dan presentasi secara otomatis.",
+            "<strong>Konten Premium Tanpa Batas:</strong> Akses seluruh pustaka kami yang berisi 100+ juta foto, elemen, video, dan audio premium.",
+            "<strong>Penghapus Latar Belakang Cerdas:</strong> Hapus background foto & video dengan sekali klik, sempurna untuk membuat PNG transparan.",
+            "<strong>Ribuan Template Premium:</strong> Mulai desain Anda lebih cepat dengan akses ke ribuan template profesional untuk setiap kesempatan.",
+            "<strong>Animasi Instan:</strong> Saksikan desain Anda menjadi hidup dengan cara termudah untuk menganimasikan grafik dan teks.",
+            "<strong>Ubah Ukuran Ajaib:</strong> Ubah ukuran desain Anda ke format apa pun secara instan hanya dengan satu klik.",
+            "<strong>Penjadwal Konten Media Sosial:</strong> Rencanakan dan jadwalkan postingan ke Facebook, Instagram, & lainnya langsung dari Canva.",
+            "<strong>Kit Merek Profesional:</strong> Pastikan konten selalu konsisten dengan mengunggah logo, font, dan palet warna merek Anda.",
+            "<strong>Penyimpanan Cloud 1 TB:</strong> Simpan semua proyek dan aset berharga Anda dengan aman di cloud.",
+            "<strong>Upgrade Akun Pribadi Anda:</strong> Proses 100% aman, cepat, dan bergaransi langsung pada akun yang sudah Anda miliki."
+        ];
+        
+        // --- TEMPLATE FUNCTIONS ---
+        function renderPackageSelection() {
+            const container = elements.packageSelection;
+            const packageOptionsHTML = Object.values(packages).map(pkg => `
+                <div>
+                    <input type="radio" id="pkg-${pkg.id}" name="package" value="${pkg.id}" class="package-radio" ${pkg.id === currentPackageId ? 'checked' : ''}>
+                    <label for="pkg-${pkg.id}" class="package-label">
+                        ${pkg.isBestValue ? '<span class="badge">Paling Hemat</span>' : ''}
+                        <span class="custom-radio-button"><span class="dot"></span></span>
+                        <div class="flex-grow ml-4">
+                            <div class="flex justify-between items-center">
+                                <!-- Menggunakan durasi untuk teks yang lebih ringkas -->
+                                <span class="font-bold text-gray-800">${pkg.duration}</span>
+                                <span class="font-bold canva-gradient-text">${pkg.priceDisplay}</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            `).join('');
+            // Membuat layout grid 2x2 untuk pilihan paket
+            container.innerHTML = `<div class="grid grid-cols-2 gap-3">${packageOptionsHTML}</div>`;
+        }
+
+
+        function renderPaymentMethodSelection() {
+            const container = elements.paymentMethodSelection;
+            const paymentOptionsHTML = Object.values(paymentAccounts).map((acc, index) => `
+                <div>
+                    <label class="payment-method-option ${index === 0 ? 'selected' : ''}" for="payment-${acc.id}" data-payment-id="${acc.id}">
+                        <input type="radio" id="payment-${acc.id}" name="paymentMethod" value="${acc.id}" ${index === 0 ? 'checked' : ''}>
+                        <span class="custom-radio-button"><span class="dot"></span></span>
+                        <img src="${acc.logo}" alt="Logo ${acc.displayName}" class="payment-method-logo">
+                        <span class="payment-method-name">${acc.displayName}</span>
+                    </label>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="pt-8 border-t border-gray-200">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">3. Pilih Metode Pembayaran</h3>
+                    <div class="payment-group-container">
+                        ${paymentOptionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+        
+        const getOrderDetailsHTML = (pkg, totalPrice) => `
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                 <h3 class="text-lg font-bold mb-4 text-gray-800">Rincian Pesanan</h3>
+                 <div class="space-y-3 text-gray-600">
+                     <div class="flex justify-between"><span>Paket ${pkg.duration}</span><span class="font-medium text-gray-800">${formatCurrency(pkg.price)}</span></div>
+                     <div class="flex justify-between"><span>Kode Unik</span><span class="font-medium text-gray-800">${formatCurrency(uniqueCode)}</span></div>
+                     <hr class="my-2 border-gray-200"><div class="flex justify-between font-bold text-lg text-gray-900"><span>Total</span><span class="canva-gradient-text">${formatCurrency(totalPrice)}</span></div>
+                 </div>
+            </div>`;
+        
+        // --- FUNCTIONS ---
+        function formatCurrency(value) { return `Rp${value.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`; }
+
+        function updateDisplay() {
+            const pkg = packages[currentPackageId];
+            const totalPrice = pkg.price + uniqueCode;
+            renderPackageSelection();
+            renderPaymentMethodSelection();
+            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+            addEventListeners();
+        }
+
+        function addEventListeners() {
+            document.querySelectorAll('input[name="package"]').forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    currentPackageId = event.target.value;
+                    const pkg = packages[currentPackageId];
+                    const totalPrice = pkg.price + uniqueCode;
+                    elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+                });
+            });
+
+            document.querySelectorAll('.payment-method-option').forEach(el => {
+                el.addEventListener('click', () => {
+                    document.querySelectorAll('.payment-method-option').forEach(opt => opt.classList.remove('selected'));
+                    el.classList.add('selected');
+                    el.querySelector('input[type="radio"]').checked = true;
+                });
+            });
+        }
+
+        function generateWaLink(formData, pkg, totalPrice, paymentMethod, paymentId) {
+            const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
+                          `*ID Pesanan:* ${paymentId}\n` +
+                          `*Paket:* ${pkg.name}\n` +
+                          `*Metode Pembayaran:* ${paymentMethod.displayName}\n` +
+                          `*Nama:* ${formData.get('nama')}\n` +
+                          `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
+                          `*Email Canva:* ${formData.get('email')}\n` +
+                          `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
+                          `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
+            return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
+        }
+
+        function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId) {
+            window.scrollTo(0, 0);
+            if (typeof fbq === 'function') { fbq('track', 'AddPaymentInfo', { content_name: pkg.name, content_category: 'Software', currency: 'IDR', value: totalPrice }); }
+            elements.mainContentContainer.style.display = 'none';
+            elements.footer.style.display = 'none';
+            const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount, paymentId);
+            const atasNamaHTML = paymentAccount.name ? `
+                <div class="mt-2">
+                    <p class="text-xs text-gray-500">Atas Nama</p>
+                    <p class="text-lg font-semibold text-gray-800">${paymentAccount.name}</p>
+                </div>` : '';
+
+            const paymentViewHTML = `
+            <div class="payment-instruction-card">
+                <div class="payment-instruction-header"><h2 class="text-lg font-bold">Instruksi Pembayaran</h2><button onclick="window.location.reload()" class="text-2xl">&times;</button></div>
+                <div class="payment-instruction-body">
+                    <div class="text-center border-b border-gray-200 pb-6">
+                        <p class="text-sm text-gray-500">Total Pembayaran</p>
+                        <div class="flex justify-center items-center gap-2 mt-1">
+                            <h3 class="text-3xl font-bold text-gray-800">${formatCurrency(totalPrice)}</h3>
+                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="text-gray-500 hover:text-blue-600"><i class="far fa-copy"></i></button>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4">Order ID: <strong class="text-gray-700">${paymentId}</strong></p>
+                    </div>
+                    <div class="text-center py-4"><p class="text-sm text-red-600 font-semibold">Bayar dalam <span id="countdown-timer">23:59:59</span></p></div>
+                    <div class="border-t border-b border-gray-200 py-6">
+                        <div class="flex justify-between items-center">
+                            <p class="font-bold text-gray-800">${paymentAccount.displayName}</p>
+                            <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-6">
+                        </div>
+                        <p class="text-sm text-gray-600 mt-4">Lakukan pembayaran ke tujuan berikut.</p>
+                        <div class="mt-4">
+                            <p class="text-xs text-gray-500">Nomor Rekening / Telepon</p>
+                            <div class="flex justify-between items-center">
+                                <p class="text-lg font-semibold text-gray-800">${paymentAccount.number}</p>
+                                <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Tujuan')" class="copy-button">Salin</button>
+                            </div>
+                        </div>
+                        ${atasNamaHTML}
+                    </div>
+                </div>
+                <div class="payment-instruction-footer text-center">
+                    <p class="text-gray-600 mb-4 text-sm">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
+                    <a href="${waLink}" target="_blank" class="cta-button canva-button w-full"><i class="fab fa-whatsapp text-xl"></i><span>Konfirmasi Pembayaran</span></a>
+                </div>
+            </div>`;
+            elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
+            startCountdown();
+        }
+
+        function handleFormSubmit() {
+            const formData = new FormData(elements.orderForm);
+            const nama = formData.get('nama').trim();
+            const whatsapp = formData.get('whatsapp').trim();
+            const email = formData.get('email').trim();
+            const paymentMethodKey = formData.get('paymentMethod');
+
+            if (!nama || !whatsapp || !email || !paymentMethodKey) {
+                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan sebelum melanjutkan.');
+                return;
+            }
+
+            elements.submitBtn.disabled = true;
+            elements.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+
+            const pkg = packages[currentPackageId];
+            const totalPrice = pkg.price + uniqueCode;
+            const paymentAccount = paymentAccounts[paymentMethodKey];
+            
+            const now = new Date();
+            const paymentId = `${String(now.getHours()).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getFullYear()).slice(-2)}CV${String(totalPrice).slice(-3)}`;
+
+            // Simulate submission delay
+            setTimeout(() => {
+                elements.submitBtn.disabled = false;
+                elements.submitBtn.innerHTML = 'Beli Sekarang';
+                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId);
+            }, 1500);
+        }
+
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown-timer');
+            if (!countdownElement) return;
+            let timeInSeconds = 24 * 60 * 60;
+            countdownInterval = setInterval(() => {
+                timeInSeconds--;
+                if (timeInSeconds < 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.textContent = "Waktu Habis";
+                    return;
+                }
+                const hours = Math.floor(timeInSeconds / 3600);
+                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                const seconds = timeInSeconds % 60;
+                countdownElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
+        
+        // --- INITIALIZATION ---
+        elements.currentYear.textContent = new Date().getFullYear();
+        elements.submitBtn.addEventListener('click', handleFormSubmit);
+
+        // Render static content
+        elements.featuresFull.innerHTML = `<div><h3 class="text-2xl font-bold mb-4 text-gray-800">Yang Anda Dapatkan:</h3><ul class="space-y-4">${generalFeatures.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span class="text-gray-600">${f}</span></li>`).join('')}</ul></div>`;
+        elements.testimonialsFull.innerHTML = `<div><h2 class="text-2xl font-bold text-center mb-8 text-gray-800">Testimoni Pelanggan</h2><div class="grid grid-cols-2 sm:grid-cols-2 gap-4"><img src="https://placehold.co/600x800/E9D5FF/8C30F5?text=Template+Presentasi" alt="Testimonial 1" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)"><img src="https://placehold.co/600x800/C9E9FF/05A3B8?text=Desain+Instagram" alt="Testimonial 2" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)"></div></div>`;
+        elements.faqFull.innerHTML = `<div><h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Pertanyaan Umum (FAQ)</h3><details class="faq-item"><summary>Apakah ini aman dan legal?</summary><div class="faq-content">Tentu saja. Proses upgrade dilakukan melalui metode undangan resmi yang sah...</div></details></div>`;
+        elements.policyFull.innerHTML = `<div><h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Kebijakan & Ketentuan</h3><p class="text-sm text-gray-600">Informasi yang Anda berikan hanya digunakan untuk keperluan upgrade...</p></div>`;
+
+        updateDisplay();
+        
+        // Notification logic
+        const FIRST_NAMES = ["Adelia", "Aditya", "Agung", "Ahmad", "Aisha", "Ajeng", "Akbar", "Amanda", "Amelia", "Andi", "Andre", "Angga", "Ani", "Annisa", "Ari", "Arif", "Asep", "Ayu", "Bayu", "Bella", "Bima", "Budi", "Cahya", "Candra", "Chandra", "Citra", "Daniel", "David", "Dedi", "Desi", "Dewi", "Dian", "Dimas", "Dina", "Dinda", "Doni", "Eka", "Eko", "Elisa", "Erik", "Erwin", "Fajar", "Farah", "Farhan", "Fatima", "Fauzan", "Febri", "Felix", "Fernando", "Fikri", "Fitri", "Galih", "Gilang", "Hadi", "Hafiz", "Hana", "Handoko", "Hari", "Hasan", "Hendra", "Heru", "Hidayat", "Ibrahim", "Ichsan", "Ida", "Ihsan", "Ilham", "Imam", "Indah", "Indra", "Iqbal", "Irfan", "Irwan", "Ismail", "Ivan", "Jaka", "Jamal", "Jefri", "Joko", "Joni", "Julia", "Kamal", "Kartika", "Kevin", "Khairul", "Krisna", "Kurniawan", "Lestari", "Lia", "Lina", "Lisa", "Lukman", "Lutfi", "Made", "Maulana", "Mega", "Michael", "Mila", "Mira", "Mochammad", "Monica", "Muhammad", "Mukti", "Muslim", "Nadia", "Nana", "Nanda", "Nia", "Nina", "Novi", "Novita", "Nur", "Nurul", "Putra", "Putri", "Rachmat", "Raden", "Radit", "Rafli", "Rahayu", "Rahman", "Rahmat", "Rama", "Rangga", "Rani", "Ratna", "Reza", "Rian", "Rico", "Ridwan", "Rina", "Rini", "Rio", "Riri", "Riska", "Rizki", "Rizky", "Robby", "Robert", "Roni", "Rossa", "Rudi", "Ryan", "Sakti", "Samuel", "Sari", "Satria", "Selly", "Septian", "Setiawan", "Sinta", "Siti", "Sofia", "Sonia", "Sri", "Sugeng", "Sugiarto", "Suharto", "Sujatmiko", "Sukma", "Sulaiman", "Sumardi", "Sunarto", "Surya", "Susanto", "Susi", "Tania", "Taufik", "Tedi", "Thomas", "Tian", "Tika", "Tina", "Tono", "Tony", "Tri", "Umar", "Usman", "Utami", "Vera", "Vicky", "Vina", "Wahyu", "Wahyudi", "Wawan", "Wibowo", "Widi", "Widodo", "Wijaya", "Wulan", "Yani", "Yanto", "Yoga", "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi", "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra", "Zainal", "Zaki"];
+        function showNextNotification() {
+            if (!elements.notifBox || !elements.notifName) return;
+            elements.notifName.textContent = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
+            elements.notifBox.classList.remove('show');
+            void elements.notifBox.offsetWidth;
+            elements.notifBox.classList.add('show');
+        }
+        function scheduleNextNotification() {
+            const randomDelay = Math.floor(Math.random() * 10000) + 8000;
+            setTimeout(() => { showNextNotification(); scheduleNextNotification(); }, randomDelay);
+        }
+        if (elements.notifBox && elements.notifName) { setTimeout(scheduleNextNotification, 6000); }
+    });
+
+    // --- GLOBAL HELPER FUNCTIONS ---
+    const infoModal = document.getElementById('infoModal');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    function showInfoModal(title, message) { if (!infoModal) return; infoModal.querySelector('#modalTitle').textContent = title; infoModal.querySelector('#modalMessage').textContent = message; infoModal.style.display = 'flex'; }
+    function closeInfoModal() { if (!infoModal) return; infoModal.style.display = 'none'; }
+    function openImageModal(event, src) { event.stopPropagation(); if (!imageModal || !modalImage) return; imageModal.style.display = "flex"; modalImage.src = src; }
+    function closeImageModal() { if (!imageModal) return; imageModal.style.display = "none"; }
+    window.onclick = function(event) { if (event.target == infoModal) { closeInfoModal(); } if (event.target == imageModal) { closeImageModal(); } }
+    function copyToClipboard(text, entityName) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try { document.execCommand('copy'); showInfoModal('Berhasil Disalin!', `${entityName} telah disalin ke clipboard.`); } catch (err) { showInfoModal('Gagal!', 'Gagal menyalin. Silakan coba secara manual.'); }
+        document.body.removeChild(textArea);
+    }
+    </script>
+
+</body>
+</html>
