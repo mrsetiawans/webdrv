@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jual Akun Netflix Premium 1 Tahun - Harga Spesial!</title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Netflix_2015_N_logo.svg/1200px-Netflix_2015_N_logo.svg.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- === KODE FACEBOOK PIXEL DIMULAI DI SINI === -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '630583642253416');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
+
+    <style>
+        /* Pengaturan Dasar dan Font dengan Tema Netflix */
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .content-card {
+             background-color: rgba(20, 20, 20, 0.75);
+             border: 1px solid rgba(255, 255, 255, 0.1);
+             backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Input Form dengan gaya Netflix */
+        .form-input {
+            border: 1px solid #404040;
+            transition: all 0.2s ease-in-out;
+            border-radius: 4px;
+            padding: 0.9rem 1rem;
+            width: 100%;
+            background-color: #333333;
+            color: #ffffff;
+        }
+        .form-input::placeholder {
+            color: #8c8c8c;
+        }
+        .form-input:focus {
+            border-color: #ffffff;
+            background-color: #454545;
+            outline: none;
+            box-shadow: none;
+        }
+        
+        /* Tombol Aksi (CTA) dengan warna Merah Netflix */
+        .cta-button {
+            transition: background-color 0.2s ease-in-out;
+            border-radius: 4px;
+            padding: 0.85rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            width: 100%;
+            border: none;
+        }
+        .red-button {
+            background-color: #E50914;
+            color: white;
+        }
+        .red-button:hover {
+            background-color: #F6121D;
+        }
+        .cta-button:disabled {
+            background-color: #5e5e5e;
+            cursor: not-allowed;
+        }
+
+        /* Modal / Message Box Styling */
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+            overflow: auto; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: #181818; margin: auto; padding: 24px 32px; width: 90%; max-width: 450px;
+            border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.7); text-align: center; position: relative;
+            animation: fadeIn 0.3s ease; border: 1px solid #303030;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .modal-content h3 { color: #ffffff; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700; }
+        .modal-content p { color: #b3b3b3; margin-bottom: 20px; line-height: 1.6; }
+        .modal-ok-button {
+            background-color: #E50914; color: white; padding: 10px 24px; border: none; border-radius: 4px;
+            cursor: pointer; font-size: 1rem; font-weight: 500; transition: background-color 0.2s ease;
+        }
+        .modal-ok-button:hover { background-color: #F6121D; }
+
+        /* Testimonial Section */
+        .testimonial-image {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .testimonial-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        
+        /* Modal untuk Zoom Gambar Testimoni */
+        #imageModal .modal-content-image {
+            margin: auto; display: block; width: auto;
+            max-width: 90%; max-height: 85vh; animation: zoomIn 0.3s ease;
+        }
+        .close-image-modal {
+            position: absolute; top: 20px; right: 35px; color: #f1f1f1;
+            font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer;
+        }
+        .close-image-modal:hover, .close-image-modal:focus {
+            color: #bbb; text-decoration: none;
+        }
+        @keyframes zoomIn { from {transform: scale(0)} to {transform: scale(1)} }
+        
+        /* Notifikasi Toast */
+        .notif-box {
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background-color: #E50914;
+            color: #ffffff; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            padding: 12px 24px; display: none; align-items: center; gap: 12px; width: auto;
+            max-width: 450px; z-index: 1000; opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease, top 0.4s ease;
+        }
+        .notif-box.show { display: flex; opacity: 1; animation: slideInAndOut 5s ease-in-out forwards; }
+        @keyframes slideInAndOut {
+            0%   { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+            10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+            90%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+        }
+        .notif-icon-wrapper { color: #ffffff; font-size: 1.2rem; flex-shrink: 0; }
+        .notif-message { font-size: 0.9rem; line-height: 1.2; }
+        .notif-message strong { font-weight: 600; }
+        .notif-time { font-size: 0.75rem; color: #f1f1f1; margin-top: 2px; }
+        @media (max-width: 500px) {
+            .notif-box { left: 16px; right: 16px; top: 16px; transform: translateX(0); width: calc(100% - 32px); }
+            @keyframes slideInAndOut {
+                0%   { opacity: 0; transform: translateY(-20px); } 10%  { opacity: 1; transform: translateY(0); }
+                90%  { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); }
+            }
+        }
+
+        /* Bagian FAQ */
+        .faq-item { border-bottom: 1px solid #303030; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item summary {
+            font-weight: 500; font-size: 1.25rem; color: #ffffff;
+            padding: 1.5rem 0.5rem; cursor: pointer; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        .faq-item:hover summary { background-color: #303030; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '\2b'; /* plus sign */
+            font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            transition: transform 0.3s ease; color: #ffffff; font-size: 1.5rem;
+        }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-content { padding: 0 1.5rem 1.5rem 1.5rem; color: #ffffff; line-height: 1.7; background-color: #303030; font-size: 1.1rem;}
+        .faq-item[open] summary { background-color: #303030; }
+
+        /* Pilihan Metode Pembayaran */
+        .payment-radio {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .payment-label {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1rem;
+            transition: background-color 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .payment-label:hover {
+            background-color: #303030;
+        }
+        .payment-radio:checked + .payment-label {
+            background-color: #404040;
+        }
+        .payment-logo {
+            height: 20px;
+            width: auto;
+            max-width: 60px;
+            object-fit: contain;
+            margin-right: 1rem;
+        }
+        .custom-radio-button {
+            height: 20px;
+            width: 20px;
+            border: 2px solid #8c8c8c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .custom-radio-button .dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background-color: transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .payment-radio:checked + .payment-label .custom-radio-button {
+            border-color: #E50914;
+        }
+        .payment-radio:checked + .payment-label .custom-radio-button .dot {
+            background-color: #E50914;
+        }
+
+        /* Payment Instruction Layout Styles */
+        .payment-instruction-card {
+            background-color: rgba(0, 0, 0, 0.85);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            overflow: hidden; max-width: 480px; margin: 2rem auto;
+            border: 1px solid #303030;
+        }
+        .payment-instruction-header {
+            background-color: #141414;
+            color: #fff; padding: 1rem 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .payment-instruction-body { padding: 1.5rem; }
+        .payment-instruction-footer {
+            padding: 1.5rem; background-color: #141414;
+            border-top: 1px solid #303030;
+        }
+        .payment-accordion summary {
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 600; padding: 1rem 0; cursor: pointer;
+            border-bottom: 1px solid #303030; color: #ffffff;
+        }
+        .payment-accordion summary::after {
+            content: '\f078'; font-family: 'Font Awesome 6 Free';
+            font-weight: 900; transition: transform 0.3s ease;
+        }
+        .payment-accordion[open] summary::after { transform: rotate(180deg); }
+        .payment-accordion-content {
+            padding: 1rem 0.5rem; color: #b3b3b3; line-height: 1.6;
+        }
+        .payment-accordion-content ol { list-style-type: decimal; padding-left: 1.5rem; }
+        .copy-button {
+            color: #E50914; font-weight: 600; background: none;
+            border: none; cursor: pointer;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
+        <div id="main-content-container">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8">
+                <!-- Kolom Kiri: Form & Pembayaran -->
+                <div class="lg:col-span-1 content-card p-8 md:p-10 rounded-lg">
+                    <!-- Header Keamanan -->
+                    <div class="grid grid-cols-2 gap-4 text-center border-b border-zinc-800 pb-6 mb-8">
+                        <div class="flex items-center justify-center gap-3">
+                            <i class="fas fa-shield-alt text-green-500 text-xl"></i>
+                            <h3 class="font-medium text-sm text-gray-300">TRANSAKSI AMAN</h3>
+                        </div>
+                        <div class="flex items-center justify-center gap-3">
+                            <i class="fas fa-hand-holding-usd text-red-500 text-xl"></i>
+                            <h3 class="font-medium text-sm text-gray-300">GARANSI UANG KEMBALI</h3>
+                        </div>
+                    </div>
+                    
+                    <!-- Info Produk -->
+                    <div id="product-info-form-top" class="mb-8"></div>
+
+                    <!-- Fitur -->
+                    <div id="features-before-form" class="mb-8 border-t border-zinc-800 pt-8"></div>
+
+                    <!-- Form -->
+                    <form id="orderForm" class="border-t border-zinc-800 pt-8">
+                        <h2 class="text-xl font-bold mb-5 text-white">1. Lengkapi Data</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-300">Nama Anda <span class="text-red-500">*</span></label>
+                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
+                            </div>
+                            <div>
+                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-300">No. WhatsApp Anda <span class="text-red-500">*</span></label>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-1 text-gray-300">Email Anda <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com">
+                            </div>
+                        </div>
+                        
+                        <!-- Honeypot field for anti-spam -->
+                        <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
+
+                        <!-- Metode Pembayaran -->
+                        <div id="payment-method-selection" class="mt-8"></div>
+                        
+                        <!-- Rincian Pesanan -->
+                        <div id="order-details-in-form" class="mt-8"></div>
+                        
+                        <button type="button" id="submit-btn" class="cta-button red-button mt-8">
+                            Beli Sekarang
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
+                <div class="lg:col-span-1 py-8">
+                     <div id="testimonials-full" class="content-card p-8 md:p-10 rounded-lg"></div>
+                     <div class="mt-12 content-card p-8 md:p-10 rounded-lg">
+                         <div id="faq-full"></div>
+                     </div>
+                     <div class="mt-12 content-card p-8 md:p-10 rounded-lg">
+                         <div id="policy-full"></div>
+                     </div>
+                </div>
+            </div>
+        </div>
+        <div id="payment-instruction-container"></div>
+        <footer id="footer" class="text-center mt-16 text-gray-500 text-sm">
+            <p>Copyright © <span id="currentYear">2025</span> NFX ID. Semua Hak Dilindungi.</p>
+        </footer>
+    </div>
+
+    <!-- Modal for Info/Confirmation -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle"></h3>
+            <p id="modalMessage"></p>
+            <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
+        </div>
+    </div>
+
+    <!-- Modal untuk Zoom Gambar -->
+    <div id="imageModal" class="modal" onclick="closeImageModal()">
+        <span class="close-image-modal" onclick="closeImageModal()">&times;</span>
+        <img class="modal-content-image" id="modalImage">
+    </div>
+    
+    <!-- Notification Popup -->
+    <div class="notif-box" id="notifBox">
+        <div class="notif-icon-wrapper"><i class="far fa-check-circle"></i></div>
+        <div class="notif-content-area">
+             <div class="notif-message">
+                 <div><strong class="notif-name">Nama Acak</strong> baru saja membeli!</div>
+                 <div class="notif-time">beberapa detik lalu</div>
+             </div>
+        </div>
+    </div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // --- ELEMENTS ---
+        const elements = {
+            mainContentContainer: document.getElementById('main-content-container'),
+            paymentInstructionContainer: document.getElementById('payment-instruction-container'),
+            footer: document.getElementById('footer'),
+            currentYear: document.getElementById('currentYear'),
+            productInfoFormTop: document.getElementById('product-info-form-top'),
+            featuresBeforeForm: document.getElementById('features-before-form'),
+            paymentMethodSelection: document.getElementById('payment-method-selection'),
+            orderDetailsInForm: document.getElementById('order-details-in-form'),
+            testimonialsFull: document.getElementById('testimonials-full'),
+            faqFull: document.getElementById('faq-full'),
+            policyFull: document.getElementById('policy-full'),
+            orderForm: document.getElementById('orderForm'),
+            submitBtn: document.getElementById('submit-btn'),
+            notifBox: document.getElementById('notifBox'),
+            notifName: document.querySelector('#notifBox .notif-name'),
+        };
+
+        // --- CONFIGURATION ---
+        const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
+        let countdownInterval;
+        
+        const allTestimonials = [
+            "https://github.com/mrsetiawans/webdrv/blob/main/testi/nfx/nfxid%20(1).png?raw=true",
+            "https://github.com/mrsetiawans/webdrv/blob/main/testi/nfx/nfxid%20(2).png?raw=true",
+            "https://github.com/mrsetiawans/webdrv/blob/main/testi/nfx/nfxid%20(3).png?raw=true",
+            "https://github.com/mrsetiawans/webdrv/blob/main/testi/nfx/nfxid%20(4).png?raw=true",
+            "https://github.com/mrsetiawans/webdrv/blob/main/testi/nfx/nfxid%20(5).png?raw=true",
+            "https://github.com/mrsetiawans/webdrv/blob/main/testi/nfx/nfxid%20(6).png?raw=true",
+            "https://github.com/mrsetiawans/webdrv/blob/main/testi/nfx/nfxid%20(7).png?raw=true",
+            "https://github.com/mrsetiawans/webdrv/blob/main/testi/nfx/nfxid%20(8).png?raw=true"
+        ];
+
+        const singlePackage = {
+            id: 'premium_1_year',
+            name: "Netflix Premium 1 Tahun",
+            price: 179000,
+            normalPrice: 250000,
+            title: "NETFLIX PREMIUM 1 TAHUN",
+            priceDisplay: `Rp179.000`,
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png',
+            description: "Akun private penuh untuk 1 tahun, nonton tanpa batas.",
+            features: [
+                "<strong>Akun Private Penuh:</strong> Email dan password bisa diganti sesuai keinginan.",
+                "<strong>Garansi Penuh 1 Tahun:</strong> Akun dijamin aman selama masa aktif.",
+                "<strong>Kualitas 4K Ultra HD + HDR:</strong> Nikmati resolusi tertinggi dan kualitas gambar terbaik.",
+                "<strong>Nonton di 4 Layar Bersamaan:</strong> Cocok untuk dibagi bersama keluarga.",
+                "<strong>Bisa untuk Semua Device:</strong> HP, Tablet, Smart TV, Laptop, PS/Xbox.",
+                "<strong>Legal & Aman:</strong> Langganan 100% resmi dan aman.",
+                "<strong>Tanpa Perpanjang Bulanan:</strong> Sekali bayar untuk hiburan setahun penuh."
+            ],
+            testimonials: allTestimonials
+        };
+
+        const paymentAccounts = {
+            bca: { 
+                displayName: 'BCA Virtual Account', 
+                accountHolder: 'Epayment', 
+                number: '39358089510639366', 
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png', 
+                type: 'va',
+                category: 'Bank Transfer'
+            },
+            jago: { 
+                displayName: 'Bank Jago', 
+                accountHolder: 'Anang Dude Juliawan', 
+                number: '109594117900', 
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo-jago.svg/1920px-Logo-jago.svg.png', 
+                type: 'bank',
+                category: 'Bank Transfer'
+            },
+            gopay: { 
+                displayName: 'Gopay', 
+                accountHolder: null, 
+                number: '089510639366', 
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/462px-Gopay_logo.svg.png', 
+                type: 'ewallet',
+                category: 'E-Wallet'
+            },
+            dana: { 
+                displayName: 'DANA', 
+                accountHolder: null, 
+                number: '089510639366', 
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/768px-Logo_dana_blue.svg.png', 
+                type: 'ewallet',
+                category: 'E-Wallet'
+            },
+            ovo: { 
+                displayName: 'OVO', 
+                accountHolder: 'OVO Epayment', 
+                number: '089510639366', 
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/768px-Logo_ovo_purple.svg.png', 
+                type: 'ewallet',
+                category: 'E-Wallet'
+            }
+        };
+
+        // --- TEMPLATE FUNCTIONS ---
+        const getProductInfoHTML = (pkg) => `
+        <div class="text-center">
+            <div class="mb-4 flex justify-center"><img alt="Logo ${pkg.name}" class="h-10 w-auto" src="${pkg.logo}"></div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white uppercase tracking-wider">${pkg.title}</h1>
+            <p class="text-lg text-gray-300 mt-2">${pkg.description}</p>
+            <div class="text-5xl font-bold text-white mt-6">${pkg.priceDisplay}</div>
+            <p class="text-gray-400 text-sm mt-1">Langganan Resmi & Bergaransi Penuh</p>
+        </div>`;
+
+        const getFeaturesHTML = (pkg) => {
+            const colors = ['text-red-500', 'text-red-400', 'text-red-500', 'text-red-400'];
+            return `<div>
+                <h3 class="text-xl font-bold mb-4 text-white">Yang Anda Dapatkan:</h3>
+                <ul class="space-y-4">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3"></i><span class="text-gray-300">${f}</span></li>`).join('')}</ul>
+            </div>`;
+        }
+        
+        const getPaymentMethodsHTML = (accounts) => {
+            const groupedAccounts = {};
+            for (const key in accounts) {
+                const account = accounts[key];
+                if (!groupedAccounts[account.category]) {
+                    groupedAccounts[account.category] = [];
+                }
+                groupedAccounts[account.category].push({ key, ...account });
+            }
+
+            let html = `<h2 class="text-xl font-bold mb-5 text-white">2. Pilih Metode Pembayaran</h2>`;
+            const categoryOrder = ['Bank Transfer', 'E-Wallet'];
+
+            for (const category of categoryOrder) {
+                if (groupedAccounts[category]) {
+                    html += `<h3 class="text-lg font-semibold text-gray-300 mt-6 mb-3">${category}</h3>`;
+                    html += `<div class="border border-zinc-700 rounded-lg overflow-hidden">`;
+
+                    groupedAccounts[category].forEach((account, index) => {
+                        const isFirst = index === 0 && category === 'Bank Transfer';
+                        const isLast = index === groupedAccounts[category].length - 1;
+                        
+                        html += `
+                            <div class="${!isLast ? 'border-b border-zinc-700' : ''}">
+                                <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="payment-radio" ${isFirst ? 'checked' : ''}>
+                                <label for="${account.key}" class="payment-label">
+                                    <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo bg-white p-1 rounded-sm">
+                                    <span class="font-medium text-white flex-grow">${account.displayName}</span>
+                                    <span class="custom-radio-button"><span class="dot"></span></span>
+                                </label>
+                            </div>
+                        `;
+                    });
+                    html += `</div>`;
+                }
+            }
+
+            html += `
+                <div class="bg-zinc-800 p-3 mt-4 rounded-md text-center text-sm text-gray-400">
+                    Pembayaran ini diproses oleh Doku
+                </div>
+            `;
+            return html;
+        };
+
+        const getOrderDetailsHTML = (pkg, totalPrice) => `
+            <div class="mt-8 pt-6 border-t border-zinc-800">
+                 <h3 class="text-xl font-bold mb-4 text-white">Rincian Pesanan</h3>
+                 <div class="space-y-3 text-gray-300">
+                     <div class="flex justify-between items-center">
+                         <span>${pkg.name}</span>
+                         <div class="text-right">
+                             <span class="text-sm text-gray-500 line-through">${formatCurrency(pkg.normalPrice)}</span>
+                             <span class="font-medium text-white ml-2">${formatCurrency(pkg.price)}</span>
+                         </div>
+                     </div>
+                     <div class="flex justify-between">
+                         <span>Kode Unik</span>
+                         <span class="font-medium text-white">${formatCurrency(uniqueCode)}</span>
+                     </div>
+                     <hr class="my-2 border-zinc-800">
+                     <div class="flex justify-between font-bold text-lg text-white">
+                         <span>TOTAL</span>
+                         <span>${formatCurrency(totalPrice)}</span>
+                     </div>
+                 </div>
+            </div>`;
+
+        const getTestimonialsHTML = (pkg) => {
+            let imagesHTML = pkg.testimonials.map(url => `
+                <img src="${url}" alt="Testimoni Pelanggan Netflix" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, this.src)">
+            `).join('');
+
+            return `
+            <div>
+                <h2 class="text-2xl font-bold text-center mb-8 text-white">Testimoni Pelanggan Kami</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    ${imagesHTML}
+                </div>
+            </div>`;
+        }
+
+        const getFaqHTML = () => `
+             <div>
+                 <h2 class="text-3xl font-bold mb-8 text-center text-white">Pertanyaan Umum</h2>
+                 <div class="space-y-2">
+                     <details class="faq-item">
+                         <summary>Apakah akun Netflix ini legal?</summary>
+                         <div class="faq-content">Ya, 100% legal. Kami menggunakan metode pembayaran resmi Netflix dengan kartu kredit, bukan hasil carding atau metode ilegal lainnya. Akun Anda dijamin aman.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Bolehkah saya mengganti email atau password?</summary>
+                         <div class="faq-content">Tentu saja. Ini adalah akun private, sehingga Anda akan mendapatkan email dan password yang bisa langsung Anda ubah sesuai keinginan demi keamanan dan privasi.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Berapa lama proses aktivasinya?</summary>
+                         <div class="faq-content">Sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, akun akan kami kirimkan melalui WhatsApp dalam waktu 5-15 menit.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Apakah ada garansi?</summary>
+                         <div class="faq-content">Tentu. Kami memberikan garansi penuh selama 1 tahun. Jika terjadi masalah pada akun (seperti tidak bisa login atau terkena on-hold), kami akan segera menggantinya dengan akun baru.</div>
+                     </details>
+                     <details class="faq-item">
+                        <summary>Bisakah saya menggunakan akun ini di luar negeri?</summary>
+                        <div class="faq-content">Tentu saja. Akun Netflix bersifat global dan bisa digunakan di negara mana pun yang memiliki layanan Netflix. Katalog film dan serial mungkin akan menyesuaikan dengan lokasi Anda saat itu.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apakah saya bisa mendownload film?</summary>
+                        <div class="faq-content">Ya, Anda bisa mendownload acara TV dan film favorit Anda di perangkat seluler (HP/Tablet) atau aplikasi Windows untuk ditonton secara offline tanpa koneksi internet.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Bagaimana jika saya lupa password?</summary>
+                        <div class="faq-content">Karena ini adalah akun private, Anda memiliki kontrol penuh. Anda bisa mereset password melalui email yang terhubung dengan akun tersebut, sama seperti akun pribadi Anda lainnya.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Bagaimana cara menghubungi support?</summary>
+                        <div class="faq-content">Jika Anda mengalami kendala dengan akun, Anda bisa langsung menghubungi kami melalui nomor WhatsApp yang sama dengan yang Anda gunakan untuk konfirmasi pembayaran. Tim kami siap membantu selama masa garansi.</div>
+                    </details>
+                 </div>
+             </div>
+        `;
+        
+        const getPolicyHTML = () => `
+            <div>
+                <h3 class="text-2xl font-bold mb-4 text-center text-white">Kebijakan & Ketentuan</h3>
+                <div class="space-y-6 text-sm text-gray-300">
+                    <div>
+                        <h4 class="text-lg font-bold mb-2 text-white">Kebijakan Privasi</h4>
+                        <p>Informasi Anda (nama, email, no. WhatsApp) hanya digunakan untuk keperluan transaksi dan pengiriman akun. Kami tidak akan membagikan data Anda ke pihak ketiga.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2 text-white">Syarat & Ketentuan</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Garansi berlaku jika Anda mengikuti semua aturan yang diberikan.</li>
+                            <li>Garansi tidak berlaku jika akun bermasalah karena kesalahan pengguna.</li>
+                            <li>Dilarang menggunakan akun untuk aktivitas ilegal atau melanggar kebijakan Netflix.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // --- FUNCTIONS ---
+        function formatCurrency(value) {
+            return `Rp${value.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`;
+        }
+
+        function updateDisplay() {
+            const pkg = singlePackage;
+            const totalPrice = pkg.price + uniqueCode;
+            
+            elements.productInfoFormTop.innerHTML = getProductInfoHTML(pkg);
+            elements.featuresBeforeForm.innerHTML = getFeaturesHTML(pkg);
+            elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
+            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+            elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
+            elements.faqFull.innerHTML = getFaqHTML();
+            elements.policyFull.innerHTML = getPolicyHTML();
+        }
+
+        function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
+            const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
+                          `*ID Pembayaran:* ${paymentId}\n` +
+                          `*Paket:* ${pkg.name}\n` +
+                          `*Metode Pembayaran:* ${paymentMethodName}\n` +
+                          `*Nama:* ${formData.get('nama')}\n` +
+                          `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
+                          `*Email:* ${formData.get('email')}\n` +
+                          `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
+                          `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
+            return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
+        }
+
+        function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId) {
+            window.scrollTo(0, 0); // Scroll to top when showing instructions
+            
+            if (typeof fbq === 'function') {
+                fbq('track', 'AddPaymentInfo', { content_name: pkg.name, content_category: 'Streaming Service', currency: 'IDR', value: totalPrice });
+            }
+
+            elements.mainContentContainer.style.display = 'none';
+            elements.footer.style.display = 'none';
+            
+            const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId);
+            
+            let accountLabel = '';
+            let instructionAccordionHTML = '';
+
+            switch (paymentAccount.type) {
+                case 'va':
+                    accountLabel = 'Nomor Virtual Account';
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion"><summary>ATM BCA</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                            <li>Masukkan Kartu ATM BCA & PIN Anda.</li>
+                            <li>Pilih menu <strong>Transaksi Lainnya > Transfer > Ke Rekening BCA Virtual Account</strong>.</li>
+                            <li>Masukkan nomor virtual account: <strong>${paymentAccount.number}</strong>.</li>
+                            <li>Pastikan detail pembayaran (No. VA, Nama, Total Tagihan) sudah sesuai.</li>
+                            <li>Masukkan jumlah transfer sesuai Total Tagihan, lalu ikuti instruksi untuk menyelesaikan transaksi.</li>
+                            <li>Simpan struk sebagai bukti pembayaran.</li>
+                        </ol></div></details>
+                        <details class="payment-accordion"><summary>m-BCA (BCA Mobile)</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                            <li>Login ke aplikasi BCA Mobile dan pilih menu <strong>m-BCA</strong>.</li>
+                            <li>Pilih <strong>m-Transfer > BCA Virtual Account</strong>.</li>
+                            <li>Masukkan nomor virtual account: <strong>${paymentAccount.number}</strong>.</li>
+                            <li>Konfirmasi detail pembayaran dan masukkan PIN m-BCA Anda.</li>
+                            <li>Simpan notifikasi yang muncul sebagai bukti pembayaran.</li>
+                        </ol></div></details>
+                    `;
+                    break;
+                case 'ewallet':
+                    accountLabel = `Nomor ${paymentAccount.displayName}`;
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion">
+                            <summary>Cara Bayar via Aplikasi ${paymentAccount.displayName}</summary>
+                            <div class="payment-accordion-content">
+                                <ol class="space-y-2">
+                                    <li>Buka aplikasi <strong>${paymentAccount.displayName}</strong> Anda.</li>
+                                    <li>Pilih menu <strong>Bayar</strong> atau <strong>Transfer</strong>.</li>
+                                    <li>Pilih opsi transfer ke <strong>Sesama ${paymentAccount.displayName}</strong> atau <strong>ke Nomor HP</strong>.</li>
+                                    <li>Masukkan nomor tujuan: <strong>${paymentAccount.number}</strong>.</li>
+                                    <li>Masukkan nominal transfer sebesar <strong>${formatCurrency(totalPrice)}</strong>.</li>
+                                    <li>Pastikan nama penerima (${paymentAccount.accountHolder || 'sesuai'}) sudah sesuai.</li>
+                                    <li>Masukkan PIN Anda untuk menyelesaikan pembayaran.</li>
+                                </ol>
+                            </div>
+                        </details>`;
+                    break;
+                default: // 'bank'
+                    accountLabel = 'Nomor Rekening';
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion">
+                            <summary>Cara Bayar via Mobile Banking</summary>
+                            <div class="payment-accordion-content"><ol class="space-y-2">
+                                <li>Login ke aplikasi Mobile Banking Anda.</li>
+                                <li>Pilih menu <strong>Transfer</strong>.</li>
+                                <li>Pilih <strong>Transfer Antar Bank</strong> atau ke rekening tujuan.</li>
+                                <li>Masukkan nomor rekening tujuan: <strong>${paymentAccount.number}</strong>.</li>
+                                <li>Masukkan nominal transfer sebesar <strong>${formatCurrency(totalPrice)}</strong>.</li>
+                                <li>Masukkan PIN atau password transaksi Anda.</li>
+                            </ol></div>
+                        </details>`;
+                    break;
+            }
+            
+            const paymentViewHTML = `
+            <div class="payment-instruction-card">
+                <div class="payment-instruction-header">
+                    <h2 class="text-lg font-bold">Instruksi Pembayaran</h2>
+                    <button onclick="window.location.reload()" class="text-2xl">&times;</button>
+                </div>
+                
+                <div class="payment-instruction-body">
+                    <div class="text-center border-b border-zinc-700 pb-6">
+                        <p class="text-sm text-gray-400">Total Pembayaran</p>
+                        <div class="flex justify-center items-center gap-2 mt-1">
+                            <h3 class="text-3xl font-bold text-white">${formatCurrency(totalPrice)}</h3>
+                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="text-gray-400 hover:text-red-500">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                        <p class="text-sm text-gray-400 mt-4">Order ID: <strong class="text-white">${paymentId}</strong></p>
+                    </div>
+
+                    <div class="text-center py-4">
+                        <p class="text-sm text-red-500 font-semibold">
+                            Bayar dalam <span id="countdown-timer">23:59:59</span>
+                        </p>
+                    </div>
+
+                    <div class="border-t border-b border-zinc-700 py-6">
+                        <div class="flex justify-between items-center">
+                            <p class="font-bold text-white">${paymentAccount.displayName}</p>
+                            <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-6 bg-white p-1 rounded-sm">
+                        </div>
+                        <p class="text-sm text-gray-400 mt-4">Lakukan pembayaran ke tujuan berikut.</p>
+                        
+                        <div class="mt-4">
+                            <p class="text-xs text-gray-500">${accountLabel}</p>
+                            <div class="flex justify-between items-center">
+                                <p class="text-lg font-semibold text-white">${paymentAccount.number}</p>
+                                <button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="copy-button">Salin</button>
+                            </div>
+                        </div>
+                         ${paymentAccount.accountHolder ? `
+                            <div class="mt-2">
+                                <p class="text-xs text-gray-500">Atas Nama</p>
+                                <p class="text-lg font-semibold text-white">${paymentAccount.accountHolder}</p>
+                            </div>
+                        ` : ''}
+                    </div>
+                     <div>
+                        ${instructionAccordionHTML}
+                    </div>
+                </div>
+
+                <div class="payment-instruction-footer text-center">
+                      <p class="text-gray-400 mb-4 text-sm">Setelah transfer, jangan lupa konfirmasi pembayaran Anda.</p>
+                      <a href="${waLink}" target="_blank" class="cta-button red-button w-full">
+                         <i class="fab fa-whatsapp text-xl"></i> 
+                         <span>Konfirmasi Pembayaran</span>
+                      </a>
+                </div>
+            </div>
+            `;
+            elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
+            startCountdown();
+        }
+
+        async function handleFormSubmit() {
+            const formData = new FormData(elements.orderForm);
+            const nama = formData.get('nama').trim();
+            const whatsapp = formData.get('whatsapp').trim();
+            const email = formData.get('email').trim();
+            const paymentMethodKey = formData.get('payment-method');
+
+            if (!nama || !whatsapp || !email || !paymentMethodKey) {
+                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan sebelum melanjutkan.');
+                return;
+            }
+
+            elements.submitBtn.disabled = true;
+            elements.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+
+            const pkg = singlePackage;
+            const totalPrice = pkg.price + uniqueCode;
+            const paymentAccount = paymentAccounts[paymentMethodKey];
+            const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const packageCode = 'P1T'; // Premium 1 Tahun
+            const lastThreeDigits = String(totalPrice).slice(-3);
+            const paymentId = `NF${day}${month}${packageCode}${lastThreeDigits}`;
+
+            // Simulate submission
+            setTimeout(() => {
+                elements.submitBtn.disabled = false;
+                elements.submitBtn.innerHTML = 'Beli Sekarang';
+                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId);
+            }, 1500);
+        }
+        
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown-timer');
+            if (!countdownElement) return;
+            let timeInSeconds = 24 * 60 * 60;
+            countdownInterval = setInterval(() => {
+                timeInSeconds--;
+                if (timeInSeconds < 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.textContent = "Waktu Habis";
+                    return;
+                }
+                const hours = Math.floor(timeInSeconds / 3600);
+                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                const seconds = timeInSeconds % 60;
+                countdownElement.textContent = 
+                    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        const FIRST_NAMES = [
+          "Adi Saputra", "Agus Setiawan", "Ahmad Fauzi", "Aji Santoso", "Aminah Sari",
+          "Amir Hidayat", "Andi Wijaya", "Andre Gunawan", "Angga Pratama", "Ani Lestari",
+          "Anisa Rahmawati", "Anton Nugroho", "Ari Wibowo", "Arif Budiman", "Asep Sunandar",
+          "Bayu Prasetyo", "Bambang Susilo", "Bella Puspita", "Bima Sakti", "Budi Hartono",
+          "Cahya Purnama", "Candra Kirana", "Cecep Firmansyah", "Citra Dewi", "Dadan Hamdani",
+          "Dedi Mulyadi", "Deni Ramdani", "Desi Ratnasari", "Dewi Anggraini", "Dian Permata",
+          "Dimas Kurniawan", "Dina Mardiana", "Dinda Ayu", "Doni Setiawan", "Eka Putri",
+          "Eko Wahyudi", "Endah Wulandari", "Erick Setiawan", "Erwin Syahputra", "Eva Yuliana",
+          "Fajar Nugraha", "Farah Diba", "Farhan Jaelani", "Fatima Zahra", "Fauzan Azima",
+          "Febri Haryadi", "Fernando Siregar", "Fikri Haikal", "Fitriani", "Galih Santosa",
+          "Gilang Permana", "Hadi Susanto", "Hafiz Alfarisi", "Hana Pertiwi", "Handoko",
+          "Harianto", "Hasan Basri", "Hendra Gunawan", "Heru Purnomo", "Hidayat Taufik",
+          "Ibrahim Malik", "Ichsan Maulana", "Ida Royani", "Ihsanudin", "Ilham Akbar",
+          "Imam Prasetyo", "Indah Sari", "Indra Kusuma", "Iqbal Ramadhan", "Irfan Maulana",
+          "Irwan Setiadi", "Ismail Marzuki", "Ivan Gunardi", "Jaka Swara", "Jamaludin",
+          "Jefri Setiawan", "Joko Purwanto", "Joni Iskandar", "Julia Perez", "Kamaludin",
+          "Kartika Sari", "Kevin Sanjaya", "Khairul Anwar", "Krisna Murti", "Kurniawan Dwi",
+          "Lestari Indah", "Lia Amelia", "Lina Marlina", "Lisa Andriani", "Lukman Hakim",
+          "Lutfi Hasan", "Made Suardika", "Maulana Yusuf", "Mega Wati", "Mila Karmila",
+          "Mira Lesmana", "Mochammad Iqbal", "Monica Sari", "Muhammad Ridwan", "Mukti Ali",
+          "Muslimah", "Nadia Putri", "Nana Sutisna", "Nanda Pratama", "Nia Daniaty",
+          "Nina Wang", "Novi Aulia", "Novita Sari", "Nuraini", "Nurul Huda",
+          "Putra Wijaya", "Putri Lestari", "Rachmat Saleh", "Raden Saleh", "Raditya Putra",
+          "Rafli Mursalim", "Rahayu", "Rahman Hakim", "Rahmat Santoso", "Rama Dhani",
+          "Rangga Setiawan", "Rani Puspita", "Ratna Sari", "Reza Pahlevi", "Rian Ardianto",
+          "Rico Tampati", "Ridwan Kamil", "Rina Gunawan", "Rini Yulianti", "Rio Dewanto",
+          "Riri Riza", "Riska Amelia", "Rizki Febian", "Rizky Billar", "Robby Darwis",
+          "Robertino", "Roni Wahyudi", "Rossa Amelia", "Rudi Hartono", "Ryan Hidayat",
+          "Sakti", "Samuel Rizal", "Sari Nila", "Satria Baja", "Selly Hasan",
+          "Septian David", "Setiawan", "Sinta Bella", "Siti Nurhaliza", "Sofia Latjuba",
+          "Sonia Fergina", "Sri Mulyani", "Sugeng Rahayu", "Sugiarto", "Suharto",
+          "Sujatmiko", "Sukma Ayu", "Sulaiman", "Sumardi", "Sunarto",
+          "Surya Adi", "Susanto", "Susi Susanti", "Tania Putri", "Taufik Hidayat",
+          "Tedi Supriadi", "Thomas Djorghi", "Tian", "Tika Ramlan", "Tina Toon",
+          "Tono", "Tony Sucipto", "Tri Utami", "Umar Bakri", "Usman",
+          "Utami", "Vera", "Vicky Prasetyo", "Vina Panduwinata", "Wahyu",
+          "Wahyudi", "Wawan Hendrawan", "Wibowo", "Widi", "Widodo",
+          "Wijaya", "Wulan Guritno", "Yani", "Yanto", "Yoga",
+          "Yogi", "Yohanes", "Yosef", "Yuda", "Yudi",
+          "Yulia", "Yulianto", "Yuni", "Yusuf", "Zahra",
+          "Zainal", "Zaki"
+        ];
+        
+        function getRandomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+        function generateRandomName() { return `${getRandomElement(FIRST_NAMES)}`; }
+        
+        function showNextNotification() {
+            if (!elements.notifBox || !elements.notifName) return;
+            elements.notifName.textContent = generateRandomName();
+            elements.notifBox.classList.remove('show');
+            void elements.notifBox.offsetWidth; // Trigger reflow
+            elements.notifBox.classList.add('show');
+        }
+
+        function scheduleNextNotification() {
+            const randomDelay = Math.floor(Math.random() * 10000) + 8000;
+            setTimeout(() => {
+                showNextNotification();
+                scheduleNextNotification();
+            }, randomDelay);
+        }
+
+        // --- INITIALIZATION ---
+        elements.currentYear.textContent = new Date().getFullYear();
+        elements.submitBtn.addEventListener('click', handleFormSubmit);
+
+        updateDisplay();
+        
+        if (elements.notifBox && elements.notifName) {
+            setTimeout(scheduleNextNotification, 6000);
+        }
+    });
+
+    // --- GLOBAL HELPER FUNCTIONS ---
+    const infoModal = document.getElementById('infoModal');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+
+    function showInfoModal(title, message) {
+        if (!infoModal) return;
+        infoModal.querySelector('#modalTitle').textContent = title;
+        infoModal.querySelector('#modalMessage').textContent = message;
+        infoModal.style.display = 'flex';
+    }
+
+    function closeInfoModal() {
+        if (!infoModal) return;
+        infoModal.style.display = 'none';
+    }
+
+    function openImageModal(event, src) {
+        event.stopPropagation();
+        if (!imageModal || !modalImage) return;
+        imageModal.style.display = "flex";
+        modalImage.src = src;
+    }
+
+    function closeImageModal() {
+        if (!imageModal) return;
+        imageModal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == infoModal) { closeInfoModal(); }
+        if (event.target == imageModal) { closeImageModal(); }
+    }
+
+    function copyToClipboard(text, entityName) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showInfoModal('Berhasil Disalin!', `${entityName} telah disalin ke clipboard.`);
+        } catch (err) {
+            showInfoModal('Gagal!', 'Gagal menyalin. Silakan coba secara manual.');
+        }
+        document.body.removeChild(textArea);
+    }
+    </script>
+
+</body>
+</html>
