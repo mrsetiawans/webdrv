@@ -288,7 +288,7 @@
             }
         }
 
-        /* === NEW: PAYMENT INSTRUCTION LAYOUT STYLES === */
+        /* === PAYMENT INSTRUCTION LAYOUT STYLES === */
         .payment-header {
             background-color: #202124; /* Google dark grey */
             color: #fff;
@@ -384,7 +384,7 @@
             font-size: 0.9rem;
         }
 
-        /* === NEW: DETAILS MODAL STYLES (BOTTOM SHEET) === */
+        /* === DETAILS MODAL STYLES (BOTTOM SHEET) === */
         #detailsModal {
             align-items: flex-end; /* Align to bottom */
         }
@@ -441,7 +441,8 @@
 </head>
 <body class="antialiased">
 
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
+    <!-- === DIV KONTAINER UTAMA DENGAN ID BARU === -->
+    <div id="page-container" class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
         <div id="main-content-container">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8">
                 <!-- Kolom Kiri: Form & Pembayaran -->
@@ -618,8 +619,8 @@
             submitBtn: document.getElementById('submit-btn'),
             notifBox: document.getElementById('notifBox'),
             notifName: document.querySelector('#notifBox .notif-name'),
-            detailsModal: document.getElementById('detailsModal'), // NEW
-            detailsModalContent: document.getElementById('detailsModalContent'), // NEW
+            detailsModal: document.getElementById('detailsModal'),
+            detailsModalContent: document.getElementById('detailsModalContent'),
         };
 
         // --- CONFIGURATION ---
@@ -1002,7 +1003,7 @@
             return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
         }
         
-        // --- NEW: INSTRUCTION PAGE AND HELPERS ---
+        // --- INSTRUCTION PAGE AND HELPERS ---
 
         function getIndonesianTimezone() {
             const offset = new Date().getTimezoneOffset() / -60;
@@ -1027,7 +1028,7 @@
                         <p class="text-sm text-gray-600">Total Pembayaran</p>
                         <div class="flex items-center justify-center">
                             <p class="text-3xl font-bold text-gray-800">${formatCurrency(totalPrice)}</p>
-                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy"></i></button>
+                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text ml-2"><i class="far fa-copy"></i></button>
                         </div>
                     </div>
                     <div class="space-y-4 border-t border-b border-gray-200 py-4 mb-4">
@@ -1072,9 +1073,11 @@
             `;
         }
         
-        // --- THIS FUNCTION IS REPLACED ENTIRELY ---
         function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
             window.scrollTo(0, 0);
+            
+            // === KODE BARU UNTUK MEMBUAT FULL-WIDTH ===
+            document.getElementById('page-container').className = ''; // Menghapus semua kelas pembatas
             
             if (typeof fbq === 'function') {
                 fbq('track', 'AddPaymentInfo', { content_name: pkg.name, content_category: 'Software', currency: 'IDR', value: totalPrice });
@@ -1085,7 +1088,6 @@
             
             const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId);
             
-            // Define details for the new modal
             window.currentOrderDetails = {
                 pkg: pkg,
                 totalPrice: totalPrice,
@@ -1142,7 +1144,6 @@
                          ${paymentAccount.accountHolder ? `<p class="text-xs text-gray-500 mt-1">Atas Nama: <strong>${paymentAccount.accountHolder}</strong></p>` : ''}
                     </div>
                 `;
-                // REUSE THE DETAILED INSTRUCTION LOGIC FROM THE ORIGINAL SCRIPT
                  switch (paymentMethodKey) {
                     case 'bca_va':
                         instructionAccordionHTML = `<details class="payment-accordion"><summary>ATM BCA</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Masukkan Kartu ATM BCA & PIN Anda.</li><li>Pilih menu <strong>Transaksi Lainnya > Transfer > Ke Rekening BCA Virtual Account</strong>.</li><li>Masukkan nomor virtual account: <strong>${paymentAccount.number}</strong>.</li><li>Pastikan detail pembayaran (No. VA, Nama, Total Tagihan) sudah sesuai.</li><li>Masukkan jumlah transfer sesuai Total Tagihan, lalu ikuti instruksi untuk menyelesaikan transaksi.</li><li>Simpan struk sebagai bukti pembayaran.</li></ol></div></details><details class="payment-accordion"><summary>m-BCA (BCA Mobile)</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Login ke aplikasi BCA Mobile dan pilih menu <strong>m-BCA</strong>.</li><li>Pilih <strong>m-Transfer > BCA Virtual Account</strong>.</li><li>Masukkan nomor virtual account: <strong>${paymentAccount.number}</strong>.</li><li>Konfirmasi detail pembayaran dan masukkan PIN m-BCA Anda.</li><li>Simpan notifikasi yang muncul sebagai bukti pembayaran.</li></ol></div></details><details class="payment-accordion"><summary>Internet Banking BCA</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Login ke situs KlikBCA dan pilih menu <strong>Pembayaran Tagihan > Pembayaran > BCA Virtual Account</strong>.</li><li>Masukkan nomor virtual account pada kolom kode bayar.</li><li>Pastikan detail pembayaran sudah sesuai, lalu masukkan password dan mToken Anda.</li><li>Simpan struk pembayaran sebagai bukti.</li></ol></div></details>`;
@@ -1452,7 +1453,7 @@
     window.onclick = function(event) {
         if (event.target == infoModal) { closeInfoModal(); }
         if (event.target == imageModal) { closeImageModal(); }
-        if (event.target == document.getElementById('detailsModal')) { window.closeDetailsModal(); } // NEW
+        if (event.target == document.getElementById('detailsModal')) { window.closeDetailsModal(); }
     }
 
     function copyToClipboard(text, entityName) {
