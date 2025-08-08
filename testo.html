@@ -85,7 +85,10 @@
         /* Modal / Message Box Styling */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            overflow: auto; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center;
+            overflow: hidden; background-color: rgba(0,0,0,0.5); 
+        }
+        #infoModal {
+             justify-content: center; align-items: center;
         }
         .modal-content {
             background-color: #fefefe; margin: auto; padding: 24px 32px; width: 90%; max-width: 450px;
@@ -112,6 +115,9 @@
         }
         
         /* Modal untuk Zoom Gambar Testimoni */
+        #imageModal {
+            justify-content: center; align-items: center;
+        }
         #imageModal .modal-content-image {
             margin: auto;
             display: block;
@@ -327,15 +333,16 @@
             padding: 1.5rem;
             margin-top: 1.5rem;
         }
-        .copy-button-sm {
+        .copy-button-text {
             background: none;
             border: none;
-            color: #5f6368;
-            cursor: pointer;
-            margin-left: 0.5rem;
-        }
-        .copy-button-sm:hover {
             color: #1a73e8;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+        .copy-button-text:hover {
+            text-decoration: underline;
         }
         .confirm-button-outlined {
             width: 100%;
@@ -388,18 +395,34 @@
             font-size: 0.9rem;
         }
 
-        /* === NEW: DETAILS MODAL STYLES === */
+        /* === REVISED: DETAILS MODAL STYLES (BOTTOM SHEET) === */
+        #detailsModal {
+            align-items: flex-end; /* Align to bottom */
+        }
         .details-modal-content {
             background-color: #fefefe;
-            margin: auto;
-            padding: 0;
-            width: 90%;
-            max-width: 450px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 100%; /* Full width */
+            border-radius: 16px 16px 0 0; /* Rounded corners only at the top */
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
             text-align: left;
-            animation: fadeIn 0.3s ease;
+            transform: translateY(100%); /* Start off-screen */
         }
+        .details-modal-content.is-open {
+            animation: slideUp 0.3s ease-out forwards;
+        }
+        .details-modal-content.is-closing {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(0); }
+            to { transform: translateY(100%); }
+        }
+
         .details-modal-header {
             padding: 1rem 1.5rem;
             border-bottom: 1px solid #dadce0;
@@ -422,6 +445,8 @@
         }
         .details-modal-body {
             padding: 1rem 1.5rem 1.5rem 1.5rem;
+            max-height: 60vh;
+            overflow-y: auto;
         }
         .details-modal-body .detail-row {
             display: flex;
@@ -566,7 +591,7 @@
     </div>
 
     <!-- Modal untuk Zoom Gambar -->
-    <div id="imageModal" class="modal" onclick="closeImageModal()">
+    <div id="imageModal" class="modal">
         <span class="close-image-modal" onclick="closeImageModal()">&times;</span>
         <img class="modal-content-image" id="modalImage">
     </div>
@@ -971,6 +996,17 @@
             return `Rp${value.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`;
         }
 
+        function getIndonesianTimezone() {
+            const offset = new Date().getTimezoneOffset() / -60;
+            if (offset === 7) return 'WIB';
+            if (offset === 8) return 'WITA';
+            if (offset === 9) return 'WIT';
+            // Fallback for other timezones
+            const sign = offset > 0 ? '+' : '-';
+            const hours = Math.abs(Math.floor(offset));
+            return `GMT${sign}${String(hours).padStart(2, '0')}:00`;
+        }
+
         function updateDisplay() {
             const pkg = packages[currentPackageId];
             const totalPrice = pkg.price + uniqueCode;
@@ -1026,8 +1062,20 @@
 
             // Set expiry time (e.g., 1 hour from now)
             expiryTime = new Date(new Date().getTime() + 60 * 60 * 1000);
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
-            paymentDeadlineFormatted = expiryTime.toLocaleDateString('id-ID', options).replace('pukul', '');
+            
+            // Format date part
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const datePart = expiryTime.toLocaleDateString('id-ID', dateOptions);
+
+            // Format time part
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            const timePart = expiryTime.toLocaleTimeString('id-ID', timeOptions).replace(/\./g, ':');
+
+            // Format timezone part
+            const timezoneString = `(${getIndonesianTimezone()})`;
+
+            paymentDeadlineFormatted = `${datePart} pukul ${timePart} ${timezoneString}`;
+
 
             if (paymentMethodKey === 'qris') {
                 paymentDetailsBlock = `
@@ -1043,8 +1091,8 @@
                     <div class="mt-4">
                         <p class="text-sm text-gray-500">${accountLabel}</p>
                         <div class="flex justify-between items-center">
-                            <p class="text-2xl font-semibold text-gray-800 tracking-wider">${paymentAccount.number}</p>
-                            <button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="copy-button-sm"><i class="far fa-copy text-lg"></i></button>
+                            <p class="text-xl font-semibold text-gray-800 tracking-wider">${paymentAccount.number}</p>
+                            <button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="copy-button-text">Salin</button>
                         </div>
                     </div>
                 `;
@@ -1052,6 +1100,18 @@
 
             // --- REVISED INSTRUCTION LOGIC ---
             switch (paymentMethodKey) {
+                case 'qris':
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion"><summary>Cara Bayar via QRIS</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                            <li>Buka aplikasi perbankan (m-banking) atau e-wallet Anda (GoPay, OVO, DANA, dll).</li>
+                            <li>Pilih menu <strong>Bayar</strong>, <strong>Scan QR</strong>, atau <strong>QRIS</strong>.</li>
+                            <li>Pindai (scan) kode QR yang ditampilkan di atas.</li>
+                            <li>Pastikan nama merchant dan nominal pembayaran sudah sesuai.</li>
+                            <li>Masukkan PIN Anda untuk menyelesaikan transaksi.</li>
+                            <li>Simpan bukti pembayaran.</li>
+                        </ol></div></details>
+                    `;
+                    break;
                 case 'bca_va':
                     instructionAccordionHTML = `
                         <details class="payment-accordion"><summary>ATM BCA</summary><div class="payment-accordion-content"><ol class="space-y-2">
@@ -1103,7 +1163,7 @@
                 // Add other cases here...
                 default:
                      instructionAccordionHTML = `
-                        <details class="payment-accordion" open><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                        <details class="payment-accordion"><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2">
                             <li>Buka aplikasi perbankan atau e-wallet Anda.</li>
                             <li>Pilih menu transfer atau pembayaran.</li>
                             <li>Masukkan detail pembayaran yang tertera di atas.</li>
@@ -1132,7 +1192,7 @@
                         <p class="text-sm text-gray-600">Total Pembayaran</p>
                         <div class="flex items-center">
                             <p class="text-2xl font-bold text-gray-800">${formatCurrency(totalPrice)}</p>
-                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-sm"><i class="far fa-copy text-lg"></i></button>
+                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">Salin</button>
                         </div>
                     </div>
 
@@ -1318,7 +1378,7 @@
                         <p class="text-sm text-gray-600">Total Pembayaran</p>
                         <div class="flex items-center justify-center">
                             <p class="text-3xl font-bold text-gray-800">${formatCurrency(totalPrice)}</p>
-                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-sm"><i class="far fa-copy text-lg"></i></button>
+                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">Salin</button>
                         </div>
                     </div>
 
@@ -1370,10 +1430,16 @@
             event.preventDefault();
             elements.detailsModalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
             elements.detailsModal.style.display = 'flex';
+            elements.detailsModalContent.classList.remove('is-closing');
+            elements.detailsModalContent.classList.add('is-open');
         }
 
         window.closeDetailsModal = function() {
-            elements.detailsModal.style.display = 'none';
+            elements.detailsModalContent.classList.remove('is-open');
+            elements.detailsModalContent.classList.add('is-closing');
+            setTimeout(() => {
+                elements.detailsModal.style.display = 'none';
+            }, 300); // Match animation duration
         }
 
 
