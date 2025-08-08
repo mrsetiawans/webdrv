@@ -296,10 +296,6 @@
         }
 
         /* === NEW: PAYMENT INSTRUCTION LAYOUT STYLES === */
-        #payment-instruction-container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
         .payment-header {
             background-color: #202124; /* Google dark grey */
             color: #fff;
@@ -1181,47 +1177,49 @@
                     </div>
                 </div>
 
-                <div class="p-4">
-                    <div class="payment-card">
-                        <h3 class="font-bold text-lg">Ringkasan Transaksi</h3>
-                        <div class="flex justify-between items-center mt-2 text-sm text-gray-600">
-                            <span>Nomor Invoice: ${paymentId}</span>
-                            <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-blue-600">Lihat detail</a>
-                        </div>
-                        <hr class="my-4">
-                        <p class="text-sm text-gray-600">Total Pembayaran</p>
-                        <div class="flex items-center">
-                            <p class="text-2xl font-bold text-gray-800">${formatCurrency(totalPrice)}</p>
-                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">Salin</button>
-                        </div>
-                    </div>
-
-                    <div class="payment-card">
-                        <h3 class="font-bold text-lg">Silahkan Bayar ke</h3>
-                        <div class="flex justify-between items-start mt-4">
-                            <div>
-                                <p class="text-sm text-gray-500">${paymentMethodKey === 'qris' ? 'QRIS' : paymentAccount.displayName}</p>
-                                <p class="font-semibold text-gray-800">${paymentMethodKey === 'qris' ? paymentAccount.accountHolder : 'Virtual Account'}</p>
+                <div class="max-w-lg mx-auto">
+                    <div class="p-4">
+                        <div class="payment-card">
+                            <h3 class="font-bold text-lg">Ringkasan Transaksi</h3>
+                            <div class="flex justify-between items-center mt-2 text-sm text-gray-600">
+                                <span>Nomor Invoice: ${paymentId}</span>
+                                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-blue-600">Lihat detail</a>
                             </div>
-                            <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-8">
-                        </div>
-                        
-                        ${paymentDetailsBlock}
-
-                        <div class="mt-6">
-                            <p class="text-sm text-gray-500">Bayar Sebelum</p>
-                            <p class="font-semibold text-gray-800">${paymentDeadlineFormatted}</p>
+                            <hr class="my-4">
+                            <p class="text-sm text-gray-600">Total Pembayaran</p>
+                            <div class="flex items-center">
+                                <p class="text-2xl font-bold text-gray-800">${formatCurrency(totalPrice)}</p>
+                                <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">Salin</button>
+                            </div>
                         </div>
 
-                        <a href="${waLink}" target="_blank" class="block mt-6">
-                           <button class="confirm-button-outlined">Konfirmasi Pembayaran</button>
-                        </a>
-                    </div>
+                        <div class="payment-card">
+                            <h3 class="font-bold text-lg">Silahkan Bayar ke</h3>
+                            <div class="flex justify-between items-start mt-4">
+                                <div>
+                                    <p class="text-sm text-gray-500">${paymentMethodKey === 'qris' ? 'QRIS' : paymentAccount.displayName}</p>
+                                    <p class="font-semibold text-gray-800">${paymentMethodKey === 'qris' ? paymentAccount.accountHolder : 'Virtual Account'}</p>
+                                </div>
+                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-8">
+                            </div>
+                            
+                            ${paymentDetailsBlock}
 
-                    <div class="payment-card">
-                        <h3 class="font-bold text-lg">Cara Membayar</h3>
-                        <div class="mt-2">
-                            ${instructionAccordionHTML}
+                            <div class="mt-6">
+                                <p class="text-sm text-gray-500">Bayar Sebelum</p>
+                                <p class="font-semibold text-gray-800">${paymentDeadlineFormatted}</p>
+                            </div>
+
+                            <a href="${waLink}" target="_blank" class="block mt-6">
+                               <button class="confirm-button-outlined">Konfirmasi Pembayaran</button>
+                            </a>
+                        </div>
+
+                        <div class="payment-card">
+                            <h3 class="font-bold text-lg">Cara Membayar</h3>
+                            <div class="mt-2">
+                                ${instructionAccordionHTML}
+                            </div>
                         </div>
                     </div>
                 </div>
