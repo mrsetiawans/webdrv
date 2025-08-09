@@ -223,14 +223,14 @@
             line-height: 1.2;
         }
         .segmented-control .package-radio:checked + .package-label {
-            color: #fff; /* UPDATED: Text color for selected item */
+            color: #fff;
         }
         .segmented-control-pill {
             position: absolute;
             top: 3px;
             bottom: 3px;
             width: calc((100% - 6px) / 3);
-            background-color: #1a73e8; /* UPDATED: Pill background color */
+            background-color: #1a73e8;
             border-radius: 6px;
             box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
             z-index: 1;
@@ -246,17 +246,21 @@
             transform: translateX(200%);
         }
 
-        /* === NEW: Enhanced Product Info Display === */
+        /* === NEW: Enhanced Product Info Display & Transitions === */
+        #product-info-form-top, #features-before-form {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #product-info-form-top {
+            min-height: 210px;
+        }
+        #features-before-form {
+            min-height: 430px;
+        }
         .product-info-card {
             background: linear-gradient(135deg, #e8f0fe 0%, #ffffff 100%);
             border: 1px solid #dce8ff;
             border-radius: 12px;
             padding: 1.5rem;
-            transition: opacity 0.4s ease-in-out;
-            opacity: 0;
-        }
-        .product-info-card.visible {
-            opacity: 1;
         }
 
         /* === Payment Method Styles === */
@@ -1002,27 +1006,31 @@
         function updateDisplay() {
             const pkg = packages[currentPackageId];
             const totalPrice = pkg.price + uniqueCode;
-            
-            // Fade out old content
-            const infoCard = elements.productInfoFormTop.querySelector('.product-info-card');
-            if (infoCard) {
-                infoCard.classList.remove('visible');
-            }
 
+            const infoContainer = elements.productInfoFormTop;
+            const featuresContainer = elements.featuresBeforeForm;
+
+            // 1. Start fade-out
+            infoContainer.style.opacity = '0';
+            featuresContainer.style.opacity = '0';
+
+            // 2. Wait for fade-out to finish, then update content and fade-in
             setTimeout(() => {
-                elements.productInfoFormTop.innerHTML = getProductInfoHTML(pkg);
-                // Fade in new content
-                const newInfoCard = elements.productInfoFormTop.querySelector('.product-info-card');
-                // We need a tiny delay for the DOM to update before adding the visible class
-                setTimeout(() => newInfoCard.classList.add('visible'), 10);
-            }, 200); // Half of the transition duration
+                // Update the HTML for the transitioning parts
+                infoContainer.innerHTML = getProductInfoHTML(pkg);
+                featuresContainer.innerHTML = getFeaturesHTML(pkg);
 
-            elements.featuresBeforeForm.innerHTML = getFeaturesHTML(pkg);
-            elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
-            elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
-            elements.faqFull.innerHTML = getFaqHTML();
-            elements.policyFull.innerHTML = getPolicyHTML();
+                // Update other parts that don't need transition
+                elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
+                elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+                elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
+                elements.faqFull.innerHTML = getFaqHTML();
+                elements.policyFull.innerHTML = getPolicyHTML();
+
+                // 3. Start fade-in
+                infoContainer.style.opacity = '1';
+                featuresContainer.style.opacity = '1';
+            }, 300); // Match CSS transition duration
         }
 
         function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
@@ -1560,4 +1568,4 @@
     </script>
 
 </body>
-</html
+</html>
