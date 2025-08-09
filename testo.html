@@ -223,14 +223,14 @@
             line-height: 1.2;
         }
         .segmented-control .package-radio:checked + .package-label {
-            color: #1a73e8;
+            color: #fff; /* UPDATED: Text color for selected item */
         }
         .segmented-control-pill {
             position: absolute;
             top: 3px;
             bottom: 3px;
             width: calc((100% - 6px) / 3);
-            background-color: #fff; /* Changed to white */
+            background-color: #1a73e8; /* UPDATED: Pill background color */
             border-radius: 6px;
             box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
             z-index: 1;
@@ -499,13 +499,13 @@
                         <div id="package-selection">
                             <div class="segmented-control">
                                 <input type="radio" id="pkg-drive" name="package" value="drive" class="package-radio" checked>
-                                <label for="pkg-drive" class="package-label">Google Drive</label>
+                                <label for="pkg-drive" class="package-label">Google<br>Drive</label>
     
                                 <input type="radio" id="pkg-photos" name="package" value="photos" class="package-radio">
-                                <label for="pkg-photos" class="package-label">Google Photos</label>
+                                <label for="pkg-photos" class="package-label">Google<br>Photos</label>
     
                                 <input type="radio" id="pkg-bundle" name="package" value="bundle" class="package-radio">
-                                <label for="pkg-bundle" class="package-label">Paket Lengkap</label>
+                                <label for="pkg-bundle" class="package-label">Paket<br>Lengkap</label>
     
                                 <div class="segmented-control-pill"></div>
                             </div>
@@ -1560,4 +1560,4 @@
     </script>
 
 </body>
-</html>
+</html
