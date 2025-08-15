@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
 
@@ -31,315 +31,125 @@
     <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
 
     <style>
-        /* === 1) TOKEN DESAIN MATERIAL 3 (M3) === */
-        :root {
-            /* Warna (Palet Terang) */
-            --md-sys-color-primary: #1A73E8;
-            --md-sys-color-on-primary: #FFFFFF;
-            --md-sys-color-primary-container: #D8E2FE;
-            --md-sys-color-on-primary-container: #001A41;
-            --md-sys-color-secondary: #34A853;
-            --md-sys-color-on-secondary: #FFFFFF;
-            --md-sys-color-tertiary: #FBBC04;
-            --md-sys-color-error: #EA4335;
-            --md-sys-color-background: #F8F9FA; /* Sedikit off-white untuk kedalaman */
-            --md-sys-color-surface: #FFFFFF;
-            --md-sys-color-on-surface: #202124;
-            --md-sys-color-outline: #DADCE0;
-            --md-sys-color-surface-variant: #F1F3F4;
-            --md-sys-color-on-surface-variant: #5F6368;
-            --md-sys-color-scrim: rgba(0, 0, 0, 0.5);
-
-            /* Tipografi */
-            --md-font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --md-sys-typescale-body-large: 16px/1.5 var(--md-font-family);
-            --md-sys-typescale-body-medium: 14px/1.4 var(--md-font-family);
-            --md-sys-typescale-label-large: 14px/1.4 var(--md-font-family);
-            --md-sys-typescale-label-medium: 12px/1.3 var(--md-font-family);
-            --md-sys-typescale-title-large: 22px/1.3 var(--md-font-family);
-            --md-sys-typescale-headline-small: 24px/1.25 var(--md-font-family);
-            --md-sys-typescale-display-small: 36px/1.2 var(--md-font-family);
-
-            /* Bentuk & Elevasi */
-            --md-sys-shape-corner-small: 4px;
-            --md-sys-shape-corner-medium: 12px;
-            --md-sys-shape-corner-large: 16px;
-            --md-sys-shape-corner-full: 9999px;
-            --md-elev-1: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 1px rgba(0, 0, 0, 0.08);
-            --md-elev-2: 0 2px 6px 2px rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
-            --md-elev-3: 0 4px 8px 3px rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
-
-            /* Gerakan (Motion) */
-            --md-motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
-            --md-motion-duration-short: 150ms;
-            --md-motion-duration-medium: 250ms;
-
-            /* Spasi */
-            --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px; --sp-6: 24px; --sp-8: 32px;
-        }
-
-        /* === 2) GAYA DASAR & ATUR ULANG === */
+        /* Pengaturan Dasar dan Font Google */
         body {
-            font: var(--md-sys-typescale-body-large);
-            background-color: var(--md-sys-color-background);
-            color: var(--md-sys-color-on-surface);
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #3c4043;
         }
 
-        /* === 3) GAYA KOMPONEN M3 === */
-
-        /* --- Tombol (Button) --- */
-        .btn {
-            font: var(--md-sys-typescale-label-large);
-            font-weight: 500;
-            padding: var(--sp-2) var(--sp-6);
-            border-radius: var(--md-sys-shape-corner-full);
-            border: 1px solid transparent;
-            transition: all var(--md-motion-duration-medium) var(--md-motion-ease-standard);
+        /* Input Form dengan gaya Google Material Design */
+        .form-input {
+            border: 1px solid #dadce0;
+            transition: all 0.2s ease-in-out;
+            border-radius: 8px;
+            padding: 0.9rem 1rem;
+            width: 100%;
+            background-color: #f1f3f4;
+        }
+        .form-input:focus {
+            border-color: #1a73e8;
+            background-color: #fff;
+            outline: none;
+            box-shadow: 0 0 0 1px #1a73e8;
+        }
+        
+        /* Tombol Aksi (CTA) dengan warna Google Blue */
+        .cta-button {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+            padding: 0.85rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: var(--sp-2);
+            gap: 0.75rem;
             cursor: pointer;
             width: 100%;
+            border: none;
         }
-        .btn:focus-visible {
-            outline: 3px solid color-mix(in oklab, var(--md-sys-color-primary) 50%, white);
-            outline-offset: 2px;
+        .blue-button {
+            background-color: #1a73e8;
+            color: white;
         }
-        .btn:disabled {
-            background-color: color-mix(in oklab, var(--md-sys-color-on-surface) 12%, transparent);
-            color: color-mix(in oklab, var(--md-sys-color-on-surface) 38%, transparent);
-            box-shadow: none;
+        .blue-button:hover {
+            background-color: #185abc;
+            box-shadow: 0 1px 3px 1px rgba(66,64,67,.15),0 1px 2px 0 rgba(60,64,67,.3);
+        }
+        .cta-button:disabled {
+            background-color: #9e9e9e;
             cursor: not-allowed;
         }
-        .btn-filled {
-            background: var(--md-sys-color-primary);
-            color: var(--md-sys-color-on-primary);
-            box-shadow: var(--md-elev-1);
-        }
-        .btn-filled:hover:not(:disabled) {
-            filter: brightness(1.05);
-            box-shadow: var(--md-elev-2);
-        }
-        .btn-outlined {
-            border-color: var(--md-sys-color-outline);
-            color: var(--md-sys-color-primary);
-        }
-        .btn-outlined:hover:not(:disabled) {
-            background-color: color-mix(in oklab, var(--md-sys-color-primary) 8%, transparent);
-        }
 
-        /* --- Kartu (Card) --- */
-        .card {
-            border-radius: var(--md-sys-shape-corner-large);
-            background: var(--md-sys-color-surface);
-            box-shadow: var(--md-elev-1);
-            padding: var(--sp-6);
-            transition: box-shadow var(--md-motion-duration-medium) var(--md-motion-ease-standard);
-        }
-        .card:hover {
-            box-shadow: var(--md-elev-2);
-        }
-
-        /* --- Kolom Input (Text Field) --- */
-        .text-field {
-            position: relative;
-            display: grid;
-            gap: var(--sp-1);
-        }
-        .text-field-input {
-            border: 1px solid var(--md-sys-color-outline);
-            border-radius: var(--md-sys-shape-corner-medium);
-            padding: var(--sp-4) var(--sp-4) var(--sp-3);
-            background: var(--md-sys-color-surface);
-            color: var(--md-sys-color-on-surface);
-            transition: all var(--md-motion-duration-short) var(--md-motion-ease-standard);
-            font: var(--md-sys-typescale-body-large);
-        }
-        .text-field-label {
-            position: absolute;
-            left: var(--sp-4);
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--md-sys-color-surface);
-            padding: 0 var(--sp-1);
-            color: var(--md-sys-color-on-surface-variant);
-            transition: transform var(--md-motion-duration-medium) var(--md-motion-ease-standard), color var(--md-motion-duration-medium), font-size var(--md-motion-duration-medium);
-            pointer-events: none;
-            font: var(--md-sys-typescale-body-large);
-        }
-        .text-field-input:focus,
-        .text-field-input:not(:placeholder-shown) {
-            border-color: var(--md-sys-color-primary);
-        }
-        .text-field-input:focus + .text-field-label,
-        .text-field-input:not(:placeholder-shown) + .text-field-label {
-            transform: translate(calc(var(--sp-2) * -1), -28px) scale(0.85);
-            color: var(--md-sys-color-primary);
-        }
-        .text-field-input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px color-mix(in oklab, var(--md-sys-color-primary) 25%, transparent);
-        }
-
-        /* --- Kontrol Tersegmentasi (Segmented Control) --- */
-        .segmented-control {
-            display: flex;
-            position: relative;
-            background-color: var(--md-sys-color-surface-variant);
-            border-radius: var(--md-sys-shape-corner-full);
-            padding: var(--sp-1);
-            width: 100%;
-        }
-        .segmented-control .package-radio {
-            position: absolute; opacity: 0; width: 0; height: 0;
-        }
-        .segmented-control .package-label {
-            flex: 1;
-            text-align: center;
-            padding: var(--sp-2) var(--sp-1);
-            cursor: pointer;
-            z-index: 2;
-            transition: color var(--md-motion-duration-medium) ease;
-            color: var(--md-sys-color-on-surface-variant);
-            font: var(--md-sys-typescale-label-large);
-            font-weight: 500;
-            line-height: 1.2;
-        }
-        .segmented-control .package-radio:checked + .package-label {
-            color: var(--md-sys-color-on-primary);
-        }
-        .segmented-control-pill {
-            position: absolute;
-            top: var(--sp-1);
-            bottom: var(--sp-1);
-            width: calc((100% - 6px) / 3);
-            background-color: var(--md-sys-color-primary);
-            border-radius: var(--md-sys-shape-corner-full);
-            box-shadow: var(--md-elev-1);
-            z-index: 1;
-            transition: transform var(--md-motion-duration-medium) var(--md-motion-ease-standard);
-        }
-        .segmented-control .package-radio#pkg-drive:checked ~ .segmented-control-pill { transform: translateX(0%); }
-        .segmented-control .package-radio#pkg-photos:checked ~ .segmented-control-pill { transform: translateX(100%); }
-        .segmented-control .package-radio#pkg-bundle:checked ~ .segmented-control-pill { transform: translateX(200%); }
-
-        /* --- FAQ (Accordion) --- */
-        .faq-item { border-bottom: 1px solid var(--md-sys-color-outline); }
-        .faq-item:last-child { border-bottom: none; }
-        .faq-item summary {
-            font-weight: 500;
-            font-size: var(--md-sys-typescale-body-large);
-            color: var(--md-sys-color-on-surface);
-            padding: var(--sp-4) var(--sp-2);
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            transition: transform var(--md-motion-duration-medium) ease;
-            color: var(--md-sys-color-on-surface-variant);
-        }
-        .faq-item[open] summary::after { transform: rotate(180deg); }
-        .faq-content { padding: 0 var(--sp-2) var(--sp-4) var(--sp-2); color: var(--md-sys-color-on-surface-variant); line-height: 1.6; }
-        .faq-item[open] summary { color: var(--md-sys-color-primary); }
-
-        /* --- Modal & Dialog --- */
+        /* Modal / Message Box Styling */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            overflow: hidden; background-color: var(--md-sys-color-scrim);
-            justify-content: center; align-items: center;
+            overflow: hidden; background-color: rgba(0,0,0,0.5); 
+        }
+        #infoModal {
+             justify-content: center; align-items: center;
         }
         .modal-content {
-            background-color: var(--md-sys-color-surface); margin: auto; padding: var(--sp-6); width: 90%; max-width: 450px;
-            border-radius: var(--md-sys-shape-corner-large); box-shadow: var(--md-elev-3); text-align: center; position: relative;
+            background-color: #fefefe; margin: auto; padding: 24px 32px; width: 90%; max-width: 450px;
+            border-radius: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: center; position: relative;
             animation: fadeIn 0.3s ease;
         }
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        .modal-content h3 { font: var(--md-sys-typescale-headline-small); color: var(--md-sys-color-on-surface); margin-bottom: var(--sp-4); }
-        .modal-content p { font: var(--md-sys-typescale-body-medium); color: var(--md-sys-color-on-surface-variant); margin-bottom: var(--sp-6); line-height: 1.6; }
+        .modal-content h3 { color: #202124; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700; }
+        .modal-content p { color: #5f6368; margin-bottom: 20px; line-height: 1.6; }
         .modal-ok-button {
-            background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); padding: 10px 24px; border: none; border-radius: var(--md-sys-shape-corner-full);
-            cursor: pointer; font: var(--md-sys-typescale-label-large); font-weight: 500; transition: background-color 0.2s ease;
+            background-color: #1a73e8; color: white; padding: 10px 24px; border: none; border-radius: 8px;
+            cursor: pointer; font-size: 1rem; font-weight: 500; transition: background-color 0.2s ease;
         }
-        .modal-ok-button:hover { filter: brightness(1.05); }
+        .modal-ok-button:hover { background-color: #185abc; }
 
-        /* --- Lembar Bawah (Bottom Sheet) untuk Detail --- */
-        #detailsModal { align-items: flex-end; }
-        .details-modal-content {
-            background-color: var(--md-sys-color-surface); width: 100%; max-width: 100%;
-            border-radius: var(--md-sys-shape-corner-large) var(--md-sys-shape-corner-large) 0 0;
-            box-shadow: var(--md-elev-3); text-align: left; transform: translateY(100%);
+        /* Testimonial Section */
+        .testimonial-image {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
-        .details-modal-content.is-open { animation: slideUp 0.3s ease-out forwards; }
-        .details-modal-content.is-closing { animation: slideDown 0.3s ease-out forwards; }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        @keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
-        .details-modal-header {
-            padding: var(--sp-4) var(--sp-6); border-bottom: 1px solid var(--md-sys-color-outline);
-            display: flex; justify-content: space-between; align-items: center;
+        .testimonial-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
-        .details-modal-header h3 { font: var(--md-sys-typescale-title-large); color: var(--md-sys-color-on-surface); }
-        .details-modal-close {
-            font-size: 1.5rem; color: var(--md-sys-color-on-surface-variant); cursor: pointer;
-            background: none; border: none;
+        
+        /* Modal untuk Zoom Gambar Testimoni */
+        #imageModal {
+            justify-content: center; align-items: center;
         }
-        .details-modal-body { padding: var(--sp-4) var(--sp-6) var(--sp-6); max-height: 60vh; overflow-y: auto; }
-
-        /* --- Pemilihan Metode Pembayaran --- */
-        .payment-radio { position: absolute; opacity: 0; width: 0; height: 0; }
-        .payment-label {
-            display: flex; align-items: center; padding: var(--sp-4);
-            transition: background-color var(--md-motion-duration-short) ease-in-out; cursor: pointer;
+        #imageModal .modal-content-image {
+            margin: auto;
+            display: block;
+            width: auto;
+            max-width: 90%;
+            max-height: 85vh;
+            animation: zoomIn 0.3s ease;
         }
-        .payment-label:hover { background-color: var(--md-sys-color-surface-variant); }
-        .payment-radio:checked + .payment-label { background-color: var(--md-sys-color-primary-container); }
-        .payment-group > div:first-child > .payment-label { border-top-left-radius: var(--md-sys-shape-corner-medium); border-top-right-radius: var(--md-sys-shape-corner-medium); }
-        .payment-group > div:last-child > .payment-label { border-bottom-left-radius: var(--md-sys-shape-corner-medium); border-bottom-right-radius: var(--md-sys-shape-corner-medium); }
-        .payment-logo { height: 24px; width: auto; max-width: 80px; object-fit: contain; margin-right: var(--sp-4); }
-        .custom-radio-button {
-            height: 20px; width: 20px; border: 2px solid var(--md-sys-color-on-surface-variant); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; transition: all var(--md-motion-duration-short) ease-in-out;
-            flex-shrink: 0; margin-left: var(--sp-4);
+        .close-image-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
         }
-        .custom-radio-button .dot {
-            height: 10px; width: 10px; border-radius: 50%; background-color: transparent;
-            transition: all var(--md-motion-duration-short) ease-in-out;
+        .close-image-modal:hover,
+        .close-image-modal:focus {
+            color: #bbb;
+            text-decoration: none;
         }
-        .payment-radio:checked + .payment-label .custom-radio-button { border-color: var(--md-sys-color-primary); }
-        .payment-radio:checked + .payment-label .custom-radio-button .dot { background-color: var(--md-sys-color-primary); }
-
-        /* --- Halaman Instruksi Pembayaran --- */
-        .payment-header {
-            background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);
-            padding: var(--sp-4) var(--sp-6); text-align: center;
+        @keyframes zoomIn {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
         }
-        .countdown-timer { display: flex; justify-content: center; align-items: center; gap: var(--sp-2); margin-top: var(--sp-2); }
-        .countdown-item { display: flex; align-items: center; gap: var(--sp-1); }
-        .countdown-number {
-            background-color: var(--md-sys-color-error); color: white; padding: var(--sp-1) var(--sp-2);
-            border-radius: var(--md-sys-shape-corner-small); font-weight: 700; font-size: 1.1rem;
-        }
-        .payment-card {
-            background-color: var(--md-sys-color-surface); border: 1px solid var(--md-sys-color-outline);
-            border-radius: var(--md-sys-shape-corner-large); padding: var(--sp-6); margin-top: var(--sp-6);
-        }
-        .copy-button-text {
-            background: none; border: none; color: var(--md-sys-color-primary); font-weight: 500;
-            cursor: pointer; padding: var(--sp-1);
-        }
-        .copy-button-text:hover { text-decoration: underline; }
-
-        /* --- Notifikasi Toast --- */
+        
+        /* Notifikasi Toast */
         .notif-box {
-            position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background-color: #323232;
-            color: #FFFFFF; border-radius: var(--md-sys-shape-corner-small); box-shadow: var(--md-elev-3);
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background-color: #4285F4;
+            color: #ffffff; border-radius: 9999px; box-shadow: 0 4px 12px rgba(0,0,0,0.25);
             padding: 12px 24px; display: none; align-items: center; gap: 12px; width: auto;
             max-width: 450px; z-index: 1000; opacity: 0;
             transition: opacity 0.4s ease, transform 0.4s ease, top 0.4s ease;
@@ -351,126 +161,415 @@
             90%  { opacity: 1; transform: translateX(-50%) translateY(0); }
             100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
         }
-        .notif-icon-wrapper { color: var(--md-sys-color-secondary); font-size: 1.2rem; flex-shrink: 0; }
+        .notif-icon-wrapper { color: #ffffff; font-size: 1.2rem; flex-shrink: 0; }
         .notif-message { font-size: 0.9rem; line-height: 1.2; }
         .notif-message strong { font-weight: 600; }
-        .notif-time { font-size: 0.75rem; color: #e2e8f0; margin-top: 2px; }
+        .notif-time {
+            font-size: 0.75rem;
+            color: #e2e8f0;
+            margin-top: 2px;
+        }
+        @media (max-width: 500px) {
+            .notif-box { left: 16px; right: 16px; top: 16px; transform: translateX(0); width: calc(100% - 32px); }
+            @keyframes slideInAndOut {
+                0%   { opacity: 0; transform: translateY(-20px); } 10%  { opacity: 1; transform: translateY(0); }
+                90%  { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); }
+            }
+        }
 
-        /* --- Testimoni --- */
-        .testimonial-image {
-            transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;
+        /* Bagian FAQ */
+        .faq-item { border-bottom: 1px solid #dfe1e6; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item summary {
+            font-weight: 600; font-size: 1rem; color: #3c4043;
+            padding: 1.25rem 0.5rem; cursor: pointer; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .testimonial-image:hover {
-            transform: scale(1.05); box-shadow: var(--md-elev-3);
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '\f078'; /* chevron-down */
+            font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            transition: transform 0.3s ease; color: #5f6368;
         }
-        #imageModal .modal-content-image {
-            margin: auto; display: block; width: auto; max-width: 90%; max-height: 85vh;
-            animation: zoomIn 0.3s ease; border-radius: var(--md-sys-shape-corner-medium);
+        .faq-item[open] summary::after { transform: rotate(180deg); }
+        .faq-content { padding: 0 0.5rem 1.25rem 0.5rem; color: #5f6368; line-height: 1.7; }
+        .faq-item[open] summary { color: #1a73e8; }
+
+        /* === Segmented Control for Package Selection === */
+        .segmented-control {
+            display: flex;
+            position: relative;
+            background-color: #e8eaed;
+            border-radius: 8px;
+            padding: 3px;
+            width: 100%;
         }
-        @keyframes zoomIn { from {transform: scale(0)} to {transform: scale(1)} }
-        .close-image-modal {
-            position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px;
-            font-weight: bold; transition: 0.3s; cursor: pointer;
+        .segmented-control .package-radio {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
         }
-        .close-image-modal:hover, .close-image-modal:focus { color: #bbb; text-decoration: none; }
+        .segmented-control .package-label {
+            flex: 1;
+            text-align: center;
+            padding: 0.6rem 0.5rem;
+            cursor: pointer;
+            z-index: 2;
+            transition: color 0.3s ease;
+            color: #3c4043;
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .segmented-control .package-radio:checked + .package-label {
+            color: #fff;
+        }
+        .segmented-control-pill {
+            position: absolute;
+            top: 3px;
+            bottom: 3px;
+            width: calc((100% - 6px) / 3);
+            background-color: #1a73e8;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+            z-index: 1;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .segmented-control .package-radio#pkg-drive:checked ~ .segmented-control-pill {
+            transform: translateX(0%);
+        }
+        .segmented-control .package-radio#pkg-photos:checked ~ .segmented-control-pill {
+            transform: translateX(100%);
+        }
+        .segmented-control .package-radio#pkg-bundle:checked ~ .segmented-control-pill {
+            transform: translateX(200%);
+        }
+
+        /* === Enhanced Product Info Display & Transitions === */
+        #product-info-form-top, #features-before-form {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #product-info-form-top {
+            min-height: 210px;
+        }
+        #features-before-form {
+            min-height: 430px;
+        }
+        .product-info-card {
+            background: linear-gradient(135deg, #e8f0fe 0%, #ffffff 100%);
+            border: 1px solid #dce8ff;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        /* === Payment Method Styles === */
+        .payment-radio {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .payment-label {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1rem;
+            transition: background-color 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .payment-label:hover {
+            background-color: #f8f9fa;
+        }
+        .payment-radio:checked + .payment-label {
+            background-color: #e8f0fe;
+        }
+        .payment-group > div:first-child > .payment-label {
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+        .payment-group > div:last-child > .payment-label {
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+        .payment-logo {
+            height: 20px;
+            width: auto;
+            max-width: 60px;
+            object-fit: contain;
+            margin-right: 1rem;
+        }
+        .custom-radio-button {
+            height: 20px;
+            width: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .custom-radio-button .dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background-color: transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .payment-radio:checked + .payment-label .custom-radio-button {
+            border-color: #1a73e8;
+        }
+        .payment-radio:checked + .payment-label .custom-radio-button .dot {
+            background-color: #1a73e8;
+        }
+        
+        /* === PAYMENT INSTRUCTION LAYOUT STYLES === */
+        .payment-header {
+            background-color: #202124;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .countdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .countdown-number {
+            background-color: #d93025;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .payment-card {
+            background-color: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .copy-button-text {
+            background: none;
+            border: none;
+            color: #1a73e8;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+        .copy-button-text:hover {
+            text-decoration: underline;
+        }
+        .confirm-button-outlined {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #1a73e8;
+            color: #1a73e8;
+            background-color: transparent;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .confirm-button-outlined:hover {
+            background-color: #e8f0fe;
+        }
+        .payment-accordion {
+            border-bottom: 1px solid #dfe1e6;
+        }
+        .payment-accordion:last-child {
+            border-bottom: none;
+        }
+        .payment-accordion summary {
+            font-weight: 500;
+            padding: 1rem 0;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .payment-accordion summary::-webkit-details-marker { display: none; }
+        .payment-accordion summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: transform 0.2s ease;
+            color: #5f6368;
+        }
+        .payment-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        .payment-accordion-content {
+            padding-bottom: 1rem;
+            color: #5f6368;
+            line-height: 1.6;
+        }
+        .payment-accordion-content ol {
+            list-style-type: decimal;
+            padding-left: 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        /* === DETAILS MODAL STYLES (BOTTOM SHEET) === */
+        #detailsModal {
+            align-items: flex-end; /* Align to bottom */
+        }
+        .details-modal-content {
+            background-color: #fefefe;
+            width: 100%;
+            max-width: 100%; /* Full width */
+            border-radius: 16px 16px 0 0; /* Rounded corners only at the top */
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            text-align: left;
+            transform: translateY(100%); /* Start off-screen */
+        }
+        .details-modal-content.is-open {
+            animation: slideUp 0.3s ease-out forwards;
+        }
+        .details-modal-content.is-closing {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(0); }
+            to { transform: translateY(100%); }
+        }
+
+        .details-modal-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #dadce0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .details-modal-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #202124;
+        }
+        .details-modal-close {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #5f6368;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .details-modal-body {
+            padding: 1rem 1.5rem 1.5rem 1.5rem;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
     </style>
 </head>
 <body class="antialiased">
 
     <div id="payment-instruction-container">
-        <!-- Konten akan di-generate oleh JavaScript -->
+        <!-- Konten untuk pembayaran manual (QRIS & E-Wallet) akan muncul di sini -->
     </div>
     <div class="p-4 sm:p-6 lg:p-8">
         <div id="main-content-container">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8 max-w-7xl mx-auto">
                 <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 space-y-8">
-                    <div class="card">
-                         <!-- Header Keamanan -->
-                        <div class="grid grid-cols-2 gap-4 text-center border-b border-[var(--md-sys-color-outline)] pb-6 mb-6">
-                            <div class="flex items-center justify-center gap-3">
-                                <i class="fas fa-shield-alt text-[var(--md-sys-color-secondary)] text-xl"></i>
-                                <h3 class="font-medium text-sm text-[var(--md-sys-color-on-surface-variant)]">TRANSAKSI AMAN</h3>
-                            </div>
-                            <div class="flex items-center justify-center gap-3">
-                                <i class="fas fa-hand-holding-usd text-[var(--md-sys-color-primary)] text-xl"></i>
-                                <h3 class="font-medium text-sm text-[var(--md-sys-color-on-surface-variant)]">GARANSI UANG KEMBALI</h3>
+                <div class="lg:col-span-1 bg-white p-6 md:p-8 rounded-2xl shadow-sm">
+                    <!-- Header Keamanan -->
+                    <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-200 pb-6 mb-6">
+                        <div class="flex items-center justify-center gap-3">
+                            <i class="fas fa-shield-alt text-green-500 text-xl"></i>
+                            <h3 class="font-medium text-sm text-gray-600">TRANSAKSI AMAN</h3>
+                        </div>
+                        <div class="flex items-center justify-center gap-3">
+                            <i class="fas fa-hand-holding-usd text-blue-500 text-xl"></i>
+                            <h3 class="font-medium text-sm text-gray-600">GARANSI UANG KEMBALI</h3>
+                        </div>
+                    </div>
+                    
+                    <!-- Pemilihan Paket (Segmented Control) -->
+                    <div class="mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-gray-800">1. Pilih Paket Anda</h2>
+                        <div id="package-selection">
+                            <div class="segmented-control">
+                                <input type="radio" id="pkg-drive" name="package" value="drive" class="package-radio" checked>
+                                <label for="pkg-drive" class="package-label">Google<br>Drive</label>
+    
+                                <input type="radio" id="pkg-photos" name="package" value="photos" class="package-radio">
+                                <label for="pkg-photos" class="package-label">Google<br>Photos</label>
+    
+                                <input type="radio" id="pkg-bundle" name="package" value="bundle" class="package-radio">
+                                <label for="pkg-bundle" class="package-label">Paket<br>Lengkap</label>
+    
+                                <div class="segmented-control-pill"></div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Pemilihan Paket -->
-                        <div>
-                            <h2 class="font-bold mb-4 text-lg">1. Pilih Paket Anda</h2>
-                            <div id="package-selection">
-                                <div class="segmented-control">
-                                    <input type="radio" id="pkg-drive" name="package" value="drive" class="package-radio" checked>
-                                    <label for="pkg-drive" class="package-label">Google<br>Drive</label>
-            
-                                    <input type="radio" id="pkg-photos" name="package" value="photos" class="package-radio">
-                                    <label for="pkg-photos" class="package-label">Google<br>Photos</label>
-            
-                                    <input type="radio" id="pkg-bundle" name="package" value="bundle" class="package-radio">
-                                    <label for="pkg-bundle" class="package-label">Paket<br>Lengkap</label>
-            
-                                    <div class="segmented-control-pill"></div>
-                                </div>
+                    <!-- Info Produk -->
+                    <div id="product-info-form-top" class="mb-6"></div>
+
+                    <!-- Fitur -->
+                    <div id="features-before-form" class="mb-6"></div>
+
+                    <!-- Form -->
+                    <form id="orderForm">
+                        <h2 class="text-xl font-bold mb-5 text-gray-800">2. Lengkapi Data</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
+                                <input type="text" id="nama" name="nama" class="form-input w-full" placeholder="Masukkan nama lengkap Anda">
+                            </div>
+                            <div>
+                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input w-full" placeholder="Contoh: 081234567890">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Gmail Anda <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="contoh.email@gmail.com">
                             </div>
                         </div>
+                        
+                        <!-- Honeypot field for anti-spam -->
+                        <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
 
-                        <!-- Info Produk & Fitur -->
-                        <div id="product-info-form-top" class="transition-opacity duration-300"></div>
-                        <div id="features-before-form" class="transition-opacity duration-300"></div>
-                    </div>
-
-                    <div class="card">
-                        <!-- Form -->
-                        <form id="orderForm">
-                            <h2 class="font-bold mb-6 text-lg">2. Lengkapi Data</h2>
-                            <div class="space-y-6">
-                                <div class="text-field">
-                                    <input type="text" id="nama" name="nama" class="text-field-input" placeholder=" " required>
-                                    <label for="nama" class="text-field-label">Nama Anda <span class="text-red-500">*</span></label>
-                                </div>
-                                <div class="text-field">
-                                    <input type="tel" id="whatsapp" name="whatsapp" class="text-field-input" placeholder=" " required>
-                                    <label for="whatsapp" class="text-field-label">No. WhatsApp Anda <span class="text-red-500">*</span></label>
-                                </div>
-                                <div class="text-field">
-                                    <input type="email" id="email" name="email" class="text-field-input" placeholder=" " required>
-                                     <label for="email" class="text-field-label">Gmail Anda <span class="text-red-500">*</span></label>
-                                </div>
-                            </div>
-                            
-                            <!-- Honeypot field for anti-spam -->
-                            <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
-
-                            <!-- Metode Pembayaran -->
-                            <div id="payment-method-selection" class="mt-8"></div>
-                            
-                            <!-- Rincian Pesanan -->
-                            <div id="order-details-in-form" class="mt-8"></div>
-                            
-                            <button type="button" id="submit-btn" class="btn btn-filled mt-8 h-12">
-                                Beli Sekarang
-                            </button>
-                        </form>
-                    </div>
+                        <!-- Metode Pembayaran -->
+                        <div id="payment-method-selection" class="mt-8"></div>
+                        
+                        <!-- Rincian Pesanan -->
+                        <div id="order-details-in-form" class="mt-8"></div>
+                        
+                        <button type="button" id="submit-btn" class="cta-button blue-button mt-8">
+                            Lanjutkan Pembayaran
+                        </button>
+                    </form>
                 </div>
 
                 <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
-                <div class="lg:col-span-1 space-y-8">
-                    <div id="testimonials-full"></div>
-                    <div class="card">
-                        <div id="faq-full"></div>
-                    </div>
-                    <div class="card">
-                        <div id="policy-full"></div>
-                    </div>
+                <div class="lg:col-span-1 py-8">
+                     <div id="testimonials-full"></div>
+                     <div class="mt-12 bg-white p-8 md:p-10 rounded-2xl shadow-sm">
+                         <div id="faq-full"></div>
+                     </div>
+                     <div class="mt-12 bg-white p-8 md:p-10 rounded-2xl shadow-sm">
+                         <div id="policy-full"></div>
+                     </div>
                 </div>
             </div>
         </div>
         
-        <footer id="footer" class="text-center mt-16 text-[var(--md-sys-color-on-surface-variant)] text-sm">
+        <footer id="footer" class="text-center mt-16 text-gray-500 text-sm">
             <p>Copyright © <span id="currentYear">2025</span> InDrive ID. Semua Hak Dilindungi.</p>
         </footer>
     </div>
@@ -489,14 +588,14 @@
         <span class="close-image-modal" onclick="closeImageModal()">&times;</span>
         <img class="modal-content-image" id="modalImage">
     </div>
-    
-    <!-- Modal for Transaction Details (Bottom Sheet) -->
+
+    <!-- NEW: Modal for Transaction Details -->
     <div id="detailsModal" class="modal">
         <div class="details-modal-content" id="detailsModalContent">
             <!-- Content will be injected by JS -->
         </div>
     </div>
-
+    
     <!-- Notification Popup -->
     <div class="notif-box" id="notifBox">
         <div class="notif-icon-wrapper"><i class="far fa-check-circle"></i></div>
@@ -535,10 +634,9 @@
 
         // --- CONFIGURATION ---
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
-        let countdownInterval;
         let expiryTime;
         let currentOrderDetails = {};
-        
+
         // *** TESTIMONIALS COMBINED ***
         const allTestimonials = [
             "https://s6.imgcdn.dev/YIh45V.png", "https://s6.imgcdn.dev/YIhuYh.png",
@@ -551,8 +649,12 @@
 
         const packages = {
             drive: {
-                id: 'drive', name: "Google Drive Unlimited", price: 165000, normalPrice: 399000,
-                title: "Google Drive Unlimited", priceDisplay: `Rp165.000`,
+                id: 'drive',
+                name: "Google Drive Unlimited",
+                price: 165000,
+                normalPrice: 399000,
+                title: "GOOGLE DRIVE UNLIMITED",
+                priceDisplay: `Rp165.000`,
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png',
                 description: "Penyimpanan cloud tanpa batas untuk semua file Anda.",
                 features: [
@@ -568,8 +670,12 @@
                 testimonials: allTestimonials
             },
             photos: {
-                id: 'photos', name: "Google Photos Unlimited", price: 165000, normalPrice: 399000,
-                title: "Google Photos Unlimited", priceDisplay: `Rp165.000`,
+                id: 'photos',
+                name: "Google Photos Unlimited",
+                price: 165000,
+                normalPrice: 399000,
+                title: "GOOGLE PHOTOS UNLIMITED",
+                priceDisplay: `Rp165.000`,
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/240px-Google_Photos_icon_%282020%29.svg.png',
                 description: "Simpan semua foto & video kualitas asli tanpa kompresi.",
                 features: [
@@ -585,8 +691,12 @@
                 testimonials: allTestimonials
             },
             bundle: {
-                id: 'bundle', name: "Paket Lengkap (Drive + Photos)", price: 265000, normalPrice: 699000,
-                title: "Drive + Photos Unlimited", priceDisplay: `Rp265.000`,
+                id: 'bundle',
+                name: "Paket Lengkap (Drive + Photos)",
+                price: 265000,
+                normalPrice: 699000,
+                title: "DRIVE + PHOTOS UNLIMITED",
+                priceDisplay: `Rp265.000`,
                 description: "Dapatkan penyimpanan tanpa batas di Google Drive dan Google Photos.",
                 features: [
                     "<strong>Semua Fitur Drive Unlimited:</strong> Penyimpanan file tanpa batas, akses di mana saja, kolaborasi, dan keamanan Google.",
@@ -601,79 +711,117 @@
             }
         };
 
-        let currentPackageId = 'drive'; // Paket default
+        let currentPackageId = 'drive'; // Paket default yang dipilih
         
+        // --- PAYMENT ACCOUNTS ---
         const paymentAccounts = {
-            qris: { displayName: 'QRIS', accountHolder: 'Rizal Setiawan', number: '00020101021126570011ID.DANA.WWW011893600915322308816402092230881640303UMI51440014ID.CO.QRIS.WWW0215ID10221488408720303UMI5204504553033605802ID5914Rizal Setiawan6015Kota Balikpapan6105761256304B053', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris', category: 'QRIS' },
-            bca_va: { displayName: 'BCA Virtual Account', accountHolder: 'Epayment', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'va', category: 'Bank Transfer' },
-            bni_va: { displayName: 'BNI Virtual Account', accountHolder: 'DOKU-Muhammad Rizal Setiawan', number: '988784301171924987', logo: 'https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/320px-BNI_logo.svg.png', type: 'va', category: 'Bank Transfer' },
-            bri_va: { displayName: 'BRI Virtual Account', accountHolder: 'Muhammad Rizal Setiawan', number: '100451171924987', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/320px-BANK_BRI_logo.svg.png', type: 'va', category: 'Bank Transfer' },
-            cimb: { displayName: 'CIMB Niaga Virtual Account', accountHolder: 'Octo Pay - 6289510639366', number: '6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'va', category: 'Bank Transfer' },
-            permata_va: { displayName: 'Permata Virtual Account', accountHolder: 'DOKU ISIDOKU-Muhammad Rizal Setiawan', number: '8566661171924987', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Permata_Bank_%282024%29.svg/512px-Permata_Bank_%282024%29.svg.png', type: 'va', category: 'Bank Transfer' },
-            danamon_va: { displayName: 'Danamon Virtual Account', accountHolder: 'DOKU ISIDOKU-Muhammad Rizal Setiawan', number: '8907001171924987', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Danamon.svg/330px-Danamon.svg.png', type: 'va', category: 'Bank Transfer' },
-            gopay: { displayName: 'Gopay', accountHolder: 'Gopay 6289510639366', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet', category: 'E-Wallet' },
-            dana: { displayName: 'DANA', accountHolder: 'DNID089510639366', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet', category: 'E-Wallet' },
-            ovo: { displayName: 'OVO', accountHolder: 'OVO Epayment', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', category: 'E-Wallet' }
+            bank_transfer: {
+                displayName: 'Transfer Bank (Otomatis via DOKU)',
+                logo: 'https://cdn-icons-png.flaticon.com/512/6341/6341993.png',
+                type: 'doku_redirect', // Special type for this logic
+                category: 'Pembayaran Otomatis (via DOKU)'
+            },
+            qris: {
+                displayName: 'QRIS',
+                accountHolder: 'Epay',
+                number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png',
+                type: 'manual',
+                category: 'Pembayaran Manual'
+            },
+            gopay: { 
+                displayName: 'Gopay', 
+                accountHolder: 'Gopay 6289510639366', 
+                number: '089510639366', 
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', 
+                type: 'manual',
+                category: 'Pembayaran Manual'
+            },
+            dana: { 
+                displayName: 'DANA', 
+                accountHolder: 'DNID089510639366', 
+                number: '089510639366', 
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', 
+                type: 'manual',
+                category: 'Pembayaran Manual'
+            },
+            ovo: { 
+                displayName: 'OVO', 
+                accountHolder: 'OVO Epayment', 
+                number: '089510639366', 
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', 
+                type: 'manual',
+                category: 'Pembayaran Manual'
+            }
         };
 
         // --- TEMPLATE FUNCTIONS ---
         const getProductInfoHTML = (pkg) => {
-            let logoHtml = pkg.id === 'bundle'
-                ? `<div class="flex justify-center items-center gap-4 h-12">
-                       <img alt="Logo Google Drive" class="h-11 w-auto" src="${packages.drive.logo}">
-                       <i class="fas fa-plus text-2xl text-[var(--md-sys-color-outline)]"></i>
-                       <img alt="Logo Google Photos" class="h-11 w-auto" src="${packages.photos.logo}">
-                   </div>`
-                : `<div class="flex justify-center"><img alt="Logo ${pkg.name}" class="h-12 w-auto" src="${pkg.logo}"></div>`;
+            let logoHtml = '';
+            if (pkg.id === 'bundle') {
+                logoHtml = `
+                    <div class="flex justify-center items-center gap-4 h-12">
+                        <img alt="Logo Google Drive" class="h-11 w-auto" src="${packages.drive.logo}">
+                        <i class="fas fa-plus text-2xl text-gray-400"></i>
+                        <img alt="Logo Google Photos" class="h-11 w-auto" src="${packages.photos.logo}">
+                    </div>
+                `;
+            } else {
+                logoHtml = `<div class="flex justify-center"><img alt="Logo ${pkg.name}" class="h-12 w-auto" src="${pkg.logo}"></div>`;
+            }
 
             return `
-            <div class="bg-[var(--md-sys-color-surface-variant)] p-6 rounded-2xl">
+            <div class="product-info-card">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div class="text-center mb-4 md:mb-0 flex-grow">
                         ${logoHtml}
-                        <h1 class="text-2xl font-bold text-[var(--md-sys-color-on-surface)] mt-3">${pkg.title}</h1>
-                        <p class="text-md text-[var(--md-sys-color-on-surface-variant)]">${pkg.description}</p>
+                        <h1 class="text-2xl font-bold text-gray-800 mt-3">${pkg.title}</h1>
+                        <p class="text-md text-gray-600">${pkg.description}</p>
                     </div>
                     <div class="text-center md:text-right mt-4 md:mt-0 md:pl-4">
-                        <div class="text-4xl font-bold text-[var(--md-sys-color-primary)]">${pkg.priceDisplay}</div>
-                        <p class="text-[var(--md-sys-color-on-surface-variant)] text-sm mt-1">Sekali Bayar Seumur Hidup</p>
+                        <div class="text-4xl font-bold text-blue-600">${pkg.priceDisplay}</div>
+                        <p class="text-gray-500 text-sm mt-1">Sekali Bayar Seumur Hidup</p>
                     </div>
                 </div>
             </div>`;
         }
 
         const getFeaturesHTML = (pkg) => {
-            const icons = ['fa-database', 'fa-mobile-alt', 'fa-users', 'fa-lock', 'fa-cogs', 'fa-infinity', 'fa-user-check', 'fa-shield-alt'];
-            const colors = ['text-blue-500', 'text-green-500', 'text-yellow-500', 'text-red-500', 'text-purple-500', 'text-indigo-500', 'text-pink-500', 'text-teal-500'];
-            return `<div>
-                <h3 class="text-lg font-bold mb-4 text-[var(--md-sys-color-on-surface)]">Yang Anda Dapatkan:</h3>
-                <ul class="space-y-4">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas ${icons[index % icons.length]} ${colors[index % colors.length]} mt-1 mr-4"></i><span class="text-[var(--md-sys-color-on-surface-variant)]">${f}</span></li>`).join('')}</ul>
+            const colors = ['text-blue-500', 'text-green-500', 'text-yellow-500', 'text-red-500'];
+            return `<div class="bg-gray-50 p-6 rounded-xl">
+                <h3 class="text-lg font-bold mb-4 text-gray-800">Yang Anda Dapatkan:</h3>
+                <ul class="space-y-4">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3"></i><span class="text-gray-600">${f}</span></li>`).join('')}</ul>
             </div>`;
         }
         
         const getPaymentMethodsHTML = (accounts) => {
-            const groupedAccounts = Object.keys(accounts).reduce((acc, key) => {
+            const groupedAccounts = {};
+            for (const key in accounts) {
                 const account = accounts[key];
-                (acc[account.category] = acc[account.category] || []).push({ key, ...account });
-                return acc;
-            }, {});
+                if (!groupedAccounts[account.category]) {
+                    groupedAccounts[account.category] = [];
+                }
+                groupedAccounts[account.category].push({ key, ...account });
+            }
 
-            let html = `<h2 class="font-bold mb-5 text-lg">3. Pilih Metode Pembayaran</h2>`;
-            const categoryOrder = ['QRIS', 'Bank Transfer', 'E-Wallet'];
+            let html = `<h2 class="text-xl font-bold mb-5 text-gray-800">3. Pilih Metode Pembayaran</h2>`;
+            const categoryOrder = ['Pembayaran Otomatis (via DOKU)', 'Pembayaran Manual'];
 
-            categoryOrder.forEach(category => {
+            for (const category of categoryOrder) {
                 if (groupedAccounts[category]) {
-                    html += `<h3 class="text-md font-semibold text-[var(--md-sys-color-on-surface-variant)] mt-6 mb-3">${category}</h3>`;
-                    html += `<div class="border border-[var(--md-sys-color-outline)] rounded-xl payment-group overflow-hidden">`;
+                    html += `<h3 class="text-lg font-semibold text-gray-700 mt-6 mb-3">${category}</h3>`;
+                    html += `<div class="border border-gray-200 rounded-lg payment-group">`;
+
                     groupedAccounts[category].forEach((account, index) => {
-                        const isFirst = index === 0 && category === 'QRIS';
+                        const isFirst = index === 0 && category === 'Pembayaran Otomatis (via DOKU)';
                         const isLast = index === groupedAccounts[category].length - 1;
+                        
                         html += `
-                            <div class="${!isLast ? 'border-b border-[var(--md-sys-color-outline)]' : ''}">
+                            <div class="${!isLast ? 'border-b border-gray-200' : ''}">
                                 <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="payment-radio" ${isFirst ? 'checked' : ''}>
                                 <label for="${account.key}" class="payment-label">
                                     <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
-                                    <span class="font-medium text-[var(--md-sys-color-on-surface)] flex-grow">${account.displayName}</span>
+                                    <span class="font-medium text-gray-800 flex-grow">${account.displayName}</span>
                                     <span class="custom-radio-button"><span class="dot"></span></span>
                                 </label>
                             </div>
@@ -681,24 +829,26 @@
                     });
                     html += `</div>`;
                 }
-            });
+            }
             return html;
         };
 
         const getOrderDetailsHTML = (pkg, totalPrice) => `
-            <div class="mt-8 pt-6 border-t border-[var(--md-sys-color-outline)]">
-                 <h3 class="text-md font-bold mb-4 text-[var(--md-sys-color-on-surface)]">Rincian Pesanan</h3>
-                 <div class="bg-[var(--md-sys-color-surface-variant)] p-4 rounded-xl space-y-3 text-[var(--md-sys-color-on-surface-variant)]">
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                 <h3 class="text-lg font-bold mb-4 text-gray-800">Rincian Pesanan</h3>
+                 <div class="bg-gray-50 p-4 rounded-xl space-y-3 text-gray-600">
                      <div class="flex justify-between items-center">
                          <span>${pkg.name}</span>
-                         <span class="font-medium text-[var(--md-sys-color-on-surface)]">${formatCurrency(pkg.price)}</span>
+                         <div class="text-right">
+                             <span class="font-medium text-gray-800">${formatCurrency(pkg.price)}</span>
+                         </div>
                      </div>
                      <div class="flex justify-between">
                          <span>Kode Unik</span>
-                         <span class="font-medium text-[var(--md-sys-color-on-surface)]">${formatCurrency(uniqueCode)}</span>
+                         <span class="font-medium text-gray-800">${formatCurrency(uniqueCode)}</span>
                      </div>
-                     <hr class="my-2 border-[var(--md-sys-color-outline)]">
-                     <div class="flex justify-between font-bold text-lg text-[var(--md-sys-color-on-surface)]">
+                     <hr class="my-2 border-gray-200">
+                     <div class="flex justify-between font-bold text-lg text-gray-900">
                          <span>Total</span>
                          <span>${formatCurrency(totalPrice)}</span>
                      </div>
@@ -711,8 +861,8 @@
             `).join('');
 
             return `
-            <div class="card">
-                <h2 class="text-2xl font-bold text-center mb-8 text-[var(--md-sys-color-on-surface)]">Testimoni Pelanggan Kami</h2>
+            <div>
+                <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">Testimoni Pelanggan Kami</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     ${imagesHTML}
                 </div>
@@ -721,26 +871,50 @@
 
         const getFaqHTML = () => `
              <div>
-                 <h3 class="text-2xl font-bold mb-6 text-center text-[var(--md-sys-color-on-surface)]">Pertanyaan Umum (FAQ)</h3>
+                 <h3 class="text-2xl font-bold mb-6 text-center text-gray-800">Pertanyaan Umum (FAQ)</h3>
                  <div class="space-y-2">
-                     <details class="faq-item"><summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary><div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div></details>
-                     <details class="faq-item"><summary>Bagaimana proses upgrade untuk Google Drive?</summary><div class="faq-content">Untuk Google Drive, kami akan mengundang akun Gmail pribadi Anda untuk bergabung ke dalam "Shared Drive" khusus yang memiliki kapasitas unlimited. Anda tidak perlu memberikan password, cukup alamat email saja. Shared Drive ini akan muncul di akun Drive Anda dan bisa digunakan untuk menyimpan file apa pun.</div></details>
-                     <details class="faq-item"><summary>Bagaimana proses untuk Google Photos?</summary><div class="faq-content">Untuk Google Photos Unlimited, Anda akan mendapatkan sebuah akun Google baru yang sudah memiliki fitur penyimpanan foto/video kualitas asli tanpa batas. Anda akan menerima email dan password akun baru tersebut, dan Anda bisa langsung mengganti passwordnya demi keamanan. Akun ini terpisah dari akun utama Anda.</div></details>
-                     <details class="faq-item"><summary>Apakah ini aman dan legal?</summary><div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div></details>
-                     <details class="faq-item"><summary>Apa bedanya dengan langganan Google One?</summary><div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, memanfaatkan fitur Shared Drive.</div></details>
-                     <details class="faq-item"><summary>Bisakah saya memindahkan file lama saya?</summary><div class="faq-content">Tentu bisa. Anda dapat dengan mudah memindahkan file dan folder dari penyimpanan Drive pribadi Anda ke dalam Shared Drive unlimited yang baru. Untuk Google Photos, Anda perlu memindahkan foto secara manual ke akun baru yang kami berikan.</div></details>
-                     <details class="faq-item"><summary>Berapa lama proses aktivasinya?</summary><div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam.</div></details>
-                     <details class="faq-item"><summary>Apakah ada garansi?</summary><div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div></details>
+                     <details class="faq-item">
+                         <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
+                         <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
+                         <div class="faq-content">Untuk Google Drive, kami akan mengundang akun Gmail pribadi Anda untuk bergabung ke dalam "Shared Drive" khusus yang memiliki kapasitas unlimited. Anda tidak perlu memberikan password, cukup alamat email saja. Shared Drive ini akan muncul di akun Drive Anda dan bisa digunakan untuk menyimpan file apa pun.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Bagaimana proses untuk Google Photos?</summary>
+                         <div class="faq-content">Untuk Google Photos Unlimited, Anda akan mendapatkan sebuah akun Google baru yang sudah memiliki fitur penyimpanan foto/video kualitas asli tanpa batas. Anda akan menerima email dan password akun baru tersebut, dan Anda bisa langsung mengganti passwordnya demi keamanan. Akun ini terpisah dari akun utama Anda.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Apakah ini aman dan legal?</summary>
+                         <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Apa bedanya dengan langganan Google One?</summary>
+                         <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, memanfaatkan fitur Shared Drive.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Bisakah saya memindahkan file lama saya?</summary>
+                         <div class="faq-content">Tentu bisa. Anda dapat dengan mudah memindahkan file dan folder dari penyimpanan Drive pribadi Anda ke dalam Shared Drive unlimited yang baru. Untuk Google Photos, Anda perlu memindahkan foto secara manual ke akun baru yang kami berikan.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Berapa lama proses aktivasinya?</summary>
+                         <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Apakah ada garansi?</summary>
+                         <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div>
+                     </details>
                  </div>
              </div>
         `;
         
         const getPolicyHTML = () => `
             <div>
-                <h3 class="text-2xl font-bold mb-4 text-center text-[var(--md-sys-color-on-surface)]">Kebijakan & Ketentuan</h3>
-                <div class="grid md:grid-cols-1 gap-8 text-sm text-[var(--md-sys-color-on-surface-variant)]">
+                <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Kebijakan & Ketentuan</h3>
+                <div class="grid md:grid-cols-1 gap-8 text-sm text-gray-600">
                     <div class="mb-6">
-                        <h4 class="text-lg font-bold mb-2 text-[var(--md-sys-color-on-surface)]">Kebijakan Privasi</h4>
+                        <h4 class="text-lg font-bold mb-2 text-gray-800">Kebijakan Privasi</h4>
                         <p class="mb-4">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua file Anda tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Kami hanya butuh email, bukan password.</li>
@@ -750,7 +924,7 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold mb-2 text-[var(--md-sys-color-on-surface)]">Syarat & Ketentuan</h4>
+                        <h4 class="text-lg font-bold mb-2 text-gray-800">Syarat & Ketentuan</h4>
                          <p class="mb-4">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
@@ -767,18 +941,21 @@
         function formatCurrency(value) {
             return `Rp${value.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`;
         }
-
+        
         function getIndonesianTimezone() {
             const offset = new Date().getTimezoneOffset() / -60;
-            if (offset === 7) return 'WIB'; if (offset === 8) return 'WITA'; if (offset === 9) return 'WIT';
-            const sign = offset > 0 ? '+' : '-'; const hours = Math.abs(Math.floor(offset));
+            if (offset === 7) return 'WIB';
+            if (offset === 8) return 'WITA';
+            if (offset === 9) return 'WIT';
+            const sign = offset > 0 ? '+' : '-';
+            const hours = Math.abs(Math.floor(offset));
             return `GMT${sign}${String(hours).padStart(2, '0')}:00`;
         }
 
         function updateDisplay() {
             const pkg = packages[currentPackageId];
             const totalPrice = pkg.price + uniqueCode;
-
+            
             const infoContainer = elements.productInfoFormTop;
             const featuresContainer = elements.featuresBeforeForm;
 
@@ -798,71 +975,176 @@
             }, 300);
         }
 
-        function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
-            const detailPesanan = `*Email Google:* ${formData.get('email')}\n`;
-            const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
-                          `*ID Pembayaran:* ${paymentId}\n` +
-                          `*Paket:* ${pkg.name}\n` +
-                          `*Metode Pembayaran:* ${paymentMethodName}\n` +
-                          `*Nama:* ${formData.get('nama')}\n` +
-                          `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
-                          detailPesanan +
-                          `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
-                          `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
-            return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
+        async function handleFormSubmit() {
+            const formData = new FormData(elements.orderForm);
+            const nama = formData.get('nama').trim();
+            const whatsapp = formData.get('whatsapp').trim();
+            const email = formData.get('email').trim();
+            const paymentMethodKey = formData.get('payment-method');
+
+            if (!nama || !whatsapp || !email || !paymentMethodKey) {
+                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan sebelum melanjutkan.');
+                return;
+            }
+
+            elements.submitBtn.disabled = true;
+            elements.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+
+            const pkg = packages[currentPackageId];
+            const paymentAccount = paymentAccounts[paymentMethodKey];
+
+            // LOGIC SPLIT: DOKU Redirect vs Manual Payment
+            if (paymentAccount.type === 'doku_redirect') {
+                // --- DOKU REDIRECT FLOW (ONLY FOR BANK TRANSFER) ---
+                const dokuLinks = {
+                    drive: 'https://pay.doku.com/p-link/p/vQheeRA9Uo',
+                    photos: 'https://pay.doku.com/p-link/p/scozwe7duQ',
+                    bundle: 'https://pay.doku.com/p-link/p/OyjZLCxRtJ'
+                };
+                const redirectUrl = dokuLinks[currentPackageId];
+
+                if (redirectUrl) {
+                    // Pesan WA/Email TANPA INVOICE
+                    const pesanWA = `Halo, saya ingin konfirmasi pesanan:\n\n` +
+                                  `*Paket:* ${pkg.name}\n` +
+                                  `*Total:* ${formatCurrency(pkg.price)}\n` +
+                                  `*Nama:* ${nama}\n` +
+                                  `*Email:* ${email}\n\n` +
+                                  `Saya akan menyelesaikan pembayaran melalui link DOKU. Terima kasih.`;
+                    
+                    const formattedWhatsapp = whatsapp.startsWith('0') ? '62' + whatsapp.substring(1) : whatsapp;
+                    const followUpLink = `https://wa.me/${formattedWhatsapp}?text=${encodeURIComponent(pesanWA)}`;
+
+                    const formDataForStaticForms = {
+                        apiKey: 'sf_195b5fj92dge8l9b391mng1g',
+                        replyTo: email,
+                        honeypot: formData.get('honeypot'),
+                        name: nama, email: email, whatsapp: whatsapp,
+                        '$Status': 'DIARAHKAN KE DOKU (TF BANK)',
+                        '$Paket': pkg.name,
+                        '$Metode Pembayaran': paymentAccount.displayName,
+                        '$Total Bayar': formatCurrency(pkg.price),
+                        '$Link Follow Up WA': followUpLink
+                    };
+
+                    try {
+                        await fetch('https://api.staticforms.xyz/submit', {
+                            method: 'POST', body: JSON.stringify(formDataForStaticForms),
+                            headers: { 'Content-Type': 'application/json' }
+                        });
+                    } catch (e) { console.error("Static Forms submission failed:", e); }
+                    
+                    window.location.href = redirectUrl;
+                } else {
+                    showInfoModal('Error', 'Link pembayaran tidak ditemukan untuk paket ini.');
+                    elements.submitBtn.disabled = false;
+                    elements.submitBtn.innerHTML = 'Lanjutkan Pembayaran';
+                }
+
+            } else {
+                // --- MANUAL PAYMENT FLOW (FOR QRIS & E-WALLET) ---
+                const totalPrice = pkg.price + uniqueCode;
+                const now = new Date();
+                const paymentId = `INV-${pkg.id.toUpperCase()}-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
+                
+                // Pesan WA/Email DENGAN INVOICE
+                const pesanWA_manual = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
+                                 `*ID Pembayaran:* ${paymentId}\n` +
+                                 `*Paket:* ${pkg.name}\n` +
+                                 `*Metode Pembayaran:* ${paymentAccount.displayName}\n` +
+                                 `*Nama:* ${nama}\n` +
+                                 `*No. WhatsApp:* ${whatsapp}\n` +
+                                 `*Email Google:* ${email}\n` +
+                                 `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
+                                 `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
+                const waLink_manual = `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA_manual)}`;
+
+                const formDataForStaticForms_manual = {
+                    apiKey: 'sf_195b5fj92dge8l9b391mng1g',
+                    replyTo: email,
+                    honeypot: formData.get('honeypot'),
+                    name: nama, email: email, whatsapp: whatsapp,
+                    '$Nomor Invoice': paymentId,
+                    '$Paket': pkg.name,
+                    '$Metode Pembayaran': paymentAccount.displayName,
+                    '$Total Transfer': formatCurrency(totalPrice),
+                };
+
+                try {
+                    const response = await fetch('https://api.staticforms.xyz/submit', {
+                        method: 'POST', body: JSON.stringify(formDataForStaticForms_manual),
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    if (response.ok) {
+                        showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey, waLink_manual);
+                    } else {
+                        throw new Error('StaticForms submission failed');
+                    }
+                } catch (e) {
+                    console.error("Form submission error:", e);
+                    showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan saat mengirim data Anda. Silakan coba lagi.');
+                } finally {
+                    elements.submitBtn.disabled = false;
+                    elements.submitBtn.innerHTML = 'Lanjutkan Pembayaran';
+                }
+            }
         }
 
-        function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
+        function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey, waLink) {
             window.scrollTo(0, 0);
             
-            currentOrderDetails = { pkg, totalPrice, paymentId, nama: formData.get('nama'), whatsapp: formData.get('whatsapp') };
+            currentOrderDetails = {
+                pkg, totalPrice, paymentId,
+                nama: formData.get('nama'),
+                whatsapp: formData.get('whatsapp')
+            };
 
             elements.mainContentContainer.parentElement.style.display = 'none';
             elements.footer.style.display = 'none';
             
-            const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId);
-            
-            let accountLabel = 'Nomor Virtual Account';
-            let instructionAccordionHTML = '';
             let paymentDetailsBlock = '';
-
+            let instructionAccordionHTML = '';
+            
             expiryTime = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
             const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const datePart = expiryTime.toLocaleDateString('id-ID', dateOptions);
-            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
             const timePart = expiryTime.toLocaleTimeString('id-ID', timeOptions).replace(/\./g, ':');
             const paymentDeadlineFormatted = `${datePart} pukul ${timePart} (${getIndonesianTimezone()})`;
 
             if (paymentMethodKey === 'qris') {
                 paymentDetailsBlock = `
                     <div class="text-center">
-                        <div id="qrcodeContainer" class="bg-white p-2 rounded-lg border border-[var(--md-sys-color-outline)] w-full max-w-[250px] h-auto mx-auto my-4">
+                        <div id="qrcodeContainer" class="bg-white p-2 rounded-lg border border-gray-200 w-full max-w-[250px] h-auto mx-auto my-4">
                             <div id="qrcode" class="flex justify-center items-center"></div>
                         </div>
-                        <button id="downloadQrisButton" class="btn btn-filled max-w-xs mx-auto">Unduh QRIS</button>
-                        <p class="text-center text-sm text-[var(--md-sys-color-on-surface-variant)] mt-4">Pindai QR Code di atas menggunakan aplikasi perbankan atau e-wallet Anda.</p>
+                        <p class="text-center text-sm text-gray-600 mt-4">Pindai QR Code di atas menggunakan aplikasi perbankan atau e-wallet Anda.</p>
                     </div>`;
-            } else {
-                 paymentDetailsBlock = `
+                instructionAccordionHTML = `<details class="payment-accordion" open><summary>Cara Bayar via QRIS</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                    <li>Buka aplikasi perbankan (m-banking) atau e-wallet Anda (GoPay, OVO, DANA, dll).</li>
+                    <li>Pilih menu <strong>Bayar</strong>, <strong>Scan QR</strong>, atau <strong>QRIS</strong>.</li>
+                    <li>Pindai (scan) kode QR yang ditampilkan di atas.</li>
+                    <li>Pastikan nama merchant dan nominal pembayaran sudah sesuai.</li>
+                    <li>Masukkan PIN Anda untuk menyelesaikan transaksi dan simpan bukti pembayaran.</li>
+                </ol></div></details>`;
+            } else { // E-Wallets
+                paymentDetailsBlock = `
                     <div class="mt-4">
-                        <p class="text-sm text-[var(--md-sys-color-on-surface-variant)]">${accountLabel}</p>
+                        <p class="text-sm text-gray-500">Nomor Tujuan</p>
                         <div class="flex justify-between items-center">
-                            <p class="text-xl font-semibold text-[var(--md-sys-color-on-surface)] tracking-wider">${paymentAccount.number}</p>
-                            <button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="copy-button-text">Salin</button>
+                            <p class="text-xl font-semibold text-gray-800 tracking-wider">${paymentAccount.number}</p>
+                            <button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Tujuan')" class="copy-button-text">Salin</button>
                         </div>
                     </div>`;
+                instructionAccordionHTML = `<details class="payment-accordion" open><summary>Cara Bayar</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                    <li>Buka aplikasi ${paymentAccount.displayName} Anda.</li>
+                    <li>Pilih menu <strong>Transfer</strong> atau <strong>Kirim Uang</strong>.</li>
+                    <li>Masukkan nomor tujuan <strong>${paymentAccount.number}</strong>.</li>
+                    <li>Masukkan nominal transfer sejumlah <strong>${formatCurrency(totalPrice)}</strong>.</li>
+                    <li>Pastikan nama penerima <strong>(${paymentAccount.accountHolder})</strong> sudah benar.</li>
+                    <li>Selesaikan transaksi dan simpan bukti pembayaran.</li>
+                </ol></div></details>`;
             }
-
-            // Instructions (shortened for brevity, full logic remains)
-            const instructions = {
-                qris: `<details class="faq-item" open><summary>Cara Bayar via QRIS</summary><div class="faq-content"><ol class="list-decimal pl-5 space-y-2"><li>Buka aplikasi m-banking atau e-wallet Anda.</li><li>Pilih menu <strong>Bayar/Scan QR/QRIS</strong>.</li><li>Pindai kode QR di atas.</li><li>Pastikan nama merchant dan nominal sesuai, lalu masukkan PIN.</li></ol></div></details>`,
-                bca_va: `<details class="faq-item"><summary>myBCA / BCA Mobile</summary><div class="faq-content"><ol class="list-decimal pl-5 space-y-2"><li>Buka aplikasi, pilih <strong>m-Transfer &gt; BCA Virtual Account</strong>.</li><li>Masukkan nomor VA: <strong>${paymentAccount.number}</strong>.</li><li>Masukkan nominal jika diminta, periksa detail, dan konfirmasi dengan PIN.</li></ol></div></details>`,
-                bni_va: `<details class="faq-item"><summary>BNI Mobile Banking</summary><div class="faq-content"><ol class="list-decimal pl-5 space-y-2"><li>Buka aplikasi, pilih <strong>Transfer &gt; Virtual Account Billing</strong>.</li><li>Masukkan nomor VA: <strong>${paymentAccount.number}</strong>.</li><li>Periksa tagihan, konfirmasi, dan masukkan Password Transaksi.</li></ol></div></details>`,
-                bri_va: `<details class="faq-item"><summary>BRImo</summary><div class="faq-content"><ol class="list-decimal pl-5 space-y-2"><li>Buka aplikasi, pilih <strong>Tagihan &gt; BRIVA</strong>.</li><li>Masukkan nomor VA: <strong>${paymentAccount.number}</strong>.</li><li>Periksa detail, konfirmasi, dan masukkan PIN.</li></ol></div></details>`,
-                default: `<details class="faq-item"><summary>Instruksi Umum</summary><div class="faq-content"><ol class="list-decimal pl-5 space-y-2"><li>Buka aplikasi pembayaran Anda.</li><li>Pilih menu transfer/pembayaran.</li><li>Masukkan detail pembayaran di atas.</li><li>Pastikan nominal sesuai hingga digit terakhir.</li></ol></div></details>`
-            };
-            instructionAccordionHTML = instructions[paymentMethodKey] || instructions['default'];
-
 
             const paymentViewHTML = `
                 <div class="payment-header">
@@ -872,14 +1154,14 @@
                 <div class="max-w-lg mx-auto p-4">
                     <div class="payment-card">
                         <h3 class="font-bold text-lg">Ringkasan Transaksi</h3>
-                        <div class="flex justify-between items-center mt-2 text-sm text-[var(--md-sys-color-on-surface-variant)]">
+                        <div class="flex justify-between items-center mt-2 text-sm text-gray-600">
                             <span>Nomor Invoice: ${paymentId}</span>
-                            <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-[var(--md-sys-color-primary)]">Lihat detail</a>
+                            <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-blue-600">Lihat detail</a>
                         </div>
-                        <hr class="my-4 border-[var(--md-sys-color-outline)]">
-                        <p class="text-sm text-[var(--md-sys-color-on-surface-variant)]">Total Pembayaran</p>
+                        <hr class="my-4">
+                        <p class="text-sm text-gray-600">Total Pembayaran</p>
                         <div class="flex items-center">
-                            <p class="text-2xl font-bold text-[var(--md-sys-color-on-surface)]">${formatCurrency(totalPrice)}</p>
+                            <p class="text-2xl font-bold text-gray-800">${formatCurrency(totalPrice)}</p>
                             <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy"></i></button>
                         </div>
                     </div>
@@ -887,28 +1169,25 @@
                         <h3 class="font-bold text-lg">Silahkan Bayar ke</h3>
                         <div class="flex justify-between items-start mt-4">
                             <div>
-                                <p class="text-sm text-[var(--md-sys-color-on-surface-variant)]">${paymentAccount.displayName}</p>
-                                <p class="font-semibold text-[var(--md-sys-color-on-surface)]">${paymentAccount.accountHolder}</p>
+                                <p class="text-sm text-gray-500">${paymentAccount.displayName}</p>
+                                <p class="font-semibold text-gray-800">${paymentAccount.accountHolder}</p>
                             </div>
                             <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-8">
                         </div>
                         ${paymentDetailsBlock}
                         <div class="mt-6">
-                            <p class="text-sm text-[var(--md-sys-color-on-surface-variant)]">Bayar Sebelum</p>
-                            <p class="font-semibold text-[var(--md-sys-color-on-surface)]">${paymentDeadlineFormatted}</p>
+                            <p class="text-sm text-gray-500">Bayar Sebelum</p>
+                            <p class="font-semibold text-gray-800">${paymentDeadlineFormatted}</p>
                         </div>
                         <a href="${waLink}" target="_blank" class="block mt-6">
-                           <button class="btn btn-outlined h-12">Konfirmasi Pembayaran</button>
+                           <button class="confirm-button-outlined">Konfirmasi Pembayaran</button>
                         </a>
                     </div>
                     <div class="payment-card">
                         <h3 class="font-bold text-lg">Cara Membayar</h3>
-                        <div class="mt-2">
-                            ${instructionAccordionHTML}
-                        </div>
+                        <div class="mt-2">${instructionAccordionHTML}</div>
                     </div>
-                </div>
-            `;
+                </div>`;
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
             startCountdown();
 
@@ -922,16 +1201,12 @@
                             qrcodeContainer.innerHTML = '';
                             QRCode.toCanvas(qrisDinamis, { width: 250, margin: 1, errorCorrectionLevel: 'H' }, (err, canvas) => {
                                 if (err) { throw err; }
-                                canvas.style.width = "100%"; canvas.style.height = "auto";
+                                canvas.style.width = "100%";
+                                canvas.style.height = "auto";
                                 qrcodeContainer.appendChild(canvas);
-                                document.getElementById('downloadQrisButton').addEventListener('click', () => {
-                                    const link = document.createElement('a');
-                                    link.download = `${paymentId}.png`;
-                                    link.href = canvas.toDataURL("image/png");
-                                    link.click();
-                                });
                             });
                         } catch (e) {
+                            console.error("QRIS Generation Error:", e.message);
                             qrcodeContainer.innerHTML = `<p class="text-red-500 text-sm">Gagal membuat QR Code.</p>`;
                         }
                     }
@@ -939,105 +1214,71 @@
             }
         }
 
-        async function handleFormSubmit() {
-            const formData = new FormData(elements.orderForm);
-            const nama = formData.get('nama').trim();
-            const whatsapp = formData.get('whatsapp').trim();
-            const email = formData.get('email').trim();
-            const paymentMethodKey = formData.get('payment-method');
-
-            if (!nama || !whatsapp || !email || !paymentMethodKey) {
-                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan.');
-                return;
-            }
-
-            elements.submitBtn.disabled = true;
-            elements.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
-
-            const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price + uniqueCode;
-            const paymentAccount = paymentAccounts[paymentMethodKey];
-            const now = new Date();
-            const paymentId = `INV-${pkg.id.toUpperCase()}-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
-
-            let submissionSuccess = false;
-            try {
-                let followUpMessage = `Halo kak ${nama},\n\nTerima kasih telah memesan *${pkg.name}*.\n\nBerikut rincian pembayaran:\n- Invoice: ${paymentId}\n- Total: *${formatCurrency(totalPrice)}*\n\n`;
-                followUpMessage += `*- Metode:* ${paymentAccount.displayName}\n` + (paymentMethodKey === 'qris' ? `Silakan pindai QRIS di halaman pembayaran.\n` : `*- Nomor:* ${paymentAccount.number}\n*- Atas Nama:* ${paymentAccount.accountHolder}\n`);
-                followUpMessage += `\n*Penting:* Mohon transfer sesuai total di atas (termasuk kode unik).\n\nSetelah transfer, klik tombol konfirmasi di halaman pembayaran atau balas pesan ini.\n\nTerima kasih`;
-                
-                const formattedWhatsapp = whatsapp.startsWith('0') ? '62' + whatsapp.substring(1) : whatsapp;
-                const followUpLink = `https://wa.me/${formattedWhatsapp}?text=${encodeURIComponent(followUpMessage)}`;
-
-                const formDataForStaticForms = {
-                    apiKey: 'sf_195b5fj92dge8l9b391mng1g', replyTo: email, honeypot: formData.get('honeypot'),
-                    name: nama, email: email, whatsapp: whatsapp, '$Nomor Invoice': paymentId, '$Paket': pkg.name,
-                    '$Metode Pembayaran': paymentAccount.displayName, '$Total Transfer': formatCurrency(totalPrice), '$Link Follow Up WA': followUpLink
-                };
-
-                const response = await fetch('https://api.staticforms.xyz/submit', {
-                    method: 'POST', body: JSON.stringify(formDataForStaticForms), headers: { 'Content-Type': 'application/json' }
-                });
-                
-                if (response.ok) { submissionSuccess = true; }
-            } catch (e) { console.error("Form submission error:", e); }
-            
-            elements.submitBtn.disabled = false;
-            elements.submitBtn.innerHTML = 'Beli Sekarang';
-
-            if (submissionSuccess) {
-                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-            } else {
-                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan. Silakan coba lagi.');
-            }
-        }
-        
         function startCountdown() {
             const countdownElement = document.getElementById('countdown-timer-display');
             if (!countdownElement || !expiryTime) return;
+
             const interval = setInterval(() => {
-                const distance = expiryTime - new Date().getTime();
+                const now = new Date().getTime();
+                const distance = expiryTime - now;
+
                 if (distance < 0) {
                     clearInterval(interval);
                     countdownElement.innerHTML = "Waktu Habis";
                     return;
                 }
-                const h = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                const m = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                const s = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-                countdownElement.innerHTML = `<div class="countdown-item"><span class="countdown-number">${h}</span> Jam</div> <div class="countdown-item"><span class="countdown-number">${m}</span> Menit</div> <div class="countdown-item"><span class="countdown-number">${s}</span> Detik</div>`;
+
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `
+                    <div class="countdown-item"><span class="countdown-number">${String(hours).padStart(2, '0')}</span> Jam</div>
+                    <div class="countdown-item"><span class="countdown-number">${String(minutes).padStart(2, '0')}</span> Menit</div>
+                    <div class="countdown-item"><span class="countdown-number">${String(seconds).padStart(2, '0')}</span> Detik</div>`;
             }, 1000);
         }
 
+        // --- NOTIFICATION FUNCTIONS ---
         const FIRST_NAMES = [ "Adi", "Budi", "Cahya", "Dedi", "Eka", "Fajar", "Gilang", "Hadi", "Indra", "Joko", "Lina", "Mira", "Nana", "Putri", "Rahmat", "Sari", "Tono", "Wulan" ];
+        
+        function getRandomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+        function generateRandomName() { return `${getRandomElement(FIRST_NAMES)}`; }
+        
         function showNextNotification() {
             if (!elements.notifBox || !elements.notifName) return;
-            elements.notifName.textContent = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
+            elements.notifName.textContent = generateRandomName();
             elements.notifBox.classList.remove('show');
-            void elements.notifBox.offsetWidth;
+            void elements.notifBox.offsetWidth; // Trigger reflow
             elements.notifBox.classList.add('show');
         }
+
         function scheduleNextNotification() {
+            const randomDelay = Math.floor(Math.random() * 10000) + 8000;
             setTimeout(() => {
                 showNextNotification();
                 scheduleNextNotification();
-            }, Math.floor(Math.random() * 10000) + 8000);
+            }, randomDelay);
         }
 
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
+
         document.querySelectorAll('input[name="package"]').forEach(radio => {
             radio.addEventListener('change', (event) => {
                 currentPackageId = event.target.value;
                 updateDisplay();
             });
         });
+
         updateDisplay();
+        
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
         }
         
+        // --- DETAILS MODAL LOGIC ---
         function getDetailsModalHTML(details) {
             const { pkg, totalPrice, paymentId, nama, whatsapp } = details;
             return `
@@ -1046,23 +1287,37 @@
                     <button class="details-modal-close" onclick="closeDetailsModal()">&times;</button>
                 </div>
                 <div class="details-modal-body">
-                    <p class="text-sm text-[var(--md-sys-color-on-surface-variant)] mb-4">Nomor Invoice: ${paymentId}</p>
+                    <p class="text-sm text-gray-500 mb-4">Nomor Invoice: ${paymentId}</p>
                     <div class="text-center mb-6">
-                        <p class="text-sm text-[var(--md-sys-color-on-surface-variant)]">Total Pembayaran</p>
+                        <p class="text-sm text-gray-600">Total Pembayaran</p>
                         <div class="flex items-center justify-center">
-                            <p class="text-3xl font-bold text-[var(--md-sys-color-on-surface)]">${formatCurrency(totalPrice)}</p>
+                            <p class="text-3xl font-bold text-gray-800">${formatCurrency(totalPrice)}</p>
                             <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy"></i></button>
                         </div>
                     </div>
-                    <div class="space-y-4 border-t border-b border-[var(--md-sys-color-outline)] py-4 mb-4">
-                        <div class="flex justify-between text-sm"><span>${pkg.name}</span><span class="font-medium">${formatCurrency(pkg.price)}</span></div>
-                        <div class="flex justify-between text-sm text-[var(--md-sys-color-on-surface-variant)]"><span>Kode Unik</span><span class="font-medium">${formatCurrency(uniqueCode)}</span></div>
+                    <div class="space-y-4 border-t border-b border-gray-200 py-4 mb-4">
+                        <div>
+                            <div class="flex justify-between text-sm">
+                                <span>${pkg.name}</span>
+                                <span class="font-medium">${formatCurrency(pkg.price)}</span>
+                            </div>
+                        </div>
+                         <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Kode Unik</span>
+                            <span class="font-medium">${formatCurrency(uniqueCode)}</span>
+                        </div>
                     </div>
-                    <div class="border-t border-[var(--md-sys-color-outline)] pt-4">
+                    <div class="border-t border-gray-200 pt-4">
                         <h4 class="font-semibold mb-3 text-sm">Informasi Pelanggan</h4>
                         <div class="grid grid-cols-2 gap-4 text-sm">
-                            <div><p class="text-[var(--md-sys-color-on-surface-variant)]">Nama</p><p class="font-medium">${nama}</p></div>
-                            <div><p class="text-[var(--md-sys-color-on-surface-variant)]">Nomor Telepon</p><p class="font-medium">${whatsapp}</p></div>
+                            <div>
+                                <p class="text-gray-500">Nama</p>
+                                <p class="font-medium">${nama}</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Nomor Telepon</p>
+                                <p class="font-medium">${whatsapp}</p>
+                            </div>
                         </div>
                     </div>
                 </div>`;
@@ -1079,27 +1334,33 @@
         window.closeDetailsModal = function() {
             elements.detailsModalContent.classList.remove('is-open');
             elements.detailsModalContent.classList.add('is-closing');
-            setTimeout(() => { elements.detailsModal.style.display = 'none'; }, 300);
+            setTimeout(() => {
+                elements.detailsModal.style.display = 'none';
+            }, 300);
         }
     });
 
     // --- GLOBAL HELPER FUNCTIONS ---
     const infoModal = document.getElementById('infoModal');
+    
     function showInfoModal(title, message) {
         if (!infoModal) return;
         infoModal.querySelector('#modalTitle').textContent = title;
         infoModal.querySelector('#modalMessage').textContent = message;
         infoModal.style.display = 'flex';
     }
+
     function closeInfoModal() {
         if (!infoModal) return;
         infoModal.style.display = 'none';
     }
+
     window.onclick = function(event) {
         if (event.target == infoModal) { closeInfoModal(); }
         if (event.target == document.getElementById('detailsModal')) { closeDetailsModal(); }
         if (event.target == document.getElementById('imageModal')) { closeImageModal(); }
     }
+
     function copyToClipboard(text, entityName) {
         const textArea = document.createElement('textarea');
         textArea.value = text;
@@ -1113,7 +1374,8 @@
         }
         document.body.removeChild(textArea);
     }
-
+    
+    // --- QRIS LOGIC ---
     function toCRC16(input) {
         let crc = 0xFFFF;
         for (let i = 0; i < input.length; i++) {
@@ -1124,27 +1386,35 @@
         }
         return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
     }
+
     function createDynamicQrisString(qris, { nominal }) {
-        if (!qris || nominal === undefined) throw new Error('Parameter tidak valid');
+        if (!qris || nominal === undefined) throw new Error('Parameter tidak lengkap.');
         let qrisModified = qris.slice(0, -4).replace("010211", "010212");
         const nominalStr = String(Math.round(nominal));
         const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
         const amountPart = "54" + amountLength + nominalStr;
-        if (!qrisModified.includes("5802ID")) throw new Error("Format QRIS tidak dikenali.");
+        if (!qrisModified.includes("5802ID")) {
+            throw new Error("Format string QRIS tidak dikenali.");
+        }
         let finalQris = qrisModified.replace("5802ID", amountPart + "5802ID");
-        return finalQris + toCRC16(finalQris);
+        const crc = toCRC16(finalQris);
+        return finalQris + crc;
     }
     
+    // --- Image Modal Functions ---
     const imageModal = document.getElementById('imageModal');
     const modalImg = document.getElementById("modalImage");
+
     window.openImageModal = function(event, src) {
         event.stopPropagation();
         imageModal.style.display = "flex";
         modalImg.src = src;
     }
+
     window.closeImageModal = function() {
         imageModal.style.display = "none";
     }
+
     </script>
 
 </body>
