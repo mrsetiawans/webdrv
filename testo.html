@@ -1237,14 +1237,22 @@
         // --- NEW TESTIMONIAL GALLERY SCRIPT ---
 
         const testimonialImages = [
-            "https://down-id.img.susercontent.com/file/20c85b67e572cc2b2510893daf3db0c7.webp",
-            "https://down-id.img.susercontent.com/file/9282ad76c267c41e28fc2ad8d4a497b5.webp",
-            "https://down-id.img.susercontent.com/file/a777654f3989cf391fb6daecf95edbeb.webp",
-            "https://down-id.img.susercontent.com/file/id-11134103-7r98t-llr1ioqle8x780.webp",
-            "https://s6.imgcdn.dev/YIZ0DL.jpg",
-            "https://s6.imgcdn.dev/YIZatu.jpg",
-            "https://s6.imgcdn.dev/YIZ75a.jpg",
-            "https://s6.imgcdn.dev/YIZBOw.jpg"
+            "https://s6.imgcdn.dev/YIjP00.png",
+            "https://s6.imgcdn.dev/YIjK4e.png",
+            "https://s6.imgcdn.dev/YIjT3M.png",
+            "https://s6.imgcdn.dev/YIjljd.png",
+            "https://s6.imgcdn.dev/YIjzTl.png",
+            "https://s6.imgcdn.dev/YIjaRh.png",
+            "https://s6.imgcdn.dev/YIj1JV.png",
+            "https://s6.imgcdn.dev/YIj7nK.png",
+            "https://s6.imgcdn.dev/YIjBvo.png",
+            "https://s6.imgcdn.dev/YIjGFO.png",
+            "https://s6.imgcdn.dev/YIjrCn.png",
+            "https://s6.imgcdn.dev/YIjv0g.png",
+            "https://s6.imgcdn.dev/YIjx3v.png",
+            "https://s6.imgcdn.dev/YIjAwN.png",
+            "https://s6.imgcdn.dev/YIjOTq.png",
+            "https://s6.imgcdn.dev/YIjZRB.png"
         ];
         
         const imageModal = document.getElementById('imageModal');
@@ -1284,7 +1292,7 @@
             showImage(currentImageIndex + 1);
         }
         window.showPrevImage = function() {
-            showImage(currentImageIndex + 1);
+            showImage(currentImageIndex - 1);
         }
 
         window.addEventListener('click', function(event) {
