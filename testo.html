@@ -517,23 +517,28 @@
             color: var(--google-grey-700);
         }
 
+        /* === PERUBAHAN UNTUK MOBILE DIMULAI DI SINI === */
         /* Responsive Design */
         @media (max-width: 768px) {
             .google-card {
-                margin: 16px;
+                /* Menghapus margin agar tidak terlalu menjorok ke dalam di mobile */
+                margin: 0; 
                 border-radius: var(--border-radius-medium);
             }
             
             .product-hero {
                 padding: 24px;
-                margin: 16px;
+                 /* Menghapus margin agar tidak terlalu menjorok ke dalam di mobile */
+                margin: 0;
             }
             
             .testimonial-grid {
+                /* Mengubah menjadi 2 kolom di mobile untuk tampilan yang lebih baik */
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
             }
         }
+        /* === AKHIR DARI PERUBAHAN UNTUK MOBILE === */
 
         /* Loading States */
         .loading {
@@ -640,7 +645,8 @@
 <body class="antialiased">
     <!-- Header Google Style -->
     <header class="google-header">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- === PERUBAHAN: Menyederhanakan padding untuk mobile === -->
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png" alt="Google Drive" class="h-8 w-8">
@@ -662,7 +668,8 @@
     
     <div class="min-h-screen bg-gray-50">
         <div id="main-content-container">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+             <!-- === PERUBAHAN: Menyederhanakan padding untuk mobile === -->
+            <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Kolom Kiri: Form & Pembayaran -->
                     <div class="lg:col-span-1">
@@ -790,8 +797,8 @@
         <div class="notif-icon-wrapper"><i class="far fa-check-circle"></i></div>
         <div class="notif-content-area">
              <div class="notif-message">
-                 <div><strong class="notif-name">Nama Acak</strong> baru saja membeli!</div>
-                 <div class="notif-time">beberapa detik lalu</div>
+                  <div><strong class="notif-name">Nama Acak</strong> baru saja membeli!</div>
+                  <div class="notif-time">beberapa detik lalu</div>
              </div>
         </div>
     </div>
@@ -1051,26 +1058,26 @@
         };
 
         const getOrderDetailsHTML = (pkg, totalPrice) => `
-            <div class="google-card p-6 mt-8">
-                 <h3 class="section-title text-lg mb-4">Rincian Pesanan</h3>
-                 <div class="space-y-4 text-gray-600">
-                     <div class="flex justify-between items-center">
-                         <span>${pkg.name}</span>
-                         <div class="text-right">
-                             <span class="font-medium text-gray-800">${formatCurrency(pkg.price)}</span>
-                         </div>
-                     </div>
-                     <div class="flex justify-between">
-                         <span>Kode Unik</span>
-                         <span class="font-medium text-gray-800">${formatCurrency(uniqueCode)}</span>
-                     </div>
-                     <hr class="border-gray-200">
-                     <div class="flex justify-between font-bold text-lg text-gray-900">
-                         <span>Total</span>
-                         <span class="price-display text-xl">${formatCurrency(totalPrice)}</span>
-                     </div>
-                 </div>
-            </div>`;
+             <div class="google-card p-6 mt-8">
+                  <h3 class="section-title text-lg mb-4">Rincian Pesanan</h3>
+                  <div class="space-y-4 text-gray-600">
+                       <div class="flex justify-between items-center">
+                            <span>${pkg.name}</span>
+                            <div class="text-right">
+                                 <span class="font-medium text-gray-800">${formatCurrency(pkg.price)}</span>
+                            </div>
+                       </div>
+                       <div class="flex justify-between">
+                            <span>Kode Unik</span>
+                            <span class="font-medium text-gray-800">${formatCurrency(uniqueCode)}</span>
+                       </div>
+                       <hr class="border-gray-200">
+                       <div class="flex justify-between font-bold text-lg text-gray-900">
+                            <span>Total</span>
+                            <span class="price-display text-xl">${formatCurrency(totalPrice)}</span>
+                       </div>
+                  </div>
+             </div>`;
 
         const getTestimonialsHTML = (pkg) => {
             let imagesHTML = pkg.testimonials.map((url, index) => `
@@ -1090,70 +1097,70 @@
 
         const getFaqHTML = () => `
              <div>
-                 <h3 class="section-title text-2xl text-center mb-8">Pertanyaan Umum (FAQ)</h3>
-                 <div class="faq-container">
-                     <details class="faq-item">
-                         <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
-                         <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
-                         <div class="faq-content">Untuk Google Drive, kami akan mengundang akun Gmail pribadi Anda untuk bergabung ke dalam "Shared Drive" khusus yang memiliki kapasitas unlimited. Anda tidak perlu memberikan password, cukup alamat email saja. Shared Drive ini akan muncul di akun Drive Anda dan bisa digunakan untuk menyimpan file apa pun.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Bagaimana proses untuk Google Photos?</summary>
-                         <div class="faq-content">Untuk Google Photos Unlimited, Anda akan mendapatkan sebuah akun Google baru yang sudah memiliki fitur penyimpanan foto/video kualitas asli tanpa batas. Anda akan menerima email dan password akun baru tersebut, dan Anda bisa langsung mengganti passwordnya demi keamanan. Akun ini terpisah dari akun utama Anda.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Apakah ini aman dan legal?</summary>
-                         <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Apa bedanya dengan langganan Google One?</summary>
-                         <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, memanfaatkan fitur Shared Drive.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Bisakah saya memindahkan file lama saya?</summary>
-                         <div class="faq-content">Tentu bisa. Anda dapat dengan mudah memindahkan file dan folder dari penyimpanan Drive pribadi Anda ke dalam Shared Drive unlimited yang baru. Untuk Google Photos, Anda perlu memindahkan foto secara manual ke akun baru yang kami berikan.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Berapa lama proses aktivasinya?</summary>
-                         <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Apakah ada garansi?</summary>
-                         <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div>
-                     </details>
-                 </div>
+                  <h3 class="section-title text-2xl text-center mb-8">Pertanyaan Umum (FAQ)</h3>
+                  <div class="faq-container">
+                       <details class="faq-item">
+                            <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
+                            <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
+                       </details>
+                       <details class="faq-item">
+                            <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
+                            <div class="faq-content">Untuk Google Drive, kami akan mengundang akun Gmail pribadi Anda untuk bergabung ke dalam "Shared Drive" khusus yang memiliki kapasitas unlimited. Anda tidak perlu memberikan password, cukup alamat email saja. Shared Drive ini akan muncul di akun Drive Anda dan bisa digunakan untuk menyimpan file apa pun.</div>
+                       </details>
+                       <details class="faq-item">
+                            <summary>Bagaimana proses untuk Google Photos?</summary>
+                            <div class="faq-content">Untuk Google Photos Unlimited, Anda akan mendapatkan sebuah akun Google baru yang sudah memiliki fitur penyimpanan foto/video kualitas asli tanpa batas. Anda akan menerima email dan password akun baru tersebut, dan Anda bisa langsung mengganti passwordnya demi keamanan. Akun ini terpisah dari akun utama Anda.</div>
+                       </details>
+                       <details class="faq-item">
+                            <summary>Apakah ini aman dan legal?</summary>
+                            <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div>
+                       </details>
+                       <details class="faq-item">
+                            <summary>Apa bedanya dengan langganan Google One?</summary>
+                            <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, memanfaatkan fitur Shared Drive.</div>
+                       </details>
+                       <details class="faq-item">
+                            <summary>Bisakah saya memindahkan file lama saya?</summary>
+                            <div class="faq-content">Tentu bisa. Anda dapat dengan mudah memindahkan file dan folder dari penyimpanan Drive pribadi Anda ke dalam Shared Drive unlimited yang baru. Untuk Google Photos, Anda perlu memindahkan foto secara manual ke akun baru yang kami berikan.</div>
+                       </details>
+                       <details class="faq-item">
+                            <summary>Berapa lama proses aktivasinya?</summary>
+                            <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam.</div>
+                       </details>
+                       <details class="faq-item">
+                            <summary>Apakah ada garansi?</summary>
+                            <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div>
+                       </details>
+                  </div>
              </div>
         `;
         
         const getPolicyHTML = () => `
-            <div>
-                <h3 class="section-title text-2xl text-center mb-6">Kebijakan & Ketentuan</h3>
-                <div class="space-y-8 text-sm text-gray-600">
-                    <div>
-                        <h4 class="text-lg font-semibold mb-3 text-gray-800">Kebijakan Privasi</h4>
-                        <p class="mb-4 leading-relaxed">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua file Anda tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
-                        <ul class="list-disc list-inside space-y-2 leading-relaxed">
-                            <li>Kami hanya butuh email, bukan password.</li>
-                            <li>Informasi pembayaran diproses oleh gateway aman.</li>
-                            <li>Data Anda tidak dibagikan ke pihak lain.</li>
-                            <li>Kami tidak mengakses file di dalam Drive Anda.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-3 text-gray-800">Syarat & Ketentuan</h4>
-                         <p class="mb-4 leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
-                        <ul class="list-disc list-inside space-y-2 leading-relaxed">
-                            <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
-                            <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
-                            <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
-                            <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+             <div>
+                  <h3 class="section-title text-2xl text-center mb-6">Kebijakan & Ketentuan</h3>
+                  <div class="space-y-8 text-sm text-gray-600">
+                       <div>
+                            <h4 class="text-lg font-semibold mb-3 text-gray-800">Kebijakan Privasi</h4>
+                            <p class="mb-4 leading-relaxed">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua file Anda tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
+                            <ul class="list-disc list-inside space-y-2 leading-relaxed">
+                                 <li>Kami hanya butuh email, bukan password.</li>
+                                 <li>Informasi pembayaran diproses oleh gateway aman.</li>
+                                 <li>Data Anda tidak dibagikan ke pihak lain.</li>
+                                 <li>Kami tidak mengakses file di dalam Drive Anda.</li>
+                            </ul>
+                       </div>
+                       <div>
+                            <h4 class="text-lg font-semibold mb-3 text-gray-800">Syarat & Ketentuan</h4>
+                             <p class="mb-4 leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
+                            <ul class="list-disc list-inside space-y-2 leading-relaxed">
+                                 <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
+                                 <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
+                                 <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
+                                 <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
+                            </ul>
+                       </div>
+                  </div>
+             </div>
         `;
 
         // --- FUNCTIONS ---
