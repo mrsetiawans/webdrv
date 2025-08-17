@@ -636,6 +636,49 @@
 
 
     <script>
+    // --- GLOBAL CONFIG & DATA (FIXED) ---
+    // Memindahkan product object ke scope global agar bisa diakses oleh fungsi modal gambar
+    const product = {
+        id: 'preset_pack',
+        name: "4000+ Preset Lightroom Pack",
+        price: 49000,
+        normalPrice: 199000, // Contoh harga normal
+        title: "4000+ PRESET LIGHTROOM",
+        priceDisplay: `Rp49.000`,
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg/1200px-Adobe_Photoshop_Lightroom_CC_logo.svg.png',
+        description: "Ubah foto biasa jadi luar biasa dengan satu klik.",
+        features: [
+            "<strong>4000+ Preset Premium:</strong> Siap pakai untuk mengubah foto Anda menjadi karya profesional.",
+            "<strong>Untuk Mobile & Desktop:</strong> Kompatibel dengan Lightroom Mobile (Android/iOS) dan Lightroom Classic (PC/Mac).",
+            "<strong>Beragam Kategori:</strong> Termasuk preset untuk travel, kuliner, potret, wedding, alam, dan banyak lagi.",
+            "<strong>Instalasi Sangat Mudah:</strong> Disertai panduan video langkah demi langkah yang jelas.",
+            "<strong>Sekali Bayar Seumur Hidup:</strong> Tidak ada biaya bulanan atau tahunan tersembunyi.",
+            "<strong>Update Gratis:</strong> Dapatkan preset baru secara berkala tanpa biaya tambahan.",
+            "<strong>Cocok untuk Pemula & Pro:</strong> Ubah foto Anda dengan satu klik, tanpa perlu keahlian editing.",
+            "<strong>Dukungan Penuh:</strong> Siap membantu jika Anda mengalami kendala saat instalasi."
+        ],
+        testimonials: [
+            "https://down-id.img.susercontent.com/file/20c85b67e572cc2b2510893daf3db0c7.webp",
+            "https://down-id.img.susercontent.com/file/9282ad76c267c41e28fc2ad8d4a497b5.webp",
+            "https://down-id.img.susercontent.com/file/a777654f3989cf391fb6daecf95edbeb.webp",
+            "https://down-id.img.susercontent.com/file/id-11134103-7r98t-llr1ioqle8x780.webp",
+            "https://s6.imgcdn.dev/YIZ0DL.jpg",
+            "https://s6.imgcdn.dev/YIZatu.jpg",
+            "https://s6.imgcdn.dev/YIZ75a.jpg",
+            "https://s6.imgcdn.dev/YIZBOw.jpg",
+            "https://s6.imgcdn.dev/YIZGgt.jpg",
+            "https://s6.imgcdn.dev/YIZrQT.jpg",
+            "https://s6.imgcdn.dev/YIZvSD.jpg",
+            "https://s6.imgcdn.dev/YIZxe9.jpg",
+            "https://s6.imgcdn.dev/YIZOz8.jpg",
+            "https://s6.imgcdn.dev/YIZAcy.jpg",
+            "https://s6.imgcdn.dev/YIZZt2.jpg",
+            "https://s6.imgcdn.dev/YIZRYi.jpg",
+            "https://s6.imgcdn.dev/YIZV5H.jpg",
+            "https://s6.imgcdn.dev/YIZfOS.jpg"
+        ]
+    };
+
     document.addEventListener('DOMContentLoaded', function() {
 
         // --- ELEMENTS ---
@@ -664,47 +707,6 @@
         let countdownInterval;
         let expiryTime;
         let currentOrderDetails = {};
-        
-        const product = {
-            id: 'preset_pack',
-            name: "4000+ Preset Lightroom Pack",
-            price: 49000,
-            normalPrice: 199000, // Contoh harga normal
-            title: "4000+ PRESET LIGHTROOM",
-            priceDisplay: `Rp49.000`,
-            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg/1200px-Adobe_Photoshop_Lightroom_CC_logo.svg.png',
-            description: "Ubah foto biasa jadi luar biasa dengan satu klik.",
-            features: [
-                "<strong>4000+ Preset Premium:</strong> Siap pakai untuk mengubah foto Anda menjadi karya profesional.",
-                "<strong>Untuk Mobile & Desktop:</strong> Kompatibel dengan Lightroom Mobile (Android/iOS) dan Lightroom Classic (PC/Mac).",
-                "<strong>Beragam Kategori:</strong> Termasuk preset untuk travel, kuliner, potret, wedding, alam, dan banyak lagi.",
-                "<strong>Instalasi Sangat Mudah:</strong> Disertai panduan video langkah demi langkah yang jelas.",
-                "<strong>Sekali Bayar Seumur Hidup:</strong> Tidak ada biaya bulanan atau tahunan tersembunyi.",
-                "<strong>Update Gratis:</strong> Dapatkan preset baru secara berkala tanpa biaya tambahan.",
-                "<strong>Cocok untuk Pemula & Pro:</strong> Ubah foto Anda dengan satu klik, tanpa perlu keahlian editing.",
-                "<strong>Dukungan Penuh:</strong> Siap membantu jika Anda mengalami kendala saat instalasi."
-            ],
-            testimonials: [
-                "https://down-id.img.susercontent.com/file/20c85b67e572cc2b2510893daf3db0c7.webp",
-                "https://down-id.img.susercontent.com/file/9282ad76c267c41e28fc2ad8d4a497b5.webp",
-                "https://down-id.img.susercontent.com/file/a777654f3989cf391fb6daecf95edbeb.webp",
-                "https://down-id.img.susercontent.com/file/id-11134103-7r98t-llr1ioqle8x780.webp",
-                "https://s6.imgcdn.dev/YIZ0DL.jpg",
-                "https://s6.imgcdn.dev/YIZatu.jpg",
-                "https://s6.imgcdn.dev/YIZ75a.jpg",
-                "https://s6.imgcdn.dev/YIZBOw.jpg",
-                "https://s6.imgcdn.dev/YIZGgt.jpg",
-                "https://s6.imgcdn.dev/YIZrQT.jpg",
-                "https://s6.imgcdn.dev/YIZvSD.jpg",
-                "https://s6.imgcdn.dev/YIZxe9.jpg",
-                "https://s6.imgcdn.dev/YIZOz8.jpg",
-                "https://s6.imgcdn.dev/YIZAcy.jpg",
-                "https://s6.imgcdn.dev/YIZZt2.jpg",
-                "https://s6.imgcdn.dev/YIZRYi.jpg",
-                "https://s6.imgcdn.dev/YIZV5H.jpg",
-                "https://s6.imgcdn.dev/YIZfOS.jpg"
-            ]
-        };
         
         // --- NEW PAYMENT ACCOUNTS ---
         const paymentAccounts = {
