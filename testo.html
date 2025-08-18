@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
 
@@ -31,313 +31,129 @@
     <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
 
     <style>
-        /* Google Material Design System */
         :root {
-            /* Google Colors */
-            --google-blue: #1a73e8;
-            --google-blue-hover: #1557b0;
-            --google-blue-light: #e8f0fe;
-            --google-blue-dark: #174ea6;
-            --google-grey-50: #fafafa;
-            --google-grey-100: #f5f5f5;
-            --google-grey-200: #e0e0e0;
-            --google-grey-300: #bdbdbd;
-            --google-grey-400: #9e9e9e;
-            --google-grey-500: #757575;
-            --google-grey-600: #616161;
-            --google-grey-700: #424242;
-            --google-grey-800: #303030;
+            --google-blue-600: #1a73e8;
+            --google-blue-700: #1557b0;
+            --google-blue-50: #e8f0fe;
+            --google-grey-50: #f8f9fa;
+            --google-grey-100: #f1f3f4;
+            --google-grey-200: #e8eaed;
+            --google-grey-300: #dadce0;
+            --google-grey-500: #9aa0a6;
+            --google-grey-600: #5f6368;
+            --google-grey-700: #3c4043;
             --google-grey-900: #202124;
-            
-            /* Google Shadows */
+            --google-green-600: #137333;
+            --google-red-600: #d93025;
+            --google-yellow-600: #f9ab00;
+            --google-purple-600: #9334e6;
             --shadow-1: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
             --shadow-2: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
             --shadow-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.3);
-            --shadow-4: 0 8px 12px 6px rgba(60,64,67,.15), 0 4px 4px rgba(60,64,67,.3);
-            
-            /* Google Borders */
-            --border-radius-small: 4px;
-            --border-radius-medium: 8px;
-            --border-radius-large: 12px;
-            --border-radius-xl: 16px;
         }
 
-        /* Typography - Google Sans */
+        /* Google Sans Typography */
         body {
-            font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: #ffffff;
-            color: var(--google-grey-900);
+            font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--google-grey-50);
+            color: var(--google-grey-700);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Google Material Design Animations */
-        * {
-            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-
-        /* Header dengan Google Style */
-        .google-header {
-            background: linear-gradient(135deg, #ffffff 0%, var(--google-grey-50) 100%);
-            border-bottom: 1px solid var(--google-grey-200);
-            padding: 16px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Cards dengan Google Material Design */
-        .google-card {
-            background: #ffffff;
-            border-radius: var(--border-radius-large);
-            box-shadow: var(--shadow-1);
-            border: 1px solid var(--google-grey-200);
-            overflow: hidden;
-            transition: box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-
-        .google-card:hover {
-            box-shadow: var(--shadow-2);
-            transform: translateY(-2px);
-        }
-
-        /* Input Fields - Material Design */
-        .google-input {
-            width: 100%;
-            padding: 16px;
-            border: 2px solid var(--google-grey-300);
-            border-radius: var(--border-radius-medium);
-            background-color: #ffffff;
-            font-size: 16px;
+        .google-sans {
             font-family: 'Google Sans', sans-serif;
-            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-            outline: none;
         }
 
-        .google-input:focus {
-            border-color: var(--google-blue);
-            box-shadow: 0 0 0 1px var(--google-blue);
-            background-color: #ffffff;
-        }
-
-        .google-input:hover:not(:focus) {
-            border-color: var(--google-grey-400);
-        }
-
-        /* Floating Labels */
-        .input-group {
-            position: relative;
-            margin-bottom: 24px;
-        }
-
-        .floating-label {
-            position: absolute;
-            left: 16px;
-            top: 16px;
-            color: var(--google-grey-500);
-            font-size: 16px;
-            font-weight: 400;
-            pointer-events: none;
-            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+        /* Enhanced Material Design Components */
+        .material-card {
             background: #ffffff;
-            padding: 0 4px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-1);
+            transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--google-grey-200);
         }
 
-        .google-input:focus + .floating-label,
-        .google-input:not(:placeholder-shown) + .floating-label {
-            top: -8px;
-            left: 12px;
-            font-size: 12px;
-            color: var(--google-blue);
+        .material-card:hover {
+            box-shadow: var(--shadow-2);
+        }
+
+        .material-card-elevated {
+            box-shadow: var(--shadow-2);
+        }
+
+        /* Enhanced Form Inputs */
+        .form-input {
+            border: 2px solid var(--google-grey-300);
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+            padding: 16px 12px;
+            width: 100%;
+            background-color: #ffffff;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+            color: var(--google-grey-900);
+        }
+
+        .form-input:focus {
+            border-color: var(--google-blue-600);
+            background-color: #ffffff;
+            outline: none;
+            box-shadow: 0 0 0 1px var(--google-blue-600);
+        }
+
+        .form-input::placeholder {
+            color: var(--google-grey-500);
+        }
+
+        /* Enhanced Google-style Buttons */
+        .cta-button {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 24px;
+            padding: 12px 32px;
+            font-size: 16px;
             font-weight: 500;
-        }
-
-        /* Google Buttons */
-        .google-btn {
+            font-family: 'Google Sans', sans-serif;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px 24px;
-            border-radius: var(--border-radius-medium);
-            font-family: 'Google Sans', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
             cursor: pointer;
+            width: 100%;
             border: none;
-            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            text-transform: none;
+            letter-spacing: 0.25px;
+            min-height: 48px;
         }
 
-        .google-btn-primary {
-            background-color: var(--google-blue);
-            color: #ffffff;
+        .blue-button {
+            background-color: var(--google-blue-600);
+            color: white;
             box-shadow: var(--shadow-1);
         }
 
-        .google-btn-primary:hover {
-            background-color: var(--google-blue-hover);
+        .blue-button:hover {
+            background-color: var(--google-blue-700);
             box-shadow: var(--shadow-2);
             transform: translateY(-1px);
         }
 
-        .google-btn-primary:active {
+        .blue-button:active {
             transform: translateY(0);
             box-shadow: var(--shadow-1);
         }
 
-        .google-btn-outlined {
-            background-color: transparent;
-            color: var(--google-blue);
-            border: 1px solid var(--google-grey-300);
+        .cta-button:disabled {
+            background-color: var(--google-grey-300);
+            color: var(--google-grey-500);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
-        .google-btn-outlined:hover {
-            background-color: var(--google-blue-light);
-            border-color: var(--google-blue);
-        }
-
-        /* Ripple Effect untuk Buttons */
-        .google-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
-            transform: translate(-50%, -50%);
-        }
-
-        .google-btn:active::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Segmented Control - Google Style */
-        .google-segmented {
-            display: flex;
-            background-color: var(--google-grey-100);
-            border-radius: var(--border-radius-medium);
-            padding: 4px;
-            position: relative;
-            box-shadow: inset 0 1px 2px rgba(60,64,67,.1);
-        }
-
-        .google-segmented input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .google-segmented label {
-            flex: 1;
-            text-align: center;
-            padding: 12px 16px;
-            cursor: pointer;
-            z-index: 2;
-            transition: color 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-            color: var(--google-grey-600);
-            font-weight: 500;
-            font-size: 14px;
-            border-radius: var(--border-radius-small);
-        }
-
-        .google-segmented input[type="radio"]:checked + label {
-            color: var(--google-blue);
-        }
-
-        .google-segmented-pill {
-            position: absolute;
-            top: 4px;
-            bottom: 4px;
-            width: calc((100% - 8px) / 3);
-            background-color: #ffffff;
-            border-radius: var(--border-radius-small);
-            box-shadow: var(--shadow-1);
-            z-index: 1;
-            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-
-        .google-segmented input#pkg-drive:checked ~ .google-segmented-pill {
-            transform: translateX(0%);
-        }
-        .google-segmented input#pkg-photos:checked ~ .google-segmented-pill {
-            transform: translateX(100%);
-        }
-        .google-segmented input#pkg-bundle:checked ~ .google-segmented-pill {
-            transform: translateX(200%);
-        }
-
-        /* Product Info Card */
-        .product-hero {
-            background: linear-gradient(135deg, var(--google-blue-light) 0%, #ffffff 100%);
-            border: 1px solid var(--google-grey-200);
-            border-radius: var(--border-radius-large);
-            padding: 32px;
-            margin-bottom: 24px;
-        }
-
-        /* Feature List */
-        .feature-list {
-            background: var(--google-grey-50);
-            border-radius: var(--border-radius-large);
-            padding: 24px;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .feature-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        /* Payment Methods */
-        .payment-option {
-            border: 2px solid var(--google-grey-200);
-            border-radius: var(--border-radius-medium);
-            margin-bottom: 8px;
-            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-
-        .payment-option:hover {
-            border-color: var(--google-grey-300);
-            box-shadow: var(--shadow-1);
-        }
-
-        .payment-option input[type="radio"]:checked + label {
-            background-color: var(--google-blue-light);
-            border-color: var(--google-blue);
-        }
-
-        .payment-label {
-            display: flex;
-            align-items: center;
-            padding: 16px;
-            cursor: pointer;
-            border-radius: var(--border-radius-medium);
-        }
-
-        /* Modal dengan Google Design */
-        .google-modal {
+        /* Enhanced Modal Styling */
+        .modal {
             display: none;
             position: fixed;
             z-index: 1000;
@@ -345,23 +161,24 @@
             top: 0;
             width: 100%;
             height: 100%;
+            overflow: auto;
             background-color: rgba(32, 33, 36, 0.6);
             backdrop-filter: blur(4px);
             justify-content: center;
             align-items: center;
         }
 
-        .google-modal-content {
+        .modal-content {
             background-color: #ffffff;
             margin: auto;
-            padding: 24px;
+            padding: 32px;
             width: 90%;
-            max-width: 400px;
-            border-radius: var(--border-radius-xl);
-            box-shadow: var(--shadow-4);
+            max-width: 480px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-3);
             text-align: center;
             position: relative;
-            animation: modalSlideIn 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @keyframes modalSlideIn {
@@ -375,68 +192,146 @@
             }
         }
 
-        /* Testimonials Grid */
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 24px;
+        .modal-content h3 {
+            color: var(--google-grey-900);
+            margin-bottom: 16px;
+            font-size: 20px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
         }
 
-        .testimonial-item {
-            border-radius: var(--border-radius-large);
-            overflow: hidden;
-            box-shadow: var(--shadow-1);
-            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        .modal-content p {
+            color: var(--google-grey-600);
+            margin-bottom: 24px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .modal-ok-button {
+            background-color: var(--google-blue-600);
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 24px;
             cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 36px;
         }
 
-        .testimonial-item:hover {
-            box-shadow: var(--shadow-3);
-            transform: translateY(-4px) scale(1.02);
-        }
-
-        .testimonial-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* FAQ dengan Material Design */
-        .faq-container {
-            background: #ffffff;
-            border-radius: var(--border-radius-large);
-            overflow: hidden;
+        .modal-ok-button:hover {
+            background-color: var(--google-blue-700);
             box-shadow: var(--shadow-1);
         }
 
+        /* Enhanced Testimonial Section */
+        .testimonial-image {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .testimonial-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-2);
+        }
+
+        /* Enhanced Notification Toast */
+        .notif-box {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--google-grey-900);
+            color: #ffffff;
+            border-radius: 8px;
+            box-shadow: var(--shadow-3);
+            padding: 16px 24px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            width: auto;
+            max-width: 400px;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .notif-box.show {
+            display: flex;
+            opacity: 1;
+            animation: slideInAndOut 5s ease-in-out forwards;
+        }
+
+        @keyframes slideInAndOut {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            10% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            90% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+        }
+
+        .notif-icon-wrapper {
+            color: var(--google-green-600);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .notif-message {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .notif-message strong {
+            font-weight: 500;
+        }
+
+        .notif-time {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2px;
+        }
+
+        /* Enhanced FAQ Section */
         .faq-item {
             border-bottom: 1px solid var(--google-grey-200);
+            transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .faq-item:last-child {
             border-bottom: none;
         }
 
+        .faq-item:hover {
+            background-color: var(--google-grey-50);
+        }
+
         .faq-item summary {
-            padding: 20px 24px;
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--google-grey-900);
+            padding: 20px 16px;
             cursor: pointer;
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 500;
-            color: var(--google-grey-900);
-            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-
-        .faq-item summary:hover {
-            background-color: var(--google-grey-50);
-        }
-
-        .faq-item[open] summary {
-            color: var(--google-blue);
-            background-color: var(--google-blue-light);
+            font-family: 'Google Sans', sans-serif;
         }
 
         .faq-item summary::-webkit-details-marker {
@@ -447,171 +342,176 @@
             content: '\f078';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
-            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-            color: var(--google-grey-500);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--google-grey-600);
+            font-size: 14px;
         }
 
         .faq-item[open] summary::after {
             transform: rotate(180deg);
-            color: var(--google-blue);
         }
 
         .faq-content {
-            padding: 0 24px 20px 24px;
+            padding: 0 16px 20px 16px;
             color: var(--google-grey-600);
             line-height: 1.6;
+            font-size: 14px;
         }
 
-        /* Notification Toast */
-        .google-toast {
-            position: fixed;
-            top: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--google-grey-800);
-            color: #ffffff;
-            border-radius: 24px;
-            box-shadow: var(--shadow-3);
-            padding: 12px 24px;
-            display: none;
-            align-items: center;
-            gap: 12px;
-            max-width: 400px;
-            z-index: 1001;
+        .faq-item[open] summary {
+            color: var(--google-blue-600);
+        }
+
+        /* Enhanced Segmented Control */
+        .segmented-control {
+            display: flex;
+            position: relative;
+            background-color: var(--google-grey-100);
+            border-radius: 12px;
+            padding: 4px;
+            width: 100%;
+            box-shadow: inset 0 1px 2px rgba(60, 64, 67, 0.1);
+        }
+
+        .segmented-control .package-radio {
+            position: absolute;
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            width: 0;
+            height: 0;
         }
 
-        .google-toast.show {
-            display: flex;
-            opacity: 1;
-            animation: toastSlideIn 4s cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-
-        @keyframes toastSlideIn {
-            0% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px);
-            }
-            10%, 90% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px);
-            }
-        }
-
-        /* Security Badges */
-        .security-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 16px;
-            background: var(--google-grey-50);
-            border: 1px solid var(--google-grey-200);
-            border-radius: var(--border-radius-medium);
+        .segmented-control .package-label {
+            flex: 1;
+            text-align: center;
+            padding: 12px 8px;
+            cursor: pointer;
+            z-index: 2;
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--google-grey-700);
             font-size: 14px;
             font-weight: 500;
-            color: var(--google-grey-700);
+            line-height: 1.2;
+            font-family: 'Google Sans', sans-serif;
+            border-radius: 8px;
         }
 
-        /* === PERUBAHAN UNTUK MOBILE DIMULAI DI SINI === */
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .google-card {
-                /* Menghapus margin agar tidak terlalu menjorok ke dalam di mobile */
-                margin: 0; 
-                border-radius: var(--border-radius-medium);
-            }
-            
-            .product-hero {
-                padding: 24px;
-                 /* Menghapus margin agar tidak terlalu menjorok ke dalam di mobile */
-                margin: 0;
-            }
-            
-            .testimonial-grid {
-                /* Mengubah menjadi 2 kolom di mobile untuk tampilan yang lebih baik */
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-        }
-        /* === AKHIR DARI PERUBAHAN UNTUK MOBILE === */
-
-        /* Loading States */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
+        .segmented-control .package-radio:checked + .package-label {
+            color: var(--google-blue-600);
         }
 
-        .loading::after {
-            content: '';
+        .segmented-control-pill {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
+            top: 4px;
+            bottom: 4px;
+            width: calc((100% - 8px) / 3);
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: var(--shadow-1);
+            z-index: 1;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .segmented-control .package-radio#pkg-drive:checked ~ .segmented-control-pill {
+            transform: translateX(0%);
+        }
+
+        .segmented-control .package-radio#pkg-photos:checked ~ .segmented-control-pill {
+            transform: translateX(100%);
+        }
+
+        .segmented-control .package-radio#pkg-bundle:checked ~ .segmented-control-pill {
+            transform: translateX(200%);
+        }
+
+        /* Enhanced Product Info Display */
+        #product-info-form-top,
+        #features-before-form {
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-info-card {
+            background: linear-gradient(135deg, var(--google-blue-50) 0%, #ffffff 100%);
+            border: 1px solid var(--google-grey-200);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        /* Enhanced Payment Method Styles */
+        .payment-radio {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .payment-label {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border-radius: 8px;
+            margin: 2px;
+        }
+
+        .payment-label:hover {
+            background-color: var(--google-grey-50);
+        }
+
+        .payment-radio:checked + .payment-label {
+            background-color: var(--google-blue-50);
+            box-shadow: inset 0 0 0 2px var(--google-blue-600);
+        }
+
+        .payment-logo {
+            height: 24px;
+            width: auto;
+            max-width: 80px;
+            object-fit: contain;
+            margin-right: 16px;
+        }
+
+        .custom-radio-button {
             height: 20px;
-            margin: -10px 0 0 -10px;
+            width: 20px;
             border: 2px solid var(--google-grey-300);
-            border-top: 2px solid var(--google-blue);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            margin-left: auto;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Additional Google-style enhancements */
-        .price-display {
-            font-family: 'Google Sans', sans-serif;
-            font-weight: 600;
-            color: var(--google-blue);
-            font-size: 2.5rem;
-        }
-
-        .section-title {
-            font-family: 'Google Sans', sans-serif;
-            font-weight: 600;
-            color: var(--google-grey-900);
-            margin-bottom: 16px;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
+        .custom-radio-button .dot {
+            height: 8px;
             width: 8px;
+            border-radius: 50%;
+            background-color: transparent;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        ::-webkit-scrollbar-track {
-            background: var(--google-grey-100);
+        .payment-radio:checked + .payment-label .custom-radio-button {
+            border-color: var(--google-blue-600);
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--google-grey-400);
-            border-radius: 4px;
+        .payment-radio:checked + .payment-label .custom-radio-button .dot {
+            background-color: var(--google-blue-600);
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--google-grey-500);
-        }
-
-        /* Focus indicators */
-        .google-btn:focus-visible,
-        .google-input:focus-visible {
-            outline: 2px solid var(--google-blue);
-            outline-offset: 2px;
-        }
-
-        /* Payment instruction styles */
+        /* Enhanced Payment Instruction Layout */
         .payment-header {
-            background: linear-gradient(135deg, var(--google-grey-900) 0%, var(--google-grey-800) 100%);
-            color: #ffffff;
-            padding: 20px;
+            background: linear-gradient(135deg, var(--google-grey-900) 0%, #1f1f23 100%);
+            color: #fff;
+            padding: 20px 16px;
             text-align: center;
-            border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
+        }
+
+        .payment-header h2 {
+            font-size: 18px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
         }
 
         .countdown-timer {
@@ -622,186 +522,546 @@
             margin-top: 12px;
         }
 
+        .countdown-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+        }
+
         .countdown-number {
-            background-color: #ea4335;
+            background-color: var(--google-red-600);
             color: white;
-            padding: 6px 12px;
-            border-radius: var(--border-radius-small);
+            padding: 6px 10px;
+            border-radius: 6px;
             font-weight: 600;
             font-size: 16px;
             font-family: 'Google Sans', sans-serif;
+            min-width: 36px;
+            text-align: center;
         }
 
         .payment-card {
-            background: #ffffff;
+            background-color: #ffffff;
             border: 1px solid var(--google-grey-200);
-            border-radius: var(--border-radius-large);
-            padding: 24px;
+            border-radius: 12px;
+            padding: 20px;
             margin-top: 16px;
             box-shadow: var(--shadow-1);
+        }
+
+        .copy-button-text {
+            background: none;
+            border: none;
+            color: var(--google-blue-600);
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .copy-button-text:hover {
+            background-color: var(--google-blue-50);
+        }
+
+        .confirm-button-outlined {
+            width: 100%;
+            padding: 12px 24px;
+            border: 2px solid var(--google-blue-600);
+            color: var(--google-blue-600);
+            background-color: transparent;
+            border-radius: 24px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 48px;
+        }
+
+        .confirm-button-outlined:hover {
+            background-color: var(--google-blue-50);
+            box-shadow: var(--shadow-1);
+        }
+
+        .payment-accordion {
+            border-bottom: 1px solid var(--google-grey-200);
+        }
+
+        .payment-accordion:last-child {
+            border-bottom: none;
+        }
+
+        .payment-accordion summary {
+            font-weight: 500;
+            padding: 16px 0;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .payment-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .payment-accordion summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--google-grey-600);
+        }
+
+        .payment-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .payment-accordion-content {
+            padding-bottom: 16px;
+            color: var(--google-grey-600);
+            line-height: 1.6;
+        }
+
+        .payment-accordion-content ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            font-size: 14px;
+        }
+
+        /* Enhanced Details Modal (Bottom Sheet) */
+        #detailsModal {
+            align-items: flex-end;
+        }
+
+        .details-modal-content {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 20px 20px 0 0;
+            box-shadow: var(--shadow-3);
+            text-align: left;
+            transform: translateY(100%);
+        }
+
+        .details-modal-content.is-open {
+            animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .details-modal-content.is-closing {
+            animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(100%);
+            }
+        }
+
+        .details-modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--google-grey-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .details-modal-header h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--google-grey-900);
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .details-modal-close {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--google-grey-600);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .details-modal-close:hover {
+            background-color: var(--google-grey-100);
+        }
+
+        .details-modal-body {
+            padding: 20px 24px 32px 24px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .payment-header {
+                position: sticky;
+                top: 0;
+                z-index: 999;
+                padding: 16px;
+            }
+
+            .payment-header h2 {
+                font-size: 16px;
+            }
+
+            .countdown-timer {
+                margin-top: 8px;
+                gap: 8px;
+            }
+
+            .countdown-number {
+                font-size: 14px;
+                padding: 4px 8px;
+                min-width: 32px;
+            }
+
+            .countdown-item {
+                font-size: 12px;
+            }
+
+            .notif-box {
+                left: 16px;
+                right: 16px;
+                top: 16px;
+                transform: translateX(0);
+                width: calc(100% - 32px);
+                max-width: none;
+            }
+
+            @keyframes slideInAndOut {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                10% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                90% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+            }
+
+            .material-card {
+                border-radius: 16px;
+                margin: 0 4px;
+            }
+
+            .form-input {
+                font-size: 16px; /* Prevent zoom on iOS */
+            }
+        }
+
+        /* Enhanced Image Modal */
+        .modal-image-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .modal-content-image {
+            margin: auto;
+            display: block;
+            width: auto;
+            max-width: 90%;
+            max-height: 80vh;
+            animation: zoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+        }
+
+        .close-image-modal-button {
+            margin-top: 20px;
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(8px);
+        }
+
+        .close-image-modal-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .modal-nav {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 20px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            user-select: none;
+            -webkit-user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            display: none;
+        }
+
+        .modal-nav.prev {
+            left: 20px;
+        }
+
+        .modal-nav.next {
+            right: 20px;
+        }
+
+        .modal-nav:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Enhanced Feature Icons */
+        .feature-icon {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Enhanced Security Badge */
+        .security-badge {
+            background: linear-gradient(135deg, var(--google-green-600) 0%, #0f7b0f 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Enhanced Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Google Sans', sans-serif;
+            color: var(--google-grey-900);
+        }
+
+        .text-google-blue {
+            color: var(--google-blue-600);
+        }
+
+        .text-google-green {
+            color: var(--google-green-600);
+        }
+
+        .bg-google-blue {
+            background-color: var(--google-blue-600);
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
 <body class="antialiased">
-    <!-- Header Google Style -->
-    <header class="google-header">
-        <!-- === PERUBAHAN: Menyederhanakan padding untuk mobile === -->
-        <div class="max-w-7xl mx-auto px-4 lg:px-8">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png" alt="Google Drive" class="h-8 w-8">
-                    <h1 class="text-xl font-semibold text-gray-900">Google Storage Upgrade</h1>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="security-badge">
-                        <i class="fas fa-shield-alt text-green-500"></i>
-                        <span>Secure & Verified</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <div id="payment-instruction-container">
         <!-- Konten akan di-generate oleh JavaScript -->
     </div>
-    
-    <div class="min-h-screen bg-gray-50">
+    <div class="p-4 sm:p-6 lg:p-8">
         <div id="main-content-container">
-             <!-- === PERUBAHAN: Menyederhanakan padding untuk mobile === -->
-            <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Kolom Kiri: Form & Pembayaran -->
-                    <div class="lg:col-span-1">
-                        <div class="google-card p-8">
-                            <!-- Security Badges -->
-                            <div class="grid grid-cols-2 gap-4 mb-8">
-                                <div class="security-badge">
-                                    <i class="fas fa-shield-alt text-green-500"></i>
-                                    <span>TRANSAKSI AMAN</span>
-                                </div>
-                                <div class="security-badge">
-                                    <i class="fas fa-hand-holding-usd text-blue-500"></i>
-                                    <span>GARANSI UANG KEMBALI</span>
-                                </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8 max-w-7xl mx-auto">
+                <!-- Kolom Kiri: Form & Pembayaran -->
+                <div class="lg:col-span-1 material-card p-6 md:p-8">
+                    <!-- Header Keamanan -->
+                    <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-200 pb-6 mb-8">
+                        <div class="flex items-center justify-center gap-3">
+                            <div class="security-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                TRANSAKSI AMAN
                             </div>
-                            
-                            <!-- Pemilihan Paket -->
-                            <div class="mb-8">
-                                <h2 class="section-title text-xl">1. Pilih Paket Anda</h2>
-                                <div id="package-selection">
-                                    <div class="google-segmented">
-                                        <input type="radio" id="pkg-drive" name="package" value="drive" checked>
-                                        <label for="pkg-drive">Google<br>Drive</label>
-        
-                                        <input type="radio" id="pkg-photos" name="package" value="photos">
-                                        <label for="pkg-photos">Google<br>Photos</label>
-        
-                                        <input type="radio" id="pkg-bundle" name="package" value="bundle">
-                                        <label for="pkg-bundle">Paket<br>Lengkap</label>
-        
-                                        <div class="google-segmented-pill"></div>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="flex items-center justify-center gap-3">
+                            <div class="security-badge" style="background: linear-gradient(135deg, var(--google-blue-600) 0%, #1557b0 100%);">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                GARANSI UANG KEMBALI
                             </div>
-
-                            <!-- Info Produk -->
-                            <div id="product-info-form-top" class="mb-8"></div>
-
-                            <!-- Fitur -->
-                            <div id="features-before-form" class="mb-8"></div>
-
-                            <!-- Form -->
-                            <form id="orderForm">
-                                <h2 class="section-title text-xl mb-6">2. Lengkapi Data</h2>
-                                
-                                <div class="input-group">
-                                    <input type="text" id="nama" name="nama" class="google-input" placeholder=" " required>
-                                    <label for="nama" class="floating-label">Nama Lengkap *</label>
-                                </div>
-                                
-                                <div class="input-group">
-                                    <input type="tel" id="whatsapp" name="whatsapp" class="google-input" placeholder=" " required>
-                                    <label for="whatsapp" class="floating-label">Nomor WhatsApp *</label>
-                                </div>
-                                
-                                <div class="input-group">
-                                    <input type="email" id="email" name="email" class="google-input" placeholder=" " required>
-                                    <label for="email" class="floating-label">Alamat Gmail *</label>
-                                </div>
-                                
-                                <!-- Honeypot field -->
-                                <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
-
-                                <!-- Metode Pembayaran -->
-                                <div id="payment-method-selection" class="mt-8"></div>
-                                
-                                <!-- Rincian Pesanan -->
-                                <div id="order-details-in-form" class="mt-8"></div>
-                                
-                                <button type="button" id="submit-btn" class="google-btn google-btn-primary w-full mt-8 py-4 text-lg">
-                                    <i class="fas fa-shopping-cart mr-2"></i>
-                                    Beli Sekarang
-                                </button>
-                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Pemilihan Paket (Segmented Control) -->
+                    <div class="mb-8">
+                        <h2 class="text-xl font-bold mb-6 text-gray-800 google-sans">1. Pilih Paket Anda</h2>
+                        <div id="package-selection">
+                            <div class="segmented-control">
+                                <input type="radio" id="pkg-drive" name="package" value="drive" class="package-radio" checked>
+                                <label for="pkg-drive" class="package-label">Google<br>Drive</label>
+    
+                                <input type="radio" id="pkg-photos" name="package" value="photos" class="package-radio">
+                                <label for="pkg-photos" class="package-label">Google<br>Photos</label>
+    
+                                <input type="radio" id="pkg-bundle" name="package" value="bundle" class="package-radio">
+                                <label for="pkg-bundle" class="package-label">Paket<br>Lengkap</label>
+    
+                                <div class="segmented-control-pill"></div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
-                    <div class="lg:col-span-1 space-y-8">
-                        <div id="testimonials-full"></div>
-                        <div class="google-card p-8">
-                            <div id="faq-full"></div>
+                    <!-- Info Produk -->
+                    <div id="product-info-form-top" class="mb-8"></div>
+
+                    <!-- Fitur -->
+                    <div id="features-before-form" class="mb-8"></div>
+
+                    <!-- Form -->
+                    <form id="orderForm">
+                        <h2 class="text-xl font-bold mb-6 text-gray-800 google-sans">2. Lengkapi Data</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="nama" class="block text-sm font-medium mb-2 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
+                                <input type="text" id="nama" name="nama" class="form-input" placeholder="Masukkan nama lengkap Anda">
+                            </div>
+                            <div>
+                                <label for="whatsapp" class="block text-sm font-medium mb-2 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="Contoh: 081234567890">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-2 text-gray-700">Gmail Anda <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="contoh.email@gmail.com">
+                            </div>
                         </div>
-                        <div class="google-card p-8">
-                            <div id="policy-full"></div>
-                        </div>
-                    </div>
+                        
+                        <!-- Honeypot field for anti-spam -->
+                        <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
+
+                        <!-- Metode Pembayaran -->
+                        <div id="payment-method-selection" class="mt-10"></div>
+                        
+                        <!-- Rincian Pesanan -->
+                        <div id="order-details-in-form" class="mt-10"></div>
+                        
+                        <button type="button" id="submit-btn" class="cta-button blue-button mt-10">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            Beli Sekarang
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
+                <div class="lg:col-span-1 py-8">
+                     <div id="testimonials-full"></div>
+                     <div class="mt-12 material-card p-8 md:p-10">
+                         <div id="faq-full"></div>
+                     </div>
+                     <div class="mt-12 material-card p-8 md:p-10">
+                         <div id="policy-full"></div>
+                     </div>
                 </div>
             </div>
         </div>
         
-        <footer id="footer" class="text-center py-8 text-gray-500 text-sm bg-white border-t border-gray-200">
+        <footer id="footer" class="text-center mt-16 text-gray-500 text-sm">
             <p>Copyright © <span id="currentYear">2025</span> InDrive ID. Semua Hak Dilindungi.</p>
         </footer>
     </div>
 
     <!-- Modal for Info/Confirmation -->
-    <div id="infoModal" class="google-modal">
-        <div class="google-modal-content">
-            <h3 id="modalTitle" class="text-lg font-semibold mb-4"></h3>
-            <p id="modalMessage" class="text-gray-600 mb-6"></p>
-            <button class="google-btn google-btn-primary" onclick="closeInfoModal()">Mengerti</button>
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle"></h3>
+            <p id="modalMessage"></p>
+            <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
         </div>
     </div>
 
     <!-- Modal untuk Zoom Gambar -->
-    <div id="imageModal" class="google-modal">
+    <div id="imageModal" class="modal">
         <span class="modal-nav prev" onclick="showPrevImage()">&#10094;</span>
         <span class="modal-nav next" onclick="showNextImage()">&#10095;</span>
         <div class="modal-image-wrapper">
             <img class="modal-content-image" id="modalImage">
-            <button class="google-btn google-btn-outlined mt-4" onclick="closeImageModal()">Tutup</button>
+            <button class="close-image-modal-button" onclick="closeImageModal()">Tutup</button>
         </div>
     </div>
     
-    <!-- Modal for Transaction Details -->
-    <div id="detailsModal" class="google-modal">
+    <!-- NEW: Modal for Transaction Details -->
+    <div id="detailsModal" class="modal">
         <div class="details-modal-content" id="detailsModalContent">
             <!-- Content will be injected by JS -->
         </div>
     </div>
 
-    <!-- Notification Toast -->
-    <div class="google-toast" id="notifBox">
+    <!-- Notification Popup -->
+    <div class="notif-box" id="notifBox">
         <div class="notif-icon-wrapper"><i class="far fa-check-circle"></i></div>
         <div class="notif-content-area">
              <div class="notif-message">
-                  <div><strong class="notif-name">Nama Acak</strong> baru saja membeli!</div>
-                  <div class="notif-time">beberapa detik lalu</div>
+                 <div><strong class="notif-name">Nama Acak</strong> baru saja membeli!</div>
+                 <div class="notif-time">beberapa detik lalu</div>
              </div>
         </div>
     </div>
+
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -972,40 +1232,43 @@
             let logoHtml = '';
             if (pkg.id === 'bundle') {
                 logoHtml = `
-                    <div class="flex justify-center items-center gap-4 h-16">
-                        <img alt="Logo Google Drive" class="h-12 w-auto" src="${packages.drive.logo}">
-                        <i class="fas fa-plus text-2xl text-gray-400"></i>
-                        <img alt="Logo Google Photos" class="h-12 w-auto" src="${packages.photos.logo}">
+                    <div class="flex justify-center items-center gap-6 h-16">
+                        <img alt="Logo Google Drive" class="h-14 w-auto" src="${packages.drive.logo}">
+                        <i class="fas fa-plus text-3xl text-google-blue"></i>
+                        <img alt="Logo Google Photos" class="h-14 w-auto" src="${packages.photos.logo}">
                     </div>
                 `;
             } else {
-                logoHtml = `<div class="flex justify-center"><img alt="Logo ${pkg.name}" class="h-12 w-auto" src="${pkg.logo}"></div>`;
+                logoHtml = `<div class="flex justify-center"><img alt="Logo ${pkg.name}" class="h-16 w-auto" src="${pkg.logo}"></div>`;
             }
 
             return `
-            <div class="product-hero">
-                <div class="text-center">
-                    ${logoHtml}
-                    <h1 class="text-3xl font-bold text-gray-900 mt-4 mb-2">${pkg.title}</h1>
-                    <p class="text-lg text-gray-600 mb-6">${pkg.description}</p>
-                    <div class="price-display">${pkg.priceDisplay}</div>
-                    <p class="text-gray-500 text-sm mt-2">Sekali Bayar Seumur Hidup</p>
+            <div class="product-info-card">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div class="text-center mb-6 md:mb-0 flex-grow">
+                        ${logoHtml}
+                        <h1 class="text-3xl font-bold text-gray-800 mt-4 google-sans">${pkg.title}</h1>
+                        <p class="text-lg text-gray-600 mt-2">${pkg.description}</p>
+                    </div>
+                    <div class="text-center md:text-right mt-6 md:mt-0 md:pl-6">
+                        <div class="text-5xl font-bold text-google-blue google-sans">${pkg.priceDisplay}</div>
+                        <p class="text-gray-500 text-base mt-2">Sekali Bayar Seumur Hidup</p>
+                        <div class="mt-2">
+                            <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-infinity mr-1"></i>
+                                Unlimited Storage
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>`;
         }
 
         const getFeaturesHTML = (pkg) => {
-            const colors = ['bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-red-500', 'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-orange-500'];
-            return `<div class="feature-list">
-                <h3 class="section-title text-lg mb-6">Yang Anda Dapatkan:</h3>
-                <div class="space-y-4">${pkg.features.map((f, index) => `
-                    <div class="feature-item">
-                        <div class="feature-icon ${colors[index % colors.length]} text-white">
-                            <i class="fas fa-check text-sm"></i>
-                        </div>
-                        <span class="text-gray-700 leading-relaxed">${f}</span>
-                    </div>
-                `).join('')}</div>
+            const colors = ['text-blue-600', 'text-green-600', 'text-yellow-600', 'text-purple-600', 'text-red-600', 'text-indigo-600', 'text-pink-600', 'text-teal-600'];
+            return `<div class="material-card-elevated p-8 rounded-2xl">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800 google-sans text-center">Yang Anda Dapatkan:</h3>
+                <ul class="space-y-5">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-4 text-xl feature-icon"></i><span class="text-gray-600 text-base leading-relaxed">${f}</span></li>`).join('')}</ul>
             </div>`;
         }
         
@@ -1019,26 +1282,24 @@
                 groupedAccounts[account.category].push({ key, ...account });
             }
 
-            let html = `<h2 class="section-title text-xl mb-6">3. Pilih Metode Pembayaran</h2>`;
+            let html = `<h2 class="text-xl font-bold mb-6 text-gray-800 google-sans">3. Pilih Metode Pembayaran</h2>`;
             const categoryOrder = ['QRIS', 'Bank Transfer', 'E-Wallet'];
 
             for (const category of categoryOrder) {
                 if (groupedAccounts[category]) {
-                    html += `<h3 class="text-lg font-medium text-gray-700 mb-4">${category}</h3>`;
-                    html += `<div class="space-y-2 mb-6">`;
+                    html += `<h3 class="text-lg font-semibold text-gray-700 mt-8 mb-4 google-sans">${category}</h3>`;
+                    html += `<div class="material-card rounded-xl payment-group">`;
 
                     groupedAccounts[category].forEach((account, index) => {
                         const isFirst = index === 0 && category === 'QRIS';
                         
                         html += `
-                            <div class="payment-option">
-                                <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="hidden" ${isFirst ? 'checked' : ''}>
+                            <div>
+                                <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="payment-radio" ${isFirst ? 'checked' : ''}>
                                 <label for="${account.key}" class="payment-label">
-                                    <img src="${account.logo}" alt="Logo ${account.displayName}" class="h-6 w-auto mr-4">
-                                    <span class="font-medium text-gray-800 flex-grow">${account.displayName}</span>
-                                    <div class="w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center">
-                                        <div class="w-3 h-3 bg-blue-600 rounded-full opacity-0 transition-opacity"></div>
-                                    </div>
+                                    <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
+                                    <span class="font-medium text-gray-800 flex-grow google-sans">${account.displayName}</span>
+                                    <span class="custom-radio-button"><span class="dot"></span></span>
                                 </label>
                             </div>
                         `;
@@ -1048,9 +1309,9 @@
             }
 
             html += `
-                <div class="bg-gray-50 p-4 rounded-lg text-center text-sm text-gray-600 border border-gray-200">
-                    <i class="fas fa-shield-alt text-green-500 mr-2"></i>
-                    Pembayaran ini diproses oleh Doku
+                <div class="bg-gray-50 p-4 mt-6 rounded-xl text-center text-sm text-gray-600">
+                    <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                    Pembayaran ini diproses oleh Doku - Partner Resmi Google
                 </div>
             `;
 
@@ -1058,38 +1319,37 @@
         };
 
         const getOrderDetailsHTML = (pkg, totalPrice) => `
-             <div class="google-card p-6 mt-8">
-                  <h3 class="section-title text-lg mb-4">Rincian Pesanan</h3>
-                  <div class="space-y-4 text-gray-600">
-                       <div class="flex justify-between items-center">
-                            <span>${pkg.name}</span>
-                            <div class="text-right">
-                                 <span class="font-medium text-gray-800">${formatCurrency(pkg.price)}</span>
-                            </div>
-                       </div>
-                       <div class="flex justify-between">
-                            <span>Kode Unik</span>
-                            <span class="font-medium text-gray-800">${formatCurrency(uniqueCode)}</span>
-                       </div>
-                       <hr class="border-gray-200">
-                       <div class="flex justify-between font-bold text-lg text-gray-900">
-                            <span>Total</span>
-                            <span class="price-display text-xl">${formatCurrency(totalPrice)}</span>
-                       </div>
-                  </div>
-             </div>`;
+            <div class="mt-10 pt-8 border-t border-gray-200">
+                 <h3 class="text-xl font-bold mb-6 text-gray-800 google-sans">Rincian Pesanan</h3>
+                 <div class="material-card-elevated p-6 rounded-2xl space-y-4 text-gray-600">
+                     <div class="flex justify-between items-center">
+                         <span class="text-base">${pkg.name}</span>
+                         <div class="text-right">
+                             <span class="font-semibold text-gray-800 text-lg">${formatCurrency(pkg.price)}</span>
+                         </div>
+                     </div>
+                     <div class="flex justify-between">
+                         <span class="text-sm">Kode Unik</span>
+                         <span class="font-medium text-gray-800">${formatCurrency(uniqueCode)}</span>
+                     </div>
+                     <hr class="my-3 border-gray-200">
+                     <div class="flex justify-between font-bold text-xl text-gray-900 google-sans">
+                         <span>Total</span>
+                         <span class="text-google-blue">${formatCurrency(totalPrice)}</span>
+                     </div>
+                 </div>
+            </div>`;
 
         const getTestimonialsHTML = (pkg) => {
             let imagesHTML = pkg.testimonials.map((url, index) => `
-                <div class="testimonial-item" onclick="openImageModal(event, ${index})">
-                    <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="w-full h-auto object-cover aspect-[3/4]" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">
-                </div>
+                <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">
             `).join('');
 
             return `
-            <div class="google-card p-8">
-                <h2 class="section-title text-2xl text-center mb-8">Testimoni Pelanggan Kami</h2>
-                <div class="testimonial-grid">
+            <div class="material-card p-8 rounded-2xl">
+                <h2 class="text-3xl font-bold text-center mb-8 text-gray-800 google-sans">Testimoni Pelanggan Kami</h2>
+                <p class="text-center text-gray-600 mb-8">Ribuan pelanggan telah merasakan manfaat penyimpanan unlimited</p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     ${imagesHTML}
                 </div>
             </div>`;
@@ -1097,70 +1357,70 @@
 
         const getFaqHTML = () => `
              <div>
-                  <h3 class="section-title text-2xl text-center mb-8">Pertanyaan Umum (FAQ)</h3>
-                  <div class="faq-container">
-                       <details class="faq-item">
-                            <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
-                            <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
-                       </details>
-                       <details class="faq-item">
-                            <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
-                            <div class="faq-content">Untuk Google Drive, kami akan mengundang akun Gmail pribadi Anda untuk bergabung ke dalam "Shared Drive" khusus yang memiliki kapasitas unlimited. Anda tidak perlu memberikan password, cukup alamat email saja. Shared Drive ini akan muncul di akun Drive Anda dan bisa digunakan untuk menyimpan file apa pun.</div>
-                       </details>
-                       <details class="faq-item">
-                            <summary>Bagaimana proses untuk Google Photos?</summary>
-                            <div class="faq-content">Untuk Google Photos Unlimited, Anda akan mendapatkan sebuah akun Google baru yang sudah memiliki fitur penyimpanan foto/video kualitas asli tanpa batas. Anda akan menerima email dan password akun baru tersebut, dan Anda bisa langsung mengganti passwordnya demi keamanan. Akun ini terpisah dari akun utama Anda.</div>
-                       </details>
-                       <details class="faq-item">
-                            <summary>Apakah ini aman dan legal?</summary>
-                            <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div>
-                       </details>
-                       <details class="faq-item">
-                            <summary>Apa bedanya dengan langganan Google One?</summary>
-                            <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, memanfaatkan fitur Shared Drive.</div>
-                       </details>
-                       <details class="faq-item">
-                            <summary>Bisakah saya memindahkan file lama saya?</summary>
-                            <div class="faq-content">Tentu bisa. Anda dapat dengan mudah memindahkan file dan folder dari penyimpanan Drive pribadi Anda ke dalam Shared Drive unlimited yang baru. Untuk Google Photos, Anda perlu memindahkan foto secara manual ke akun baru yang kami berikan.</div>
-                       </details>
-                       <details class="faq-item">
-                            <summary>Berapa lama proses aktivasinya?</summary>
-                            <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam.</div>
-                       </details>
-                       <details class="faq-item">
-                            <summary>Apakah ada garansi?</summary>
-                            <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div>
-                       </details>
-                  </div>
+                 <h3 class="text-3xl font-bold mb-8 text-center text-gray-800 google-sans">Pertanyaan Umum (FAQ)</h3>
+                 <div class="space-y-1">
+                     <details class="faq-item">
+                         <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
+                         <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
+                         <div class="faq-content">Untuk Google Drive, kami akan mengundang akun Gmail pribadi Anda untuk bergabung ke dalam "Shared Drive" khusus yang memiliki kapasitas unlimited. Anda tidak perlu memberikan password, cukup alamat email saja. Shared Drive ini akan muncul di akun Drive Anda dan bisa digunakan untuk menyimpan file apa pun.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Bagaimana proses untuk Google Photos?</summary>
+                         <div class="faq-content">Untuk Google Photos Unlimited, Anda akan mendapatkan sebuah akun Google baru yang sudah memiliki fitur penyimpanan foto/video kualitas asli tanpa batas. Anda akan menerima email dan password akun baru tersebut, dan Anda bisa langsung mengganti passwordnya demi keamanan. Akun ini terpisah dari akun utama Anda.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Apakah ini aman dan legal?</summary>
+                         <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Apa bedanya dengan langganan Google One?</summary>
+                         <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, memanfaatkan fitur Shared Drive.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Bisakah saya memindahkan file lama saya?</summary>
+                         <div class="faq-content">Tentu bisa. Anda dapat dengan mudah memindahkan file dan folder dari penyimpanan Drive pribadi Anda ke dalam Shared Drive unlimited yang baru. Untuk Google Photos, Anda perlu memindahkan foto secara manual ke akun baru yang kami berikan.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Berapa lama proses aktivasinya?</summary>
+                         <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam.</div>
+                     </details>
+                     <details class="faq-item">
+                         <summary>Apakah ada garansi?</summary>
+                         <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div>
+                     </details>
+                 </div>
              </div>
         `;
         
         const getPolicyHTML = () => `
-             <div>
-                  <h3 class="section-title text-2xl text-center mb-6">Kebijakan & Ketentuan</h3>
-                  <div class="space-y-8 text-sm text-gray-600">
-                       <div>
-                            <h4 class="text-lg font-semibold mb-3 text-gray-800">Kebijakan Privasi</h4>
-                            <p class="mb-4 leading-relaxed">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua file Anda tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
-                            <ul class="list-disc list-inside space-y-2 leading-relaxed">
-                                 <li>Kami hanya butuh email, bukan password.</li>
-                                 <li>Informasi pembayaran diproses oleh gateway aman.</li>
-                                 <li>Data Anda tidak dibagikan ke pihak lain.</li>
-                                 <li>Kami tidak mengakses file di dalam Drive Anda.</li>
-                            </ul>
-                       </div>
-                       <div>
-                            <h4 class="text-lg font-semibold mb-3 text-gray-800">Syarat & Ketentuan</h4>
-                             <p class="mb-4 leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
-                            <ul class="list-disc list-inside space-y-2 leading-relaxed">
-                                 <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
-                                 <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
-                                 <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
-                                 <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
-                            </ul>
-                       </div>
-                  </div>
-             </div>
+            <div>
+                <h3 class="text-3xl font-bold mb-6 text-center text-gray-800 google-sans">Kebijakan & Ketentuan</h3>
+                <div class="grid md:grid-cols-1 gap-8 text-sm text-gray-600">
+                    <div class="mb-8">
+                        <h4 class="text-xl font-bold mb-4 text-gray-800 google-sans">Kebijakan Privasi</h4>
+                        <p class="mb-6 text-base leading-relaxed">Informasi yang Anda berikan (alamat email Google) hanya digunakan untuk keperluan upgrade dan komunikasi terkait pesanan. Kami <strong>tidak pernah</strong> meminta atau menyimpan kata sandi Anda. Semua file Anda tetap sepenuhnya pribadi di bawah kendali Anda dan kebijakan Google.</p>
+                        <ul class="list-disc list-inside space-y-2 text-base">
+                            <li>Kami hanya butuh email, bukan password.</li>
+                            <li>Informasi pembayaran diproses oleh gateway aman.</li>
+                            <li>Data Anda tidak dibagikan ke pihak lain.</li>
+                            <li>Kami tidak mengakses file di dalam Drive Anda.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-4 text-gray-800 google-sans">Syarat & Ketentuan</h4>
+                         <p class="mb-6 text-base leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
+                        <ul class="list-disc list-inside space-y-2 text-base">
+                            <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
+                            <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
+                            <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
+                            <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         `;
 
         // --- FUNCTIONS ---
@@ -1202,36 +1462,10 @@
                 elements.faqFull.innerHTML = getFaqHTML();
                 elements.policyFull.innerHTML = getPolicyHTML();
 
-                // Update payment method radio button styles
-                updatePaymentMethodStyles();
-
                 // 3. Start fade-in
                 infoContainer.style.opacity = '1';
                 featuresContainer.style.opacity = '1';
             }, 300); // Match CSS transition duration
-        }
-
-        function updatePaymentMethodStyles() {
-            // Add event listeners for payment method radio buttons
-            document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    // Update visual state of all payment options
-                    document.querySelectorAll('.payment-option').forEach(option => {
-                        const input = option.querySelector('input[type="radio"]');
-                        const dot = option.querySelector('.payment-label > div > div');
-                        
-                        if (input.checked) {
-                            option.style.borderColor = 'var(--google-blue)';
-                            option.querySelector('.payment-label').style.backgroundColor = 'var(--google-blue-light)';
-                            dot.style.opacity = '1';
-                        } else {
-                            option.style.borderColor = 'var(--google-grey-200)';
-                            option.querySelector('.payment-label').style.backgroundColor = 'transparent';
-                            dot.style.opacity = '0';
-                        }
-                    });
-                });
-            });
         }
 
         function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
@@ -1251,6 +1485,8 @@
         function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
             window.scrollTo(0, 0); // Scroll to top
             
+            // --- FB Pixel Event Removed ---
+
             // Store details for the modal
             currentOrderDetails = {
                 pkg,
@@ -1259,6 +1495,7 @@
                 nama: formData.get('nama'),
                 whatsapp: formData.get('whatsapp')
             };
+
 
             elements.mainContentContainer.parentElement.style.display = 'none';
             elements.footer.style.display = 'none';
@@ -1280,13 +1517,14 @@
             const timezoneString = `(${getIndonesianTimezone()})`;
             paymentDeadlineFormatted = `${datePart} pukul ${timePart} ${timezoneString}`;
 
+
             if (paymentMethodKey === 'qris') {
                 paymentDetailsBlock = `
                     <div class="text-center">
-                        <div id="qrcodeContainer" class="bg-white p-4 rounded-lg border border-gray-200 w-full max-w-[280px] mx-auto my-6 shadow-sm">
+                        <div id="qrcodeContainer" class="bg-white p-4 rounded-xl border-2 border-gray-200 w-full max-w-[280px] h-auto mx-auto my-6 material-card-elevated">
                             <div id="qrcode" class="flex justify-center items-center"></div>
                         </div>
-                        <button id="downloadQrisButton" class="google-btn google-btn-primary max-w-xs mx-auto">
+                        <button id="downloadQrisButton" class="cta-button blue-button max-w-xs mx-auto">
                             <i class="fas fa-download mr-2"></i>
                             Unduh QRIS
                         </button>
@@ -1295,11 +1533,11 @@
                 `;
             } else {
                  paymentDetailsBlock = `
-                    <div class="mt-4">
+                    <div class="mt-6">
                         <p class="text-sm text-gray-500 mb-2">${accountLabel}</p>
-                        <div class="flex justify-between items-center bg-gray-50 p-4 rounded-lg border">
-                            <p class="text-xl font-mono font-semibold text-gray-800 tracking-wider">${paymentAccount.number}</p>
-                            <button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="google-btn google-btn-outlined text-sm py-2 px-3">
+                        <div class="flex justify-between items-center bg-gray-50 p-4 rounded-lg">
+                            <p class="text-2xl font-bold text-gray-800 tracking-wider google-sans">${paymentAccount.number}</p>
+                            <button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="copy-button-text">
                                 <i class="far fa-copy mr-1"></i>
                                 Salin
                             </button>
@@ -1308,11 +1546,11 @@
                 `;
             }
 
-            // Payment instructions with Google styling
+            // --- UPDATED: Detailed Payment Instructions ---
             switch (paymentMethodKey) {
                 case 'qris':
                     instructionAccordionHTML = `
-                        <details class="faq-item" open><summary>Cara Bayar via QRIS</summary><div class="faq-content"><ol class="space-y-3 list-decimal list-inside">
+                        <details class="payment-accordion" open><summary>Cara Bayar via QRIS</summary><div class="payment-accordion-content"><ol class="space-y-3">
                             <li>Buka aplikasi perbankan (m-banking) atau e-wallet Anda (GoPay, OVO, DANA, dll).</li>
                             <li>Pilih menu <strong>Bayar</strong>, <strong>Scan QR</strong>, atau <strong>QRIS</strong>.</li>
                             <li>Pindai (scan) kode QR yang ditampilkan di atas.</li>
@@ -1324,7 +1562,7 @@
                     break;
                 case 'bca_va':
                     instructionAccordionHTML = `
-                        <details class="faq-item"><summary>myBCA</summary><div class="faq-content"><ol class="space-y-2 list-decimal list-inside">
+                        <details class="payment-accordion"><summary>myBCA</summary><div class="payment-accordion-content"><ol class="space-y-2">
                             <li>Buka aplikasi myBCA dan login.</li>
                             <li>Pilih menu <strong>Transfer</strong>, lalu pilih <strong>Virtual Account</strong>.</li>
                             <li>Pilih <strong>Tujuan Baru</strong>.</li>
@@ -1334,7 +1572,7 @@
                             <li>Periksa detail transaksi, lalu tekan <strong>Lanjut</strong>.</li>
                             <li>Masukkan PIN untuk menyelesaikan transaksi.</li>
                         </ol></div></details>
-                        <details class="faq-item"><summary>BCA Mobile</summary><div class="faq-content"><ol class="space-y-2 list-decimal list-inside">
+                        <details class="payment-accordion"><summary>BCA Mobile</summary><div class="payment-accordion-content"><ol class="space-y-2">
                             <li>Buka aplikasi BCA Mobile dan login.</li>
                             <li>Pilih menu <strong>m-Transfer</strong>, lalu pilih <strong>BCA Virtual Account</strong>.</li>
                             <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
@@ -1342,7 +1580,7 @@
                             <li>Periksa nama penerima, lalu tekan <strong>OK</strong>.</li>
                             <li>Masukkan PIN m-BCA untuk menyelesaikan transaksi.</li>
                         </ol></div></details>
-                        <details class="faq-item"><summary>KlikBCA</summary><div class="faq-content"><ol class="space-y-2 list-decimal list-inside">
+                        <details class="payment-accordion"><summary>KlikBCA</summary><div class="payment-accordion-content"><ol class="space-y-2">
                             <li>Buka situs KlikBCA dan login.</li>
                             <li>Pilih menu <strong>Transfer Dana</strong>, lalu pilih <strong>Transfer ke BCA Virtual Account</strong>.</li>
                             <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
@@ -1350,7 +1588,7 @@
                             <li>Tekan <strong>Lanjutkan</strong>, lalu masukkan kode KeyBCA Appli 1.</li>
                             <li>Tekan <strong>Kirim</strong> untuk menyelesaikan transaksi.</li>
                         </ol></div></details>
-                        <details class="faq-item"><summary>ATM BCA</summary><div class="faq-content"><ol class="space-y-2 list-decimal list-inside">
+                        <details class="payment-accordion"><summary>ATM BCA</summary><div class="payment-accordion-content"><ol class="space-y-2">
                            <li>Masukkan kartu ATM BCA dan PIN.</li>
                            <li>Pilih menu <strong>Transaksi Lainnya</strong>.</li>
                            <li>Pilih <strong>Transfer</strong>.</li>
@@ -1360,65 +1598,135 @@
                         </ol></div></details>
                     `;
                     break;
-                // ... (other payment methods remain the same)
+                case 'cimb':
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion"><summary>OCTO Mobile</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                            <li>Buka aplikasi OCTO Mobile dan login.</li>
+                            <li>Pilih menu <strong>Transfer</strong>, lalu pilih <strong>Rekening CIMB Niaga</strong>.</li>
+                            <li>Masukkan nomor rekening <strong>${paymentAccount.number}</strong>.</li>
+                            <li>Pilih sumber dana yang akan digunakan.</li>
+                            <li>Tekan <strong>Next</strong>.</li>
+                            <li>Periksa nama penerima dan jumlah nominal.</li>
+                            <li>Tekan <strong>Konfirmasi</strong>, lalu masukkan dua digit PIN acak yang diminta.</li>
+                        </ol></div></details>
+                        <details class="payment-accordion"><summary>Transfer dari Bank Lain</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                            <li>Buka aplikasi mobile banking bank pengirim dan login.</li>
+                            <li>Pilih menu <strong>Transfer Antar Bank</strong> atau <strong>Transfer ke Bank Lain</strong>.</li>
+                            <li>Pilih bank tujuan <strong>CIMB Niaga</strong> dengan kode bank <strong>022</strong>.</li>
+                            <li>Masukkan nomor rekening <strong>${paymentAccount.number}</strong>.</li>
+                            <li>Masukkan nominal transfer sesuai kebutuhan.</li>
+                            <li>Periksa nama penerima, lalu konfirmasi.</li>
+                            <li>Masukkan PIN atau kode otentikasi untuk menyelesaikan transaksi.</li>
+                        </ol></div></details>
+                    `;
+                    break;
+                case 'gopay':
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion"><summary>Aplikasi Gojek (GoPay)</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                            <li>Buka aplikasi Gojek dan login.</li>
+                            <li>Tekan menu <strong>Bayar</strong> atau <strong>Transfer</strong>.</li>
+                            <li>Pilih <strong>Ke Sesama GoPay</strong> atau <strong>Transfer ke Orang Lain</strong>.</li>
+                            <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
+                            <li>Masukkan nominal yang akan dikirim.</li>
+                            <li>Periksa nama penerima, lalu tekan <strong>Konfirmasi & Bayar</strong>.</li>
+                            <li>Masukkan PIN GoPay untuk menyelesaikan transfer.</li>
+                        </ol></div></details>
+                    `;
+                    break;
+                case 'dana':
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion"><summary>Aplikasi DANA</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                            <li>Buka aplikasi DANA dan login.</li>
+                            <li>Tekan menu <strong>Kirim</strong>.</li>
+                            <li>Pilih <strong>Kirim ke Nomor HP</strong>.</li>
+                            <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
+                            <li>Tekan <strong>Lanjut</strong>.</li>
+                            <li>Masukkan nominal yang akan dikirim.</li>
+                            <li>Pilih sumber dana yang tersedia.</li>
+                            <li>Tekan <strong>Kirim Dana</strong>.</li>
+                            <li>Masukkan PIN DANA untuk menyelesaikan transaksi.</li>
+                        </ol></div></details>
+                    `;
+                    break;
+                case 'ovo':
+                    instructionAccordionHTML = `
+                        <details class="payment-accordion"><summary>Aplikasi OVO</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                            <li>Buka aplikasi OVO dan login.</li>
+                            <li>Pilih menu <strong>Transfer</strong>.</li>
+                            <li>Pilih <strong>Ke Sesama OVO</strong>.</li>
+                            <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
+                            <li>Masukkan nominal transfer.</li>
+                            <li>Tekan <strong>Lanjutkan</strong>.</li>
+                            <li>Periksa nama penerima.</li>
+                            <li>Tekan <strong>Transfer</strong> untuk menyelesaikan pengiriman dana.</li>
+                        </ol></div></details>
+                    `;
+                    break;
+                default:
+                     instructionAccordionHTML = `
+                        <details class="payment-accordion"><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                            <li>Buka aplikasi perbankan atau e-wallet Anda.</li>
+                            <li>Pilih menu transfer atau pembayaran.</li>
+                            <li>Masukkan detail pembayaran yang tertera di atas.</li>
+                            <li>Pastikan nominal transfer sesuai dengan total pembayaran hingga digit terakhir.</li>
+                            <li>Selesaikan transaksi dan simpan bukti pembayaran Anda.</li>
+                        </ol></div></details>
+                     `;
             }
 
             const paymentViewHTML = `
                 <div class="payment-header">
-                    <h2 class="text-xl font-semibold">Selesaikan Pembayaran</h2>
+                    <h2 class="google-sans">Selesaikan Pembayaran</h2>
                     <div class="countdown-timer" id="countdown-timer-display"></div>
                 </div>
-                <div class="max-w-2xl mx-auto p-6">
-                    <div class="payment-card">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="font-bold text-lg">Ringkasan Transaksi</h3>
-                            <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-blue-600 hover:text-blue-800">Lihat detail</a>
-                        </div>
-                        <div class="text-sm text-gray-600 mb-6">
-                            <span>Nomor Invoice: ${paymentId}</span>
-                        </div>
-                        <div class="text-center py-6 bg-gray-50 rounded-lg mb-6">
+                <div class="max-w-lg mx-auto">
+                    <div class="p-4">
+                        <div class="payment-card">
+                            <h3 class="font-bold text-xl google-sans mb-2">Ringkasan Transaksi</h3>
+                            <div class="flex justify-between items-center mt-3 text-sm text-gray-600">
+                                <span>Nomor Invoice: <strong>${paymentId}</strong></span>
+                                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-google-blue">Lihat detail</a>
+                            </div>
+                            <hr class="my-6">
                             <p class="text-sm text-gray-600 mb-2">Total Pembayaran</p>
-                            <div class="flex items-center justify-center gap-3">
-                                <p class="price-display text-3xl">${formatCurrency(totalPrice)}</p>
-                                <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="google-btn google-btn-outlined text-sm py-2 px-3">
-                                    <i class="far fa-copy"></i>
+                            <div class="flex items-center justify-between">
+                                <p class="text-3xl font-bold text-google-blue google-sans">${formatCurrency(totalPrice)}</p>
+                                <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">
+                                    <i class="far fa-copy mr-1"></i>
+                                    Salin
                                 </button>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="payment-card">
-                        <div class="flex justify-between items-center mb-4">
-                            <div>
-                                <h3 class="font-bold text-lg">Silahkan Bayar ke</h3>
-                                <p class="text-sm text-gray-500">${paymentAccount.displayName}</p>
-                                <p class="font-semibold text-gray-800">${paymentAccount.accountHolder}</p>
+                        <div class="payment-card">
+                            <h3 class="font-bold text-xl google-sans mb-4">Silahkan Bayar ke</h3>
+                            <div class="flex justify-between items-start mt-4">
+                                <div>
+                                    <p class="text-sm text-gray-500">${paymentAccount.displayName}</p>
+                                    <p class="font-semibold text-gray-800 text-lg">${paymentAccount.accountHolder}</p>
+                                </div>
+                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-10">
                             </div>
-                            <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-10">
+                            ${paymentDetailsBlock}
+                            <div class="mt-8">
+                                <p class="text-sm text-gray-500 mb-1">Bayar Sebelum</p>
+                                <p class="font-semibold text-gray-800">${paymentDeadlineFormatted}</p>
+                            </div>
+                            <a href="${waLink}" target="_blank" class="block mt-8">
+                               <button class="confirm-button-outlined">
+                                   <i class="fab fa-whatsapp mr-2"></i>
+                                   Konfirmasi Pembayaran
+                               </button>
+                            </a>
                         </div>
-                        ${paymentDetailsBlock}
-                        <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                            <p class="text-sm text-yellow-800 font-medium">Bayar Sebelum</p>
-                            <p class="font-semibold text-yellow-900">${paymentDeadlineFormatted}</p>
-                        </div>
-                        <a href="${waLink}" target="_blank" class="block mt-6">
-                           <button class="google-btn google-btn-primary w-full py-3">
-                               <i class="fab fa-whatsapp mr-2"></i>
-                               Konfirmasi Pembayaran
-                           </button>
-                        </a>
-                    </div>
-                    
-                    <div class="payment-card">
-                        <h3 class="font-bold text-lg mb-4">Cara Membayar</h3>
-                        <div class="faq-container">
-                            ${instructionAccordionHTML}
+                        <div class="payment-card">
+                            <h3 class="font-bold text-xl google-sans mb-4">Cara Membayar</h3>
+                            <div class="mt-4">
+                                ${instructionAccordionHTML}
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
-            
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
             startCountdown();
 
@@ -1432,11 +1740,12 @@
                             const qrisDinamis = createDynamicQrisString(qrisStatic, { nominal: totalPrice });
                             qrcodeContainer.innerHTML = ''; // Clear previous QR
                             QRCode.toCanvas(qrisDinamis, {
-                                width: 250, margin: 1, errorCorrectionLevel: 'H'
+                                width: 280, margin: 1, errorCorrectionLevel: 'H'
                             }, (err, canvas) => {
                                 if (err) { throw err; }
                                 canvas.style.width = "100%";
                                 canvas.style.height = "auto";
+                                canvas.style.borderRadius = "8px";
                                 qrcodeContainer.appendChild(canvas);
                                 
                                 // Add download functionality
@@ -1471,8 +1780,7 @@
 
             // 2. Set Loading State
             elements.submitBtn.disabled = true;
-            elements.submitBtn.classList.add('loading');
-            elements.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+            elements.submitBtn.innerHTML = '<i class="fas fa-spinner spinner mr-2"></i> Memproses...';
 
             // 3. Prepare Data
             const pkg = packages[currentPackageId];
@@ -1531,7 +1839,6 @@
             
             // 5. Restore Button State
             elements.submitBtn.disabled = false;
-            elements.submitBtn.classList.remove('loading');
             elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang';
 
             // 6. Update UI based on submission result
@@ -1542,7 +1849,7 @@
             }
         }
         
-        // --- Countdown Timer Function ---
+        // --- NEW: Countdown Timer Function ---
         function startCountdown() {
             const countdownElement = document.getElementById('countdown-timer-display');
             if (!countdownElement || !expiryTime) return;
@@ -1597,70 +1904,6 @@
             }, randomDelay);
         }
 
-        // --- DETAILS MODAL LOGIC ---
-        function getDetailsModalHTML(details) {
-            const { pkg, totalPrice, paymentId, nama, whatsapp } = details;
-            return `
-                <div class="google-modal-content max-w-md">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-semibold">Ringkasan Transaksi</h3>
-                        <button class="text-gray-400 hover:text-gray-600 text-2xl" onclick="closeDetailsModal()">&times;</button>
-                    </div>
-                    <div class="space-y-4">
-                        <p class="text-sm text-gray-500">Nomor Invoice: ${paymentId}</p>
-                        <div class="text-center py-4 bg-gray-50 rounded-lg">
-                            <p class="text-sm text-gray-600 mb-2">Total Pembayaran</p>
-                            <div class="flex items-center justify-center gap-2">
-                                <p class="price-display text-2xl">${formatCurrency(totalPrice)}</p>
-                                <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="google-btn google-btn-outlined text-xs py-1 px-2">
-                                    <i class="far fa-copy"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="border-t border-b border-gray-200 py-4 space-y-3">
-                            <div class="flex justify-between">
-                                <span>${pkg.name}</span>
-                                <span class="font-medium">${formatCurrency(pkg.price)}</span>
-                            </div>
-                            <div class="flex justify-between text-sm text-gray-500">
-                                <span>Kode Unik</span>
-                                <span>${formatCurrency(uniqueCode)}</span>
-                            </div>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between font-semibold">
-                                <span>Total</span>
-                                <span>${formatCurrency(totalPrice)}</span>
-                            </div>
-                        </div>
-                        <div class="border-t border-gray-200 pt-4">
-                            <h4 class="font-semibold mb-3">Informasi Pelanggan</h4>
-                            <div class="space-y-2 text-sm">
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Nama:</span>
-                                    <span class="font-medium">${nama}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Telepon:</span>
-                                    <span class="font-medium">${whatsapp}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        window.showDetailsModal = function(event) {
-            event.preventDefault();
-            elements.detailsModalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
-            elements.detailsModal.style.display = 'flex';
-        }
-
-        window.closeDetailsModal = function() {
-            elements.detailsModal.style.display = 'none';
-        }
-
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
@@ -1677,6 +1920,84 @@
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
         }
+        
+        // --- REVISED: DETAILS MODAL LOGIC ---
+        function getDetailsModalHTML(details) {
+            const { pkg, totalPrice, paymentId, nama, whatsapp } = details;
+            return `
+                <div class="details-modal-header">
+                    <h3>Ringkasan Transaksi</h3>
+                    <button class="details-modal-close" onclick="closeDetailsModal()">&times;</button>
+                </div>
+                <div class="details-modal-body">
+                    <p class="text-sm text-gray-500 mb-6">Nomor Invoice: <strong>${paymentId}</strong></p>
+                    <div class="text-center mb-8">
+                        <p class="text-sm text-gray-600 mb-2">Total Pembayaran</p>
+                        <div class="flex items-center justify-center">
+                            <p class="text-4xl font-bold text-google-blue google-sans">${formatCurrency(totalPrice)}</p>
+                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-4 border-t border-b border-gray-200 py-6 mb-6">
+                        <div>
+                            <div class="flex justify-between text-base">
+                                <span>${pkg.name}</span>
+                                <span class="font-semibold text-gray-800">${formatCurrency(pkg.price)}</span>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-500 mt-1">
+                                <span>1x ${formatCurrency(pkg.price)}</span>
+                            </div>
+                        </div>
+                         <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Kode Unik</span>
+                            <span class="font-medium">${formatCurrency(uniqueCode)}</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex justify-between text-base">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span>${formatCurrency(totalPrice)}</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-xl google-sans">
+                            <span>Total Pembayaran</span>
+                            <span class="text-google-blue">${formatCurrency(totalPrice)}</span>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 pt-6">
+                        <h4 class="font-semibold mb-4 google-sans">Informasi Pelanggan</h4>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <p class="text-gray-500 text-sm mb-1">Nama</p>
+                                <p class="font-medium">${nama}</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 text-sm mb-1">Nomor Telepon</p>
+                                <p class="font-medium">${whatsapp}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.showDetailsModal = function(event) {
+            event.preventDefault();
+            elements.detailsModalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
+            elements.detailsModal.style.display = 'flex';
+            elements.detailsModalContent.classList.remove('is-closing');
+            elements.detailsModalContent.classList.add('is-open');
+        }
+
+        window.closeDetailsModal = function() {
+            elements.detailsModalContent.classList.remove('is-open');
+            elements.detailsModalContent.classList.add('is-closing');
+            setTimeout(() => {
+                elements.detailsModal.style.display = 'none';
+            }, 300); // Match animation duration
+        }
+
 
     });
 
@@ -1715,7 +2036,7 @@
         document.body.removeChild(textArea);
     }
 
-    // --- QRIS LOGIC ---
+    // --- UPDATED QRIS LOGIC ---
     function toCRC16(input) {
         let crc = 0xFFFF;
         for (let i = 0; i < input.length; i++) {
@@ -1753,7 +2074,7 @@
 
     window.openImageModal = function(event, index) {
         event.stopPropagation();
-        imageModal.style.display = "flex";
+        imageModal.style.display = "flex"; // Gunakan flexbox untuk centering
         showImage(index);
     }
 
@@ -1777,12 +2098,12 @@
             "https://s6.imgcdn.dev/YIhTKu.png"
         ];
         if (index >= testimonialImages.length || index < 0) {
-            return;
+            return; // Keluar jika index di luar batas
         }
         currentImageIndex = index;
         modalImg.src = testimonialImages[index];
 
-        // Update navigation button visibility
+        // Perbarui visibilitas tombol navigasi
         document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'block' : 'none';
         document.querySelector('.modal-nav.next').style.display = (index < testimonialImages.length - 1) ? 'block' : 'none';
     }
