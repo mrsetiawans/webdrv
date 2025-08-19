@@ -1092,6 +1092,67 @@
 
 
     <script>
+    // --- VALIDATION LOGIC ---
+    const operatorPrefixes = {
+        'Telkomsel': ['0811', '0812', '0813', '0821', '0822', '0823', '0851', '0852', '0853'],
+        'by.U': ['0851'],
+        'Indosat Ooredoo': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
+        'Tri (3)': ['0895', '0896', '0897', '0898', '0899'],
+        'XL Axiata': ['0817', '0818', '0819', '0859', '0877', '0878', '0879'],
+        'Live.On': ['0859'],
+        'Axis': ['0831', '0832', '0833', '0838'],
+        'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
+    };
+    const blacklistedNumbers = ['081234567890'];
+
+    function isInvalidPattern(nomor) {
+        if (blacklistedNumbers.includes(nomor)) return true;
+        const numberPart = nomor.substring(2);
+        if (/(\d)\1{4,}/.test(numberPart)) return true;
+        for (let i = 0; i < numberPart.length - 4; i++) {
+            const sub = numberPart.substring(i, i + 5);
+            const isAscending = '0123456789'.includes(sub);
+            const isDescending = '9876543210'.includes(sub);
+            if (isAscending || isDescending) return true;
+        }
+        const uniqueDigits = new Set(numberPart.split(''));
+        if (uniqueDigits.size < 4) return true;
+        if (/(..)\1\1/.test(numberPart)) return true;
+        return false;
+    }
+
+    function getOperatorFromNumber(nomor) {
+        const prefix = nomor.substring(0, 4);
+        for (const operator in operatorPrefixes) {
+            if (operatorPrefixes[operator].includes(prefix)) {
+                return operator;
+            }
+        }
+        return null;
+    }
+
+    function validatePhoneNumber(nomorHp) {
+        if (nomorHp.length < 10) {
+            return { isValid: false, message: 'Nomor HP terlalu pendek.' };
+        }
+
+        const operator = getOperatorFromNumber(nomorHp);
+        if (!operator) {
+            return { isValid: false, message: 'Prefix nomor HP Anda tidak dikenali.' };
+        }
+
+        const maxLength = operator === 'Tri (3)' ? 13 : 12;
+        if (nomorHp.length > maxLength) {
+            return { isValid: false, message: `Nomor HP untuk operator ${operator} tidak boleh lebih dari ${maxLength} digit.` };
+        }
+
+        if (isInvalidPattern(nomorHp)) {
+            return { isValid: false, message: 'Silahkan gunakan nomor lain karena pola nomor tidak wajar.' };
+        }
+
+        return { isValid: true, message: 'Nomor valid.' };
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
 
         // --- ELEMENTS ---
@@ -1804,6 +1865,18 @@
 
             if (!nama || !whatsapp || !email || !paymentMethodKey) {
                 showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan sebelum melanjutkan.');
+                return;
+            }
+
+            // --- New Validation Rules ---
+            if (!email.endsWith('@gmail.com')) {
+                showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email Gmail yang valid (diakhiri dengan @gmail.com).');
+                return;
+            }
+
+            const phoneValidationResult = validatePhoneNumber(whatsapp);
+            if (!phoneValidationResult.isValid) {
+                showInfoModal('Nomor WhatsApp Tidak Valid', phoneValidationResult.message);
                 return;
             }
 
