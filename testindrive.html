@@ -32,53 +32,33 @@
 
     <style>
         :root {
-            /* Material 3 Color Palette */
-            --m3-primary: #0b57d0;
-            --m3-on-primary: #ffffff;
-            --m3-primary-container: #d3e3ff;
-            --m3-on-primary-container: #001849;
-            --m3-secondary: #565f71;
-            --m3-on-secondary: #ffffff;
-            --m3-secondary-container: #dae2f9;
-            --m3-on-secondary-container: #131c2b;
-            --m3-tertiary: #715573;
-            --m3-on-tertiary: #ffffff;
-            --m3-tertiary-container: #fbd7fc;
-            --m3-on-tertiary-container: #29132d;
-            --m3-error: #b3261e;
-            --m3-on-error: #ffffff;
-            --m3-error-container: #f9dedc;
-            --m3-on-error-container: #410e0b;
-            --m3-background: #ffffff;
-            --m3-on-background: #1c1b1f;
-            --m3-surface: #ffffff;
-            --m3-on-surface: #1c1b1f;
-            --m3-surface-variant: #f7f9fa;
-            --m3-on-surface-variant: #44474f;
-            --m3-outline: #74777f;
-            --m3-outline-variant: #c4c6d0;
-            --m3-shadow: #000000;
-            --m3-inverse-surface: #313033;
-            --m3-inverse-on-surface: #f3eff4;
-            --m3-inverse-primary: #a8c7fa;
-
+            /* Vibrant Google-Style Palette */
+            --theme-primary: #1a73e8;
+            --theme-primary-hover: #1557b0;
+            --theme-background: #f8f9fa;
+            --theme-surface: #ffffff;
+            --theme-on-surface: #3c4043;
+            --theme-on-surface-variant: #5f6368;
+            --theme-outline: #dadce0;
+            --theme-outline-variant: #e8eaed;
+            
             /* Custom Google Colors */
             --google-blue: #4285F4;
             --google-green: #34A853;
             --google-yellow: #FBBC05;
             --google-red: #EA4335;
 
-            /* Material 3 Shadows (Elevation) */
-            --shadow-1: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-            --shadow-2: 0px 2px 4px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-            --shadow-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+            /* Shadows */
+            --shadow-1: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+            --shadow-2: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
+            --shadow-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.3);
         }
 
         /* Google Sans Typography */
         body {
             font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--m3-background);
-            color: var(--m3-on-background);
+            background-color: var(--theme-background);
+            color: var(--theme-on-surface);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -90,11 +70,11 @@
 
         /* Enhanced Material Design Components */
         .material-card {
-            background: var(--m3-surface);
-            border-radius: 16px; /* M3 uses larger radii */
+            background: var(--theme-surface);
+            border-radius: 12px;
             box-shadow: var(--shadow-1);
             transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--m3-outline-variant);
+            border: 1px solid var(--theme-outline);
         }
 
         .material-card:hover {
@@ -107,26 +87,26 @@
 
         /* Enhanced Form Inputs */
         .form-input {
-            border: 1px solid var(--m3-outline); /* M3 uses 1px border */
+            border: 2px solid var(--theme-outline);
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 8px;
-            padding: 14px 16px;
+            padding: 14px 12px;
             width: 100%;
-            background-color: var(--m3-surface);
+            background-color: var(--theme-surface);
             font-size: 16px;
             font-family: 'Roboto', sans-serif;
-            color: var(--m3-on-surface);
+            color: var(--theme-on-surface);
         }
 
         .form-input:focus {
-            border-color: var(--m3-primary);
-            background-color: var(--m3-surface);
+            border-color: var(--theme-primary);
+            background-color: var(--theme-surface);
             outline: none;
-            box-shadow: 0 0 0 1px var(--m3-primary); /* Use a softer focus ring */
+            box-shadow: 0 0 0 1px var(--theme-primary);
         }
 
         .form-input::placeholder {
-            color: var(--m3-on-surface-variant);
+            color: var(--theme-on-surface-variant);
         }
 
         /* Enhanced Google-style Buttons */
@@ -146,17 +126,17 @@
             border: none;
             text-transform: none;
             letter-spacing: 0.25px;
-            min-height: 48px; /* M3 standard height */
+            min-height: 46px;
         }
 
         .blue-button {
-            background-color: var(--m3-primary);
-            color: var(--m3-on-primary);
+            background-color: var(--theme-primary);
+            color: white;
             box-shadow: var(--shadow-1);
         }
 
         .blue-button:hover {
-            background-color: #0a4ab5; /* Darker primary for hover */
+            background-color: var(--theme-primary-hover);
             box-shadow: var(--shadow-2);
             transform: translateY(-1px);
         }
@@ -167,8 +147,8 @@
         }
 
         .cta-button:disabled {
-            background-color: var(--m3-surface-variant);
-            color: var(--m3-on-surface-variant);
+            background-color: var(--theme-outline-variant);
+            color: var(--theme-on-surface-variant);
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
@@ -190,12 +170,12 @@
         }
 
         .modal-content {
-            background-color: var(--m3-surface);
+            background-color: var(--theme-surface);
             margin: auto;
-            padding: 24px;
+            padding: 28px;
             width: 90%;
             max-width: 480px;
-            border-radius: 28px; /* M3 Dialog radius */
+            border-radius: 16px;
             box-shadow: var(--shadow-3);
             text-align: center;
             position: relative;
@@ -214,24 +194,24 @@
         }
 
         .modal-content h3 {
-            color: var(--m3-on-surface);
-            margin-bottom: 16px;
-            font-size: 20px;
+            color: var(--theme-on-surface);
+            margin-bottom: 12px;
+            font-size: 18px;
             font-weight: 500;
             font-family: 'Google Sans', sans-serif;
         }
 
         .modal-content p {
-            color: var(--m3-on-surface-variant);
-            margin-bottom: 24px;
+            color: var(--theme-on-surface-variant);
+            margin-bottom: 20px;
             line-height: 1.6;
             font-size: 14px;
         }
 
         .modal-ok-button {
-            background-color: var(--m3-primary);
-            color: var(--m3-on-primary);
-            padding: 10px 24px;
+            background-color: var(--theme-primary);
+            color: white;
+            padding: 10px 28px;
             border: none;
             border-radius: 24px;
             cursor: pointer;
@@ -239,11 +219,11 @@
             font-weight: 500;
             font-family: 'Google Sans', sans-serif;
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            min-height: 40px;
+            min-height: 36px;
         }
 
         .modal-ok-button:hover {
-            background-color: #0a4ab5;
+            background-color: var(--theme-primary-hover);
             box-shadow: var(--shadow-1);
         }
 
@@ -251,7 +231,7 @@
         .testimonial-image {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            border-radius: 16px; /* Match card radius */
+            border-radius: 12px;
             overflow: hidden;
         }
 
@@ -266,9 +246,9 @@
             top: 24px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--m3-inverse-surface);
-            color: var(--m3-inverse-on-surface);
-            border-radius: 12px;
+            background-color: #3c4043; /* Dark grey for toast */
+            color: #ffffff;
+            border-radius: 8px;
             box-shadow: var(--shadow-3);
             padding: 16px 24px;
             display: none;
@@ -330,7 +310,7 @@
 
         /* Enhanced FAQ Section */
         .faq-item {
-            border-bottom: 1px solid var(--m3-outline-variant);
+            border-bottom: 1px solid var(--theme-outline);
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -339,13 +319,13 @@
         }
 
         .faq-item:hover {
-            background-color: var(--m3-surface-variant);
+            background-color: var(--theme-background);
         }
 
         .faq-item summary {
             font-weight: 500;
             font-size: 15px;
-            color: var(--m3-on-surface);
+            color: var(--theme-on-surface);
             padding: 16px 12px;
             cursor: pointer;
             list-style: none;
@@ -364,7 +344,7 @@
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--m3-on-surface-variant);
+            color: var(--theme-on-surface-variant);
             font-size: 14px;
         }
 
@@ -374,24 +354,24 @@
 
         .faq-content {
             padding: 0 12px 16px 12px;
-            color: var(--m3-on-surface-variant);
+            color: var(--theme-on-surface-variant);
             line-height: 1.6;
             font-size: 14px;
         }
 
         .faq-item[open] summary {
-            color: var(--m3-primary);
+            color: var(--theme-primary);
         }
 
         /* Enhanced Segmented Control */
         .segmented-control {
             display: flex;
             position: relative;
-            background-color: var(--m3-surface-variant);
-            border-radius: 16px;
+            background-color: var(--theme-outline-variant);
+            border-radius: 12px;
             padding: 4px;
             width: 100%;
-            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 1px 2px rgba(60, 64, 67, 0.1);
         }
 
         .segmented-control .package-radio {
@@ -408,25 +388,25 @@
             cursor: pointer;
             z-index: 2;
             transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--m3-on-surface-variant);
+            color: var(--theme-on-surface-variant);
             font-size: 13px;
             font-weight: 500;
             line-height: 1.2;
             font-family: 'Google Sans', sans-serif;
-            border-radius: 12px;
+            border-radius: 8px;
         }
 
         .segmented-control .package-radio:checked + .package-label {
-            color: var(--m3-on-secondary-container);
+            color: #ffffff;
         }
 
         .segmented-control-pill {
             position: absolute;
             top: 4px;
             bottom: 4px;
-            width: calc((100% - 8px) / 3);
-            background-color: var(--m3-secondary-container);
-            border-radius: 12px;
+            width: calc((100% - 8px) / 2);
+            background-color: var(--theme-primary);
+            border-radius: 8px;
             box-shadow: var(--shadow-1);
             z-index: 1;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -440,10 +420,6 @@
             transform: translateX(100%);
         }
 
-        .segmented-control .package-radio#pkg-bundle:checked ~ .segmented-control-pill {
-            transform: translateX(200%);
-        }
-
         /* Enhanced Product Info Display */
         #product-info-form-top,
         #features-before-form {
@@ -451,10 +427,10 @@
         }
 
         .product-info-card {
-            background: linear-gradient(135deg, var(--m3-primary-container) 0%, var(--m3-surface) 100%);
-            border: 1px solid var(--m3-outline-variant);
-            border-radius: 20px;
-            padding: 24px;
+            background: linear-gradient(135deg, #e8f0fe 0%, var(--theme-surface) 100%);
+            border: 1px solid var(--theme-outline);
+            border-radius: 16px;
+            padding: 20px;
         }
 
         /* Enhanced Payment Method Styles */
@@ -476,26 +452,26 @@
         }
 
         .payment-label:hover {
-            background-color: var(--m3-surface-variant);
+            background-color: var(--theme-background);
         }
 
         .payment-radio:checked + .payment-label {
-            background-color: var(--m3-primary-container);
-            box-shadow: inset 0 0 0 2px var(--m3-primary);
+            background-color: #e8f0fe; /* Light blue */
+            box-shadow: inset 0 0 0 2px var(--theme-primary);
         }
 
         .payment-logo {
-            height: 24px;
+            height: 22px;
             width: auto;
             max-width: 70px;
             object-fit: contain;
-            margin-right: 16px;
+            margin-right: 12px;
         }
 
         .custom-radio-button {
             height: 20px;
             width: 20px;
-            border: 2px solid var(--m3-outline);
+            border: 2px solid var(--theme-outline);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -506,38 +482,35 @@
         }
 
         .custom-radio-button .dot {
-            height: 10px;
-            width: 10px;
+            height: 8px;
+            width: 8px;
             border-radius: 50%;
             background-color: transparent;
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: scale(0);
         }
 
         .payment-radio:checked + .payment-label .custom-radio-button {
-            border-color: var(--m3-primary);
+            border-color: var(--theme-primary);
         }
 
         .payment-radio:checked + .payment-label .custom-radio-button .dot {
-            background-color: var(--m3-primary);
-            transform: scale(1);
+            background-color: var(--theme-primary);
         }
 
         /* Enhanced Payment Instruction Layout */
         .payment-header {
-            background: var(--m3-surface);
-            color: var(--m3-on-surface);
+            background: linear-gradient(135deg, #202124 0%, #3c4043 100%);
+            color: #fff;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 999;
-            border-bottom: 1px solid var(--m3-outline-variant);
         }
 
         .payment-card {
-            background-color: var(--m3-surface);
-            border: 1px solid var(--m3-outline-variant);
-            border-radius: 16px;
+            background-color: var(--theme-surface);
+            border: 1px solid var(--theme-outline);
+            border-radius: 12px;
             padding: 16px;
             margin-top: 12px;
             box-shadow: var(--shadow-1);
@@ -546,23 +519,23 @@
         .copy-button-text {
             background: none;
             border: none;
-            color: var(--m3-primary);
+            color: var(--theme-primary);
             font-weight: 500;
             cursor: pointer;
             padding: 8px;
-            border-radius: 8px;
+            border-radius: 4px;
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .copy-button-text:hover {
-            background-color: var(--m3-primary-container);
+            background-color: #e8f0fe;
         }
 
         .confirm-button-outlined {
             width: 100%;
             padding: 12px 24px;
-            border: 1px solid var(--m3-primary);
-            color: var(--m3-primary);
+            border: 2px solid var(--theme-primary);
+            color: var(--theme-primary);
             background-color: transparent;
             border-radius: 24px;
             font-weight: 500;
@@ -573,12 +546,12 @@
         }
 
         .confirm-button-outlined:hover {
-            background-color: var(--m3-primary-container);
+            background-color: #e8f0fe;
             box-shadow: var(--shadow-1);
         }
 
         .payment-accordion {
-            border-bottom: 1px solid var(--m3-outline-variant);
+            border-bottom: 1px solid var(--theme-outline);
         }
 
         .payment-accordion:last-child {
@@ -605,7 +578,7 @@
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--m3-on-surface-variant);
+            color: var(--theme-on-surface-variant);
         }
 
         .payment-accordion[open] summary::after {
@@ -614,7 +587,7 @@
 
         .payment-accordion-content {
             padding-bottom: 16px;
-            color: var(--m3-on-surface-variant);
+            color: var(--theme-on-surface-variant);
             line-height: 1.6;
         }
 
@@ -634,7 +607,7 @@
             font-size: 1.125rem; /* 18px */
             font-weight: 500;
             font-family: 'Google Sans', sans-serif;
-            color: var(--m3-on-surface); /* Ditambahkan agar teks terlihat */
+            color: #ffffff; /* Ditambahkan agar teks terlihat */
         }
 
         .countdown-timer {
@@ -652,8 +625,8 @@
         }
 
         .countdown-number {
-            background-color: var(--m3-error-container);
-            color: var(--m3-on-error-container);
+            background-color: var(--google-red);
+            color: white;
             padding: 0.25rem 0.5rem;
             border-radius: 6px;
             font-weight: 600;
@@ -690,10 +663,10 @@
         }
 
         .details-modal-content {
-            background-color: var(--m3-surface);
+            background-color: var(--theme-surface);
             width: 100%;
             max-width: 100%;
-            border-radius: 28px 28px 0 0; /* M3 Bottom Sheet Radius */
+            border-radius: 20px 20px 0 0;
             box-shadow: var(--shadow-3);
             text-align: left;
             transform: translateY(100%);
@@ -727,7 +700,7 @@
 
         .details-modal-header {
             padding: 20px 24px;
-            border-bottom: 1px solid var(--m3-outline-variant);
+            border-bottom: 1px solid var(--theme-outline);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -736,14 +709,14 @@
         .details-modal-header h3 {
             font-size: 18px;
             font-weight: 500;
-            color: var(--m3-on-surface);
+            color: var(--theme-on-surface);
             font-family: 'Google Sans', sans-serif;
         }
 
         .details-modal-close {
             font-size: 24px;
             font-weight: 400;
-            color: var(--m3-on-surface-variant);
+            color: var(--theme-on-surface-variant);
             cursor: pointer;
             background: none;
             border: none;
@@ -753,7 +726,7 @@
         }
 
         .details-modal-close:hover {
-            background-color: var(--m3-surface-variant);
+            background-color: var(--theme-outline-variant);
         }
 
         .details-modal-body {
@@ -895,8 +868,8 @@
 
         /* Enhanced Security Badge */
         .security-badge {
-            background: var(--m3-tertiary-container);
-            color: var(--m3-on-tertiary-container);
+            background: #e8f0fe;
+            color: #1557b0;
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 10px;
@@ -909,7 +882,7 @@
         /* Enhanced Typography */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Google Sans', sans-serif;
-            color: var(--m3-on-surface);
+            color: var(--theme-on-surface);
         }
 
         .text-google-blue {
@@ -969,7 +942,7 @@
                             </div>
                         </div>
                         <div class="flex">
-                            <div class="security-badge w-full justify-center" style="background: var(--m3-primary-container); color: var(--m3-on-primary-container);">
+                            <div class="security-badge w-full justify-center" style="background: var(--theme-primary); color: white;">
                                 <i class="fas fa-hand-holding-usd text-xs mr-1"></i>
                                 GARANSI UANG KEMBALI
                             </div>
@@ -986,9 +959,6 @@
     
                                 <input type="radio" id="pkg-photos" name="package" value="photos" class="package-radio">
                                 <label for="pkg-photos" class="package-label">Google<br>Photos</label>
-    
-                                <input type="radio" id="pkg-bundle" name="package" value="bundle" class="package-radio">
-                                <label for="pkg-bundle" class="package-label">Paket<br>Lengkap</label>
     
                                 <div class="segmented-control-pill"></div>
                             </div>
@@ -1132,22 +1102,24 @@
     }
 
     function validatePhoneNumber(nomorHp) {
+        const genericError = { isValid: false, message: 'Silahkan isi dengan nomor yang benar' };
+
         if (nomorHp.length < 10) {
-            return { isValid: false, message: 'Nomor HP terlalu pendek.' };
+            return genericError;
         }
 
         const operator = getOperatorFromNumber(nomorHp);
         if (!operator) {
-            return { isValid: false, message: 'Prefix nomor HP Anda tidak dikenali.' };
+            return genericError;
         }
 
         const maxLength = operator === 'Tri (3)' ? 13 : 12;
         if (nomorHp.length > maxLength) {
-            return { isValid: false, message: `Nomor HP untuk operator ${operator} tidak boleh lebih dari ${maxLength} digit.` };
+            return genericError;
         }
 
         if (isInvalidPattern(nomorHp)) {
-            return { isValid: false, message: 'Silahkan gunakan nomor lain karena pola nomor tidak wajar.' };
+            return genericError;
         }
 
         return { isValid: true, message: 'Nomor valid.' };
@@ -1202,10 +1174,10 @@
             drive: {
                 id: 'drive',
                 name: "Google Drive Unlimited",
-                price: 165000,
+                price: 99000,
                 normalPrice: 399000,
                 title: "DRIVE UNLIMITED",
-                priceDisplay: `Rp165.000`,
+                priceDisplay: `Rp99.000`,
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png',
                 description: "Penyimpanan cloud tanpa batas untuk semua file Anda.",
                 features: [
@@ -1223,10 +1195,10 @@
             photos: {
                 id: 'photos',
                 name: "Google Photos Unlimited",
-                price: 165000,
+                price: 149000,
                 normalPrice: 399000,
                 title: "PHOTOS UNLIMITED",
-                priceDisplay: `Rp165.000`,
+                priceDisplay: `Rp149.000`,
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/240px-Google_Photos_icon_%282020%29.svg.png',
                 description: "Simpan semua foto & video kualitas asli tanpa kompresi.",
                 features: [
@@ -1238,25 +1210,6 @@
                     "<strong>Sekali Bayar Seumur Hidup:</strong> Tanpa biaya langganan bulanan atau tahunan.",
                     "<strong>Akun baru:</strong> Anda akan mendapatkan akun Google baru khusus untuk Photos, dan Anda bisa mengganti passwordnya.",
                     "<strong>100% Aman & Privasi Terjamin:</strong> Foto Anda tetap menjadi milik Anda."
-                ],
-                testimonials: allTestimonials
-            },
-            bundle: {
-                id: 'bundle',
-                name: "Paket Lengkap (Drive + Photos)",
-                price: 265000,
-                normalPrice: 699000,
-                title: "DRIVE + PHOTOS",
-                priceDisplay: `Rp265.000`,
-                description: "Dapatkan penyimpanan tanpa batas di Google Drive dan Google Photos.",
-                features: [
-                    "<strong>Semua Fitur Drive Unlimited:</strong> Penyimpanan file tanpa batas, akses di mana saja, kolaborasi, dan keamanan Google.",
-                    "<strong>Semua Fitur Photos Unlimited:</strong> Penyimpanan foto & video kualitas asli tanpa batas, pencarian cerdas, dan album otomatis.",
-                    "<strong>Solusi Penyimpanan Lengkap:</strong> Satu paket untuk semua kebutuhan file dan media digital Anda.",
-                    "<strong>Harga Terbaik:</strong> Lebih hemat dibandingkan membeli paket secara terpisah.",
-                    "<strong>Sekali Bayar Seumur Hidup:</strong> Investasi terbaik untuk mengamankan semua data digital Anda.",
-                    "<strong>Upgrade Akun Pribadi Anda:</strong> Semua keuntungan diaktifkan pada satu akun Google.",
-                    "<strong>Garansi Penuh & Aman:</strong> Jaminan keamanan, privasi, dan kepuasan pelanggan."
                 ],
                 testimonials: allTestimonials
             }
@@ -1354,10 +1307,10 @@
         }
 
         const getFeaturesHTML = (pkg) => {
-            const googleColors = ['text-google-blue', 'text-google-red', 'text-google-yellow', 'text-google-green'];
+            const googleColors = ['text-google-green', 'text-google-blue'];
             return `<div class="material-card-elevated p-4 md:p-6 rounded-2xl">
                 <h3 class="text-xl font-bold mb-4 text-center google-sans">Yang Anda Dapatkan:</h3>
-                <ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${googleColors[index % googleColors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-m3-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
+                <ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${googleColors[index % googleColors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-theme-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
             </div>`;
         }
         
@@ -2229,8 +2182,8 @@
             }
         }
     });
-
     </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
