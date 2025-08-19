@@ -49,11 +49,11 @@
             --m3-on-error: #ffffff;
             --m3-error-container: #f9dedc;
             --m3-on-error-container: #410e0b;
-            --m3-background: #fef7ff;
+            --m3-background: #ffffff;
             --m3-on-background: #1c1b1f;
-            --m3-surface: #fef7ff;
+            --m3-surface: #ffffff;
             --m3-on-surface: #1c1b1f;
-            --m3-surface-variant: #e1e2ec;
+            --m3-surface-variant: #f7f9fa;
             --m3-on-surface-variant: #44474f;
             --m3-outline: #74777f;
             --m3-outline-variant: #c4c6d0;
@@ -1293,10 +1293,10 @@
         }
 
         const getFeaturesHTML = (pkg) => {
-            const colors = ['text-blue-600', 'text-green-600', 'text-yellow-600', 'text-purple-600', 'text-red-600', 'text-indigo-600', 'text-pink-600', 'text-teal-600'];
+            const googleColors = ['text-google-blue', 'text-google-red', 'text-google-yellow', 'text-google-green'];
             return `<div class="material-card-elevated p-4 md:p-6 rounded-2xl">
-                <h3 class="text-xl font-bold mb-4 text-gray-800 google-sans text-center">Yang Anda Dapatkan:</h3>
-                <ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-gray-600 text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
+                <h3 class="text-xl font-bold mb-4 text-center google-sans">Yang Anda Dapatkan:</h3>
+                <ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${googleColors[index % googleColors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-m3-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
             </div>`;
         }
         
