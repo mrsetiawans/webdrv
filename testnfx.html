@@ -970,6 +970,16 @@
                         <!-- Honeypot field for anti-spam -->
                         <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
 
+                        <!-- Coupon Code Section -->
+                        <div class="mt-8">
+                            <h2 class="text-lg font-bold mb-2 text-gray-800 main-sans">2. Punya Kode Kupon?</h2>
+                            <div class="coupon-container">
+                                <input type="text" id="coupon-input" class="coupon-input" placeholder="Masukkan Kode Kupon">
+                                <button type="button" id="apply-coupon-btn" class="coupon-button">Terapkan</button>
+                            </div>
+                            <div id="coupon-message-container" class="mt-2"></div>
+                        </div>
+
                         <!-- Metode Pembayaran -->
                         <div id="payment-method-selection" class="mt-8"></div>
                         
@@ -1124,6 +1134,9 @@
             notifName: document.querySelector('#notifBox .notif-name'),
             detailsModal: document.getElementById('detailsModal'),
             detailsModalContent: document.getElementById('detailsModalContent'),
+            couponInput: document.getElementById('coupon-input'),
+            couponBtn: document.getElementById('apply-coupon-btn'),
+            couponMessageContainer: document.getElementById('coupon-message-container'),
         };
 
         // --- CONFIGURATION ---
@@ -1132,25 +1145,15 @@
         let expiryTime;
         let currentOrderDetails = {};
         const validCouponCode = 'WEDNESDAY';
-        let isCouponApplied = false;
+        let isCouponApplied = true; // Coupon is applied by default
         
         // *** TESTIMONIALS COMBINED ***
         const allTestimonials = [
-            "https://s6.imgcdn.dev/YIjP00.png",
-            "https://s6.imgcdn.dev/YIjK4e.png",
-            "https://s6.imgcdn.dev/YIjT3M.png",
-            "https://s6.imgcdn.dev/YIjljd.png",
-            "https://s6.imgcdn.dev/YIjzTl.png",
-            "https://s6.imgcdn.dev/YIjaRh.png",
-            "https://s6.imgcdn.dev/YIj1JV.png",
-            "https://s6.imgcdn.dev/YIj7nK.png",
-            "https://s6.imgcdn.dev/YIjBvo.png",
-            "https://s6.imgcdn.dev/YIjGFO.png",
-            "https://s6.imgcdn.dev/YIjrCn.png",
-            "https://s6.imgcdn.dev/YIjv0g.png",
-            "https://s6.imgcdn.dev/YIjx3v.png",
-            "https://s6.imgcdn.dev/YIjAwN.png",
-            "https://s6.imgcdn.dev/YIjOTq.png",
+            "https://s6.imgcdn.dev/YIjP00.png", "https://s6.imgcdn.dev/YIjK4e.png", "https://s6.imgcdn.dev/YIjT3M.png",
+            "https://s6.imgcdn.dev/YIjljd.png", "https://s6.imgcdn.dev/YIjzTl.png", "https://s6.imgcdn.dev/YIjaRh.png",
+            "https://s6.imgcdn.dev/YIj1JV.png", "https://s6.imgcdn.dev/YIj7nK.png", "https://s6.imgcdn.dev/YIjBvo.png",
+            "https://s6.imgcdn.dev/YIjGFO.png", "https://s6.imgcdn.dev/YIjrCn.png", "https://s6.imgcdn.dev/YIjv0g.png",
+            "https://s6.imgcdn.dev/YIjx3v.png", "https://s6.imgcdn.dev/YIjAwN.png", "https://s6.imgcdn.dev/YIjOTq.png",
             "https://s6.imgcdn.dev/YIjZRB.png"
         ];
 
@@ -1177,58 +1180,15 @@
             }
         };
 
-        let currentPackageId = 'netflix'; // Paket default yang dipilih
+        let currentPackageId = 'netflix';
         
-        // --- UPDATED PAYMENT ACCOUNTS ---
         const paymentAccounts = {
-            qris: {
-                displayName: 'QRIS',
-                accountHolder: 'Epay',
-                number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png',
-                type: 'qris',
-                category: 'QRIS'
-            },
-            cimb: { 
-                displayName: 'Cimb Niaga',
-                accountHolder: 'Octo Pay - 6289510639366', 
-                number: '6289510639366', 
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', 
-                type: 'va',
-                category: 'Bank Transfer'
-            },
-            bca_va: { 
-                displayName: 'BCA Virtual Account', 
-                accountHolder: 'Epayment', 
-                number: '39358089510639366', 
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', 
-                type: 'va',
-                category: 'Bank Transfer'
-            },
-            gopay: { 
-                displayName: 'Gopay', 
-                accountHolder: 'Gopay 6289510639366', 
-                number: '089510639366', 
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', 
-                type: 'ewallet',
-                category: 'E-Wallet'
-            },
-            dana: { 
-                displayName: 'DANA', 
-                accountHolder: 'DNID089510639366', 
-                number: '089510639366', 
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', 
-                type: 'ewallet',
-                category: 'E-Wallet'
-            },
-            ovo: { 
-                displayName: 'OVO', 
-                accountHolder: 'OVO Epayment', 
-                number: '089510639366', 
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', 
-                type: 'ewallet',
-                category: 'E-Wallet'
-            }
+            qris: { displayName: 'QRIS', accountHolder: 'Epay', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris', category: 'QRIS' },
+            cimb: { displayName: 'Cimb Niaga', accountHolder: 'Octo Pay - 6289510639366', number: '6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'va', category: 'Bank Transfer' },
+            bca_va: { displayName: 'BCA Virtual Account', accountHolder: 'Epayment', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'va', category: 'Bank Transfer' },
+            gopay: { displayName: 'Gopay', accountHolder: 'Gopay 6289510639366', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet', category: 'E-Wallet' },
+            dana: { displayName: 'DANA', accountHolder: 'DNID089510639366', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet', category: 'E-Wallet' },
+            ovo: { displayName: 'OVO', accountHolder: 'OVO Epayment', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', category: 'E-Wallet' }
         };
 
         // --- TEMPLATE FUNCTIONS ---
@@ -1273,7 +1233,7 @@
                 groupedAccounts[account.category].push({ key, ...account });
             }
 
-            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">2. Pilih Metode Pembayaran</h2>`;
+            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">3. Pilih Metode Pembayaran</h2>`;
             const categoryOrder = ['QRIS', 'Bank Transfer', 'E-Wallet'];
 
             for (const category of categoryOrder) {
@@ -1283,7 +1243,6 @@
 
                     groupedAccounts[category].forEach((account, index) => {
                         const isFirst = index === 0 && category === 'QRIS';
-                        
                         html += `
                             <div>
                                 <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="payment-radio" ${isFirst ? 'checked' : ''}>
@@ -1304,27 +1263,14 @@
                 }
             }
 
-            html += `
-                <div class="bg-gray-50 p-3 mt-4 rounded-xl text-center text-xs text-gray-600">
-                    <i class="fas fa-shield-alt text-green-600 mr-2"></i>
-                    Pembayaran aman dan terenkripsi.
-                </div>
-            `;
-
+            html += `<div class="bg-gray-50 p-3 mt-4 rounded-xl text-center text-xs text-gray-600"><i class="fas fa-shield-alt text-green-600 mr-2"></i>Pembayaran aman dan terenkripsi.</div>`;
             return html;
         };
 
-        const getCouponSectionHTML = () => `
-            <div id="coupon-section" class="mt-4">
-                 <div id="coupon-message-container"></div>
-                 <div class="coupon-container">
-                     <input type="text" id="coupon-input" class="coupon-input" placeholder="Masukkan Kode Kupon">
-                     <button id="apply-coupon-btn" class="coupon-button">Terapkan</button>
-                 </div>
-            </div>
-        `;
+        const getOrderDetailsHTML = (pkg, finalPrice) => {
+            const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price;
+            const discountAmount = pkg.price - pkg.discountPrice;
 
-        const getOrderDetailsHTML = (pkg, currentPrice, finalPrice) => {
             let priceHTML = `<div class="flex justify-between items-center">
                                <span class="text-sm">${pkg.name}</span>
                                <div class="text-right">
@@ -1333,7 +1279,6 @@
                            </div>`;
 
             if (isCouponApplied) {
-                const discountAmount = pkg.price - pkg.discountPrice;
                 priceHTML = `
                     <div class="flex justify-between items-center">
                         <span class="text-sm">${pkg.name}</span>
@@ -1342,7 +1287,7 @@
                         </div>
                     </div>
                     <div class="flex justify-between items-center text-green-600">
-                        <span class="text-sm font-medium">Diskon Kupon</span>
+                        <span class="text-sm font-medium">Diskon Kupon "${validCouponCode}"</span>
                         <div class="text-right">
                             <span class="font-semibold text-md">-${formatCurrency(discountAmount)}</span>
                         </div>
@@ -1352,14 +1297,13 @@
 
             return `
             <div class="mt-8 pt-6 border-t border-gray-200">
-                 <h3 class="text-lg font-bold mb-4 text-gray-800 main-sans">Rincian Pesanan</h3>
+                 <h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">4. Rincian Pesanan</h2>
                  <div class="material-card-elevated p-4 rounded-2xl space-y-3 text-gray-600">
                      ${priceHTML}
                      <div class="flex justify-between">
                          <span class="text-xs">Kode Unik</span>
                          <span class="font-medium text-gray-800 text-sm">${formatCurrency(uniqueCode)}</span>
                      </div>
-                     ${getCouponSectionHTML()}
                      <hr class="my-2 border-gray-200">
                      <div class="flex justify-between font-bold text-lg text-gray-900 main-sans">
                          <span>Total</span>
@@ -1370,72 +1314,16 @@
         }
 
         const getTestimonialsHTML = (pkg) => {
-            let imagesHTML = pkg.testimonials.map((url, index) => `
-                <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">
-            `).join('');
-
-            return `
-            <div class="material-card p-4 md:p-6 rounded-2xl">
+            let imagesHTML = pkg.testimonials.map((url, index) => `<img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">`).join('');
+            return `<div class="material-card p-4 md:p-6 rounded-2xl">
                 <h2 class="text-2xl font-bold text-center mb-4 text-gray-800 main-sans">Testimoni Pelanggan</h2>
                 <p class="text-center text-gray-600 text-sm mb-6">Ribuan pelanggan telah menikmati tontonan tanpa batas.</p>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                    ${imagesHTML}
-                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">${imagesHTML}</div>
             </div>`;
         }
 
-        const getFaqHTML = () => `
-            <div>
-                <h3 class="text-2xl font-bold mb-4 text-center text-gray-800 main-sans">Pertanyaan Umum (FAQ)</h3>
-                <div class="space-y-1">
-                    <details class="faq-item">
-                        <summary>Apakah ini akun sharing atau private?</summary>
-                        <div class="faq-content">Ini adalah akun private yang dibuat khusus untuk Anda. Anda akan menerima email dan password baru, dan bisa langsung mengganti passwordnya. Anda tidak akan berbagi akun dengan pengguna lain.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Berapa kualitas video yang saya dapatkan?</summary>
-                        <div class="faq-content">Anda mendapatkan paket Netflix Premium, yang berarti Anda bisa streaming dengan kualitas terbaik yang tersedia, yaitu Ultra HD (4K) dan HDR, tergantung pada perangkat dan koneksi internet Anda.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Berapa lama masa aktif langganannya?</summary>
-                        <div class="faq-content">Langganan ini aktif selama 1 tahun penuh (365 hari) sejak tanggal aktivasi.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Apakah ini legal dan aman?</summary>
-                        <div class="faq-content">Tentu saja. Kami menyediakan langganan yang 100% legal dan resmi. Akun Anda dijamin aman dan kami memberikan garansi penuh selama masa berlangganan.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Di perangkat apa saja saya bisa menonton?</summary>
-                        <div class="faq-content">Anda bisa menonton di semua perangkat yang mendukung Netflix, termasuk Smart TV, konsol game, laptop, PC, tablet, dan smartphone.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Berapa lama proses aktivasinya?</summary>
-                        <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, akun akan kami kirimkan dalam waktu 5-15 menit, maksimal 1x24 jam.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Apakah ada garansi?</summary>
-                        <div class="faq-content">Ya, kami memberikan garansi penuh selama 1 tahun. Jika terjadi masalah dengan akun Anda yang bukan disebabkan oleh pelanggaran aturan Netflix, kami akan memperbaikinya atau menggantinya dengan yang baru.</div>
-                    </details>
-                </div>
-            </div>
-        `;
-        
-        const getPolicyHTML = () => `
-            <div>
-                <h3 class="text-2xl font-bold mb-4 text-center text-gray-800 main-sans">Syarat & Ketentuan</h3>
-                <div class="grid md:grid-cols-1 gap-6 text-sm text-gray-600">
-                    <div>
-                         <p class="mb-4 text-sm leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk langganan selama satu tahun.</p>
-                        <ul class="list-disc list-inside space-y-2 text-sm">
-                            <li>Layanan untuk penggunaan pribadi dan tidak melanggar hukum.</li>
-                            <li>Garansi penuh jika aktivasi akun gagal karena kesalahan kami.</li>
-                            <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
-                            <li>Perubahan kebijakan Netflix di masa depan berada di luar kendali kami.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        `;
+        const getFaqHTML = () => `<div><h3 class="text-2xl font-bold mb-4 text-center text-gray-800 main-sans">Pertanyaan Umum (FAQ)</h3><div class="space-y-1"><details class="faq-item"><summary>Apakah ini akun sharing atau private?</summary><div class="faq-content">Ini adalah akun private yang dibuat khusus untuk Anda. Anda akan menerima email dan password baru, dan bisa langsung mengganti passwordnya. Anda tidak akan berbagi akun dengan pengguna lain.</div></details><details class="faq-item"><summary>Berapa kualitas video yang saya dapatkan?</summary><div class="faq-content">Anda mendapatkan paket Netflix Premium, yang berarti Anda bisa streaming dengan kualitas terbaik yang tersedia, yaitu Ultra HD (4K) dan HDR, tergantung pada perangkat dan koneksi internet Anda.</div></details><details class="faq-item"><summary>Berapa lama masa aktif langganannya?</summary><div class="faq-content">Langganan ini aktif selama 1 tahun penuh (365 hari) sejak tanggal aktivasi.</div></details><details class="faq-item"><summary>Apakah ini legal dan aman?</summary><div class="faq-content">Tentu saja. Kami menyediakan langganan yang 100% legal dan resmi. Akun Anda dijamin aman dan kami memberikan garansi penuh selama masa berlangganan.</div></details><details class="faq-item"><summary>Di perangkat apa saja saya bisa menonton?</summary><div class="faq-content">Anda bisa menonton di semua perangkat yang mendukung Netflix, termasuk Smart TV, konsol game, laptop, PC, tablet, dan smartphone.</div></details><details class="faq-item"><summary>Berapa lama proses aktivasinya?</summary><div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, akun akan kami kirimkan dalam waktu 5-15 menit, maksimal 1x24 jam.</div></details><details class="faq-item"><summary>Apakah ada garansi?</summary><div class="faq-content">Ya, kami memberikan garansi penuh selama 1 tahun. Jika terjadi masalah dengan akun Anda yang bukan disebabkan oleh pelanggaran aturan Netflix, kami akan memperbaikinya atau menggantinya dengan yang baru.</div></details></div></div>`;
+        const getPolicyHTML = () => `<div><h3 class="text-2xl font-bold mb-4 text-center text-gray-800 main-sans">Syarat & Ketentuan</h3><div class="grid md:grid-cols-1 gap-6 text-sm text-gray-600"><div><p class="mb-4 text-sm leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk langganan selama satu tahun.</p><ul class="list-disc list-inside space-y-2 text-sm"><li>Layanan untuk penggunaan pribadi dan tidak melanggar hukum.</li><li>Garansi penuh jika aktivasi akun gagal karena kesalahan kami.</li><li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li><li>Perubahan kebijakan Netflix di masa depan berada di luar kendali kami.</li></ul></div></div></div>`;
 
         // --- FUNCTIONS ---
         function formatCurrency(value) {
@@ -1457,66 +1345,50 @@
             const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price;
             const totalPrice = currentPrice + uniqueCode;
 
-            const infoContainer = elements.productInfoFormTop;
-            const featuresContainer = elements.featuresBeforeForm;
-
-            infoContainer.style.opacity = '0';
-            featuresContainer.style.opacity = '0';
-
-            setTimeout(() => {
-                infoContainer.innerHTML = getProductInfoHTML(pkg, currentPrice);
-                featuresContainer.innerHTML = getFeaturesHTML(pkg);
-                elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-                elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, currentPrice, totalPrice);
-                elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
-                elements.faqFull.innerHTML = getFaqHTML();
-                elements.policyFull.innerHTML = getPolicyHTML();
-
-                updateCouponUI();
-
-                infoContainer.style.opacity = '1';
-                featuresContainer.style.opacity = '1';
-            }, 300);
+            elements.productInfoFormTop.innerHTML = getProductInfoHTML(pkg, currentPrice);
+            elements.featuresBeforeForm.innerHTML = getFeaturesHTML(pkg);
+            elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
+            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+            elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
+            elements.faqFull.innerHTML = getFaqHTML();
+            elements.policyFull.innerHTML = getPolicyHTML();
         }
 
-        function applyCoupon() {
-            const couponInput = document.getElementById('coupon-input');
-            const enteredCode = couponInput.value.trim();
-            const messageContainer = document.getElementById('coupon-message-container');
-
-            if (enteredCode.toUpperCase() === validCouponCode) {
-                isCouponApplied = true;
-                messageContainer.innerHTML = `<p class="coupon-applied-message">Kupon berhasil diterapkan!</p>`;
-                updateDisplay();
-            } else {
-                isCouponApplied = false; // Ensure coupon is not applied on failure
-                messageContainer.innerHTML = `<p class="coupon-error-message">Kode kupon tidak valid.</p>`;
-                updateDisplay(); // Re-render to show original price if coupon was previously applied
-            }
+        function showCouponMessage(message, color) {
+            elements.couponMessageContainer.innerHTML = `<p style="color: ${color};" class="text-sm font-medium">${message}</p>`;
         }
 
         function updateCouponUI() {
-            const couponInput = document.getElementById('coupon-input');
-            const applyBtn = document.getElementById('apply-coupon-btn');
-            const messageContainer = document.getElementById('coupon-message-container');
-
             if (isCouponApplied) {
-                couponInput.value = validCouponCode;
-                couponInput.disabled = true;
-                applyBtn.disabled = true;
-                applyBtn.textContent = 'Diterapkan';
-                if (!messageContainer.querySelector('.coupon-applied-message')) {
-                    messageContainer.innerHTML = `<p class="coupon-applied-message">Kupon berhasil diterapkan!</p>`;
-                }
+                elements.couponInput.value = validCouponCode;
+                elements.couponInput.disabled = true;
+                elements.couponBtn.textContent = 'Hapus';
+                elements.couponBtn.classList.remove('red-button'); // Ensure default is not red
+                elements.couponBtn.classList.add('red-button'); // Add red for remove
+                showCouponMessage('Kupon "WEDNESDAY" berhasil diterapkan!', 'var(--green-600)');
             } else {
-                 if (couponInput) couponInput.disabled = false;
-                 if (applyBtn) {
-                    applyBtn.disabled = false;
-                    applyBtn.textContent = 'Terapkan';
-                 }
+                elements.couponInput.value = '';
+                elements.couponInput.disabled = false;
+                elements.couponBtn.textContent = 'Terapkan';
+                elements.couponBtn.classList.remove('red-button');
             }
         }
 
+        function handleCouponToggle() {
+            if (isCouponApplied) {
+                isCouponApplied = false;
+                showCouponMessage('Kupon dihapus.', 'var(--netflix-red)');
+            } else {
+                const enteredCode = elements.couponInput.value.trim().toUpperCase();
+                if (enteredCode === validCouponCode) {
+                    isCouponApplied = true;
+                } else {
+                    showInfoModal('Kupon Tidak Valid', `Kode kupon "${enteredCode}" tidak ditemukan.`);
+                }
+            }
+            updateDisplay();
+            updateCouponUI();
+        }
 
         function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
             const couponStatus = isCouponApplied ? `Kupon '${validCouponCode}' diterapkan` : 'Tidak ada kupon';
@@ -1535,264 +1407,38 @@
 
         function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
             window.scrollTo(0, 0);
-            
-            currentOrderDetails = {
-                pkg,
-                totalPrice,
-                paymentId,
-                nama: formData.get('nama'),
-                whatsapp: formData.get('whatsapp')
-            };
-
+            currentOrderDetails = { pkg, totalPrice, paymentId, nama: formData.get('nama'), whatsapp: formData.get('whatsapp') };
             elements.mainContentContainer.parentElement.style.display = 'none';
             elements.footer.style.display = 'none';
-            
             const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId);
-            
             let accountLabel;
             switch (paymentMethodKey) {
-                case 'cimb':
-                    accountLabel = 'Nomor Rekening';
-                    break;
-                case 'bca_va':
-                    accountLabel = 'Nomor Virtual Account';
-                    break;
-                case 'gopay':
-                case 'dana':
-                case 'ovo':
-                    accountLabel = 'Nomor E-Wallet';
-                    break;
-                default:
-                    accountLabel = 'Nomor Pembayaran';
+                case 'cimb': accountLabel = 'Nomor Rekening'; break;
+                case 'bca_va': accountLabel = 'Nomor Virtual Account'; break;
+                case 'gopay': case 'dana': case 'ovo': accountLabel = 'Nomor E-Wallet'; break;
+                default: accountLabel = 'Nomor Pembayaran';
             }
-
-            let instructionAccordionHTML = '';
-            let paymentDetailsBlock = '';
-            let paymentDeadlineFormatted = '';
-
             expiryTime = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-            
             const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const datePart = expiryTime.toLocaleDateString('id-ID', dateOptions);
             const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
             const timePart = expiryTime.toLocaleTimeString('id-ID', timeOptions).replace(/\./g, ':');
-            const timezoneString = `(${getIndonesianTimezone()})`;
-            paymentDeadlineFormatted = `${datePart} pukul ${timePart} ${timezoneString}`;
-
+            const paymentDeadlineFormatted = `${datePart} pukul ${timePart} (${getIndonesianTimezone()})`;
+            let paymentDetailsBlock = '';
             if (paymentMethodKey === 'qris') {
-                paymentDetailsBlock = `
-                    <div class="text-center">
-                        <div id="qrcodeContainer" class="bg-white p-3 rounded-xl border-2 border-gray-200 w-full max-w-[250px] h-auto mx-auto my-4 material-card-elevated">
-                            <div id="qrcode" class="flex justify-center items-center"></div>
-                        </div>
-                        <button id="downloadQrisButton" class="cta-button red-button max-w-xs mx-auto">
-                            <i class="fas fa-download mr-2"></i>
-                            Unduh QRIS
-                        </button>
-                        <p class="text-center text-xs text-gray-600 mt-3">Pindai QR Code di atas menggunakan aplikasi perbankan atau e-wallet Anda.</p>
-                    </div>
-                `;
+                paymentDetailsBlock = `<div class="text-center"><div id="qrcodeContainer" class="bg-white p-3 rounded-xl border-2 border-gray-200 w-full max-w-[250px] h-auto mx-auto my-4 material-card-elevated"><div id="qrcode" class="flex justify-center items-center"></div></div><button id="downloadQrisButton" class="cta-button red-button max-w-xs mx-auto"><i class="fas fa-download mr-2"></i> Unduh QRIS</button><p class="text-center text-xs text-gray-600 mt-3">Pindai QR Code di atas menggunakan aplikasi perbankan atau e-wallet Anda.</p></div>`;
             } else {
-                 paymentDetailsBlock = `
-                    <div class="mt-4">
-                        <p class="text-xs text-gray-500 mb-1">${accountLabel}</p>
-                        <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
-                            <p class="text-xl font-bold text-gray-800 tracking-wider main-sans">${paymentAccount.number}</p>
-                            <button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="copy-button-text">
-                                <i class="far fa-copy mr-1"></i>
-                                Salin
-                            </button>
-                        </div>
-                    </div>
-                `;
+                paymentDetailsBlock = `<div class="mt-4"><p class="text-xs text-gray-500 mb-1">${accountLabel}</p><div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg"><p class="text-xl font-bold text-gray-800 tracking-wider main-sans">${paymentAccount.number}</p><button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div>`;
             }
-
-            // --- UPDATED: Detailed Payment Instructions ---
+            let instructionAccordionHTML = '';
             switch (paymentMethodKey) {
-                case 'qris':
-                    instructionAccordionHTML = `
-                        <details class="payment-accordion" open><summary>Cara Bayar via QRIS</summary><div class="payment-accordion-content"><ol class="space-y-3">
-                            <li>Buka aplikasi perbankan (m-banking) atau e-wallet Anda (GoPay, OVO, DANA, dll).</li>
-                            <li>Pilih menu <strong>Bayar</strong>, <strong>Scan QR</strong>, atau <strong>QRIS</strong>.</li>
-                            <li>Pindai (scan) kode QR yang ditampilkan di atas.</li>
-                            <li>Pastikan nama merchant dan nominal pembayaran sudah sesuai.</li>
-                            <li>Masukkan PIN Anda untuk menyelesaikan transaksi.</li>
-                            <li>Simpan bukti pembayaran.</li>
-                        </ol></div></details>
-                    `;
-                    break;
-                case 'bca_va':
-                    instructionAccordionHTML = `
-                        <details class="payment-accordion"><summary>myBCA</summary><div class="payment-accordion-content"><ol class="space-y-2">
-                            <li>Buka aplikasi myBCA dan login.</li>
-                            <li>Pilih menu <strong>Transfer</strong>, lalu pilih <strong>Virtual Account</strong>.</li>
-                            <li>Pilih <strong>Tujuan Baru</strong>.</li>
-                            <li>Masukkan nomor Virtual Account: <strong>${paymentAccount.number}</strong>.</li>
-                            <li>Pilih sumber dana yang akan digunakan.</li>
-                            <li>Masukkan nominal jika diminta.</li>
-                            <li>Periksa detail transaksi, lalu tekan <strong>Lanjut</strong>.</li>
-                            <li>Masukkan PIN untuk menyelesaikan transaksi.</li>
-                        </ol></div></details>
-                        <details class="payment-accordion"><summary>BCA Mobile</summary><div class="payment-accordion-content"><ol class="space-y-2">
-                            <li>Buka aplikasi BCA Mobile dan login.</li>
-                            <li>Pilih menu <strong>m-Transfer</strong>, lalu pilih <strong>BCA Virtual Account</strong>.</li>
-                            <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
-                            <li>Masukkan nominal jika diminta.</li>
-                            <li>Periksa nama penerima, lalu tekan <strong>OK</strong>.</li>
-                            <li>Masukkan PIN m-BCA untuk menyelesaikan transaksi.</li>
-                        </ol></div></details>
-                        <details class="payment-accordion"><summary>KlikBCA</summary><div class="payment-accordion-content"><ol class="space-y-2">
-                            <li>Buka situs KlikBCA dan login.</li>
-                            <li>Pilih menu <strong>Transfer Dana</strong>, lalu pilih <strong>Transfer ke BCA Virtual Account</strong>.</li>
-                            <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
-                            <li>Masukkan nominal transfer.</li>
-                            <li>Tekan <strong>Lanjutkan</strong>, lalu masukkan kode KeyBCA Appli 1.</li>
-                            <li>Tekan <strong>Kirim</strong> untuk menyelesaikan transaksi.</li>
-                        </ol></div></details>
-                        <details class="payment-accordion"><summary>ATM BCA</summary><div class="payment-accordion-content"><ol class="space-y-2">
-                           <li>Masukkan kartu ATM BCA dan PIN.</li>
-                           <li>Pilih menu <strong>Transaksi Lainnya</strong>.</li>
-                           <li>Pilih <strong>Transfer</strong>.</li>
-                           <li>Pilih <strong>Ke Rekening BCA Virtual Account</strong>.</li>
-                           <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
-                           <li>Masukkan nominal jika diminta, lalu konfirmasi.</li>
-                        </ol></div></details>
-                    `;
-                    break;
-                case 'cimb':
-                    instructionAccordionHTML = `
-                        <details class="payment-accordion"><summary>OCTO Mobile</summary><div class="payment-accordion-content"><ol class="space-y-2">
-                            <li>Buka aplikasi OCTO Mobile dan login.</li>
-                            <li>Pilih menu <strong>Transfer</strong>, lalu pilih <strong>Rekening CIMB Niaga</strong>.</li>
-                            <li>Masukkan nomor rekening <strong>${paymentAccount.number}</strong>.</li>
-                            <li>Pilih sumber dana yang akan digunakan.</li>
-                            <li>Tekan <strong>Next</strong>.</li>
-                            <li>Periksa nama penerima dan jumlah nominal.</li>
-                            <li>Tekan <strong>Konfirmasi</strong>, lalu masukkan dua digit PIN acak yang diminta.</li>
-                        </ol></div></details>
-                        <details class="payment-accordion"><summary>Transfer dari Bank Lain</summary><div class="payment-accordion-content"><ol class="space-y-2">
-                            <li>Buka aplikasi mobile banking bank pengirim dan login.</li>
-                            <li>Pilih menu <strong>Transfer Antar Bank</strong> atau <strong>Transfer ke Bank Lain</strong>.</li>
-                            <li>Pilih bank tujuan <strong>CIMB Niaga</strong> dengan kode bank <strong>022</strong>.</li>
-                            <li>Masukkan nomor rekening <strong>${paymentAccount.number}</strong>.</li>
-                            <li>Masukkan nominal transfer sesuai kebutuhan.</li>
-                            <li>Periksa nama penerima, lalu konfirmasi.</li>
-                            <li>Masukkan PIN atau kode otentikasi untuk menyelesaikan transaksi.</li>
-                        </ol></div></details>
-                    `;
-                    break;
-                case 'gopay':
-                    instructionAccordionHTML = `
-                        <details class="payment-accordion"><summary>Aplikasi Gojek (GoPay)</summary><div class="payment-accordion-content"><ol class="space-y-2">
-                            <li>Buka aplikasi Gojek dan login.</li>
-                            <li>Tekan menu <strong>Bayar</strong> atau <strong>Transfer</strong>.</li>
-                            <li>Pilih <strong>Ke Sesama GoPay</strong> atau <strong>Transfer ke Orang Lain</strong>.</li>
-                            <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
-                            <li>Masukkan nominal yang akan dikirim.</li>
-                            <li>Periksa nama penerima, lalu tekan <strong>Konfirmasi & Bayar</strong>.</li>
-                            <li>Masukkan PIN GoPay untuk menyelesaikan transfer.</li>
-                        </ol></div></details>
-                    `;
-                    break;
-                case 'dana':
-                    instructionAccordionHTML = `
-                        <details class="payment-accordion"><summary>Aplikasi DANA</summary><div class="payment-accordion-content"><ol class="space-y-2">
-                            <li>Buka aplikasi DANA dan login.</li>
-                            <li>Tekan menu <strong>Kirim</strong>.</li>
-                            <li>Pilih <strong>Kirim ke Nomor HP</strong>.</li>
-                            <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
-                            <li>Tekan <strong>Lanjut</strong>.</li>
-                            <li>Masukkan nominal yang akan dikirim.</li>
-                            <li>Pilih sumber dana yang tersedia.</li>
-                            <li>Tekan <strong>Kirim Dana</strong>.</li>
-                            <li>Masukkan PIN DANA untuk menyelesaikan transaksi.</li>
-                        </ol></div></details>
-                    `;
-                    break;
-                case 'ovo':
-                    instructionAccordionHTML = `
-                        <details class="payment-accordion"><summary>Aplikasi OVO</summary><div class="payment-accordion-content"><ol class="space-y-2">
-                            <li>Buka aplikasi OVO dan login.</li>
-                            <li>Pilih menu <strong>Transfer</strong>.</li>
-                            <li>Pilih <strong>Ke Sesama OVO</strong>.</li>
-                            <li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li>
-                            <li>Masukkan nominal transfer.</li>
-                            <li>Tekan <strong>Lanjutkan</strong>.</li>
-                            <li>Periksa nama penerima.</li>
-                            <li>Tekan <strong>Transfer</strong> untuk menyelesaikan pengiriman dana.</li>
-                        </ol></div></details>
-                    `;
-                    break;
-                default:
-                     instructionAccordionHTML = `
-                        <details class="payment-accordion"><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2">
-                            <li>Buka aplikasi perbankan atau e-wallet Anda.</li>
-                            <li>Pilih menu transfer atau pembayaran.</li>
-                            <li>Masukkan detail pembayaran yang tertera di atas.</li>
-                            <li>Pastikan nominal transfer sesuai dengan total pembayaran hingga digit terakhir.</li>
-                            <li>Selesaikan transaksi dan simpan bukti pembayaran Anda.</li>
-                        </ol></div></details>
-                      `;
+                case 'qris': instructionAccordionHTML = `<details class="payment-accordion" open><summary>Cara Bayar via QRIS</summary><div class="payment-accordion-content"><ol class="space-y-3"><li>Buka aplikasi perbankan (m-banking) atau e-wallet Anda (GoPay, OVO, DANA, dll).</li><li>Pilih menu <strong>Bayar</strong>, <strong>Scan QR</strong>, atau <strong>QRIS</strong>.</li><li>Pindai (scan) kode QR yang ditampilkan di atas.</li><li>Pastikan nama merchant dan nominal pembayaran sudah sesuai.</li><li>Masukkan PIN Anda untuk menyelesaikan transaksi.</li><li>Simpan bukti pembayaran.</li></ol></div></details>`; break;
+                case 'bca_va': instructionAccordionHTML = `<details class="payment-accordion"><summary>myBCA</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi myBCA dan login.</li><li>Pilih menu <strong>Transfer</strong>, lalu pilih <strong>Virtual Account</strong>.</li><li>Pilih <strong>Tujuan Baru</strong>.</li><li>Masukkan nomor Virtual Account: <strong>${paymentAccount.number}</strong>.</li><li>Pilih sumber dana yang akan digunakan.</li><li>Masukkan nominal jika diminta.</li><li>Periksa detail transaksi, lalu tekan <strong>Lanjut</strong>.</li><li>Masukkan PIN untuk menyelesaikan transaksi.</li></ol></div></details><details class="payment-accordion"><summary>BCA Mobile</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi BCA Mobile dan login.</li><li>Pilih menu <strong>m-Transfer</strong>, lalu pilih <strong>BCA Virtual Account</strong>.</li><li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li><li>Masukkan nominal jika diminta.</li><li>Periksa nama penerima, lalu tekan <strong>OK</strong>.</li><li>Masukkan PIN m-BCA untuk menyelesaikan transaksi.</li></ol></div></details>`; break;
+                default: instructionAccordionHTML = `<details class="payment-accordion" open><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi perbankan atau e-wallet Anda.</li><li>Pilih menu transfer.</li><li>Masukkan detail pembayaran yang tertera.</li><li>Pastikan nominal transfer sesuai dengan total pembayaran hingga digit terakhir.</li><li>Selesaikan transaksi dan simpan bukti pembayaran.</li></ol></div></details>`;
             }
-
-            const paymentViewHTML = `
-                <div class="payment-header">
-                    <h2 class="main-sans">Selesaikan Pembayaran</h2>
-                    <div class="countdown-timer" id="countdown-timer-display"></div>
-                </div>
-                <div class="max-w-lg mx-auto">
-                    <div class="p-2 sm:p-4">
-                        <div class="payment-card">
-                            <h3 class="font-bold text-lg main-sans mb-1">Ringkasan Transaksi</h3>
-                            <div class="flex justify-between items-center mt-2 text-xs text-gray-600">
-                                <span>Nomor Invoice: <strong>${paymentId}</strong></span>
-                                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-netflix-red">Lihat detail</a>
-                            </div>
-                            <hr class="my-4">
-                            <p class="text-xs text-gray-600 mb-1">Total Pembayaran</p>
-                            <div class="flex items-center justify-between">
-                                <p class="text-2xl font-bold text-netflix-red main-sans">${formatCurrency(totalPrice)}</p>
-                                <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">
-                                    <i class="far fa-copy mr-1"></i>
-                                    Salin
-                                </button>
-                            </div>
-                        </div>
-                        <div class="payment-card">
-                            <h3 class="font-bold text-lg main-sans mb-3">Silahkan Bayar ke</h3>
-                            <div class="flex justify-between items-start mt-3">
-                                <div>
-                                    <p class="text-sm text-gray-500">${paymentAccount.displayName}</p>
-                                    <p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p>
-                                </div>
-                                <div class="payment-logo-container">
-                                    <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo">
-                                </div>
-                            </div>
-                            ${paymentDetailsBlock}
-                            <div class="mt-6">
-                                <p class="text-xs text-gray-500 mb-1">Bayar Sebelum</p>
-                                <p class="font-semibold text-gray-800 text-sm">${paymentDeadlineFormatted}</p>
-                            </div>
-                            <a href="${waLink}" target="_blank" class="block mt-6">
-                               <button class="confirm-button-outlined">
-                                   <i class="fab fa-whatsapp mr-2"></i>
-                                   Konfirmasi Pembayaran
-                               </button>
-                            </a>
-                        </div>
-                        <div class="payment-card">
-                            <h3 class="font-bold text-lg main-sans mb-2">Cara Membayar</h3>
-                            <div class="mt-2">
-                                ${instructionAccordionHTML}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+            const paymentViewHTML = `<div class="payment-header"><h2 class="main-sans">Selesaikan Pembayaran</h2><div class="countdown-timer" id="countdown-timer-display"></div></div><div class="max-w-lg mx-auto"><div class="p-2 sm:p-4"><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-1">Ringkasan Transaksi</h3><div class="flex justify-between items-center mt-2 text-xs text-gray-600"><span>Nomor Invoice: <strong>${paymentId}</strong></span><a href="#" onclick="showDetailsModal(event)" class="font-semibold text-netflix-red">Lihat detail</a></div><hr class="my-4"><p class="text-xs text-gray-600 mb-1">Total Pembayaran</p><div class="flex items-center justify-between"><p class="text-2xl font-bold text-netflix-red main-sans">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-3">Silahkan Bayar ke</h3><div class="flex justify-between items-start mt-3"><div><p class="text-sm text-gray-500">${paymentAccount.displayName}</p><p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p></div><div class="payment-logo-container"><img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo"></div></div>${paymentDetailsBlock}<div class="mt-6"><p class="text-xs text-gray-500 mb-1">Bayar Sebelum</p><p class="font-semibold text-gray-800 text-sm">${paymentDeadlineFormatted}</p></div><a href="${waLink}" target="_blank" class="block mt-6"><button class="confirm-button-outlined"><i class="fab fa-whatsapp mr-2"></i> Konfirmasi Pembayaran</button></a></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-2">Cara Membayar</h3><div class="mt-2">${instructionAccordionHTML}</div></div></div></div>`;
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
             startCountdown();
-
             if (paymentMethodKey === 'qris') {
                 setTimeout(() => {
                     const qrcodeContainer = document.getElementById('qrcode');
@@ -1801,15 +1447,10 @@
                             const qrisStatic = paymentAccount.number;
                             const qrisDinamis = createDynamicQrisString(qrisStatic, { nominal: totalPrice });
                             qrcodeContainer.innerHTML = '';
-                            QRCode.toCanvas(qrisDinamis, {
-                                width: 250, margin: 1, errorCorrectionLevel: 'H'
-                            }, (err, canvas) => {
+                            QRCode.toCanvas(qrisDinamis, { width: 250, margin: 1, errorCorrectionLevel: 'H' }, (err, canvas) => {
                                 if (err) { throw err; }
-                                canvas.style.width = "100%";
-                                canvas.style.height = "auto";
-                                canvas.style.borderRadius = "8px";
+                                canvas.style.width = "100%"; canvas.style.height = "auto"; canvas.style.borderRadius = "8px";
                                 qrcodeContainer.appendChild(canvas);
-                                
                                 document.getElementById('downloadQrisButton').addEventListener('click', () => {
                                     const link = document.createElement('a');
                                     link.download = `QRIS-${paymentId}.png`;
@@ -1827,79 +1468,52 @@
         }
 
         async function handleFormSubmit() {
-            // 1. Validate Form
             const formData = new FormData(elements.orderForm);
             const nama = formData.get('nama').trim();
             const whatsapp = formData.get('whatsapp').trim();
             const email = formData.get('email').trim();
             const paymentMethodKey = formData.get('payment-method');
-
             if (!nama || !whatsapp || !email || !paymentMethodKey) {
                 showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan sebelum melanjutkan.');
                 return;
             }
-
-            // --- New Validation Rules ---
             if (!email.endsWith('@gmail.com')) {
                 showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email Gmail yang valid (diakhiri dengan @gmail.com).');
                 return;
             }
-
             const phoneValidationResult = validatePhoneNumber(whatsapp);
             if (!phoneValidationResult.isValid) {
                 showInfoModal('Nomor WhatsApp Tidak Valid', phoneValidationResult.message);
                 return;
             }
-
-            // 2. Set Loading State
             elements.submitBtn.disabled = true;
             elements.submitBtn.innerHTML = '<i class="fas fa-spinner spinner mr-2"></i> Memproses...';
-
-            // 3. Prepare Data
             const pkg = packages[currentPackageId];
             const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price;
             const totalPrice = currentPrice + uniqueCode;
             const paymentAccount = paymentAccounts[paymentMethodKey];
             const now = new Date();
             const paymentId = `INV-NFLX-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
-
-            // 4. Simulate processing delay to show animation
             setTimeout(() => {
-                // The button doesn't need to be restored as the view is changing.
                 showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-            }, 800); // 800ms delay
+            }, 800);
         }
         
-        // --- NEW: Countdown Timer Function ---
         function startCountdown() {
             const countdownElement = document.getElementById('countdown-timer-display');
             if (!countdownElement || !expiryTime) return;
-
             const interval = setInterval(() => {
                 const now = new Date().getTime();
                 const distance = expiryTime - now;
-
                 if (distance < 0) {
                     clearInterval(interval);
                     countdownElement.innerHTML = "Waktu Habis";
                     return;
                 }
-
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                countdownElement.innerHTML = `
-                    <div class="countdown-item">
-                        <span class="countdown-number">${String(hours).padStart(2, '0')}</span> Jam
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number">${String(minutes).padStart(2, '0')}</span> Menit
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number">${String(seconds).padStart(2, '0')}</span> Detik
-                    </div>
-                `;
+                countdownElement.innerHTML = `<div class="countdown-item"><span class="countdown-number">${String(hours).padStart(2, '0')}</span> Jam</div><div class="countdown-item"><span class="countdown-number">${String(minutes).padStart(2, '0')}</span> Menit</div><div class="countdown-item"><span class="countdown-number">${String(seconds).padStart(2, '0')}</span> Detik</div>`;
             }, 1000);
         }
 
@@ -1928,78 +1542,18 @@
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-
-        elements.orderDetailsInForm.addEventListener('click', function(event) {
-            if (event.target.id === 'apply-coupon-btn') {
-                applyCoupon();
-            }
-        });
+        elements.couponBtn.addEventListener('click', handleCouponToggle);
 
         updateDisplay();
+        updateCouponUI();
         
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
         }
         
-        // --- REVISED: DETAILS MODAL LOGIC ---
         function getDetailsModalHTML(details) {
             const { pkg, totalPrice, paymentId, nama, whatsapp } = details;
-            return `
-                <div class="details-modal-header">
-                    <h3>Ringkasan Transaksi</h3>
-                    <button class="details-modal-close" onclick="closeDetailsModal()">&times;</button>
-                </div>
-                <div class="details-modal-body">
-                    <p class="text-sm text-gray-500 mb-6">Nomor Invoice: <strong>${paymentId}</strong></p>
-                    <div class="text-center mb-8">
-                        <p class="text-sm text-gray-600 mb-2">Total Pembayaran</p>
-                        <div class="flex items-center justify-center">
-                            <p class="text-4xl font-bold text-netflix-red main-sans">${formatCurrency(totalPrice)}</p>
-                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="space-y-4 border-t border-b border-gray-200 py-6 mb-6">
-                        <div>
-                            <div class="flex justify-between text-base">
-                                <span>${pkg.name}</span>
-                                <span class="font-semibold text-gray-800">${formatCurrency(pkg.price)}</span>
-                            </div>
-                            <div class="flex justify-between text-sm text-gray-500 mt-1">
-                                <span>1x ${formatCurrency(pkg.price)}</span>
-                            </div>
-                        </div>
-                         <div class="flex justify-between text-sm">
-                            <span class="text-gray-500">Kode Unik</span>
-                            <span class="font-medium">${formatCurrency(uniqueCode)}</span>
-                        </div>
-                    </div>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex justify-between text-base">
-                            <span class="text-gray-600">Subtotal</span>
-                            <span>${formatCurrency(totalPrice)}</span>
-                        </div>
-                        <div class="flex justify-between font-bold text-xl main-sans">
-                            <span>Total Pembayaran</span>
-                            <span class="text-netflix-red">${formatCurrency(totalPrice)}</span>
-                        </div>
-                    </div>
-                    <div class="border-t border-gray-200 pt-6">
-                        <h4 class="font-semibold mb-4 main-sans">Informasi Pelanggan</h4>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div>
-                                <p class="text-gray-500 text-sm mb-1">Nama</p>
-                                <p class="font-medium">${nama}</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500 text-sm mb-1">Nomor Telepon</p>
-                                <p class="font-medium">${whatsapp}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+            return `<div class="details-modal-header"><h3>Ringkasan Transaksi</h3><button class="details-modal-close" onclick="closeDetailsModal()">&times;</button></div><div class="details-modal-body"><p class="text-sm text-gray-500 mb-6">Nomor Invoice: <strong>${paymentId}</strong></p><div class="text-center mb-8"><p class="text-sm text-gray-600 mb-2">Total Pembayaran</p><div class="flex items-center justify-center"><p class="text-4xl font-bold text-netflix-red main-sans">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy"></i></button></div></div><div class="space-y-4 border-t border-b border-gray-200 py-6 mb-6"><div><div class="flex justify-between text-base"><span>${pkg.name}</span><span class="font-semibold text-gray-800">${isCouponApplied ? formatCurrency(pkg.discountPrice) : formatCurrency(pkg.price)}</span></div></div><div class="flex justify-between text-sm"><span class="text-gray-500">Kode Unik</span><span class="font-medium">${formatCurrency(uniqueCode)}</span></div></div><div class="space-y-3 mb-8"><div class="flex justify-between font-bold text-xl main-sans"><span>Total Pembayaran</span><span class="text-netflix-red">${formatCurrency(totalPrice)}</span></div></div><div class="border-t border-gray-200 pt-6"><h4 class="font-semibold mb-4 main-sans">Informasi Pelanggan</h4><div class="grid grid-cols-2 gap-6"><div><p class="text-gray-500 text-sm mb-1">Nama</p><p class="font-medium">${nama}</p></div><div><p class="text-gray-500 text-sm mb-1">Nomor Telepon</p><p class="font-medium">${whatsapp}</p></div></div></div></div>`;
         }
 
         window.showDetailsModal = function(event) {
