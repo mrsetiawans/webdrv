@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Langganan Netflix Premium 1 Tahun - Penawaran Spesial!</title>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/150px-Netflix_2015_logo.svg.png">
+    <link rel="icon" type="image/png" href="https://images.ctfassets.net/y2ske730sjqp/4aEQ1zAUZF5pLSDtfviWjb/ba04f8d5bd01428f6e3803cc6effaf30/Netflix_N.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -547,6 +547,57 @@
             font-size: 14px;
         }
 
+        /* Coupon Section Styles */
+        .coupon-container {
+            display: flex;
+            border: 1px solid var(--grey-300);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .coupon-input {
+            border: none;
+            padding: 10px 12px;
+            flex-grow: 1;
+            font-size: 14px;
+            outline: none;
+            background-color: var(--grey-50);
+        }
+        .coupon-input:focus {
+            background-color: #ffffff;
+        }
+        .coupon-button {
+            border: none;
+            background-color: var(--netflix-red);
+            color: white;
+            padding: 0 16px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        .coupon-button:hover {
+            background-color: var(--netflix-red-dark);
+        }
+        .coupon-button:disabled {
+            background-color: var(--grey-300);
+            cursor: not-allowed;
+        }
+        .coupon-applied-message {
+            color: var(--green-600);
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 8px;
+            text-align: center;
+        }
+        .coupon-error-message {
+            color: var(--netflix-red);
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 8px;
+            text-align: center;
+        }
+
         /* === START: User Requested Styles === */
         .payment-header {
             padding: 1rem;
@@ -1080,6 +1131,8 @@
         let countdownInterval;
         let expiryTime;
         let currentOrderDetails = {};
+        const validCouponCode = 'WEDNESDAY';
+        let isCouponApplied = false;
         
         // *** TESTIMONIALS COMBINED ***
         const allTestimonials = [
@@ -1105,10 +1158,9 @@
             netflix: {
                 id: 'netflix',
                 name: "Netflix Premium 1 Tahun",
-                price: 179000,
-                normalPrice: 500000,
+                price: 1872000,
+                discountPrice: 179000,
                 title: "NETFLIX PREMIUM",
-                priceDisplay: `Rp179.000`,
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Netflix_2015_N_logo.svg/330px-Netflix_2015_N_logo.svg.png',
                 description: "Nonton sepuasnya film, acara TV, dan banyak lagi.",
                 features: [
@@ -1180,7 +1232,7 @@
         };
 
         // --- TEMPLATE FUNCTIONS ---
-        const getProductInfoHTML = (pkg) => {
+        const getProductInfoHTML = (pkg, priceToDisplay) => {
             return `
             <div class="product-info-card">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -1190,7 +1242,7 @@
                         <p class="text-md text-gray-600 mt-1">${pkg.description}</p>
                     </div>
                     <div class="text-center md:text-right mt-4 md:mt-0 md:pl-6">
-                        <div class="text-4xl font-bold text-netflix-red main-sans">${pkg.priceDisplay}</div>
+                        <div class="text-4xl font-bold text-netflix-red main-sans">${formatCurrency(priceToDisplay)}</div>
                         <p class="text-gray-500 text-sm mt-1">Langganan 1 Tahun</p>
                         <div class="mt-2">
                             <span class="inline-block bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">
@@ -1262,27 +1314,60 @@
             return html;
         };
 
-        const getOrderDetailsHTML = (pkg, totalPrice) => `
+        const getCouponSectionHTML = () => `
+            <div id="coupon-section" class="mt-4">
+                 <div id="coupon-message-container"></div>
+                 <div class="coupon-container">
+                     <input type="text" id="coupon-input" class="coupon-input" placeholder="Masukkan Kode Kupon">
+                     <button id="apply-coupon-btn" class="coupon-button">Terapkan</button>
+                 </div>
+            </div>
+        `;
+
+        const getOrderDetailsHTML = (pkg, currentPrice, finalPrice) => {
+            let priceHTML = `<div class="flex justify-between items-center">
+                               <span class="text-sm">${pkg.name}</span>
+                               <div class="text-right">
+                                   <span class="font-semibold text-gray-800 text-md">${formatCurrency(currentPrice)}</span>
+                               </div>
+                           </div>`;
+
+            if (isCouponApplied) {
+                const discountAmount = pkg.price - pkg.discountPrice;
+                priceHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm">${pkg.name}</span>
+                        <div class="text-right">
+                            <span class="font-semibold text-gray-500 text-md line-through">${formatCurrency(pkg.price)}</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center text-green-600">
+                        <span class="text-sm font-medium">Diskon Kupon</span>
+                        <div class="text-right">
+                            <span class="font-semibold text-md">-${formatCurrency(discountAmount)}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
             <div class="mt-8 pt-6 border-t border-gray-200">
                  <h3 class="text-lg font-bold mb-4 text-gray-800 main-sans">Rincian Pesanan</h3>
                  <div class="material-card-elevated p-4 rounded-2xl space-y-3 text-gray-600">
-                     <div class="flex justify-between items-center">
-                         <span class="text-sm">${pkg.name}</span>
-                         <div class="text-right">
-                             <span class="font-semibold text-gray-800 text-md">${formatCurrency(pkg.price)}</span>
-                         </div>
-                     </div>
+                     ${priceHTML}
                      <div class="flex justify-between">
                          <span class="text-xs">Kode Unik</span>
                          <span class="font-medium text-gray-800 text-sm">${formatCurrency(uniqueCode)}</span>
                      </div>
+                     ${getCouponSectionHTML()}
                      <hr class="my-2 border-gray-200">
                      <div class="flex justify-between font-bold text-lg text-gray-900 main-sans">
                          <span>Total</span>
-                         <span class="text-netflix-red">${formatCurrency(totalPrice)}</span>
+                         <span class="text-netflix-red">${formatCurrency(finalPrice)}</span>
                      </div>
                  </div>
             </div>`;
+        }
 
         const getTestimonialsHTML = (pkg) => {
             let imagesHTML = pkg.testimonials.map((url, index) => `
@@ -1369,7 +1454,8 @@
 
         function updateDisplay() {
             const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price + uniqueCode;
+            const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price;
+            const totalPrice = currentPrice + uniqueCode;
 
             const infoContainer = elements.productInfoFormTop;
             const featuresContainer = elements.featuresBeforeForm;
@@ -1378,21 +1464,63 @@
             featuresContainer.style.opacity = '0';
 
             setTimeout(() => {
-                infoContainer.innerHTML = getProductInfoHTML(pkg);
+                infoContainer.innerHTML = getProductInfoHTML(pkg, currentPrice);
                 featuresContainer.innerHTML = getFeaturesHTML(pkg);
                 elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-                elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+                elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, currentPrice, totalPrice);
                 elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
                 elements.faqFull.innerHTML = getFaqHTML();
                 elements.policyFull.innerHTML = getPolicyHTML();
+
+                updateCouponUI();
 
                 infoContainer.style.opacity = '1';
                 featuresContainer.style.opacity = '1';
             }, 300);
         }
 
+        function applyCoupon() {
+            const couponInput = document.getElementById('coupon-input');
+            const enteredCode = couponInput.value.trim();
+            const messageContainer = document.getElementById('coupon-message-container');
+
+            if (enteredCode.toUpperCase() === validCouponCode) {
+                isCouponApplied = true;
+                messageContainer.innerHTML = `<p class="coupon-applied-message">Kupon berhasil diterapkan!</p>`;
+                updateDisplay();
+            } else {
+                isCouponApplied = false; // Ensure coupon is not applied on failure
+                messageContainer.innerHTML = `<p class="coupon-error-message">Kode kupon tidak valid.</p>`;
+                updateDisplay(); // Re-render to show original price if coupon was previously applied
+            }
+        }
+
+        function updateCouponUI() {
+            const couponInput = document.getElementById('coupon-input');
+            const applyBtn = document.getElementById('apply-coupon-btn');
+            const messageContainer = document.getElementById('coupon-message-container');
+
+            if (isCouponApplied) {
+                couponInput.value = validCouponCode;
+                couponInput.disabled = true;
+                applyBtn.disabled = true;
+                applyBtn.textContent = 'Diterapkan';
+                if (!messageContainer.querySelector('.coupon-applied-message')) {
+                    messageContainer.innerHTML = `<p class="coupon-applied-message">Kupon berhasil diterapkan!</p>`;
+                }
+            } else {
+                 if (couponInput) couponInput.disabled = false;
+                 if (applyBtn) {
+                    applyBtn.disabled = false;
+                    applyBtn.textContent = 'Terapkan';
+                 }
+            }
+        }
+
+
         function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
-            const detailPesanan = `*Email:* ${formData.get('email')}\n`;
+            const couponStatus = isCouponApplied ? `Kupon '${validCouponCode}' diterapkan` : 'Tidak ada kupon';
+            const detailPesanan = `*Email:* ${formData.get('email')}\n*Kupon:* ${couponStatus}\n`;
             const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
                           `*ID Pembayaran:* ${paymentId}\n` +
                           `*Paket:* ${pkg.name}\n` +
@@ -1729,7 +1857,8 @@
 
             // 3. Prepare Data
             const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price + uniqueCode;
+            const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price;
+            const totalPrice = currentPrice + uniqueCode;
             const paymentAccount = paymentAccounts[paymentMethodKey];
             const now = new Date();
             const paymentId = `INV-NFLX-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
@@ -1799,6 +1928,12 @@
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
+
+        elements.orderDetailsInForm.addEventListener('click', function(event) {
+            if (event.target.id === 'apply-coupon-btn') {
+                applyCoupon();
+            }
+        });
 
         updateDisplay();
         
