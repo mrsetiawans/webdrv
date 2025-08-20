@@ -547,57 +547,6 @@
             font-size: 14px;
         }
 
-        /* Coupon Section Styles */
-        .coupon-container {
-            display: flex;
-            border: 1px solid var(--grey-300);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 1rem;
-        }
-        .coupon-input {
-            border: none;
-            padding: 10px 12px;
-            flex-grow: 1;
-            font-size: 14px;
-            outline: none;
-            background-color: var(--grey-50);
-        }
-        .coupon-input:focus {
-            background-color: #ffffff;
-        }
-        .coupon-button {
-            border: none;
-            background-color: var(--netflix-red);
-            color: white;
-            padding: 0 16px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 14px;
-            transition: background-color 0.2s;
-        }
-        .coupon-button:hover {
-            background-color: var(--netflix-red-dark);
-        }
-        .coupon-button:disabled {
-            background-color: var(--grey-300);
-            cursor: not-allowed;
-        }
-        .coupon-applied-message {
-            color: var(--green-600);
-            font-size: 14px;
-            font-weight: 500;
-            margin-top: 8px;
-            text-align: center;
-        }
-        .coupon-error-message {
-            color: var(--netflix-red);
-            font-size: 14px;
-            font-weight: 500;
-            margin-top: 8px;
-            text-align: center;
-        }
-
         /* === START: User Requested Styles === */
         .payment-header {
             padding: 1rem;
@@ -970,16 +919,6 @@
                         <!-- Honeypot field for anti-spam -->
                         <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
 
-                        <!-- Coupon Code Section -->
-                        <div class="mt-8">
-                            <h2 class="text-lg font-bold mb-2 text-gray-800 main-sans">2. Punya Kode Kupon?</h2>
-                            <div class="coupon-container">
-                                <input type="text" id="coupon-input" class="coupon-input" placeholder="Masukkan Kode Kupon">
-                                <button type="button" id="apply-coupon-btn" class="coupon-button">Terapkan</button>
-                            </div>
-                            <div id="coupon-message-container" class="mt-2"></div>
-                        </div>
-
                         <!-- Metode Pembayaran -->
                         <div id="payment-method-selection" class="mt-8"></div>
                         
@@ -1134,9 +1073,6 @@
             notifName: document.querySelector('#notifBox .notif-name'),
             detailsModal: document.getElementById('detailsModal'),
             detailsModalContent: document.getElementById('detailsModalContent'),
-            couponInput: document.getElementById('coupon-input'),
-            couponBtn: document.getElementById('apply-coupon-btn'),
-            couponMessageContainer: document.getElementById('coupon-message-container'),
         };
 
         // --- CONFIGURATION ---
@@ -1233,7 +1169,7 @@
                 groupedAccounts[account.category].push({ key, ...account });
             }
 
-            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">3. Pilih Metode Pembayaran</h2>`;
+            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">2. Pilih Metode Pembayaran</h2>`;
             const categoryOrder = ['QRIS', 'Bank Transfer', 'E-Wallet'];
 
             for (const category of categoryOrder) {
@@ -1268,38 +1204,35 @@
         };
 
         const getOrderDetailsHTML = (pkg, finalPrice) => {
-            const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price;
             const discountAmount = pkg.price - pkg.discountPrice;
-
-            let priceHTML = `<div class="flex justify-between items-center">
-                               <span class="text-sm">${pkg.name}</span>
-                               <div class="text-right">
-                                   <span class="font-semibold text-gray-800 text-md">${formatCurrency(currentPrice)}</span>
-                               </div>
-                           </div>`;
-
-            if (isCouponApplied) {
-                priceHTML = `
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm">${pkg.name}</span>
-                        <div class="text-right">
-                            <span class="font-semibold text-gray-500 text-md line-through">${formatCurrency(pkg.price)}</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center text-green-600">
-                        <span class="text-sm font-medium">Diskon Kupon "${validCouponCode}"</span>
-                        <div class="text-right">
-                            <span class="font-semibold text-md">-${formatCurrency(discountAmount)}</span>
-                        </div>
-                    </div>
-                `;
-            }
 
             return `
             <div class="mt-8 pt-6 border-t border-gray-200">
-                 <h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">4. Rincian Pesanan</h2>
+                 <h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">3. Rincian Pesanan</h2>
                  <div class="material-card-elevated p-4 rounded-2xl space-y-3 text-gray-600">
-                     ${priceHTML}
+                    <div class="mb-4">
+                        <label for="coupon" class="block text-sm font-medium mb-1.5 text-gray-700">Kode Kupon</label>
+                        <div class="flex">
+                            <input type="text" id="coupon" name="coupon" class="form-input flex-grow !rounded-r-none" placeholder="Punya kode?">
+                            <button type="button" id="coupon-btn" class="cta-button red-button !rounded-l-none" style="width: auto; padding: 12px 20px; flex-shrink: 0;">Terapkan</button>
+                        </div>
+                        <p id="coupon-message" class="text-sm mt-2" style="display: none;"></p>
+                    </div>
+                    <hr class="my-3 border-gray-200">
+                     <div class="flex justify-between items-center">
+                         <span class="text-sm">${pkg.name}</span>
+                         <div class="text-right">
+                             <span class="font-semibold text-gray-800 text-md ${isCouponApplied ? 'line-through text-gray-400' : ''}">${formatCurrency(pkg.price)}</span>
+                         </div>
+                     </div>
+                     ${isCouponApplied ? `
+                     <div class="flex justify-between items-center text-green-600">
+                         <span class="text-sm">Diskon Kupon "${validCouponCode}"</span>
+                         <div class="text-right">
+                             <span class="font-semibold text-md">-${formatCurrency(discountAmount)}</span>
+                         </div>
+                     </div>
+                     ` : ''}
                      <div class="flex justify-between">
                          <span class="text-xs">Kode Unik</span>
                          <span class="font-medium text-gray-800 text-sm">${formatCurrency(uniqueCode)}</span>
@@ -1352,42 +1285,61 @@
             elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
             elements.faqFull.innerHTML = getFaqHTML();
             elements.policyFull.innerHTML = getPolicyHTML();
+
+            // Now that the coupon elements are in the DOM, update the button state.
+            updateCouponButton();
         }
 
         function showCouponMessage(message, color) {
-            elements.couponMessageContainer.innerHTML = `<p style="color: ${color};" class="text-sm font-medium">${message}</p>`;
+            const couponMessage = document.getElementById('coupon-message');
+            if (!couponMessage) return;
+
+            couponMessage.textContent = message;
+            couponMessage.style.color = color;
+            couponMessage.style.display = 'block';
+            setTimeout(() => {
+                couponMessage.style.display = 'none';
+            }, 3000);
         }
 
-        function updateCouponUI() {
+        function updateCouponButton() {
+            const couponBtn = document.getElementById('coupon-btn');
+            const couponInput = document.getElementById('coupon');
+            if (!couponBtn || !couponInput) return;
+
             if (isCouponApplied) {
-                elements.couponInput.value = validCouponCode;
-                elements.couponInput.disabled = true;
-                elements.couponBtn.textContent = 'Hapus';
-                elements.couponBtn.classList.remove('red-button'); // Ensure default is not red
-                elements.couponBtn.classList.add('red-button'); // Add red for remove
-                showCouponMessage('Kupon "WEDNESDAY" berhasil diterapkan!', 'var(--green-600)');
+                couponBtn.textContent = 'Hapus';
+                couponBtn.classList.add('red-button');
+                couponInput.value = validCouponCode;
+                couponInput.disabled = true;
             } else {
-                elements.couponInput.value = '';
-                elements.couponInput.disabled = false;
-                elements.couponBtn.textContent = 'Terapkan';
-                elements.couponBtn.classList.remove('red-button');
+                couponBtn.textContent = 'Terapkan';
+                couponBtn.classList.remove('red-button');
+                couponInput.disabled = false;
             }
         }
 
         function handleCouponToggle() {
+            const couponInput = document.getElementById('coupon');
+            if (!couponInput) return;
+
+            const couponValue = couponInput.value.trim().toUpperCase();
+            document.getElementById('coupon-message').style.display = 'none';
+
             if (isCouponApplied) {
                 isCouponApplied = false;
-                showCouponMessage('Kupon dihapus.', 'var(--netflix-red)');
+                couponInput.value = '';
+                showCouponMessage('Kupon dihapus', 'var(--netflix-red)');
             } else {
-                const enteredCode = elements.couponInput.value.trim().toUpperCase();
-                if (enteredCode === validCouponCode) {
+                if (couponValue === validCouponCode) {
                     isCouponApplied = true;
+                    showCouponMessage('Kupon "WEDNESDAY" berhasil diterapkan!', 'var(--green-600)');
                 } else {
-                    showInfoModal('Kupon Tidak Valid', `Kode kupon "${enteredCode}" tidak ditemukan.`);
+                    showInfoModal('Kupon Tidak Valid', `Kode kupon "${couponValue}" tidak ditemukan.`);
+                    isCouponApplied = false;
                 }
             }
             updateDisplay();
-            updateCouponUI();
         }
 
         function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
@@ -1542,10 +1494,14 @@
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-        elements.couponBtn.addEventListener('click', handleCouponToggle);
+        // Use event delegation for the coupon button
+        elements.orderForm.addEventListener('click', function(event) {
+            if (event.target && event.target.id === 'coupon-btn') {
+                handleCouponToggle();
+            }
+        });
 
         updateDisplay();
-        updateCouponUI();
         
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
