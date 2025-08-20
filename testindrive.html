@@ -460,12 +460,24 @@
             box-shadow: inset 0 0 0 2px var(--theme-primary);
         }
 
-        .payment-logo {
-            height: 22px;
-            width: auto;
-            max-width: 70px;
-            object-fit: contain;
+        .payment-logo-container {
+            width: 48px;
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-right: 12px;
+            padding: 4px;
+            border: 1px solid var(--theme-outline, #dadce0);
+            flex-shrink: 0;
+        }
+
+        .payment-logo {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
         }
 
         .custom-radio-button {
@@ -1340,7 +1352,9 @@
                             <div class="${borderClass}">
                                 <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="payment-radio" ${index === 0 && category === 'QRIS' ? 'checked' : ''}>
                                 <label for="${account.key}" class="payment-label">
-                                    <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
+                                    <div class="payment-logo-container">
+                                        <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
+                                    </div>
                                     <span class="font-medium text-gray-800 flex-grow google-sans text-sm">${account.displayName}</span>
                                     <span class="custom-radio-button"><span class="dot"></span></span>
                                 </label>
@@ -1747,7 +1761,9 @@
                                     <p class="text-sm text-gray-500">${paymentAccount.displayName}</p>
                                     <p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p>
                                 </div>
-                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-8">
+                                <div class="payment-logo-container">
+                                    <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo">
+                                </div>
                             </div>
                             ${paymentDetailsBlock}
                             <div class="mt-6">

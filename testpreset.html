@@ -344,12 +344,16 @@
         }
         
         .payment-logo-container {
-            width: 70px; /* Lebar tetap */
-            height: 24px; /* Tinggi tetap */
+            width: 48px;
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 12px;
+            padding: 4px;
+            border: 1px solid var(--google-grey-200, #e8eaed);
             flex-shrink: 0;
         }
         .payment-logo {
@@ -1282,7 +1286,9 @@
                                     <p class="text-sm text-gray-500">${paymentAccount.displayName}</p>
                                     <p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p>
                                 </div>
-                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-8">
+                                <div class="payment-logo-container">
+                                    <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo">
+                                </div>
                             </div>
                             ${paymentDetailsBlock}
                             <div class="mt-6">
