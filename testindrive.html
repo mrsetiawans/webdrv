@@ -1321,9 +1321,8 @@
                         <div class="text-4xl font-bold text-google-blue google-sans">${isCouponApplied ? formatCurrency(pkg.price) : formatCurrency(pkg.normalPrice)}</div>
                         <p class="text-sm text-m3-on-surface-variant mt-1">Sekali Bayar Seumur Hidup</p>
                         <div class="mt-2">
-                            <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full" style="background-color: var(--m3-secondary-container); color: var(--m3-on-secondary-container);">
-                                <i class="fas fa-infinity mr-1"></i>
-                                Unlimited Storage
+                            <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-infinity mr-1"></i>Unlimited Storage
                             </span>
                         </div>
                     </div>
@@ -1332,10 +1331,10 @@
         }
 
         const getFeaturesHTML = (pkg) => {
-            const googleColors = ['text-google-green', 'text-google-blue'];
+            const colors = ['text-blue-500', 'text-green-500', 'text-yellow-500', 'text-red-500'];
             return `<div class="material-card-elevated p-4 md:p-6 rounded-2xl">
                 <h3 class="text-xl font-bold mb-4 text-center google-sans">Yang Anda Dapatkan:</h3>
-                <ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${googleColors[index % googleColors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-theme-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
+                <ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-theme-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
             </div>`;
         }
         
