@@ -141,6 +141,16 @@
             box-shadow: var(--shadow-1);
         }
 
+        .black-button {
+            background-color: var(--grey-900);
+            color: white;
+            box-shadow: var(--shadow-1);
+        }
+        .black-button:hover {
+            background-color: var(--grey-700);
+            box-shadow: var(--shadow-2);
+        }
+
         .cta-button:disabled {
             background-color: var(--grey-300);
             color: var(--grey-500);
@@ -1214,7 +1224,7 @@
                         <label for="coupon" class="block text-sm font-medium mb-1.5 text-gray-700">Kode Kupon</label>
                         <div class="flex">
                             <input type="text" id="coupon" name="coupon" class="form-input flex-grow !rounded-r-none" placeholder="Punya kode?">
-                            <button type="button" id="coupon-btn" class="cta-button red-button !rounded-l-none" style="width: auto; padding: 12px 20px; flex-shrink: 0;">Terapkan</button>
+                            <button type="button" id="coupon-btn" class="cta-button black-button !rounded-l-none" style="width: auto; padding: 12px 20px; flex-shrink: 0;">Terapkan</button>
                         </div>
                         <p id="coupon-message" class="text-sm mt-2" style="display: none;"></p>
                     </div>
@@ -1310,11 +1320,13 @@
             if (isCouponApplied) {
                 couponBtn.textContent = 'Hapus';
                 couponBtn.classList.add('red-button');
+                couponBtn.classList.remove('black-button');
                 couponInput.value = validCouponCode;
                 couponInput.disabled = true;
             } else {
                 couponBtn.textContent = 'Terapkan';
                 couponBtn.classList.remove('red-button');
+                couponBtn.classList.add('black-button');
                 couponInput.disabled = false;
             }
         }
