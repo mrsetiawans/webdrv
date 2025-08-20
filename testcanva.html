@@ -210,7 +210,7 @@
             0%, 100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
             10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
-        .notif-icon-wrapper { color: var(--color-green); font-size: 20px; flex-shrink: 0; }
+        .notif-icon-wrapper { color: var(--canva-teal); font-size: 20px; flex-shrink: 0; }
         .notif-message { font-size: 14px; line-height: 1.4; }
         .notif-message strong { font-weight: 500; }
         .notif-time { font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-top: 2px; }
@@ -249,11 +249,11 @@
         .segmented-control .package-label {
             flex: 1; text-align: center; padding: 10px 8px; cursor: pointer;
             z-index: 2; transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--grey-700); font-size: 13px; font-weight: 500;
+            color: var(--grey-600); font-size: 13px; font-weight: 600;
             line-height: 1.2; border-radius: 8px;
         }
         .segmented-control .package-radio:checked + .package-label {
-            color: var(--canva-purple);
+            color: var(--grey-900);
         }
         .segmented-control-pill {
             position: absolute; top: 4px; bottom: 4px;
@@ -290,7 +290,24 @@
             background-color: var(--canva-purple-light);
             box-shadow: inset 0 0 0 2px var(--canva-purple);
         }
-        .payment-logo { height: 22px; width: auto; max-width: 70px; object-fit: contain; margin-right: 12px; }
+        .payment-logo-container {
+            width: 48px;
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            padding: 4px;
+            border: 1px solid var(--grey-200, #e8eaed);
+            flex-shrink: 0;
+        }
+        .payment-logo {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
         .custom-radio-button {
             height: 20px; width: 20px; border: 2px solid var(--grey-300);
             border-radius: 50%; display: flex; align-items: center;
@@ -445,7 +462,7 @@
 
         /* Security Badge */
         .security-badge {
-            background: var(--color-green); color: white;
+            background: var(--canva-teal); color: white;
             padding: 6px 12px; border-radius: 20px; font-size: 10px;
             font-weight: 500; display: inline-flex; align-items: center; gap: 6px;
         }
@@ -460,11 +477,11 @@
         <!-- Konten akan di-generate oleh JavaScript -->
     </div>
     
-    <div class="p-2 sm:p-4 lg:p-6">
+    <div class="p-3 sm:p-4 lg:p-8">
         <div id="main-content-container">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-12 gap-y-8 max-w-7xl mx-auto">
                 <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 material-card p-4 md:p-6">
+                <div class="lg:col-span-1 material-card p-5 md:p-8">
                     <!-- Header Keamanan -->
                     <div class="grid grid-cols-2 gap-2 text-center border-b border-gray-200 pb-4 mb-6">
                         <div class="flex">
@@ -546,10 +563,10 @@
                 <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
                 <div class="lg:col-span-1 py-4 space-y-8">
                     <div id="testimonials-full"></div>
-                    <div class="material-card p-4 md:p-6">
+                    <div class="material-card p-5 md:p-6">
                         <div id="faq-full"></div>
                     </div>
-                    <div class="material-card p-4 md:p-6">
+                    <div class="material-card p-5 md:p-6">
                         <div id="policy-full"></div>
                     </div>
                 </div>
@@ -792,7 +809,7 @@
         </div>`;
 
         const getFeaturesHTML = (pkg) => {
-            const colors = ['text-purple-600', 'text-teal-600', 'text-blue-600', 'text-pink-600', 'text-red-600', 'text-indigo-600', 'text-yellow-600', 'text-green-600', 'text-gray-600'];
+            const colors = ['text-purple-500', 'text-teal-500', 'text-pink-500', 'text-blue-500', 'text-red-500', 'text-indigo-500', 'text-yellow-500', 'text-green-500', 'text-orange-500', 'text-cyan-500'];
             return `<div class="material-card-elevated p-4 md:p-6 rounded-2xl">
                 <h3 class="text-xl font-bold mb-4 text-gray-800 text-center">Yang Anda Dapatkan:</h3>
                 <ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-gray-600 text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
@@ -825,7 +842,9 @@
                             <div class="${borderClass}">
                                 <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="payment-radio" ${isFirst ? 'checked' : ''}>
                                 <label for="${account.key}" class="payment-label">
-                                    <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
+                                    <div class="payment-logo-container">
+                                        <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
+                                    </div>
                                     <span class="font-medium text-gray-800 flex-grow text-sm">${account.displayName}</span>
                                     <span class="custom-radio-button"><span class="dot"></span></span>
                                 </label>
@@ -1070,7 +1089,9 @@
                                     <p class="text-sm text-gray-500">${paymentAccount.displayName}</p>
                                     <p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p>
                                 </div>
-                                <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="h-8">
+                                <div class="payment-logo-container">
+                                    <img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo">
+                                </div>
                             </div>
                             ${paymentDetailsBlock}
                             <div class="mt-6">
