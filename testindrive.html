@@ -1169,9 +1169,6 @@
             notifName: document.querySelector('#notifBox .notif-name'),
             detailsModal: document.getElementById('detailsModal'),
             detailsModalContent: document.getElementById('detailsModalContent'),
-            couponInput: document.getElementById('coupon'),
-            couponBtn: document.getElementById('coupon-btn'),
-            couponMessage: document.getElementById('coupon-message'),
         };
 
         // --- CONFIGURATION ---
@@ -1546,6 +1543,9 @@
                 elements.faqFull.innerHTML = getFaqHTML();
                 elements.policyFull.innerHTML = getPolicyHTML();
 
+                // Now that the coupon elements are in the DOM, update the button state.
+                updateCouponButton();
+
                 // 3. Start fade-in
                 infoContainer.style.opacity = '1';
                 featuresContainer.style.opacity = '1';
@@ -1553,12 +1553,15 @@
         }
 
         function handleCouponToggle() {
-            const couponValue = elements.couponInput.value.trim().toUpperCase();
-            elements.couponMessage.style.display = 'none';
+            const couponInput = document.getElementById('coupon');
+            if (!couponInput) return;
+
+            const couponValue = couponInput.value.trim().toUpperCase();
+            document.getElementById('coupon-message').style.display = 'none';
 
             if (isCouponApplied) {
                 isCouponApplied = false;
-                elements.couponInput.value = '';
+                couponInput.value = '';
                 showCouponMessage('Kupon dihapus', 'green');
             } else {
                 if (couponValue === validCouponCode) {
@@ -1570,30 +1573,36 @@
                 }
             }
             updateDisplay();
-            updateCouponButton();
         }
 
         function updateCouponButton() {
+            const couponBtn = document.getElementById('coupon-btn');
+            const couponInput = document.getElementById('coupon');
+            if (!couponBtn || !couponInput) return;
+
             if (isCouponApplied) {
-                elements.couponBtn.textContent = 'Hapus';
-                elements.couponBtn.classList.remove('blue-button');
-                elements.couponBtn.classList.add('red-button');
-                elements.couponInput.value = validCouponCode;
-                elements.couponInput.disabled = true;
+                couponBtn.textContent = 'Hapus';
+                couponBtn.classList.remove('blue-button');
+                couponBtn.classList.add('red-button');
+                couponInput.value = validCouponCode;
+                couponInput.disabled = true;
             } else {
-                elements.couponBtn.textContent = 'Terapkan';
-                elements.couponBtn.classList.add('blue-button');
-                elements.couponBtn.classList.remove('red-button');
-                elements.couponInput.disabled = false;
+                couponBtn.textContent = 'Terapkan';
+                couponBtn.classList.add('blue-button');
+                couponBtn.classList.remove('red-button');
+                couponInput.disabled = false;
             }
         }
 
         function showCouponMessage(message, color) {
-            elements.couponMessage.textContent = message;
-            elements.couponMessage.style.color = color;
-            elements.couponMessage.style.display = 'block';
+            const couponMessage = document.getElementById('coupon-message');
+            if (!couponMessage) return;
+
+            couponMessage.textContent = message;
+            couponMessage.style.color = color;
+            couponMessage.style.display = 'block';
             setTimeout(() => {
-                elements.couponMessage.style.display = 'none';
+                couponMessage.style.display = 'none';
             }, 3000);
         }
 
@@ -2051,7 +2060,13 @@
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-        elements.couponBtn.addEventListener('click', handleCouponToggle);
+
+        // Use event delegation for the coupon button
+        elements.orderForm.addEventListener('click', function(event) {
+            if (event.target && event.target.id === 'coupon-btn') {
+                handleCouponToggle();
+            }
+        });
 
         document.querySelectorAll('input[name="package"]').forEach(radio => {
             radio.addEventListener('change', (event) => {
@@ -2061,7 +2076,6 @@
         });
 
         updateDisplay();
-        updateCouponButton();
         
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
