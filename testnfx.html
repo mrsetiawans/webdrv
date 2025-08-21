@@ -422,6 +422,19 @@
             border: 1px solid var(--grey-200, #e8eaed);
             flex-shrink: 0;
         }
+        .form-payment-logo-container {
+            width: 48px;
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            padding: 4px;
+            border: 1px solid var(--grey-200, #e8eaed);
+            flex-shrink: 0;
+        }
         .payment-logo {
             max-height: 100%;
             max-width: 100%;
@@ -1193,7 +1206,7 @@
                             <div>
                                 <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="payment-radio" ${isFirst ? 'checked' : ''}>
                                 <label for="${account.key}" class="payment-label">
-                                    <div class="payment-logo-container">
+                                    <div class="form-payment-logo-container">
                                         <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
                                     </div>
                                     <span class="font-medium text-gray-800 flex-grow main-sans text-sm">${account.displayName}</span>
