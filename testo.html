@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -12,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
-
     <!-- === KODE FACEBOOK PIXEL DIMULAI DI SINI === -->
     <script>
       !function(f,b,e,v,n,t,s)
@@ -30,7 +28,6 @@
     src="https://www.facebook.com/tr?id=668703605199479&ev=PageView&noscript=1"
     /></noscript>
     <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
-
     <style>
         :root {
             --netflix-red: #E50914;
@@ -49,7 +46,6 @@
             --shadow-2: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
             --shadow-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.3);
         }
-
         /* Typography */
         body {
             font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -59,11 +55,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
-        .main-sans {
-            font-family: 'Inter', sans-serif;
-        }
-
+        .main-sans { font-family: 'Inter', sans-serif; }
         /* Enhanced Material Design Components */
         .material-card {
             background: #ffffff;
@@ -72,15 +64,8 @@
             transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--grey-200);
         }
-
-        .material-card:hover {
-            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.08);
-        }
-
-        .material-card-elevated {
-            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.08);
-        }
-
+        .material-card:hover { box-shadow: 0 7px 14px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.08); }
+        .material-card-elevated { box-shadow: 0 7px 14px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.08); }
         /* Enhanced Form Inputs */
         .form-input {
             border: 2px solid var(--grey-300);
@@ -93,18 +78,13 @@
             font-family: 'Roboto', sans-serif;
             color: var(--grey-900);
         }
-
         .form-input:focus {
             border-color: var(--netflix-red);
             background-color: #ffffff;
             outline: none;
             box-shadow: none;
         }
-
-        .form-input::placeholder {
-            color: var(--grey-500);
-        }
-
+        .form-input::placeholder { color: var(--grey-500); }
         /* Enhanced Netflix-style Buttons */
         .cta-button {
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -124,24 +104,20 @@
             letter-spacing: 0.25px;
             min-height: 46px;
         }
-
         .red-button {
             background-color: var(--netflix-red);
             color: white;
             box-shadow: var(--shadow-1);
         }
-
         .red-button:hover {
             background-color: var(--netflix-red-dark);
             box-shadow: var(--shadow-2);
             transform: translateY(-1px);
         }
-
         .red-button:active {
             transform: translateY(0);
             box-shadow: var(--shadow-1);
         }
-
         .black-button {
             background-color: var(--grey-900);
             color: white;
@@ -151,7 +127,6 @@
             background-color: var(--grey-700);
             box-shadow: var(--shadow-2);
         }
-
         .cta-button:disabled {
             background-color: var(--grey-300);
             color: var(--grey-500);
@@ -159,7 +134,6 @@
             transform: none;
             box-shadow: none;
         }
-
         /* Enhanced Modal Styling */
         .modal {
             display: none;
@@ -175,7 +149,6 @@
             justify-content: center;
             align-items: center;
         }
-
         .modal-content {
             background-color: #ffffff;
             margin: auto;
@@ -188,18 +161,10 @@
             position: relative;
             animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
-
         .modal-content h3 {
             color: var(--grey-900);
             margin-bottom: 12px;
@@ -207,14 +172,12 @@
             font-weight: 500;
             font-family: 'Inter', sans-serif;
         }
-
         .modal-content p {
             color: var(--grey-600);
             margin-bottom: 20px;
             line-height: 1.6;
             font-size: 14px;
         }
-
         .modal-ok-button {
             background-color: var(--netflix-red);
             color: white;
@@ -228,12 +191,10 @@
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             min-height: 36px;
         }
-
         .modal-ok-button:hover {
             background-color: var(--netflix-red-dark);
             box-shadow: var(--shadow-1);
         }
-
         /* Enhanced Testimonial Section */
         .testimonial-image {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -241,12 +202,10 @@
             border-radius: 12px;
             overflow: hidden;
         }
-
         .testimonial-image:hover {
             transform: scale(1.02);
             box-shadow: var(--shadow-2);
         }
-
         /* Enhanced Notification Toast */
         .notif-box {
             position: fixed;
@@ -268,67 +227,25 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: 'Roboto', sans-serif;
         }
-
         .notif-box.show {
             display: flex;
             opacity: 1;
             animation: slideInAndOut 5s ease-in-out forwards;
         }
-
         @keyframes slideInAndOut {
-            0% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px);
-            }
-            10% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-            90% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px);
-            }
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
         }
-
-        .notif-icon-wrapper {
-            color: var(--green-600);
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .notif-message {
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .notif-message strong {
-            font-weight: 500;
-        }
-
-        .notif-time {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 2px;
-        }
-
+        .notif-icon-wrapper { color: var(--green-600); font-size: 20px; flex-shrink: 0; }
+        .notif-message { font-size: 14px; line-height: 1.4; }
+        .notif-message strong { font-weight: 500; }
+        .notif-time { font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-top: 2px; }
         /* Enhanced FAQ Section */
-        .faq-item {
-            border-bottom: 1px solid var(--grey-200);
-            transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-
-        .faq-item:hover {
-            background-color: var(--grey-50);
-        }
-
+        .faq-item { border-bottom: 1px solid var(--grey-200); transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item:hover { background-color: var(--grey-50); }
         .faq-item summary {
             font-weight: 500;
             font-size: 15px;
@@ -341,11 +258,7 @@
             align-items: center;
             font-family: 'Inter', sans-serif;
         }
-
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-
+        .faq-item summary::-webkit-details-marker { display: none; }
         .faq-item summary::after {
             content: '\f078';
             font-family: 'Font Awesome 6 Free';
@@ -354,43 +267,18 @@
             color: var(--grey-600);
             font-size: 14px;
         }
-
-        .faq-item[open] summary::after {
-            transform: rotate(180deg);
-        }
-
-        .faq-content {
-            padding: 0 12px 16px 12px;
-            color: var(--grey-600);
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        .faq-item[open] summary {
-            color: var(--netflix-red);
-        }
-
+        .faq-item[open] summary::after { transform: rotate(180deg); }
+        .faq-content { padding: 0 12px 16px 12px; color: var(--grey-600); line-height: 1.6; font-size: 14px; }
+        .faq-item[open] summary { color: var(--netflix-red); }
         /* Enhanced Product Info Display */
-        #product-info-form-top,
-        #features-before-form {
-            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         .product-info-card {
             background: linear-gradient(135deg, var(--netflix-red-light) 0%, #ffffff 100%);
             border: 1px solid var(--grey-200);
             border-radius: 16px;
             padding: 20px;
         }
-
         /* Enhanced Payment Method Styles */
-        .payment-radio {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
+        .payment-radio { position: absolute; opacity: 0; width: 0; height: 0; }
         .payment-label {
             display: flex;
             align-items: center;
@@ -400,16 +288,8 @@
             border-radius: 12px;
             margin: 2px;
         }
-
-        .payment-label:hover {
-            background-color: var(--grey-50);
-        }
-
-        .payment-radio:checked + .payment-label {
-            background-color: var(--netflix-red-light);
-            box-shadow: inset 0 0 0 2px var(--netflix-red);
-        }
-
+        .payment-label:hover { background-color: var(--grey-50); }
+        .payment-radio:checked + .payment-label { background-color: var(--netflix-red-light); box-shadow: inset 0 0 0 2px var(--netflix-red); }
         .payment-logo-container {
             width: 64px;
             height: 40px;
@@ -436,12 +316,7 @@
             border: 1px solid var(--grey-200, #e8eaed);
             flex-shrink: 0;
         }
-        .payment-logo {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
-        }
-
+        .payment-logo { max-height: 100%; max-width: 100%; object-fit: contain; }
         .custom-radio-button {
             height: 20px;
             width: 20px;
@@ -454,7 +329,6 @@
             flex-shrink: 0;
             margin-left: auto;
         }
-
         .custom-radio-button .dot {
             height: 8px;
             width: 8px;
@@ -462,15 +336,8 @@
             background-color: transparent;
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .payment-radio:checked + .payment-label .custom-radio-button {
-            border-color: var(--netflix-red);
-        }
-
-        .payment-radio:checked + .payment-label .custom-radio-button .dot {
-            background-color: var(--netflix-red);
-        }
-
+        .payment-radio:checked + .payment-label .custom-radio-button { border-color: var(--netflix-red); }
+        .payment-radio:checked + .payment-label .custom-radio-button .dot { background-color: var(--netflix-red); }
         /* Enhanced Payment Instruction Layout */
         .payment-header {
             background: linear-gradient(135deg, var(--grey-900) 0%, #1f1f23 100%);
@@ -480,7 +347,6 @@
             top: 0;
             z-index: 999;
         }
-
         .payment-card {
             background-color: #ffffff;
             border: 1px solid var(--grey-200);
@@ -489,7 +355,6 @@
             margin-top: 12px;
             box-shadow: var(--shadow-1);
         }
-
         .copy-button-text {
             background: none;
             border: none;
@@ -500,11 +365,7 @@
             border-radius: 4px;
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .copy-button-text:hover {
-            background-color: var(--netflix-red-light);
-        }
-
+        .copy-button-text:hover { background-color: var(--netflix-red-light); }
         .confirm-button-outlined {
             width: 100%;
             padding: 12px 24px;
@@ -518,20 +379,9 @@
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             min-height: 48px;
         }
-
-        .confirm-button-outlined:hover {
-            background-color: var(--netflix-red-light);
-            box-shadow: var(--shadow-1);
-        }
-
-        .payment-accordion {
-            border-bottom: 1px solid var(--grey-200);
-        }
-
-        .payment-accordion:last-child {
-            border-bottom: none;
-        }
-
+        .confirm-button-outlined:hover { background-color: var(--netflix-red-light); box-shadow: var(--shadow-1); }
+        .payment-accordion { border-bottom: 1px solid var(--grey-200); }
+        .payment-accordion:last-child { border-bottom: none; }
         .payment-accordion summary {
             font-weight: 500;
             padding: 14px 0;
@@ -542,11 +392,7 @@
             align-items: center;
             font-family: 'Inter', sans-serif;
         }
-
-        .payment-accordion summary::-webkit-details-marker {
-            display: none;
-        }
-
+        .payment-accordion summary::-webkit-details-marker { display: none; }
         .payment-accordion summary::after {
             content: '\f078';
             font-family: 'Font Awesome 6 Free';
@@ -554,49 +400,14 @@
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             color: var(--grey-600);
         }
-
-        .payment-accordion[open] summary::after {
-            transform: rotate(180deg);
-        }
-
-        .payment-accordion-content {
-            padding-bottom: 16px;
-            color: var(--grey-600);
-            line-height: 1.6;
-        }
-
-        .payment-accordion-content ol {
-            list-style-type: decimal;
-            padding-left: 20px;
-            font-size: 14px;
-        }
-
+        .payment-accordion[open] summary::after { transform: rotate(180deg); }
+        .payment-accordion-content { padding-bottom: 16px; color: var(--grey-600); line-height: 1.6; }
+        .payment-accordion-content ol { list-style-type: decimal; padding-left: 20px; font-size: 14px; }
         /* === START: User Requested Styles === */
-        .payment-header {
-            padding: 1rem;
-        }
-
-        .payment-header h2 {
-            font-size: 1.125rem;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            color: #ffffff;
-        }
-
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .countdown-item {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
+        .payment-header { padding: 1rem; }
+        .payment-header h2 { font-size: 1.125rem; font-weight: 500; font-family: 'Inter', sans-serif; color: #ffffff; }
+        .countdown-timer { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+        .countdown-item { display: flex; align-items: center; gap: 0.25rem; }
         .countdown-number {
             background-color: var(--netflix-red);
             color: white;
@@ -607,33 +418,16 @@
             font-family: 'Inter', sans-serif;
             text-align: center;
         }
-
         @media (max-width: 768px) {
-            .payment-header {
-                padding: 0.875rem 1rem;
-            }
-            .payment-header h2 {
-                font-size: 1.0625rem;
-            }
-            .countdown-timer {
-                margin-top: 0.25rem;
-            }
-            .countdown-number {
-                font-size: 0.875rem;
-                padding: 0.15rem 0.4rem;
-            }
-            .countdown-item {
-                font-size: 0.75rem;
-            }
+            .payment-header { padding: 0.875rem 1rem; }
+            .payment-header h2 { font-size: 1.0625rem; }
+            .countdown-timer { margin-top: 0.25rem; }
+            .countdown-number { font-size: 0.875rem; padding: 0.15rem 0.4rem; }
+            .countdown-item { font-size: 0.75rem; }
         }
         /* === END: User Requested Styles === */
-
-
         /* Enhanced Details Modal (Bottom Sheet) */
-        #detailsModal {
-            align-items: flex-end;
-        }
-
+        #detailsModal { align-items: flex-end; }
         .details-modal-content {
             background-color: #ffffff;
             width: 100%;
@@ -643,33 +437,10 @@
             text-align: left;
             transform: translateY(100%);
         }
-
-        .details-modal-content.is-open {
-            animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .details-modal-content.is-closing {
-            animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(100%);
-            }
-        }
-
+        .details-modal-content.is-open { animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .details-modal-content.is-closing { animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        @keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
         .details-modal-header {
             padding: 20px 24px;
             border-bottom: 1px solid var(--grey-200);
@@ -677,14 +448,7 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .details-modal-header h3 {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--grey-900);
-            font-family: 'Inter', sans-serif;
-        }
-
+        .details-modal-header h3 { font-size: 18px; font-weight: 500; color: var(--grey-900); font-family: 'Inter', sans-serif; }
         .details-modal-close {
             font-size: 24px;
             font-weight: 400;
@@ -696,17 +460,8 @@
             border-radius: 50%;
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .details-modal-close:hover {
-            background-color: var(--grey-100);
-        }
-
-        .details-modal-body {
-            padding: 20px 24px 32px 24px;
-            max-height: 60vh;
-            overflow-y: auto;
-        }
-
+        .details-modal-close:hover { background-color: var(--grey-100); }
+        .details-modal-body { padding: 20px 24px 32px 24px; max-height: 60vh; overflow-y: auto; }
         /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
             .notif-box {
@@ -717,45 +472,17 @@
                 width: calc(100% - 32px);
                 max-width: none;
             }
-
             @keyframes slideInAndOut {
-                0% {
-                    opacity: 0;
-                    transform: translateY(-20px);
-                }
-                10% {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-                90% {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-                100% {
-                    opacity: 0;
-                    transform: translateY(-20px);
-                }
+                0% { opacity: 0; transform: translateY(-20px); }
+                10% { opacity: 1; transform: translateY(0); }
+                90% { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(-20px); }
             }
-
-            .material-card {
-                border-radius: 16px;
-                margin: 0 4px;
-            }
-
-            .form-input {
-                font-size: 16px; /* Prevent zoom on iOS */
-            }
+            .material-card { border-radius: 16px; margin: 0 4px; }
+            .form-input { font-size: 16px; /* Prevent zoom on iOS */ }
         }
-
         /* Enhanced Image Modal */
-        .modal-image-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
+        .modal-image-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
         .modal-content-image {
             margin: auto;
             display: block;
@@ -765,7 +492,6 @@
             animation: zoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 8px;
         }
-
         .close-image-modal-button {
             margin-top: 20px;
             color: #ffffff;
@@ -778,14 +504,9 @@
             font-family: 'Inter', sans-serif;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(4px); /* Reduced from 8px */
+            backdrop-filter: blur(4px);
         }
-
-        .close-image-modal-button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
+        .close-image-modal-button:hover { background-color: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.5); }
         .modal-nav {
             cursor: pointer;
             position: absolute;
@@ -801,43 +522,16 @@
             user-select: none;
             -webkit-user-select: none;
             background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px); /* Reduced from 8px */
+            backdrop-filter: blur(4px);
             display: none;
         }
-
-        .modal-nav.prev {
-            left: 20px;
-        }
-
-        .modal-nav.next {
-            right: 20px;
-        }
-
-        .modal-nav:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-            transform: scale(1.1);
-        }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.95);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
+        .modal-nav.prev { left: 20px; }
+        .modal-nav.next { right: 20px; }
+        .modal-nav:hover { background-color: rgba(0, 0, 0, 0.7); transform: scale(1.1); }
+        @keyframes zoomIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         /* Enhanced Feature Icons */
-        .feature-icon {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .feature-icon:hover {
-            transform: scale(1.1);
-        }
-
+        .feature-icon { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .feature-icon:hover { transform: scale(1.1); }
         /* Enhanced Security Badge */
         .security-badge {
             background: linear-gradient(135deg, var(--green-600) 0%, #0f7b0f 100%);
@@ -850,72 +544,41 @@
             align-items: center;
             gap: 6px;
         }
-
         /* Enhanced Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Inter', sans-serif;
-            color: var(--grey-900);
-        }
-
-        .text-netflix-red {
-            color: var(--netflix-red);
-        }
-
-        .bg-netflix-red {
-            background-color: var(--netflix-red);
-        }
-
+        h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; color: var(--grey-900); }
+        .text-netflix-red { color: var(--netflix-red); }
+        .bg-netflix-red { background-color: var(--netflix-red); }
         /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
+        html { scroll-behavior: smooth; }
         /* Loading States */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .spinner {
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        .loading { opacity: 0.7; pointer-events: none; }
+        .spinner { animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- SECTION 3: PAYMENT COMPLETION (Initially Hidden) -->
-    <div id="payment-section" style="display: none;">
+    <!-- HALAMAN 3: INSTRUKSI PEMBAYARAN -->
+    <div id="payment-page" style="display: none;">
         <!-- Konten akan di-generate oleh JavaScript -->
     </div>
 
-    <!-- SECTION 1: PRODUCT INFORMATION (Initially Visible) -->
-    <div id="product-section">
-        <div class="p-3 sm:p-4 lg:p-8">
-            <div class="max-w-4xl mx-auto">
-                <!-- Product Info (JS-injected) -->
-                <div id="product-info-display" class="mb-6"></div>
-                <!-- Features (JS-injected) -->
-                <div id="features-display" class="mb-6"></div>
-                
-                <!-- "Proceed to Checkout" Button -->
-                <div class="mt-8 text-center">
-                    <button id="go-to-checkout-btn" class="cta-button red-button !w-auto animate-pulse">
-                        <i class="fas fa-shopping-cart mr-2"></i>
-                        Beli Sekarang & Dapatkan Diskon
+    <div id="main-content-wrapper">
+        <!-- HALAMAN 1: INFORMASI PRODUK -->
+        <div id="product-page" class="p-3 sm:p-4 lg:p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-12 gap-y-8 max-w-7xl mx-auto">
+                <!-- Kolom Kiri: Info Produk & Fitur -->
+                <div class="lg:col-span-1 space-y-8">
+                    <div id="product-info-main"></div>
+                    <div id="features-main"></div>
+                    <button id="go-to-checkout-btn" class="cta-button red-button w-full">
+                        <i class="fas fa-arrow-right mr-2"></i>
+                        Lanjutkan ke Pembayaran
                     </button>
                 </div>
 
-                <!-- Testimonials, FAQ, etc. (JS-injected) -->
-                <div class="mt-8 space-y-8">
+                <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
+                <div class="lg:col-span-1 py-4 space-y-8">
                     <div id="testimonials-full"></div>
                     <div class="material-card p-5 md:p-6">
                         <div id="faq-full"></div>
@@ -925,80 +588,69 @@
                     </div>
                 </div>
             </div>
-            
-            <footer id="footer-product" class="text-center mt-12 text-gray-500 text-sm">
-                <p>Copyright © <span id="currentYearProduct">2025</span> NFX ID. Semua Hak Dilindungi.</p>
-            </footer>
         </div>
-    </div>
 
-    <!-- SECTION 2: CHECKOUT FORM (Initially Hidden) -->
-    <div id="checkout-section" style="display: none;">
-        <div class="p-3 sm:p-4 lg:p-8">
-            <div class="max-w-2xl mx-auto">
-                <button id="back-to-product-btn" class="mb-4 text-sm font-medium text-gray-600 hover:text-netflix-red transition-colors duration-200">
-                   <i class="fas fa-arrow-left mr-2"></i>Kembali ke Info Produk
-                </button>
-                <!-- The original form from the left column goes here -->
-                <div class="material-card p-5 md:p-8">
-                    <!-- Header Keamanan -->
-                    <div class="grid grid-cols-2 gap-2 text-center border-b border-gray-200 pb-4 mb-6">
-                        <div class="flex">
-                            <div class="security-badge w-full justify-center">
-                                <i class="fas fa-shield-alt text-xs mr-1"></i>
-                                TRANSAKSI AMAN
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="security-badge w-full justify-center" style="background: linear-gradient(135deg, var(--netflix-red) 0%, #B20710 100%);">
-                                <i class="fas fa-hand-holding-usd text-xs mr-1"></i>
-                                GARANSI UANG KEMBALI
-                            </div>
+        <!-- HALAMAN 2: FORMULIR CHECKOUT -->
+        <div id="checkout-page" class="p-3 sm:p-4 lg:p-8 max-w-2xl mx-auto" style="display: none;">
+            <div class="material-card p-5 md:p-8">
+                <!-- Header Keamanan -->
+                <div class="grid grid-cols-2 gap-2 text-center border-b border-gray-200 pb-4 mb-6">
+                    <div class="flex">
+                        <div class="security-badge w-full justify-center">
+                            <i class="fas fa-shield-alt text-xs mr-1"></i>
+                            TRANSAKSI AMAN
                         </div>
                     </div>
-                    
-                    <!-- Info Produk di Checkout -->
-                    <div id="product-info-checkout" class="mb-6"></div>
-
-                    <!-- Form -->
-                    <form id="orderForm">
-                        <h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">1. Lengkapi Data</h2>
-                        <div class="space-y-4">
-                            <div>
-                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
-                                <input type="text" id="nama" name="nama" class="form-input" placeholder="Masukkan nama lengkap Anda">
-                            </div>
-                            <div>
-                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
-                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="Contoh: 081234567890">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Email Anda (untuk pengiriman akun) <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="email" class="form-input" placeholder="contoh.email@gmail.com">
-                            </div>
+                    <div class="flex">
+                        <div class="security-badge w-full justify-center" style="background: linear-gradient(135deg, var(--netflix-red) 0%, #B20710 100%);">
+                            <i class="fas fa-hand-holding-usd text-xs mr-1"></i>
+                            GARANSI UANG KEMBALI
                         </div>
-                        
-                        <!-- Honeypot field for anti-spam -->
-                        <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
-
-                        <!-- Metode Pembayaran -->
-                        <div id="payment-method-selection" class="mt-8"></div>
-                        
-                        <!-- Rincian Pesanan -->
-                        <div id="order-details-in-form" class="mt-8"></div>
-                        
-                        <button type="button" id="submit-btn" class="cta-button red-button mt-8">
-                            <i class="fas fa-lock mr-2"></i>
-                            Selesaikan Pembayaran
-                        </button>
-                    </form>
+                    </div>
                 </div>
+
+                <!-- Info Produk (Ringkas) -->
+                <div id="product-info-checkout" class="mb-6"></div>
+
+                <!-- Form -->
+                <form id="orderForm">
+                    <h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">1. Lengkapi Data</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
+                            <input type="text" id="nama" name="nama" class="form-input" placeholder="Masukkan nama lengkap Anda">
+                        </div>
+                        <div>
+                            <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
+                            <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="Contoh: 081234567890">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Email Anda (untuk pengiriman akun) <span class="text-red-500">*</span></label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="contoh.email@gmail.com">
+                        </div>
+                    </div>
+
+                    <!-- Honeypot field for anti-spam -->
+                    <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
+
+                    <!-- Metode Pembayaran -->
+                    <div id="payment-method-selection" class="mt-8"></div>
+
+                    <!-- Rincian Pesanan -->
+                    <div id="order-details-in-form" class="mt-8"></div>
+
+                    <button type="button" id="submit-btn" class="cta-button red-button mt-8">
+                        <i class="fas fa-lock mr-2"></i>
+                        Selesaikan Pembayaran
+                    </button>
+                </form>
             </div>
-            <footer id="footer-checkout" class="text-center mt-12 text-gray-500 text-sm">
-                <p>Copyright © <span id="currentYearCheckout">2025</span> NFX ID. Semua Hak Dilindungi.</p>
-            </footer>
         </div>
     </div>
+
+    <footer id="footer" class="text-center mt-12 mb-8 text-gray-500 text-sm">
+        <p>Copyright © <span id="currentYear">2025</span> NFX ID. Semua Hak Dilindungi.</p>
+    </footer>
 
     <!-- Modal for Info/Confirmation -->
     <div id="infoModal" class="modal">
@@ -1018,8 +670,8 @@
             <button class="close-image-modal-button" onclick="closeImageModal()">Tutup</button>
         </div>
     </div>
-    
-    <!-- Modal for Transaction Details -->
+
+    <!-- NEW: Modal for Transaction Details -->
     <div id="detailsModal" class="modal">
         <div class="details-modal-content" id="detailsModalContent">
             <!-- Content will be injected by JS -->
@@ -1079,53 +731,42 @@
 
     function validatePhoneNumber(nomorHp) {
         const genericError = { isValid: false, message: 'Silahkan isi dengan nomor yang benar' };
-
-        if (nomorHp.length < 10) {
-            return genericError;
-        }
-
+        if (nomorHp.length < 10) return genericError;
         const operator = getOperatorFromNumber(nomorHp);
-        if (!operator) {
-            return genericError;
-        }
-
+        if (!operator) return genericError;
         const maxLength = operator === 'Tri (3)' ? 13 : 12;
-        if (nomorHp.length > maxLength) {
-            return genericError;
-        }
-
-        if (isInvalidPattern(nomorHp)) {
-            return genericError;
-        }
-
+        if (nomorHp.length > maxLength) return genericError;
+        if (isInvalidPattern(nomorHp)) return genericError;
         return { isValid: true, message: 'Nomor valid.' };
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-
         // --- ELEMENTS ---
         const elements = {
-            productSection: document.getElementById('product-section'),
-            checkoutSection: document.getElementById('checkout-section'),
-            paymentSection: document.getElementById('payment-section'),
+            // Page containers
+            productPage: document.getElementById('product-page'),
+            checkoutPage: document.getElementById('checkout-page'),
+            paymentPage: document.getElementById('payment-page'),
+            mainContentWrapper: document.getElementById('main-content-wrapper'),
             
+            // Buttons
             goToCheckoutBtn: document.getElementById('go-to-checkout-btn'),
-            backToProductBtn: document.getElementById('back-to-product-btn'),
+            submitBtn: document.getElementById('submit-btn'),
 
-            currentYearProduct: document.getElementById('currentYearProduct'),
-            currentYearCheckout: document.getElementById('currentYearCheckout'),
-
-            productInfoDisplay: document.getElementById('product-info-display'),
-            featuresDisplay: document.getElementById('features-display'),
+            // Content containers
+            productInfoMain: document.getElementById('product-info-main'),
+            featuresMain: document.getElementById('features-main'),
             productInfoCheckout: document.getElementById('product-info-checkout'),
-            
             paymentMethodSelection: document.getElementById('payment-method-selection'),
             orderDetailsInForm: document.getElementById('order-details-in-form'),
             testimonialsFull: document.getElementById('testimonials-full'),
             faqFull: document.getElementById('faq-full'),
             policyFull: document.getElementById('policy-full'),
+            
+            // Other
+            footer: document.getElementById('footer'),
+            currentYear: document.getElementById('currentYear'),
             orderForm: document.getElementById('orderForm'),
-            submitBtn: document.getElementById('submit-btn'),
             notifBox: document.getElementById('notifBox'),
             notifName: document.querySelector('#notifBox .notif-name'),
             detailsModal: document.getElementById('detailsModal'),
@@ -1139,7 +780,7 @@
         let currentOrderDetails = {};
         const validCouponCode = 'WEDNESDAY';
         let isCouponApplied = true; // Coupon is applied by default
-        
+
         // *** TESTIMONIALS COMBINED ***
         const allTestimonials = [
             "https://s6.imgcdn.dev/YIjP00.png", "https://s6.imgcdn.dev/YIjK4e.png", "https://s6.imgcdn.dev/YIjT3M.png",
@@ -1172,9 +813,8 @@
                 testimonials: allTestimonials
             }
         };
-
         let currentPackageId = 'netflix';
-        
+
         const paymentAccounts = {
             qris: { displayName: 'QRIS', accountHolder: 'Epay', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris', category: 'QRIS' },
             cimb: { displayName: 'Cimb Niaga', accountHolder: 'Octo Pay - 6289510639366', number: '6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'va', category: 'Bank Transfer' },
@@ -1185,22 +825,7 @@
         };
 
         // --- TEMPLATE FUNCTIONS ---
-        const getProductInfoHTML = (pkg, priceToDisplay, isCheckoutView = false) => {
-            if (isCheckoutView) {
-                return `
-                <div class="mb-6 border-b border-gray-200 pb-4">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="font-semibold text-gray-800 main-sans">${pkg.title}</h2>
-                            <p class="text-gray-600 text-sm">Langganan 1 Tahun</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-semibold text-lg text-netflix-red main-sans">${formatCurrency(priceToDisplay)}</p>
-                        </div>
-                    </div>
-                </div>`;
-            }
-
+        const getProductInfoHTML = (pkg, priceToDisplay) => {
             return `
             <div class="product-info-card">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -1222,6 +847,22 @@
                 </div>
             </div>`;
         }
+        
+        const getProductInfoCheckoutHTML = (pkg, priceToDisplay) => {
+            return `
+            <div class="border-b border-gray-200 pb-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img alt="Logo ${pkg.name}" class="h-10 w-10 mr-4" src="${pkg.logo}">
+                        <div>
+                            <h2 class="text-lg font-bold text-gray-800 main-sans">${pkg.title}</h2>
+                            <p class="text-sm text-gray-500">Langganan 1 Tahun</p>
+                        </div>
+                    </div>
+                    <div class="text-lg font-bold text-netflix-red main-sans">${formatCurrency(priceToDisplay)}</div>
+                </div>
+            </div>`;
+        }
 
         const getFeaturesHTML = (pkg) => {
             const colors = ['text-red-600', 'text-gray-700', 'text-red-500', 'text-gray-600', 'text-red-600', 'text-gray-700', 'text-red-500', 'text-gray-600'];
@@ -1230,7 +871,7 @@
                 <ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-gray-600 text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
             </div>`;
         }
-        
+
         const getPaymentMethodsHTML = (accounts) => {
             const groupedAccounts = {};
             for (const key in accounts) {
@@ -1240,15 +881,12 @@
                 }
                 groupedAccounts[account.category].push({ key, ...account });
             }
-
             let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">2. Pilih Metode Pembayaran</h2>`;
             const categoryOrder = ['QRIS', 'Bank Transfer', 'E-Wallet'];
-
             for (const category of categoryOrder) {
                 if (groupedAccounts[category]) {
                     html += `<h3 class="text-md font-semibold text-gray-700 mt-6 mb-2 main-sans">${category}</h3>`;
                     html += `<div class="material-card rounded-xl payment-group">`;
-
                     groupedAccounts[category].forEach((account, index) => {
                         const isFirst = index === 0 && category === 'QRIS';
                         html += `
@@ -1270,14 +908,12 @@
                     html += `</div>`;
                 }
             }
-
             html += `<div class="bg-gray-50 p-3 mt-4 rounded-xl text-center text-xs text-gray-600"><i class="fas fa-shield-alt text-green-600 mr-2"></i>Pembayaran aman dan terenkripsi.</div>`;
             return html;
         };
 
         const getOrderDetailsHTML = (pkg, finalPrice) => {
             const discountAmount = pkg.price - pkg.discountPrice;
-
             return `
             <div class="mt-8 pt-6 border-t border-gray-200">
                  <h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">3. Rincian Pesanan</h2>
@@ -1350,25 +986,25 @@
             const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price;
             const totalPrice = currentPrice + uniqueCode;
 
-            // Product Section
-            elements.productInfoDisplay.innerHTML = getProductInfoHTML(pkg, currentPrice, false);
-            elements.featuresDisplay.innerHTML = getFeaturesHTML(pkg);
+            // Populate Page 1: Product Info
+            elements.productInfoMain.innerHTML = getProductInfoHTML(pkg, currentPrice);
+            elements.featuresMain.innerHTML = getFeaturesHTML(pkg);
             elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
             elements.faqFull.innerHTML = getFaqHTML();
             elements.policyFull.innerHTML = getPolicyHTML();
 
-            // Checkout Section
-            elements.productInfoCheckout.innerHTML = getProductInfoHTML(pkg, currentPrice, true);
+            // Populate Page 2: Checkout
+            elements.productInfoCheckout.innerHTML = getProductInfoCheckoutHTML(pkg, currentPrice);
             elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
             elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
-            
+
+            // Update coupon button state after elements are in the DOM
             updateCouponButton();
         }
 
         function showCouponMessage(message, color) {
             const couponMessage = document.getElementById('coupon-message');
             if (!couponMessage) return;
-
             couponMessage.textContent = message;
             couponMessage.style.color = color;
             couponMessage.style.display = 'block';
@@ -1381,7 +1017,6 @@
             const couponBtn = document.getElementById('coupon-btn');
             const couponInput = document.getElementById('coupon');
             if (!couponBtn || !couponInput) return;
-
             if (isCouponApplied) {
                 couponBtn.textContent = 'Hapus';
                 couponBtn.classList.add('red-button');
@@ -1399,10 +1034,8 @@
         function handleCouponToggle() {
             const couponInput = document.getElementById('coupon');
             if (!couponInput) return;
-
             const couponValue = couponInput.value.trim().toUpperCase();
             document.getElementById('coupon-message').style.display = 'none';
-
             if (isCouponApplied) {
                 isCouponApplied = false;
                 couponInput.value = '';
@@ -1438,10 +1071,10 @@
             window.scrollTo(0, 0);
             currentOrderDetails = { pkg, totalPrice, paymentId, nama: formData.get('nama'), whatsapp: formData.get('whatsapp') };
             
-            // Hide product and checkout, show payment
-            elements.productSection.style.display = 'none';
-            elements.checkoutSection.style.display = 'none';
-            elements.paymentSection.style.display = 'block';
+            // Hide main content and show payment page
+            elements.mainContentWrapper.style.display = 'none';
+            elements.footer.style.display = 'none';
+            elements.paymentPage.style.display = 'block';
 
             const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId);
             let accountLabel;
@@ -1470,7 +1103,7 @@
                 default: instructionAccordionHTML = `<details class="payment-accordion" open><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi perbankan atau e-wallet Anda.</li><li>Pilih menu transfer.</li><li>Masukkan detail pembayaran yang tertera.</li><li>Pastikan nominal transfer sesuai dengan total pembayaran hingga digit terakhir.</li><li>Selesaikan transaksi dan simpan bukti pembayaran.</li></ol></div></details>`;
             }
             const paymentViewHTML = `<div class="payment-header"><h2 class="main-sans">Selesaikan Pembayaran</h2><div class="countdown-timer" id="countdown-timer-display"></div></div><div class="max-w-lg mx-auto"><div class="p-2 sm:p-4"><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-1">Ringkasan Transaksi</h3><div class="flex justify-between items-center mt-2 text-xs text-gray-600"><span>Nomor Invoice: <strong>${paymentId}</strong></span><a href="#" onclick="showDetailsModal(event)" class="font-semibold text-netflix-red">Lihat detail</a></div><hr class="my-4"><p class="text-xs text-gray-600 mb-1">Total Pembayaran</p><div class="flex items-center justify-between"><p class="text-2xl font-bold text-netflix-red main-sans">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-3">Silahkan Bayar ke</h3><div class="flex justify-between items-start mt-3"><div><p class="text-sm text-gray-500">${paymentAccount.displayName}</p><p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p></div><div class="payment-logo-container"><img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo"></div></div>${paymentDetailsBlock}<div class="mt-6"><p class="text-xs text-gray-500 mb-1">Bayar Sebelum</p><p class="font-semibold text-gray-800 text-sm">${paymentDeadlineFormatted}</p></div><a href="${waLink}" target="_blank" class="block mt-6"><button class="confirm-button-outlined"><i class="fab fa-whatsapp mr-2"></i> Konfirmasi Pembayaran</button></a></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-2">Cara Membayar</h3><div class="mt-2">${instructionAccordionHTML}</div></div></div></div>`;
-            elements.paymentSection.innerHTML = paymentViewHTML;
+            elements.paymentPage.innerHTML = paymentViewHTML;
             startCountdown();
             if (paymentMethodKey === 'qris') {
                 setTimeout(() => {
@@ -1529,11 +1162,9 @@
             const paymentId = `INV-NFLX-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
             setTimeout(() => {
                 showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-                elements.submitBtn.disabled = false;
-                elements.submitBtn.innerHTML = '<i class="fas fa-lock mr-2"></i> Selesaikan Pembayaran';
             }, 800);
         }
-        
+
         function startCountdown() {
             const countdownElement = document.getElementById('countdown-timer-display');
             if (!countdownElement || !expiryTime) return;
@@ -1554,10 +1185,8 @@
 
         // --- NOTIFICATION FUNCTIONS ---
         const FIRST_NAMES = [ "Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama" ];
-        
         function getRandomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
         function generateRandomName() { return `${getRandomElement(FIRST_NAMES)}`; }
-        
         function showNextNotification() {
             if (!elements.notifBox || !elements.notifName) return;
             elements.notifName.textContent = generateRandomName();
@@ -1565,7 +1194,6 @@
             void elements.notifBox.offsetWidth; // Trigger reflow
             elements.notifBox.classList.add('show');
         }
-
         function scheduleNextNotification() {
             const randomDelay = Math.floor(Math.random() * 10000) + 8000;
             setTimeout(() => {
@@ -1574,31 +1202,20 @@
             }, randomDelay);
         }
 
-        // --- INITIALIZATION & NAVIGATION ---
-        function setInitialView() {
-            elements.productSection.style.display = 'block';
-            elements.checkoutSection.style.display = 'none';
-            elements.paymentSection.style.display = 'none';
-            window.scrollTo(0, 0);
-        }
-
-        elements.goToCheckoutBtn.addEventListener('click', () => {
-            elements.productSection.style.display = 'none';
-            elements.checkoutSection.style.display = 'block';
-            window.scrollTo(0, 0);
-        });
-
-        elements.backToProductBtn.addEventListener('click', () => {
-            elements.checkoutSection.style.display = 'none';
-            elements.productSection.style.display = 'block';
-            window.scrollTo(0, 0);
-        });
-
-        elements.currentYearProduct.textContent = new Date().getFullYear();
-        elements.currentYearCheckout.textContent = new Date().getFullYear();
+        // --- INITIALIZATION & EVENT LISTENERS ---
+        elements.currentYear.textContent = new Date().getFullYear();
         
+        // Button to move from Product Page to Checkout Page
+        elements.goToCheckoutBtn.addEventListener('click', () => {
+            elements.productPage.style.display = 'none';
+            elements.checkoutPage.style.display = 'block';
+            window.scrollTo(0, 0);
+        });
+        
+        // Button to submit form and move to Payment Page
         elements.submitBtn.addEventListener('click', handleFormSubmit);
         
+        // Use event delegation for the coupon button inside the form
         elements.orderForm.addEventListener('click', function(event) {
             if (event.target && event.target.id === 'coupon-btn') {
                 handleCouponToggle();
@@ -1606,17 +1223,15 @@
         });
 
         updateDisplay();
-        setInitialView();
-        
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
         }
-        
+
+        // --- MODAL FUNCTIONS ---
         function getDetailsModalHTML(details) {
             const { pkg, totalPrice, paymentId, nama, whatsapp } = details;
             return `<div class="details-modal-header"><h3>Ringkasan Transaksi</h3><button class="details-modal-close" onclick="closeDetailsModal()">&times;</button></div><div class="details-modal-body"><p class="text-sm text-gray-500 mb-6">Nomor Invoice: <strong>${paymentId}</strong></p><div class="text-center mb-8"><p class="text-sm text-gray-600 mb-2">Total Pembayaran</p><div class="flex items-center justify-center"><p class="text-4xl font-bold text-netflix-red main-sans">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy"></i></button></div></div><div class="space-y-4 border-t border-b border-gray-200 py-6 mb-6"><div><div class="flex justify-between text-base"><span>${pkg.name}</span><span class="font-semibold text-gray-800">${isCouponApplied ? formatCurrency(pkg.discountPrice) : formatCurrency(pkg.price)}</span></div></div><div class="flex justify-between text-sm"><span class="text-gray-500">Kode Unik</span><span class="font-medium">${formatCurrency(uniqueCode)}</span></div></div><div class="space-y-3 mb-8"><div class="flex justify-between font-bold text-xl main-sans"><span>Total Pembayaran</span><span class="text-netflix-red">${formatCurrency(totalPrice)}</span></div></div><div class="border-t border-gray-200 pt-6"><h4 class="font-semibold mb-4 main-sans">Informasi Pelanggan</h4><div class="grid grid-cols-2 gap-6"><div><p class="text-gray-500 text-sm mb-1">Nama</p><p class="font-medium">${nama}</p></div><div><p class="text-gray-500 text-sm mb-1">Nomor Telepon</p><p class="font-medium">${whatsapp}</p></div></div></div></div>`;
         }
-
         window.showDetailsModal = function(event) {
             event.preventDefault();
             elements.detailsModalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
@@ -1624,7 +1239,6 @@
             elements.detailsModalContent.classList.remove('is-closing');
             elements.detailsModalContent.classList.add('is-open');
         }
-
         window.closeDetailsModal = function() {
             elements.detailsModalContent.classList.remove('is-open');
             elements.detailsModalContent.classList.add('is-closing');
@@ -1636,25 +1250,21 @@
 
     // --- GLOBAL HELPER FUNCTIONS ---
     const infoModal = document.getElementById('infoModal');
-    
     function showInfoModal(title, message) {
         if (!infoModal) return;
         infoModal.querySelector('#modalTitle').textContent = title;
         infoModal.querySelector('#modalMessage').textContent = message;
         infoModal.style.display = 'flex';
     }
-
     function closeInfoModal() {
         if (!infoModal) return;
         infoModal.style.display = 'none';
     }
-
     window.onclick = function(event) {
         if (event.target == infoModal) { closeInfoModal(); }
         if (event.target == document.getElementById('detailsModal')) { closeDetailsModal(); }
         if (event.target == document.getElementById('imageModal')) { closeImageModal(); }
     }
-
     function copyToClipboard(text, entityName) {
         const textArea = document.createElement('textarea');
         textArea.value = text;
@@ -1668,7 +1278,6 @@
         }
         document.body.removeChild(textArea);
     }
-
     // --- UPDATED QRIS LOGIC ---
     function toCRC16(input) {
         let crc = 0xFFFF;
@@ -1680,58 +1289,39 @@
         }
         return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
     }
-
     function createDynamicQrisString(qris, { nominal }) {
         if (!qris) throw new Error('Parameter "qris" (string QRIS statis) dibutuhkan.');
         if (nominal === undefined) throw new Error('Parameter "nominal" dibutuhkan.');
-
         let qrisModified = qris.slice(0, -4).replace("010211", "010212");
         const nominalStr = String(Math.round(nominal));
         const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
         const amountPart = "54" + amountLength + nominalStr;
-        
         if (!qrisModified.includes("5802ID")) {
             throw new Error("Format string QRIS tidak dikenali (tidak ditemukan '5802ID').");
         }
-
         let finalQris = qrisModified.replace("5802ID", amountPart + "5802ID");
         const crc = toCRC16(finalQris);
-
         return finalQris + crc;
     }
-    
     // --- Image Modal Functions ---
     const imageModal = document.getElementById('imageModal');
     const modalImg = document.getElementById("modalImage");
     let currentImageIndex;
-
     window.openImageModal = function(event, index) {
         event.stopPropagation();
         imageModal.style.display = "flex";
         showImage(index);
     }
-
     window.closeImageModal = function() {
         imageModal.style.display = "none";
     }
-
     function showImage(index) {
         const testimonialImages = [
-            "https://s6.imgcdn.dev/YIjP00.png",
-            "https://s6.imgcdn.dev/YIjK4e.png",
-            "https://s6.imgcdn.dev/YIjT3M.png",
-            "https://s6.imgcdn.dev/YIjljd.png",
-            "https://s6.imgcdn.dev/YIjzTl.png",
-            "https://s6.imgcdn.dev/YIjaRh.png",
-            "https://s6.imgcdn.dev/YIj1JV.png",
-            "https://s6.imgcdn.dev/YIj7nK.png",
-            "https://s6.imgcdn.dev/YIjBvo.png",
-            "https://s6.imgcdn.dev/YIjGFO.png",
-            "https://s6.imgcdn.dev/YIjrCn.png",
-            "https://s6.imgcdn.dev/YIjv0g.png",
-            "https://s6.imgcdn.dev/YIjx3v.png",
-            "https://s6.imgcdn.dev/YIjAwN.png",
-            "https://s6.imgcdn.dev/YIjOTq.png",
+            "https://s6.imgcdn.dev/YIjP00.png", "https://s6.imgcdn.dev/YIjK4e.png", "https://s6.imgcdn.dev/YIjT3M.png",
+            "https://s6.imgcdn.dev/YIjljd.png", "https://s6.imgcdn.dev/YIjzTl.png", "https://s6.imgcdn.dev/YIjaRh.png",
+            "https://s6.imgcdn.dev/YIj1JV.png", "https://s6.imgcdn.dev/YIj7nK.png", "https://s6.imgcdn.dev/YIjBvo.png",
+            "https://s6.imgcdn.dev/YIjGFO.png", "https://s6.imgcdn.dev/YIjrCn.png", "https://s6.imgcdn.dev/YIjv0g.png",
+            "https://s6.imgcdn.dev/YIjx3v.png", "https://s6.imgcdn.dev/YIjAwN.png", "https://s6.imgcdn.dev/YIjOTq.png",
             "https://s6.imgcdn.dev/YIjZRB.png"
         ];
         if (index >= testimonialImages.length || index < 0) {
@@ -1739,19 +1329,15 @@
         }
         currentImageIndex = index;
         modalImg.src = testimonialImages[index];
-
         document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'block' : 'none';
         document.querySelector('.modal-nav.next').style.display = (index < testimonialImages.length - 1) ? 'block' : 'none';
     }
-
     window.showNextImage = function() {
         showImage(currentImageIndex + 1);
     }
-
     window.showPrevImage = function() {
         showImage(currentImageIndex - 1);
     }
-
     document.addEventListener('keydown', function(event) {
         if (imageModal.style.display === 'flex') {
             if (event.key === 'ArrowRight') {
@@ -1763,8 +1349,6 @@
             }
         }
     });
-
     </script>
-
 </body>
 </html>
