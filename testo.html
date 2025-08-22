@@ -137,10 +137,10 @@
             margin: auto;
             padding: 28px;
             width: 90%;
-            max-width: 480px;
+            max-width: 520px;
             border-radius: 16px;
             box-shadow: var(--shadow-3);
-            text-align: center;
+            text-align: left;
             position: relative;
             animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -215,39 +215,24 @@
             background-color: var(--grey-50);
         }
 
-        /* Bottom Sheet Modal Styles */
-        .bottom-sheet-modal {
-            align-items: flex-end;
-        }
-        .bottom-sheet-content {
-            background-color: #ffffff;
-            width: 100%;
-            max-width: 100%;
-            border-radius: 20px 20px 0 0;
-            box-shadow: var(--shadow-3);
-            text-align: left;
-            transform: translateY(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .bottom-sheet-modal.flex .bottom-sheet-content {
-            transform: translateY(0);
-        }
-        .bottom-sheet-header {
-            padding: 16px 24px;
+        /* Payment Method Modal (Centered) */
+        .payment-modal-header {
+            padding-bottom: 1rem;
             border-bottom: 1px solid var(--grey-200);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 8px;
         }
-        .bottom-sheet-header h3 {
+        .payment-modal-header h3 {
             font-size: 18px;
             font-weight: 600;
             color: var(--grey-900);
         }
-        .bottom-sheet-close {
+        .payment-modal-close {
             font-size: 24px; color: var(--grey-600); cursor: pointer; background: none; border: none;
         }
-        .bottom-sheet-body { padding: 8px 24px 24px 24px; max-height: 60vh; overflow-y: auto; }
+        .payment-modal-body { max-height: 60vh; overflow-y: auto; padding-right: 12px; }
 
         /* Payment Method Radio Styles */
         .payment-radio { position: absolute; opacity: 0; width: 0; height: 0; }
@@ -269,7 +254,7 @@
         .payment-logo { max-height: 100%; max-width: 100%; object-fit: contain; }
         
         /* Payment Instruction Page Styles */
-        #page-pembayaran { background-color: #fff; }
+        #page-pembayaran { background-color: var(--grey-50); }
         .payment-header {
             background: linear-gradient(135deg, var(--grey-900) 0%, #1f1f23 100%);
             color: #fff; text-align: center; position: sticky; top: 0; z-index: 999; padding: 1rem;
@@ -390,17 +375,16 @@
                 <div class="checkout-section">
                     <h3>DETAIL PEMBAYARAN</h3>
                     <div class="space-y-3 text-sm" id="checkout-payment-details"></div>
-                    <button type="button" id="open-coupon-modal-btn" class="w-full text-left mt-4 p-3 bg-gray-50 rounded-lg text-netflix-red font-semibold flex justify-between items-center hover:bg-gray-100">
-                        <span><i class="fas fa-tag mr-2"></i> Tambah Kupon</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                    <div class="w-full text-left mt-4 p-3 bg-green-50 rounded-lg text-green-700 font-semibold flex justify-between items-center">
+                        <span><i class="fas fa-check-circle mr-2"></i> Kupon Promo Telah Diterapkan</span>
+                    </div>
                 </div>
 
                 <!-- Payment Method -->
                 <div class="checkout-section">
                     <button type="button" id="open-payment-modal-btn" class="payment-selector-btn">
                         <div class="flex items-center">
-                            <i class="fas fa-credit-card text-gray-500 text-xl mr-3"></i>
+                             <img id="selected-payment-logo" src="https://placehold.co/32x32/e2e8f0/e2e8f0?text= " alt="Payment Logo" class="w-8 h-8 mr-3 rounded-md">
                             <div>
                                 <span class="font-semibold text-gray-800" id="selected-payment-text">Pilih metode pembayaran</span>
                                 <p class="text-xs text-gray-500">Transaksi aman dan terenkripsi</p>
@@ -436,38 +420,24 @@
 
     <!-- Modal: General Info -->
     <div id="infoModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content text-center">
             <h3 id="modalTitle" class="text-lg font-bold mb-2 main-sans"></h3>
             <p id="modalMessage" class="text-gray-600 mb-4"></p>
             <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
         </div>
     </div>
 
-    <!-- Modal: Kode Kupon -->
-    <div id="couponModal" class="modal">
-        <div class="modal-content text-left">
-            <h3 class="text-lg font-bold mb-4 main-sans">Kode Kupon</h3>
-            <p class="text-sm text-gray-600 mb-4">Masukkan kode kupon yang Anda miliki.</p>
-            <input type="text" id="coupon-input" class="form-input" placeholder="Masukkan kode di sini">
-            <p id="coupon-message" class="text-sm mt-2" style="display: none;"></p>
-            <div class="flex justify-end gap-3 mt-6">
-                <button type="button" onclick="closeCouponModal()" class="cta-button bg-gray-200 text-gray-700" style="width: auto; padding: 10px 20px;">Batal</button>
-                <button type="button" id="apply-coupon-btn" class="cta-button red-button" style="width: auto; padding: 10px 20px;">OK</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Metode Pembayaran (Bottom Sheet) -->
-    <div id="paymentMethodModal" class="modal bottom-sheet-modal">
-        <div class="bottom-sheet-content">
-            <div class="bottom-sheet-header">
+    <!-- Modal: Metode Pembayaran (Centered) -->
+    <div id="paymentMethodModal" class="modal">
+        <div class="modal-content">
+            <div class="payment-modal-header">
                 <h3>Pilih Metode Pembayaran</h3>
-                <button class="bottom-sheet-close" onclick="closePaymentModal()">&times;</button>
+                <button class="payment-modal-close" onclick="closePaymentModal()">&times;</button>
             </div>
-            <div class="bottom-sheet-body" id="payment-method-options">
+            <div class="payment-modal-body" id="payment-method-options">
                 <!-- Opsi pembayaran akan di-generate oleh JS -->
             </div>
-            <div class="p-4 border-t border-gray-200">
+            <div class="pt-4 mt-2 border-t border-gray-200">
                 <button id="confirm-payment-method-btn" class="cta-button red-button">Konfirmasi Metode</button>
             </div>
         </div>
@@ -497,21 +467,15 @@
                 productSummary: document.getElementById('checkout-product-summary'),
                 paymentDetails: document.getElementById('checkout-payment-details'),
                 totalPrice: document.getElementById('checkout-total-price'),
-                openCouponModalBtn: document.getElementById('open-coupon-modal-btn'),
                 openPaymentModalBtn: document.getElementById('open-payment-modal-btn'),
                 selectedPaymentText: document.getElementById('selected-payment-text'),
+                selectedPaymentLogo: document.getElementById('selected-payment-logo'),
                 hiddenPaymentInput: document.getElementById('payment-method'),
                 submitBtn: document.getElementById('submit-checkout-btn'),
             },
             modals: {
                 info: document.getElementById('infoModal'),
-                coupon: document.getElementById('couponModal'),
                 payment: document.getElementById('paymentMethodModal'),
-            },
-            couponModal: {
-                input: document.getElementById('coupon-input'),
-                applyBtn: document.getElementById('apply-coupon-btn'),
-                message: document.getElementById('coupon-message'),
             },
             paymentModal: {
                 optionsContainer: document.getElementById('payment-method-options'),
@@ -522,9 +486,9 @@
         // --- CONFIGURATION & STATE ---
         let countdownInterval;
         let expiryTime;
-        const validCouponCode = 'WEDNESDAY';
+        const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
         let state = {
-            isCouponApplied: false,
+            isCouponApplied: true, // Kupon diterapkan secara default
             selectedPaymentMethod: null,
             totalPrice: 0,
         };
@@ -571,7 +535,7 @@
             ovo: { displayName: 'OVO', accountHolder: 'OVO Epayment', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', category: 'E-Wallet' }
         };
 
-        // --- TEMPLATE FUNCTIONS (Restored from original) ---
+        // --- TEMPLATE FUNCTIONS ---
         const getProductInfoHTML = (pkg, priceToDisplay) => {
             return `<div class="product-info-card" style="background: linear-gradient(135deg, var(--netflix-red-light) 0%, #ffffff 100%); border: 1px solid var(--grey-200); border-radius: 16px; padding: 20px;"><div class="flex flex-col md:flex-row md:items-center md:justify-between"><div class="text-center mb-4 md:mb-0 flex-grow"><div class="flex justify-center"><img alt="Logo ${pkg.name}" class="h-12 w-auto" src="${pkg.logo}"></div><h1 class="text-2xl font-bold text-gray-800 mt-3 main-sans">${pkg.title}</h1><p class="text-md text-gray-600 mt-1">${pkg.description}</p></div><div class="text-center md:text-right mt-4 md:mt-0 md:pl-6"><div class="text-4xl font-bold text-netflix-red main-sans">${formatCurrency(priceToDisplay)}</div><p class="text-gray-500 text-sm mt-1">Langganan 1 Tahun</p><div class="mt-2"><span class="inline-block bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full"><i class="fas fa-tv mr-1"></i> Kualitas 4K + HDR</span></div></div></div></div>`;
         }
@@ -596,8 +560,8 @@
         // --- RENDER FUNCTIONS ---
         function renderInfoPage() {
             const pkg = packages[currentPackageId];
-            // Menggunakan harga diskon untuk tampilan awal
-            elements.infoPage.productInfo.innerHTML = getProductInfoHTML(pkg, pkg.discountPrice);
+            const finalPrice = pkg.discountPrice;
+            elements.infoPage.productInfo.innerHTML = getProductInfoHTML(pkg, finalPrice);
             elements.infoPage.features.innerHTML = getFeaturesHTML(pkg);
             elements.infoPage.testimonials.innerHTML = getTestimonialsHTML(pkg);
             elements.infoPage.faq.innerHTML = getFaqHTML();
@@ -607,12 +571,31 @@
 
         function renderCheckoutPage() {
             const pkg = packages[currentPackageId];
-            const subtotal = state.isCouponApplied ? pkg.discountPrice - 5000 : pkg.discountPrice; // Contoh diskon kupon
-            const discountAmount = state.isCouponApplied ? 5000 : 0;
-            state.totalPrice = subtotal;
+            const subtotal = pkg.price;
+            const discountAmount = pkg.price - pkg.discountPrice;
+            state.totalPrice = pkg.discountPrice + uniqueCode;
 
             elements.checkoutPage.productSummary.innerHTML = `<div class="flex items-center"><img src="${pkg.logo}" alt="Netflix Logo" class="w-12 h-12 rounded-md mr-4"><div><p class="font-semibold">${pkg.name}</p><p class="text-sm text-gray-500">1x</p></div><p class="ml-auto font-semibold">${formatCurrency(pkg.discountPrice)}</p></div>`;
-            elements.checkoutPage.paymentDetails.innerHTML = `<div class="flex justify-between"><span>Subtotal</span><span>${formatCurrency(pkg.discountPrice)}</span></div>${state.isCouponApplied ? `<div class="flex justify-between text-green-600"><span>Diskon Kupon</span><span>-${formatCurrency(discountAmount)}</span></div>` : ''}<div class="flex justify-between"><span>Biaya Kenyamanan</span><span>Rp0</span></div><hr class="my-2"><div class="flex justify-between font-bold text-base"><span>TOTAL</span><span>${formatCurrency(state.totalPrice)}</span></div>`;
+            
+            elements.checkoutPage.paymentDetails.innerHTML = `
+                <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span class="line-through text-gray-500">${formatCurrency(subtotal)}</span>
+                </div>
+                <div class="flex justify-between text-green-600">
+                    <span>Diskon Promo</span>
+                    <span>-${formatCurrency(discountAmount)}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Kode Unik</span>
+                    <span>${formatCurrency(uniqueCode)}</span>
+                </div>
+                <hr class="my-2">
+                <div class="flex justify-between font-bold text-base">
+                    <span>TOTAL</span>
+                    <span>${formatCurrency(state.totalPrice)}</span>
+                </div>`;
+            
             elements.checkoutPage.totalPrice.textContent = formatCurrency(state.totalPrice);
         }
         
@@ -637,8 +620,6 @@
         }
 
         // --- MODAL FUNCTIONS ---
-        window.openCouponModal = () => elements.modals.coupon.style.display = 'flex';
-        window.closeCouponModal = () => elements.modals.coupon.style.display = 'none';
         window.openPaymentModal = () => elements.modals.payment.style.display = 'flex';
         window.closePaymentModal = () => elements.modals.payment.style.display = 'none';
         window.showInfoModal = (title, message) => {
@@ -654,25 +635,15 @@
             showPage('checkout');
         });
         elements.checkoutPage.backBtn.addEventListener('click', () => showPage('informasi'));
-        elements.checkoutPage.openCouponModalBtn.addEventListener('click', openCouponModal);
         elements.checkoutPage.openPaymentModalBtn.addEventListener('click', openPaymentModal);
-        elements.couponModal.applyBtn.addEventListener('click', () => {
-            const couponValue = elements.couponModal.input.value.trim().toUpperCase();
-            if (couponValue === validCouponCode) {
-                state.isCouponApplied = true;
-                showInfoModal('Berhasil!', `Kupon "${validCouponCode}" berhasil diterapkan.`);
-                renderCheckoutPage();
-                closeCouponModal();
-            } else {
-                showInfoModal('Gagal', 'Kode kupon tidak valid.');
-            }
-        });
+
         elements.paymentModal.confirmBtn.addEventListener('click', () => {
             const selectedRadio = document.querySelector('input[name="payment-method-modal"]:checked');
             if (selectedRadio) {
                 state.selectedPaymentMethod = selectedRadio.value;
                 const account = paymentAccounts[state.selectedPaymentMethod];
                 elements.checkoutPage.selectedPaymentText.textContent = account.displayName;
+                elements.checkoutPage.selectedPaymentLogo.src = account.logo;
                 elements.checkoutPage.hiddenPaymentInput.value = state.selectedPaymentMethod;
                 closePaymentModal();
             } else {
@@ -710,26 +681,44 @@
             const waLink = generateWaLink(formData, pkg, state.totalPrice, paymentAccount.displayName, paymentId);
             expiryTime = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
             const paymentDeadlineFormatted = expiryTime.toLocaleString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+            
             let paymentDetailsBlock = '';
             if (state.selectedPaymentMethod === 'qris') {
                 paymentDetailsBlock = `<div class="text-center"><div id="qrcodeContainer" class="bg-white p-3 rounded-xl border-2 border-gray-200 w-full max-w-[250px] h-auto mx-auto my-4 material-card-elevated"><div id="qrcode" class="flex justify-center items-center"></div></div><p class="text-center text-xs text-gray-600 mt-3">Pindai QR Code di atas.</p></div>`;
             } else {
                 paymentDetailsBlock = `<div class="mt-4"><p class="text-xs text-gray-500 mb-1">Nomor Pembayaran</p><div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg"><p class="text-xl font-bold text-gray-800 tracking-wider main-sans">${paymentAccount.number}</p><button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div>`;
             }
-            const paymentViewHTML = `<div class="payment-header"><h2 class="main-sans">Selesaikan Pembayaran</h2><div class="countdown-timer" id="countdown-timer-display"></div></div><div class="max-w-lg mx-auto"><div class="p-2 sm:p-4"><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-1">Ringkasan Transaksi</h3><p class="text-xs text-gray-600 mt-2">Nomor Invoice: <strong>${paymentId}</strong></p><hr class="my-4"><p class="text-xs text-gray-600 mb-1">Total Pembayaran</p><div class="flex items-center justify-between"><p class="text-2xl font-bold text-netflix-red main-sans">${formatCurrency(state.totalPrice)}</p><button onclick="copyToClipboard('${state.totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-3">Silahkan Bayar ke</h3><div class="flex justify-between items-start mt-3"><div><p class="text-sm text-gray-500">${paymentAccount.displayName}</p><p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p></div><div class="payment-logo-container" style="width: 48px; height: 32px;"><img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo"></div></div>${paymentDetailsBlock}<div class="mt-6"><p class="text-xs text-gray-500 mb-1">Bayar Sebelum</p><p class="font-semibold text-gray-800 text-sm">${paymentDeadlineFormatted}</p></div><a href="${waLink}" target="_blank" class="block mt-6"><button class="confirm-button-outlined"><i class="fab fa-whatsapp mr-2"></i> Konfirmasi Pembayaran</button></a></div></div></div>`;
+            
+            let instructionAccordionHTML = '';
+            switch (state.selectedPaymentMethod) {
+                case 'qris': instructionAccordionHTML = `<details class="payment-accordion" open><summary>Cara Bayar via QRIS</summary><div class="payment-accordion-content"><ol class="space-y-3"><li>Buka aplikasi perbankan (m-banking) atau e-wallet Anda (GoPay, OVO, DANA, dll).</li><li>Pilih menu <strong>Bayar</strong>, <strong>Scan QR</strong>, atau <strong>QRIS</strong>.</li><li>Pindai (scan) kode QR yang ditampilkan di atas.</li><li>Pastikan nama merchant dan nominal pembayaran sudah sesuai.</li><li>Masukkan PIN Anda untuk menyelesaikan transaksi.</li><li>Simpan bukti pembayaran.</li></ol></div></details>`; break;
+                case 'bca_va': instructionAccordionHTML = `<details class="payment-accordion"><summary>myBCA</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi myBCA dan login.</li><li>Pilih menu <strong>Transfer</strong>, lalu pilih <strong>Virtual Account</strong>.</li><li>Pilih <strong>Tujuan Baru</strong>.</li><li>Masukkan nomor Virtual Account: <strong>${paymentAccount.number}</strong>.</li><li>Pilih sumber dana yang akan digunakan.</li><li>Masukkan nominal jika diminta.</li><li>Periksa detail transaksi, lalu tekan <strong>Lanjut</strong>.</li><li>Masukkan PIN untuk menyelesaikan transaksi.</li></ol></div></details><details class="payment-accordion"><summary>BCA Mobile</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi BCA Mobile dan login.</li><li>Pilih menu <strong>m-Transfer</strong>, lalu pilih <strong>BCA Virtual Account</strong>.</li><li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li><li>Masukkan nominal jika diminta.</li><li>Periksa nama penerima, lalu tekan <strong>OK</strong>.</li><li>Masukkan PIN m-BCA untuk menyelesaikan transaksi.</li></ol></div></details>`; break;
+                default: instructionAccordionHTML = `<details class="payment-accordion" open><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi perbankan atau e-wallet Anda.</li><li>Pilih menu transfer.</li><li>Masukkan detail pembayaran yang tertera.</li><li>Pastikan nominal transfer sesuai dengan total pembayaran hingga digit terakhir.</li><li>Selesaikan transaksi dan simpan bukti pembayaran.</li></ol></div></details>`;
+            }
+
+            const paymentViewHTML = `<div class="payment-header"><h2 class="main-sans">Selesaikan Pembayaran</h2><div class="countdown-timer" id="countdown-timer-display"></div></div><div class="max-w-lg mx-auto"><div class="p-2 sm:p-4"><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-1">Ringkasan Transaksi</h3><p class="text-xs text-gray-600 mt-2">Nomor Invoice: <strong>${paymentId}</strong></p><hr class="my-4"><p class="text-xs text-gray-600 mb-1">Total Pembayaran</p><div class="flex items-center justify-between"><p class="text-2xl font-bold text-netflix-red main-sans">${formatCurrency(state.totalPrice)}</p><button onclick="copyToClipboard('${state.totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-3">Silahkan Bayar ke</h3><div class="flex justify-between items-start mt-3"><div><p class="text-sm text-gray-500">${paymentAccount.displayName}</p><p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p></div><div class="payment-logo-container" style="width: 48px; height: 32px;"><img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo"></div></div>${paymentDetailsBlock}<div class="mt-6"><p class="text-xs text-gray-500 mb-1">Bayar Sebelum</p><p class="font-semibold text-gray-800 text-sm">${paymentDeadlineFormatted}</p></div><a href="${waLink}" target="_blank" class="block mt-6"><button class="confirm-button-outlined"><i class="fab fa-whatsapp mr-2"></i> Konfirmasi Pembayaran</button></a></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-2">Cara Membayar</h3><div class="mt-2">${instructionAccordionHTML}</div></div></div></div>`;
+            
             elements.pages.pembayaran.innerHTML = paymentViewHTML;
             showPage('pembayaran');
             startCountdown();
+
             if (state.selectedPaymentMethod === 'qris') {
                 setTimeout(() => {
                     const qrcodeContainer = document.getElementById('qrcode');
                     if(qrcodeContainer) {
-                        qrcodeContainer.innerHTML = '';
-                        QRCode.toCanvas(paymentAccount.number, { width: 250, margin: 1 }, (err, canvas) => {
-                            if (err) throw err;
-                            canvas.style.width = "100%"; canvas.style.height = "auto";
-                            qrcodeContainer.appendChild(canvas);
-                        });
+                        try {
+                            const qrisStatic = paymentAccount.number;
+                            const qrisDinamis = createDynamicQrisString(qrisStatic, { nominal: state.totalPrice });
+                            qrcodeContainer.innerHTML = '';
+                            QRCode.toCanvas(qrisDinamis, { width: 250, margin: 1, errorCorrectionLevel: 'H' }, (err, canvas) => {
+                                if (err) { throw err; }
+                                canvas.style.width = "100%"; canvas.style.height = "auto"; canvas.style.borderRadius = "8px";
+                                qrcodeContainer.appendChild(canvas);
+                            });
+                        } catch (e) {
+                            console.error("QRIS Generation Error:", e.message);
+                            qrcodeContainer.innerHTML = `<p class="text-red-500 text-sm">Gagal membuat QR Code dinamis.</p>`;
+                        }
                     }
                 }, 100);
             }
@@ -763,6 +752,34 @@
                 showInfoModal('Gagal!', 'Gagal menyalin.');
             });
         };
+
+        // --- DYNAMIC QRIS FUNCTIONS ---
+        function toCRC16(input) {
+            let crc = 0xFFFF;
+            for (let i = 0; i < input.length; i++) {
+                crc ^= input.charCodeAt(i) << 8;
+                for (let j = 0; j < 8; j++) {
+                    crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1;
+                }
+            }
+            return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+        }
+        function createDynamicQrisString(qris, { nominal }) {
+            if (!qris) throw new Error('Parameter "qris" (string QRIS statis) dibutuhkan.');
+            if (nominal === undefined) throw new Error('Parameter "nominal" dibutuhkan.');
+            let qrisModified = qris.slice(0, -4).replace("010211", "010212");
+            const nominalStr = String(Math.round(nominal));
+            const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
+            const amountPart = "54" + amountLength + nominalStr;
+            if (!qrisModified.includes("5802ID")) {
+                throw new Error("Format string QRIS tidak dikenali (tidak ditemukan '5802ID').");
+            }
+            let finalQris = qrisModified.replace("5802ID", amountPart + "5802ID");
+            const crc = toCRC16(finalQris);
+            return finalQris + crc;
+        }
+
+        // --- INITIALIZATION ---
         function init() {
             renderInfoPage();
             renderPaymentModal();
