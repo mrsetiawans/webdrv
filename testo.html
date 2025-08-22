@@ -892,14 +892,55 @@
 </head>
 <body class="antialiased">
 
-    <div id="payment-instruction-container">
+    <!-- SECTION 3: PAYMENT COMPLETION (Initially Hidden) -->
+    <div id="payment-section" style="display: none;">
         <!-- Konten akan di-generate oleh JavaScript -->
     </div>
-    <div class="p-3 sm:p-4 lg:p-8">
-        <div id="main-content-container">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-12 gap-y-8 max-w-7xl mx-auto">
-                <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 material-card p-5 md:p-8">
+
+    <!-- SECTION 1: PRODUCT INFORMATION (Initially Visible) -->
+    <div id="product-section">
+        <div class="p-3 sm:p-4 lg:p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Product Info (JS-injected) -->
+                <div id="product-info-display" class="mb-6"></div>
+                <!-- Features (JS-injected) -->
+                <div id="features-display" class="mb-6"></div>
+                
+                <!-- "Proceed to Checkout" Button -->
+                <div class="mt-8 text-center">
+                    <button id="go-to-checkout-btn" class="cta-button red-button !w-auto animate-pulse">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Beli Sekarang & Dapatkan Diskon
+                    </button>
+                </div>
+
+                <!-- Testimonials, FAQ, etc. (JS-injected) -->
+                <div class="mt-8 space-y-8">
+                    <div id="testimonials-full"></div>
+                    <div class="material-card p-5 md:p-6">
+                        <div id="faq-full"></div>
+                    </div>
+                    <div class="material-card p-5 md:p-6">
+                        <div id="policy-full"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer id="footer-product" class="text-center mt-12 text-gray-500 text-sm">
+                <p>Copyright © <span id="currentYearProduct">2025</span> NFX ID. Semua Hak Dilindungi.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- SECTION 2: CHECKOUT FORM (Initially Hidden) -->
+    <div id="checkout-section" style="display: none;">
+        <div class="p-3 sm:p-4 lg:p-8">
+            <div class="max-w-2xl mx-auto">
+                <button id="back-to-product-btn" class="mb-4 text-sm font-medium text-gray-600 hover:text-netflix-red transition-colors duration-200">
+                   <i class="fas fa-arrow-left mr-2"></i>Kembali ke Info Produk
+                </button>
+                <!-- The original form from the left column goes here -->
+                <div class="material-card p-5 md:p-8">
                     <!-- Header Keamanan -->
                     <div class="grid grid-cols-2 gap-2 text-center border-b border-gray-200 pb-4 mb-6">
                         <div class="flex">
@@ -916,11 +957,8 @@
                         </div>
                     </div>
                     
-                    <!-- Info Produk -->
-                    <div id="product-info-form-top" class="mb-6"></div>
-
-                    <!-- Fitur -->
-                    <div id="features-before-form" class="mb-6"></div>
+                    <!-- Info Produk di Checkout -->
+                    <div id="product-info-checkout" class="mb-6"></div>
 
                     <!-- Form -->
                     <form id="orderForm">
@@ -950,28 +988,16 @@
                         <div id="order-details-in-form" class="mt-8"></div>
                         
                         <button type="button" id="submit-btn" class="cta-button red-button mt-8">
-                            <i class="fas fa-shopping-cart mr-2"></i>
-                            Beli Sekarang
+                            <i class="fas fa-lock mr-2"></i>
+                            Selesaikan Pembayaran
                         </button>
                     </form>
                 </div>
-
-                <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
-                <div class="lg:col-span-1 py-4 space-y-8">
-                    <div id="testimonials-full"></div>
-                    <div class="material-card p-5 md:p-6">
-                        <div id="faq-full"></div>
-                    </div>
-                    <div class="material-card p-5 md:p-6">
-                        <div id="policy-full"></div>
-                    </div>
-                </div>
             </div>
+            <footer id="footer-checkout" class="text-center mt-12 text-gray-500 text-sm">
+                <p>Copyright © <span id="currentYearCheckout">2025</span> NFX ID. Semua Hak Dilindungi.</p>
+            </footer>
         </div>
-        
-        <footer id="footer" class="text-center mt-12 text-gray-500 text-sm">
-            <p>Copyright © <span id="currentYear">2025</span> NFX ID. Semua Hak Dilindungi.</p>
-        </footer>
     </div>
 
     <!-- Modal for Info/Confirmation -->
@@ -993,7 +1019,7 @@
         </div>
     </div>
     
-    <!-- NEW: Modal for Transaction Details -->
+    <!-- Modal for Transaction Details -->
     <div id="detailsModal" class="modal">
         <div class="details-modal-content" id="detailsModalContent">
             <!-- Content will be injected by JS -->
@@ -1010,7 +1036,6 @@
              </div>
         </div>
     </div>
-
 
     <script>
     // --- VALIDATION LOGIC ---
@@ -1080,12 +1105,20 @@
 
         // --- ELEMENTS ---
         const elements = {
-            mainContentContainer: document.getElementById('main-content-container'),
-            paymentInstructionContainer: document.getElementById('payment-instruction-container'),
-            footer: document.getElementById('footer'),
-            currentYear: document.getElementById('currentYear'),
-            productInfoFormTop: document.getElementById('product-info-form-top'),
-            featuresBeforeForm: document.getElementById('features-before-form'),
+            productSection: document.getElementById('product-section'),
+            checkoutSection: document.getElementById('checkout-section'),
+            paymentSection: document.getElementById('payment-section'),
+            
+            goToCheckoutBtn: document.getElementById('go-to-checkout-btn'),
+            backToProductBtn: document.getElementById('back-to-product-btn'),
+
+            currentYearProduct: document.getElementById('currentYearProduct'),
+            currentYearCheckout: document.getElementById('currentYearCheckout'),
+
+            productInfoDisplay: document.getElementById('product-info-display'),
+            featuresDisplay: document.getElementById('features-display'),
+            productInfoCheckout: document.getElementById('product-info-checkout'),
+            
             paymentMethodSelection: document.getElementById('payment-method-selection'),
             orderDetailsInForm: document.getElementById('order-details-in-form'),
             testimonialsFull: document.getElementById('testimonials-full'),
@@ -1152,7 +1185,22 @@
         };
 
         // --- TEMPLATE FUNCTIONS ---
-        const getProductInfoHTML = (pkg, priceToDisplay) => {
+        const getProductInfoHTML = (pkg, priceToDisplay, isCheckoutView = false) => {
+            if (isCheckoutView) {
+                return `
+                <div class="mb-6 border-b border-gray-200 pb-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="font-semibold text-gray-800 main-sans">${pkg.title}</h2>
+                            <p class="text-gray-600 text-sm">Langganan 1 Tahun</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold text-lg text-netflix-red main-sans">${formatCurrency(priceToDisplay)}</p>
+                        </div>
+                    </div>
+                </div>`;
+            }
+
             return `
             <div class="product-info-card">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -1302,15 +1350,18 @@
             const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price;
             const totalPrice = currentPrice + uniqueCode;
 
-            elements.productInfoFormTop.innerHTML = getProductInfoHTML(pkg, currentPrice);
-            elements.featuresBeforeForm.innerHTML = getFeaturesHTML(pkg);
-            elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+            // Product Section
+            elements.productInfoDisplay.innerHTML = getProductInfoHTML(pkg, currentPrice, false);
+            elements.featuresDisplay.innerHTML = getFeaturesHTML(pkg);
             elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
             elements.faqFull.innerHTML = getFaqHTML();
             elements.policyFull.innerHTML = getPolicyHTML();
 
-            // Now that the coupon elements are in the DOM, update the button state.
+            // Checkout Section
+            elements.productInfoCheckout.innerHTML = getProductInfoHTML(pkg, currentPrice, true);
+            elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
+            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+            
             updateCouponButton();
         }
 
@@ -1386,8 +1437,12 @@
         function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
             window.scrollTo(0, 0);
             currentOrderDetails = { pkg, totalPrice, paymentId, nama: formData.get('nama'), whatsapp: formData.get('whatsapp') };
-            elements.mainContentContainer.parentElement.style.display = 'none';
-            elements.footer.style.display = 'none';
+            
+            // Hide product and checkout, show payment
+            elements.productSection.style.display = 'none';
+            elements.checkoutSection.style.display = 'none';
+            elements.paymentSection.style.display = 'block';
+
             const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId);
             let accountLabel;
             switch (paymentMethodKey) {
@@ -1415,7 +1470,7 @@
                 default: instructionAccordionHTML = `<details class="payment-accordion" open><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi perbankan atau e-wallet Anda.</li><li>Pilih menu transfer.</li><li>Masukkan detail pembayaran yang tertera.</li><li>Pastikan nominal transfer sesuai dengan total pembayaran hingga digit terakhir.</li><li>Selesaikan transaksi dan simpan bukti pembayaran.</li></ol></div></details>`;
             }
             const paymentViewHTML = `<div class="payment-header"><h2 class="main-sans">Selesaikan Pembayaran</h2><div class="countdown-timer" id="countdown-timer-display"></div></div><div class="max-w-lg mx-auto"><div class="p-2 sm:p-4"><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-1">Ringkasan Transaksi</h3><div class="flex justify-between items-center mt-2 text-xs text-gray-600"><span>Nomor Invoice: <strong>${paymentId}</strong></span><a href="#" onclick="showDetailsModal(event)" class="font-semibold text-netflix-red">Lihat detail</a></div><hr class="my-4"><p class="text-xs text-gray-600 mb-1">Total Pembayaran</p><div class="flex items-center justify-between"><p class="text-2xl font-bold text-netflix-red main-sans">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-3">Silahkan Bayar ke</h3><div class="flex justify-between items-start mt-3"><div><p class="text-sm text-gray-500">${paymentAccount.displayName}</p><p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p></div><div class="payment-logo-container"><img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo"></div></div>${paymentDetailsBlock}<div class="mt-6"><p class="text-xs text-gray-500 mb-1">Bayar Sebelum</p><p class="font-semibold text-gray-800 text-sm">${paymentDeadlineFormatted}</p></div><a href="${waLink}" target="_blank" class="block mt-6"><button class="confirm-button-outlined"><i class="fab fa-whatsapp mr-2"></i> Konfirmasi Pembayaran</button></a></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-2">Cara Membayar</h3><div class="mt-2">${instructionAccordionHTML}</div></div></div></div>`;
-            elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
+            elements.paymentSection.innerHTML = paymentViewHTML;
             startCountdown();
             if (paymentMethodKey === 'qris') {
                 setTimeout(() => {
@@ -1474,6 +1529,8 @@
             const paymentId = `INV-NFLX-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
             setTimeout(() => {
                 showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
+                elements.submitBtn.disabled = false;
+                elements.submitBtn.innerHTML = '<i class="fas fa-lock mr-2"></i> Selesaikan Pembayaran';
             }, 800);
         }
         
@@ -1517,10 +1574,31 @@
             }, randomDelay);
         }
 
-        // --- INITIALIZATION ---
-        elements.currentYear.textContent = new Date().getFullYear();
+        // --- INITIALIZATION & NAVIGATION ---
+        function setInitialView() {
+            elements.productSection.style.display = 'block';
+            elements.checkoutSection.style.display = 'none';
+            elements.paymentSection.style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+
+        elements.goToCheckoutBtn.addEventListener('click', () => {
+            elements.productSection.style.display = 'none';
+            elements.checkoutSection.style.display = 'block';
+            window.scrollTo(0, 0);
+        });
+
+        elements.backToProductBtn.addEventListener('click', () => {
+            elements.checkoutSection.style.display = 'none';
+            elements.productSection.style.display = 'block';
+            window.scrollTo(0, 0);
+        });
+
+        elements.currentYearProduct.textContent = new Date().getFullYear();
+        elements.currentYearCheckout.textContent = new Date().getFullYear();
+        
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-        // Use event delegation for the coupon button
+        
         elements.orderForm.addEventListener('click', function(event) {
             if (event.target && event.target.id === 'coupon-btn') {
                 handleCouponToggle();
@@ -1528,6 +1606,7 @@
         });
 
         updateDisplay();
+        setInitialView();
         
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
@@ -1553,8 +1632,6 @@
                 elements.detailsModal.style.display = 'none';
             }, 300);
         }
-
-
     });
 
     // --- GLOBAL HELPER FUNCTIONS ---
