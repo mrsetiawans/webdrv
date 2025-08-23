@@ -90,7 +90,7 @@
             border: 2px solid var(--theme-outline);
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 8px;
-            padding: 14px 12px;
+            padding: 10px 12px;
             width: 100%;
             background-color: var(--theme-surface);
             font-size: 16px;
@@ -496,7 +496,7 @@
             background: linear-gradient(135deg, #e8f0fe 0%, var(--theme-surface) 100%);
             border: 1px solid var(--theme-outline);
             border-radius: 16px;
-            padding: 20px;
+            padding: 16px;
         }
 
         /* Enhanced Payment Method Styles */
@@ -1262,7 +1262,7 @@
                 name: "Google Drive Unlimited",
                 price: 117000,
                 normalPrice: 699000,
-                title: "DRIVE UNLIMITED",
+                title: "Google Drive Unlimited",
                 priceDisplay: `Rp117.000`,
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png',
                 description: "Penyimpanan cloud tanpa batas untuk semua file Anda.",
@@ -1283,7 +1283,7 @@
                 name: "Google Photos Unlimited",
                 price: 117000,
                 normalPrice: 699000,
-                title: "PHOTOS UNLIMITED",
+                title: "Google Photos Unlimited",
                 priceDisplay: `Rp117.000`,
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/240px-Google_Photos_icon_%282020%29.svg.png',
                 description: "Simpan semua foto & video kualitas asli tanpa kompresi.",
@@ -1370,7 +1370,6 @@
                     <div class="text-center mb-4 md:mb-0 flex-grow">
                         ${logoHtml}
                         <h1 class="text-2xl font-bold text-m3-on-primary-container mt-3 google-sans">${pkg.title}</h1>
-                        <p class="text-md text-m3-on-surface-variant mt-1">${pkg.description}</p>
                     </div>
                     <div class="text-center md:text-right mt-4 md:mt-0 md:pl-6">
                         <div class="text-4xl font-bold text-google-blue google-sans">${isCouponApplied ? formatCurrency(pkg.price) : formatCurrency(pkg.normalPrice)}</div>
