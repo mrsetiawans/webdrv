@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
 
@@ -32,86 +32,87 @@
 
     <style>
         :root {
-            --netflix-red: #E50914;
-            --netflix-red-dark: #B20710;
-            --netflix-red-light: #fdeded;
-            --grey-50: #f8f9fa;
-            --grey-100: #f1f3f4;
-            --grey-200: #e8eaed;
-            --grey-300: #dadce0;
-            --grey-500: #9aa0a6;
-            --grey-600: #5f6368;
-            --grey-700: #3c4043;
-            --grey-900: #202124;
-            --green-600: #137333;
+            /* Using the color scheme from testo.html but with Netflix branding */
+            --theme-primary: #E50914; /* Netflix Red */
+            --theme-primary-hover: #B20710; /* Darker Netflix Red */
+            --theme-background: #f8f9fa;
+            --theme-surface: #ffffff;
+            --theme-on-surface: #3c4043;
+            --theme-on-surface-variant: #5f6368;
+            --theme-outline: #dadce0;
+            --theme-outline-variant: #e8eaed;
+
+            --google-blue: #E50914;
+            --google-green: #1DB954; /* Spotify Green for contrast, can be changed */
+            --google-yellow: #FBBC05;
+            --google-red: #E50914;
+
+            /* Shadows */
             --shadow-1: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
             --shadow-2: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
             --shadow-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.3);
         }
 
-        /* Typography */
+        /* Google Sans Typography */
         body {
-            font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--grey-50);
-            color: var(--grey-700);
-            line-height: 1.5;
+            font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--theme-background);
+            color: var(--theme-on-surface);
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        .main-sans {
-            font-family: 'Inter', sans-serif;
+        .google-sans {
+            font-family: 'Google Sans', sans-serif;
         }
 
-        /* Enhanced Material Design Components */
         .material-card {
-            background: #ffffff;
+            background: var(--theme-surface);
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-1);
             transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--grey-200);
+            border: 1px solid var(--theme-outline);
         }
 
         .material-card:hover {
-            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-2);
         }
 
         .material-card-elevated {
-            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-2);
         }
 
-        /* Enhanced Form Inputs */
         .form-input {
-            border: 2px solid var(--grey-300);
+            border: 2px solid var(--theme-outline);
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 8px;
-            padding: 14px 12px;
+            padding: 10px 12px;
             width: 100%;
-            background-color: #ffffff;
+            background-color: var(--theme-surface);
             font-size: 16px;
             font-family: 'Roboto', sans-serif;
-            color: var(--grey-900);
+            color: var(--theme-on-surface);
         }
 
         .form-input:focus {
-            border-color: var(--netflix-red);
-            background-color: #ffffff;
+            border-color: var(--theme-primary);
+            background-color: var(--theme-surface);
             outline: none;
-            box-shadow: none;
+            box-shadow: 0 0 0 1px var(--theme-primary);
         }
 
         .form-input::placeholder {
-            color: var(--grey-500);
+            color: var(--theme-on-surface-variant);
         }
 
-        /* Enhanced Netflix-style Buttons */
         .cta-button {
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 24px;
             padding: 12px 28px;
             font-size: 15px;
             font-weight: 500;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Google Sans', sans-serif;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -124,783 +125,282 @@
             min-height: 46px;
         }
 
-        .red-button {
-            background-color: var(--netflix-red);
+        .blue-button { /* Renamed to main-button for clarity */
+            background-color: var(--theme-primary);
             color: white;
             box-shadow: var(--shadow-1);
         }
 
-        .red-button:hover {
-            background-color: var(--netflix-red-dark);
+        .blue-button:hover {
+            background-color: var(--theme-primary-hover);
             box-shadow: var(--shadow-2);
             transform: translateY(-1px);
         }
 
-        .red-button:active {
-            transform: translateY(0);
-            box-shadow: var(--shadow-1);
-        }
-
-        .black-button {
-            background-color: var(--grey-900);
-            color: white;
-            box-shadow: var(--shadow-1);
-        }
-        .black-button:hover {
-            background-color: var(--grey-700);
-            box-shadow: var(--shadow-2);
-        }
-
         .cta-button:disabled {
-            background-color: var(--grey-300);
-            color: var(--grey-500);
+            background-color: var(--theme-outline-variant);
+            color: var(--theme-on-surface-variant);
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
 
-        /* Enhanced Modal Styling */
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(32, 33, 36, 0.6);
-            backdrop-filter: blur(4px);
-            justify-content: center;
-            align-items: center;
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85);
+            justify-content: center; align-items: center;
         }
 
         .modal-content {
-            background-color: #ffffff;
-            margin: auto;
-            padding: 28px;
-            width: 90%;
-            max-width: 480px;
-            border-radius: 16px;
-            box-shadow: var(--shadow-3);
-            text-align: center;
-            position: relative;
+            background-color: var(--theme-surface); margin: auto; padding: 28px;
+            width: 90%; max-width: 480px; border-radius: 16px; box-shadow: var(--shadow-3);
+            text-align: center; position: relative;
             animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .modal-content h3 {
-            color: var(--grey-900);
-            margin-bottom: 12px;
-            font-size: 18px;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
+            color: var(--theme-on-surface); margin-bottom: 12px; font-size: 18px;
+            font-weight: 500; font-family: 'Google Sans', sans-serif;
         }
 
         .modal-content p {
-            color: var(--grey-600);
-            margin-bottom: 20px;
-            line-height: 1.6;
-            font-size: 14px;
+            color: var(--theme-on-surface-variant); margin-bottom: 20px;
+            line-height: 1.6; font-size: 14px;
         }
 
         .modal-ok-button {
-            background-color: var(--netflix-red);
-            color: white;
-            padding: 10px 28px;
-            border: none;
-            border-radius: 24px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            min-height: 36px;
+            background-color: var(--theme-primary); color: white; padding: 10px 28px;
+            border: none; border-radius: 24px; cursor: pointer; font-size: 14px;
+            font-weight: 500; font-family: 'Google Sans', sans-serif;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); min-height: 36px;
         }
 
-        .modal-ok-button:hover {
-            background-color: var(--netflix-red-dark);
-            box-shadow: var(--shadow-1);
+        .modal-ok-button:hover { background-color: var(--theme-primary-hover); box-shadow: var(--shadow-1); }
+
+        .testimonial-carousel-container {
+            overflow: hidden; position: relative; width: 100%;
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
         }
 
-        /* Enhanced Testimonial Section */
+        .testimonial-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .testimonial-slide { flex-shrink: 0; width: calc(100% / 3); padding: 0 6px; }
+        @media (max-width: 768px) { .testimonial-slide { width: calc(100% / 2); } }
+        @media (max-width: 480px) { .testimonial-slide { width: calc(100% / 1.5); } }
         .testimonial-image {
+            width: 100%; height: auto; object-fit: cover; aspect-ratio: 4 / 3;
+            border-radius: 12px; cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border-radius: 12px;
-            overflow: hidden;
         }
+        .testimonial-image:hover { transform: scale(1.03); box-shadow: var(--shadow-2); }
 
-        .testimonial-image:hover {
-            transform: scale(1.02);
-            box-shadow: var(--shadow-2);
-        }
-
-        /* Enhanced Notification Toast */
         .notif-box {
-            position: fixed;
-            top: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--grey-900);
-            color: #ffffff;
-            border-radius: 8px;
-            box-shadow: var(--shadow-3);
-            padding: 16px 24px;
-            display: none;
-            align-items: center;
-            gap: 12px;
-            width: auto;
-            max-width: 400px;
-            z-index: 1000;
-            opacity: 0;
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+            background-color: #3c4043; color: #ffffff; border-radius: 8px;
+            box-shadow: var(--shadow-3); padding: 16px 24px; display: none;
+            align-items: center; gap: 12px; width: auto; max-width: 400px;
+            z-index: 1000; opacity: 0;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: 'Roboto', sans-serif;
         }
-
-        .notif-box.show {
-            display: flex;
-            opacity: 1;
-            animation: slideInAndOut 5s ease-in-out forwards;
-        }
-
+        .notif-box.show { display: flex; opacity: 1; animation: slideInAndOut 5s ease-in-out forwards; }
         @keyframes slideInAndOut {
-            0% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px);
-            }
-            10% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-            90% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px);
-            }
+            0%, 100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
+        .notif-icon-wrapper { color: var(--google-green); font-size: 20px; flex-shrink: 0; }
+        .notif-message { font-size: 14px; line-height: 1.4; }
+        .notif-message strong { font-weight: 500; }
+        .notif-time { font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-top: 2px; }
 
-        .notif-icon-wrapper {
-            color: var(--green-600);
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .notif-message {
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .notif-message strong {
-            font-weight: 500;
-        }
-
-        .notif-time {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 2px;
-        }
-
-        /* Enhanced FAQ Section */
-        .faq-item {
-            border-bottom: 1px solid var(--grey-200);
-            transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-
-        .faq-item:hover {
-            background-color: var(--grey-50);
-        }
-
+        .faq-item { border-bottom: 1px solid var(--theme-outline); transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item:hover { background-color: var(--theme-background); }
         .faq-item summary {
-            font-weight: 500;
-            font-size: 15px;
-            color: var(--grey-900);
-            padding: 16px 12px;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Inter', sans-serif;
+            font-weight: 500; font-size: 15px; color: var(--theme-on-surface);
+            padding: 16px 12px; cursor: pointer; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: 'Google Sans', sans-serif;
         }
-
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-
+        .faq-item summary::-webkit-details-marker { display: none; }
         .faq-item summary::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
+            content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--grey-600);
-            font-size: 14px;
+            color: var(--theme-on-surface-variant); font-size: 14px;
         }
+        .faq-item[open] summary::after { transform: rotate(180deg); }
+        .faq-content { padding: 0 12px 16px 12px; color: var(--theme-on-surface-variant); line-height: 1.6; font-size: 14px; }
+        .faq-item[open] summary { color: var(--theme-primary); }
+        #info-section-full .faq-item summary { padding: 12px 10px; font-size: 14px; }
+        #info-section-full .faq-content { padding: 4px 10px 12px 10px; font-size: 13px; }
+        #info-section-full .faq-item { border-bottom: 1px solid var(--theme-outline-variant); }
 
-        .faq-item[open] summary::after {
-            transform: rotate(180deg);
-        }
-
-        .faq-content {
-            padding: 0 12px 16px 12px;
-            color: var(--grey-600);
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        .faq-item[open] summary {
-            color: var(--netflix-red);
-        }
-
-        /* Enhanced Product Info Display */
-        #product-info-form-top,
-        #features-before-form {
-            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
+        #product-info-form-top { transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .product-info-card {
-            background: linear-gradient(135deg, var(--netflix-red-light) 0%, #ffffff 100%);
-            border: 1px solid var(--grey-200);
-            border-radius: 16px;
-            padding: 20px;
+            background: linear-gradient(135deg, #fdeded 0%, var(--theme-surface) 100%);
+            border: 1px solid var(--theme-outline); border-radius: 16px; padding: 16px;
         }
 
-        /* Enhanced Payment Method Styles */
-        .payment-radio {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
+        .payment-radio { position: absolute; opacity: 0; width: 0; height: 0; }
         .payment-label {
-            display: flex;
-            align-items: center;
-            padding: 12px;
+            display: flex; align-items: center; padding: 12px;
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border-radius: 12px;
-            margin: 2px;
+            cursor: pointer; border-radius: 12px; margin: 2px;
         }
-
-        .payment-label:hover {
-            background-color: var(--grey-50);
-        }
-
+        .payment-label:hover { background-color: var(--theme-background); }
         .payment-radio:checked + .payment-label {
-            background-color: var(--netflix-red-light);
-            box-shadow: inset 0 0 0 2px var(--netflix-red);
+            background-color: #fdeded; /* Light red */
+            box-shadow: inset 0 0 0 2px var(--theme-primary);
         }
-
-        .payment-logo-container {
-            width: 64px;
-            height: 40px;
-            background-color: #ffffff;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            padding: 4px;
-            border: 1px solid var(--grey-200, #e8eaed);
+        .payment-logo-container, .form-payment-logo-container {
+            width: 48px; height: 32px; background-color: #ffffff; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 12px; padding: 4px; border: 1px solid var(--theme-outline, #dadce0);
             flex-shrink: 0;
         }
-        .form-payment-logo-container {
-            width: 48px;
-            height: 32px;
-            background-color: #ffffff;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            padding: 4px;
-            border: 1px solid var(--grey-200, #e8eaed);
-            flex-shrink: 0;
-        }
-        .payment-logo {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
-        }
-
+        .payment-logo { max-height: 100%; max-width: 100%; object-fit: contain; }
         .custom-radio-button {
-            height: 20px;
-            width: 20px;
-            border: 2px solid var(--grey-300);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            flex-shrink: 0;
-            margin-left: auto;
+            height: 20px; width: 20px; border: 2px solid var(--theme-outline);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); flex-shrink: 0; margin-left: auto;
         }
-
         .custom-radio-button .dot {
-            height: 8px;
-            width: 8px;
-            border-radius: 50%;
-            background-color: transparent;
+            height: 8px; width: 8px; border-radius: 50%; background-color: transparent;
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .payment-radio:checked + .payment-label .custom-radio-button { border-color: var(--theme-primary); }
+        .payment-radio:checked + .payment-label .custom-radio-button .dot { background-color: var(--theme-primary); }
 
-        .payment-radio:checked + .payment-label .custom-radio-button {
-            border-color: var(--netflix-red);
-        }
-
-        .payment-radio:checked + .payment-label .custom-radio-button .dot {
-            background-color: var(--netflix-red);
-        }
-
-        /* Enhanced Payment Instruction Layout */
         .payment-header {
-            background: linear-gradient(135deg, var(--grey-900) 0%, #1f1f23 100%);
-            color: #fff;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 999;
+            background: linear-gradient(135deg, #202124 0%, #3c4043 100%); color: #fff;
+            text-align: center; position: sticky; top: 0; z-index: 999; padding: 1rem;
         }
-
+        .payment-header h2 { font-size: 1.125rem; font-weight: 500; font-family: 'Google Sans', sans-serif; color: #ffffff; }
         .payment-card {
-            background-color: #ffffff;
-            border: 1px solid var(--grey-200);
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 12px;
-            box-shadow: var(--shadow-1);
+            background-color: var(--theme-surface); border: 1px solid var(--theme-outline);
+            border-radius: 12px; padding: 16px; margin-top: 12px; box-shadow: var(--shadow-1);
         }
-
         .copy-button-text {
-            background: none;
-            border: none;
-            color: var(--netflix-red);
-            font-weight: 500;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 4px;
+            background: none; border: none; color: var(--theme-primary); font-weight: 500;
+            cursor: pointer; padding: 8px; border-radius: 4px;
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .copy-button-text:hover {
-            background-color: var(--netflix-red-light);
-        }
-
+        .copy-button-text:hover { background-color: #fdeded; }
         .confirm-button-outlined {
-            width: 100%;
-            padding: 12px 24px;
-            border: 2px solid var(--netflix-red);
-            color: var(--netflix-red);
-            background-color: transparent;
-            border-radius: 24px;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            min-height: 48px;
+            width: 100%; padding: 12px 24px; border: 2px solid var(--theme-primary);
+            color: var(--theme-primary); background-color: transparent; border-radius: 24px;
+            font-weight: 500; font-family: 'Google Sans', sans-serif; cursor: pointer;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); min-height: 48px;
         }
-
-        .confirm-button-outlined:hover {
-            background-color: var(--netflix-red-light);
-            box-shadow: var(--shadow-1);
-        }
-
-        .payment-accordion {
-            border-bottom: 1px solid var(--grey-200);
-        }
-
-        .payment-accordion:last-child {
-            border-bottom: none;
-        }
-
+        .confirm-button-outlined:hover { background-color: #fdeded; box-shadow: var(--shadow-1); }
+        .payment-accordion { border-bottom: 1px solid var(--theme-outline); }
+        .payment-accordion:last-child { border-bottom: none; }
         .payment-accordion summary {
-            font-weight: 500;
-            padding: 14px 0;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Inter', sans-serif;
+            font-weight: 500; padding: 14px 0; cursor: pointer; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: 'Google Sans', sans-serif;
         }
-
-        .payment-accordion summary::-webkit-details-marker {
-            display: none;
-        }
-
+        .payment-accordion summary::-webkit-details-marker { display: none; }
         .payment-accordion summary::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--grey-600);
+            content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); color: var(--theme-on-surface-variant);
         }
-
-        .payment-accordion[open] summary::after {
-            transform: rotate(180deg);
-        }
-
-        .payment-accordion-content {
-            padding-bottom: 16px;
-            color: var(--grey-600);
-            line-height: 1.6;
-        }
-
-        .payment-accordion-content ol {
-            list-style-type: decimal;
-            padding-left: 20px;
-            font-size: 14px;
-        }
-
-        /* === START: User Requested Styles === */
-        .payment-header {
-            padding: 1rem;
-        }
-
-        .payment-header h2 {
-            font-size: 1.125rem;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            color: #ffffff;
-        }
-
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .countdown-item {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
+        .payment-accordion[open] summary::after { transform: rotate(180deg); }
+        .payment-accordion-content { padding-bottom: 16px; color: var(--theme-on-surface-variant); line-height: 1.6; }
+        .payment-accordion-content ol { list-style-type: decimal; padding-left: 20px; font-size: 14px; }
+        .countdown-timer { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+        .countdown-item { display: flex; align-items: center; gap: 0.25rem; }
         .countdown-number {
-            background-color: var(--netflix-red);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            font-family: 'Inter', sans-serif;
-            text-align: center;
+            background-color: var(--google-red); color: white; padding: 0.25rem 0.5rem;
+            border-radius: 6px; font-weight: 600; font-size: 1.1rem;
+            font-family: 'Google Sans', sans-serif; text-align: center;
         }
-
         @media (max-width: 768px) {
-            .payment-header {
-                padding: 0.875rem 1rem;
-            }
-            .payment-header h2 {
-                font-size: 1.0625rem;
-            }
-            .countdown-timer {
-                margin-top: 0.25rem;
-            }
-            .countdown-number {
-                font-size: 0.875rem;
-                padding: 0.15rem 0.4rem;
-            }
-            .countdown-item {
-                font-size: 0.75rem;
-            }
-        }
-        /* === END: User Requested Styles === */
-
-
-        /* Enhanced Details Modal (Bottom Sheet) */
-        #detailsModal {
-            align-items: flex-end;
+            .payment-header { padding: 0.875rem 1rem; }
+            .payment-header h2 { font-size: 1.0625rem; }
+            .countdown-timer { margin-top: 0.25rem; }
+            .countdown-number { font-size: 0.875rem; padding: 0.15rem 0.4rem; }
+            .countdown-item { font-size: 0.75rem; }
         }
 
+        #detailsModal { align-items: flex-end; }
         .details-modal-content {
-            background-color: #ffffff;
-            width: 100%;
-            max-width: 100%;
-            border-radius: 20px 20px 0 0;
-            box-shadow: var(--shadow-3);
-            text-align: left;
+            background-color: var(--theme-surface); width: 100%; max-width: 100%;
+            border-radius: 20px 20px 0 0; box-shadow: var(--shadow-3); text-align: left;
             transform: translateY(100%);
         }
-
-        .details-modal-content.is-open {
-            animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .details-modal-content.is-closing {
-            animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(100%);
-            }
-        }
-
+        .details-modal-content.is-open { animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .details-modal-content.is-closing { animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        @keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
         .details-modal-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid var(--grey-200);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 20px 24px; border-bottom: 1px solid var(--theme-outline);
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        .details-modal-header h3 {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--grey-900);
-            font-family: 'Inter', sans-serif;
-        }
-
+        .details-modal-header h3 { font-size: 18px; font-weight: 500; color: var(--theme-on-surface); font-family: 'Google Sans', sans-serif; }
         .details-modal-close {
-            font-size: 24px;
-            font-weight: 400;
-            color: var(--grey-600);
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 8px;
-            border-radius: 50%;
+            font-size: 24px; font-weight: 400; color: var(--theme-on-surface-variant);
+            cursor: pointer; background: none; border: none; padding: 8px; border-radius: 50%;
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .details-modal-close:hover {
-            background-color: var(--grey-100);
-        }
-
-        .details-modal-body {
-            padding: 20px 24px 32px 24px;
-            max-height: 60vh;
-            overflow-y: auto;
-        }
-
-        /* Enhanced Mobile Responsiveness */
+        .details-modal-close:hover { background-color: var(--theme-outline-variant); }
+        .details-modal-body { padding: 20px 24px 32px 24px; max-height: 60vh; overflow-y: auto; }
         @media (max-width: 768px) {
-            .notif-box {
-                left: 16px;
-                right: 16px;
-                top: 16px;
-                transform: translateX(0);
-                width: calc(100% - 32px);
-                max-width: none;
-            }
-
-            @keyframes slideInAndOut {
-                0% {
-                    opacity: 0;
-                    transform: translateY(-20px);
-                }
-                10% {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-                90% {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-                100% {
-                    opacity: 0;
-                    transform: translateY(-20px);
-                }
-            }
-
-            .material-card {
-                border-radius: 16px;
-                margin: 0 4px;
-            }
-
-            .form-input {
-                font-size: 16px; /* Prevent zoom on iOS */
-            }
+            .notif-box { left: 16px; right: 16px; top: 16px; transform: translateX(0); width: calc(100% - 32px); max-width: none; }
+            .material-card { border-radius: 16px; margin: 0 4px; }
+            .form-input { font-size: 16px; }
         }
 
-        /* Enhanced Image Modal */
-        .modal-image-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
+        .modal-image-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
         .modal-content-image {
-            margin: auto;
-            display: block;
-            width: auto;
-            max-width: 90%;
-            max-height: 80vh;
-            animation: zoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 8px;
+            margin: auto; display: block; width: auto; max-width: 90%; max-height: 80vh;
+            animation: zoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 8px;
         }
-
         .close-image-modal-button {
-            margin-top: 20px;
-            color: #ffffff;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 24px;
-            border-radius: 24px;
-            font-size: 14px;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(4px); /* Reduced from 8px */
+            margin-top: 20px; color: #ffffff; background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3); padding: 12px 24px; border-radius: 24px;
+            font-size: 14px; font-weight: 500; font-family: 'Google Sans', sans-serif;
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .close-image-modal-button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
+        .close-image-modal-button:hover { background-color: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.5); }
         .modal-nav {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 20px;
-            margin-top: -50px;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 50%;
-            user-select: none;
-            -webkit-user-select: none;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px); /* Reduced from 8px */
-            display: none;
+            cursor: pointer; position: absolute; top: 50%; width: 44px; height: 44px;
+            margin-top: -22px; color: white; font-weight: bold; font-size: 24px;
+            transition: 0.3s ease; border-radius: 50%; user-select: none; -webkit-user-select: none;
+            background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;
         }
-
-        .modal-nav.prev {
-            left: 20px;
-        }
-
-        .modal-nav.next {
-            right: 20px;
-        }
-
-        .modal-nav:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-            transform: scale(1.1);
-        }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.95);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* Enhanced Feature Icons */
-        .feature-icon {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .feature-icon:hover {
-            transform: scale(1.1);
-        }
-
-        /* Enhanced Security Badge */
+        .modal-nav.prev { left: 20px; }
+        .modal-nav.next { right: 20px; }
+        .modal-nav:hover { background-color: rgba(0, 0, 0, 0.7); transform: scale(1.1); }
+        @keyframes zoomIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .feature-icon { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .feature-icon:hover { transform: scale(1.1); }
         .security-badge {
-            background: linear-gradient(135deg, var(--green-600) 0%, #0f7b0f 100%);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            background: #e8f0fe; color: #1557b0; padding: 6px 12px; border-radius: 20px;
+            font-size: 10px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px;
         }
-
-        /* Enhanced Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Inter', sans-serif;
-            color: var(--grey-900);
-        }
-
-        .text-netflix-red {
-            color: var(--netflix-red);
-        }
-
-        .bg-netflix-red {
-            background-color: var(--netflix-red);
-        }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading States */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .spinner {
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Google Sans', sans-serif; color: var(--theme-on-surface); }
+        .text-google-blue { color: var(--google-blue); }
+        html { scroll-behavior: smooth; }
+        .spinner { animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="antialiased">
 
-    <div id="payment-instruction-container">
-        <!-- Konten akan di-generate oleh JavaScript -->
-    </div>
-    <div class="p-3 sm:p-4 lg:p-8">
+    <div id="payment-instruction-container"></div>
+    <div class="p-1 sm:p-4 lg:p-8">
         <div id="main-content-container">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-12 gap-y-8 max-w-7xl mx-auto">
                 <!-- Kolom Kiri: Form & Pembayaran -->
                 <div class="lg:col-span-1 material-card p-5 md:p-8">
                     <!-- Header Keamanan -->
-                    <div class="grid grid-cols-2 gap-2 text-center border-b border-gray-200 pb-4 mb-6">
+                    <div class="grid grid-cols-2 gap-3 text-center border-b border-m3-outline-variant pb-4 mb-4">
                         <div class="flex">
                             <div class="security-badge w-full justify-center">
                                 <i class="fas fa-shield-alt text-xs mr-1"></i>
@@ -908,7 +408,7 @@
                             </div>
                         </div>
                         <div class="flex">
-                            <div class="security-badge w-full justify-center" style="background: linear-gradient(135deg, var(--netflix-red) 0%, #B20710 100%);">
+                            <div class="security-badge w-full justify-center" style="background: var(--theme-primary); color: white;">
                                 <i class="fas fa-hand-holding-usd text-xs mr-1"></i>
                                 GARANSI UANG KEMBALI
                             </div>
@@ -916,39 +416,35 @@
                     </div>
                     
                     <!-- Info Produk -->
-                    <div id="product-info-form-top" class="mb-6"></div>
+                    <div id="product-info-form-top" class="mb-4"></div>
 
-                    <!-- Fitur -->
-                    <div id="features-before-form" class="mb-6"></div>
+                    <!-- Accordion for Details -->
+                    <div id="details-accordion-container" class="mb-4"></div>
 
-                    <!-- Form -->
+                    <!-- Form (Compact style) -->
                     <form id="orderForm">
-                        <h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">1. Lengkapi Data</h2>
+                        <h2 class="text-lg font-bold mb-3 google-sans">Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
-                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
-                                <input type="text" id="nama" name="nama" class="form-input" placeholder="Masukkan nama lengkap Anda">
+                                <input type="text" id="nama" name="nama" class="form-input" placeholder="Nama Anda *">
                             </div>
                             <div>
-                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
-                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="Contoh: 081234567890">
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="No. WhatsApp Anda *">
                             </div>
                             <div>
-                                <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Email Anda (untuk pengiriman akun) <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="email" class="form-input" placeholder="contoh.email@gmail.com">
+                                <input type="email" id="email" name="email" class="form-input" placeholder="Email Anda (untuk pengiriman akun) *">
                             </div>
                         </div>
                         
-                        <!-- Honeypot field for anti-spam -->
                         <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
 
                         <!-- Metode Pembayaran -->
-                        <div id="payment-method-selection" class="mt-8"></div>
+                        <div id="payment-method-selection" class="mt-4"></div>
                         
                         <!-- Rincian Pesanan -->
-                        <div id="order-details-in-form" class="mt-8"></div>
+                        <div id="order-details-in-form" class="mt-4"></div>
                         
-                        <button type="button" id="submit-btn" class="cta-button red-button mt-8">
+                        <button type="button" id="submit-btn" class="cta-button blue-button mt-4">
                             <i class="fas fa-shopping-cart mr-2"></i>
                             Beli Sekarang
                         </button>
@@ -956,737 +452,109 @@
                 </div>
 
                 <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
-                <div class="lg:col-span-1 py-4 space-y-8">
-                    <div id="testimonials-full"></div>
-                    <div class="material-card p-5 md:p-6">
-                        <div id="faq-full"></div>
-                    </div>
-                    <div class="material-card p-5 md:p-6">
-                        <div id="policy-full"></div>
-                    </div>
+                <div class="lg:col-span-1 py-4 space-y-4">
+                   <div id="testimonials-full"></div>
+                   <div class="material-card p-5 md:p-6">
+                       <div id="info-section-full"></div>
+                   </div>
                 </div>
             </div>
         </div>
         
-        <footer id="footer" class="text-center mt-12 text-gray-500 text-sm">
+        <footer id="footer" class="text-center mt-8 text-m3-on-surface-variant text-sm">
             <p>Copyright © <span id="currentYear">2025</span> NFX ID. Semua Hak Dilindungi.</p>
         </footer>
     </div>
 
-    <!-- Modal for Info/Confirmation -->
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <h3 id="modalTitle"></h3>
-            <p id="modalMessage"></p>
-            <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
-        </div>
-    </div>
-
-    <!-- Modal untuk Zoom Gambar -->
-    <div id="imageModal" class="modal">
-        <span class="modal-nav prev" onclick="showPrevImage()">&#10094;</span>
-        <span class="modal-nav next" onclick="showNextImage()">&#10095;</span>
-        <div class="modal-image-wrapper">
-            <img class="modal-content-image" id="modalImage">
-            <button class="close-image-modal-button" onclick="closeImageModal()">Tutup</button>
-        </div>
-    </div>
-    
-    <!-- NEW: Modal for Transaction Details -->
-    <div id="detailsModal" class="modal">
-        <div class="details-modal-content" id="detailsModalContent">
-            <!-- Content will be injected by JS -->
-        </div>
-    </div>
-
-    <!-- Notification Popup -->
-    <div class="notif-box" id="notifBox">
-        <div class="notif-icon-wrapper"><i class="far fa-check-circle"></i></div>
-        <div class="notif-content-area">
-             <div class="notif-message">
-                 <div><strong class="notif-name">Nama Acak</strong> baru saja membeli!</div>
-                 <div class="notif-time">beberapa detik lalu</div>
-             </div>
-        </div>
-    </div>
-
+    <!-- Modals -->
+    <div id="infoModal" class="modal"><div class="modal-content"><h3 id="modalTitle"></h3><p id="modalMessage"></p><button class="modal-ok-button" onclick="closeInfoModal()">OK</button></div></div>
+    <div id="imageModal" class="modal"><span class="modal-nav prev" onclick="showPrevImage()">&#10094;</span><span class="modal-nav next" onclick="showNextImage()">&#10095;</span><div class="modal-image-wrapper"><img class="modal-content-image" id="modalImage"><button class="close-image-modal-button" onclick="closeImageModal()">Tutup</button></div></div>
+    <div id="detailsModal" class="modal"><div class="details-modal-content" id="detailsModalContent"></div></div>
+    <div class="notif-box" id="notifBox"><div class="notif-icon-wrapper"><i class="far fa-check-circle"></i></div><div class="notif-content-area"><div class="notif-message"><div><strong class="notif-name">Nama Acak</strong> baru saja membeli!</div><div class="notif-time">beberapa detik lalu</div></div></div></div>
 
     <script>
     // --- VALIDATION LOGIC ---
-    const operatorPrefixes = {
-        'Telkomsel': ['0811', '0812', '0813', '0821', '0822', '0823', '0851', '0852', '0853'],
-        'by.U': ['0851'],
-        'Indosat Ooredoo': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
-        'Tri (3)': ['0895', '0896', '0897', '0898', '0899'],
-        'XL Axiata': ['0817', '0818', '0819', '0859', '0877', '0878', '0879'],
-        'Live.On': ['0859'],
-        'Axis': ['0831', '0832', '0833', '0838'],
-        'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
-    };
+    const operatorPrefixes = { 'Telkomsel': ['0811', '0812', '0813', '0821', '0822', '0823', '0851', '0852', '0853'],'by.U': ['0851'],'Indosat Ooredoo': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],'Tri (3)': ['0895', '0896', '0897', '0898', '0899'],'XL Axiata': ['0817', '0818', '0819', '0859', '0877', '0878', '0879'],'Live.On': ['0859'],'Axis': ['0831', '0832', '0833', '0838'],'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889'] };
     const blacklistedNumbers = ['081234567890'];
-
-    function isInvalidPattern(nomor) {
-        if (blacklistedNumbers.includes(nomor)) return true;
-        const numberPart = nomor.substring(2);
-        if (/(\d)\1{4,}/.test(numberPart)) return true;
-        for (let i = 0; i < numberPart.length - 4; i++) {
-            const sub = numberPart.substring(i, i + 5);
-            const isAscending = '0123456789'.includes(sub);
-            const isDescending = '9876543210'.includes(sub);
-            if (isAscending || isDescending) return true;
-        }
-        const uniqueDigits = new Set(numberPart.split(''));
-        if (uniqueDigits.size < 4) return true;
-        if (/(..)\1\1/.test(numberPart)) return true;
-        return false;
-    }
-
-    function getOperatorFromNumber(nomor) {
-        const prefix = nomor.substring(0, 4);
-        for (const operator in operatorPrefixes) {
-            if (operatorPrefixes[operator].includes(prefix)) {
-                return operator;
-            }
-        }
-        return null;
-    }
-
-    function validatePhoneNumber(nomorHp) {
-        const genericError = { isValid: false, message: 'Silahkan isi dengan nomor yang benar' };
-
-        if (nomorHp.length < 10) {
-            return genericError;
-        }
-
-        const operator = getOperatorFromNumber(nomorHp);
-        if (!operator) {
-            return genericError;
-        }
-
-        const maxLength = operator === 'Tri (3)' ? 13 : 12;
-        if (nomorHp.length > maxLength) {
-            return genericError;
-        }
-
-        if (isInvalidPattern(nomorHp)) {
-            return genericError;
-        }
-
-        return { isValid: true, message: 'Nomor valid.' };
-    }
+    function isInvalidPattern(n){if(blacklistedNumbers.includes(n))return!0;let e=n.substring(2);if(/(\d)\1{4,}/.test(e))return!0;for(let t=0;t<e.length-4;t++){let o=e.substring(t,t+5);if("0123456789".includes(o)||"9876543210".includes(o))return!0}return new Set(e.split("")).size<4||!!/(..)\1\1/.test(e)}
+    function getOperatorFromNumber(n){let e=n.substring(0,4);for(let t in operatorPrefixes)if(operatorPrefixes[t].includes(e))return t;return null}
+    function validatePhoneNumber(n){let e={isValid:!1,message:"Silahkan isi dengan nomor yang benar"};if(n.length<10)return e;let t=getOperatorFromNumber(n);return t?n.length>("Tri (3)"===t?13:12)?e:isInvalidPattern(n)?e:{isValid:!0,message:"Nomor valid."}:e}
 
     document.addEventListener('DOMContentLoaded', function() {
-
-        // --- ELEMENTS ---
-        const elements = {
-            mainContentContainer: document.getElementById('main-content-container'),
-            paymentInstructionContainer: document.getElementById('payment-instruction-container'),
-            footer: document.getElementById('footer'),
-            currentYear: document.getElementById('currentYear'),
-            productInfoFormTop: document.getElementById('product-info-form-top'),
-            featuresBeforeForm: document.getElementById('features-before-form'),
-            paymentMethodSelection: document.getElementById('payment-method-selection'),
-            orderDetailsInForm: document.getElementById('order-details-in-form'),
-            testimonialsFull: document.getElementById('testimonials-full'),
-            faqFull: document.getElementById('faq-full'),
-            policyFull: document.getElementById('policy-full'),
-            orderForm: document.getElementById('orderForm'),
-            submitBtn: document.getElementById('submit-btn'),
-            notifBox: document.getElementById('notifBox'),
-            notifName: document.querySelector('#notifBox .notif-name'),
-            detailsModal: document.getElementById('detailsModal'),
-            detailsModalContent: document.getElementById('detailsModalContent'),
-        };
-
-        // --- CONFIGURATION ---
+        const elements = { mainContentContainer: document.getElementById('main-content-container'), paymentInstructionContainer: document.getElementById('payment-instruction-container'), footer: document.getElementById('footer'), currentYear: document.getElementById('currentYear'), productInfoFormTop: document.getElementById('product-info-form-top'), detailsAccordionContainer: document.getElementById('details-accordion-container'), paymentMethodSelection: document.getElementById('payment-method-selection'), orderDetailsInForm: document.getElementById('order-details-in-form'), testimonialsFull: document.getElementById('testimonials-full'), infoSectionFull: document.getElementById('info-section-full'), orderForm: document.getElementById('orderForm'), submitBtn: document.getElementById('submit-btn'), notifBox: document.getElementById('notifBox'), notifName: document.querySelector('#notifBox .notif-name'), detailsModal: document.getElementById('detailsModal'), detailsModalContent: document.getElementById('detailsModalContent'), };
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
-        let countdownInterval;
-        let expiryTime;
-        let currentOrderDetails = {};
+        let expiryTime, currentOrderDetails = {};
+        const isCouponApplied = true; // Coupon is applied by default for Netflix promo
         const validCouponCode = 'WEDNESDAY';
-        let isCouponApplied = true; // Coupon is applied by default
-        
-        // *** TESTIMONIALS COMBINED ***
-        const allTestimonials = [
-            "https://s6.imgcdn.dev/YIjP00.png", "https://s6.imgcdn.dev/YIjK4e.png", "https://s6.imgcdn.dev/YIjT3M.png",
-            "https://s6.imgcdn.dev/YIjljd.png", "https://s6.imgcdn.dev/YIjzTl.png", "https://s6.imgcdn.dev/YIjaRh.png",
-            "https://s6.imgcdn.dev/YIj1JV.png", "https://s6.imgcdn.dev/YIj7nK.png", "https://s6.imgcdn.dev/YIjBvo.png",
-            "https://s6.imgcdn.dev/YIjGFO.png", "https://s6.imgcdn.dev/YIjrCn.png", "https://s6.imgcdn.dev/YIjv0g.png",
-            "https://s6.imgcdn.dev/YIjx3v.png", "https://s6.imgcdn.dev/YIjAwN.png", "https://s6.imgcdn.dev/YIjOTq.png",
-            "https://s6.imgcdn.dev/YIjZRB.png"
-        ];
+
+        const allTestimonials = [ "https://s6.imgcdn.dev/YIjP00.png", "https://s6.imgcdn.dev/YIjK4e.png", "https://s6.imgcdn.dev/YIjT3M.png", "https://s6.imgcdn.dev/YIjljd.png", "https://s6.imgcdn.dev/YIjzTl.png", "https://s6.imgcdn.dev/YIjaRh.png", "https://s6.imgcdn.dev/YIj1JV.png", "https://s6.imgcdn.dev/YIj7nK.png", "https://s6.imgcdn.dev/YIjBvo.png", "https://s6.imgcdn.dev/YIjGFO.png", "https://s6.imgcdn.dev/YIjrCn.png", "https://s6.imgcdn.dev/YIjv0g.png", "https://s6.imgcdn.dev/YIjx3v.png", "https://s6.imgcdn.dev/YIjAwN.png", "https://s6.imgcdn.dev/YIjOTq.png", "https://s6.imgcdn.dev/YIjZRB.png" ];
 
         const packages = {
             netflix: {
-                id: 'netflix',
-                name: "Netflix Premium 1 Tahun",
-                price: 986000,
-                discountPrice: 179000,
-                title: "NETFLIX PREMIUM",
+                id: 'netflix', name: "Netflix Premium 1 Tahun", price: 986000, discountPrice: 179000, title: "NETFLIX PREMIUM",
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Netflix_2015_N_logo.svg/330px-Netflix_2015_N_logo.svg.png',
                 description: "Nonton sepuasnya film, acara TV, dan banyak lagi.",
-                features: [
-                    "<strong>Kualitas Video Terbaik:</strong> Nikmati tontonan dalam Ultra HD (4K) dan HDR.",
-                    "<strong>Nonton di Semua Perangkat:</strong> Akses dari TV, laptop, tablet, atau ponsel Anda.",
-                    "<strong>Tanpa Iklan:</strong> Streaming tanpa gangguan iklan sama sekali.",
-                    "<strong>Download & Tonton Offline:</strong> Unduh acara favorit Anda untuk ditonton tanpa koneksi internet.",
-                    "<strong>Profil Anak:</strong> Pengalaman menonton yang aman untuk anak-anak dengan profil khusus.",
-                    "<strong>Akun Private:</strong> Akun dibuat khusus untuk Anda, bukan sharing.",
-                    "<strong>Berlangganan 1 Tahun Penuh:</strong> Akses tanpa henti selama 365 hari.",
-                    "<strong>100% Legal & Bergaransi:</strong> Langganan resmi dengan garansi penuh selama 1 tahun."
-                ],
+                features: [ "<strong>Kualitas Video Terbaik:</strong> Nikmati tontonan dalam Ultra HD (4K) dan HDR.", "<strong>Nonton di Semua Perangkat:</strong> Akses dari TV, laptop, tablet, atau ponsel Anda.", "<strong>Tanpa Iklan:</strong> Streaming tanpa gangguan iklan sama sekali.", "<strong>Download & Tonton Offline:</strong> Unduh acara favorit Anda untuk ditonton tanpa koneksi internet.", "<strong>Profil Anak:</strong> Pengalaman menonton yang aman untuk anak-anak dengan profil khusus.", "<strong>Akun Private:</strong> Akun dibuat khusus untuk Anda, bukan sharing.", "<strong>Berlangganan 1 Tahun Penuh:</strong> Akses tanpa henti selama 365 hari.", "<strong>100% Legal & Bergaransi:</strong> Langganan resmi dengan garansi penuh selama 1 tahun." ],
                 testimonials: allTestimonials
             }
         };
 
-        let currentPackageId = 'netflix';
+        const currentPackageId = 'netflix';
+        const paymentAccounts = { qris: { displayName: 'QRIS', accountHolder: 'Epay', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris', }, cimb: { displayName: 'Cimb Niaga', accountHolder: 'Octo Pay - 6289510639366', number: '6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'va', }, bca_va: { displayName: 'BCA Virtual Account', accountHolder: 'Epayment', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'va', }, gopay: { displayName: 'Gopay', accountHolder: 'Gopay 6289510639366', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet', }, dana: { displayName: 'DANA', accountHolder: 'DNID089510639366', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet', }, ovo: { displayName: 'OVO', accountHolder: 'OVO Epayment', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', } };
+
+        const getProductInfoHTML = (pkg, priceToDisplay) => `<div class="product-info-card"><div class="flex flex-col md:flex-row md:items-center md:justify-between"><div class="text-center mb-2 md:mb-0 flex-grow"><div class="flex justify-center"><img alt="Logo ${pkg.name}" class="h-12 w-auto" src="${pkg.logo}"></div><h1 class="text-2xl font-bold text-m3-on-primary-container mt-3 google-sans">${pkg.title}</h1><p class="text-md text-m3-on-surface-variant mt-1">${pkg.description}</p></div><div class="text-center md:text-right mt-2 md:mt-0 md:pl-6"><div class="text-4xl font-bold text-google-blue google-sans">${formatCurrency(priceToDisplay)}</div><p class="text-sm text-m3-on-surface-variant mt-1">Langganan 1 Tahun</p><div class="mt-2"><span class="inline-block bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full"><i class="fas fa-tv mr-1"></i>Kualitas 4K + HDR</span></div></div></div></div>`;
+        const getDetailsAccordionHTML = (pkg) => { const colors = ['text-red-600', 'text-gray-700', 'text-red-500', 'text-gray-600', 'text-red-600', 'text-gray-700', 'text-red-500', 'text-gray-600']; const featuresHTML = `<ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-theme-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>`; const policyHTML = `<p class="mb-4 text-sm leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk langganan selama satu tahun.</p><ul class="list-disc list-inside space-y-2 text-sm"><li>Layanan untuk penggunaan pribadi dan tidak melanggar hukum.</li><li>Garansi penuh jika aktivasi akun gagal karena kesalahan kami.</li><li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li><li>Perubahan kebijakan Netflix di masa depan berada di luar kendali kami.</li></ul>`; return `<details class="faq-item"><summary>Detail Fitur</summary><div class="faq-content">${featuresHTML}</div></details><details class="faq-item"><summary>Informasi Penting & S&K</summary><div class="faq-content">${policyHTML}</div></details>`; };
+        const getPaymentMethodsHTML = (accounts) => { let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">Pilih Metode Pembayaran</h2><div class="payment-group">`; Object.entries(accounts).forEach(([key, account], index) => { const borderClass = index === 0 ? '' : 'border-t border-gray-200'; html += `<div class="${borderClass}"><input type="radio" id="${key}" name="payment-method" value="${key}" class="payment-radio" ${index === 0 ? 'checked' : ''}><label for="${key}" class="payment-label"><div class="form-payment-logo-container"><img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo"></div><span class="font-medium text-gray-800 flex-grow google-sans text-sm">${account.displayName}</span><span class="custom-radio-button"><span class="dot"></span></span></label></div>`; }); html += `</div><div class="bg-gray-50 p-3 mt-4 rounded-xl text-center text-xs text-gray-600"><i class="fas fa-shield-alt text-green-600 mr-2"></i>Pembayaran aman dan terenkripsi.</div>`; return html; };
+        const getOrderDetailsHTML = (pkg, finalPrice) => { const discountAmount = pkg.price - pkg.discountPrice; return `<div class="mt-8 pt-6 border-t border-m3-outline-variant"><h3 class="text-lg font-bold mb-4 google-sans">Rincian Pesanan</h3><div class="space-y-3 text-m3-on-surface-variant"><div class="flex justify-between items-center"><span class="text-sm">${pkg.name}</span><div class="text-right"><span class="font-semibold text-m3-on-surface text-md ${isCouponApplied ? 'line-through text-gray-400' : ''}">${formatCurrency(pkg.price)}</span></div></div>${isCouponApplied ? `<div class="flex justify-between items-center text-green-600"><span class="text-sm">Diskon Promo</span><div class="text-right"><span class="font-semibold text-md">-${formatCurrency(discountAmount)}</span></div></div>` : ''}<div class="flex justify-between"><span class="text-xs">Kode Unik</span><span class="font-medium text-m3-on-surface text-sm">${formatCurrency(uniqueCode)}</span></div><hr class="my-2 border-m3-outline-variant"><div class="flex justify-between font-bold text-lg text-m3-on-surface google-sans"><span>Total</span><span class="text-google-blue">${formatCurrency(finalPrice)}</span></div></div></div>`; };
+        const getTestimonialsHTML = (pkg) => { const imagesHTML = pkg.testimonials.map((url, index) => `<div class="testimonial-slide"><img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';"></div>`).join(''); return `<div class="material-card p-3 md:p-4 rounded-2xl"><h2 class="text-xl font-bold text-center mb-2 google-sans">Testimoni Pelanggan</h2><p class="text-center text-m3-on-surface-variant text-xs mb-4">Ribuan pelanggan telah menikmati tontonan tanpa batas.</p><div class="testimonial-carousel-container"><div class="testimonial-track" id="testimonial-track">${imagesHTML}</div><button id="testimonial-prev-btn" class="modal-nav prev" style="display: none; background-color: rgba(0,0,0,0.4);">&#10094;</button><button id="testimonial-next-btn" class="modal-nav next" style="display: flex; background-color: rgba(0,0,0,0.4);">&#10095;</button></div></div>`; };
+        const getInfoSectionHTML = () => { return `<h3 class="text-2xl font-bold mb-4 text-center google-sans">Informasi & Bantuan</h3><div class="space-y-0"><details class="faq-item"><summary>Apakah ini akun sharing atau private?</summary><div class="faq-content">Ini adalah akun private yang dibuat khusus untuk Anda. Anda akan menerima email dan password baru, dan bisa langsung mengganti passwordnya. Anda tidak akan berbagi akun dengan pengguna lain.</div></details><details class="faq-item"><summary>Berapa kualitas video yang saya dapatkan?</summary><div class="faq-content">Anda mendapatkan paket Netflix Premium, yang berarti Anda bisa streaming dengan kualitas terbaik yang tersedia, yaitu Ultra HD (4K) dan HDR, tergantung pada perangkat dan koneksi internet Anda.</div></details><details class="faq-item"><summary>Berapa lama masa aktif langganannya?</summary><div class="faq-content">Langganan ini aktif selama 1 tahun penuh (365 hari) sejak tanggal aktivasi.</div></details><details class="faq-item"><summary>Apakah ini legal dan aman?</summary><div class="faq-content">Tentu saja. Kami menyediakan langganan yang 100% legal dan resmi. Akun Anda dijamin aman dan kami memberikan garansi penuh selama masa berlangganan.</div></details><details class="faq-item"><summary>Di perangkat apa saja saya bisa menonton?</summary><div class="faq-content">Anda bisa menonton di semua perangkat yang mendukung Netflix, termasuk Smart TV, konsol game, laptop, PC, tablet, dan smartphone.</div></details><details class="faq-item"><summary>Berapa lama proses aktivasinya?</summary><div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, akun akan kami kirimkan dalam waktu 5-15 menit, maksimal 1x24 jam.</div></details><details class="faq-item"><summary>Apakah ada garansi?</summary><div class="faq-content">Ya, kami memberikan garansi penuh selama 1 tahun. Jika terjadi masalah dengan akun Anda yang bukan disebabkan oleh pelanggaran aturan Netflix, kami akan memperbaikinya atau menggantinya dengan yang baru.</div></details></div>`; };
         
-        const paymentAccounts = {
-            qris: { displayName: 'QRIS', accountHolder: 'Epay', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris', category: 'QRIS' },
-            cimb: { displayName: 'Cimb Niaga', accountHolder: 'Octo Pay - 6289510639366', number: '6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'va', category: 'Bank Transfer' },
-            bca_va: { displayName: 'BCA Virtual Account', accountHolder: 'Epayment', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'va', category: 'Bank Transfer' },
-            gopay: { displayName: 'Gopay', accountHolder: 'Gopay 6289510639366', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet', category: 'E-Wallet' },
-            dana: { displayName: 'DANA', accountHolder: 'DNID089510639366', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet', category: 'E-Wallet' },
-            ovo: { displayName: 'OVO', accountHolder: 'OVO Epayment', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', category: 'E-Wallet' }
-        };
-
-        // --- TEMPLATE FUNCTIONS ---
-        const getProductInfoHTML = (pkg, priceToDisplay) => {
-            return `
-            <div class="product-info-card">
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                    <div class="text-center mb-4 md:mb-0 flex-grow">
-                        <div class="flex justify-center"><img alt="Logo ${pkg.name}" class="h-12 w-auto" src="${pkg.logo}"></div>
-                        <h1 class="text-2xl font-bold text-gray-800 mt-3 main-sans">${pkg.title}</h1>
-                        <p class="text-md text-gray-600 mt-1">${pkg.description}</p>
-                    </div>
-                    <div class="text-center md:text-right mt-4 md:mt-0 md:pl-6">
-                        <div class="text-4xl font-bold text-netflix-red main-sans">${formatCurrency(priceToDisplay)}</div>
-                        <p class="text-gray-500 text-sm mt-1">Langganan 1 Tahun</p>
-                        <div class="mt-2">
-                            <span class="inline-block bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">
-                                <i class="fas fa-tv mr-1"></i>
-                                Kualitas 4K + HDR
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-        }
-
-        const getFeaturesHTML = (pkg) => {
-            const colors = ['text-red-600', 'text-gray-700', 'text-red-500', 'text-gray-600', 'text-red-600', 'text-gray-700', 'text-red-500', 'text-gray-600'];
-            return `<div class="material-card-elevated p-4 md:p-6 rounded-2xl">
-                <h3 class="text-xl font-bold mb-4 text-gray-800 main-sans text-center">Yang Anda Dapatkan:</h3>
-                <ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-gray-600 text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
-            </div>`;
-        }
+        let testimonialIndex = 0;
+        function handleTestimonialNav() { const track = document.getElementById('testimonial-track'), prevBtn = document.getElementById('testimonial-prev-btn'), nextBtn = document.getElementById('testimonial-next-btn'); if (!track || !prevBtn || !nextBtn) return; const totalImages = packages[currentPackageId].testimonials.length, itemsPerPage = 3, maxIndex = totalImages > itemsPerPage ? totalImages - itemsPerPage : 0, slidePercentage = 100 / itemsPerPage; track.style.transform = `translateX(-${testimonialIndex * slidePercentage}%)`; prevBtn.style.display = testimonialIndex > 0 ? 'flex' : 'none'; nextBtn.style.display = testimonialIndex < maxIndex ? 'flex' : 'none'; }
         
-        const getPaymentMethodsHTML = (accounts) => {
-            const groupedAccounts = {};
-            for (const key in accounts) {
-                const account = accounts[key];
-                if (!groupedAccounts[account.category]) {
-                    groupedAccounts[account.category] = [];
-                }
-                groupedAccounts[account.category].push({ key, ...account });
-            }
+        function formatCurrency(value) { return `Rp${value.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`; }
+        function getIndonesianTimezone() { const offset = new Date().getTimezoneOffset() / -60; if (offset === 7) return 'WIB'; if (offset === 8) return 'WITA'; if (offset === 9) return 'WIT'; const sign = offset > 0 ? '+' : '-'; const hours = Math.abs(Math.floor(offset)); return `GMT${sign}${String(hours).padStart(2, '0')}:00`; }
 
-            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">2. Pilih Metode Pembayaran</h2>`;
-            const categoryOrder = ['QRIS', 'Bank Transfer', 'E-Wallet'];
-
-            for (const category of categoryOrder) {
-                if (groupedAccounts[category]) {
-                    html += `<h3 class="text-md font-semibold text-gray-700 mt-6 mb-2 main-sans">${category}</h3>`;
-                    html += `<div class="material-card rounded-xl payment-group">`;
-
-                    groupedAccounts[category].forEach((account, index) => {
-                        const isFirst = index === 0 && category === 'QRIS';
-                        html += `
-                            <div>
-                                <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="payment-radio" ${isFirst ? 'checked' : ''}>
-                                <label for="${account.key}" class="payment-label">
-                                    <div class="form-payment-logo-container">
-                                        <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
-                                    </div>
-                                    <span class="font-medium text-gray-800 flex-grow main-sans text-sm">${account.displayName}</span>
-                                    <span class="custom-radio-button"><span class="dot"></span></span>
-                                </label>
-                            </div>
-                        `;
-                        if (index < groupedAccounts[category].length - 1) {
-                            html += `<div class="border-t border-gray-200 mx-4"></div>`;
-                        }
-                    });
-                    html += `</div>`;
-                }
-            }
-
-            html += `<div class="bg-gray-50 p-3 mt-4 rounded-xl text-center text-xs text-gray-600"><i class="fas fa-shield-alt text-green-600 mr-2"></i>Pembayaran aman dan terenkripsi.</div>`;
-            return html;
-        };
-
-        const getOrderDetailsHTML = (pkg, finalPrice) => {
-            const discountAmount = pkg.price - pkg.discountPrice;
-
-            return `
-            <div class="mt-8 pt-6 border-t border-gray-200">
-                 <h2 class="text-lg font-bold mb-4 text-gray-800 main-sans">3. Rincian Pesanan</h2>
-                 <div class="material-card-elevated p-4 rounded-2xl space-y-3 text-gray-600">
-                    <div class="mb-4">
-                        <label for="coupon" class="block text-sm font-medium mb-1.5 text-gray-700">Kode Kupon</label>
-                        <div class="flex">
-                            <input type="text" id="coupon" name="coupon" class="form-input flex-grow !rounded-r-none" placeholder="Punya kode?">
-                            <button type="button" id="coupon-btn" class="cta-button black-button !rounded-l-none" style="width: auto; padding: 12px 20px; flex-shrink: 0;">Terapkan</button>
-                        </div>
-                        <p id="coupon-message" class="text-sm mt-2" style="display: none;"></p>
-                    </div>
-                    <hr class="my-3 border-gray-200">
-                     <div class="flex justify-between items-center">
-                         <span class="text-sm">${pkg.name}</span>
-                         <div class="text-right">
-                             <span class="font-semibold text-gray-800 text-md ${isCouponApplied ? 'line-through text-gray-400' : ''}">${formatCurrency(pkg.price)}</span>
-                         </div>
-                     </div>
-                     ${isCouponApplied ? `
-                     <div class="flex justify-between items-center text-green-600">
-                         <span class="text-sm">Diskon Kupon "${validCouponCode}"</span>
-                         <div class="text-right">
-                             <span class="font-semibold text-sm">-${formatCurrency(discountAmount)}</span>
-                         </div>
-                     </div>
-                     ` : ''}
-                     <div class="flex justify-between">
-                         <span class="text-xs">Kode Unik</span>
-                         <span class="font-medium text-gray-800 text-sm">${formatCurrency(uniqueCode)}</span>
-                     </div>
-                     <hr class="my-2 border-gray-200">
-                     <div class="flex justify-between font-bold text-lg text-gray-900 main-sans">
-                         <span>Total</span>
-                         <span class="text-netflix-red">${formatCurrency(finalPrice)}</span>
-                     </div>
-                 </div>
-            </div>`;
-        }
-
-        const getTestimonialsHTML = (pkg) => {
-            let imagesHTML = pkg.testimonials.map((url, index) => `<img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">`).join('');
-            return `<div class="material-card p-4 md:p-6 rounded-2xl">
-                <h2 class="text-2xl font-bold text-center mb-4 text-gray-800 main-sans">Testimoni Pelanggan</h2>
-                <p class="text-center text-gray-600 text-sm mb-6">Ribuan pelanggan telah menikmati tontonan tanpa batas.</p>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">${imagesHTML}</div>
-            </div>`;
-        }
-
-        const getFaqHTML = () => `<div><h3 class="text-2xl font-bold mb-4 text-center text-gray-800 main-sans">Pertanyaan Umum (FAQ)</h3><div class="space-y-1"><details class="faq-item"><summary>Apakah ini akun sharing atau private?</summary><div class="faq-content">Ini adalah akun private yang dibuat khusus untuk Anda. Anda akan menerima email dan password baru, dan bisa langsung mengganti passwordnya. Anda tidak akan berbagi akun dengan pengguna lain.</div></details><details class="faq-item"><summary>Berapa kualitas video yang saya dapatkan?</summary><div class="faq-content">Anda mendapatkan paket Netflix Premium, yang berarti Anda bisa streaming dengan kualitas terbaik yang tersedia, yaitu Ultra HD (4K) dan HDR, tergantung pada perangkat dan koneksi internet Anda.</div></details><details class="faq-item"><summary>Berapa lama masa aktif langganannya?</summary><div class="faq-content">Langganan ini aktif selama 1 tahun penuh (365 hari) sejak tanggal aktivasi.</div></details><details class="faq-item"><summary>Apakah ini legal dan aman?</summary><div class="faq-content">Tentu saja. Kami menyediakan langganan yang 100% legal dan resmi. Akun Anda dijamin aman dan kami memberikan garansi penuh selama masa berlangganan.</div></details><details class="faq-item"><summary>Di perangkat apa saja saya bisa menonton?</summary><div class="faq-content">Anda bisa menonton di semua perangkat yang mendukung Netflix, termasuk Smart TV, konsol game, laptop, PC, tablet, dan smartphone.</div></details><details class="faq-item"><summary>Berapa lama proses aktivasinya?</summary><div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, akun akan kami kirimkan dalam waktu 5-15 menit, maksimal 1x24 jam.</div></details><details class="faq-item"><summary>Apakah ada garansi?</summary><div class="faq-content">Ya, kami memberikan garansi penuh selama 1 tahun. Jika terjadi masalah dengan akun Anda yang bukan disebabkan oleh pelanggaran aturan Netflix, kami akan memperbaikinya atau menggantinya dengan yang baru.</div></details></div></div>`;
-        const getPolicyHTML = () => `<div><h3 class="text-2xl font-bold mb-4 text-center text-gray-800 main-sans">Syarat & Ketentuan</h3><div class="grid md:grid-cols-1 gap-6 text-sm text-gray-600"><div><p class="mb-4 text-sm leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk langganan selama satu tahun.</p><ul class="list-disc list-inside space-y-2 text-sm"><li>Layanan untuk penggunaan pribadi dan tidak melanggar hukum.</li><li>Garansi penuh jika aktivasi akun gagal karena kesalahan kami.</li><li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li><li>Perubahan kebijakan Netflix di masa depan berada di luar kendali kami.</li></ul></div></div></div>`;
-
-        // --- FUNCTIONS ---
-        function formatCurrency(value) {
-            return `Rp${value.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`;
-        }
-
-        function getIndonesianTimezone() {
-            const offset = new Date().getTimezoneOffset() / -60;
-            if (offset === 7) return 'WIB';
-            if (offset === 8) return 'WITA';
-            if (offset === 9) return 'WIT';
-            const sign = offset > 0 ? '+' : '-';
-            const hours = Math.abs(Math.floor(offset));
-            return `GMT${sign}${String(hours).padStart(2, '0')}:00`;
-        }
-
-        function updateDisplay() {
-            const pkg = packages[currentPackageId];
-            const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price;
-            const totalPrice = currentPrice + uniqueCode;
-
-            elements.productInfoFormTop.innerHTML = getProductInfoHTML(pkg, currentPrice);
-            elements.featuresBeforeForm.innerHTML = getFeaturesHTML(pkg);
-            elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
-            elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
-            elements.faqFull.innerHTML = getFaqHTML();
-            elements.policyFull.innerHTML = getPolicyHTML();
-
-            // Now that the coupon elements are in the DOM, update the button state.
-            updateCouponButton();
-        }
-
-        function showCouponMessage(message, color) {
-            const couponMessage = document.getElementById('coupon-message');
-            if (!couponMessage) return;
-
-            couponMessage.textContent = message;
-            couponMessage.style.color = color;
-            couponMessage.style.display = 'block';
-            setTimeout(() => {
-                couponMessage.style.display = 'none';
-            }, 3000);
-        }
-
-        function updateCouponButton() {
-            const couponBtn = document.getElementById('coupon-btn');
-            const couponInput = document.getElementById('coupon');
-            if (!couponBtn || !couponInput) return;
-
-            if (isCouponApplied) {
-                couponBtn.textContent = 'Hapus';
-                couponBtn.classList.add('red-button');
-                couponBtn.classList.remove('black-button');
-                couponInput.value = validCouponCode;
-                couponInput.disabled = true;
-            } else {
-                couponBtn.textContent = 'Terapkan';
-                couponBtn.classList.remove('red-button');
-                couponBtn.classList.add('black-button');
-                couponInput.disabled = false;
-            }
-        }
-
-        function handleCouponToggle() {
-            const couponInput = document.getElementById('coupon');
-            if (!couponInput) return;
-
-            const couponValue = couponInput.value.trim().toUpperCase();
-            document.getElementById('coupon-message').style.display = 'none';
-
-            if (isCouponApplied) {
-                isCouponApplied = false;
-                couponInput.value = '';
-                showCouponMessage('Kupon dihapus', 'var(--netflix-red)');
-            } else {
-                if (couponValue === validCouponCode) {
-                    isCouponApplied = true;
-                    showCouponMessage('Kupon "WEDNESDAY" berhasil diterapkan!', 'var(--green-600)');
-                } else {
-                    showInfoModal('Kupon Tidak Valid', `Kode kupon "${couponValue}" tidak ditemukan.`);
-                    isCouponApplied = false;
-                }
-            }
-            updateDisplay();
-        }
-
-        function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
-            const couponStatus = isCouponApplied ? `Kupon '${validCouponCode}' diterapkan` : 'Tidak ada kupon';
-            const detailPesanan = `*Email:* ${formData.get('email')}\n*Kupon:* ${couponStatus}\n`;
-            const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
-                          `*ID Pembayaran:* ${paymentId}\n` +
-                          `*Paket:* ${pkg.name}\n` +
-                          `*Metode Pembayaran:* ${paymentMethodName}\n` +
-                          `*Nama:* ${formData.get('nama')}\n` +
-                          `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
-                          detailPesanan +
-                          `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
-                          `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
-            return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
-        }
-
-        function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
-            window.scrollTo(0, 0);
-            currentOrderDetails = { pkg, totalPrice, paymentId, nama: formData.get('nama'), whatsapp: formData.get('whatsapp') };
-            elements.mainContentContainer.parentElement.style.display = 'none';
-            elements.footer.style.display = 'none';
-            const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId);
-            let accountLabel;
-            switch (paymentMethodKey) {
-                case 'cimb': accountLabel = 'Nomor Rekening'; break;
-                case 'bca_va': accountLabel = 'Nomor Virtual Account'; break;
-                case 'gopay': case 'dana': case 'ovo': accountLabel = 'Nomor E-Wallet'; break;
-                default: accountLabel = 'Nomor Pembayaran';
-            }
-            expiryTime = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const datePart = expiryTime.toLocaleDateString('id-ID', dateOptions);
-            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-            const timePart = expiryTime.toLocaleTimeString('id-ID', timeOptions).replace(/\./g, ':');
-            const paymentDeadlineFormatted = `${datePart} pukul ${timePart} (${getIndonesianTimezone()})`;
-            let paymentDetailsBlock = '';
-            if (paymentMethodKey === 'qris') {
-                paymentDetailsBlock = `<div class="text-center"><div id="qrcodeContainer" class="bg-white p-3 rounded-xl border-2 border-gray-200 w-full max-w-[250px] h-auto mx-auto my-4 material-card-elevated"><div id="qrcode" class="flex justify-center items-center"></div></div><button id="downloadQrisButton" class="cta-button red-button max-w-xs mx-auto"><i class="fas fa-download mr-2"></i> Unduh QRIS</button><p class="text-center text-xs text-gray-600 mt-3">Pindai QR Code di atas menggunakan aplikasi perbankan atau e-wallet Anda.</p></div>`;
-            } else {
-                paymentDetailsBlock = `<div class="mt-4"><p class="text-xs text-gray-500 mb-1">${accountLabel}</p><div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg"><p class="text-xl font-bold text-gray-800 tracking-wider main-sans">${paymentAccount.number}</p><button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div>`;
-            }
-            let instructionAccordionHTML = '';
-            switch (paymentMethodKey) {
-                case 'qris': instructionAccordionHTML = `<details class="payment-accordion" open><summary>Cara Bayar via QRIS</summary><div class="payment-accordion-content"><ol class="space-y-3"><li>Buka aplikasi perbankan (m-banking) atau e-wallet Anda (GoPay, OVO, DANA, dll).</li><li>Pilih menu <strong>Bayar</strong>, <strong>Scan QR</strong>, atau <strong>QRIS</strong>.</li><li>Pindai (scan) kode QR yang ditampilkan di atas.</li><li>Pastikan nama merchant dan nominal pembayaran sudah sesuai.</li><li>Masukkan PIN Anda untuk menyelesaikan transaksi.</li><li>Simpan bukti pembayaran.</li></ol></div></details>`; break;
-                case 'bca_va': instructionAccordionHTML = `<details class="payment-accordion"><summary>myBCA</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi myBCA dan login.</li><li>Pilih menu <strong>Transfer</strong>, lalu pilih <strong>Virtual Account</strong>.</li><li>Pilih <strong>Tujuan Baru</strong>.</li><li>Masukkan nomor Virtual Account: <strong>${paymentAccount.number}</strong>.</li><li>Pilih sumber dana yang akan digunakan.</li><li>Masukkan nominal jika diminta.</li><li>Periksa detail transaksi, lalu tekan <strong>Lanjut</strong>.</li><li>Masukkan PIN untuk menyelesaikan transaksi.</li></ol></div></details><details class="payment-accordion"><summary>BCA Mobile</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi BCA Mobile dan login.</li><li>Pilih menu <strong>m-Transfer</strong>, lalu pilih <strong>BCA Virtual Account</strong>.</li><li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li><li>Masukkan nominal jika diminta.</li><li>Periksa nama penerima, lalu tekan <strong>OK</strong>.</li><li>Masukkan PIN m-BCA untuk menyelesaikan transaksi.</li></ol></div></details>`; break;
-                default: instructionAccordionHTML = `<details class="payment-accordion" open><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi perbankan atau e-wallet Anda.</li><li>Pilih menu transfer.</li><li>Masukkan detail pembayaran yang tertera.</li><li>Pastikan nominal transfer sesuai dengan total pembayaran hingga digit terakhir.</li><li>Selesaikan transaksi dan simpan bukti pembayaran.</li></ol></div></details>`;
-            }
-            const paymentViewHTML = `<div class="payment-header"><h2 class="main-sans">Selesaikan Pembayaran</h2><div class="countdown-timer" id="countdown-timer-display"></div></div><div class="max-w-lg mx-auto"><div class="p-2 sm:p-4"><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-1">Ringkasan Transaksi</h3><div class="flex justify-between items-center mt-2 text-xs text-gray-600"><span>Nomor Invoice: <strong>${paymentId}</strong></span><a href="#" onclick="showDetailsModal(event)" class="font-semibold text-netflix-red">Lihat detail</a></div><hr class="my-4"><p class="text-xs text-gray-600 mb-1">Total Pembayaran</p><div class="flex items-center justify-between"><p class="text-2xl font-bold text-netflix-red main-sans">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-3">Silahkan Bayar ke</h3><div class="flex justify-between items-start mt-3"><div><p class="text-sm text-gray-500">${paymentAccount.displayName}</p><p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p></div><div class="payment-logo-container"><img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo"></div></div>${paymentDetailsBlock}<div class="mt-6"><p class="text-xs text-gray-500 mb-1">Bayar Sebelum</p><p class="font-semibold text-gray-800 text-sm">${paymentDeadlineFormatted}</p></div><a href="${waLink}" target="_blank" class="block mt-6"><button class="confirm-button-outlined"><i class="fab fa-whatsapp mr-2"></i> Konfirmasi Pembayaran</button></a></div><div class="payment-card"><h3 class="font-bold text-lg main-sans mb-2">Cara Membayar</h3><div class="mt-2">${instructionAccordionHTML}</div></div></div></div>`;
-            elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
-            startCountdown();
-            if (paymentMethodKey === 'qris') {
-                setTimeout(() => {
-                    const qrcodeContainer = document.getElementById('qrcode');
-                    if(qrcodeContainer) {
-                        try {
-                            const qrisStatic = paymentAccount.number;
-                            const qrisDinamis = createDynamicQrisString(qrisStatic, { nominal: totalPrice });
-                            qrcodeContainer.innerHTML = '';
-                            QRCode.toCanvas(qrisDinamis, { width: 250, margin: 1, errorCorrectionLevel: 'H' }, (err, canvas) => {
-                                if (err) { throw err; }
-                                canvas.style.width = "100%"; canvas.style.height = "auto"; canvas.style.borderRadius = "8px";
-                                qrcodeContainer.appendChild(canvas);
-                                document.getElementById('downloadQrisButton').addEventListener('click', () => {
-                                    const link = document.createElement('a');
-                                    link.download = `QRIS-${paymentId}.png`;
-                                    link.href = canvas.toDataURL("image/png");
-                                    link.click();
-                                });
-                            });
-                        } catch (e) {
-                            console.error("QRIS Generation Error:", e.message);
-                            qrcodeContainer.innerHTML = `<p class="text-red-500 text-sm">Gagal membuat QR Code dinamis. Silakan coba lagi atau hubungi support.</p>`;
-                        }
-                    }
-                }, 100);
-            }
-        }
-
-        async function handleFormSubmit() {
-            const formData = new FormData(elements.orderForm);
-            const nama = formData.get('nama').trim();
-            const whatsapp = formData.get('whatsapp').trim();
-            const email = formData.get('email').trim();
-            const paymentMethodKey = formData.get('payment-method');
-            if (!nama || !whatsapp || !email || !paymentMethodKey) {
-                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan sebelum melanjutkan.');
-                return;
-            }
-            if (!email.endsWith('@gmail.com')) {
-                showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email Gmail yang valid (diakhiri dengan @gmail.com).');
-                return;
-            }
-            const phoneValidationResult = validatePhoneNumber(whatsapp);
-            if (!phoneValidationResult.isValid) {
-                showInfoModal('Nomor WhatsApp Tidak Valid', phoneValidationResult.message);
-                return;
-            }
-            elements.submitBtn.disabled = true;
-            elements.submitBtn.innerHTML = '<i class="fas fa-spinner spinner mr-2"></i> Memproses...';
-            const pkg = packages[currentPackageId];
-            const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price;
-            const totalPrice = currentPrice + uniqueCode;
-            const paymentAccount = paymentAccounts[paymentMethodKey];
-            const now = new Date();
-            const paymentId = `INV-NFLX-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
-            setTimeout(() => {
-                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-            }, 800);
-        }
+        function updateDisplay() { testimonialIndex = 0; const pkg = packages[currentPackageId]; const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price; const totalPrice = currentPrice + uniqueCode; const infoContainer = elements.productInfoFormTop; const detailsAccordion = elements.detailsAccordionContainer; infoContainer.style.opacity = '0'; detailsAccordion.style.opacity = '0'; setTimeout(() => { infoContainer.innerHTML = getProductInfoHTML(pkg, currentPrice); detailsAccordion.innerHTML = getDetailsAccordionHTML(pkg); elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts); elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice); elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg); infoContainer.style.opacity = '1'; detailsAccordion.style.opacity = '1'; elements.infoSectionFull.innerHTML = getInfoSectionHTML(); }, 300); }
+        function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) { const couponStatus = isCouponApplied ? `Kupon '${validCouponCode}' diterapkan` : 'Tidak ada kupon'; const detailPesanan = `*Email:* ${formData.get('email')}\\n*Kupon:* ${couponStatus}\\n`; const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\\n\\n*ID Pembayaran:* ${paymentId}\\n*Paket:* ${pkg.name}\\n*Metode Pembayaran:* ${paymentMethodName}\\n*Nama:* ${formData.get('nama')}\\n*No. WhatsApp:* ${formData.get('whatsapp')}\\n${detailPesanan}*Total Transfer:* ${formatCurrency(totalPrice)}\\n\\nSaya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`; return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`; }
+        function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) { window.scrollTo(0, 0); currentOrderDetails = { pkg, totalPrice, paymentId, nama: formData.get('nama'), whatsapp: formData.get('whatsapp') }; elements.mainContentContainer.parentElement.style.display = 'none'; elements.footer.style.display = 'none'; const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId); let accountLabel = 'Nomor Virtual Account'; let paymentDetailsBlock = ''; expiryTime = new Date(new Date().getTime() + 24 * 60 * 60 * 1000); const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }, datePart = expiryTime.toLocaleDateString('id-ID', dateOptions), timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }, timePart = expiryTime.toLocaleTimeString('id-ID', timeOptions).replace(/\./g, ':'), timezoneString = `(${getIndonesianTimezone()})`, paymentDeadlineFormatted = `${datePart} pukul ${timePart} ${timezoneString}`; if (paymentMethodKey === 'qris') { paymentDetailsBlock = `<div class="text-center"><div id="qrcodeContainer" class="bg-white p-3 rounded-xl border-2 border-gray-200 w-full max-w-[250px] h-auto mx-auto my-4 material-card-elevated"><div id="qrcode" class="flex justify-center items-center"></div></div><button id="downloadQrisButton" class="cta-button blue-button max-w-xs mx-auto"><i class="fas fa-download mr-2"></i>Unduh QRIS</button><p class="text-center text-xs text-gray-600 mt-3">Pindai QR Code di atas.</p></div>`; } else { paymentDetailsBlock = `<div class="mt-4"><p class="text-xs text-gray-500 mb-1">${accountLabel}</p><div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg"><p class="text-xl font-bold text-gray-800 tracking-wider google-sans">${paymentAccount.number}</p><button onclick="copyToClipboard('${paymentAccount.number}', '${accountLabel}')" class="copy-button-text"><i class="far fa-copy mr-1"></i>Salin</button></div></div>`; } const instructionAccordionHTML = `<details class="payment-accordion" open><summary>Cara Bayar</summary><div class="payment-accordion-content"><ol class="space-y-3"><li>Buka aplikasi pembayaran Anda.</li><li>Pindai QR code atau masukkan nomor tujuan pembayaran.</li><li>Pastikan nominal sesuai.</li><li>Selesaikan pembayaran.</li></ol></div></details>`; const paymentViewHTML = `<div class="payment-header"><h2 class="google-sans">Selesaikan Pembayaran</h2><div class="countdown-timer" id="countdown-timer-display"></div></div><div class="max-w-lg mx-auto"><div class="p-2 sm:p-4"><div class="payment-card"><h3 class="font-bold text-lg google-sans mb-1">Ringkasan Transaksi</h3><div class="flex justify-between items-center mt-2 text-xs text-gray-600"><span>Nomor Invoice: <strong>${paymentId}</strong></span><a href="#" onclick="showDetailsModal(event)" class="font-semibold text-google-blue">Lihat detail</a></div><hr class="my-4"><p class="text-xs text-gray-600 mb-1">Total Pembayaran</p><div class="flex items-center justify-between"><p class="text-2xl font-bold text-google-blue google-sans">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i>Salin</button></div></div><div class="payment-card"><h3 class="font-bold text-lg google-sans mb-3">Silahkan Bayar ke</h3><div class="flex justify-between items-start mt-3"><div><p class="text-sm text-gray-500">${paymentAccount.displayName}</p><p class="font-semibold text-gray-800 text-md">${paymentAccount.accountHolder}</p></div><div class="payment-logo-container"><img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo"></div></div>${paymentDetailsBlock}<div class="mt-6"><p class="text-xs text-gray-500 mb-1">Bayar Sebelum</p><p class="font-semibold text-gray-800 text-sm">${paymentDeadlineFormatted}</p></div><a href="${waLink}" target="_blank" class="block mt-6"><button class="confirm-button-outlined"><i class="fab fa-whatsapp mr-2"></i>Konfirmasi Pembayaran</button></a></div><div class="payment-card"><h3 class="font-bold text-lg google-sans mb-2">Cara Membayar</h3><div class="mt-2">${instructionAccordionHTML}</div></div></div></div>`; elements.paymentInstructionContainer.innerHTML = paymentViewHTML; startCountdown(); if (paymentMethodKey === 'qris') { setTimeout(() => { const qrcodeContainer = document.getElementById('qrcode'); if(qrcodeContainer) { try { const qrisStatic = paymentAccount.number, qrisDinamis = createDynamicQrisString(qrisStatic, { nominal: totalPrice }); qrcodeContainer.innerHTML = ''; QRCode.toCanvas(qrisDinamis, { width: 250, margin: 1, errorCorrectionLevel: 'H' }, (err, canvas) => { if (err) throw err; canvas.style.width = "100%"; canvas.style.height = "auto"; canvas.style.borderRadius = "8px"; qrcodeContainer.appendChild(canvas); document.getElementById('downloadQrisButton').addEventListener('click', () => { const link = document.createElement('a'); link.download = `QRIS-${paymentId}.png`; link.href = canvas.toDataURL("image/png"); link.click(); }); }); } catch (e) { qrcodeContainer.innerHTML = `<p class="text-red-500 text-sm">Gagal membuat QR Code.</p>`; } } }, 100); } }
+        async function handleFormSubmit() { const formData = new FormData(elements.orderForm), nama = formData.get('nama').trim(), whatsapp = formData.get('whatsapp').trim(), email = formData.get('email').trim(), paymentMethodKey = formData.get('payment-method'); if (!nama || !whatsapp || !email || !paymentMethodKey) { showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data.'); return; } const phoneValidationResult = validatePhoneNumber(whatsapp); if (!phoneValidationResult.isValid) { showInfoModal('Nomor WhatsApp Tidak Valid', phoneValidationResult.message); return; } elements.submitBtn.disabled = true; elements.submitBtn.innerHTML = '<i class="fas fa-spinner spinner mr-2"></i> Memproses...'; const pkg = packages[currentPackageId], currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price, totalPrice = currentPrice + uniqueCode, paymentAccount = paymentAccounts[paymentMethodKey], now = new Date(), paymentId = `INV-NFLX-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`; setTimeout(() => { showPaymentInstructions(new FormData(elements.orderForm), pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey); elements.submitBtn.disabled = false; elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang'; }, 800); }
+        function startCountdown() { const countdownElement = document.getElementById('countdown-timer-display'); if (!countdownElement || !expiryTime) return; const interval = setInterval(() => { const now = new Date().getTime(), distance = expiryTime - now; if (distance < 0) { clearInterval(interval); countdownElement.innerHTML = "Waktu Habis"; return; } const h = Math.floor((distance % (1e3 * 60 * 60 * 24)) / (1e3 * 60 * 60)), m = Math.floor((distance % (1e3 * 60 * 60)) / (1e3 * 60)), s = Math.floor((distance % (1e3 * 60)) / 1e3); countdownElement.innerHTML = `<div class="countdown-item"><span class="countdown-number">${String(h).padStart(2, "0")}</span> Jam</div><div class="countdown-item"><span class="countdown-number">${String(m).padStart(2, "0")}</span> Menit</div><div class="countdown-item"><span class="countdown-number">${String(s).padStart(2, "0")}</span> Detik</div>`; }, 1000); }
         
-        function startCountdown() {
-            const countdownElement = document.getElementById('countdown-timer-display');
-            if (!countdownElement || !expiryTime) return;
-            const interval = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = expiryTime - now;
-                if (distance < 0) {
-                    clearInterval(interval);
-                    countdownElement.innerHTML = "Waktu Habis";
-                    return;
-                }
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                countdownElement.innerHTML = `<div class="countdown-item"><span class="countdown-number">${String(hours).padStart(2, '0')}</span> Jam</div><div class="countdown-item"><span class="countdown-number">${String(minutes).padStart(2, '0')}</span> Menit</div><div class="countdown-item"><span class="countdown-number">${String(seconds).padStart(2, '0')}</span> Detik</div>`;
-            }, 1000);
-        }
-
-        // --- NOTIFICATION FUNCTIONS ---
-        const FIRST_NAMES = [ "Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama" ];
-        
+        const FIRST_NAMES = [ "Budi", "Ayu", "Rahmat", "Citra", "Bayu", "Lina", "Wulan", "Adi", "Farhan", "Hendra", "Nana", "Joko", "Mega", "Gilang", "Sari", "Dedi", "Eka", "Teguh", "Putri", "Andi" ];
         function getRandomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-        function generateRandomName() { return `${getRandomElement(FIRST_NAMES)}`; }
-        
-        function showNextNotification() {
-            if (!elements.notifBox || !elements.notifName) return;
-            elements.notifName.textContent = generateRandomName();
-            elements.notifBox.classList.remove('show');
-            void elements.notifBox.offsetWidth; // Trigger reflow
-            elements.notifBox.classList.add('show');
-        }
+        function showNextNotification() { const notifBox = document.getElementById('notifBox'); if (!notifBox) return; document.querySelector('#notifBox .notif-name').textContent = getRandomElement(FIRST_NAMES); notifBox.classList.remove('show'); void notifBox.offsetWidth; notifBox.classList.add('show'); }
+        function scheduleNextNotification() { setTimeout(() => { showNextNotification(); scheduleNextNotification(); }, Math.floor(Math.random() * 10000) + 8000); }
 
-        function scheduleNextNotification() {
-            const randomDelay = Math.floor(Math.random() * 10000) + 8000;
-            setTimeout(() => {
-                showNextNotification();
-                scheduleNextNotification();
-            }, randomDelay);
-        }
-
-        // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-        // Use event delegation for the coupon button
-        elements.orderForm.addEventListener('click', function(event) {
-            if (event.target && event.target.id === 'coupon-btn') {
-                handleCouponToggle();
-            }
-        });
-
+        elements.testimonialsFull.addEventListener('click', function(event) { const totalImages = packages[currentPackageId].testimonials.length, maxIndex = totalImages > 3 ? totalImages - 3 : 0; if (event.target.id === 'testimonial-next-btn' && testimonialIndex < maxIndex) { testimonialIndex++; handleTestimonialNav(); } if (event.target.id === 'testimonial-prev-btn' && testimonialIndex > 0) { testimonialIndex--; handleTestimonialNav(); } });
         updateDisplay();
+        setTimeout(scheduleNextNotification, 6000);
         
-        if (elements.notifBox && elements.notifName) {
-            setTimeout(scheduleNextNotification, 6000);
-        }
-        
-        function getDetailsModalHTML(details) {
-            const { pkg, totalPrice, paymentId, nama, whatsapp } = details;
-            return `<div class="details-modal-header"><h3>Ringkasan Transaksi</h3><button class="details-modal-close" onclick="closeDetailsModal()">&times;</button></div><div class="details-modal-body"><p class="text-sm text-gray-500 mb-6">Nomor Invoice: <strong>${paymentId}</strong></p><div class="text-center mb-8"><p class="text-sm text-gray-600 mb-2">Total Pembayaran</p><div class="flex items-center justify-center"><p class="text-4xl font-bold text-netflix-red main-sans">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy"></i></button></div></div><div class="space-y-4 border-t border-b border-gray-200 py-6 mb-6"><div><div class="flex justify-between text-base"><span>${pkg.name}</span><span class="font-semibold text-gray-800">${isCouponApplied ? formatCurrency(pkg.discountPrice) : formatCurrency(pkg.price)}</span></div></div><div class="flex justify-between text-sm"><span class="text-gray-500">Kode Unik</span><span class="font-medium">${formatCurrency(uniqueCode)}</span></div></div><div class="space-y-3 mb-8"><div class="flex justify-between font-bold text-xl main-sans"><span>Total Pembayaran</span><span class="text-netflix-red">${formatCurrency(totalPrice)}</span></div></div><div class="border-t border-gray-200 pt-6"><h4 class="font-semibold mb-4 main-sans">Informasi Pelanggan</h4><div class="grid grid-cols-2 gap-6"><div><p class="text-gray-500 text-sm mb-1">Nama</p><p class="font-medium">${nama}</p></div><div><p class="text-gray-500 text-sm mb-1">Nomor Telepon</p><p class="font-medium">${whatsapp}</p></div></div></div></div>`;
-        }
-
-        window.showDetailsModal = function(event) {
-            event.preventDefault();
-            elements.detailsModalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
-            elements.detailsModal.style.display = 'flex';
-            elements.detailsModalContent.classList.remove('is-closing');
-            elements.detailsModalContent.classList.add('is-open');
-        }
-
-        window.closeDetailsModal = function() {
-            elements.detailsModalContent.classList.remove('is-open');
-            elements.detailsModalContent.classList.add('is-closing');
-            setTimeout(() => {
-                elements.detailsModal.style.display = 'none';
-            }, 300);
-        }
-
-
+        function getDetailsModalHTML(details) { const { pkg, totalPrice, paymentId, nama, whatsapp } = details; const currentPrice = isCouponApplied ? pkg.discountPrice : pkg.price; return `<div class="details-modal-header"><h3>Ringkasan Transaksi</h3><button class="details-modal-close" onclick="closeDetailsModal()">&times;</button></div><div class="details-modal-body"><p class="text-sm text-gray-500 mb-6">Nomor Invoice: <strong>${paymentId}</strong></p><div class="text-center mb-8"><p class="text-sm text-gray-600 mb-2">Total Pembayaran</p><div class="flex items-center justify-center"><p class="text-4xl font-bold text-google-blue google-sans">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy"></i></button></div></div><div class="space-y-4 border-t border-b border-gray-200 py-6 mb-6"><div><div class="flex justify-between text-base"><span>${pkg.name}</span><span class="font-semibold text-gray-800">${formatCurrency(currentPrice)}</span></div></div><div class="flex justify-between text-sm"><span class="text-gray-500">Kode Unik</span><span class="font-medium">${formatCurrency(uniqueCode)}</span></div></div><div class="space-y-3 mb-8"><div class="flex justify-between font-bold text-xl google-sans"><span>Total Pembayaran</span><span class="text-google-blue">${formatCurrency(totalPrice)}</span></div></div><div class="border-t border-gray-200 pt-6"><h4 class="font-semibold mb-4 google-sans">Informasi Pelanggan</h4><div class="grid grid-cols-2 gap-6"><div><p class="text-gray-500 text-sm mb-1">Nama</p><p class="font-medium">${nama}</p></div><div><p class="text-gray-500 text-sm mb-1">Nomor Telepon</p><p class="font-medium">${whatsapp}</p></div></div></div></div>`; }
+        window.showDetailsModal = function(event) { event.preventDefault(); elements.detailsModalContent.innerHTML = getDetailsModalHTML(currentOrderDetails); elements.detailsModal.style.display = 'flex'; elements.detailsModalContent.classList.remove('is-closing'); elements.detailsModalContent.classList.add('is-open'); }
+        window.closeDetailsModal = function() { elements.detailsModalContent.classList.remove('is-open'); elements.detailsModalContent.classList.add('is-closing'); setTimeout(() => { elements.detailsModal.style.display = 'none'; }, 300); }
     });
 
-    // --- GLOBAL HELPER FUNCTIONS ---
     const infoModal = document.getElementById('infoModal');
+    function showInfoModal(title, message) { if (!infoModal) return; infoModal.querySelector('#modalTitle').textContent = title; infoModal.querySelector('#modalMessage').textContent = message; infoModal.style.display = 'flex'; }
+    function closeInfoModal() { if (infoModal) infoModal.style.display = 'none'; }
+    window.onclick = function(event) { if (event.target == infoModal) closeInfoModal(); if (event.target == document.getElementById('detailsModal')) closeDetailsModal(); if (event.target == document.getElementById('imageModal')) closeImageModal(); }
+    function copyToClipboard(text, entityName) { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); showInfoModal('Berhasil Disalin!', `${entityName} telah disalin.`); } catch (err) { showInfoModal('Gagal!', 'Gagal menyalin.'); } document.body.removeChild(ta); }
+    function toCRC16(input) { let crc = 0xFFFF; for (let i = 0; i < input.length; i++) { crc ^= input.charCodeAt(i) << 8; for (let j = 0; j < 8; j++) { crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1; } } return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0'); }
+    function createDynamicQrisString(qris, { nominal }) { if (!qris || nominal === undefined) throw new Error('Parameter tidak lengkap.'); let qrisModified = qris.slice(0, -4).replace("010211", "010212"); const nominalStr = String(Math.round(nominal)), amountLength = nominalStr.length.toString().padStart(2, '0'), amountPart = "54" + amountLength + nominalStr; if (!qrisModified.includes("5802ID")) throw new Error("Format QRIS tidak dikenali."); let finalQris = qrisModified.replace("5802ID", amountPart + "5802ID"); return finalQris + toCRC16(finalQris); }
     
-    function showInfoModal(title, message) {
-        if (!infoModal) return;
-        infoModal.querySelector('#modalTitle').textContent = title;
-        infoModal.querySelector('#modalMessage').textContent = message;
-        infoModal.style.display = 'flex';
-    }
-
-    function closeInfoModal() {
-        if (!infoModal) return;
-        infoModal.style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-        if (event.target == infoModal) { closeInfoModal(); }
-        if (event.target == document.getElementById('detailsModal')) { closeDetailsModal(); }
-        if (event.target == document.getElementById('imageModal')) { closeImageModal(); }
-    }
-
-    function copyToClipboard(text, entityName) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
-            document.execCommand('copy');
-            showInfoModal('Berhasil Disalin!', `${entityName} telah disalin ke clipboard.`);
-        } catch (err) {
-            showInfoModal('Gagal!', 'Gagal menyalin. Silakan coba secara manual.');
-        }
-        document.body.removeChild(textArea);
-    }
-
-    // --- UPDATED QRIS LOGIC ---
-    function toCRC16(input) {
-        let crc = 0xFFFF;
-        for (let i = 0; i < input.length; i++) {
-            crc ^= input.charCodeAt(i) << 8;
-            for (let j = 0; j < 8; j++) {
-                crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1;
-            }
-        }
-        return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
-    }
-
-    function createDynamicQrisString(qris, { nominal }) {
-        if (!qris) throw new Error('Parameter "qris" (string QRIS statis) dibutuhkan.');
-        if (nominal === undefined) throw new Error('Parameter "nominal" dibutuhkan.');
-
-        let qrisModified = qris.slice(0, -4).replace("010211", "010212");
-        const nominalStr = String(Math.round(nominal));
-        const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
-        const amountPart = "54" + amountLength + nominalStr;
-        
-        if (!qrisModified.includes("5802ID")) {
-            throw new Error("Format string QRIS tidak dikenali (tidak ditemukan '5802ID').");
-        }
-
-        let finalQris = qrisModified.replace("5802ID", amountPart + "5802ID");
-        const crc = toCRC16(finalQris);
-
-        return finalQris + crc;
-    }
-    
-    // --- Image Modal Functions ---
     const imageModal = document.getElementById('imageModal');
     const modalImg = document.getElementById("modalImage");
     let currentImageIndex;
-
-    window.openImageModal = function(event, index) {
-        event.stopPropagation();
-        imageModal.style.display = "flex";
-        showImage(index);
-    }
-
-    window.closeImageModal = function() {
-        imageModal.style.display = "none";
-    }
-
-    function showImage(index) {
-        const testimonialImages = [
-            "https://s6.imgcdn.dev/YIjP00.png",
-            "https://s6.imgcdn.dev/YIjK4e.png",
-            "https://s6.imgcdn.dev/YIjT3M.png",
-            "https://s6.imgcdn.dev/YIjljd.png",
-            "https://s6.imgcdn.dev/YIjzTl.png",
-            "https://s6.imgcdn.dev/YIjaRh.png",
-            "https://s6.imgcdn.dev/YIj1JV.png",
-            "https://s6.imgcdn.dev/YIj7nK.png",
-            "https://s6.imgcdn.dev/YIjBvo.png",
-            "https://s6.imgcdn.dev/YIjGFO.png",
-            "https://s6.imgcdn.dev/YIjrCn.png",
-            "https://s6.imgcdn.dev/YIjv0g.png",
-            "https://s6.imgcdn.dev/YIjx3v.png",
-            "https://s6.imgcdn.dev/YIjAwN.png",
-            "https://s6.imgcdn.dev/YIjOTq.png",
-            "https://s6.imgcdn.dev/YIjZRB.png"
-        ];
-        if (index >= testimonialImages.length || index < 0) {
-            return;
-        }
-        currentImageIndex = index;
-        modalImg.src = testimonialImages[index];
-
-        document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'block' : 'none';
-        document.querySelector('.modal-nav.next').style.display = (index < testimonialImages.length - 1) ? 'block' : 'none';
-    }
-
-    window.showNextImage = function() {
-        showImage(currentImageIndex + 1);
-    }
-
-    window.showPrevImage = function() {
-        showImage(currentImageIndex - 1);
-    }
-
-    document.addEventListener('keydown', function(event) {
-        if (imageModal.style.display === 'flex') {
-            if (event.key === 'ArrowRight') {
-                showNextImage();
-            } else if (event.key === 'ArrowLeft') {
-                showPrevImage();
-            } else if (event.key === 'Escape') {
-                closeImageModal();
-            }
-        }
-    });
-
+    const testimonialImages = [ "https://s6.imgcdn.dev/YIjP00.png", "https://s6.imgcdn.dev/YIjK4e.png", "https://s6.imgcdn.dev/YIjT3M.png", "https://s6.imgcdn.dev/YIjljd.png", "https://s6.imgcdn.dev/YIjzTl.png", "https://s6.imgcdn.dev/YIjaRh.png", "https://s6.imgcdn.dev/YIj1JV.png", "https://s6.imgcdn.dev/YIj7nK.png", "https://s6.imgcdn.dev/YIjBvo.png", "https://s6.imgcdn.dev/YIjGFO.png", "https://s6.imgcdn.dev/YIjrCn.png", "https://s6.imgcdn.dev/YIjv0g.png", "https://s6.imgcdn.dev/YIjx3v.png", "https://s6.imgcdn.dev/YIjAwN.png", "https://s6.imgcdn.dev/YIjOTq.png", "https://s6.imgcdn.dev/YIjZRB.png" ];
+    window.openImageModal = function(event, index) { event.stopPropagation(); imageModal.style.display = "flex"; showImage(index); }
+    window.closeImageModal = function() { imageModal.style.display = "none"; }
+    function showImage(index) { if (index >= testimonialImages.length || index < 0) return; currentImageIndex = index; modalImg.src = testimonialImages[index]; document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'flex' : 'none'; document.querySelector('.modal-nav.next').style.display = (index < testimonialImages.length - 1) ? 'flex' : 'none'; }
+    window.showNextImage = function() { showImage(currentImageIndex + 1); }
+    window.showPrevImage = function() { showImage(currentImageIndex - 1); }
+    document.addEventListener('keydown', function(event) { if (imageModal.style.display === 'flex') { if (event.key === 'ArrowRight') showNextImage(); else if (event.key === 'ArrowLeft') showPrevImage(); else if (event.key === 'Escape') closeImageModal(); } });
     </script>
-
 </body>
 </html>
