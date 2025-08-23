@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promo Kemerdekaan ke-80 RI: Google Drive & Photos Unlimited!</title>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png">
+    <title>Promo Kemerdekaan ke-80 RI: Google Photos Unlimited!</title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/240px-Google_Photos_icon_%282020%29.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -850,13 +850,13 @@
         <!-- Konten akan di-generate oleh JavaScript -->
     </div>
     <!-- Spacing adjustments for mobile and desktop -->
-    <div class="p-3 sm:p-4 lg:p-8">
+    <div class="p-2 sm:p-4 lg:p-6">
         <div id="main-content-container">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-12 gap-y-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-x-8 gap-y-6 max-w-7xl mx-auto">
                 <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 material-card p-5 md:p-8">
+                <div class="lg:col-span-1 material-card p-4 md:p-6">
                     <!-- Header Keamanan -->
-                    <div class="grid grid-cols-2 gap-3 text-center border-b border-m3-outline-variant pb-4 mb-4">
+                    <div class="grid grid-cols-2 gap-3 text-center border-b border-m3-outline-variant pb-3 mb-3">
                         <div class="flex">
                             <div class="security-badge w-full justify-center">
                                 <i class="fas fa-shield-alt text-xs mr-1"></i>
@@ -871,19 +871,7 @@
                         </div>
                     </div>
                                         
-                    <!-- Pemilihan Paket (Segmented Control) -->
-                    <div class="my-6">
-                        <h2 class="text-lg font-bold mb-3 google-sans">1. Pilih Paket Anda</h2>
-                        <div id="package-selection">
-                            <div class="segmented-control">
-                                <input type="radio" id="pkg-drive" name="package" value="drive" class="package-radio" checked>
-                                <label for="pkg-drive" class="package-label">Google<br>Drive</label>
-                                    <input type="radio" id="pkg-photos" name="package" value="photos" class="package-radio">
-                                <label for="pkg-photos" class="package-label">Google<br>Photos</label>
-                                    <div class="segmented-control-pill"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Pemilihan Paket Dihapus -->
 
                     <!-- Info Produk -->
                     <div id="product-info-form-top" class="mb-6"></div>
@@ -893,7 +881,7 @@
 
                     <!-- Form -->
                     <form id="orderForm">
-                        <h2 class="text-lg font-bold mb-3 google-sans">2. Lengkapi Data</h2>
+                        <h2 class="text-lg font-bold mb-2 google-sans">2. Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
                                 <label for="nama" class="block text-sm font-medium mb-1.5 text-m3-on-surface-variant">Nama Anda <span class="text-red-500">*</span></label>
@@ -913,12 +901,12 @@
                         <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
 
                         <!-- Metode Pembayaran -->
-                        <div id="payment-method-selection" class="mt-6"></div>
+                        <div id="payment-method-selection" class="mt-5"></div>
                                                 
                         <!-- Rincian Pesanan -->
-                        <div id="order-details-in-form" class="mt-6"></div>
+                        <div id="order-details-in-form" class="mt-5"></div>
                                                 
-                        <button type="button" id="submit-btn" class="cta-button promo-button mt-6">
+                        <button type="button" id="submit-btn" class="cta-button promo-button mt-5">
                             <i class="fas fa-shopping-cart mr-2"></i>
                             Beli Sekarang
                         </button>
@@ -926,7 +914,7 @@
                 </div>
 
                 <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
-                <div class="lg:col-span-1 py-4 space-y-8">
+                <div class="lg:col-span-1 py-4 space-y-6">
                    <div id="testimonials-full"></div>
                    <div class="material-card p-5 md:p-6">
                        <div id="faq-full"></div>
@@ -1070,6 +1058,8 @@
         let currentOrderDetails = {};
         let isCouponApplied = true;
         const validCouponCode = "HUTRI80"; // Kode kupon baru
+        let areFeaturesExpanded = false;
+        let areTestimonialsExpanded = false;
                 
         // *** TESTIMONIALS COMBINED ***
         const allTestimonials = [
@@ -1088,34 +1078,13 @@
         ];
 
         const packages = {
-            drive: {
-                id: 'drive',
-                name: "Google Drive Unlimited",
-                price: 80000, // Harga promo baru
-                normalPrice: 699000,
-                title: "DRIVE UNLIMITED",
-                priceDisplay: `Rp80.000`, // Tampilan harga promo baru
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png',
-                description: "Penyimpanan cloud tanpa batas untuk semua file Anda.",
-                features: [
-                    "<strong>Penyimpanan Cloud Tanpa Batas:</strong> Simpan semua file, dokumen, foto, dan video tanpa khawatir kehabisan ruang.",
-                    "<strong>Akses File Di Mana Saja:</strong> Buka dan edit file Anda dari komputer, tablet, atau smartphone.",
-                    "<strong>Berbagi & Kolaborasi Mudah:</strong> Bagikan file dan folder dengan mudah, serta bekerja bersama secara real-time.",
-                    "<strong>Keamanan Kelas Dunia:</strong> File Anda dilindungi oleh infrastruktur keamanan canggih dari Google.",
-                    "<strong>Integrasi Penuh:</strong> Terhubung dengan Google Docs, Sheets, Slides, dan aplikasi favorit lainnya.",
-                    "<strong>Sekali Bayar Seumur Hidup:</strong> Tanpa biaya langganan bulanan atau tahunan.",
-                    "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Google yang sudah Anda miliki.",
-                    "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
-                ],
-                testimonials: allTestimonials
-            },
             photos: {
                 id: 'photos',
                 name: "Google Photos Unlimited",
-                price: 80000, // Harga promo baru
+                price: 117000, // Harga promo baru
                 normalPrice: 699000,
                 title: "PHOTOS UNLIMITED",
-                priceDisplay: `Rp80.000`, // Tampilan harga promo baru
+                priceDisplay: `Rp117.000`, // Tampilan harga promo baru
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/240px-Google_Photos_icon_%282020%29.svg.png',
                 description: "Simpan semua foto & video kualitas asli tanpa kompresi.",
                 features: [
@@ -1223,12 +1192,20 @@
             </div>`;
         }
 
-        const getFeaturesHTML = (pkg) => {
+        const getFeaturesHTML = (pkg, isExpanded = false) => {
             const colors = ['text-red-500', 'text-gray-500', 'text-red-500', 'text-gray-500'];
-            return `<div class="material-card-elevated p-4 md:p-6 rounded-2xl">
-                <h3 class="text-xl font-bold mb-4 text-center google-sans">Yang Anda Dapatkan:</h3>
-                <ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-theme-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
-            </div>`;
+            const featuresToShow = isExpanded ? pkg.features : pkg.features.slice(0, 3);
+            
+            let html = `<div class="material-card-elevated p-4 md:p-6 rounded-2xl">
+                <h3 class="text-xl font-bold mb-4 text-center google-sans">Yang Anda Dapatkan</h3>
+                <ul class="space-y-3">${featuresToShow.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-theme-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>`;
+            
+            if (!isExpanded && pkg.features.length > 3) {
+                html += `<button id="show-more-features" class="w-full text-center mt-4 text-sm font-semibold text-promo-red hover:underline">Tampilkan lebih banyak...</button>`;
+            }
+
+            html += `</div>`;
+            return html;
         }
                 
         const getPaymentMethodsHTML = (accounts) => {
@@ -1322,19 +1299,26 @@
             </div>`;
         }
 
-        const getTestimonialsHTML = (pkg) => {
-            let imagesHTML = pkg.testimonials.map((url, index) => `
-                <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">
+        const getTestimonialsHTML = (pkg, isExpanded = false) => {
+            const testimonialsToShow = isExpanded ? pkg.testimonials : pkg.testimonials.slice(0, 3);
+            let imagesHTML = testimonialsToShow.map((url, index) => `
+                <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image w-full h-auto object-cover aspect-square" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">
             `).join('');
 
-            return `
+            let html = `
             <div class="material-card p-4 md:p-6 rounded-2xl">
-                <h2 class="text-2xl font-bold text-center mb-4 google-sans">Kata Mereka Tentang Promo Kami</h2>
-                <p class="text-center text-m3-on-surface-variant text-sm mb-6">Ribuan pelanggan telah merasakan manfaat penyimpanan unlimited</p>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                <h2 class="text-2xl font-bold text-center mb-3 google-sans">Kata Mereka Tentang Promo Kami</h2>
+                <p class="text-center text-m3-on-surface-variant text-sm mb-4">Ribuan pelanggan telah merasakan manfaat penyimpanan unlimited</p>
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
                     ${imagesHTML}
-                </div>
-            </div>`;
+                </div>`;
+
+            if (!isExpanded && pkg.testimonials.length > 3) {
+                html += `<button id="show-more-testimonials" class="w-full text-center mt-4 text-sm font-semibold text-promo-red hover:underline">Lihat Semua Testimoni</button>`;
+            }
+
+            html += `</div>`;
+            return html;
         }
 
         const getFaqHTML = () => `
@@ -1343,11 +1327,7 @@
                  <div class="space-y-1">
                      <details class="faq-item">
                          <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
-                         <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
-                         <div class="faq-content">Prosesnya otomatis dan terintegrasi dengan akun Google Anda. Setelah pembayaran, penyimpanan pada Google Drive Anda akan langsung ter-upgrade menjadi unlimited. Anda tidak perlu melakukan apa-apa lagi dan bisa langsung menikmati kapasitas tanpa batas di akun pribadi Anda.</div>
+                         <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk Google Photos dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
                      </details>
                      <details class="faq-item">
                          <summary>Bagaimana proses untuk Google Photos?</summary>
@@ -1355,15 +1335,11 @@
                      </details>
                      <details class="faq-item">
                          <summary>Apakah ini aman dan legal?</summary>
-                         <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div>
+                         <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Privasi file Anda 100% terjamin dan Anda memiliki kontrol penuh atas data Anda.</div>
                      </details>
                      <details class="faq-item">
                          <summary>Apa bedanya dengan langganan Google One?</summary>
-                         <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, melalui metode upgrade langsung pada akun Anda.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Bisakah saya memindahkan file lama saya?</summary>
-                         <div class="faq-content">Tentu bisa. Karena upgrade ini langsung diterapkan pada akun Google Drive pribadi Anda, semua file lama Anda akan tetap ada di tempatnya dan secara otomatis menjadi bagian dari penyimpanan unlimited yang baru. Anda tidak perlu memindahkan file atau folder apa pun.</div>
+                         <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya.</div>
                      </details>
                      <details class="faq-item">
                          <summary>Berapa lama proses aktivasinya?</summary>
@@ -1379,17 +1355,20 @@
                 
         const getPolicyHTML = () => `
             <div>
-                <h3 class="text-2xl font-bold mb-4 text-center google-sans">Syarat & Ketentuan</h3>
-                <div class="grid md:grid-cols-1 gap-6 text-sm text-m3-on-surface-variant">
-                    <div>
-                         <p class="mb-4 text-sm leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
-                        <ul class="list-disc list-inside space-y-2 text-sm">
-                            <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
-                            <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
-                            <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
-                            <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
-                        </ul>
-                    </div>
+                <h3 class="text-2xl font-bold mb-3 text-center google-sans">Syarat & Ketentuan</h3>
+                <div class="space-y-1">
+                    <details class="faq-item">
+                        <summary>Penggunaan Layanan</summary>
+                        <div class="faq-content">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku. Layanan harus digunakan secara wajar dan tidak untuk aktivitas yang melanggar hukum.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Garansi</summary>
+                        <div class="faq-content">Kami memberikan garansi penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Garansi tidak mencakup pemblokiran atau pembatasan akun akibat pelanggaran kebijakan oleh pengguna (misalnya, menyimpan file ilegal).</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Kebijakan Google</summary>
+                        <div class="faq-content">Layanan ini bergantung pada kebijakan Google. Perubahan kebijakan Google di masa depan berada di luar kendali dan tanggung jawab kami.</div>
+                    </details>
                 </div>
             </div>
         `;
@@ -1425,12 +1404,12 @@
             setTimeout(() => {
                 // Update the HTML for the transitioning parts
                 infoContainer.innerHTML = getProductInfoHTML(pkg);
-                featuresContainer.innerHTML = getFeaturesHTML(pkg);
+                featuresContainer.innerHTML = getFeaturesHTML(pkg, areFeaturesExpanded);
 
                 // Update other parts that don't need transition
                 elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
                 elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice, isCouponApplied);
-                elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
+                elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg, areTestimonialsExpanded);
                 elements.faqFull.innerHTML = getFaqHTML();
                 elements.policyFull.innerHTML = getPolicyHTML();
 
@@ -1949,18 +1928,19 @@
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
 
-        // Use event delegation for the coupon button
-        elements.orderForm.addEventListener('click', function(event) {
+        // Use event delegation for the coupon button and show more
+        document.body.addEventListener('click', function(event) {
             if (event.target && event.target.id === 'coupon-btn') {
                 handleCouponToggle();
             }
-        });
-
-        document.querySelectorAll('input[name="package"]').forEach(radio => {
-            radio.addEventListener('change', (event) => {
-                currentPackageId = event.target.value;
+            if (event.target && event.target.id === 'show-more-features') {
+                areFeaturesExpanded = true;
                 updateDisplay();
-            });
+            }
+            if (event.target && event.target.id === 'show-more-testimonials') {
+                areTestimonialsExpanded = true;
+                updateDisplay();
+            }
         });
 
         updateDisplay();
