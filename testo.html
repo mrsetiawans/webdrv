@@ -249,12 +249,7 @@
 
         .testimonial-track {
             display: flex;
-            /* Animation: name, duration, timing-function, delay, iteration-count, direction */
-            animation: scroll 40s linear infinite;
-        }
-        
-        .testimonial-carousel-container:hover .testimonial-track {
-            animation-play-state: paused;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .testimonial-slide {
@@ -279,7 +274,7 @@
             width: 100%;
             height: auto;
             object-fit: cover;
-            aspect-ratio: 3 / 4;
+            aspect-ratio: 4 / 3;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -290,15 +285,6 @@
             box-shadow: var(--shadow-2);
         }
 
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                /* Translate by the width of the original set of images */
-                transform: translateX(calc(-100% * var(--testimonial-count)));
-            }
-        }
         /* === END: Auto-Scrolling Testimonial Carousel Styles === */
 
 
@@ -424,6 +410,25 @@
         .faq-item[open] summary {
             color: var(--theme-primary);
         }
+
+        /* This rule prevents a double-border issue on card-style accordions */
+        .faq-item.rounded-lg {
+            border-bottom: none;
+        }
+
+        /* Compact styles for the main info/help FAQ section */
+        #info-section-full .faq-item summary {
+            padding: 12px 10px;
+            font-size: 14px;
+        }
+        #info-section-full .faq-content {
+            padding: 4px 10px 12px 10px;
+            font-size: 13px;
+        }
+        #info-section-full .faq-item {
+            border-bottom: 1px solid var(--theme-outline-variant);
+        }
+
 
         /* Enhanced Segmented Control */
         .segmented-control {
@@ -1055,7 +1060,7 @@
                     <div id="product-info-form-top" class="mb-6"></div>
 
                     <!-- NEW: Accordion for Details -->
-                    <div id="details-accordion-container" class="mb-6 space-y-2"></div>
+                    <div id="details-accordion-container" class="mb-6"></div>
 
                     <!-- Form -->
                     <form id="orderForm">
@@ -1398,16 +1403,16 @@
                 </ul>`;
 
             return `
-                <details class="faq-item bg-white rounded-lg border border-gray-200">
+                <details class="faq-item">
                     <summary>Ringkasan Deskripsi</summary>
                     <div class="faq-content">${pkg.description}</div>
                 </details>
-                <details class="faq-item bg-white rounded-lg border border-gray-200">
-                    <summary>Detail Deskripsi (Yang Anda Dapatkan)</summary>
+                <details class="faq-item">
+                    <summary>Detail Deskripsi</summary>
                     <div class="faq-content">${featuresHTML}</div>
                 </details>
-                <details class="faq-item bg-white rounded-lg border border-gray-200">
-                    <summary>Informasi Penting (S&K)</summary>
+                <details class="faq-item">
+                    <summary>Informasi Penting</summary>
                     <div class="faq-content">${policyHTML}</div>
                 </details>
             `;
@@ -1416,7 +1421,7 @@
         // --- MODIFIED: getPaymentMethodsHTML ---
         const getPaymentMethodsHTML = (accounts) => {
             let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">3. Pilih Metode Pembayaran</h2>`;
-            html += `<div class="material-card rounded-xl payment-group">`;
+            html += `<div class="payment-group">`;
 
             Object.entries(accounts).forEach(([key, account], index) => {
                 const borderClass = index === 0 ? '' : 'border-t border-gray-200';
@@ -1451,7 +1456,7 @@
             return `
             <div class="mt-8 pt-6 border-t border-m3-outline-variant">
                  <h3 class="text-lg font-bold mb-4 google-sans">Rincian Pesanan</h3>
-                 <div class="material-card-elevated p-4 rounded-2xl space-y-3 text-m3-on-surface-variant">
+                 <div class="space-y-3 text-m3-on-surface-variant">
                     <div class="mb-4">
                         <label for="coupon" class="block text-sm font-medium mb-1.5 text-m3-on-surface-variant">Kode Kupon</label>
                         <div class="flex">
@@ -1491,23 +1496,23 @@
         // --- MODIFIED: getTestimonialsHTML for Carousel ---
         const getTestimonialsHTML = (pkg) => {
             const images = pkg.testimonials;
-            // Duplicate images for a seamless loop
-            const duplicatedImages = [...images, ...images]; 
 
-            let imagesHTML = duplicatedImages.map((url, index) => `
+            let imagesHTML = images.map((url, index) => `
                 <div class="testimonial-slide">
-                    <img src="${url}" alt="Testimoni Pelanggan ${index % images.length + 1}" class="testimonial-image" onclick="openImageModal(event, ${index % images.length})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">
+                    <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\nMuat';">
                 </div>
             `).join('');
 
             return `
-            <div class="material-card p-4 md:p-6 rounded-2xl">
-                <h2 class="text-2xl font-bold text-center mb-4 google-sans">Testimoni Pelanggan</h2>
-                <p class="text-center text-m3-on-surface-variant text-sm mb-6">Ribuan pelanggan telah merasakan manfaat penyimpanan unlimited</p>
-                <div class="testimonial-carousel-container" style="--testimonial-count: ${images.length};">
-                    <div class="testimonial-track">
+            <div class="material-card p-3 md:p-4 rounded-2xl">
+                <h2 class="text-xl font-bold text-center mb-2 google-sans">Testimoni Pelanggan</h2>
+                <p class="text-center text-m3-on-surface-variant text-xs mb-4">Ribuan pelanggan telah merasakan manfaat penyimpanan unlimited</p>
+                <div class="testimonial-carousel-container">
+                    <div class="testimonial-track" id="testimonial-track">
                         ${imagesHTML}
                     </div>
+                    <button id="testimonial-prev-btn" class="modal-nav prev" style="display: none; background-color: rgba(0,0,0,0.4);">&#10094;</button>
+                    <button id="testimonial-next-btn" class="modal-nav next" style="display: flex; background-color: rgba(0,0,0,0.4);">&#10095;</button>
                 </div>
             </div>`;
         }
@@ -1516,7 +1521,7 @@
         const getInfoSectionHTML = () => {
              const faqHTML = `
                 <h3 class="text-2xl font-bold mb-4 text-center google-sans">Informasi & Bantuan</h3>
-                <div class="space-y-1">
+                <div class="space-y-0">
                     <details class="faq-item">
                         <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
                         <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
@@ -1551,22 +1556,28 @@
                     </details>
                 </div>
             `;
-            const policyHTML = `
-                <details class="faq-item mt-4">
-                    <summary>Informasi Penting (Syarat & Ketentuan)</summary>
-                    <div class="faq-content">
-                        <p class="mb-4 text-sm leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
-                        <ul class="list-disc list-inside space-y-2 text-sm">
-                            <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
-                            <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
-                            <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
-                            <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
-                        </ul>
-                    </div>
-                </details>
-            `;
-            return faqHTML + policyHTML;
+            return faqHTML;
         };
+
+        // --- CAROUSEL LOGIC ---
+        let testimonialIndex = 0;
+        
+        function handleTestimonialNav() {
+            const track = document.getElementById('testimonial-track');
+            const prevBtn = document.getElementById('testimonial-prev-btn');
+            const nextBtn = document.getElementById('testimonial-next-btn');
+            if (!track || !prevBtn || !nextBtn) return;
+            
+            const totalImages = packages[currentPackageId].testimonials.length;
+            const itemsPerPage = 3;
+            const maxIndex = totalImages > itemsPerPage ? totalImages - itemsPerPage : 0;
+            const slidePercentage = 100 / itemsPerPage;
+
+            track.style.transform = `translateX(-${testimonialIndex * slidePercentage}%)`;
+            
+            prevBtn.style.display = testimonialIndex > 0 ? 'flex' : 'none';
+            nextBtn.style.display = testimonialIndex < maxIndex ? 'flex' : 'none';
+        }
 
         // --- FUNCTIONS ---
         function formatCurrency(value) {
@@ -1584,6 +1595,7 @@
         }
 
         function updateDisplay() {
+            testimonialIndex = 0; // Reset carousel on package change
             const pkg = packages[currentPackageId];
             const currentPrice = isCouponApplied ? pkg.price : pkg.normalPrice;
             const totalPrice = currentPrice + uniqueCode;
@@ -2127,6 +2139,20 @@
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
+        
+        // Carousel Navigation Events
+        elements.testimonialsFull.addEventListener('click', function(event) {
+            const totalImages = packages[currentPackageId].testimonials.length;
+            const maxIndex = totalImages > 3 ? totalImages - 3 : 0;
+            if (event.target.id === 'testimonial-next-btn' && testimonialIndex < maxIndex) {
+                testimonialIndex++;
+                handleTestimonialNav();
+            }
+            if (event.target.id === 'testimonial-prev-btn' && testimonialIndex > 0) {
+                testimonialIndex--;
+                handleTestimonialNav();
+            }
+        });
 
         // Use event delegation for the coupon button
         elements.orderForm.addEventListener('click', function(event) {
