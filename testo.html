@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promo Kemerdekaan ke-80 RI: Google Photos Unlimited!</title>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/240px-Google_Photos_icon_%282020%29.svg.png">
+    <title>Upgrade Google Drive & Photos Unlimited - Penawaran Spesial!</title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
+
     <!-- === KODE FACEBOOK PIXEL DIMULAI DI SINI === -->
     <script>
       !function(f,b,e,v,n,t,s)
@@ -28,11 +29,12 @@
     src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1"
     /></noscript>
     <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
+
     <style>
         :root {
-            /* Palet Merah Putih Kemerdekaan */
-            --theme-primary: #DC2626; /* Merah Bendera */
-            --theme-primary-hover: #B91C1C;
+            /* Vibrant Google-Style Palette */
+            --theme-primary: #1a73e8;
+            --theme-primary-hover: #1557b0;
             --theme-background: #f8f9fa;
             --theme-surface: #ffffff;
             --theme-on-surface: #3c4043;
@@ -51,6 +53,7 @@
             --shadow-2: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
             --shadow-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.3);
         }
+
         /* Google Sans Typography */
         body {
             font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -60,9 +63,11 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
+
         .google-sans {
             font-family: 'Google Sans', sans-serif;
         }
+
         /* Enhanced Material Design Components */
         .material-card {
             background: var(--theme-surface);
@@ -71,12 +76,15 @@
             transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--theme-outline);
         }
+
         .material-card:hover {
             box-shadow: var(--shadow-2);
         }
+
         .material-card-elevated {
             box-shadow: var(--shadow-2);
         }
+
         /* Enhanced Form Inputs */
         .form-input {
             border: 2px solid var(--theme-outline);
@@ -89,15 +97,18 @@
             font-family: 'Roboto', sans-serif;
             color: var(--theme-on-surface);
         }
+
         .form-input:focus {
             border-color: var(--theme-primary);
             background-color: var(--theme-surface);
             outline: none;
             box-shadow: 0 0 0 1px var(--theme-primary);
         }
+
         .form-input::placeholder {
             color: var(--theme-on-surface-variant);
         }
+
         /* Enhanced Google-style Buttons */
         .cta-button {
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -117,29 +128,35 @@
             letter-spacing: 0.25px;
             min-height: 46px;
         }
-        .promo-button {
+
+        .blue-button {
             background-color: var(--theme-primary);
             color: white;
             box-shadow: var(--shadow-1);
         }
-        .promo-button:hover {
+
+        .blue-button:hover {
             background-color: var(--theme-primary-hover);
             box-shadow: var(--shadow-2);
             transform: translateY(-1px);
         }
-        .promo-button:active {
+
+        .blue-button:active {
             transform: translateY(0);
             box-shadow: var(--shadow-1);
         }
-        .remove-button {
-            background-color: #6c757d; /* Abu-abu */
+
+        .red-button {
+            background-color: var(--google-red);
             color: white;
             box-shadow: var(--shadow-1);
         }
-        .remove-button:hover {
-            background-color: #5a6268; 
+
+        .red-button:hover {
+            background-color: #D93025; /* Darker red */
             box-shadow: var(--shadow-2);
         }
+
         .cta-button:disabled {
             background-color: var(--theme-outline-variant);
             color: var(--theme-on-surface-variant);
@@ -147,6 +164,7 @@
             transform: none;
             box-shadow: none;
         }
+
         /* Enhanced Modal Styling */
         .modal {
             display: none;
@@ -161,6 +179,7 @@
             justify-content: center;
             align-items: center;
         }
+
         .modal-content {
             background-color: var(--theme-surface);
             margin: auto;
@@ -173,6 +192,7 @@
             position: relative;
             animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         @keyframes modalSlideIn {
             from {
                 opacity: 0;
@@ -183,6 +203,7 @@
                 transform: scale(1) translateY(0);
             }
         }
+
         .modal-content h3 {
             color: var(--theme-on-surface);
             margin-bottom: 12px;
@@ -190,12 +211,14 @@
             font-weight: 500;
             font-family: 'Google Sans', sans-serif;
         }
+
         .modal-content p {
             color: var(--theme-on-surface-variant);
             margin-bottom: 20px;
             line-height: 1.6;
             font-size: 14px;
         }
+
         .modal-ok-button {
             background-color: var(--theme-primary);
             color: white;
@@ -209,25 +232,80 @@
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             min-height: 36px;
         }
+
         .modal-ok-button:hover {
             background-color: var(--theme-primary-hover);
             box-shadow: var(--shadow-1);
         }
-        /* Enhanced Testimonial Section */
-        .testimonial-image {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border-radius: 12px;
+
+        /* === START: Auto-Scrolling Testimonial Carousel Styles === */
+        .testimonial-carousel-container {
             overflow: hidden;
+            position: relative;
+            width: 100%;
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
         }
+
+        .testimonial-track {
+            display: flex;
+            /* Animation: name, duration, timing-function, delay, iteration-count, direction */
+            animation: scroll 40s linear infinite;
+        }
+        
+        .testimonial-carousel-container:hover .testimonial-track {
+            animation-play-state: paused;
+        }
+
+        .testimonial-slide {
+            flex-shrink: 0;
+            width: calc(100% / 3); /* Show 3 images */
+            padding: 0 6px;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonial-slide {
+                width: calc(100% / 2); /* Show 2 images on tablet */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .testimonial-slide {
+                width: calc(100% / 1.5); /* Show 1.5 images on mobile */
+            }
+        }
+
+        .testimonial-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            aspect-ratio: 3 / 4;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
         .testimonial-image:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
             box-shadow: var(--shadow-2);
         }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                /* Translate by the width of the original set of images */
+                transform: translateX(calc(-100% * var(--testimonial-count)));
+            }
+        }
+        /* === END: Auto-Scrolling Testimonial Carousel Styles === */
+
+
         /* Enhanced Notification Toast */
         .notif-box {
             position: fixed;
-            top: 84px; /* Disesuaikan agar di bawah banner */
+            top: 24px;
             left: 50%;
             transform: translateX(-50%);
             background-color: #3c4043; /* Dark grey for toast */
@@ -245,11 +323,13 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: 'Roboto', sans-serif;
         }
+
         .notif-box.show {
             display: flex;
             opacity: 1;
             animation: slideInAndOut 5s ease-in-out forwards;
         }
+
         @keyframes slideInAndOut {
             0% {
                 opacity: 0;
@@ -268,34 +348,42 @@
                 transform: translateX(-50%) translateY(-20px);
             }
         }
+
         .notif-icon-wrapper {
             color: var(--google-green);
             font-size: 20px;
             flex-shrink: 0;
         }
+
         .notif-message {
             font-size: 14px;
             line-height: 1.4;
         }
+
         .notif-message strong {
             font-weight: 500;
         }
+
         .notif-time {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.7);
             margin-top: 2px;
         }
+
         /* Enhanced FAQ Section */
         .faq-item {
             border-bottom: 1px solid var(--theme-outline);
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .faq-item:last-child {
             border-bottom: none;
         }
+
         .faq-item:hover {
             background-color: var(--theme-background);
         }
+
         .faq-item summary {
             font-weight: 500;
             font-size: 15px;
@@ -308,9 +396,11 @@
             align-items: center;
             font-family: 'Google Sans', sans-serif;
         }
+
         .faq-item summary::-webkit-details-marker {
             display: none;
         }
+
         .faq-item summary::after {
             content: '\f078';
             font-family: 'Font Awesome 6 Free';
@@ -319,18 +409,22 @@
             color: var(--theme-on-surface-variant);
             font-size: 14px;
         }
+
         .faq-item[open] summary::after {
             transform: rotate(180deg);
         }
+
         .faq-content {
             padding: 0 12px 16px 12px;
             color: var(--theme-on-surface-variant);
             line-height: 1.6;
             font-size: 14px;
         }
+
         .faq-item[open] summary {
             color: var(--theme-primary);
         }
+
         /* Enhanced Segmented Control */
         .segmented-control {
             display: flex;
@@ -341,12 +435,14 @@
             width: 100%;
             box-shadow: inset 0 1px 2px rgba(60, 64, 67, 0.1);
         }
+
         .segmented-control .package-radio {
             position: absolute;
             opacity: 0;
             width: 0;
             height: 0;
         }
+
         .segmented-control .package-label {
             flex: 1;
             text-align: center;
@@ -361,9 +457,11 @@
             font-family: 'Google Sans', sans-serif;
             border-radius: 8px;
         }
+
         .segmented-control .package-radio:checked + .package-label {
             color: #ffffff;
         }
+
         .segmented-control-pill {
             position: absolute;
             top: 4px;
@@ -375,23 +473,27 @@
             z-index: 1;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .segmented-control .package-radio#pkg-drive:checked ~ .segmented-control-pill {
             transform: translateX(0%);
         }
+
         .segmented-control .package-radio#pkg-photos:checked ~ .segmented-control-pill {
             transform: translateX(100%);
         }
+
         /* Enhanced Product Info Display */
-        #product-info-form-top,
-        #features-before-form {
+        #product-info-form-top {
             transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .product-info-card {
-            background: linear-gradient(135deg, #fee2e2 0%, var(--theme-surface) 100%); /* Gradasi Merah Muda */
+            background: linear-gradient(135deg, #e8f0fe 0%, var(--theme-surface) 100%);
             border: 1px solid var(--theme-outline);
             border-radius: 16px;
             padding: 20px;
         }
+
         /* Enhanced Payment Method Styles */
         .payment-radio {
             position: absolute;
@@ -399,6 +501,7 @@
             width: 0;
             height: 0;
         }
+
         .payment-label {
             display: flex;
             align-items: center;
@@ -408,13 +511,16 @@
             border-radius: 12px;
             margin: 2px;
         }
+
         .payment-label:hover {
             background-color: var(--theme-background);
         }
+
         .payment-radio:checked + .payment-label {
-            background-color: #fee2e2; /* Light red */
+            background-color: #e8f0fe; /* Light blue */
             box-shadow: inset 0 0 0 2px var(--theme-primary);
         }
+
         .payment-logo-container {
             width: 48px;
             height: 32px;
@@ -427,7 +533,8 @@
             padding: 4px;
             border: 1px solid var(--theme-outline, #dadce0);
             flex-shrink: 0;
-        }        .form-payment-logo-container {
+        }
+        .form-payment-logo-container {
             width: 48px;
             height: 32px;
             background-color: #ffffff;
@@ -440,11 +547,13 @@
             border: 1px solid var(--theme-outline, #dadce0);
             flex-shrink: 0;
         }
+
         .payment-logo {
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
         }
+
         .custom-radio-button {
             height: 20px;
             width: 20px;
@@ -457,6 +566,7 @@
             flex-shrink: 0;
             margin-left: auto;
         }
+
         .custom-radio-button .dot {
             height: 8px;
             width: 8px;
@@ -464,21 +574,25 @@
             background-color: transparent;
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .payment-radio:checked + .payment-label .custom-radio-button {
             border-color: var(--theme-primary);
         }
+
         .payment-radio:checked + .payment-label .custom-radio-button .dot {
             background-color: var(--theme-primary);
         }
+
         /* Enhanced Payment Instruction Layout */
         .payment-header {
-            background: linear-gradient(135deg, #B91C1C 0%, #7f1d1d 100%); /* Gradasi Merah Tua */
+            background: linear-gradient(135deg, #202124 0%, #3c4043 100%);
             color: #fff;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 999;
         }
+
         .payment-card {
             background-color: var(--theme-surface);
             border: 1px solid var(--theme-outline);
@@ -487,6 +601,7 @@
             margin-top: 12px;
             box-shadow: var(--shadow-1);
         }
+
         .copy-button-text {
             background: none;
             border: none;
@@ -497,9 +612,11 @@
             border-radius: 4px;
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .copy-button-text:hover {
-            background-color: #fee2e2;
+            background-color: #e8f0fe;
         }
+
         .confirm-button-outlined {
             width: 100%;
             padding: 12px 24px;
@@ -513,16 +630,20 @@
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             min-height: 48px;
         }
+
         .confirm-button-outlined:hover {
-            background-color: #fee2e2;
+            background-color: #e8f0fe;
             box-shadow: var(--shadow-1);
         }
+
         .payment-accordion {
             border-bottom: 1px solid var(--theme-outline);
         }
+
         .payment-accordion:last-child {
             border-bottom: none;
         }
+
         .payment-accordion summary {
             font-weight: 500;
             padding: 14px 0;
@@ -533,9 +654,11 @@
             align-items: center;
             font-family: 'Google Sans', sans-serif;
         }
+
         .payment-accordion summary::-webkit-details-marker {
             display: none;
         }
+
         .payment-accordion summary::after {
             content: '\f078';
             font-family: 'Font Awesome 6 Free';
@@ -543,30 +666,36 @@
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             color: var(--theme-on-surface-variant);
         }
+
         .payment-accordion[open] summary::after {
             transform: rotate(180deg);
         }
+
         .payment-accordion-content {
             padding-bottom: 16px;
             color: var(--theme-on-surface-variant);
             line-height: 1.6;
         }
+
         .payment-accordion-content ol {
             list-style-type: decimal;
             padding-left: 20px;
             font-size: 14px;
         }
+
         /* === START: User Requested Styles === */
         /* Ukuran untuk desktop dan tablet */
         .payment-header {
             padding: 1rem; /* 16px */
         }
+
         .payment-header h2 {
             font-size: 1.125rem; /* 18px */
             font-weight: 500;
             font-family: 'Google Sans', sans-serif;
             color: #ffffff; /* Ditambahkan agar teks terlihat */
         }
+
         .countdown-timer {
             display: flex;
             justify-content: center;
@@ -574,11 +703,13 @@
             gap: 0.5rem;
             margin-top: 0.5rem;
         }
+
         .countdown-item {
             display: flex;
             align-items: center;
             gap: 0.25rem;
         }
+
         .countdown-number {
             background-color: var(--google-red);
             color: white;
@@ -589,6 +720,7 @@
             font-family: 'Google Sans', sans-serif;
             text-align: center;
         }
+
         /* Penyesuaian ukuran untuk layar mobile (di bawah 768px) */
         @media (max-width: 768px) {
             .payment-header {
@@ -607,12 +739,15 @@
             .countdown-item {
                 font-size: 0.75rem; /* 12px */
             }
-        }        /* === END: User Requested Styles === */
+        }
+        /* === END: User Requested Styles === */
+
 
         /* Enhanced Details Modal (Bottom Sheet) */
         #detailsModal {
             align-items: flex-end;
         }
+
         .details-modal-content {
             background-color: var(--theme-surface);
             width: 100%;
@@ -622,12 +757,15 @@
             text-align: left;
             transform: translateY(100%);
         }
+
         .details-modal-content.is-open {
             animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
+
         .details-modal-content.is-closing {
             animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
+
         @keyframes slideUp {
             from {
                 transform: translateY(100%);
@@ -636,6 +774,7 @@
                 transform: translateY(0);
             }
         }
+
         @keyframes slideDown {
             from {
                 transform: translateY(0);
@@ -644,6 +783,7 @@
                 transform: translateY(100%);
             }
         }
+
         .details-modal-header {
             padding: 20px 24px;
             border-bottom: 1px solid var(--theme-outline);
@@ -651,12 +791,14 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .details-modal-header h3 {
             font-size: 18px;
             font-weight: 500;
             color: var(--theme-on-surface);
             font-family: 'Google Sans', sans-serif;
         }
+
         .details-modal-close {
             font-size: 24px;
             font-weight: 400;
@@ -668,24 +810,28 @@
             border-radius: 50%;
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .details-modal-close:hover {
             background-color: var(--theme-outline-variant);
         }
+
         .details-modal-body {
             padding: 20px 24px 32px 24px;
             max-height: 60vh;
             overflow-y: auto;
         }
+
         /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
             .notif-box {
                 left: 16px;
                 right: 16px;
-                top: 70px; /* Disesuaikan agar di bawah banner */
+                top: 16px;
                 transform: translateX(0);
                 width: calc(100% - 32px);
                 max-width: none;
             }
+
             @keyframes slideInAndOut {
                 0% {
                     opacity: 0;
@@ -704,14 +850,17 @@
                     transform: translateY(-20px);
                 }
             }
+
             .material-card {
                 border-radius: 16px;
                 margin: 0 4px;
             }
+
             .form-input {
                 font-size: 16px; /* Prevent zoom on iOS */
             }
         }
+
         /* Enhanced Image Modal */
         .modal-image-wrapper {
             display: flex;
@@ -720,6 +869,7 @@
             justify-content: center;
             text-align: center;
         }
+
         .modal-content-image {
             margin: auto;
             display: block;
@@ -729,6 +879,7 @@
             animation: zoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 8px;
         }
+
         .close-image-modal-button {
             margin-top: 20px;
             color: #ffffff;
@@ -742,10 +893,12 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .close-image-modal-button:hover {
             background-color: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.5);
         }
+
         .modal-nav {
             cursor: pointer;
             position: absolute;
@@ -765,16 +918,20 @@
             justify-content: center;
             align-items: center;
         }
+
         .modal-nav.prev {
             left: 20px;
         }
+
         .modal-nav.next {
             right: 20px;
         }
+
         .modal-nav:hover {
             background-color: rgba(0, 0, 0, 0.7);
             transform: scale(1.1);
         }
+
         @keyframes zoomIn {
             from {
                 transform: scale(0);
@@ -785,17 +942,20 @@
                 opacity: 1;
             }
         }
+
         /* Enhanced Feature Icons */
         .feature-icon {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .feature-icon:hover {
             transform: scale(1.1);
         }
+
         /* Enhanced Security Badge */
         .security-badge {
-            background: #fee2e2;
-            color: #991b1b;
+            background: #e8f0fe;
+            color: #1557b0;
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 10px;
@@ -804,32 +964,40 @@
             align-items: center;
             gap: 6px;
         }
+
         /* Enhanced Typography */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Google Sans', sans-serif;
             color: var(--theme-on-surface);
         }
-        .text-promo-red {
-            color: var(--theme-primary);
+
+        .text-google-blue {
+            color: var(--google-blue);
         }
+
         .text-google-green {
             color: var(--google-green);
         }
-        .bg-promo-red {
-            background-color: var(--theme-primary);
+
+        .bg-google-blue {
+            background-color: var(--google-blue);
         }
+
         /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
         }
+
         /* Loading States */
         .loading {
             opacity: 0.7;
             pointer-events: none;
         }
+
         .spinner {
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
             from {
                 transform: rotate(0deg);
@@ -841,22 +1009,18 @@
     </style>
 </head>
 <body class="antialiased">
-    <!-- Banner Promo Kemerdekaan -->
-    <div class="bg-gradient-to-r from-red-100 via-white to-red-100 text-center p-3 text-sm font-semibold shadow-sm sticky top-0 z-50 border-b border-red-200">
-        <p class="text-red-700 animate-pulse"><i class="fas fa-flag mr-2"></i>PROMO SPESIAL KEMERDEKAAN KE-80 RI! | Penawaran Terbatas!</p>
-    </div>
 
     <div id="payment-instruction-container">
         <!-- Konten akan di-generate oleh JavaScript -->
     </div>
     <!-- Spacing adjustments for mobile and desktop -->
-    <div class="p-2 sm:p-4 lg:p-6">
+    <div class="p-3 sm:p-4 lg:p-8">
         <div id="main-content-container">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-x-8 gap-y-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-12 gap-y-8 max-w-7xl mx-auto">
                 <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 material-card p-4 md:p-6">
+                <div class="lg:col-span-1 material-card p-5 md:p-8">
                     <!-- Header Keamanan -->
-                    <div class="grid grid-cols-2 gap-3 text-center border-b border-m3-outline-variant pb-3 mb-3">
+                    <div class="grid grid-cols-2 gap-3 text-center border-b border-m3-outline-variant pb-4 mb-4">
                         <div class="flex">
                             <div class="security-badge w-full justify-center">
                                 <i class="fas fa-shield-alt text-xs mr-1"></i>
@@ -870,18 +1034,32 @@
                             </div>
                         </div>
                     </div>
-                                        
-                    <!-- Pemilihan Paket Dihapus -->
+                    
+                    <!-- Pemilihan Paket (Segmented Control) -->
+                    <div class="my-6">
+                        <h2 class="text-lg font-bold mb-3 google-sans">1. Pilih Paket Anda</h2>
+                        <div id="package-selection">
+                            <div class="segmented-control">
+                                <input type="radio" id="pkg-drive" name="package" value="drive" class="package-radio" checked>
+                                <label for="pkg-drive" class="package-label">Google<br>Drive</label>
+    
+                                <input type="radio" id="pkg-photos" name="package" value="photos" class="package-radio">
+                                <label for="pkg-photos" class="package-label">Google<br>Photos</label>
+    
+                                <div class="segmented-control-pill"></div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Info Produk -->
                     <div id="product-info-form-top" class="mb-6"></div>
 
-                    <!-- Fitur -->
-                    <div id="features-before-form" class="mb-6"></div>
+                    <!-- NEW: Accordion for Details -->
+                    <div id="details-accordion-container" class="mb-6 space-y-2"></div>
 
                     <!-- Form -->
                     <form id="orderForm">
-                        <h2 class="text-lg font-bold mb-2 google-sans">2. Lengkapi Data</h2>
+                        <h2 class="text-lg font-bold mb-3 google-sans">2. Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
                                 <label for="nama" class="block text-sm font-medium mb-1.5 text-m3-on-surface-variant">Nama Anda <span class="text-red-500">*</span></label>
@@ -896,17 +1074,17 @@
                                 <input type="email" id="email" name="email" class="form-input" placeholder="contoh.email@gmail.com">
                             </div>
                         </div>
-                                                
+                        
                         <!-- Honeypot field for anti-spam -->
                         <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
 
                         <!-- Metode Pembayaran -->
-                        <div id="payment-method-selection" class="mt-5"></div>
-                                                
+                        <div id="payment-method-selection" class="mt-6"></div>
+                        
                         <!-- Rincian Pesanan -->
-                        <div id="order-details-in-form" class="mt-5"></div>
-                                                
-                        <button type="button" id="submit-btn" class="cta-button promo-button mt-5">
+                        <div id="order-details-in-form" class="mt-6"></div>
+                        
+                        <button type="button" id="submit-btn" class="cta-button blue-button mt-6">
                             <i class="fas fa-shopping-cart mr-2"></i>
                             Beli Sekarang
                         </button>
@@ -914,18 +1092,15 @@
                 </div>
 
                 <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
-                <div class="lg:col-span-1 py-4 space-y-6">
+                <div class="lg:col-span-1 py-4 space-y-8">
                    <div id="testimonials-full"></div>
                    <div class="material-card p-5 md:p-6">
-                       <div id="faq-full"></div>
-                   </div>
-                   <div class="material-card p-5 md:p-6">
-                       <div id="policy-full"></div>
+                       <div id="info-section-full"></div>
                    </div>
                 </div>
             </div>
         </div>
-                
+        
         <footer id="footer" class="text-center mt-8 text-m3-on-surface-variant text-sm">
             <p>Copyright © <span id="currentYear">2025</span> InDrive ID. Semua Hak Dilindungi.</p>
         </footer>
@@ -949,7 +1124,7 @@
             <button class="close-image-modal-button" onclick="closeImageModal()">Tutup</button>
         </div>
     </div>
-        
+    
     <!-- NEW: Modal for Transaction Details -->
     <div id="detailsModal" class="modal">
         <div class="details-modal-content" id="detailsModalContent">
@@ -967,6 +1142,7 @@
              </div>
         </div>
     </div>
+
 
     <script>
     // --- VALIDATION LOGIC ---
@@ -1024,12 +1200,16 @@
         if (nomorHp.length > maxLength) {
             return genericError;
         }
+
         if (isInvalidPattern(nomorHp)) {
             return genericError;
         }
+
         return { isValid: true, message: 'Nomor valid.' };
     }
+
     document.addEventListener('DOMContentLoaded', function() {
+
         // --- ELEMENTS ---
         const elements = {
             mainContentContainer: document.getElementById('main-content-container'),
@@ -1037,12 +1217,11 @@
             footer: document.getElementById('footer'),
             currentYear: document.getElementById('currentYear'),
             productInfoFormTop: document.getElementById('product-info-form-top'),
-            featuresBeforeForm: document.getElementById('features-before-form'),
+            detailsAccordionContainer: document.getElementById('details-accordion-container'), // NEW
             paymentMethodSelection: document.getElementById('payment-method-selection'),
             orderDetailsInForm: document.getElementById('order-details-in-form'),
             testimonialsFull: document.getElementById('testimonials-full'),
-            faqFull: document.getElementById('faq-full'),
-            policyFull: document.getElementById('policy-full'),
+            infoSectionFull: document.getElementById('info-section-full'),
             orderForm: document.getElementById('orderForm'),
             submitBtn: document.getElementById('submit-btn'),
             notifBox: document.getElementById('notifBox'),
@@ -1057,10 +1236,8 @@
         let expiryTime;
         let currentOrderDetails = {};
         let isCouponApplied = true;
-        const validCouponCode = "HUTRI80"; // Kode kupon baru
-        let areFeaturesExpanded = false;
-        let areTestimonialsExpanded = false;
-                
+        const validCouponCode = "MERDEKA";
+        
         // *** TESTIMONIALS COMBINED ***
         const allTestimonials = [
             "https://s6.imgcdn.dev/YIh45V.png",
@@ -1078,13 +1255,34 @@
         ];
 
         const packages = {
+            drive: {
+                id: 'drive',
+                name: "Google Drive Unlimited",
+                price: 117000,
+                normalPrice: 699000,
+                title: "DRIVE UNLIMITED",
+                priceDisplay: `Rp117.000`,
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png',
+                description: "Penyimpanan cloud tanpa batas untuk semua file Anda.",
+                features: [
+                    "<strong>Penyimpanan Cloud Tanpa Batas:</strong> Simpan semua file, dokumen, foto, dan video tanpa khawatir kehabisan ruang.",
+                    "<strong>Akses File Di Mana Saja:</strong> Buka dan edit file Anda dari komputer, tablet, atau smartphone.",
+                    "<strong>Berbagi & Kolaborasi Mudah:</strong> Bagikan file dan folder dengan mudah, serta bekerja bersama secara real-time.",
+                    "<strong>Keamanan Kelas Dunia:</strong> File Anda dilindungi oleh infrastruktur keamanan canggih dari Google.",
+                    "<strong>Integrasi Penuh:</strong> Terhubung dengan Google Docs, Sheets, Slides, dan aplikasi favorit lainnya.",
+                    "<strong>Sekali Bayar Seumur Hidup:</strong> Tanpa biaya langganan bulanan atau tahunan.",
+                    "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Google yang sudah Anda miliki.",
+                    "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
+                ],
+                testimonials: allTestimonials
+            },
             photos: {
                 id: 'photos',
                 name: "Google Photos Unlimited",
-                price: 117000, // Harga promo baru
+                price: 117000,
                 normalPrice: 699000,
                 title: "PHOTOS UNLIMITED",
-                priceDisplay: `Rp117.000`, // Tampilan harga promo baru
+                priceDisplay: `Rp117.000`,
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/240px-Google_Photos_icon_%282020%29.svg.png',
                 description: "Simpan semua foto & video kualitas asli tanpa kompresi.",
                 features: [
@@ -1101,8 +1299,8 @@
             }
         };
 
-        let currentPackageId = 'photos'; // Paket default yang dipilih
-                
+        let currentPackageId = 'drive'; // Paket default yang dipilih
+        
         // --- UPDATED PAYMENT ACCOUNTS ---
         const paymentAccounts = {
             qris: {
@@ -1111,7 +1309,6 @@
                 number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15',
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png',
                 type: 'qris',
-                category: 'QRIS'
             },
             cimb: { 
                 displayName: 'Cimb Niaga',
@@ -1119,7 +1316,6 @@
                 number: '6289510639366', 
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', 
                 type: 'va',
-                category: 'Bank Transfer'
             },
             bca_va: { 
                 displayName: 'BCA Virtual Account', 
@@ -1127,7 +1323,6 @@
                 number: '39358089510639366', 
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', 
                 type: 'va',
-                category: 'Bank Transfer'
             },
             gopay: { 
                 displayName: 'Gopay', 
@@ -1135,7 +1330,6 @@
                 number: '089510639366', 
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', 
                 type: 'ewallet',
-                category: 'E-Wallet'
             },
             dana: { 
                 displayName: 'DANA', 
@@ -1143,7 +1337,6 @@
                 number: '089510639366', 
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', 
                 type: 'ewallet',
-                category: 'E-Wallet'
             },
             ovo: { 
                 displayName: 'OVO', 
@@ -1151,7 +1344,6 @@
                 number: '089510639366', 
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', 
                 type: 'ewallet',
-                category: 'E-Wallet'
             }
         };
 
@@ -1162,7 +1354,7 @@
                 logoHtml = `
                     <div class="flex justify-center items-center gap-4 h-12">
                         <img alt="Logo Google Drive" class="h-10 w-auto" src="${packages.drive.logo}">
-                        <i class="fas fa-plus text-2xl text-promo-red"></i>
+                        <i class="fas fa-plus text-2xl text-google-blue"></i>
                         <img alt="Logo Google Photos" class="h-10 w-auto" src="${packages.photos.logo}">
                     </div>
                 `;
@@ -1176,11 +1368,10 @@
                     <div class="text-center mb-4 md:mb-0 flex-grow">
                         ${logoHtml}
                         <h1 class="text-2xl font-bold text-m3-on-primary-container mt-3 google-sans">${pkg.title}</h1>
-                        <p class="text-sm font-semibold text-promo-red mt-1">Spesial HUT ke-80 Republik Indonesia</p>
                         <p class="text-md text-m3-on-surface-variant mt-1">${pkg.description}</p>
                     </div>
                     <div class="text-center md:text-right mt-4 md:mt-0 md:pl-6">
-                        <div class="text-4xl font-bold text-promo-red google-sans">${isCouponApplied ? formatCurrency(pkg.price) : formatCurrency(pkg.normalPrice)}</div>
+                        <div class="text-4xl font-bold text-google-blue google-sans">${isCouponApplied ? formatCurrency(pkg.price) : formatCurrency(pkg.normalPrice)}</div>
                         <p class="text-sm text-m3-on-surface-variant mt-1">Sekali Bayar Seumur Hidup</p>
                         <div class="mt-2">
                             <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">
@@ -1192,61 +1383,58 @@
             </div>`;
         }
 
-        const getFeaturesHTML = (pkg, isExpanded = false) => {
-            const colors = ['text-red-500', 'text-gray-500', 'text-red-500', 'text-gray-500'];
-            const featuresToShow = isExpanded ? pkg.features : pkg.features.slice(0, 3);
+        // --- NEW: getDetailsAccordionHTML ---
+        const getDetailsAccordionHTML = (pkg) => {
+            const colors = ['text-blue-500', 'text-green-500', 'text-yellow-500', 'text-red-500'];
+            const featuresHTML = `<ul class="space-y-3">${pkg.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-theme-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>`;
             
-            let html = `<div class="material-card-elevated p-4 md:p-6 rounded-2xl">
-                <h3 class="text-xl font-bold mb-4 text-center google-sans">Yang Anda Dapatkan</h3>
-                <ul class="space-y-3">${featuresToShow.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-theme-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>`;
-            
-            if (!isExpanded && pkg.features.length > 3) {
-                html += `<button id="show-more-features" class="w-full text-center mt-4 text-sm font-semibold text-promo-red hover:underline">Tampilkan lebih banyak...</button>`;
-            }
+            const policyHTML = `
+                <p class="mb-4 text-sm leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
+                <ul class="list-disc list-inside space-y-2 text-sm">
+                    <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
+                    <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
+                    <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
+                    <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
+                </ul>`;
+
+            return `
+                <details class="faq-item bg-white rounded-lg border border-gray-200">
+                    <summary>Ringkasan Deskripsi</summary>
+                    <div class="faq-content">${pkg.description}</div>
+                </details>
+                <details class="faq-item bg-white rounded-lg border border-gray-200">
+                    <summary>Detail Deskripsi (Yang Anda Dapatkan)</summary>
+                    <div class="faq-content">${featuresHTML}</div>
+                </details>
+                <details class="faq-item bg-white rounded-lg border border-gray-200">
+                    <summary>Informasi Penting (S&K)</summary>
+                    <div class="faq-content">${policyHTML}</div>
+                </details>
+            `;
+        }
+        
+        // --- MODIFIED: getPaymentMethodsHTML ---
+        const getPaymentMethodsHTML = (accounts) => {
+            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">3. Pilih Metode Pembayaran</h2>`;
+            html += `<div class="material-card rounded-xl payment-group">`;
+
+            Object.entries(accounts).forEach(([key, account], index) => {
+                const borderClass = index === 0 ? '' : 'border-t border-gray-200';
+                html += `
+                    <div class="${borderClass}">
+                        <input type="radio" id="${key}" name="payment-method" value="${key}" class="payment-radio" ${index === 0 ? 'checked' : ''}>
+                        <label for="${key}" class="payment-label">
+                            <div class="form-payment-logo-container">
+                                <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
+                            </div>
+                            <span class="font-medium text-gray-800 flex-grow google-sans text-sm">${account.displayName}</span>
+                            <span class="custom-radio-button"><span class="dot"></span></span>
+                        </label>
+                    </div>
+                `;
+            });
 
             html += `</div>`;
-            return html;
-        }
-                
-        const getPaymentMethodsHTML = (accounts) => {
-            const groupedAccounts = {};
-            for (const key in accounts) {
-                const account = accounts[key];
-                if (!groupedAccounts[account.category]) {
-                    groupedAccounts[account.category] = [];
-                }
-                groupedAccounts[account.category].push({ key, ...account });
-            }
-
-            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">3. Pilih Metode Pembayaran</h2>`;
-            const categoryOrder = ['QRIS', 'Bank Transfer', 'E-Wallet'];
-
-            for (const category of categoryOrder) {
-                if (groupedAccounts[category]) {
-                    html += `<h3 class="text-md font-semibold text-gray-700 mt-6 mb-2 google-sans">${category}</h3>`;
-                    html += `<div class="material-card rounded-xl payment-group">`;
-
-                    groupedAccounts[category].forEach((account, index) => {
-                        const isFirst = index === 0;
-                        const borderClass = isFirst ? '' : 'border-t border-gray-200';
-                                                
-                        html += `
-                            <div class="${borderClass}">
-                                <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="payment-radio" ${index === 0 && category === 'QRIS' ? 'checked' : ''}>
-                                <label for="${account.key}" class="payment-label">
-                                    <div class="form-payment-logo-container">
-                                        <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
-                                    </div>
-                                    <span class="font-medium text-gray-800 flex-grow google-sans text-sm">${account.displayName}</span>
-                                    <span class="custom-radio-button"><span class="dot"></span></span>
-                                </label>
-                            </div>
-                        `;
-                    });
-                    html += `</div>`;
-                }
-            }
-
             html += `
                 <div class="bg-gray-50 p-3 mt-4 rounded-xl text-center text-xs text-gray-600">
                     <i class="fas fa-shield-alt text-green-600 mr-2"></i>
@@ -1255,6 +1443,7 @@
             `;
             return html;
         };
+
 
         const getOrderDetailsHTML = (pkg, totalPrice, isCouponApplied) => {
             const discountAmount = pkg.normalPrice - pkg.price;
@@ -1267,7 +1456,7 @@
                         <label for="coupon" class="block text-sm font-medium mb-1.5 text-m3-on-surface-variant">Kode Kupon</label>
                         <div class="flex">
                             <input type="text" id="coupon" name="coupon" class="form-input flex-grow !rounded-r-none" placeholder="Punya kode?">
-                            <button type="button" id="coupon-btn" class="cta-button promo-button !rounded-l-none" style="width: auto; padding: 12px 20px; flex-shrink: 0;">Terapkan</button>
+                            <button type="button" id="coupon-btn" class="cta-button blue-button !rounded-l-none" style="width: auto; padding: 12px 20px; flex-shrink: 0;">Terapkan</button>
                         </div>
                         <p id="coupon-message" class="text-sm mt-2" style="display: none;"></p>
                     </div>
@@ -1293,85 +1482,91 @@
                      <hr class="my-2 border-m3-outline-variant">
                      <div class="flex justify-between font-bold text-lg text-m3-on-surface google-sans">
                          <span>Total</span>
-                         <span class="text-promo-red">${formatCurrency(totalPrice)}</span>
+                         <span class="text-google-blue">${formatCurrency(totalPrice)}</span>
                      </div>
                  </div>
             </div>`;
         }
 
-        const getTestimonialsHTML = (pkg, isExpanded = false) => {
-            const testimonialsToShow = isExpanded ? pkg.testimonials : pkg.testimonials.slice(0, 3);
-            let imagesHTML = testimonialsToShow.map((url, index) => `
-                <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image w-full h-auto object-cover aspect-square" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">
+        // --- MODIFIED: getTestimonialsHTML for Carousel ---
+        const getTestimonialsHTML = (pkg) => {
+            const images = pkg.testimonials;
+            // Duplicate images for a seamless loop
+            const duplicatedImages = [...images, ...images]; 
+
+            let imagesHTML = duplicatedImages.map((url, index) => `
+                <div class="testimonial-slide">
+                    <img src="${url}" alt="Testimoni Pelanggan ${index % images.length + 1}" class="testimonial-image" onclick="openImageModal(event, ${index % images.length})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">
+                </div>
             `).join('');
 
-            let html = `
+            return `
             <div class="material-card p-4 md:p-6 rounded-2xl">
-                <h2 class="text-2xl font-bold text-center mb-3 google-sans">Kata Mereka Tentang Promo Kami</h2>
-                <p class="text-center text-m3-on-surface-variant text-sm mb-4">Ribuan pelanggan telah merasakan manfaat penyimpanan unlimited</p>
-                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
-                    ${imagesHTML}
-                </div>`;
-
-            if (!isExpanded && pkg.testimonials.length > 3) {
-                html += `<button id="show-more-testimonials" class="w-full text-center mt-4 text-sm font-semibold text-promo-red hover:underline">Lihat Semua Testimoni</button>`;
-            }
-
-            html += `</div>`;
-            return html;
+                <h2 class="text-2xl font-bold text-center mb-4 google-sans">Testimoni Pelanggan</h2>
+                <p class="text-center text-m3-on-surface-variant text-sm mb-6">Ribuan pelanggan telah merasakan manfaat penyimpanan unlimited</p>
+                <div class="testimonial-carousel-container" style="--testimonial-count: ${images.length};">
+                    <div class="testimonial-track">
+                        ${imagesHTML}
+                    </div>
+                </div>
+            </div>`;
         }
 
-        const getFaqHTML = () => `
-             <div>
-                 <h3 class="text-2xl font-bold mb-4 text-center google-sans">Pertanyaan Umum (FAQ)</h3>
-                 <div class="space-y-1">
-                     <details class="faq-item">
-                         <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
-                         <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk Google Photos dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Bagaimana proses untuk Google Photos?</summary>
-                         <div class="faq-content">Untuk Google Photos Unlimited, Anda akan mendapatkan sebuah akun Google baru yang sudah memiliki fitur penyimpanan foto/video kualitas asli tanpa batas. Anda akan menerima email dan password akun baru tersebut, dan Anda bisa langsung mengganti passwordnya demi keamanan. Akun ini terpisah dari akun utama Anda.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Apakah ini aman dan legal?</summary>
-                         <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Privasi file Anda 100% terjamin dan Anda memiliki kontrol penuh atas data Anda.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Apa bedanya dengan langganan Google One?</summary>
-                         <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Berapa lama proses aktivasinya?</summary>
-                         <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam.</div>
-                     </details>
-                     <details class="faq-item">
-                         <summary>Apakah ada garansi?</summary>
-                         <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div>
-                     </details>
-                 </div>
-             </div>
-        `;
-                
-        const getPolicyHTML = () => `
-            <div>
-                <h3 class="text-2xl font-bold mb-3 text-center google-sans">Syarat & Ketentuan</h3>
+        // --- NEW: Combined Info Section (FAQ + Policy) ---
+        const getInfoSectionHTML = () => {
+             const faqHTML = `
+                <h3 class="text-2xl font-bold mb-4 text-center google-sans">Informasi & Bantuan</h3>
                 <div class="space-y-1">
                     <details class="faq-item">
-                        <summary>Penggunaan Layanan</summary>
-                        <div class="faq-content">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku. Layanan harus digunakan secara wajar dan tidak untuk aktivitas yang melanggar hukum.</div>
+                        <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
+                        <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Garansi</summary>
-                        <div class="faq-content">Kami memberikan garansi penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Garansi tidak mencakup pemblokiran atau pembatasan akun akibat pelanggaran kebijakan oleh pengguna (misalnya, menyimpan file ilegal).</div>
+                        <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
+                        <div class="faq-content">Prosesnya otomatis dan terintegrasi dengan akun Google Anda. Setelah pembayaran, penyimpanan pada Google Drive Anda akan langsung ter-upgrade menjadi unlimited. Anda tidak perlu melakukan apa-apa lagi dan bisa langsung menikmati kapasitas tanpa batas di akun pribadi Anda.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Kebijakan Google</summary>
-                        <div class="faq-content">Layanan ini bergantung pada kebijakan Google. Perubahan kebijakan Google di masa depan berada di luar kendali dan tanggung jawab kami.</div>
+                        <summary>Bagaimana proses untuk Google Photos?</summary>
+                        <div class="faq-content">Untuk Google Photos Unlimited, Anda akan mendapatkan sebuah akun Google baru yang sudah memiliki fitur penyimpanan foto/video kualitas asli tanpa batas. Anda akan menerima email dan password akun baru tersebut, dan Anda bisa langsung mengganti passwordnya demi keamanan. Akun ini terpisah dari akun utama Anda.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apakah ini aman dan legal?</summary>
+                        <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apa bedanya dengan langganan Google One?</summary>
+                        <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, melalui metode upgrade langsung pada akun Anda.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Bisakah saya memindahkan file lama saya?</summary>
+                        <div class="faq-content">Tentu bisa. Karena upgrade ini langsung diterapkan pada akun Google Drive pribadi Anda, semua file lama Anda akan tetap ada di tempatnya dan secara otomatis menjadi bagian dari penyimpanan unlimited yang baru. Anda tidak perlu memindahkan file atau folder apa pun.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Berapa lama proses aktivasinya?</summary>
+                        <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apakah ada garansi?</summary>
+                        <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div>
                     </details>
                 </div>
-            </div>
-        `;
+            `;
+            const policyHTML = `
+                <details class="faq-item mt-4">
+                    <summary>Informasi Penting (Syarat & Ketentuan)</summary>
+                    <div class="faq-content">
+                        <p class="mb-4 text-sm leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
+                        <ul class="list-disc list-inside space-y-2 text-sm">
+                            <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
+                            <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
+                            <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
+                            <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
+                        </ul>
+                    </div>
+                </details>
+            `;
+            return faqHTML + policyHTML;
+        };
 
         // --- FUNCTIONS ---
         function formatCurrency(value) {
@@ -1394,31 +1589,33 @@
             const totalPrice = currentPrice + uniqueCode;
 
             const infoContainer = elements.productInfoFormTop;
-            const featuresContainer = elements.featuresBeforeForm;
+            const detailsAccordion = elements.detailsAccordionContainer;
 
             // 1. Start fade-out
             infoContainer.style.opacity = '0';
-            featuresContainer.style.opacity = '0';
+            detailsAccordion.style.opacity = '0';
+
 
             // 2. Wait for fade-out to finish, then update content and fade-in
             setTimeout(() => {
                 // Update the HTML for the transitioning parts
                 infoContainer.innerHTML = getProductInfoHTML(pkg);
-                featuresContainer.innerHTML = getFeaturesHTML(pkg, areFeaturesExpanded);
+                detailsAccordion.innerHTML = getDetailsAccordionHTML(pkg);
+
 
                 // Update other parts that don't need transition
                 elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
                 elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice, isCouponApplied);
-                elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg, areTestimonialsExpanded);
-                elements.faqFull.innerHTML = getFaqHTML();
-                elements.policyFull.innerHTML = getPolicyHTML();
+                elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
+                elements.infoSectionFull.innerHTML = getInfoSectionHTML();
 
                 // Now that the coupon elements are in the DOM, update the button state.
                 updateCouponButton();
-                
+
                 // 3. Start fade-in
                 infoContainer.style.opacity = '1';
-                featuresContainer.style.opacity = '1';
+                detailsAccordion.style.opacity = '1';
+
             }, 300); // Match CSS transition duration
         }
 
@@ -1436,7 +1633,7 @@
             } else {
                 if (couponValue === validCouponCode) {
                     isCouponApplied = true;
-                    showCouponMessage(`Kupon "${validCouponCode}" berhasil diterapkan!`, 'green');
+                    showCouponMessage('Kupon "MERDEKA" berhasil diterapkan!', 'green');
                 } else {
                     showInfoModal('Kupon Tidak Valid', `Kode kupon "${couponValue}" tidak ditemukan.`);
                     isCouponApplied = false;
@@ -1452,14 +1649,14 @@
 
             if (isCouponApplied) {
                 couponBtn.textContent = 'Hapus';
-                couponBtn.classList.remove('promo-button');
-                couponBtn.classList.add('remove-button');
+                couponBtn.classList.remove('blue-button');
+                couponBtn.classList.add('red-button');
                 couponInput.value = validCouponCode;
                 couponInput.disabled = true;
             } else {
                 couponBtn.textContent = 'Terapkan';
-                couponBtn.classList.add('promo-button');
-                couponBtn.classList.remove('remove-button');
+                couponBtn.classList.add('blue-button');
+                couponBtn.classList.remove('red-button');
                 couponInput.disabled = false;
             }
         }
@@ -1480,7 +1677,7 @@
             const detailPesanan = `*Email Google:* ${formData.get('email')}\n`;
             const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
                           `*ID Pembayaran:* ${paymentId}\n` +
-                          `*Paket:* ${pkg.name} (Promo Kemerdekaan)\n` +
+                          `*Paket:* ${pkg.name}\n` +
                           `*Metode Pembayaran:* ${paymentMethodName}\n` +
                           `*Nama:* ${formData.get('nama')}\n` +
                           `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
@@ -1492,8 +1689,9 @@
 
         function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
             window.scrollTo(0, 0); // Scroll to top
-                        
+            
             // --- FB Pixel Event Removed ---
+
             // Store details for the modal
             currentOrderDetails = {
                 pkg,
@@ -1503,11 +1701,12 @@
                 whatsapp: formData.get('whatsapp')
             };
 
+
             elements.mainContentContainer.parentElement.style.display = 'none';
             elements.footer.style.display = 'none';
-                        
+            
             const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId);
-                        
+            
             let accountLabel = 'Nomor Virtual Account';
             let instructionAccordionHTML = '';
             let paymentDetailsBlock = '';
@@ -1515,7 +1714,7 @@
 
             // Set expiry time (e.g., 24 hours from now)
             expiryTime = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-                        
+            
             const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const datePart = expiryTime.toLocaleDateString('id-ID', dateOptions);
             const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
@@ -1523,13 +1722,14 @@
             const timezoneString = `(${getIndonesianTimezone()})`;
             paymentDeadlineFormatted = `${datePart} pukul ${timePart} ${timezoneString}`;
 
+
             if (paymentMethodKey === 'qris') {
                 paymentDetailsBlock = `
                     <div class="text-center">
                         <div id="qrcodeContainer" class="bg-white p-3 rounded-xl border-2 border-gray-200 w-full max-w-[250px] h-auto mx-auto my-4 material-card-elevated">
                             <div id="qrcode" class="flex justify-center items-center"></div>
                         </div>
-                        <button id="downloadQrisButton" class="cta-button promo-button max-w-xs mx-auto">
+                        <button id="downloadQrisButton" class="cta-button blue-button max-w-xs mx-auto">
                             <i class="fas fa-download mr-2"></i>
                             Unduh QRIS
                         </button>
@@ -1680,7 +1880,7 @@
             }
 
             const paymentViewHTML = `
-                <div class="payment-header" style="top: 49px;"> <!-- Disesuaikan dengan tinggi banner -->
+                <div class="payment-header">
                     <h2 class="google-sans">Selesaikan Pembayaran</h2>
                     <div class="countdown-timer" id="countdown-timer-display"></div>
                 </div>
@@ -1690,12 +1890,12 @@
                             <h3 class="font-bold text-lg google-sans mb-1">Ringkasan Transaksi</h3>
                             <div class="flex justify-between items-center mt-2 text-xs text-gray-600">
                                 <span>Nomor Invoice: <strong>${paymentId}</strong></span>
-                                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-promo-red">Lihat detail</a>
+                                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-google-blue">Lihat detail</a>
                             </div>
                             <hr class="my-4">
                             <p class="text-xs text-gray-600 mb-1">Total Pembayaran</p>
                             <div class="flex items-center justify-between">
-                                <p class="text-2xl font-bold text-promo-red google-sans">${formatCurrency(totalPrice)}</p>
+                                <p class="text-2xl font-bold text-google-blue google-sans">${formatCurrency(totalPrice)}</p>
                                 <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">
                                     <i class="far fa-copy mr-1"></i>
                                     Salin
@@ -1754,7 +1954,7 @@
                                 canvas.style.height = "auto";
                                 canvas.style.borderRadius = "8px";
                                 qrcodeContainer.appendChild(canvas);
-                                                                
+                                
                                 // Add download functionality
                                 document.getElementById('downloadQrisButton').addEventListener('click', () => {
                                     const link = document.createElement('a');
@@ -1813,7 +2013,7 @@
             let submissionSuccess = false;
             try {
                 // Construct the follow-up message with bolding
-                let followUpMessage = `Halo kak ${nama},\n\nTerima kasih telah memesan *${pkg.name}* (Promo Kemerdekaan).\n\nBerikut adalah rincian pembayaran untuk pesanan Anda:\n- Nomor Invoice: ${paymentId}\n- Total Pembayaran: *${formatCurrency(totalPrice)}*\n\nMohon segera selesaikan pembayaran Anda.\n`;
+                let followUpMessage = `Halo kak ${nama},\n\nTerima kasih telah memesan *${pkg.name}*.\n\nBerikut adalah rincian pembayaran untuk pesanan Anda:\n- Nomor Invoice: ${paymentId}\n- Total Pembayaran: *${formatCurrency(totalPrice)}*\n\nMohon segera selesaikan pembayaran Anda.\n`;
 
                 if (paymentMethodKey === 'qris') {
                     followUpMessage += `*- Metode:* ${paymentAccount.displayName}\nSilakan pindai QRIS yang muncul di halaman pembayaran.\n`;
@@ -1822,7 +2022,7 @@
                 }
 
                 followUpMessage += `\n*Penting:* Mohon transfer sesuai dengan jumlah total di atas (termasuk kode unik) agar pesanan Anda dapat kami proses secara otomatis.\n\nSetelah transfer, silakan klik tombol konfirmasi di halaman pembayaran atau balas pesan ini.\n\nTerima kasih`;
-                                
+                
                 // Format WhatsApp number
                 const formattedWhatsapp = whatsapp.startsWith('0') ? '62' + whatsapp.substring(1) : whatsapp;
                 const followUpLink = `https://wa.me/${formattedWhatsapp}?text=${encodeURIComponent(followUpMessage)}`;
@@ -1846,7 +2046,7 @@
                     body: JSON.stringify(formDataForStaticForms),
                     headers: { 'Content-Type': 'application/json' }
                 });
-                                
+                
                 if (response.ok) {
                     submissionSuccess = true;
                 } else {
@@ -1856,7 +2056,7 @@
             } catch (e) {
                 console.error("Network error during form submission:", e);
             }
-                        
+            
             // 5. Restore Button State
             elements.submitBtn.disabled = false;
             elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang';
@@ -1868,7 +2068,7 @@
                 showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan saat mengirim data Anda. Silakan coba lagi.');
             }
         }
-                
+        
         // --- NEW: Countdown Timer Function ---
         function startCountdown() {
             const countdownElement = document.getElementById('countdown-timer-display');
@@ -1904,10 +2104,10 @@
 
         // --- NOTIFICATION FUNCTIONS ---
         const FIRST_NAMES = [ "Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama" ];
-                
+        
         function getRandomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
         function generateRandomName() { return `${getRandomElement(FIRST_NAMES)}`; }
-                
+        
         function showNextNotification() {
             if (!elements.notifBox || !elements.notifName) return;
             elements.notifName.textContent = generateRandomName();
@@ -1928,27 +2128,26 @@
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
 
-        // Use event delegation for the coupon button and show more
-        document.body.addEventListener('click', function(event) {
+        // Use event delegation for the coupon button
+        elements.orderForm.addEventListener('click', function(event) {
             if (event.target && event.target.id === 'coupon-btn') {
                 handleCouponToggle();
             }
-            if (event.target && event.target.id === 'show-more-features') {
-                areFeaturesExpanded = true;
+        });
+
+        document.querySelectorAll('input[name="package"]').forEach(radio => {
+            radio.addEventListener('change', (event) => {
+                currentPackageId = event.target.value;
                 updateDisplay();
-            }
-            if (event.target && event.target.id === 'show-more-testimonials') {
-                areTestimonialsExpanded = true;
-                updateDisplay();
-            }
+            });
         });
 
         updateDisplay();
-                
+        
         if (elements.notifBox && elements.notifName) {
             setTimeout(scheduleNextNotification, 6000);
         }
-                
+        
         // --- REVISED: DETAILS MODAL LOGIC ---
         function getDetailsModalHTML(details) {
             const { pkg, totalPrice, paymentId, nama, whatsapp } = details;
@@ -1962,7 +2161,7 @@
                     <div class="text-center mb-8">
                         <p class="text-sm text-gray-600 mb-2">Total Pembayaran</p>
                         <div class="flex items-center justify-center">
-                            <p class="text-4xl font-bold text-promo-red google-sans">${formatCurrency(totalPrice)}</p>
+                            <p class="text-4xl font-bold text-google-blue google-sans">${formatCurrency(totalPrice)}</p>
                             <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">
                                 <i class="far fa-copy"></i>
                             </button>
@@ -1990,7 +2189,7 @@
                         </div>
                         <div class="flex justify-between font-bold text-xl google-sans">
                             <span>Total Pembayaran</span>
-                            <span class="text-promo-red">${formatCurrency(totalPrice)}</span>
+                            <span class="text-google-blue">${formatCurrency(totalPrice)}</span>
                         </div>
                     </div>
                     <div class="border-t border-gray-200 pt-6">
@@ -2026,10 +2225,12 @@
             }, 300); // Match animation duration
         }
 
+
     });
+
     // --- GLOBAL HELPER FUNCTIONS ---
     const infoModal = document.getElementById('infoModal');
-        
+    
     function showInfoModal(title, message) {
         if (!infoModal) return;
         infoModal.querySelector('#modalTitle').textContent = title;
@@ -2082,7 +2283,7 @@
         const nominalStr = String(Math.round(nominal));
         const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
         const amountPart = "54" + amountLength + nominalStr;
-                
+        
         if (!qrisModified.includes("5802ID")) {
             throw new Error("Format string QRIS tidak dikenali (tidak ditemukan '5802ID').");
         }
@@ -2092,7 +2293,7 @@
 
         return finalQris + crc;
     }
-        
+    
     // --- Image Modal Functions ---
     const imageModal = document.getElementById('imageModal');
     const modalImg = document.getElementById("modalImage");
