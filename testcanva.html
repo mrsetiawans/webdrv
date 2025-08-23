@@ -1191,6 +1191,7 @@
         return { isValid: true, message: 'Nomor valid.' };
     }
 
+
     document.addEventListener('DOMContentLoaded', function() {
 
         // --- ELEMENTS ---
@@ -1641,28 +1642,6 @@
         return finalQris + toCRC16(finalQris);
     }
     
-    const imageModal = document.getElementById('imageModal');
-    const modalImg = document.getElementById("modalImage");
-    let currentImageIndex;
-    const testimonialImages = [ "https://s6.imgcdn.dev/YIh45V.png", "https://s6.imgcdn.dev/YIhuYh.png", "https://s6.imgcdn.dev/YIhCOK.png", "https://s6.imgcdn.dev/YIhIgo.png", "https://s6.imgcdn.dev/YIhQQO.png", "https://s6.imgcdn.dev/YIhiSn.png", "https://s6.imgcdn.dev/YIhkeg.png", "https://s6.imgcdn.dev/YIhscv.png", "https://s6.imgcdn.dev/YIhyaN.png", "https://s6.imgcdn.dev/YIh5tq.png", "https://s6.imgcdn.dev/YIhPYB.png", "https://s6.imgcdn.dev/YIhTKu.png" ];
-
-    window.openImageModal = function(event, index) { event.stopPropagation(); imageModal.style.display = "flex"; showImage(index); }
-    window.closeImageModal = function() { imageModal.style.display = "none"; }
-    function showImage(index) {
-        if (index >= testimonialImages.length || index < 0) return; currentImageIndex = index;
-        modalImg.src = testimonialImages[index];
-        document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'flex' : 'none';
-        document.querySelector('.modal-nav.next').style.display = (index < testimonialImages.length - 1) ? 'flex' : 'none';
-    }
-    window.showNextImage = function() { showImage(currentImageIndex + 1); }
-    window.showPrevImage = function() { showImage(currentImageIndex - 1); }
-    document.addEventListener('keydown', function(event) {
-        if (imageModal.style.display === 'flex') {
-            if (event.key === 'ArrowRight') showNextImage();
-            else if (event.key === 'ArrowLeft') showPrevImage();
-            else if (event.key === 'Escape') closeImageModal();
-        }
-    });
     </script>
 </body>
 </html>

@@ -1240,22 +1240,6 @@
         let isCouponApplied = true;
         const validCouponCode = "MERDEKA";
         
-        // *** TESTIMONIALS COMBINED ***
-        const allTestimonials = [
-            "https://s6.imgcdn.dev/YIh45V.png",
-            "https://s6.imgcdn.dev/YIhuYh.png",
-            "https://s6.imgcdn.dev/YIhCOK.png",
-            "https://s6.imgcdn.dev/YIhIgo.png",
-            "https://s6.imgcdn.dev/YIhQQO.png",
-            "https://s6.imgcdn.dev/YIhiSn.png",
-            "https://s6.imgcdn.dev/YIhkeg.png",
-            "https://s6.imgcdn.dev/YIhscv.png",
-            "https://s6.imgcdn.dev/YIhyaN.png",
-            "https://s6.imgcdn.dev/YIh5tq.png",
-            "https://s6.imgcdn.dev/YIhPYB.png",
-            "https://s6.imgcdn.dev/YIhTKu.png"
-        ];
-
         const packages = {
             drive: {
                 id: 'drive',
@@ -1276,7 +1260,7 @@
                     "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Google yang sudah Anda miliki.",
                     "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
                 ],
-                testimonials: allTestimonials
+                testimonials: testimonialImages
             },
             photos: {
                 id: 'photos',
@@ -1297,7 +1281,7 @@
                     "<strong>Akun baru:</strong> Anda akan mendapatkan akun Google baru khusus untuk Photos, dan Anda bisa mengganti passwordnya.",
                     "<strong>100% Aman & Privasi Terjamin:</strong> Foto Anda tetap menjadi milik Anda."
                 ],
-                testimonials: allTestimonials
+                testimonials: testimonialImages
             }
         };
 
@@ -1504,8 +1488,6 @@
                     <div class="testimonial-track" id="testimonial-track">
                         ${imagesHTML}
                     </div>
-                    <button id="testimonial-prev-btn" class="modal-nav prev" style="display: none; background-color: rgba(0,0,0,0.4);">&#10094;</button>
-                    <button id="testimonial-next-btn" class="modal-nav next" style="display: flex; background-color: rgba(0,0,0,0.4);">&#10095;</button>
                 </div>
             </div>`;
         }
@@ -1554,12 +1536,11 @@
 
         // --- CAROUSEL LOGIC ---
         let testimonialIndex = 0;
+        let carouselInterval;
         
         function handleTestimonialNav() {
             const track = document.getElementById('testimonial-track');
-            const prevBtn = document.getElementById('testimonial-prev-btn');
-            const nextBtn = document.getElementById('testimonial-next-btn');
-            if (!track || !prevBtn || !nextBtn) return;
+            if (!track) return;
             
             const totalImages = packages[currentPackageId].testimonials.length;
             const itemsPerPage = 3;
@@ -1567,10 +1548,26 @@
             const slidePercentage = 100 / itemsPerPage;
 
             track.style.transform = `translateX(-${testimonialIndex * slidePercentage}%)`;
-            
-            prevBtn.style.display = testimonialIndex > 0 ? 'flex' : 'none';
-            nextBtn.style.display = testimonialIndex < maxIndex ? 'flex' : 'none';
         }
+
+        const startCarousel = () => {
+            stopCarousel(); // Stop any existing interval
+            carouselInterval = setInterval(() => {
+                const totalImages = packages[currentPackageId].testimonials.length;
+                const itemsPerPage = 3;
+                const maxIndex = totalImages > itemsPerPage ? totalImages - itemsPerPage : 0;
+
+                testimonialIndex++;
+                if (testimonialIndex > maxIndex) {
+                    testimonialIndex = 0;
+                }
+                handleTestimonialNav();
+            }, 3000);
+        };
+
+        const stopCarousel = () => {
+            clearInterval(carouselInterval);
+        };
 
         // --- FUNCTIONS ---
         function formatCurrency(value) {
@@ -1620,6 +1617,8 @@
                 // 3. Start fade-in
                 infoContainer.style.opacity = '1';
                 detailsAccordion.style.opacity = '1';
+
+                startCarousel();
 
             }, 300); // Match CSS transition duration
         }
@@ -2133,19 +2132,9 @@
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
         
-        // Carousel Navigation Events
-        elements.testimonialsFull.addEventListener('click', function(event) {
-            const totalImages = packages[currentPackageId].testimonials.length;
-            const maxIndex = totalImages > 3 ? totalImages - 3 : 0;
-            if (event.target.id === 'testimonial-next-btn' && testimonialIndex < maxIndex) {
-                testimonialIndex++;
-                handleTestimonialNav();
-            }
-            if (event.target.id === 'testimonial-prev-btn' && testimonialIndex > 0) {
-                testimonialIndex--;
-                handleTestimonialNav();
-            }
-        });
+        // Carousel Auto-scroll Events
+        elements.testimonialsFull.addEventListener('mouseenter', stopCarousel, true);
+        elements.testimonialsFull.addEventListener('mouseleave', startCarousel, true);
 
         // Use event delegation for the coupon button
         elements.orderForm.addEventListener('click', function(event) {
@@ -2317,6 +2306,20 @@
     const imageModal = document.getElementById('imageModal');
     const modalImg = document.getElementById("modalImage");
     let currentImageIndex;
+    const testimonialImages = [
+        "https://s6.imgcdn.dev/YIh45V.png",
+        "https://s6.imgcdn.dev/YIhuYh.png",
+        "https://s6.imgcdn.dev/YIhCOK.png",
+        "https://s6.imgcdn.dev/YIhIgo.png",
+        "https://s6.imgcdn.dev/YIhQQO.png",
+        "https://s6.imgcdn.dev/YIhiSn.png",
+        "https://s6.imgcdn.dev/YIhkeg.png",
+        "https://s6.imgcdn.dev/YIhscv.png",
+        "https://s6.imgcdn.dev/YIhyaN.png",
+        "https://s6.imgcdn.dev/YIh5tq.png",
+        "https://s6.imgcdn.dev/YIhPYB.png",
+        "https://s6.imgcdn.dev/YIhTKu.png"
+    ];
 
     window.openImageModal = function(event, index) {
         event.stopPropagation();
@@ -2329,20 +2332,6 @@
     }
 
     function showImage(index) {
-        const testimonialImages = [
-            "https://s6.imgcdn.dev/YIh45V.png",
-            "https://s6.imgcdn.dev/YIhuYh.png",
-            "https://s6.imgcdn.dev/YIhCOK.png",
-            "https://s6.imgcdn.dev/YIhIgo.png",
-            "https://s6.imgcdn.dev/YIhQQO.png",
-            "https://s6.imgcdn.dev/YIhiSn.png",
-            "https://s6.imgcdn.dev/YIhkeg.png",
-            "https://s6.imgcdn.dev/YIhscv.png",
-            "https://s6.imgcdn.dev/YIhyaN.png",
-            "https://s6.imgcdn.dev/YIh5tq.png",
-            "https://s6.imgcdn.dev/YIhPYB.png",
-            "https://s6.imgcdn.dev/YIhTKu.png"
-        ];
         if (index >= testimonialImages.length || index < 0) {
             return; // Keluar jika index di luar batas
         }
