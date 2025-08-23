@@ -1370,6 +1370,7 @@
                     <div class="text-center mb-4 md:mb-0 flex-grow">
                         ${logoHtml}
                         <h1 class="text-2xl font-bold text-m3-on-primary-container mt-3 google-sans">${pkg.title}</h1>
+                        <p class="text-md text-m3-on-surface-variant mt-1">${pkg.description}</p>
                     </div>
                     <div class="text-center md:text-right mt-4 md:mt-0 md:pl-6">
                         <div class="text-4xl font-bold text-google-blue google-sans">${isCouponApplied ? formatCurrency(pkg.price) : formatCurrency(pkg.normalPrice)}</div>
@@ -1399,10 +1400,6 @@
                 </ul>`;
 
             return `
-                <details class="faq-item">
-                    <summary>Ringkasan Deskripsi</summary>
-                    <div class="faq-content">${pkg.description}</div>
-                </details>
                 <details class="faq-item">
                     <summary>Detail Deskripsi</summary>
                     <div class="faq-content">${featuresHTML}</div>
