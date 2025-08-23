@@ -1367,12 +1367,12 @@
             return `
             <div class="product-info-card">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                    <div class="text-center mb-4 md:mb-0 flex-grow">
+                    <div class="text-center mb-2 md:mb-0 flex-grow">
                         ${logoHtml}
                         <h1 class="text-2xl font-bold text-m3-on-primary-container mt-3 google-sans">${pkg.title}</h1>
                         <p class="text-md text-m3-on-surface-variant mt-1">${pkg.description}</p>
                     </div>
-                    <div class="text-center md:text-right mt-4 md:mt-0 md:pl-6">
+                    <div class="text-center md:text-right mt-2 md:mt-0 md:pl-6">
                         <div class="text-4xl font-bold text-google-blue google-sans">${isCouponApplied ? formatCurrency(pkg.price) : formatCurrency(pkg.normalPrice)}</div>
                         <p class="text-sm text-m3-on-surface-variant mt-1">Sekali Bayar Seumur Hidup</p>
                         <div class="mt-2">
