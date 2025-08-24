@@ -930,6 +930,10 @@
             color: var(--google-green);
         }
 
+        .text-theme-primary {
+            color: var(--theme-primary);
+        }
+
         .bg-google-blue {
             background-color: var(--google-blue);
         }
@@ -994,7 +998,7 @@
 
                     <!-- Form -->
                     <form id="orderForm">
-                        <h2 class="text-lg font-bold mb-3 google-sans">1. Lengkapi Data</h2>
+                        <h2 class="text-lg font-bold mb-3 google-sans">Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
                                 <input type="text" id="nama" name="nama" class="form-input" placeholder="Nama Anda *">
@@ -1302,7 +1306,7 @@
         }
         
         const getPaymentMethodsHTML = (accounts) => {
-            let html = `<h2 class="text-lg font-bold mb-4 google-sans">2. Pilih Metode Pembayaran</h2>`;
+            let html = `<h2 class="text-lg font-bold mb-4 google-sans">Metode Pembayaran</h2>`;
             html += `<div class="payment-group">`;
 
             Object.entries(accounts).forEach(([key, account], index) => {
@@ -1334,7 +1338,7 @@
 
         const getOrderDetailsHTML = (prod, totalPrice) => {
             return `
-            <div class="mt-8 pt-6 border-t border-m3-outline-variant">
+            <div class="mt-4">
                  <h3 class="text-lg font-bold mb-4 google-sans">Rincian Pesanan</h3>
                  <div class="space-y-3 text-m3-on-surface-variant">
                      <div class="flex justify-between items-center">
