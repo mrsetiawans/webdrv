@@ -1044,18 +1044,15 @@
                         </div>
                     </div>
                     
-                    <!-- Pemilihan Paket (Segmented Control) -->
-                    <div class="my-4">
+                    <!-- Pemilihan Paket (Segmented Control) - Dihapus -->
+                    <div class="my-4" style="display:none;">
                         <h2 class="text-lg font-bold mb-3 google-sans">1. Pilih Paket Anda</h2>
                         <div id="package-selection">
                             <div class="segmented-control">
                                 <input type="radio" id="pkg-drive" name="package" value="drive" class="package-radio" checked>
                                 <label for="pkg-drive" class="package-label">Google<br>Drive</label>
     
-                                <input type="radio" id="pkg-photos" name="package" value="photos" class="package-radio">
-                                <label for="pkg-photos" class="package-label">Google<br>Photos</label>
-    
-                                <div class="segmented-control-pill"></div>
+                                <div class="segmented-control-pill" style="width: calc((100% - 8px) / 1);"></div>
                             </div>
                         </div>
                     </div>
@@ -1263,27 +1260,6 @@
                     "<strong>Sekali Bayar Seumur Hidup:</strong> Tanpa biaya langganan bulanan atau tahunan.",
                     "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Google yang sudah Anda miliki.",
                     "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
-                ],
-                testimonials: testimonialImages
-            },
-            photos: {
-                id: 'photos',
-                name: "Google Photos Unlimited",
-                price: 117000,
-                normalPrice: 699000,
-                title: "Google Photos Unlimited",
-                priceDisplay: `Rp117.000`,
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/240px-Google_Photos_icon_%282020%29.svg.png',
-                description: "Simpan semua foto & video kualitas asli tanpa kompresi.",
-                features: [
-                    "<strong>Penyimpanan Foto & Video Tanpa Batas:</strong> Upload semua kenangan Anda dalam kualitas asli tanpa kompresi.",
-                    "<strong>Pencarian Canggih:</strong> Temukan foto berdasarkan orang, tempat, dan objek di dalamnya.",
-                    "<strong>Album Otomatis:</strong> Google Photos secara cerdas membuat album dan kolase untuk Anda.",
-                    "<strong>Berbagi dengan Mudah:</strong> Buat album bersama dan bagikan foto dengan keluarga dan teman.",
-                    "<strong>Tersinkronisasi di Semua Perangkat:</strong> Foto Anda aman dan dapat diakses dari mana saja.",
-                    "<strong>Sekali Bayar Seumur Hidup:</strong> Tanpa biaya langganan bulanan atau tahunan.",
-                    "<strong>Akun baru:</strong> Anda akan mendapatkan akun Google baru khusus untuk Photos, dan Anda bisa mengganti passwordnya.",
-                    "<strong>100% Aman & Privasi Terjamin:</strong> Foto Anda tetap menjadi milik Anda."
                 ],
                 testimonials: testimonialImages
             }
@@ -1507,15 +1483,11 @@
                 <div class="space-y-0">
                     <details class="faq-item">
                         <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
-                        <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
+                        <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk Google Drive dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
                     </details>
                     <details class="faq-item">
                         <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
                         <div class="faq-content">Prosesnya otomatis dan terintegrasi dengan akun Google Anda. Setelah pembayaran, penyimpanan pada Google Drive Anda akan langsung ter-upgrade menjadi unlimited. Anda tidak perlu melakukan apa-apa lagi dan bisa langsung menikmati kapasitas tanpa batas di akun pribadi Anda.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Bagaimana proses untuk Google Photos?</summary>
-                        <div class="faq-content">Untuk Google Photos Unlimited, Anda akan mendapatkan sebuah akun Google baru yang sudah memiliki fitur penyimpanan foto/video kualitas asli tanpa batas. Anda akan menerima email dan password akun baru tersebut, dan Anda bisa langsung mengganti passwordnya demi keamanan. Akun ini terpisah dari akun utama Anda.</div>
                     </details>
                     <details class="faq-item">
                         <summary>Apakah ini aman dan legal?</summary>
@@ -2111,13 +2083,6 @@
             if (event.target && event.target.id === 'coupon-btn') {
                 handleCouponToggle();
             }
-        });
-
-        document.querySelectorAll('input[name="package"]').forEach(radio => {
-            radio.addEventListener('change', (event) => {
-                currentPackageId = event.target.value;
-                updateDisplay();
-            });
         });
 
         updateDisplay();
