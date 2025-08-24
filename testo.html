@@ -239,36 +239,40 @@
         }
 
         /* === START: Auto-Scrolling Testimonial Carousel Styles === */
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
         .testimonial-carousel-container {
+            display: flex;
             overflow: hidden;
             position: relative;
             width: 100%;
-            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
         }
 
         .testimonial-track {
+            flex-shrink: 0;
             display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            justify-content: flex-start; /* Aligns items to the start */
+            min-width: 100%;
+            animation: scroll 40s linear infinite;
+        }
+
+        .testimonial-carousel-container:hover .testimonial-track {
+            animation-play-state: paused;
         }
 
         .testimonial-slide {
             flex-shrink: 0;
-            width: calc(100% / 3); /* Show 3 images */
-            padding: 0 6px;
+            width: 30vw; /* Responsive width for slides */
+            max-width: 280px; /* Max width to prevent them getting too large */
+            padding: 0 6px; /* Creates 12px space between images */
         }
         
-        @media (max-width: 768px) {
-            .testimonial-slide {
-                width: calc(100% / 2); /* Show 2 images on tablet */
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .testimonial-slide {
-                width: calc(100% / 1.5); /* Show 1.5 images on mobile */
-            }
-        }
+        /* Media queries are no longer needed for slide width as flexbox handles it */
 
         .testimonial-image {
             width: 100%;
@@ -1474,7 +1478,8 @@
         const getTestimonialsHTML = (pkg) => {
             const images = pkg.testimonials;
 
-            let imagesHTML = images.map((url, index) => `
+            // Create the HTML for a single set of images
+            const singleTrackHTML = images.map((url, index) => `
                 <div class="testimonial-slide">
                     <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\nMuat';">
                 </div>
@@ -1484,9 +1489,12 @@
             <div class="material-card p-3 md:p-4 rounded-2xl">
                 <h2 class="text-xl font-bold text-center mb-2 google-sans">Testimoni Pelanggan</h2>
                 <p class="text-center text-m3-on-surface-variant text-xs mb-4">Ribuan pelanggan telah merasakan manfaat penyimpanan unlimited</p>
-                <div class="testimonial-carousel-container">
-                    <div class="testimonial-track" id="testimonial-track">
-                        ${imagesHTML}
+                <div class="testimonial-carousel-container" id="carousel-wrapper">
+                    <div class="testimonial-track">
+                        ${singleTrackHTML}
+                    </div>
+                    <div class="testimonial-track" aria-hidden="true">
+                        ${singleTrackHTML}
                     </div>
                 </div>
             </div>`;
@@ -1534,40 +1542,6 @@
             return faqHTML;
         };
 
-        // --- CAROUSEL LOGIC ---
-        let testimonialIndex = 0;
-        let carouselInterval;
-        
-        function handleTestimonialNav() {
-            const track = document.getElementById('testimonial-track');
-            if (!track) return;
-            
-            const totalImages = packages[currentPackageId].testimonials.length;
-            const itemsPerPage = 3;
-            const maxIndex = totalImages > itemsPerPage ? totalImages - itemsPerPage : 0;
-            const slidePercentage = 100 / itemsPerPage;
-
-            track.style.transform = `translateX(-${testimonialIndex * slidePercentage}%)`;
-        }
-
-        const startCarousel = () => {
-            stopCarousel(); // Stop any existing interval
-            carouselInterval = setInterval(() => {
-                const totalImages = packages[currentPackageId].testimonials.length;
-                const itemsPerPage = 3;
-                const maxIndex = totalImages > itemsPerPage ? totalImages - itemsPerPage : 0;
-
-                testimonialIndex++;
-                if (testimonialIndex > maxIndex) {
-                    testimonialIndex = 0;
-                }
-                handleTestimonialNav();
-            }, 3000);
-        };
-
-        const stopCarousel = () => {
-            clearInterval(carouselInterval);
-        };
 
         // --- FUNCTIONS ---
         function formatCurrency(value) {
@@ -1618,7 +1592,6 @@
                 infoContainer.style.opacity = '1';
                 detailsAccordion.style.opacity = '1';
 
-                startCarousel();
 
             }, 300); // Match CSS transition duration
         }
@@ -2132,9 +2105,6 @@
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
         
-        // Carousel Auto-scroll Events
-        elements.testimonialsFull.addEventListener('mouseenter', stopCarousel, true);
-        elements.testimonialsFull.addEventListener('mouseleave', startCarousel, true);
 
         // Use event delegation for the coupon button
         elements.orderForm.addEventListener('click', function(event) {

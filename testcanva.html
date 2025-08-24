@@ -239,36 +239,40 @@
         }
 
         /* === START: Auto-Scrolling Testimonial Carousel Styles === */
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
         .testimonial-carousel-container {
+            display: flex;
             overflow: hidden;
             position: relative;
             width: 100%;
-            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
         }
 
         .testimonial-track {
+            flex-shrink: 0;
             display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            justify-content: flex-start; /* Aligns items to the start */
+            min-width: 100%;
+            animation: scroll 40s linear infinite;
+        }
+
+        .testimonial-carousel-container:hover .testimonial-track {
+            animation-play-state: paused;
         }
 
         .testimonial-slide {
             flex-shrink: 0;
-            width: calc(100% / 3); /* Show 3 images */
-            padding: 0 6px;
+            width: 30vw; /* Responsive width for slides */
+            max-width: 280px; /* Max width to prevent them getting too large */
+            padding: 0 6px; /* Creates 12px space between images */
         }
 
-        @media (max-width: 768px) {
-            .testimonial-slide {
-                width: calc(100% / 2); /* Show 2 images on tablet */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .testimonial-slide {
-                width: calc(100% / 1.5); /* Show 1.5 images on mobile */
-            }
-        }
+        /* Media queries are no longer needed for slide width as flexbox handles it */
 
         .testimonial-image {
             width: 100%;
@@ -1372,15 +1376,25 @@
 
         const getTestimonialsHTML = (pkg) => {
             const images = pkg.testimonials;
-            let imagesHTML = images.map((url, index) => `<div class="testimonial-slide"><img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';"></div>`).join('');
+
+            // Create the HTML for a single set of images
+            const singleTrackHTML = images.map((url, index) => `
+                <div class="testimonial-slide">
+                    <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\nMuat';">
+                </div>
+            `).join('');
+
             return `
             <div class="material-card p-3 md:p-4 rounded-2xl">
                 <h2 class="text-xl font-bold text-center mb-2 google-sans">Testimoni Pelanggan</h2>
                 <p class="text-center text-m3-on-surface-variant text-xs mb-4">Ribuan pelanggan telah merasakan kemudahan desain dengan Canva Pro.</p>
-                <div class="testimonial-carousel-container">
-                    <div class="testimonial-track" id="testimonial-track">${imagesHTML}</div>
-                    <button id="testimonial-prev-btn" class="modal-nav prev" style="display: none; background-color: rgba(0,0,0,0.4);">&#10094;</button>
-                    <button id="testimonial-next-btn" class="modal-nav next" style="display: flex; background-color: rgba(0,0,0,0.4);">&#10095;</button>
+                <div class="testimonial-carousel-container" id="carousel-wrapper">
+                    <div class="testimonial-track">
+                        ${singleTrackHTML}
+                    </div>
+                    <div class="testimonial-track" aria-hidden="true">
+                        ${singleTrackHTML}
+                    </div>
                 </div>
             </div>`;
         }
@@ -1402,20 +1416,7 @@
         };
 
         // --- CAROUSEL LOGIC ---
-        let testimonialIndex = 0;
-        function handleTestimonialNav() {
-            const track = document.getElementById('testimonial-track');
-            const prevBtn = document.getElementById('testimonial-prev-btn');
-            const nextBtn = document.getElementById('testimonial-next-btn');
-            if (!track || !prevBtn || !nextBtn) return;
-            const totalImages = packages[currentPackageId].testimonials.length;
-            const itemsPerPage = 3;
-            const maxIndex = totalImages > itemsPerPage ? totalImages - itemsPerPage : 0;
-            const slidePercentage = 100 / itemsPerPage;
-            track.style.transform = `translateX(-${testimonialIndex * slidePercentage}%)`;
-            prevBtn.style.display = testimonialIndex > 0 ? 'flex' : 'none';
-            nextBtn.style.display = testimonialIndex < maxIndex ? 'flex' : 'none';
-        }
+        // This is now handled by pure CSS.
 
         // --- FUNCTIONS ---
         function formatCurrency(value) {
@@ -1430,7 +1431,6 @@
         }
 
         function updateDisplay() {
-            testimonialIndex = 0; // Reset carousel
             const pkg = packages[currentPackageId];
             const totalPrice = pkg.price + uniqueCode;
             const infoContainer = elements.productInfoFormTop;
@@ -1446,6 +1446,7 @@
                 elements.infoSectionFull.innerHTML = getInfoSectionHTML();
                 infoContainer.style.opacity = '1';
                 detailsAccordion.style.opacity = '1';
+                // Carousel is now pure CSS, no JS initialization needed.
             }, 300);
         }
 
@@ -1579,12 +1580,6 @@
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-        elements.testimonialsFull.addEventListener('click', function(event) {
-            const totalImages = packages[currentPackageId].testimonials.length;
-            const maxIndex = totalImages > 3 ? totalImages - 3 : 0;
-            if (event.target.id === 'testimonial-next-btn' && testimonialIndex < maxIndex) { testimonialIndex++; handleTestimonialNav(); }
-            if (event.target.id === 'testimonial-prev-btn' && testimonialIndex > 0) { testimonialIndex--; handleTestimonialNav(); }
-        });
         document.querySelectorAll('input[name="package"]').forEach(radio => {
             radio.addEventListener('change', (event) => {
                 currentPackageId = event.target.value; updateDisplay();
@@ -1642,6 +1637,28 @@
         return finalQris + toCRC16(finalQris);
     }
     
+    const imageModal = document.getElementById('imageModal');
+    const modalImg = document.getElementById("modalImage");
+    let currentImageIndex;
+    const testimonialImages = [ "https://s6.imgcdn.dev/YIh45V.png", "https://s6.imgcdn.dev/YIhuYh.png", "https://s6.imgcdn.dev/YIhCOK.png", "https://s6.imgcdn.dev/YIhIgo.png", "https://s6.imgcdn.dev/YIhQQO.png", "https://s6.imgcdn.dev/YIhiSn.png", "https://s6.imgcdn.dev/YIhkeg.png", "https://s6.imgcdn.dev/YIhscv.png", "https://s6.imgcdn.dev/YIhyaN.png", "https://s6.imgcdn.dev/YIh5tq.png", "https://s6.imgcdn.dev/YIhPYB.png", "https://s6.imgcdn.dev/YIhTKu.png" ];
+
+    window.openImageModal = function(event, index) { event.stopPropagation(); imageModal.style.display = "flex"; showImage(index); }
+    window.closeImageModal = function() { imageModal.style.display = "none"; }
+    function showImage(index) {
+        if (index >= testimonialImages.length || index < 0) return; currentImageIndex = index;
+        modalImg.src = testimonialImages[index];
+        document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'flex' : 'none';
+        document.querySelector('.modal-nav.next').style.display = (index < testimonialImages.length - 1) ? 'flex' : 'none';
+    }
+    window.showNextImage = function() { showImage(currentImageIndex + 1); }
+    window.showPrevImage = function() { showImage(currentImageIndex - 1); }
+    document.addEventListener('keydown', function(event) {
+        if (imageModal.style.display === 'flex') {
+            if (event.key === 'ArrowRight') showNextImage();
+            else if (event.key === 'ArrowLeft') showPrevImage();
+            else if (event.key === 'Escape') closeImageModal();
+        }
+    });
     </script>
 </body>
 </html>
