@@ -1241,15 +1241,13 @@
         let countdownInterval;
         let expiryTime;
         let currentOrderDetails = {};
-        let isCouponApplied = true;
-        const validCouponCode = "WEDNESDAY";
         
         const packages = {
             netflix: {
                 id: 'netflix',
                 name: "Netflix Premium 1 Tahun",
                 price: 179000,
-                normalPrice: 986000,
+                normalPrice: 179000,
                 title: "NETFLIX PREMIUM",
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Netflix_2015_N_logo.svg/330px-Netflix_2015_N_logo.svg.png',
                 description: "Nonton sepuasnya film, acara TV, dan banyak lagi.",
@@ -1328,7 +1326,7 @@
                         <p class="text-md text-m3-on-surface-variant mt-1">${pkg.description}</p>
                     </div>
                     <div class="text-center md:text-right mt-2 md:mt-0 md:pl-6">
-                        <div class="text-4xl font-bold text-netflix-red main-sans">${isCouponApplied ? formatCurrency(pkg.price) : formatCurrency(pkg.normalPrice)}</div>
+                        <div class="text-4xl font-bold text-netflix-red main-sans">${formatCurrency(pkg.normalPrice)}</div>
                         <p class="text-sm text-m3-on-surface-variant mt-1">Langganan 1 Tahun</p>
                         <div class="mt-2">
                             <span class="inline-block bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">
@@ -1398,36 +1396,17 @@
         };
 
 
-        const getOrderDetailsHTML = (pkg, totalPrice, isCouponApplied) => {
-            const discountAmount = pkg.normalPrice - pkg.price;
-
+        const getOrderDetailsHTML = (pkg, totalPrice) => {
             return `
             <div class="mt-8 pt-6 border-t border-m3-outline-variant">
                  <h3 class="text-lg font-bold mb-4 google-sans">3. Rincian Pesanan</h3>
                  <div class="space-y-3 text-m3-on-surface-variant">
-                    <div class="mb-4">
-                        <label for="coupon" class="block text-sm font-medium mb-1.5 text-m3-on-surface-variant">Kode Kupon</label>
-                        <div class="flex">
-                            <input type="text" id="coupon" name="coupon" class="form-input flex-grow !rounded-r-none" placeholder="Punya kode?">
-                            <button type="button" id="coupon-btn" class="cta-button black-button !rounded-l-none" style="width: auto; padding: 12px 20px; flex-shrink: 0;">Terapkan</button>
-                        </div>
-                        <p id="coupon-message" class="text-sm mt-2" style="display: none;"></p>
-                    </div>
-                    <hr class="my-3 border-m3-outline-variant">
                      <div class="flex justify-between items-center">
                          <span class="text-sm">${pkg.name}</span>
                          <div class="text-right">
-                             <span class="font-semibold text-m3-on-surface text-md ${isCouponApplied ? 'line-through text-gray-400' : ''}">${formatCurrency(pkg.normalPrice)}</span>
+                             <span class="font-semibold text-m3-on-surface text-md">${formatCurrency(pkg.normalPrice)}</span>
                          </div>
                      </div>
-                     ${isCouponApplied ? `
-                     <div class="flex justify-between items-center text-green-600">
-                         <span class="text-sm">Diskon Kupon "${validCouponCode}"</span>
-                         <div class="text-right">
-                             <span class="font-semibold text-md">-${formatCurrency(discountAmount)}</span>
-                         </div>
-                     </div>
-                     ` : ''}
                      <div class="flex justify-between">
                          <span class="text-xs">Kode Unik</span>
                          <span class="font-medium text-m3-on-surface text-sm">${formatCurrency(uniqueCode)}</span>
@@ -1503,7 +1482,7 @@
         function updateDisplay() {
             testimonialIndex = 0; // Reset carousel on package change
             const pkg = packages[currentPackageId];
-            const currentPrice = isCouponApplied ? pkg.price : pkg.normalPrice;
+            const currentPrice = pkg.normalPrice; // Always use normal price
             const totalPrice = currentPrice + uniqueCode;
 
             const infoContainer = elements.productInfoFormTop;
@@ -1523,12 +1502,9 @@
 
                 // Update other parts that don't need transition
                 elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-                elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice, isCouponApplied);
+                elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
                 elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
                 elements.infoSectionFull.innerHTML = getInfoSectionHTML();
-
-                // Now that the coupon elements are in the DOM, update the button state.
-                updateCouponButton();
 
                 // 3. Start fade-in
                 infoContainer.style.opacity = '1';
@@ -1536,60 +1512,6 @@
 
 
             }, 300); // Match CSS transition duration
-        }
-
-        function handleCouponToggle() {
-            const couponInput = document.getElementById('coupon');
-            if (!couponInput) return;
-
-            const couponValue = couponInput.value.trim().toUpperCase();
-            document.getElementById('coupon-message').style.display = 'none';
-
-            if (isCouponApplied) {
-                isCouponApplied = false;
-                couponInput.value = '';
-                showCouponMessage('Kupon dihapus', 'green');
-            } else {
-                if (couponValue === validCouponCode) {
-                    isCouponApplied = true;
-                    showCouponMessage('Kupon "MERDEKA" berhasil diterapkan!', 'green');
-                } else {
-                    showInfoModal('Kupon Tidak Valid', `Kode kupon "${couponValue}" tidak ditemukan.`);
-                    isCouponApplied = false;
-                }
-            }
-            updateDisplay();
-        }
-
-        function updateCouponButton() {
-            const couponBtn = document.getElementById('coupon-btn');
-            const couponInput = document.getElementById('coupon');
-            if (!couponBtn || !couponInput) return;
-
-            if (isCouponApplied) {
-                couponBtn.textContent = 'Hapus';
-                couponBtn.classList.remove('black-button');
-                couponBtn.classList.add('red-button');
-                couponInput.value = validCouponCode;
-                couponInput.disabled = true;
-            } else {
-                couponBtn.textContent = 'Terapkan';
-                couponBtn.classList.add('black-button');
-                couponBtn.classList.remove('red-button');
-                couponInput.disabled = false;
-            }
-        }
-
-        function showCouponMessage(message, color) {
-            const couponMessage = document.getElementById('coupon-message');
-            if (!couponMessage) return;
-
-            couponMessage.textContent = message;
-            couponMessage.style.color = color;
-            couponMessage.style.display = 'block';
-            setTimeout(() => {
-                couponMessage.style.display = 'none';
-            }, 3000);
         }
 
         function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
@@ -1922,7 +1844,7 @@
 
             // 3. Prepare Data
             const pkg = packages[currentPackageId];
-            const currentPrice = isCouponApplied ? pkg.price : pkg.normalPrice;
+            const currentPrice = pkg.normalPrice;
             const totalPrice = currentPrice + uniqueCode;
             const paymentAccount = paymentAccounts[paymentMethodKey];
             const now = new Date();
@@ -2046,14 +1968,6 @@
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
-
-
-        // Use event delegation for the coupon button
-        elements.orderForm.addEventListener('click', function(event) {
-            if (event.target && event.target.id === 'coupon-btn') {
-                handleCouponToggle();
-            }
-        });
 
         updateDisplay();
         
