@@ -1043,7 +1043,7 @@
                     
                     <!-- Pemilihan Paket (Segmented Control for 4 items) -->
                     <div class="my-4">
-                        <h2 class="text-lg font-bold mb-3 google-sans">1. Pilih Paket Anda</h2>
+                        <h2 class="text-lg font-bold mb-3 google-sans">Pilih Paket Anda</h2>
                         <div id="package-selection">
                             <div class="segmented-control">
                                 <input type="radio" id="pkg-1" name="package" value="satuBulan" class="package-radio" checked>
@@ -1071,7 +1071,7 @@
 
                     <!-- Form (Compact style) -->
                     <form id="orderForm">
-                        <h2 class="text-lg font-bold mb-3 google-sans">2. Lengkapi Data</h2>
+                        <h2 class="text-lg font-bold mb-3 google-sans">Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
                                 <input type="text" id="nama" name="nama" class="form-input" placeholder="Nama Anda *">
@@ -1329,7 +1329,7 @@
         }
         
         const getPaymentMethodsHTML = (accounts) => {
-            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">3. Pilih Metode Pembayaran</h2>`;
+            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">Metode Pembayaran</h2>`;
             html += `<div class="payment-group">`;
 
             Object.entries(accounts).forEach(([key, account], index) => {
