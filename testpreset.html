@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PresetPro - 4000++ Preset Adobe Lightroom | Penawaran Spesial!</title>
-    <!-- Favicon diubah sesuai permintaan -->
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg/1200px-Adobe_Photoshop_Lightroom_CC_logo.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Font tetap menggunakan Google Sans & Roboto untuk tampilan yang bersih -->
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
@@ -28,42 +26,40 @@
       fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=951715019921316&ev=PageView&noscript=1"
     /></noscript>
     <!-- === AKHIR DARI KODE FACEBOOK PIXEL === -->
 
     <style>
         :root {
-            /* Warna aksen disesuaikan dengan logo Adobe Lightroom */
-            --lightroom-accent: #00A4AC;
-            --lightroom-accent-dark: #008188;
-            --lightroom-accent-light: #e6f6f7;
+            /* Vibrant Google-Style Palette */
+            --theme-primary: #00A4AC;
+            --theme-primary-hover: #008188;
+            --theme-background: #f8f9fa;
+            --theme-surface: #ffffff;
+            --theme-on-surface: #3c4043;
+            --theme-on-surface-variant: #5f6368;
+            --theme-outline: #dadce0;
+            --theme-outline-variant: #e8eaed;
             
-            /* Warna Google Grey tetap digunakan untuk menjaga tema putih yang bersih */
-            --google-grey-50: #f8f9fa;
-            --google-grey-100: #f1f3f4;
-            --google-grey-200: #e8eaed;
-            --google-grey-300: #dadce0;
-            --google-grey-500: #9aa0a6;
-            --google-grey-600: #5f6368;
-            --google-grey-700: #3c4043;
-            --google-grey-900: #202124;
-            
-            /* Warna lain untuk notifikasi dll. */
-            --google-green-600: #137333;
-            --google-red-600: #d93025;
-            
-            /* Shadow tetap sama untuk konsistensi desain Material */
+            /* Custom Google Colors */
+            --google-blue: #4285F4;
+            --google-green: #34A853;
+            --google-yellow: #FBBC05;
+            --google-red: #EA4335;
+
+            /* Shadows */
             --shadow-1: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
             --shadow-2: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
             --shadow-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.3);
         }
 
+        /* Google Sans Typography */
         body {
             font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #ffffff; /* Latar belakang diubah menjadi putih bersih */
-            color: var(--google-grey-700);
-            line-height: 1.5;
+            background-color: var(--theme-background);
+            color: var(--theme-on-surface);
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -72,45 +68,48 @@
             font-family: 'Google Sans', sans-serif;
         }
 
+        /* Enhanced Material Design Components */
         .material-card {
-            background: #ffffff;
+            background: var(--theme-surface);
             border-radius: 12px;
             box-shadow: var(--shadow-1);
             transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--google-grey-200);
+            border: 1px solid var(--theme-outline);
         }
 
         .material-card:hover {
             box-shadow: var(--shadow-2);
         }
-        
+
         .material-card-elevated {
             box-shadow: var(--shadow-2);
         }
 
+        /* Enhanced Form Inputs */
         .form-input {
-            border: 2px solid var(--google-grey-300);
+            border: 2px solid var(--theme-outline);
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 8px;
-            padding: 14px 12px;
+            padding: 10px 12px;
             width: 100%;
-            background-color: #ffffff;
+            background-color: var(--theme-surface);
             font-size: 16px;
             font-family: 'Roboto', sans-serif;
-            color: var(--google-grey-900);
+            color: var(--theme-on-surface);
         }
 
         .form-input:focus {
-            border-color: var(--lightroom-accent); /* Aksen diubah */
-            background-color: #ffffff;
+            border-color: var(--theme-primary);
+            background-color: var(--theme-surface);
             outline: none;
-            box-shadow: 0 0 0 1px var(--lightroom-accent); /* Aksen diubah */
+            box-shadow: 0 0 0 1px var(--theme-primary);
         }
 
         .form-input::placeholder {
-            color: var(--google-grey-500);
+            color: var(--theme-on-surface-variant);
         }
 
+        /* Enhanced Google-style Buttons */
         .cta-button {
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 24px;
@@ -130,14 +129,14 @@
             min-height: 46px;
         }
 
-        .accent-button { /* Class baru untuk tombol dengan warna aksen */
-            background-color: var(--lightroom-accent);
+        .accent-button {
+            background-color: var(--theme-primary);
             color: white;
             box-shadow: var(--shadow-1);
         }
 
         .accent-button:hover {
-            background-color: var(--lightroom-accent-dark);
+            background-color: var(--theme-primary-hover);
             box-shadow: var(--shadow-2);
             transform: translateY(-1px);
         }
@@ -148,13 +147,14 @@
         }
 
         .cta-button:disabled {
-            background-color: var(--google-grey-300);
-            color: var(--google-grey-500);
+            background-color: var(--theme-outline-variant);
+            color: var(--theme-on-surface-variant);
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
 
+        /* Enhanced Modal Styling */
         .modal {
             display: none;
             position: fixed;
@@ -164,14 +164,13 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(32, 33, 36, 0.6);
-            backdrop-filter: blur(4px);
+            background-color: rgba(0,0,0,0.85);
             justify-content: center;
             align-items: center;
         }
 
         .modal-content {
-            background-color: #ffffff;
+            background-color: var(--theme-surface);
             margin: auto;
             padding: 28px;
             width: 90%;
@@ -184,12 +183,18 @@
         }
 
         @keyframes modalSlideIn {
-            from { opacity: 0; transform: scale(0.9) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .modal-content h3 {
-            color: var(--google-grey-900);
+            color: var(--theme-on-surface);
             margin-bottom: 12px;
             font-size: 18px;
             font-weight: 500;
@@ -197,14 +202,14 @@
         }
 
         .modal-content p {
-            color: var(--google-grey-600);
+            color: var(--theme-on-surface-variant);
             margin-bottom: 20px;
             line-height: 1.6;
             font-size: 14px;
         }
 
         .modal-ok-button {
-            background-color: var(--lightroom-accent); /* Aksen diubah */
+            background-color: var(--theme-primary);
             color: white;
             padding: 10px 28px;
             border: none;
@@ -218,28 +223,82 @@
         }
 
         .modal-ok-button:hover {
-            background-color: var(--lightroom-accent-dark); /* Aksen diubah */
+            background-color: var(--theme-primary-hover);
             box-shadow: var(--shadow-1);
         }
 
-        .testimonial-image {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border-radius: 12px;
+
+
+        /* === START: Auto-Scrolling Testimonial Carousel Styles === */
+        .testimonial-carousel-container {
             overflow: hidden;
+            position: relative;
+            width: 100%;
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+        }
+
+        .testimonial-track {
+            display: flex;
+            /*This will be controlled by JS*/
+        }
+
+        .testimonial-carousel-container:hover .testimonial-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                /* This will be calculated by JS */
+                transform: translateX(var(--scroll-end-value));
+            }
+        }
+
+        .testimonial-slide {
+            flex-shrink: 0;
+            width: calc(100% / 3); /* Show 3 images */
+            padding: 0 6px;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-slide {
+                width: calc(100% / 2); /* Show 2 images on tablet */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .testimonial-slide {
+                width: calc(100% / 1.5); /* Show 1.5 images on mobile */
+            }
+        }
+
+        .testimonial-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            aspect-ratio: 4 / 3;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .testimonial-image:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
             box-shadow: var(--shadow-2);
         }
+        /* === END: Auto-Scrolling Testimonial Carousel Styles === */
 
+
+        /* Enhanced Notification Toast */
         .notif-box {
             position: fixed;
             top: 24px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--google-grey-900);
+            background-color: #3c4043; /* Dark grey for toast */
             color: #ffffff;
             border-radius: 8px;
             box-shadow: var(--shadow-3);
@@ -262,32 +321,63 @@
         }
 
         @keyframes slideInAndOut {
-            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            10% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            90% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            10% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            90% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
         }
 
         .notif-icon-wrapper {
-            color: var(--google-green-600);
+            color: var(--google-green);
             font-size: 20px;
             flex-shrink: 0;
         }
 
-        .notif-message { font-size: 14px; line-height: 1.4; }
-        .notif-message strong { font-weight: 500; }
-        .notif-time { font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-top: 2px; }
+        .notif-message {
+            font-size: 14px;
+            line-height: 1.4;
+        }
 
+        .notif-message strong {
+            font-weight: 500;
+        }
+
+        .notif-time {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2px;
+        }
+
+        /* Enhanced FAQ Section */
         .faq-item {
-            border-bottom: 1px solid var(--google-grey-200);
+            border-bottom: 1px solid var(--theme-outline);
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .faq-item:last-child { border-bottom: none; }
-        .faq-item:hover { background-color: var(--google-grey-50); }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item:hover {
+            background-color: var(--theme-background);
+        }
+
         .faq-item summary {
             font-weight: 500;
             font-size: 15px;
-            color: var(--google-grey-900);
+            color: var(--theme-on-surface);
             padding: 16px 12px;
             cursor: pointer;
             list-style: none;
@@ -296,56 +386,95 @@
             align-items: center;
             font-family: 'Google Sans', sans-serif;
         }
-        .faq-item summary::-webkit-details-marker { display: none; }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
         .faq-item summary::after {
             content: '\f078';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--google-grey-600);
+            color: var(--theme-on-surface-variant);
             font-size: 14px;
         }
-        .faq-item[open] summary::after { transform: rotate(180deg); }
+
+        .faq-item[open] summary::after {
+            transform: rotate(180deg);
+        }
+
         .faq-content {
             padding: 0 12px 16px 12px;
-            color: var(--google-grey-600);
+            color: var(--theme-on-surface-variant);
             line-height: 1.6;
             font-size: 14px;
         }
-        .faq-item[open] summary { color: var(--lightroom-accent); /* Aksen diubah */ }
 
-        .product-info-card {
-            background: linear-gradient(135deg, var(--lightroom-accent-light) 0%, #ffffff 100%); /* Aksen diubah */
-            border: 1px solid var(--google-grey-200);
-            border-radius: 16px;
-            padding: 20px;
+        .faq-item[open] summary {
+            color: var(--theme-primary);
         }
 
-        .payment-radio { position: absolute; opacity: 0; width: 0; height: 0; }
+        /* This rule prevents a double-border issue on card-style accordions */
+        .faq-item.rounded-lg {
+            border-bottom: none;
+        }
+
+        /* Compact styles for the main info/help FAQ section */
+        #info-section-full .faq-item summary {
+            padding: 12px 10px;
+            font-size: 14px;
+        }
+        #info-section-full .faq-content {
+            padding: 4px 10px 12px 10px;
+            font-size: 13px;
+        }
+        #info-section-full .faq-item {
+            border-bottom: 1px solid var(--theme-outline-variant);
+        }
+
+        /* Enhanced Product Info Display */
+        #product-info-form-top {
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-info-card {
+            background: linear-gradient(135deg, #e6f6f7 0%, var(--theme-surface) 100%);
+            border: 1px solid var(--theme-outline);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        /* Enhanced Payment Method Styles */
+        .payment-radio {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
         .payment-label {
             display: flex;
             align-items: center;
             padding: 12px;
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            position: relative;
-            border: 2px solid transparent;
-            /* PERBAIKAN: Radius diubah menjadi 14px */
-            border-radius: 14px; 
+            border-radius: 12px;
+            margin: 2px;
         }
-        .payment-label:hover { 
-            background-color: var(--google-grey-50); 
+
+        .payment-label:hover {
+            background-color: var(--theme-background);
         }
-        
-        /* PERBAIKAN: Style saat terpilih */
+
         .payment-radio:checked + .payment-label {
-            background-color: var(--lightroom-accent-light);
-            border-color: var(--lightroom-accent);
+            background-color: #e6f6f7; /* Light accent color */
+            box-shadow: inset 0 0 0 2px var(--theme-primary);
         }
-        
+
         .payment-logo-container {
-            width: 64px;
-            height: 40px;
+            width: 48px;
+            height: 32px;
             background-color: #ffffff;
             border-radius: 6px;
             display: flex;
@@ -353,7 +482,7 @@
             justify-content: center;
             margin-right: 12px;
             padding: 4px;
-            border: 1px solid var(--google-grey-200, #e8eaed);
+            border: 1px solid var(--theme-outline, #dadce0);
             flex-shrink: 0;
         }
         .form-payment-logo-container {
@@ -366,9 +495,10 @@
             justify-content: center;
             margin-right: 12px;
             padding: 4px;
-            border: 1px solid var(--google-grey-200, #e8eaed);
+            border: 1px solid var(--theme-outline, #dadce0);
             flex-shrink: 0;
         }
+
         .payment-logo {
             max-height: 100%;
             max-width: 100%;
@@ -378,7 +508,7 @@
         .custom-radio-button {
             height: 20px;
             width: 20px;
-            border: 2px solid var(--google-grey-300);
+            border: 2px solid var(--theme-outline);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -387,6 +517,7 @@
             flex-shrink: 0;
             margin-left: auto;
         }
+
         .custom-radio-button .dot {
             height: 8px;
             width: 8px;
@@ -394,17 +525,18 @@
             background-color: transparent;
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .payment-radio:checked + .payment-label .custom-radio-button { border-color: var(--lightroom-accent); }
-        .payment-radio:checked + .payment-label .custom-radio-button .dot { background-color: var(--lightroom-accent); }
-        
-        /* PERBAIKAN: Garis pemisah antar metode pembayaran */
-        .payment-group > div:not(:last-child) {
-            border-bottom: 1px solid var(--google-grey-200);
+
+        .payment-radio:checked + .payment-label .custom-radio-button {
+            border-color: var(--theme-primary);
         }
 
+        .payment-radio:checked + .payment-label .custom-radio-button .dot {
+            background-color: var(--theme-primary);
+        }
 
+        /* Enhanced Payment Instruction Layout */
         .payment-header {
-            background: linear-gradient(135deg, var(--google-grey-900) 0%, #1f1f23 100%);
+            background: linear-gradient(135deg, #202124 0%, #3c4043 100%);
             color: #fff;
             text-align: center;
             position: sticky;
@@ -413,8 +545,8 @@
         }
 
         .payment-card {
-            background-color: #ffffff;
-            border: 1px solid var(--google-grey-200);
+            background-color: var(--theme-surface);
+            border: 1px solid var(--theme-outline);
             border-radius: 12px;
             padding: 16px;
             margin-top: 12px;
@@ -424,7 +556,7 @@
         .copy-button-text {
             background: none;
             border: none;
-            color: var(--lightroom-accent); /* Aksen diubah */
+            color: var(--theme-primary);
             font-weight: 500;
             cursor: pointer;
             padding: 8px;
@@ -433,14 +565,14 @@
         }
 
         .copy-button-text:hover {
-            background-color: var(--lightroom-accent-light); /* Aksen diubah */
+            background-color: #e6f6f7;
         }
 
         .confirm-button-outlined {
             width: 100%;
             padding: 12px 24px;
-            border: 2px solid var(--lightroom-accent); /* Aksen diubah */
-            color: var(--lightroom-accent); /* Aksen diubah */
+            border: 2px solid var(--theme-primary);
+            color: var(--theme-primary);
             background-color: transparent;
             border-radius: 24px;
             font-weight: 500;
@@ -451,12 +583,18 @@
         }
 
         .confirm-button-outlined:hover {
-            background-color: var(--lightroom-accent-light); /* Aksen diubah */
+            background-color: #e6f6f7;
             box-shadow: var(--shadow-1);
         }
 
-        .payment-accordion { border-bottom: 1px solid var(--google-grey-200); }
-        .payment-accordion:last-child { border-bottom: none; }
+        .payment-accordion {
+            border-bottom: 1px solid var(--theme-outline);
+        }
+
+        .payment-accordion:last-child {
+            border-bottom: none;
+        }
+
         .payment-accordion summary {
             font-weight: 500;
             padding: 14px 0;
@@ -467,52 +605,102 @@
             align-items: center;
             font-family: 'Google Sans', sans-serif;
         }
-        .payment-accordion summary::-webkit-details-marker { display: none; }
+
+        .payment-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
         .payment-accordion summary::after {
             content: '\f078';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--google-grey-600);
+            color: var(--theme-on-surface-variant);
         }
-        .payment-accordion[open] summary::after { transform: rotate(180deg); }
+
+        .payment-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
         .payment-accordion-content {
             padding-bottom: 16px;
-            color: var(--google-grey-600);
+            color: var(--theme-on-surface-variant);
             line-height: 1.6;
         }
+
         .payment-accordion-content ol {
             list-style-type: decimal;
             padding-left: 20px;
             font-size: 14px;
         }
 
-        .payment-header { padding: 1rem; }
-        .payment-header h2 { font-size: 1.125rem; font-weight: 500; font-family: 'Google Sans', sans-serif; color: #ffffff; }
-        .countdown-timer { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
-        .countdown-item { display: flex; align-items: center; gap: 0.25rem; }
+        /* === START: User Requested Styles === */
+        /* Ukuran untuk desktop dan tablet */
+        .payment-header {
+            padding: 1rem; /* 16px */
+        }
+
+        .payment-header h2 {
+            font-size: 1.125rem; /* 18px */
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
+            color: #ffffff; /* Ditambahkan agar teks terlihat */
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .countdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
         .countdown-number {
-            background-color: var(--google-red-600);
+            background-color: var(--google-red);
             color: white;
             padding: 0.25rem 0.5rem;
             border-radius: 6px;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.1rem; /* 17.6px */
             font-family: 'Google Sans', sans-serif;
             text-align: center;
         }
 
+        /* Penyesuaian ukuran untuk layar mobile (di bawah 768px) */
         @media (max-width: 768px) {
-            .payment-header { padding: 0.875rem 1rem; }
-            .payment-header h2 { font-size: 1.0625rem; }
-            .countdown-timer { margin-top: 0.25rem; }
-            .countdown-number { font-size: 0.875rem; padding: 0.15rem 0.4rem; }
-            .countdown-item { font-size: 0.75rem; }
+            .payment-header {
+                padding: 0.875rem 1rem; /* 14px */
+            }
+            .payment-header h2 {
+                font-size: 1.0625rem; /* 17px */
+            }
+            .countdown-timer {
+                margin-top: 0.25rem;
+            }
+            .countdown-number {
+                font-size: 0.875rem; /* 14px */
+                padding: 0.15rem 0.4rem;
+            }
+            .countdown-item {
+                font-size: 0.75rem; /* 12px */
+            }
+        }
+        /* === END: User Requested Styles === */
+
+
+        /* Enhanced Details Modal (Bottom Sheet) */
+        #detailsModal {
+            align-items: flex-end;
         }
 
-        #detailsModal { align-items: flex-end; }
         .details-modal-content {
-            background-color: #ffffff;
+            background-color: var(--theme-surface);
             width: 100%;
             max-width: 100%;
             border-radius: 20px 20px 0 0;
@@ -520,22 +708,52 @@
             text-align: left;
             transform: translateY(100%);
         }
-        .details-modal-content.is-open { animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-        .details-modal-content.is-closing { animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        @keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
+
+        .details-modal-content.is-open {
+            animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .details-modal-content.is-closing {
+            animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(100%);
+            }
+        }
+
         .details-modal-header {
             padding: 20px 24px;
-            border-bottom: 1px solid var(--google-grey-200);
+            border-bottom: 1px solid var(--theme-outline);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .details-modal-header h3 { font-size: 18px; font-weight: 500; color: var(--google-grey-900); font-family: 'Google Sans', sans-serif; }
+
+        .details-modal-header h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--theme-on-surface);
+            font-family: 'Google Sans', sans-serif;
+        }
+
         .details-modal-close {
             font-size: 24px;
             font-weight: 400;
-            color: var(--google-grey-600);
+            color: var(--theme-on-surface-variant);
             cursor: pointer;
             background: none;
             border: none;
@@ -543,38 +761,74 @@
             border-radius: 50%;
             transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .details-modal-close:hover { background-color: var(--google-grey-100); }
-        .details-modal-body { padding: 20px 24px 32px 24px; max-height: 60vh; overflow-y: auto; }
 
-        @media (max-width: 768px) {
-            .notif-box { left: 16px; right: 16px; top: 16px; transform: translateX(0); width: calc(100% - 32px); max-width: none; }
-            @keyframes slideInAndOut {
-                0% { opacity: 0; transform: translateY(-20px); }
-                10% { opacity: 1; transform: translateY(0); }
-                90% { opacity: 1; transform: translateY(0); }
-                100% { opacity: 0; transform: translateY(-20px); }
-            }
-            .material-card { border-radius: 16px; margin: 0 4px; }
-            .form-input { font-size: 16px; }
+        .details-modal-close:hover {
+            background-color: var(--theme-outline-variant);
         }
 
-        .modal-image-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        
-        /* PERBAIKAN: Style untuk transisi gambar di modal */
+        .details-modal-body {
+            padding: 20px 24px 32px 24px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .notif-box {
+                left: 16px;
+                right: 16px;
+                top: 16px;
+                transform: translateX(0);
+                width: calc(100% - 32px);
+                max-width: none;
+            }
+
+            @keyframes slideInAndOut {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                10% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                90% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+            }
+
+            .material-card {
+                border-radius: 16px;
+                margin: 0 4px;
+            }
+
+            .form-input {
+                font-size: 16px; /* Prevent zoom on iOS */
+            }
+        }
+
+        /* Enhanced Image Modal */
+        .modal-image-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
         .modal-content-image {
             margin: auto;
             display: block;
             width: auto;
             max-width: 90%;
             max-height: 80vh;
+            animation: zoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 8px;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-        .modal-content-image.loaded {
-            opacity: 1;
-            transform: scale(1);
         }
 
         .close-image-modal-button {
@@ -589,39 +843,70 @@
             font-family: 'Google Sans', sans-serif;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(8px);
         }
-        .close-image-modal-button:hover { background-color: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.5); }
+
+        .close-image-modal-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
         .modal-nav {
             cursor: pointer;
             position: absolute;
             top: 50%;
-            width: auto;
-            padding: 20px;
-            margin-top: -50px;
+            width: 44px;
+            height: 44px;
+            margin-top: -22px;
             color: white;
             font-weight: bold;
             font-size: 24px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: 0.3s ease;
             border-radius: 50%;
             user-select: none;
             -webkit-user-select: none;
             background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-            display: none;
-            /* PERBAIKAN: Menambahkan z-index agar tombol selalu di atas */
-            z-index: 20;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
         }
-        .modal-nav.prev { left: 20px; }
-        .modal-nav.next { right: 20px; }
-        .modal-nav:hover { background-color: rgba(0, 0, 0, 0.7); transform: scale(1.1); }
-        
-        .feature-icon { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .feature-icon:hover { transform: scale(1.1); }
 
+        .modal-nav.prev {
+            left: 20px;
+        }
+
+        .modal-nav.next {
+            right: 20px;
+        }
+
+        .modal-nav:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Enhanced Feature Icons */
+        .feature-icon {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Enhanced Security Badge */
         .security-badge {
-            background: linear-gradient(135deg, var(--google-green-600) 0%, #0f7b0f 100%);
-            color: white;
+            background: #e8f0fe;
+            color: #1557b0;
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 10px;
@@ -631,13 +916,47 @@
             gap: 6px;
         }
 
-        h1, h2, h3, h4, h5, h6 { font-family: 'Google Sans', sans-serif; color: var(--google-grey-900); }
-        .text-lightroom-accent { color: var(--lightroom-accent); }
-        .bg-lightroom-accent { background-color: var(--lightroom-accent); }
-        html { scroll-behavior: smooth; }
-        .loading { opacity: 0.7; pointer-events: none; }
-        .spinner { animation: spin 1s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        /* Enhanced Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Google Sans', sans-serif;
+            color: var(--theme-on-surface);
+        }
+
+        .text-google-blue {
+            color: var(--google-blue);
+        }
+
+        .text-google-green {
+            color: var(--google-green);
+        }
+
+        .bg-google-blue {
+            background-color: var(--google-blue);
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -645,14 +964,14 @@
     <div id="payment-instruction-container">
         <!-- Konten akan di-generate oleh JavaScript -->
     </div>
-
-    <div class="p-2 sm:p-4 lg:p-6">
+    <!-- Spacing adjustments for mobile and desktop -->
+    <div class="p-1 sm:p-4 lg:p-8">
         <div id="main-content-container">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-12 gap-y-8 max-w-7xl mx-auto">
                 <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 material-card p-4 md:p-6">
+                <div class="lg:col-span-1 material-card p-5 md:p-8">
                     <!-- Header Keamanan -->
-                    <div class="grid grid-cols-2 gap-2 text-center border-b border-gray-200 pb-4 mb-6">
+                    <div class="grid grid-cols-2 gap-3 text-center border-b border-m3-outline-variant pb-4 mb-4">
                         <div class="flex">
                             <div class="security-badge w-full justify-center">
                                 <i class="fas fa-shield-alt text-xs mr-1"></i>
@@ -660,34 +979,31 @@
                             </div>
                         </div>
                         <div class="flex">
-                            <div class="security-badge w-full justify-center" style="background: linear-gradient(135deg, var(--lightroom-accent) 0%, var(--lightroom-accent-dark) 100%);">
+                            <div class="security-badge w-full justify-center" style="background: var(--theme-primary); color: white;">
                                 <i class="fas fa-hand-holding-usd text-xs mr-1"></i>
                                 GARANSI UANG KEMBALI
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Info Produk (menggantikan pemilihan paket) -->
-                    <div id="product-info-form-top" class="mb-6"></div>
+                    <!-- Info Produk -->
+                    <div id="product-info-form-top" class="mb-4"></div>
 
-                    <!-- Fitur -->
-                    <div id="features-before-form" class="mb-6"></div>
+                    <!-- NEW: Accordion for Details -->
+                    <div id="details-accordion-container" class="mb-4"></div>
 
                     <!-- Form -->
                     <form id="orderForm">
-                        <h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">1. Lengkapi Data</h2>
+                        <h2 class="text-lg font-bold mb-3 google-sans">1. Lengkapi Data</h2>
                         <div class="space-y-4">
                             <div>
-                                <label for="nama" class="block text-sm font-medium mb-1 text-gray-700">Nama Anda <span class="text-red-500">*</span></label>
-                                <input type="text" id="nama" name="nama" class="form-input" placeholder="Masukkan nama lengkap Anda">
+                                <input type="text" id="nama" name="nama" class="form-input" placeholder="Nama Anda *">
                             </div>
                             <div>
-                                <label for="whatsapp" class="block text-sm font-medium mb-1 text-gray-700">No. WhatsApp Anda <span class="text-red-500">*</span></label>
-                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="Contoh: 081234567890">
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="No. WhatsApp Anda *">
                             </div>
                             <div>
-                                <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Email Anda (Untuk Pengiriman) <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="email" class="form-input" placeholder="contoh.email@gmail.com">
+                                <input type="email" id="email" name="email" class="form-input" placeholder="Email Anda (Untuk Pengiriman) *">
                             </div>
                         </div>
                         
@@ -695,32 +1011,29 @@
                         <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
 
                         <!-- Metode Pembayaran -->
-                        <div id="payment-method-selection" class="mt-8"></div>
+                        <div id="payment-method-selection" class="mt-4"></div>
                         
                         <!-- Rincian Pesanan -->
-                        <div id="order-details-in-form" class="mt-8"></div>
+                        <div id="order-details-in-form" class="mt-4"></div>
                         
-                        <button type="button" id="submit-btn" class="cta-button accent-button mt-8">
+                        <button type="button" id="submit-btn" class="cta-button accent-button mt-4">
                             <i class="fas fa-shopping-cart mr-2"></i>
                             Beli Sekarang
                         </button>
                     </form>
                 </div>
 
-                <!-- PERBAIKAN: Kolom Kanan diberi jarak antar elemennya -->
-                <div class="lg:col-span-1 py-4 space-y-8">
-                    <div id="testimonials-full"></div>
-                    <div class="material-card p-4 md:p-6">
-                        <div id="faq-full"></div>
-                    </div>
-                    <div class="material-card p-4 md:p-6">
-                        <div id="policy-full"></div>
-                    </div>
+                <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
+                <div class="lg:col-span-1 py-4 space-y-4">
+                   <div id="testimonials-full"></div>
+                   <div class="material-card p-5 md:p-6">
+                       <div id="info-section-full"></div>
+                   </div>
                 </div>
             </div>
         </div>
         
-        <footer id="footer" class="text-center mt-12 text-gray-500 text-sm">
+        <footer id="footer" class="text-center mt-8 text-m3-on-surface-variant text-sm">
             <p>Copyright © <span id="currentYear">2025</span> PresetPro. Semua Hak Dilindungi.</p>
         </footer>
     </div>
@@ -734,7 +1047,7 @@
         </div>
     </div>
 
-    <!-- PERBAIKAN: Modal untuk Zoom Gambar (Spinner Dihapus) -->
+    <!-- Modal untuk Zoom Gambar -->
     <div id="imageModal" class="modal">
         <span class="modal-nav prev" onclick="showPrevImage()">&#10094;</span>
         <span class="modal-nav next" onclick="showNextImage()">&#10095;</span>
@@ -744,7 +1057,7 @@
         </div>
     </div>
     
-    <!-- Modal for Transaction Details -->
+    <!-- NEW: Modal for Transaction Details -->
     <div id="detailsModal" class="modal">
         <div class="details-modal-content" id="detailsModalContent">
             <!-- Content will be injected by JS -->
@@ -826,6 +1139,7 @@
 
         return { isValid: true, message: 'Nomor valid.' };
     }
+
     document.addEventListener('DOMContentLoaded', function() {
 
         // --- ELEMENTS ---
@@ -835,12 +1149,11 @@
             footer: document.getElementById('footer'),
             currentYear: document.getElementById('currentYear'),
             productInfoFormTop: document.getElementById('product-info-form-top'),
-            featuresBeforeForm: document.getElementById('features-before-form'),
+            detailsAccordionContainer: document.getElementById('details-accordion-container'), // NEW
             paymentMethodSelection: document.getElementById('payment-method-selection'),
             orderDetailsInForm: document.getElementById('order-details-in-form'),
             testimonialsFull: document.getElementById('testimonials-full'),
-            faqFull: document.getElementById('faq-full'),
-            policyFull: document.getElementById('policy-full'),
+            infoSectionFull: document.getElementById('info-section-full'),
             orderForm: document.getElementById('orderForm'),
             submitBtn: document.getElementById('submit-btn'),
             notifBox: document.getElementById('notifBox'),
@@ -855,7 +1168,6 @@
         let expiryTime;
         let currentOrderDetails = {};
         
-        // --- Testimoni Diperbarui ---
         const allTestimonials = [
             "https://down-id.img.susercontent.com/file/20c85b67e572cc2b2510893daf3db0c7.webp",
             "https://down-id.img.susercontent.com/file/9282ad76c267c41e28fc2ad8d4a497b5.webp",
@@ -877,16 +1189,13 @@
             "https://s6.imgcdn.dev/YIZfOS.jpg"
         ];
 
-        // --- PRODUK BARU: PRESET LIGHTROOM ---
         const product = {
             name: "4000++ Preset Adobe Lightroom",
             price: 49000,
             priceDisplay: `Rp49.000`,
             normalPrice: 199000,
-            // --- Judul & Deskripsi Diperbarui ---
             title: "4000+ PRESET LIGHTROOM",
             description: "Ubah foto biasa jadi luar biasa dengan satu klik.",
-            // --- Logo Diperbarui ---
             logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg/1200px-Adobe_Photoshop_Lightroom_CC_logo.svg.png',
             features: [
                 "<strong>4000+ Preset Premium:</strong> Tingkatkan kualitas foto Anda dengan ribuan pilihan preset profesional.",
@@ -907,7 +1216,6 @@
                 number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15',
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png',
                 type: 'qris',
-                category: 'QRIS'
             },
             cimb: { 
                 displayName: 'Cimb Niaga',
@@ -915,7 +1223,6 @@
                 number: '6289510639366', 
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', 
                 type: 'va',
-                category: 'Bank Transfer'
             },
             bca_va: { 
                 displayName: 'BCA Virtual Account', 
@@ -923,7 +1230,6 @@
                 number: '39358089510639366', 
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', 
                 type: 'va',
-                category: 'Bank Transfer'
             },
             gopay: { 
                 displayName: 'Gopay', 
@@ -931,7 +1237,6 @@
                 number: '089510639366', 
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', 
                 type: 'ewallet',
-                category: 'E-Wallet'
             },
             dana: { 
                 displayName: 'DANA', 
@@ -939,7 +1244,6 @@
                 number: '089510639366', 
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', 
                 type: 'ewallet',
-                category: 'E-Wallet'
             },
             ovo: { 
                 displayName: 'OVO', 
@@ -947,128 +1251,128 @@
                 number: '089510639366', 
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', 
                 type: 'ewallet',
-                category: 'E-Wallet'
             }
         };
 
         // --- TEMPLATE FUNCTIONS ---
-        const getProductInfoHTML = (prod) => `
-        <div class="product-info-card">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                <div class="text-center mb-4 md:mb-0 flex-grow">
-                    <div class="flex justify-center"><img alt="Logo ${prod.name}" class="h-12 w-auto" src="${prod.logo}"></div>
-                    <h1 class="text-2xl font-bold text-gray-800 mt-3 google-sans">${prod.title}</h1>
-                    <p class="text-md text-gray-600 mt-1">${prod.description}</p>
-                </div>
-                <div class="text-center md:text-right mt-4 md:mt-0 md:pl-6">
-                    <div class="text-4xl font-bold text-lightroom-accent google-sans">${prod.priceDisplay}</div>
-                    <p class="text-gray-500 text-sm mt-1">Sekali Bayar untuk Akses Selamanya</p>
-                    <div class="mt-2">
-                        <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">
-                            <i class="fas fa-check mr-1"></i>
-                            4000+ Preset
-                        </span>
+        const getProductInfoHTML = (prod) => {
+            return `
+            <div class="product-info-card">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div class="text-center mb-2 md:mb-0 flex-grow">
+                        <div class="flex justify-center"><img alt="Logo ${prod.name}" class="h-12 w-auto" src="${prod.logo}"></div>
+                        <h1 class="text-2xl font-bold text-m3-on-primary-container mt-3 google-sans">${prod.title}</h1>
+                        <p class="text-md text-m3-on-surface-variant mt-1">${prod.description}</p>
+                    </div>
+                    <div class="text-center md:text-right mt-2 md:mt-0 md:pl-6">
+                        <div class="text-4xl font-bold text-theme-primary google-sans">${prod.priceDisplay}</div>
+                        <p class="text-sm text-m3-on-surface-variant mt-1">Sekali Bayar Seumur Hidup</p>
+                        <div class="mt-2">
+                            <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-check mr-1"></i>4000+ Preset
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>`;
-
-        const getFeaturesHTML = (prod) => {
-            const colors = ['#00a4ac', '#00796b', '#0288d1', '#5e35b1', '#d81b60', '#8e24aa', '#3949ab', '#00acc1'];
-            return `<div class="material-card-elevated p-4 md:p-6 rounded-2xl">
-                <h3 class="text-xl font-bold mb-4 text-gray-800 google-sans text-center">Yang Anda Dapatkan:</h3>
-                <ul class="space-y-3">${prod.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-3 text-lg feature-icon" style="color:${colors[index % colors.length]}"></i><span class="text-gray-600 text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>
             </div>`;
+        }
+
+        const getDetailsAccordionHTML = (prod) => {
+            const colors = ['#00a4ac', '#00796b', '#0288d1', '#5e35b1', '#d81b60', '#8e24aa', '#3949ab', '#00acc1'];
+            const featuresHTML = `<ul class="space-y-3">${prod.features.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-theme-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>`;
+
+            const policyHTML = `
+                <p class="mb-4 text-sm leading-relaxed">Dengan membeli produk ini, Anda setuju untuk tidak menjual kembali atau mendistribusikan ulang file preset yang kami berikan.</p>
+                <ul class="list-disc list-inside space-y-2 text-sm">
+                    <li>Garansi uang kembali jika produk gagal dikirim atau file rusak.</li>
+                    <li>Kami menyediakan dukungan teknis untuk masalah instalasi.</li>
+                    <li>Pembelian bersifat final. Pengembalian dana tidak berlaku jika Anda sudah berhasil mengunduh file.</li>
+                </ul>`;
+
+            return `
+                <details class="faq-item">
+                    <summary>Detail Deskripsi</summary>
+                    <div class="faq-content">${featuresHTML}</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Informasi Penting</summary>
+                    <div class="faq-content">${policyHTML}</div>
+                </details>
+            `;
         }
         
         const getPaymentMethodsHTML = (accounts) => {
-            const groupedAccounts = {};
-            for (const key in accounts) {
-                const account = accounts[key];
-                if (!groupedAccounts[account.category]) {
-                    groupedAccounts[account.category] = [];
-                }
-                groupedAccounts[account.category].push({ key, ...account });
-            }
+            let html = `<h2 class="text-lg font-bold mb-4 google-sans">2. Pilih Metode Pembayaran</h2>`;
+            html += `<div class="payment-group">`;
 
-            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">2. Pilih Metode Pembayaran</h2>`;
-            const categoryOrder = ['QRIS', 'Bank Transfer', 'E-Wallet'];
-
-            for (const category of categoryOrder) {
-                if (groupedAccounts[category]) {
-                    html += `<h3 class="text-md font-semibold text-gray-700 mt-6 mb-2 google-sans">${category}</h3>`;
-                    html += `<div class="material-card rounded-xl payment-group overflow-hidden">`;
-
-                    groupedAccounts[category].forEach((account, index) => {
-                        html += `
-                            <div>
-                                <input type="radio" id="${account.key}" name="payment-method" value="${account.key}" class="payment-radio" ${index === 0 && category === 'QRIS' ? 'checked' : ''}>
-                                <label for="${account.key}" class="payment-label">
-                                    <div class="form-payment-logo-container">
-                                        <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
-                                    </div>
-                                    <span class="font-medium text-gray-800 flex-grow google-sans text-sm">${account.displayName}</span>
-                                    <span class="custom-radio-button"><span class="dot"></span></span>
-                                </label>
+            Object.entries(accounts).forEach(([key, account], index) => {
+                const borderClass = index === 0 ? '' : 'border-t border-gray-200';
+                html += `
+                    <div class="${borderClass}">
+                        <input type="radio" id="${key}" name="payment-method" value="${key}" class="payment-radio" ${index === 0 ? 'checked' : ''}>
+                        <label for="${key}" class="payment-label">
+                            <div class="form-payment-logo-container">
+                                <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
                             </div>
-                        `;
-                    });
-                    html += `</div>`;
-                }
-            }
+                            <span class="font-medium text-gray-800 flex-grow google-sans text-sm">${account.displayName}</span>
+                            <span class="custom-radio-button"><span class="dot"></span></span>
+                        </label>
+                    </div>
+                `;
+            });
 
+            html += `</div>`;
             html += `
                 <div class="bg-gray-50 p-3 mt-4 rounded-xl text-center text-xs text-gray-600">
                     <i class="fas fa-shield-alt text-green-600 mr-2"></i>
                     Pembayaran aman dan terenkripsi.
                 </div>
             `;
-
             return html;
         };
 
-        const getOrderDetailsHTML = (prod, totalPrice) => `
-            <div class="mt-8 pt-6 border-t border-gray-200">
-                 <h3 class="text-lg font-bold mb-4 text-gray-800 google-sans">Rincian Pesanan</h3>
-                 <div class="material-card-elevated p-4 rounded-2xl space-y-3 text-gray-600">
+
+        const getOrderDetailsHTML = (prod, totalPrice) => {
+            return `
+            <div class="mt-8 pt-6 border-t border-m3-outline-variant">
+                 <h3 class="text-lg font-bold mb-4 google-sans">Rincian Pesanan</h3>
+                 <div class="space-y-3 text-m3-on-surface-variant">
                      <div class="flex justify-between items-center">
                          <span class="text-sm">${prod.name}</span>
                          <div class="text-right">
-                             <span class="font-semibold text-gray-800 text-md">${formatCurrency(prod.price)}</span>
+                             <span class="font-semibold text-m3-on-surface text-md">${formatCurrency(prod.price)}</span>
                          </div>
                      </div>
                      <div class="flex justify-between">
                          <span class="text-xs">Kode Unik</span>
-                         <span class="font-medium text-gray-800 text-sm">${formatCurrency(uniqueCode)}</span>
+                         <span class="font-medium text-m3-on-surface text-sm">${formatCurrency(uniqueCode)}</span>
                      </div>
-                     <hr class="my-2 border-gray-200">
-                     <div class="flex justify-between font-bold text-lg text-gray-900 google-sans">
+                     <hr class="my-2 border-m3-outline-variant">
+                     <div class="flex justify-between font-bold text-lg text-m3-on-surface google-sans">
                          <span>Total</span>
-                         <span class="text-lightroom-accent">${formatCurrency(totalPrice)}</span>
+                         <span class="text-theme-primary">${formatCurrency(totalPrice)}</span>
                      </div>
                  </div>
             </div>`;
+        }
 
         const getTestimonialsHTML = (prod) => {
-            let imagesHTML = prod.testimonials.map((url, index) => `
-                <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image w-full h-auto object-cover aspect-[3/4]" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">
-            `).join('');
-
+            // The images are now used by the setupCarousel function, not directly here.
             return `
-            <div class="material-card p-4 md:p-6 rounded-2xl">
-                <h2 class="text-2xl font-bold text-center mb-4 text-gray-800 google-sans">Testimoni Pelanggan</h2>
-                <p class="text-center text-gray-600 text-sm mb-6">Ribuan fotografer dan kreator telah puas dengan hasil preset kami.</p>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                    ${imagesHTML}
+            <div class="material-card p-3 md:p-4 rounded-2xl">
+                <h2 class="text-xl font-bold text-center mb-2 google-sans">Testimoni Pelanggan</h2>
+                <p class="text-center text-m3-on-surface-variant text-xs mb-4">Ribuan fotografer dan kreator telah puas dengan hasil preset kami.</p>
+                <div class="testimonial-carousel-container" id="testimonial-carousel">
+                    <!-- Carousel track and content will be injected by JavaScript -->
                 </div>
             </div>`;
         }
 
-        const getFaqHTML = () => `
-             <div>
-                 <h3 class="text-2xl font-bold mb-4 text-center text-gray-800 google-sans">Pertanyaan Umum (FAQ)</h3>
-                 <div class="space-y-1">
-                     <details class="faq-item" open>
+        const getInfoSectionHTML = () => {
+             const faqHTML = `
+                <h3 class="text-2xl font-bold mb-4 text-center google-sans">Informasi & Bantuan</h3>
+                <div class="space-y-0">
+                    <details class="faq-item" open>
                          <summary>Apakah preset ini bisa digunakan di HP?</summary>
                          <div class="faq-content">Ya, sangat bisa! Preset ini kompatibel penuh dengan aplikasi Lightroom Mobile yang bisa diunduh gratis di Android dan iOS. Anda tidak perlu langganan Adobe.</div>
                      </details>
@@ -1092,25 +1396,55 @@
                          <summary>Berapa lama proses pengirimannya?</summary>
                          <div class="faq-content">Prosesnya instan. Setelah Anda melakukan konfirmasi pembayaran, link download akan langsung dikirim ke email dan WhatsApp Anda, biasanya dalam 1-5 menit.</div>
                      </details>
-                 </div>
-             </div>
-        `;
-        
-        const getPolicyHTML = () => `
-            <div>
-                <h3 class="text-2xl font-bold mb-4 text-center text-gray-800 google-sans">Syarat & Ketentuan</h3>
-                <div class="grid md:grid-cols-1 gap-6 text-sm text-gray-600">
-                    <div>
-                        <p class="mb-4 text-sm leading-relaxed">Dengan membeli produk ini, Anda setuju untuk tidak menjual kembali atau mendistribusikan ulang file preset yang kami berikan.</p>
-                        <ul class="list-disc list-inside space-y-2 text-sm">
-                            <li>Garansi uang kembali jika produk gagal dikirim atau file rusak.</li>
-                            <li>Kami menyediakan dukungan teknis untuk masalah instalasi.</li>
-                            <li>Pembelian bersifat final. Pengembalian dana tidak berlaku jika Anda sudah berhasil mengunduh file.</li>
-                        </ul>
-                    </div>
                 </div>
-            </div>
-        `;
+            `;
+            return faqHTML;
+        };
+
+        // --- NEW CAROUSEL LOGIC ---
+        function setupCarousel(containerId, images) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = ''; // Clear previous content to be safe
+
+            const track = document.createElement('div');
+            track.className = 'testimonial-track';
+
+            // Duplicate images for a seamless, looping animation effect
+            const allSlides = [...images, ...images];
+            allSlides.forEach((imageUrl, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'testimonial-slide';
+                // The `onclick` event still works for opening the modal
+                slide.innerHTML = `<img src="${imageUrl}" alt="Testimoni Pelanggan ${index % images.length + 1}" class="testimonial-image" onclick="openImageModal(event, ${index % images.length})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">`;
+                track.appendChild(slide);
+            });
+
+            container.appendChild(track);
+
+            // This function calculates the correct animation values based on screen width
+            const calculateAndApplyAnimation = () => {
+                let slidesVisible;
+                if (window.innerWidth <= 480) {
+                    slidesVisible = 1.5; // Matches mobile CSS
+                } else if (window.innerWidth <= 768) {
+                    slidesVisible = 2;   // Matches tablet CSS
+                } else {
+                    slidesVisible = 3;   // Matches desktop CSS
+                }
+
+                const totalWidthOfOriginals = images.length * (100 / slidesVisible);
+                const animationDuration = images.length * 5; // ~5 seconds per image
+
+                track.style.setProperty('--scroll-end-value', `-${totalWidthOfOriginals}%`);
+                track.style.animation = `scroll ${animationDuration}s linear infinite`;
+            }
+
+            calculateAndApplyAnimation();
+            // Recalculate if the user resizes the window
+            window.addEventListener('resize', calculateAndApplyAnimation);
+        }
+
 
         // --- FUNCTIONS ---
         function formatCurrency(value) {
@@ -1128,16 +1462,31 @@
         }
 
         function updateDisplay() {
-            const prod = product; // Hanya ada satu produk
+            const prod = product;
             const totalPrice = prod.price + uniqueCode;
 
-            elements.productInfoFormTop.innerHTML = getProductInfoHTML(prod);
-            elements.featuresBeforeForm.innerHTML = getFeaturesHTML(prod);
-            elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(prod, totalPrice);
-            elements.testimonialsFull.innerHTML = getTestimonialsHTML(prod);
-            elements.faqFull.innerHTML = getFaqHTML();
-            elements.policyFull.innerHTML = getPolicyHTML();
+            const infoContainer = elements.productInfoFormTop;
+            const detailsAccordion = elements.detailsAccordionContainer;
+
+            infoContainer.style.opacity = '0';
+            detailsAccordion.style.opacity = '0';
+
+            setTimeout(() => {
+                infoContainer.innerHTML = getProductInfoHTML(prod);
+                detailsAccordion.innerHTML = getDetailsAccordionHTML(prod);
+
+                elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
+                elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(prod, totalPrice);
+                elements.testimonialsFull.innerHTML = getTestimonialsHTML(prod);
+                elements.infoSectionFull.innerHTML = getInfoSectionHTML();
+
+                infoContainer.style.opacity = '1';
+                detailsAccordion.style.opacity = '1';
+
+                // Initialize the new, dynamic carousel
+                setupCarousel('testimonial-carousel', prod.testimonials);
+
+            }, 300);
         }
 
         function generateWaLink(formData, prod, totalPrice, paymentMethodName, paymentId) {
@@ -1164,28 +1513,13 @@
                 whatsapp: formData.get('whatsapp')
             };
 
+
             elements.mainContentContainer.parentElement.style.display = 'none';
             elements.footer.style.display = 'none';
             
             const waLink = generateWaLink(formData, prod, totalPrice, paymentAccount.displayName, paymentId);
             
-            let accountLabel;
-            switch (paymentMethodKey) {
-                case 'cimb':
-                    accountLabel = 'Nomor Rekening';
-                    break;
-                case 'bca_va':
-                    accountLabel = 'Nomor Virtual Account';
-                    break;
-                case 'gopay':
-                case 'dana':
-                case 'ovo':
-                    accountLabel = 'Nomor E-Wallet';
-                    break;
-                default:
-                    accountLabel = 'Nomor Pembayaran';
-            }
-
+            let accountLabel = 'Nomor Virtual Account';
             let instructionAccordionHTML = '';
             let paymentDetailsBlock = '';
             let paymentDeadlineFormatted = '';
@@ -1198,6 +1532,7 @@
             const timePart = expiryTime.toLocaleTimeString('id-ID', timeOptions).replace(/\./g, ':');
             const timezoneString = `(${getIndonesianTimezone()})`;
             paymentDeadlineFormatted = `${datePart} pukul ${timePart} ${timezoneString}`;
+
 
             if (paymentMethodKey === 'qris') {
                 paymentDetailsBlock = `
@@ -1262,17 +1597,16 @@
                         </ol></div></details>
                     `;
                     break;
-                // ... (instruksi lain bisa ditambahkan jika perlu) ...
                 default:
                      instructionAccordionHTML = `
-                        <details class="payment-accordion" open><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2">
+                        <details class="payment-accordion"><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2">
                             <li>Buka aplikasi perbankan atau e-wallet Anda.</li>
                             <li>Pilih menu transfer atau pembayaran.</li>
                             <li>Masukkan detail pembayaran yang tertera di atas.</li>
                             <li>Pastikan nominal transfer sesuai dengan total pembayaran hingga digit terakhir.</li>
                             <li>Selesaikan transaksi dan simpan bukti pembayaran Anda.</li>
                         </ol></div></details>
-                    `;
+                      `;
             }
 
             const paymentViewHTML = `
@@ -1286,12 +1620,12 @@
                             <h3 class="font-bold text-lg google-sans mb-1">Ringkasan Transaksi</h3>
                             <div class="flex justify-between items-center mt-2 text-xs text-gray-600">
                                 <span>Nomor Invoice: <strong>${paymentId}</strong></span>
-                                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-lightroom-accent">Lihat detail</a>
+                                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-theme-primary">Lihat detail</a>
                             </div>
                             <hr class="my-4">
                             <p class="text-xs text-gray-600 mb-1">Total Pembayaran</p>
                             <div class="flex items-center justify-between">
-                                <p class="text-2xl font-bold text-lightroom-accent google-sans">${formatCurrency(totalPrice)}</p>
+                                <p class="text-2xl font-bold text-theme-primary google-sans">${formatCurrency(totalPrice)}</p>
                                 <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">
                                     <i class="far fa-copy mr-1"></i>
                                     Salin
@@ -1359,7 +1693,7 @@
                             });
                         } catch (e) {
                             console.error("QRIS Generation Error:", e.message);
-                            qrcodeContainer.innerHTML = `<p class="text-red-500 text-sm">Gagal membuat QR Code. Silakan hubungi support.</p>`;
+                            qrcodeContainer.innerHTML = `<p class="text-red-500 text-sm">Gagal membuat QR Code dinamis. Silakan coba lagi atau hubungi support.</p>`;
                         }
                     }
                 }, 100);
@@ -1378,9 +1712,8 @@
                 return;
             }
 
-            // --- New Validation Rules ---
-            if (!email.endsWith('@gmail.com')) {
-                showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email Gmail yang valid (diakhiri dengan @gmail.com).');
+            if (!email.includes('@')) {
+                showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email yang valid.');
                 return;
             }
 
@@ -1509,6 +1842,7 @@
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
 
+
         updateDisplay();
         
         if (elements.notifBox && elements.notifName) {
@@ -1527,7 +1861,7 @@
                     <div class="text-center mb-8">
                         <p class="text-sm text-gray-600 mb-2">Total Pembayaran</p>
                         <div class="flex items-center justify-center">
-                            <p class="text-4xl font-bold text-lightroom-accent google-sans">${formatCurrency(totalPrice)}</p>
+                            <p class="text-4xl font-bold text-theme-primary google-sans">${formatCurrency(totalPrice)}</p>
                             <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text">
                                 <i class="far fa-copy"></i>
                             </button>
@@ -1548,7 +1882,7 @@
                     <div class="space-y-3 mb-8">
                         <div class="flex justify-between font-bold text-xl google-sans">
                             <span>Total Pembayaran</span>
-                            <span class="text-lightroom-accent">${formatCurrency(totalPrice)}</span>
+                            <span class="text-theme-primary">${formatCurrency(totalPrice)}</span>
                         </div>
                     </div>
                     <div class="border-t border-gray-200 pt-6">
@@ -1665,7 +1999,6 @@
         imageModal.style.display = "none";
     }
 
-    // PERBAIKAN: Fungsi showImage dioptimalkan dengan preloading dan transisi
     function showImage(index) {
         const testimonialImages = [
             "https://down-id.img.susercontent.com/file/20c85b67e572cc2b2510893daf3db0c7.webp",
@@ -1692,19 +2025,15 @@
         }
         currentImageIndex = index;
 
-        // Reset state
         modalImg.classList.remove('loaded');
         
-        // Preload gambar di memori
         const tempImage = new Image();
         tempImage.onload = function() {
-            // Setelah selesai dimuat, ganti src dan tambahkan class untuk transisi
             modalImg.src = tempImage.src;
             modalImg.classList.add('loaded');
         };
         tempImage.src = testimonialImages[index];
 
-        // Perbarui visibilitas tombol navigasi
         document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'block' : 'none';
         document.querySelector('.modal-nav.next').style.display = (index < testimonialImages.length - 1) ? 'block' : 'none';
     }
@@ -1731,6 +2060,5 @@
     });
 
     </script>
-
 </body>
 </html>
