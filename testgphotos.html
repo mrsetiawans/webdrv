@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upgrade Google Drive & Photos Unlimited - Penawaran Spesial!</title>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png">
+    <title>Upgrade Google Photos Unlimited - Penawaran Spesial!</title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/240px-Google_Photos_icon_%282020%29.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1044,20 +1044,9 @@
                         </div>
                     </div>
                     
-                    <!-- Pemilihan Paket (Segmented Control) -->
+                    <!-- Header Paket -->
                     <div class="my-4">
-                        <h2 class="text-lg font-bold mb-3 google-sans">1. Pilih Paket Anda</h2>
-                        <div id="package-selection">
-                            <div class="segmented-control">
-                                <input type="radio" id="pkg-drive" name="package" value="drive" class="package-radio" checked>
-                                <label for="pkg-drive" class="package-label">Google<br>Drive</label>
-    
-                                <input type="radio" id="pkg-photos" name="package" value="photos" class="package-radio">
-                                <label for="pkg-photos" class="package-label">Google<br>Photos</label>
-    
-                                <div class="segmented-control-pill"></div>
-                            </div>
-                        </div>
+                        <h2 class="text-lg font-bold mb-3 google-sans">Paket Pilihan</h2>
                     </div>
 
                     <!-- Info Produk -->
@@ -1245,27 +1234,6 @@
         const validCouponCode = "MERDEKA";
         
         const packages = {
-            drive: {
-                id: 'drive',
-                name: "Google Drive Unlimited",
-                price: 117000,
-                normalPrice: 699000,
-                title: "Google Drive Unlimited",
-                priceDisplay: `Rp117.000`,
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png',
-                description: "Penyimpanan cloud tanpa batas untuk semua file Anda.",
-                features: [
-                    "<strong>Penyimpanan Cloud Tanpa Batas:</strong> Simpan semua file, dokumen, foto, dan video tanpa khawatir kehabisan ruang.",
-                    "<strong>Akses File Di Mana Saja:</strong> Buka dan edit file Anda dari komputer, tablet, atau smartphone.",
-                    "<strong>Berbagi & Kolaborasi Mudah:</strong> Bagikan file dan folder dengan mudah, serta bekerja bersama secara real-time.",
-                    "<strong>Keamanan Kelas Dunia:</strong> File Anda dilindungi oleh infrastruktur keamanan canggih dari Google.",
-                    "<strong>Integrasi Penuh:</strong> Terhubung dengan Google Docs, Sheets, Slides, dan aplikasi favorit lainnya.",
-                    "<strong>Sekali Bayar Seumur Hidup:</strong> Tanpa biaya langganan bulanan atau tahunan.",
-                    "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Google yang sudah Anda miliki.",
-                    "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
-                ],
-                testimonials: testimonialImages
-            },
             photos: {
                 id: 'photos',
                 name: "Google Photos Unlimited",
@@ -1289,7 +1257,7 @@
             }
         };
 
-        let currentPackageId = 'drive'; // Paket default yang dipilih
+        let currentPackageId = 'photos'; // Paket default yang dipilih
         
         // --- UPDATED PAYMENT ACCOUNTS ---
         const paymentAccounts = {
@@ -1507,11 +1475,7 @@
                 <div class="space-y-0">
                     <details class="faq-item">
                         <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
-                        <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk paket yang dipilih (Drive, Photos, atau keduanya) dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
-                        <div class="faq-content">Prosesnya otomatis dan terintegrasi dengan akun Google Anda. Setelah pembayaran, penyimpanan pada Google Drive Anda akan langsung ter-upgrade menjadi unlimited. Anda tidak perlu melakukan apa-apa lagi dan bisa langsung menikmati kapasitas tanpa batas di akun pribadi Anda.</div>
+                        <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk Google Photos dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
                     </details>
                     <details class="faq-item">
                         <summary>Bagaimana proses untuk Google Photos?</summary>
@@ -1519,15 +1483,7 @@
                     </details>
                     <details class="faq-item">
                         <summary>Apakah ini aman dan legal?</summary>
-                        <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Apa bedanya dengan langganan Google One?</summary>
-                        <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, melalui metode upgrade langsung pada akun Anda.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Bisakah saya memindahkan file lama saya?</summary>
-                        <div class="faq-content">Tentu bisa. Karena upgrade ini langsung diterapkan pada akun Google Drive pribadi Anda, semua file lama Anda akan tetap ada di tempatnya dan secara otomatis menjadi bagian dari penyimpanan unlimited yang baru. Anda tidak perlu memindahkan file atau folder apa pun.</div>
+                        <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Privasi file Anda 100% terjamin dan Anda memiliki kontrol penuh atas data Anda.</div>
                     </details>
                     <details class="faq-item">
                         <summary>Berapa lama proses aktivasinya?</summary>
@@ -1535,7 +1491,7 @@
                     </details>
                     <details class="faq-item">
                         <summary>Apakah ada garansi?</summary>
-                        <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div>
+                        <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses aktivasi akun gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div>
                     </details>
                 </div>
             `;
