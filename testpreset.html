@@ -227,6 +227,8 @@
             box-shadow: var(--shadow-1);
         }
 
+
+
         /* === START: Auto-Scrolling Testimonial Carousel Styles === */
         .testimonial-carousel-container {
             overflow: hidden;
@@ -238,7 +240,21 @@
 
         .testimonial-track {
             display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            /*This will be controlled by JS*/
+        }
+
+        .testimonial-carousel-container:hover .testimonial-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                /* This will be calculated by JS */
+                transform: translateX(var(--scroll-end-value)); 
+            }
         }
 
         .testimonial-slide {
@@ -273,7 +289,6 @@
             transform: scale(1.03);
             box-shadow: var(--shadow-2);
         }
-
         /* === END: Auto-Scrolling Testimonial Carousel Styles === */
 
 
@@ -1342,24 +1357,13 @@
         }
 
         const getTestimonialsHTML = (prod) => {
-            const images = prod.testimonials;
-
-            let imagesHTML = images.map((url, index) => `
-                <div class="testimonial-slide">
-                    <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\nMuat';">
-                </div>
-            `).join('');
-
+            // The images are now used by the setupCarousel function, not directly here.
             return `
             <div class="material-card p-3 md:p-4 rounded-2xl">
                 <h2 class="text-xl font-bold text-center mb-2 google-sans">Testimoni Pelanggan</h2>
                 <p class="text-center text-m3-on-surface-variant text-xs mb-4">Ribuan fotografer dan kreator telah puas dengan hasil preset kami.</p>
-                <div class="testimonial-carousel-container">
-                    <div class="testimonial-track" id="testimonial-track">
-                        ${imagesHTML}
-                    </div>
-                    <button id="testimonial-prev-btn" class="modal-nav prev" style="display: none; background-color: rgba(0,0,0,0.4);">&#10094;</button>
-                    <button id="testimonial-next-btn" class="modal-nav next" style="display: flex; background-color: rgba(0,0,0,0.4);">&#10095;</button>
+                <div class="testimonial-carousel-container" id="testimonial-carousel">
+                    <!-- Carousel track and content will be injected by JavaScript -->
                 </div>
             </div>`;
         }
@@ -1397,25 +1401,50 @@
             return faqHTML;
         };
 
-        // --- CAROUSEL LOGIC ---
-        let testimonialIndex = 0;
-        
-        function handleTestimonialNav() {
-            const track = document.getElementById('testimonial-track');
-            const prevBtn = document.getElementById('testimonial-prev-btn');
-            const nextBtn = document.getElementById('testimonial-next-btn');
-            if (!track || !prevBtn || !nextBtn) return;
-            
-            const totalImages = product.testimonials.length;
-            const itemsPerPage = 3;
-            const maxIndex = totalImages > itemsPerPage ? totalImages - itemsPerPage : 0;
-            const slidePercentage = 100 / itemsPerPage;
+        // --- NEW CAROUSEL LOGIC ---
+        function setupCarousel(containerId, images) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = ''; // Clear previous content to be safe
 
-            track.style.transform = `translateX(-${testimonialIndex * slidePercentage}%)`;
+            const track = document.createElement('div');
+            track.className = 'testimonial-track';
             
-            prevBtn.style.display = testimonialIndex > 0 ? 'flex' : 'none';
-            nextBtn.style.display = testimonialIndex < maxIndex ? 'flex' : 'none';
+            // Duplicate images for a seamless, looping animation effect
+            const allSlides = [...images, ...images];
+            allSlides.forEach((imageUrl, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'testimonial-slide';
+                // The `onclick` event still works for opening the modal
+                slide.innerHTML = `<img src="${imageUrl}" alt="Testimoni Pelanggan ${index % images.length + 1}" class="testimonial-image" onclick="openImageModal(event, ${index % images.length})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\\nMuat';">`;
+                track.appendChild(slide);
+            });
+            
+            container.appendChild(track);
+
+            // This function calculates the correct animation values based on screen width
+            const calculateAndApplyAnimation = () => {
+                let slidesVisible;
+                if (window.innerWidth <= 480) {
+                    slidesVisible = 1.5; // Matches mobile CSS
+                } else if (window.innerWidth <= 768) {
+                    slidesVisible = 2;   // Matches tablet CSS
+                } else {
+                    slidesVisible = 3;   // Matches desktop CSS
+                }
+
+                const totalWidthOfOriginals = images.length * (100 / slidesVisible);
+                const animationDuration = images.length * 5; // ~5 seconds per image
+
+                track.style.setProperty('--scroll-end-value', `-${totalWidthOfOriginals}%`);
+                track.style.animation = `scroll ${animationDuration}s linear infinite`;
+            }
+
+            calculateAndApplyAnimation();
+            // Recalculate if the user resizes the window
+            window.addEventListener('resize', calculateAndApplyAnimation);
         }
+
 
         // --- FUNCTIONS ---
         function formatCurrency(value) {
@@ -1433,7 +1462,6 @@
         }
 
         function updateDisplay() {
-            testimonialIndex = 0; 
             const prod = product;
             const totalPrice = prod.price + uniqueCode;
 
@@ -1454,6 +1482,9 @@
 
                 infoContainer.style.opacity = '1';
                 detailsAccordion.style.opacity = '1';
+
+                // Initialize the new, dynamic carousel
+                setupCarousel('testimonial-carousel', prod.testimonials);
 
             }, 300); 
         }
@@ -1811,19 +1842,6 @@
         elements.currentYear.textContent = new Date().getFullYear();
         elements.submitBtn.addEventListener('click', handleFormSubmit);
 
-        // Carousel Navigation Events
-        elements.testimonialsFull.addEventListener('click', function(event) {
-            const totalImages = product.testimonials.length;
-            const maxIndex = totalImages > 3 ? totalImages - 3 : 0;
-            if (event.target.id === 'testimonial-next-btn' && testimonialIndex < maxIndex) {
-                testimonialIndex++;
-                handleTestimonialNav();
-            }
-            if (event.target.id === 'testimonial-prev-btn' && testimonialIndex > 0) {
-                testimonialIndex--;
-                handleTestimonialNav();
-            }
-        });
 
         updateDisplay();
         
