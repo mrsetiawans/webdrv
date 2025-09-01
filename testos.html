@@ -1,896 +1,660 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jasa Inject Kuota Internet Unlimited - Semua Operator</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3011/3011451.png">
+    <title>Worksheet Islami untuk Anak Cerdas & Sholeh</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
     <style>
-        :root {
-            --theme-primary: #2563eb;
-            --theme-primary-hover: #1d4ed8;
-            --theme-background: #0f172a; /* Dark Blue-Gray */
-            --theme-surface: #1e293b;   /* Lighter Dark Blue-Gray */
-            --theme-on-surface: #e2e8f0; /* Light Gray for Text */
-            --theme-on-surface-variant: #94a3b8; /* Muted Gray for secondary text */
-            --theme-outline: #334155;
-            --theme-success: #22c55e;
-            --theme-warning: #facc15;
-            --theme-error: #f87171;
-            --theme-gradient-start: #3b82f6;
-            --theme-gradient-end: #8b5cf6;
-            --shadow-1: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px -1px rgba(0,0,0,.1);
-            --shadow-2: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
-            --shadow-3: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
-        }
-        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--theme-background);
-            color: var(--theme-on-surface);
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background-color: #F8FAFC;
         }
-        .material-card {
-            background: var(--theme-surface);
-            border-radius: 16px;
-            box-shadow: var(--shadow-2);
-            border: 1px solid var(--theme-outline);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .gradient-header {
+            background: linear-gradient(135deg, #0d4875, #1e6a9c);
         }
-        .material-card:hover { 
-            transform: translateY(-4px);
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
-            border-color: var(--theme-primary);
+        .gradient-cta {
+            background: linear-gradient(45deg, #10B981, #34D399);
+            transition: all 0.3s ease-in-out;
         }
-        .form-input {
-            border: 1px solid var(--theme-outline);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 8px;
-            padding: 12px 14px;
-            width: 100%;
-            background-color: #0f172a;
-            color: var(--theme-on-surface);
-            font-size: 16px;
-        }
-        .form-input::placeholder { color: var(--theme-on-surface-variant); }
-        .form-input:focus {
-            border-color: var(--theme-primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
-        }
-        .cta-button {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 24px;
-            padding: 12px 28px;
-            font-size: 16px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            width: 100%;
-            border: none;
-            min-height: 48px;
-            color: white;
-            background: linear-gradient(90deg, var(--theme-gradient-start), var(--theme-gradient-end));
-            box-shadow: var(--shadow-2);
-        }
-        .cta-button:hover {
-            box-shadow: var(--shadow-3);
+        .gradient-cta:hover {
             transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
         }
-        .modal {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center;
-        }
-        .modal-content {
-            background-color: var(--theme-surface); margin: auto; padding: 28px; width: 90%; max-width: 480px;
-            border-radius: 16px; box-shadow: var(--shadow-3); text-align: center; position: relative;
-            border: 1px solid var(--theme-outline);
-            animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: scale(0.9) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .modal-ok-button {
-            background-color: var(--theme-primary); color: white; padding: 10px 28px; border: none;
-            border-radius: 24px; cursor: pointer; font-size: 14px; font-weight: 500;
-        }
-        .faq-item { border-bottom: 1px solid var(--theme-outline); }
-        .faq-item:last-child { border-bottom: none; }
-        .faq-item summary {
-            font-weight: 600; font-size: 15px; padding: 16px 12px; cursor: pointer; list-style: none;
-            display: flex; justify-content: space-between; align-items: center;
-            color: var(--theme-on-surface);
-        }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after {
-            content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-size: 14px;
-        }
-        .faq-item[open] summary::after { transform: rotate(180deg); }
-        .faq-content { padding: 0 12px 16px 12px; color: var(--theme-on-surface-variant); font-size: 14px; }
-        
-        /* Custom Radio Buttons */
-        .custom-radio-input { position: absolute; opacity: 0; width: 0; height: 0; }
-        .custom-radio-label {
-            display: flex; align-items: center; padding: 12px; transition: all 0.2s ease;
-            cursor: pointer; border-radius: 12px; margin: 2px; border: 1px solid transparent;
-        }
-        .custom-radio-label:hover { background-color: rgba(255,255,255,0.05); }
-        .custom-radio-input:checked + .custom-radio-label { background-color: rgba(37, 99, 235, 0.1); border-color: var(--theme-primary); }
-        .radio-circle {
-            height: 20px; width: 20px; border: 2px solid var(--theme-outline); border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; transition: all 0.15s ease;
-            flex-shrink: 0; margin-left: auto;
-        }
-        .radio-circle .dot { height: 10px; width: 10px; border-radius: 50%; background-color: transparent; transition: all 0.15s ease; }
-        .custom-radio-input:checked + .custom-radio-label .radio-circle { border-color: var(--theme-primary); }
-        .custom-radio-input:checked + .custom-radio-label .radio-circle .dot { background-color: var(--theme-primary); }
-
-        /* Package Selection */
-        .package-label {
-            display: block; padding: 20px; border: 2px solid var(--theme-outline); border-radius: 12px;
-            cursor: pointer; transition: all 0.2s ease; position: relative;
-        }
-        .package-label:hover { border-color: var(--theme-primary); background-color: rgba(37, 99, 235, 0.1); }
-        .custom-radio-input:checked + .package-label {
-            border-color: var(--theme-primary); background-color: rgba(37, 99, 235, 0.15);
-            box-shadow: 0 0 0 2px var(--theme-primary);
-        }
-        .best-seller-badge {
-            position: absolute; top: -12px; right: 16px; background: linear-gradient(90deg, var(--theme-gradient-start), var(--theme-gradient-end));
-            color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 12px;
-            text-transform: uppercase; letter-spacing: 0.5px;
-        }
-
-        /* Payment Screen */
-        .payment-header {
-            background: var(--theme-surface); color: #fff; text-align: center;
-            position: sticky; top: 0; z-index: 999; padding: 1rem;
-            border-bottom: 1px solid var(--theme-outline);
-        }
-        .payment-card {
-            background-color: var(--theme-surface); border: 1px solid var(--theme-outline); border-radius: 12px;
-            padding: 16px; margin-top: 12px; box-shadow: var(--shadow-1);
-        }
-        .copy-button-text { background: none; border: none; color: var(--theme-primary); font-weight: 600; cursor: pointer; padding: 8px; border-radius: 4px; }
-        .confirm-button-outlined {
-            width: 100%; padding: 12px 24px; border: 2px solid var(--theme-primary); color: var(--theme-primary);
-            background-color: transparent; border-radius: 24px; font-weight: 600; cursor: pointer; min-height: 48px;
-            transition: all 0.2s ease;
-        }
-        .confirm-button-outlined:hover { background-color: rgba(37, 99, 235, 0.1); }
-        .countdown-timer { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.5rem; }
-        .countdown-number { background-color: #dc2626; color: white; padding: 0.25rem 0.5rem; border-radius: 6px; font-weight: 600; font-size: 1.1rem; }
-        .security-badge {
-            background: rgba(37, 99, 235, 0.1); color: #60a5fa; padding: 6px 12px; border-radius: 20px;
-            font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;
-            border: 1px solid var(--theme-primary);
-        }
-        .spinner { animation: spin 1s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        .operator-logo-container {
-            height: 3rem; /* 48px */
-            width: 6rem; /* 96px */
+        .card {
             background-color: white;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem;
-            filter: grayscale(100%);
-            opacity: 0.7;
-            transition: all 0.3s ease;
-            border: 1px solid var(--theme-outline);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E2E8F0;
         }
-        .operator-logo-container:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.1);
-            border-color: var(--theme-primary);
-            background-color: #f1f5f9;
+        .section-title {
+            background: linear-gradient(90deg, #0d4875, #1e6a9c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        /* --- PROFESSIONAL PROCESSING SCREEN STYLES --- */
-        .terminal {
-            background-color: #0b1120;
-            border: 1px solid var(--theme-outline);
+        .images-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .images-wrapper {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .faq-item details > summary {
+            list-style: none;
+        }
+        .faq-item details > summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-item details[open] summary .arrow-down {
+            transform: rotate(180deg);
+        }
+        .arrow-down {
+            transition: transform 0.3s ease;
+        }
+        /* Form Styles from Example */
+        .form-input {
+            border: 2px solid #dadce0;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            overflow: hidden;
-            font-family: monospace;
+            padding: 10px 12px;
+            width: 100%;
+            background-color: #ffffff;
+            font-size: 16px;
         }
-        .terminal-header {
-            background-color: var(--theme-outline);
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            color: #ccc;
-            font-size: 12px;
+        .form-input:focus {
+            border-color: #0d4875;
+            outline: none;
+            box-shadow: 0 0 0 1px #0d4875;
         }
-        .terminal-dots { display: flex; gap: 6px; margin-right: 12px; }
-        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
-        .terminal-dot.red { background-color: #ff5f56; }
-        .terminal-dot.yellow { background-color: #ffbd2e; }
-        .terminal-dot.green { background-color: #27c93f; }
-        .terminal-body { padding: 16px; height: 350px; overflow-y: auto; }
-        .log-entry {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 8px;
-            opacity: 0;
-            animation: fadeIn 0.3s forwards;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-        .log-prefix { color: #888; margin-right: 8px; flex-shrink: 0; }
-        .log-message { word-break: break-all; }
-        .log-message.info { color: var(--theme-on-surface-variant); }
-        .log-message.success { color: var(--theme-success); }
-        .log-message.warning { color: var(--theme-warning); }
-        .log-message.error { color: var(--theme-error); }
-        .blinking-cursor {
-            animation: blink 1s step-end infinite;
-            background-color: var(--theme-on-surface);
-            width: 8px;
-            display: inline-block;
-            height: 15px;
-            vertical-align: middle;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .processing-footer {
-            background-color: #020617;
-            padding: 12px 16px;
-            border-top: 1px solid var(--theme-outline);
-        }
-        .progress-bar-container { width: 100%; background-color: #334155; border-radius: 4px; overflow: hidden; }
-        .progress-bar {
-            width: 0%; height: 8px;
-            background: linear-gradient(90deg, var(--theme-gradient-start), var(--theme-gradient-end));
-            border-radius: 4px; transition: width 0.5s ease-in-out;
-        }
-        .status-text {
-            color: #ccc;
-            font-size: 12px;
-            margin-bottom: 8px;
-            height: 16px;
-        }
+        .payment-radio { position: absolute; opacity: 0; width: 0; height: 0; }
+        .payment-label { display: flex; align-items: center; padding: 12px; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; border-radius: 12px; margin: 2px; border: 1px solid #E2E8F0; }
+        .payment-label:hover { background-color: #F8FAFC; }
+        .payment-radio:checked + .payment-label { background-color: #e8f0fe; box-shadow: inset 0 0 0 2px #1a73e8; }
+        .payment-logo-container { width: 48px; height: 32px; background-color: #ffffff; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-right: 12px; padding: 4px; border: 1px solid #dadce0; flex-shrink: 0; }
+        .payment-logo { max-height: 100%; max-width: 100%; object-fit: contain; }
+        .custom-radio-button { height: 20px; width: 20px; border: 2px solid #dadce0; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; margin-left: auto; }
+        .custom-radio-button .dot { height: 8px; width: 8px; border-radius: 50%; background-color: transparent; transition: all 0.15s; }
+        .payment-radio:checked + .payment-label .custom-radio-button { border-color: #1a73e8; }
+        .payment-radio:checked + .payment-label .custom-radio-button .dot { background-color: #1a73e8; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; }
+        .modal-content { background-color: #fff; margin: auto; padding: 28px; width: 90%; max-width: 480px; border-radius: 16px; text-align: center; position: relative; }
+        .modal-ok-button { background-color: #1a73e8; color: white; padding: 10px 28px; border: none; border-radius: 24px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.15s; }
+        
+        /* Payment page */
+        .payment-header { background: linear-gradient(135deg, #202124 0%, #3c4043 100%); color: #fff; text-align: center; position: sticky; top: 0; z-index: 999; padding: 1rem;}
+        .payment-header h2 { font-size: 1.125rem; font-weight: 500; }
+        .countdown-timer { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+        .countdown-item { display: flex; align-items: center; gap: 0.25rem; font-size: 0.8rem; }
+        .countdown-number { background-color: #EA4335; color: white; padding: 0.25rem 0.5rem; border-radius: 6px; font-weight: 600; font-size: 1.1rem; }
+        .payment-card { background-color: #fff; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px; margin-top: 12px; }
+        .copy-button-text { background: none; border: none; color: #1a73e8; font-weight: 500; cursor: pointer; padding: 8px; border-radius: 4px; transition: background-color 0.15s; }
+        .copy-button-text:hover { background-color: #e8f0fe; }
+        .confirm-button-outlined { width: 100%; padding: 12px 24px; border: 2px solid #1a73e8; color: #1a73e8; background-color: transparent; border-radius: 24px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+        .confirm-button-outlined:hover { background-color: #e8f0fe; }
+        .payment-accordion summary { font-weight: 500; padding: 14px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .payment-accordion summary::-webkit-details-marker { display: none; }
+        .payment-accordion summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; transition: transform 0.2s; }
+        .payment-accordion[open] summary::after { transform: rotate(180deg); }
+        .payment-accordion-content { padding-bottom: 16px; color: #5f6368; line-height: 1.6; }
+        .payment-accordion-content ol { list-style-type: decimal; padding-left: 20px; font-size: 14px; }
     </style>
 </head>
-<body class="antialiased">
-
-    <div id="init-screen"></div>
-    <div id="payment-instruction-container" style="display: none;"></div>
-    <div id="processing-screen" style="display: none;"></div>
-    <div id="status-check-screen" style="display: none;"></div>
-    
-    <div id="app-content" class="p-4 sm:p-6 lg:p-8" style="display: none;">
-        <main id="main-screen">
-            <!-- Hero Section -->
-            <div class="max-w-3xl mx-auto text-center mb-12">
-                <div class="flex justify-center items-center gap-4 mb-6">
-                    <i class="fas fa-wifi text-4xl text-blue-400"></i>
-                    <i class="fas fa-globe text-6xl text-purple-400"></i>
-                    <i class="fas fa-bolt text-4xl text-blue-400"></i>
-                </div>
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-                    Internet Dengan Kuota Tanpa Batas
-                </h1>
-                <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-                    Jasa inject kuota unlimited untuk semua operator. Nikmati akses internet, sosial media, streaming, dan game tanpa batas.
-                </p>
-            </div>
-
-            <!-- Operator Logos -->
-            <div class="max-w-5xl mx-auto text-center mb-16">
-                 <h2 class="text-sm font-bold uppercase text-gray-500 tracking-widest mb-6">Mendukung Semua Operator Populer</h2>
-                 <div class="flex justify-center items-center gap-4 md:gap-6 flex-wrap">
-                    <div class="operator-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Telkomsel_new_logo_2021.svg/330px-Telkomsel_new_logo_2021.svg.png" alt="Telkomsel" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="operator-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Indosat_Ooredoo_Hutchison_logo.svg/320px-Indosat_Ooredoo_Hutchison_logo.svg.png" alt="IM3" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="operator-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/XL_Axiata_logo.svg/201px-XL_Axiata_logo.svg.png" alt="XL" class="max-h-full max-w-full object-contain">
-                    </div>
-                     <div class="operator-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Axis_logo_2015.svg/200px-Axis_logo_2015.svg.png" alt="Axis" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="operator-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Logo_3.svg/200px-Logo_3.svg.png" alt="3" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="operator-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Logo_byU_2021.svg/330px-Logo_byU_2021.svg.png" alt="by.U" class="max-h-full max-w-full object-contain">
-                    </div>
-                    <div class="operator-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Live.On_logo.png" alt="Live.On" class="max-h-full max-w-full object-contain">
-                    </div>
-                 </div>
-            </div>
-
-            <!-- Main Content Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 max-w-6xl mx-auto">
-                <!-- Left Column: Form & Payment -->
-                <div class="lg:col-span-3">
-                    <div class="material-card p-6 md:p-8">
-                        <div class="grid grid-cols-2 gap-3 text-center border-b border-gray-700 pb-4 mb-6">
-                            <div class="flex"><div class="security-badge w-full justify-center"><i class="fas fa-shield-alt text-xs mr-1"></i> TRANSAKSI AMAN</div></div>
-                            <div class="flex"><div class="security-badge w-full justify-center" style="background: rgba(34, 197, 94, 0.1); color: #4ade80; border-color: var(--theme-success);"><i class="fas fa-hand-holding-usd text-xs mr-1"></i> GARANSI UANG KEMBALI</div></div>
+<body class="antialiased text-gray-800">
+    <div id="payment-instruction-container"></div>
+    <div id="main-content-container">
+        <div class="container mx-auto max-w-7xl">
+            <div class="m-2 md:m-4">
+                
+                <header class="gradient-header text-white text-center p-6 md:p-8 rounded-3xl shadow-2xl shadow-blue-900/20 max-w-4xl mx-auto">
+                    <h1 class="text-3xl md:text-4xl font-extrabold leading-tight">
+                        <span class="text-yellow-300">🕌</span> Mau Anak <span class="underline decoration-yellow-300 decoration-4">Cinta Islam</span> Sejak Dini?
+                    </h1>
+                    <p class="text-base md:text-lg mt-4 opacity-90 max-w-xl mx-auto">
+                        Cukup Gunakan Worksheet Ini, dan Lihat Anak Belajar Agama dengan Riang Gembira! 😍
+                    </p>
+                </header>
+                
+                <main class="mt-8 grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    
+                    <!-- Left Column: Form -->
+                    <div class="lg:col-span-2 order-last lg:order-first">
+                        <div class="card p-6 sticky top-8">
+                             <h2 class="text-2xl font-bold section-title text-center mb-5">
+                                📝 Pesan Sekarang
+                            </h2>
+                            <div id="product-info-form-top" class="mb-4"></div>
+                            
+                            <form id="orderForm">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="nama" class="text-sm font-medium text-gray-700 block mb-1">Nama Anda</label>
+                                        <input type="text" id="nama" name="nama" class="form-input" placeholder="Tulis nama lengkap Anda *" required>
+                                    </div>
+                                    <div>
+                                         <label for="whatsapp" class="text-sm font-medium text-gray-700 block mb-1">No. WhatsApp</label>
+                                        <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="Contoh: 081234567890 *" required>
+                                    </div>
+                                    <div>
+                                         <label for="email" class="text-sm font-medium text-gray-700 block mb-1">Email Anda</label>
+                                        <input type="email" id="email" name="email" class="form-input" placeholder="Untuk pengiriman file *" required>
+                                    </div>
+                                </div>
+                                
+                                <div id="payment-method-selection" class="mt-6"></div>
+                                <div id="order-details-in-form" class="mt-4"></div>
+                                
+                                <button type="button" id="submit-btn" class="w-full gradient-cta text-white text-lg font-bold py-4 px-8 rounded-full shadow-lg mt-6 flex items-center justify-center">
+                                    <i class="fas fa-shopping-cart mr-2"></i>
+                                    Beli Sekarang & Dapatkan Bonusnya
+                                </button>
+                            </form>
                         </div>
-                        <form id="orderForm">
-                            <h2 class="text-xl font-bold mb-4">1. Pilih Paket Kebutuhanmu</h2>
-                            <div id="package-selection" class="space-y-4 mb-6"></div>
-                            
-                            <h2 class="text-xl font-bold mb-4">2. Lengkapi Data</h2>
-                            <div class="space-y-4">
-                                <div><input type="text" id="nama" name="nama" class="form-input" placeholder="Nama Anda *" required></div>
-                                <div><input type="tel" id="phone" name="phone" class="form-input" placeholder="Nomor Telepon Anda (Untuk Aktivasi) *" required></div>
-                                <div><input type="email" id="email" name="email" class="form-input" placeholder="Email Anda (Untuk Notifikasi) *" required></div>
+                    </div>
+
+                    <!-- Right Column: Content -->
+                    <div class="lg:col-span-3 space-y-10">
+                         <div class="card p-4 text-center">
+                            <img src="https://cdn.scalev.id/business_files/ZG1coul77LxAkUelr1tEi3nI/1752163343134-ChatGPT%20Image%2010%20Jul%202025,%2022.55.01.webp" alt="Worksheet Islami" class="w-full h-auto object-cover rounded-xl shadow-lg">
+                            <div class="bg-blue-50 text-blue-900 p-4 mt-4 rounded-xl">
+                                <p class="font-bold text-lg">
+                                    Lebih dari <span class="text-blue-600">1200+ lembar aktivitas</span> anak tema Islami siap pakai.
+                                </p>
+                                <p class="text-sm mt-1">
+                                    Didesain khusus untuk anak usia 3+, belajar Tauhid, Akhlak, Ibadah, Sholat, Doa, dan banyak lagi!
+                                </p>
                             </div>
-                            
-                            <h2 class="text-xl font-bold mb-4 mt-8">3. Metode Pembayaran</h2>
-                            <div id="payment-method-selection"></div>
-                            
-                            <div id="order-details-in-form" class="mt-6"></div>
-                            
-                            <button type="button" id="submit-btn" class="cta-button mt-6">
-                                <i class="fas fa-lock mr-2"></i> Lanjutkan ke Pembayaran
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                        </div>
 
-                <!-- Right Column: Features & FAQ -->
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="material-card p-6 md:p-8">
-                        <h3 class="text-2xl font-bold mb-6 text-center">Daftar dan Nikmati</h3>
-                        <ul class="space-y-4">
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 w-6 text-center mr-3"></i><span class="text-gray-300">Kuota tanpa batas (Unlimited)</span></li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 w-6 text-center mr-3"></i><span class="text-gray-300">Akses internet tanpa batas</span></li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 w-6 text-center mr-3"></i><span class="text-gray-300">Akses media sosial tanpa batas</span></li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 w-6 text-center mr-3"></i><span class="text-gray-300">Streaming tanpa batas</span></li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-400 w-6 text-center mr-3"></i><span class="text-gray-300">Akses semua game tanpa batas</span></li>
-                        </ul>
+                        <section class="card p-6">
+                            <h2 class="text-2xl font-bold section-title text-center mb-5">
+                                <span class="text-2xl">📌</span> Masalah Umum Para Orang Tua
+                            </h2>
+                            <ul class="space-y-3">
+                                <li class="flex items-start p-3 bg-red-50 rounded-lg"><span class="text-red-500 mr-3 mt-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" /></svg></span> Anak lebih tertarik main HP daripada belajar</li>
+                                <li class="flex items-start p-3 bg-red-50 rounded-lg"><span class="text-red-500 mr-3 mt-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" /></svg></span> Susah cari bahan belajar agama yang sesuai usia anak</li>
+                                <li class="flex items-start p-3 bg-red-50 rounded-lg"><span class="text-red-500 mr-3 mt-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" /></svg></span> Gak ada waktu nyusun aktivitas edukatif tiap hari</li>
+                                <li class="flex items-start p-3 bg-red-50 rounded-lg"><span class="text-red-500 mr-3 mt-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" /></svg></span> Ingin anak cinta Islam, tapi bingung harus mulai dari mana</li>
+                            </ul>
+                        </section>
+
+                        <div class="gradient-header text-center p-6 rounded-2xl">
+                            <p class="text-white text-lg font-bold">
+                                Kalau Ayah & Bunda pernah ngalamin ini, tenang...
+                            </p>
+                            <h2 class="text-yellow-300 text-xl font-bold mt-2">
+                                Kini ada solusi praktis agar anak semangat belajar agama di rumah!
+                            </h2>
+                        </div>
+                        
+                        <section class="card p-6">
+                            <h3 class="text-3xl font-bold text-center section-title">
+                                <span class="text-yellow-400">🌟</span> Kenalin, Paket Worksheet Islami
+                            </h3>
+                            <div class="mt-4 relative">
+                                <div id="image-slider" class="images-wrapper flex overflow-x-scroll snap-x snap-mandatory rounded-xl">
+                                   <img src="https://cdn.scalev.id/business_files/JKLJT4p0l7D3Fkxx58d6cgsn/1755188005401-3.webp" alt="Worksheet Contoh 1" class="min-w-full object-cover snap-start">
+                                   <img src="https://cdn.scalev.id/business_files/L7_7viv-Z240Fd5X1IpvAGaL/1755188039379-1.webp" alt="Worksheet Contoh 2" class="min-w-full object-cover snap-start">
+                                   <img src="https://cdn.scalev.id/business_files/WSoo9IqjiHnTA7s8KS_P7MMZ/1755188044072-2.webp" alt="Worksheet Contoh 3" class="min-w-full object-cover snap-start">
+                                   <img src="https://cdn.scalev.id/business_files/PSYfcjg0eW_EaL2fe3-xrsT4/1755188048600-4.webp" alt="Worksheet Contoh 4" class="min-w-full object-cover snap-start">
+                                   <img src="https://cdn.scalev.id/business_files/-Jzeo-bbc9nrn5_gUxbsYHH5/1755188052080-5.webp" alt="Worksheet Contoh 5" class="min-w-full object-cover snap-start">
+                                   <img src="https://cdn.scalev.id/business_files/MZ15GC2ZtnbwC_9gYLfTaS-l/1755188058134-6.webp" alt="Worksheet Contoh 6" class="min-w-full object-cover snap-start">
+                                   <img src="https://cdn.scalev.id/business_files/ixRYFsVP1KyUrVAsXRnOrzHi/1755188064572-7.webp" alt="Worksheet Contoh 7" class="min-w-full object-cover snap-start">
+                                   <img src="https://cdn.scalev.id/business_files/g6AIyQHdF_LtjbAsljeyWzCK/1755188068524-8.webp" alt="Worksheet Contoh 8" class="min-w-full object-cover snap-start">
+                                   <img src="https://cdn.scalev.id/business_files/lCQ6uYajr6NekYmiZp4nvE1Z/1755188072062-9.webp" alt="Worksheet Contoh 9" class="min-w-full object-cover snap-start">
+                                </div>
+                                 <div id="slider-dots" class="flex justify-center space-x-2 mt-4"></div>
+                            </div>
+                        </section>
+                        
+                        <section class="card p-6">
+                             <h2 class="text-2xl font-bold section-title text-center mb-5">
+                                <span class="text-2xl">🚀</span> Fitur Utama
+                            </h2>
+                            <ul class="space-y-4">
+                                <li class="flex items-start"><span class="text-emerald-500 mr-3 mt-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span><div><strong class="text-blue-900">Printable</strong><br><span class="text-sm text-gray-600">Mudah dicetak untuk dijadikan aktivitas belajar offline yang menarik.</span></div></li>
+                                <li class="flex items-start"><span class="text-emerald-500 mr-3 mt-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span><div><strong class="text-blue-900">Interaktif & Seru</strong><br><span class="text-sm text-gray-600">Berisi kuis, teka-teki, dan permainan edukatif yang mengasah kecerdasan.</span></div></li>
+                                <li class="flex items-start"><span class="text-emerald-500 mr-3 mt-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span><div><strong class="text-blue-900">Desain Menarik</strong><br><span class="text-sm text-gray-600">Warna cerah dan ilustrasi lucu membuat anak-anak betah belajar.</span></div></li>
+                                <li class="flex items-start"><span class="text-emerald-500 mr-3 mt-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span><div><strong class="text-blue-900">Materi Lengkap</strong><br><span class="text-sm text-gray-600">Mencakup huruf hijaiyah, Nabi dan Rasul, Shalat, Puasa dan lainnya.</span></div></li>
+                            </ul>
+                        </section>
+                        
+                        <section>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="card p-6">
+                                   <h3 class="text-xl font-bold text-center text-blue-900"><span class="mr-2">🧠</span> Manfaat untuk Anak</h3>
+                                   <ul class="list-disc list-inside mt-4 space-y-2 text-sm text-gray-700">
+                                       <li>Mengenal nilai-nilai Islam sejak dini.</li>
+                                       <li>Melatih motorik halus dan konsentrasi.</li>
+                                       <li>Belajar sambil bermain tanpa bosan.</li>
+                                       <li>Membiasakan anak mencintai belajar agama.</li>
+                                   </ul>
+                                </div>
+                                 <div class="card p-6">
+                                   <h3 class="text-xl font-bold text-center text-blue-900"><span class="mr-2">👩‍👧</span> Manfaat untuk Orang Tua</h3>
+                                   <ul class="list-disc list-inside mt-4 space-y-2 text-sm text-gray-700">
+                                       <li>Solusi anti ribet dampingi anak belajar.</li>
+                                       <li>Hemat biaya & waktu, beli sekali pakai selamanya.</li>
+                                       <li>Menciptakan bonding moment bersama anak.</li>
+                                       <li>Cocok untuk di rumah, PAUD, atau TPA.</li>
+                                   </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="card p-6 text-center">
+                            <h2 class="text-2xl font-bold section-title mb-4"><span class="text-2xl">📦</span> Apa Saja Isi Worksheetnya?</h2>
+                            <p class="mb-4">Total ada <strong>24 topik Islami</strong> yang disajikan secara menarik dan mudah dipahami anak.</p>
+                            <img src="https://cdn.scalev.id/business_files/q728ndYBILzisSPVu0vJ0nbX/1755187381108-HURUF%20HIJAIYAH%20(1).webp" alt="Daftar Isi" class="w-full h-auto object-cover rounded-lg shadow-md">
+                            <p class="mt-4 font-semibold text-blue-900">Semua disusun rapi dalam file PDF, gampang diakses & dicetak kapan pun!</p>
+                        </section>
+                        
+                        <section class="text-center">
+                            <div class="gradient-header p-4 rounded-t-2xl">
+                                <h2 class="text-white text-2xl font-bold">🎁 BONUS KHUSUS HARI INI!</h2>
+                            </div>
+                            <div class="card p-4 rounded-t-none">
+                                <img src="https://cdn.scalev.id/business_files/B4r6IKRrbCXIPvpu6bfFOmg5/1752177389399-Untitled%20design%20(5).webp" alt="Bonus" class="w-full h-auto object-cover rounded-lg">
+                            </div>
+                        </section>
+                        
+                        <section class="card p-6">
+                             <h2 class="text-2xl font-bold section-title text-center mb-5">
+                                ❤️ Kata Mereka yang Sudah Pakai
+                            </h2>
+                            <div class="mt-4 space-y-4">
+                                <img src="https://cdn.scalev.id/business_files/j6ktw_p6kC8ttlxbD70ealzF/1754918288194-qulna%20(1).webp" alt="Testimoni 1" class="w-full h-auto object-cover rounded-lg border">
+                                <img src="https://cdn.scalev.id/business_files/hUL1rE2_kEcCKTKaem7jel3i/1754918472175-qulna%20(2).webp" alt="Testimoni 2" class="w-full h-auto object-cover rounded-lg border">
+                                <img src="https://cdn.scalev.id/business_files/I0xSndxaQZT5Bqh7Q1wdD0I4/1754918977596-qulna%20(3).webp" alt="Testimoni 3" class="w-full h-auto object-cover rounded-lg border">
+                            </div>
+                        </section>
+
+                        <section class="card p-6">
+                            <h2 class="text-2xl font-bold section-title text-center mb-5">
+                                ❓ Yang Sering Ditanyakan (FAQ)
+                            </h2>
+                            <div class="space-y-3">
+                                <div class="faq-item border rounded-lg">
+                                    <details>
+                                        <summary class="flex justify-between items-center p-4 cursor-pointer font-semibold text-blue-900">
+                                            Ini buku fisik atau digital?
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 arrow-down" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                        </summary>
+                                        <p class="p-4 pt-0 text-gray-600 text-sm">Ini adalah file digital (PDF), bukan produk fisik. Bunda bisa buka di HP/Tablet atau cetak sendiri di rumah, sesuai kebutuhan.</p>
+                                    </details>
+                                </div>
+                                <div class="faq-item border rounded-lg">
+                                    <details>
+                                        <summary class="flex justify-between items-center p-4 cursor-pointer font-semibold text-blue-900">
+                                            Kalau filenya hilang, bisa minta kirim ulang?
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 arrow-down" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                        </summary>
+                                        <p class="p-4 pt-0 text-gray-600 text-sm">Bisa banget, Bun! Cukup hubungi kami via WhatsApp atau DM, nanti filenya akan dikirim ulang tanpa biaya.</p>
+                                    </details>
+                                </div>
+                                 <div class="faq-item border rounded-lg">
+                                    <details>
+                                        <summary class="flex justify-between items-center p-4 cursor-pointer font-semibold text-blue-900">
+                                            Untuk anak usia berapa worksheet ini?
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 arrow-down" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                        </summary>
+                                        <p class="p-4 pt-0 text-gray-600 text-sm">Ideal untuk anak usia <strong>3 sampai 9 tahun</strong>. Tapi bisa juga untuk anak usia TK hingga awal SD, karena isi worksheet-nya bertingkat dan bervariasi.</p>
+                                    </details>
+                                </div>
+                                 <div class="faq-item border rounded-lg">
+                                    <details>
+                                        <summary class="flex justify-between items-center p-4 cursor-pointer font-semibold text-blue-900">
+                                            Apakah boleh dijual lagi?
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 arrow-down" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                        </summary>
+                                        <p class="p-4 pt-0 text-gray-600 text-sm">Tentu saja boleh! Produk ini disertai lisensi PLR (Private Label Rights), yang artinya Anda bebas untuk menjualnya kembali dan menyimpan 100% keuntungannya.</p>
+                                    </details>
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                    <div class="material-card p-6 md:p-8">
-                        <div id="info-section-full"></div>
-                    </div>
-                </div>
+                </main>
             </div>
-        </main>
+        </div>
 
-        <footer id="footer" class="text-center mt-16 text-gray-500 text-sm">
-            <p>Copyright © <span id="currentYear"></span>. Semua Hak Dilindungi.</p>
+        <footer class="text-center p-4 mt-8">
+             <div class="bg-gray-800 text-white p-6 rounded-2xl max-w-4xl mx-auto">
+                 <p class="text-sm opacity-80">
+                    Investasi terbaik adalah untuk perkembangan anak. Anak senang belajar, Anda pun bahagia melihatnya tumbuh cerdas & sholeh. Selamat membersamai ananda ya, Ayah dan Bunda hebat!
+                 </p>
+                 <a href="#form-pemesanan" class="mt-4 block w-full md:w-auto md:inline-block gradient-cta text-white font-bold py-3 px-8 rounded-full shadow-lg">
+                    Pesan Sekarang Juga!
+                 </a>
+             </div>
         </footer>
     </div>
-
-    <!-- Modal for Info/Confirmation -->
+    
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <h3 id="modalTitle" class="text-xl font-bold mb-2"></h3>
-            <p id="modalMessage" class="text-gray-400 mb-6"></p>
+            <p id="modalMessage" class="text-gray-600 mb-4"></p>
             <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
         </div>
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- ELEMENTS ---
-        const elements = {
-            initScreen: document.getElementById('init-screen'),
-            appContent: document.getElementById('app-content'),
-            mainScreen: document.getElementById('main-screen'),
-            processingScreen: document.getElementById('processing-screen'),
-            statusCheckScreen: document.getElementById('status-check-screen'),
-            paymentInstructionContainer: document.getElementById('payment-instruction-container'),
-            footer: document.getElementById('footer'),
-            currentYear: document.getElementById('currentYear'),
-            packageSelection: document.getElementById('package-selection'),
-            paymentMethodSelection: document.getElementById('payment-method-selection'),
-            orderDetailsInForm: document.getElementById('order-details-in-form'),
-            infoSectionFull: document.getElementById('info-section-full'),
-            orderForm: document.getElementById('orderForm'),
-            submitBtn: document.getElementById('submit-btn'),
-        };
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- ELEMENTS ---
+            const elements = {
+                mainContentContainer: document.getElementById('main-content-container'),
+                paymentInstructionContainer: document.getElementById('payment-instruction-container'),
+                productInfoFormTop: document.getElementById('product-info-form-top'),
+                paymentMethodSelection: document.getElementById('payment-method-selection'),
+                orderDetailsInForm: document.getElementById('order-details-in-form'),
+                orderForm: document.getElementById('orderForm'),
+                submitBtn: document.getElementById('submit-btn'),
+            };
 
-        // --- CONFIGURATION ---
-        let expiryTime;
+            // --- CONFIGURATION ---
+            const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
+            let countdownInterval;
+            let expiryTime;
 
-        const packages = {
-            '3months': { id: '3months', name: "Inject Kuota 3 Bulan", price: 150000, title: "Paket 3 Bulan", description: "Kuota internet unlimited selama 3 bulan." },
-            '6months': { id: '6months', name: "Inject Kuota 6 Bulan", price: 250000, title: "Paket 6 Bulan", description: "Paling hemat! Kuota unlimited 6 bulan.", bestSeller: true },
-            '12months': { id: '12months', name: "Inject Kuota 12 Bulan", price: 350000, title: "Paket 1 Tahun", description: "Setahun penuh tanpa khawatir kuota." }
-        };
-        
-        let currentPackageId = '6months'; // Default selection
+            const packages = {
+                worksheet: {
+                    id: 'worksheet',
+                    name: "Paket Worksheet Islami",
+                    price: 57000,
+                    normalPrice: 199000,
+                    title: "Paket Worksheet Islami",
+                    priceDisplay: `Rp57.000`,
+                    logo: 'https://cdn.scalev.id/business_files/ZG1coul77LxAkUelr1tEi3nI/1752163343134-ChatGPT%20Image%2010%20Jul%202025,%2022.55.01.webp',
+                    description: "1200+ lembar aktivitas anak siap pakai."
+                }
+            };
+            let currentPackageId = 'worksheet';
 
-        const paymentAccounts = {
-            qris: { displayName: 'QRIS (Semua E-Wallet & M-Banking)', accountHolder: 'UNLIMITED-KUOTA', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris' },
-            bca_va: { displayName: 'BCA Virtual Account', accountHolder: 'UNLIMITED-KUOTA', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'va' },
-            gopay: { displayName: 'Gopay', accountHolder: 'a.n. Unlimited Kuota', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet' },
-            dana: { displayName: 'DANA', accountHolder: 'a.n. Unlimited Kuota', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet' },
-        };
+            const paymentAccounts = {
+                qris: { displayName: 'QRIS', accountHolder: 'Epay', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris' },
+                cimb: { displayName: 'Cimb Niaga', accountHolder: 'Octo Pay - 6289510639366', number: '6289510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'va' },
+                bca_va: { displayName: 'BCA Virtual Account', accountHolder: 'Epayment', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'va' },
+                gopay: { displayName: 'Gopay', accountHolder: 'Gopay 6289510639366', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet' },
+                dana: { displayName: 'DANA', accountHolder: 'DNID089510639366', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet' },
+                ovo: { displayName: 'OVO', accountHolder: 'OVO Epayment', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet' }
+            };
 
-        // --- HELPER FUNCTION ---
-        function getCurrentTimestamp() { return `[${new Date().toLocaleTimeString('en-GB')}]`; }
-
-        // --- TEMPLATE FUNCTIONS ---
-        const getPackageSelectionHTML = () => {
-            let html = '';
-            Object.entries(packages).forEach(([key, pkg]) => {
-                const bestSellerBadge = pkg.bestSeller ? '<div class="best-seller-badge">Best Value</div>' : '';
-                html += `
-                    <div>
-                        <input type="radio" id="pkg-${key}" name="package" value="${key}" class="custom-radio-input" ${key === currentPackageId ? 'checked' : ''}>
-                        <label for="pkg-${key}" class="package-label">
-                            ${bestSellerBadge}
-                            <div class="flex items-center">
-                                <div class="flex-grow text-left">
-                                    <h3 class="font-bold text-lg">${pkg.title}</h3>
-                                    <p class="text-sm text-gray-400">${pkg.description}</p>
-                                </div>
-                                <div class="text-right pl-4">
-                                    <p class="font-bold text-xl text-blue-400">${formatCurrency(pkg.price)}</p>
-                                </div>
-                                <div class="ml-4">
-                                   <span class="radio-circle"><span class="dot"></span></span>
-                                </div>
-                            </div>
+            // --- TEMPLATE FUNCTIONS ---
+            const getProductInfoHTML = (pkg) => `
+                <div class="text-center">
+                    <div class="text-4xl font-extrabold text-emerald-600">${formatCurrency(pkg.price)}</div>
+                    <p class="text-md line-through text-gray-500">Harga Normal: ${formatCurrency(pkg.normalPrice)}</p>
+                    <div class="mt-2">
+                        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full font-semibold">
+                            <i class="fas fa-tag mr-1"></i>Promo Terbatas Hari Ini!
+                        </span>
+                    </div>
+                </div>`;
+            
+            const getPaymentMethodsHTML = (accounts) => {
+                let html = `<h3 class="text-lg font-bold mb-3">Pilih Metode Pembayaran</h3>`;
+                html += `<div class="payment-group space-y-2">`;
+                Object.entries(accounts).forEach(([key, account], index) => {
+                    html += `<div>
+                        <input type="radio" id="${key}" name="payment-method" value="${key}" class="payment-radio" ${index === 0 ? 'checked' : ''}>
+                        <label for="${key}" class="payment-label">
+                            <div class="payment-logo-container"><img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo"></div>
+                            <span class="font-medium text-gray-800 flex-grow text-sm">${account.displayName}</span>
+                            <span class="custom-radio-button"><span class="dot"></span></span>
                         </label>
                     </div>`;
-            });
-            return html;
-        };
-        
-        const getPaymentMethodsHTML = (accounts) => {
-            let html = `<div class="payment-group border border-gray-700 rounded-lg">`;
-            Object.entries(accounts).forEach(([key, account], index) => {
-                const borderClass = index === 0 ? '' : 'border-t border-gray-700';
-                html += `
-                    <div class="${borderClass}">
-                        <input type="radio" id="${key}" name="payment-method" value="${key}" class="custom-radio-input" ${index === 0 ? 'checked' : ''}>
-                        <label for="${key}" class="custom-radio-label">
-                            <div class="w-12 h-8 bg-white rounded-md flex items-center justify-center mr-4 p-1 border border-gray-300 flex-shrink-0">
-                                <img src="${account.logo}" alt="Logo ${account.displayName}" class="max-h-full max-w-full object-contain">
-                            </div>
-                            <span class="font-medium flex-grow text-sm">${account.displayName}</span>
-                            <span class="radio-circle"><span class="dot"></span></span>
-                        </label>
-                    </div>`;
-            });
-            html += `</div>`;
-            return html;
-        };
+                });
+                html += `</div>`;
+                return html;
+            };
 
-        const getOrderDetailsHTML = (pkg, totalPrice) => {
-            return `
-            <div class="mt-6 pt-6 border-t border-gray-700">
-                <h3 class="text-xl font-bold mb-3 text-left">Rincian Pesanan</h3>
-                <div class="space-y-2 text-gray-400 text-sm">
-                    <div class="flex justify-between">
-                        <span>${pkg.name}</span>
-                        <span class="font-medium text-gray-200">${formatCurrency(pkg.price)}</span>
-                    </div>
-                    <hr class="border-gray-700 my-2">
-                    <div class="flex justify-between font-bold text-lg text-gray-200">
-                        <span>Total</span>
-                        <span class="text-blue-400">${formatCurrency(totalPrice)}</span>
-                    </div>
-                </div>
-            </div>`;
-        };
-
-        const getInfoSectionHTML = () => {
-            return `
-                <h3 class="text-2xl font-bold mb-4 text-center">Pertanyaan Umum (FAQ)</h3>
-                <div class="space-y-0">
-                    <details class="faq-item" open><summary>Apakah ini benar-benar unlimited?</summary><div class="faq-content">Betul. Anda mendapatkan kuota tanpa batas kecepatan (full speed) dan tanpa FUP (Fair Usage Policy). Bebas download, streaming, dan gaming sepuasnya.</div></details>
-                    <details class="faq-item"><summary>Operator apa saja yang didukung?</summary><div class="faq-content">Layanan kami mendukung hampir semua operator besar di Indonesia, termasuk Telkomsel, Indosat (IM3), XL, Axis, 3 (Tri), by.U, dan Live.On.</div></details>
-                    <details class="faq-item"><summary>Berapa lama proses aktivasinya?</summary><div class="faq-content">Setelah pembayaran dikonfirmasi, proses inject kuota bersifat instan dan otomatis, biasanya kurang dari 5 menit. Kuota akan langsung aktif di nomor Anda.</div></details>
-                    <details class="faq-item"><summary>Apakah proses ini aman?</summary><div class="faq-content">100% aman dan legal. Kami menggunakan metode resmi untuk mengaktifkan paket unlimited pada nomor Anda. Tidak ada risiko nomor terblokir.</div></details>
-                    <details class="faq-item"><summary>Apakah ada garansi?</summary><div class="faq-content">Tentu. Kami memberikan garansi uang kembali 100% jika kuota unlimited gagal diaktifkan pada nomor Anda. Kepuasan Anda adalah prioritas kami.</div></details>
+            const getOrderDetailsHTML = (pkg, totalPrice) => `
+                <div class="mt-4 pt-4 border-t">
+                     <div class="space-y-2 text-gray-600">
+                         <div class="flex justify-between items-center text-sm">
+                             <span>${pkg.name}</span>
+                             <span class="font-semibold text-gray-800">${formatCurrency(pkg.price)}</span>
+                         </div>
+                         <div class="flex justify-between text-sm">
+                             <span>Kode Unik</span>
+                             <span>${formatCurrency(uniqueCode)}</span>
+                         </div>
+                         <div class="flex justify-between font-bold text-lg text-gray-800 pt-2">
+                             <span>Total</span>
+                             <span class="text-emerald-600">${formatCurrency(totalPrice)}</span>
+                         </div>
+                     </div>
                 </div>`;
-        };
 
-        // --- MAIN FUNCTIONS ---
-        function formatCurrency(value) { return `Rp${value.toLocaleString('id-ID')}`; }
-
-        function updateDisplay() {
-            const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price;
-            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
-        }
-        
-        async function handleFormSubmit() {
-            if (!elements.orderForm.checkValidity()) {
-                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang ditandai * dengan benar.');
-                elements.orderForm.reportValidity();
-                return;
+            // --- FUNCTIONS ---
+            function formatCurrency(value) { return `Rp${value.toLocaleString('id-ID')}`; }
+            
+            function updateDisplay() {
+                const pkg = packages[currentPackageId];
+                const totalPrice = pkg.price + uniqueCode;
+                elements.productInfoFormTop.innerHTML = getProductInfoHTML(pkg);
+                elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
+                elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
             }
 
-            const formData = new FormData(elements.orderForm);
-            const phoneNumber = formData.get('phone').trim();
-            const paymentMethodKey = formData.get('payment-method');
-            
-            const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price;
-            const paymentAccount = paymentAccounts[paymentMethodKey];
-            const paymentId = `INV-KUOTA-${new Date().getTime().toString().slice(-6)}`;
+            function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
+                const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
+                              `*ID Pembayaran:* ${paymentId}\n` +
+                              `*Paket:* ${pkg.name}\n` +
+                              `*Metode Pembayaran:* ${paymentMethodName}\n` +
+                              `*Nama:* ${formData.get('nama')}\n` +
+                              `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
+                              `*Email:* ${formData.get('email')}\n` +
+                              `*Total Transfer:* ${formatCurrency(totalPrice)}\n\n` +
+                              `Saya sudah melakukan transfer. Mohon untuk segera diproses. Terima kasih.`;
+                return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
+            }
 
-            startProcessingAnimation(phoneNumber, () => {
-                showPaymentInstructions(pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-            });
-        }
+            function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
+                window.scrollTo(0, 0);
+                elements.mainContentContainer.style.display = 'none';
 
-        function startInitialAnimation(onCompleteCallback) {
-            elements.initScreen.innerHTML = `
-                <div class="fixed inset-0 flex items-center justify-center p-4 bg-gray-900 z-[1001]">
-                    <div class="max-w-2xl w-full">
-                        <div class="terminal">
-                            <div class="terminal-header">
-                                <div class="terminal-dots">
-                                    <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
-                                </div>
-                                <span>/bin/bash - global_network_init</span>
-                            </div>
-                            <div class="terminal-body" id="init-log-container" style="height: 400px;"></div>
-                            <div class="processing-footer">
-                                <div id="init-status-text" class="status-text"></div>
-                                <div class="progress-bar-container"><div id="init-progress-bar" class="progress-bar"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-
-            const logContainer = document.getElementById('init-log-container');
-            const progressBar = document.getElementById('init-progress-bar');
-            const statusText = document.getElementById('init-status-text');
-
-            const steps = [
-                { text: `Booting system kernel...`, delay: 300, progress: 5, status: 'Booting...' },
-                { text: `Loading modules... [OK]`, delay: 400, progress: 10, type: 'success' },
-                { text: `Establishing secure connection to global ISP backbone...`, delay: 800, progress: 15, status: 'Connecting...' },
-                { text: `Pinging TSEL-ID Network... 12ms [OK]`, delay: 300, progress: 20, type: 'success' },
-                { text: `Pinging ISAT-ID Network... 18ms [OK]`, delay: 300, progress: 25, type: 'success' },
-                { text: `Pinging XL-ID Network... 15ms [OK]`, delay: 300, progress: 30, type: 'success' },
-                { text: `Pinging AXIS-ID Network... 22ms [OK]`, delay: 300, progress: 35, type: 'success' },
-                { text: `Pinging TRI-ID Network... 25ms [OK]`, delay: 300, progress: 40, type: 'success' },
-                { text: `Pinging BYON-ID Network... 14ms [OK]`, delay: 300, progress: 45, type: 'success' },
-                { text: `Pinging LIVN-ID Network... 19ms [OK]`, delay: 300, progress: 50, type: 'success' },
-                { text: `All Indonesian network gateways are responsive.`, delay: 800, progress: 55, type: 'info' },
-                { text: `Initializing encryption protocol (TLS 1.3)...`, delay: 600, progress: 65, status: 'Securing Connection...' },
-                { text: `Handshake successful. Secure tunnel established.`, delay: 1000, progress: 80, type: 'success' },
-                { text: `Loading user interface...`, delay: 500, progress: 90, status: 'Loading UI...' },
-                { text: `System ready. Welcome.`, delay: 800, progress: 100, type: 'success', status: 'Ready' }
-            ];
-
-            runTerminalAnimation(logContainer, progressBar, statusText, steps, () => {
-                setTimeout(() => {
-                    elements.initScreen.style.transition = 'opacity 0.5s ease-out';
-                    elements.initScreen.style.opacity = '0';
-                    elements.appContent.style.display = 'block';
-                    setTimeout(() => elements.initScreen.style.display = 'none', 500);
-                    if (onCompleteCallback) onCompleteCallback();
-                }, 500);
-            });
-        }
-
-        function startProcessingAnimation(phoneNumber, onCompleteCallback) {
-            elements.appContent.style.display = 'none';
-            elements.processingScreen.style.display = 'block';
-
-            elements.processingScreen.innerHTML = `
-                <div class="max-w-2xl mx-auto p-4 sm:p-0">
-                    <h2 class="text-2xl font-bold text-center mb-4">Memulai Proses Inject Kuota</h2>
-                    <p class="text-center text-gray-400 mb-6">Harap jangan menutup halaman ini. Sistem sedang bekerja secara otomatis.</p>
-                    <div class="terminal">
-                        <div class="terminal-header">
-                            <div class="terminal-dots">
-                                <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
-                            </div>
-                            <span>/bin/bash - quota_injection_service</span>
-                        </div>
-                        <div class="terminal-body" id="log-container"></div>
-                        <div class="processing-footer">
-                            <div id="status-text" class="status-text"></div>
-                            <div class="progress-bar-container"><div id="progress-bar" class="progress-bar"></div></div>
-                        </div>
-                    </div>
-                </div>`;
-
-            const logContainer = document.getElementById('log-container');
-            const progressBar = document.getElementById('progress-bar');
-            const statusText = document.getElementById('status-text');
-
-            const steps = [
-                { text: `Inisialisasi koneksi aman ke gateway operator...`, delay: 500, progress: 5, status: 'Menghubungkan...' },
-                { text: `Koneksi terenkripsi (AES-256) berhasil.`, delay: 800, progress: 10, type: 'success' },
-                { text: `Mengirim permintaan autentikasi untuk nomor: ${phoneNumber}`, delay: 1200, progress: 20, status: 'Mengautentikasi Nomor...' },
-                { text: `Nomor terdeteksi aktif pada jaringan. Verifikasi operator... [OK]`, delay: 1000, progress: 30, type: 'success' },
-                { text: `Memeriksa kompatibilitas paket... [UNLIMITED_SUPPORTED]`, delay: 800, progress: 40, type: 'success' },
-                { text: `Mencari celah pada sistem manajemen kuota...`, delay: 1500, progress: 50, status: 'Menganalisa Sistem...' },
-                { text: `[PERINGATAN] Terdeteksi firewall standar. Mencoba rute alternatif...`, delay: 1200, progress: 60, type: 'warning' },
-                { text: `Rute alternatif ditemukan melalui port 443. Firewall berhasil dilewati.`, delay: 1500, progress: 75, type: 'success', status: 'Menyiapkan Paket Data...' },
-                { text: `Mengalokasikan bandwidth dinamis... 100Mbps allocated.`, delay: 1000, progress: 85, type: 'info' },
-                { text: `Membuat & mengenkripsi paket data unlimited...`, delay: 1000, progress: 90 },
-                { text: `Paket data siap untuk di-inject.`, delay: 800, progress: 95, type: 'success', status: 'Menunggu Tindakan Pengguna...' },
-                { text: `Menunggu konfirmasi pembayaran untuk finalisasi proses inject.`, delay: 800, progress: 100, type: 'info' }
-            ];
-
-            runTerminalAnimation(logContainer, progressBar, statusText, steps, () => {
-                const finalLogEntry = document.createElement('div');
-                finalLogEntry.className = 'log-entry';
+                let paymentDetailsBlock = '';
+                expiryTime = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+                const paymentDeadlineFormatted = `${expiryTime.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} pukul ${expiryTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}`;
                 
-                const updateCountdown = (sec) => {
-                    finalLogEntry.innerHTML = `<span class="log-prefix">${getCurrentTimestamp()} ></span><span class="log-message info">Membuka halaman pembayaran dalam ${sec}...</span>`;
-                };
+                let instructionAccordionHTML = '';
 
-                logContainer.appendChild(finalLogEntry);
-                logContainer.scrollTop = logContainer.scrollHeight;
-                
-                updateCountdown(3);
-                setTimeout(() => updateCountdown(2), 1000);
-                setTimeout(() => updateCountdown(1), 2000);
-
-                setTimeout(() => {
-                    elements.processingScreen.style.display = 'none';
-                    if (onCompleteCallback) onCompleteCallback();
-                }, 3000);
-            });
-        }
-
-        function showPaymentInstructions(pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
-            window.scrollTo(0, 0);
-            elements.paymentInstructionContainer.style.display = 'block';
-            
-            let paymentDetailsBlock = '';
-            if (paymentMethodKey === 'qris') {
-                paymentDetailsBlock = `
-                    <div class="text-center">
-                        <div id="qrcodeContainer" class="bg-white p-3 rounded-xl border-2 w-full max-w-[250px] mx-auto my-4"><div id="qrcode" class="flex justify-center items-center"></div></div>
-                        <p class="text-sm text-gray-400 mb-2">Scan QR code menggunakan aplikasi E-Wallet atau M-Banking Anda.</p>
-                        <button id="downloadQrisButton" class="cta-button max-w-xs mx-auto mt-2" style="padding: 10px 24px; min-height: 42px;"><i class="fas fa-download mr-2"></i> Unduh Kode QR</button>
-                    </div>`;
-            } else {
-                paymentDetailsBlock = `<div class="mt-4"><p class="text-xs text-gray-400 mb-1">Nomor Tujuan</p><div class="flex justify-between items-center bg-gray-800 p-3 rounded-lg"><p class="text-xl font-bold tracking-wider">${paymentAccount.number}</p><button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Tujuan')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div>`;
-            }
-            
-            expiryTime = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-
-            const paymentViewHTML = `
-                <div class="payment-header">
-                    <h2 class="text-lg font-bold">Selesaikan Pembayaran</h2>
-                    <div class="countdown-timer" id="countdown-timer-display"></div>
-                </div>
-                <div class="max-w-lg mx-auto p-2 sm:p-4">
-                    <div class="payment-card">
-                        <p class="text-xs text-gray-400">Total Pembayaran</p>
-                        <div class="flex items-center justify-between"><p class="text-3xl font-bold text-blue-400">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div>
-                    </div>
-                    <div class="payment-card">
-                        <div class="flex justify-between items-start">
-                            <div><p class="text-sm text-gray-400">${paymentAccount.displayName}</p><p class="font-semibold">${paymentAccount.accountHolder}</p></div>
-                            <div class="w-12 h-8 bg-white rounded-md flex items-center justify-center p-1 border border-gray-300 flex-shrink-0"><img src="${paymentAccount.logo}" class="max-h-full max-w-full object-contain"></div>
+                if (paymentMethodKey === 'qris') {
+                    paymentDetailsBlock = `<div class="text-center">
+                        <div id="qrcodeContainer" class="bg-white p-3 rounded-xl border-2 w-full max-w-[250px] h-auto mx-auto my-4">
+                            <div id="qrcode" class="flex justify-center items-center"></div>
                         </div>
-                        ${paymentDetailsBlock}
-                    </div>
-                    <div class="payment-card">
-                        <h3 class="font-bold text-lg mb-2">Cara Membayar</h3>
-                        <details class="faq-item payment-accordion" open><summary>Instruksi Umum</summary><div class="faq-content"><ol class="space-y-2 text-sm list-decimal pl-5"><li>Buka aplikasi perbankan atau e-wallet Anda.</li><li>Pilih menu transfer atau pembayaran.</li><li>Pastikan nominal transfer sesuai dengan total pembayaran.</li><li>Selesaikan transaksi dan simpan bukti pembayaran Anda.</li></ol></div></details>
-                    </div>
-                    <div class="payment-card text-center">
-                        <p class="text-sm text-gray-400 mb-2">Sudah melakukan pembayaran?</p>
-                        <button id="check-status-btn" class="confirm-button-outlined"><i class="fas fa-search-dollar mr-2"></i> Cek Status Pembayaran</button>
-                    </div>
-                </div>`;
-            
-            elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
-            startCountdown();
-
-            document.getElementById('check-status-btn').addEventListener('click', () => {
-                showStatusCheckAnimation(paymentId);
-            });
-
-            if (paymentMethodKey === 'qris') {
-                setTimeout(() => {
-                    const qrcodeContainer = document.getElementById('qrcode');
-                    if(qrcodeContainer) {
-                        try {
-                            const qrisStatic = paymentAccount.number;
-                            const qrisDinamis = createDynamicQrisString(qrisStatic, { nominal: totalPrice });
-                            qrcodeContainer.innerHTML = '';
-                            QRCode.toCanvas(qrisDinamis, { width: 250, margin: 1, errorCorrectionLevel: 'H' }, (err, canvas) => {
-                                if (err) { throw err; }
-                                canvas.style.width = "100%"; canvas.style.height = "auto"; canvas.style.borderRadius = "8px";
-                                qrcodeContainer.appendChild(canvas);
-                                document.getElementById('downloadQrisButton').addEventListener('click', () => {
-                                    const link = document.createElement('a');
-                                    link.download = `QRIS-Pembayaran-${paymentId}.png`;
-                                    link.href = canvas.toDataURL("image/png");
-                                    link.click();
-                                });
-                            });
-                        } catch (e) { console.error("QRIS Generation Error:", e.message); qrcodeContainer.innerHTML = `<p class="text-red-500 text-sm">Gagal membuat QR Code.</p>`; }
-                    }
-                }, 100);
-            }
-        }
-
-        function showStatusCheckAnimation(paymentId) {
-            elements.paymentInstructionContainer.style.display = 'none';
-            elements.statusCheckScreen.style.display = 'block';
-
-            const statusCheckHTML = `
-                <div class="max-w-2xl mx-auto p-4 sm:p-0">
-                    <h2 class="text-2xl font-bold text-center mb-4">Memeriksa Status Pembayaran</h2>
-                    <p class="text-center text-gray-400 mb-6">Sistem kami sedang memverifikasi transaksi Anda secara real-time.</p>
-                    <div class="terminal">
-                        <div class="terminal-header">
-                            <div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div>
-                            <span>/bin/bash - payment_gateway_check</span>
-                        </div>
-                        <div class="terminal-body" id="status-log-container"></div>
-                        <div class="processing-footer">
-                            <div id="status-check-text" class="status-text"></div>
-                            <div class="progress-bar-container"><div id="status-progress-bar" class="progress-bar"></div></div>
-                        </div>
-                    </div>
-                    <div class="text-center mt-6">
-                        <button id="back-to-payment-btn" class="cta-button max-w-xs mx-auto" style="background: var(--theme-surface); border: 1px solid var(--theme-outline);">
-                            <i class="fas fa-arrow-left mr-2"></i> Kembali ke Pembayaran
+                        <button id="downloadQrisButton" class="gradient-cta text-white font-bold py-2 px-6 rounded-full shadow-lg text-sm">
+                            <i class="fas fa-download mr-2"></i>
+                            Unduh QRIS
                         </button>
+                        <p class="text-center text-xs text-gray-600 mt-3">Pindai QR Code di atas.</p>
+                    </div>`;
+                } else {
+                    paymentDetailsBlock = `<div class="mt-4"><p class="text-xs text-gray-500 mb-1">Nomor Tujuan</p><div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg"><p class="text-xl font-bold text-gray-800">${paymentAccount.number}</p><button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Rekening')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div>`;
+                }
+                
+                 switch (paymentMethodKey) {
+                    case 'qris':
+                        instructionAccordionHTML = `<details class="payment-accordion" open><summary>Cara Bayar via QRIS</summary><div class="payment-accordion-content"><ol class="space-y-3"><li>Buka aplikasi m-banking atau e-wallet Anda (GoPay, OVO, DANA, dll).</li><li>Pilih menu <strong>Bayar</strong> atau <strong>Scan QRIS</strong>.</li><li>Pindai kode QR yang ditampilkan di atas.</li><li>Pastikan nama merchant dan nominal sudah sesuai.</li><li>Masukkan PIN Anda untuk menyelesaikan transaksi.</li></ol></div></details>`;
+                        break;
+                    case 'bca_va':
+                        instructionAccordionHTML = `<details class="payment-accordion"><summary>BCA Mobile</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi BCA Mobile dan login.</li><li>Pilih menu <strong>m-Transfer</strong> > <strong>BCA Virtual Account</strong>.</li><li>Masukkan nomor <strong>${paymentAccount.number}</strong>.</li><li>Masukkan nominal transfer.</li><li>Periksa detail, lalu masukkan PIN m-BCA.</li></ol></div></details>`;
+                        break;
+                    default:
+                         instructionAccordionHTML = `<details class="payment-accordion" open><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2"><li>Buka aplikasi perbankan atau e-wallet Anda.</li><li>Pilih menu transfer.</li><li>Masukkan detail pembayaran yang tertera.</li><li>Pastikan nominal transfer sesuai dengan total pembayaran.</li><li>Selesaikan transaksi dan simpan bukti pembayaran.</li></ol></div></details>`;
+                }
+                
+                const waLink = generateWaLink(formData, pkg, totalPrice, paymentAccount.displayName, paymentId);
+                const paymentViewHTML = `
+                    <div class="payment-header">
+                        <h2>Selesaikan Pembayaran</h2>
+                        <div class="countdown-timer" id="countdown-timer-display"></div>
                     </div>
-                </div>`;
-            elements.statusCheckScreen.innerHTML = statusCheckHTML;
+                    <div class="max-w-lg mx-auto p-2 sm:p-4">
+                        <div class="payment-card">
+                            <p class="text-xs text-gray-600">Total Pembayaran</p>
+                            <div class="flex items-center justify-between">
+                                <p class="text-2xl font-bold text-emerald-600">${formatCurrency(totalPrice)}</p>
+                                <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button>
+                            </div>
+                        </div>
+                        <div class="payment-card">
+                            <h3 class="font-bold text-lg mb-3">Silahkan Bayar ke</h3>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-sm text-gray-500">${paymentAccount.displayName}</p>
+                                    <p class="font-semibold text-gray-800">${paymentAccount.accountHolder}</p>
+                                </div>
+                                <div class="payment-logo-container"><img src="${paymentAccount.logo}" alt="Logo ${paymentAccount.displayName}" class="payment-logo"></div>
+                            </div>
+                            ${paymentDetailsBlock}
+                             <a href="${waLink}" target="_blank" class="block mt-6"><button class="confirm-button-outlined"><i class="fab fa-whatsapp mr-2"></i> Konfirmasi Pembayaran</button></a>
+                        </div>
+                         <div class="payment-card">
+                            <h3 class="font-bold text-lg mb-2">Cara Membayar</h3>
+                            <div class="mt-2">${instructionAccordionHTML}</div>
+                        </div>
+                    </div>`;
+                elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
+                startCountdown();
 
-            const logContainer = document.getElementById('status-log-container');
-            const progressBar = document.getElementById('status-progress-bar');
-            const statusText = document.getElementById('status-check-text');
+                if (paymentMethodKey === 'qris') {
+                     setTimeout(() => {
+                        const qrcodeContainer = document.getElementById('qrcode');
+                        if (qrcodeContainer) {
+                             try {
+                                const qrisStatic = paymentAccount.number;
+                                const qrisDinamis = createDynamicQrisString(qrisStatic, { nominal: totalPrice });
+                                qrcodeContainer.innerHTML = '';
+                                QRCode.toCanvas(qrisDinamis, { width: 220, margin: 1, errorCorrectionLevel: 'H' }, (err, canvas) => {
+                                    if (err) { throw err; }
+                                    canvas.style.width = "100%";
+                                    canvas.style.height = "auto";
+                                    canvas.style.borderRadius = "8px";
+                                    qrcodeContainer.appendChild(canvas);
 
-            document.getElementById('back-to-payment-btn').addEventListener('click', () => {
-                elements.statusCheckScreen.style.display = 'none';
-                elements.paymentInstructionContainer.style.display = 'block';
-            });
-
-            const steps = [
-                { text: `Menghubungkan ke API payment gateway...`, delay: 800, progress: 15, status: 'Menghubungkan...' },
-                { text: `Koneksi API berhasil.`, delay: 800, progress: 30, type: 'success' },
-                { text: `Mengirim query untuk Transaction ID: ${paymentId}...`, delay: 1200, progress: 50, status: 'Mengambil data...' },
-                { text: `Data transaksi diterima. Cross-referencing dengan API Bank...`, delay: 1500, progress: 70, status: 'Memvalidasi...' },
-                { text: `Mendekripsi token konfirmasi pembayaran...`, delay: 1000, progress: 80 },
-                { text: `[ERROR] Status pembayaran: PENDING. Transaksi belum diselesaikan.`, delay: 1500, progress: 80, type: 'error', status: 'Verifikasi Gagal' },
-                { text: `Proses inject kuota dijeda. Silakan selesaikan pembayaran untuk melanjutkan.`, delay: 1000, progress: 80, type: 'warning' }
-            ];
-
-            runTerminalAnimation(logContainer, progressBar, statusText, steps, () => {});
-        }
-
-        function runTerminalAnimation(logContainer, progressBar, statusText, steps, onCompleteCallback) {
-            logContainer.innerHTML = '';
-            progressBar.style.width = '0%';
-            statusText.textContent = 'Memulai...';
-            let currentStep = 0;
-            
-            function addLogEntry(text, type = 'info') {
-                const logEntry = document.createElement('div');
-                logEntry.className = 'log-entry';
-                logEntry.innerHTML = `<span class="log-prefix">${getCurrentTimestamp()} ></span><span class="log-message ${type}">${text}</span>`;
-                logContainer.appendChild(logEntry);
-                logContainer.scrollTop = logContainer.scrollHeight;
+                                    document.getElementById('downloadQrisButton').addEventListener('click', () => {
+                                        const link = document.createElement('a');
+                                        link.download = `QRIS-${paymentId}.png`;
+                                        link.href = canvas.toDataURL("image/png");
+                                        link.click();
+                                    });
+                                });
+                             } catch(e) {
+                                console.error("QRIS Generation Error:", e.message);
+                                qrcodeContainer.innerHTML = `<p class="text-red-500 text-sm">Gagal membuat QR Code. Silakan hubungi support.</p>`;
+                             }
+                        }
+                    }, 100);
+                }
             }
 
-            function processNextStep() {
-                if (currentStep >= steps.length) {
-                    const finalLine = document.createElement('div');
-                    finalLine.className = 'log-entry';
-                    finalLine.innerHTML = `<span class="log-prefix">${getCurrentTimestamp()} ></span><span class="blinking-cursor"></span>`;
-                    logContainer.appendChild(finalLine);
-                    logContainer.scrollTop = logContainer.scrollHeight;
-                    if (onCompleteCallback) onCompleteCallback();
+            async function handleFormSubmit() {
+                const formData = new FormData(elements.orderForm);
+                const nama = formData.get('nama')?.trim();
+                const whatsapp = formData.get('whatsapp')?.trim();
+                const email = formData.get('email')?.trim();
+                const paymentMethodKey = formData.get('payment-method');
+
+                if (!nama || !whatsapp || !email || !paymentMethodKey) {
+                    showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan.');
                     return;
                 }
-                const step = steps[currentStep];
-                setTimeout(() => {
-                    addLogEntry(step.text, step.type);
-                    if (step.status) statusText.textContent = step.status;
-                    progressBar.style.width = `${step.progress}%`;
-                    currentStep++;
-                    processNextStep();
-                }, step.delay);
+                 if (!/^\S+@\S+\.\S+$/.test(email)) {
+                    showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email yang valid.');
+                    return;
+                }
+
+                elements.submitBtn.disabled = true;
+                elements.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+                
+                const pkg = packages[currentPackageId];
+                const totalPrice = pkg.price + uniqueCode;
+                const paymentAccount = paymentAccounts[paymentMethodKey];
+                const now = new Date();
+                const paymentId = `WS-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
+                
+                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
             }
-            processNextStep();
-        }
 
-        function startCountdown() {
-            const countdownElement = document.getElementById('countdown-timer-display');
-            if (!countdownElement || !expiryTime) return;
-            const interval = setInterval(() => {
-                const distance = expiryTime - new Date().getTime();
-                if (distance < 0) { clearInterval(interval); countdownElement.innerHTML = "Waktu Habis"; return; }
-                const h = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                const m = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                const s = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-                countdownElement.innerHTML = `<span class="countdown-number">${h}</span> : <span class="countdown-number">${m}</span> : <span class="countdown-number">${s}</span>`;
-            }, 1000);
-        }
+            function startCountdown() {
+                const countdownElement = document.getElementById('countdown-timer-display');
+                if (!countdownElement || !expiryTime) return;
+                const interval = setInterval(() => {
+                    const distance = expiryTime - new Date().getTime();
+                    if (distance < 0) {
+                        clearInterval(interval);
+                        countdownElement.innerHTML = "Waktu Habis";
+                        return;
+                    }
+                    const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const s = Math.floor((distance % (1000 * 60)) / 1000);
+                    countdownElement.innerHTML = `<div class="countdown-item"><span class="countdown-number">${String(h).padStart(2, '0')}</span> Jam</div><div class="countdown-item"><span class="countdown-number">${String(m).padStart(2, '0')}</span> Menit</div><div class="countdown-item"><span class="countdown-number">${String(s).padStart(2, '0')}</span> Detik</div>`;
+                }, 1000);
+            }
 
-        // --- INITIALIZATION ---
-        elements.currentYear.textContent = new Date().getFullYear();
-        
-        elements.submitBtn.addEventListener('click', handleFormSubmit);
-
-        elements.packageSelection.addEventListener('change', (e) => {
-            if (e.target.name === 'package') {
-                currentPackageId = e.target.value;
-                updateDisplay();
+            // --- INITIALIZATION ---
+            elements.submitBtn.addEventListener('click', handleFormSubmit);
+            updateDisplay();
+            
+            // --- Image Slider with Dots ---
+            const sliderContainer = document.getElementById('image-slider');
+            if (sliderContainer) {
+                const images = sliderContainer.querySelectorAll('img');
+                const dotsContainer = document.getElementById('slider-dots');
+                let currentImageIndex = 0;
+                images.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.classList.add('w-3', 'h-3', 'rounded-full', 'transition-colors', 'duration-300', index === 0 ? 'bg-blue-800' : 'bg-gray-300');
+                    dot.addEventListener('click', () => { currentImageIndex = index; updateSlider(); });
+                    dotsContainer.appendChild(dot);
+                });
+                const dots = dotsContainer.querySelectorAll('button');
+                function updateSlider() {
+                    sliderContainer.scrollTo({ left: sliderContainer.offsetWidth * currentImageIndex, behavior: 'smooth' });
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('bg-blue-800', index === currentImageIndex);
+                        dot.classList.toggle('bg-gray-300', index !== currentImageIndex);
+                    });
+                }
+                setInterval(() => { currentImageIndex = (currentImageIndex + 1) % images.length; updateSlider(); }, 5000);
             }
         });
 
-        startInitialAnimation();
-        elements.packageSelection.innerHTML = getPackageSelectionHTML();
-        elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-        elements.infoSectionFull.innerHTML = getInfoSectionHTML();
-        updateDisplay();
-    });
-
-    // --- GLOBAL HELPER FUNCTIONS ---
-    const infoModal = document.getElementById('infoModal');
-    function showInfoModal(title, message) {
-        if (!infoModal) return;
-        infoModal.querySelector('#modalTitle').textContent = title;
-        infoModal.querySelector('#modalMessage').textContent = message;
-        infoModal.style.display = 'flex';
-    }
-    function closeInfoModal() { if (!infoModal) return; infoModal.style.display = 'none'; }
-    window.onclick = function(event) { if (event.target == infoModal) { closeInfoModal(); } }
-    function copyToClipboard(text, entityName) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        try { document.execCommand('copy'); showInfoModal('Berhasil Disalin!', `${entityName} telah disalin.`); }
-        catch (err) { showInfoModal('Gagal!', 'Gagal menyalin.'); }
-        document.body.removeChild(textArea);
-    }
-    
-    // --- DYNAMIC QRIS LOGIC ---
-    function toCRC16(input) {
-        let crc = 0xFFFF;
-        for (let i = 0; i < input.length; i++) {
-            crc ^= input.charCodeAt(i) << 8;
-            for (let j = 0; j < 8; j++) { crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1; }
+        // --- GLOBAL HELPER FUNCTIONS ---
+        const infoModal = document.getElementById('infoModal');
+        function showInfoModal(title, message) {
+            if (!infoModal) return;
+            infoModal.querySelector('#modalTitle').textContent = title;
+            infoModal.querySelector('#modalMessage').textContent = message;
+            infoModal.style.display = 'flex';
         }
-        return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
-    }
-
-    function createDynamicQrisString(qris, { nominal }) {
-        if (!qris) throw new Error('Parameter "qris" (string QRIS statis) dibutuhkan.');
-        if (nominal === undefined) throw new Error('Parameter "nominal" dibutuhkan.');
-        let qrisModified = qris.slice(0, -4).replace("010211", "010212");
-        const nominalStr = String(Math.round(nominal));
-        const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
-        const amountPart = "54" + amountLength + nominalStr;
-        if (!qrisModified.includes("5802ID")) { throw new Error("Format string QRIS tidak dikenali."); }
-        let finalQris = qrisModified.replace("5802ID", amountPart + "5802ID");
-        const crc = toCRC16(finalQris);
-        return finalQris + crc;
-    }
+        function closeInfoModal() { if (infoModal) infoModal.style.display = 'none'; }
+        window.onclick = function(event) { if (event.target == infoModal) closeInfoModal(); }
+        function copyToClipboard(text, entityName) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showInfoModal('Berhasil Disalin!', `${entityName} telah disalin ke clipboard.`);
+            } catch (err) {
+                showInfoModal('Gagal!', 'Gagal menyalin. Silakan coba secara manual.');
+            }
+            document.body.removeChild(textArea);
+        }
+        
+        function toCRC16(input) { let crc = 0xFFFF; for (let i = 0; i < input.length; i++) { crc ^= input.charCodeAt(i) << 8; for (let j = 0; j < 8; j++) { crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1; } } return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0'); }
+        function createDynamicQrisString(qris, { nominal }) { if (!qris || nominal === undefined) throw new Error('Missing parameters'); let qrisModified = qris.slice(0, -4).replace("010211", "010212"); const nominalStr = String(Math.round(nominal)); const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString(); const amountPart = "54" + amountLength + nominalStr; if (!qrisModified.includes("5802ID")) throw new Error("Invalid QRIS format"); let finalQris = qrisModified.replace("5802ID", amountPart + "5802ID"); return finalQris + toCRC16(finalQris); }
     </script>
 </body>
 </html>
-"
+
+
