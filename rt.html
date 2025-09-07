@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - RT Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        .sidebar-link {
+            @apply flex items-center p-3 my-1 text-slate-600 rounded-lg hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200;
+        }
+        .sidebar-link.active {
+            @apply bg-blue-600 text-white shadow-md;
+        }
+        .stat-card {
+            @apply bg-white p-6 rounded-xl shadow-sm border border-slate-200;
+        }
+        .main-content {
+            display: none;
+        }
+        .main-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="flex h-screen bg-slate-100">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-64 bg-white shadow-lg flex-shrink-0 flex flex-col transition-all duration-300 -translate-x-full sm:translate-x-0">
+            <div class="p-6 flex items-center justify-center border-b">
+                <h1 class="text-2xl font-bold text-slate-800">RT<span class="text-blue-600">Digital</span></h1>
+            </div>
+            <nav class="flex-grow px-4 py-4">
+                <a href="#dashboard" class="sidebar-link active" data-target="dashboard">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    Dashboard
+                </a>
+                <a href="#warga" class="sidebar-link" data-target="warga">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    Data Warga
+                </a>
+                <a href="#keuangan" class="sidebar-link" data-target="keuangan">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    Keuangan
+                </a>
+                <a href="#surat" class="sidebar-link" data-target="surat">
+                     <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Surat-menyurat
+                </a>
+                 <a href="#kegiatan" class="sidebar-link" data-target="kegiatan">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    Kegiatan
+                </a>
+            </nav>
+            <div class="p-4 border-t">
+                <div class="flex items-center">
+                    <img src="https://placehold.co/40x40/E0E7FF/4F46E5?text=A" class="rounded-full" alt="Avatar">
+                    <div class="ml-3">
+                        <p class="font-semibold text-sm">Budi Santoso</p>
+                        <p class="text-xs text-slate-500">Ketua RT 05</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow-sm flex items-center justify-between p-4">
+                <button id="menu-btn" class="sm:hidden text-slate-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <h2 id="page-title" class="text-xl font-bold text-slate-700">Dashboard</h2>
+                 <div class="flex items-center space-x-4">
+                    <button class="text-slate-500 hover:text-slate-700">
+                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    </button>
+                    <img src="https://placehold.co/40x40/E0E7FF/4F46E5?text=A" class="rounded-full" alt="Avatar">
+                </div>
+            </header>
+            
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-slate-100 p-6">
+                <!-- Dashboard Content -->
+                <div id="dashboard" class="main-content active">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="stat-card">
+                            <h4 class="text-slate-500 font-medium">Total Kepala Keluarga</h4>
+                            <p class="text-3xl font-bold mt-2">124 <span class="text-base font-normal text-slate-500">KK</span></p>
+                        </div>
+                        <div class="stat-card">
+                            <h4 class="text-slate-500 font-medium">Iuran Bulan Ini</h4>
+                            <p class="text-3xl font-bold mt-2">98 <span class="text-base font-normal text-slate-500">Lunas</span></p>
+                        </div>
+                        <div class="stat-card">
+                            <h4 class="text-slate-500 font-medium">Kas RT</h4>
+                            <p class="text-3xl font-bold mt-2">Rp 5.250.000</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4 class="text-slate-500 font-medium">Kegiatan Akan Datang</h4>
+                            <p class="text-3xl font-bold mt-2">3 <span class="text-base font-normal text-slate-500">Acara</span></p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                             <h3 class="font-bold text-lg">Grafik Keuangan (6 Bulan Terakhir)</h3>
+                             <canvas id="financeChart" class="mt-4"></canvas>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                            <h3 class="font-bold text-lg">Aktivitas Terkini</h3>
+                            <ul class="mt-4 space-y-4">
+                                <li class="flex items-start">
+                                    <div class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01"></path></svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-semibold">Bapak Andi (Blok C2) membayar iuran.</p>
+                                        <p class="text-xs text-slate-500">1 jam lalu</p>
+                                    </div>
+                                </li>
+                                 <li class="flex items-start">
+                                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-semibold">Surat pengantar untuk Ibu Siti disetujui.</p>
+                                        <p class="text-xs text-slate-500">3 jam lalu</p>
+                                    </div>
+                                </li>
+                                 <li class="flex items-start">
+                                    <div class="w-10 h-10 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.834 9.168-4.432l.256-.528A6.001 6.001 0 0123 6v3a3 3 0 01-3 3H6.436a4 4 0 01-1-7.922Z"></path></svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-semibold">Pengumuman kerja bakti telah dipublikasikan.</p>
+                                        <p class="text-xs text-slate-500">Kemarin</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Warga Content -->
+                <div id="warga" class="main-content">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-lg">Database Warga</h3>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition">
+                                Tambah Warga
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left text-slate-500">
+                                <thead class="text-xs text-slate-700 uppercase bg-slate-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">Nama Kepala Keluarga</th>
+                                        <th scope="col" class="px-6 py-3">Blok/No Rumah</th>
+                                        <th scope="col" class="px-6 py-3">Status Hunian</th>
+                                        <th scope="col" class="px-6 py-3">No. Telepon</th>
+                                        <th scope="col" class="px-6 py-3">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white border-b">
+                                        <td class="px-6 py-4 font-medium text-slate-900">Andi Wijaya</td>
+                                        <td class="px-6 py-4">A1/01</td>
+                                        <td class="px-6 py-4">Milik Sendiri</td>
+                                        <td class="px-6 py-4">081234567890</td>
+                                        <td class="px-6 py-4"><a href="#" class="font-medium text-blue-600 hover:underline">Detail</a></td>
+                                    </tr>
+                                     <tr class="bg-slate-50 border-b">
+                                        <td class="px-6 py-4 font-medium text-slate-900">Siti Aminah</td>
+                                        <td class="px-6 py-4">A1/02</td>
+                                        <td class="px-6 py-4">Sewa</td>
+                                        <td class="px-6 py-4">081209876543</td>
+                                        <td class="px-6 py-4"><a href="#" class="font-medium text-blue-600 hover:underline">Detail</a></td>
+                                    </tr>
+                                    <tr class="bg-white border-b">
+                                        <td class="px-6 py-4 font-medium text-slate-900">Eko Prasetyo</td>
+                                        <td class="px-6 py-4">B2/10</td>
+                                        <td class="px-6 py-4">Milik Sendiri</td>
+                                        <td class="px-6 py-4">085611223344</td>
+                                        <td class="px-6 py-4"><a href="#" class="font-medium text-blue-600 hover:underline">Detail</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Keuangan Content -->
+                 <div id="keuangan" class="main-content">
+                     <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-lg mb-4">Laporan Keuangan</h3>
+                        <!-- Add content for Keuangan here -->
+                        <p>Fitur manajemen keuangan akan ditampilkan di sini, termasuk tabel pemasukan, pengeluaran, dan tombol untuk ekspor laporan.</p>
+                     </div>
+                </div>
+
+                <!-- Surat-menyurat Content -->
+                <div id="surat" class="main-content">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-lg mb-4">Administrasi Surat</h3>
+                         <p>Fitur administrasi surat-menyurat akan ditampilkan di sini, termasuk daftar permintaan surat, status, dan template surat.</p>
+                    </div>
+                </div>
+
+                <!-- Kegiatan Content -->
+                <div id="kegiatan" class="main-content">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-lg mb-4">Manajemen Kegiatan</h3>
+                        <p>Fitur manajemen kegiatan dan event akan ditampilkan di sini, seperti kalender kerja bakti, rapat, dan acara sosial.</p>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const sidebar = document.getElementById('sidebar');
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('-translate-x-full');
+            });
+
+            // Navigation
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            const mainContents = document.querySelectorAll('.main-content');
+            const pageTitle = document.getElementById('page-title');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.dataset.target;
+
+                    // Update active link
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update page title
+                    pageTitle.textContent = this.textContent.trim();
+
+                    // Show target content
+                    mainContents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                     // Close sidebar on mobile after click
+                    if (window.innerWidth < 640) {
+                        sidebar.classList.add('-translate-x-full');
+                    }
+                });
+            });
+
+            // Chart.js Finance Chart
+            const ctx = document.getElementById('financeChart').getContext('2d');
+            const financeChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September'],
+                    datasets: [{
+                        label: 'Pemasukan',
+                        data: [3500000, 4200000, 3800000, 4500000, 4800000, 5250000],
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true,
+                    }, {
+                        label: 'Pengeluaran',
+                        data: [1200000, 1500000, 900000, 1800000, 1300000, 2100000],
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                             ticks: {
+                                callback: function(value, index, values) {
+                                    return 'Rp ' + value.toLocaleString('id-ID');
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += 'Rp ' + context.parsed.y.toLocaleString('id-ID');
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
