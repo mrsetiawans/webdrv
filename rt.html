@@ -902,11 +902,22 @@
                         <!-- Honeypot field for anti-spam -->
                         <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
 
+                        <!-- Bagian Pemilihan Perangkat Ajar -->
+                        <div class="border-t border-gray-200 pt-4 mt-4">
+                            <h2 class="text-lg font-bold mb-3 google-sans">Pilih Perangkat Ajar</h2>
+                            <div id="order-items-container" class="space-y-4">
+                                <!-- Order items will be injected here by JavaScript -->
+                            </div>
+                            <button type="button" id="add-order-btn" class="mt-4 text-sm text-google-blue font-medium flex items-center hover:bg-blue-50 p-2 rounded-lg">
+                                <i class="fas fa-plus-circle mr-2"></i>Tambah Pilihan Lain (Jenjang/Kelas)
+                            </button>
+                        </div>
+
+                        <!-- Rincian Pesanan (Updated) -->
+                        <div id="order-summary-container" class="mt-4"></div>
+
                         <!-- Metode Pembayaran -->
                         <div id="payment-method-selection" class="mt-4"></div>
-
-                        <!-- Rincian Pesanan -->
-                        <div id="order-details-in-form" class="mt-0"></div>
 
                         <button type="button" id="submit-btn" class="cta-button blue-button mt-4">
                             <i class="fas fa-download mr-2"></i>
@@ -966,6 +977,34 @@
         </div>
     </div>
 
+    <template id="order-item-template">
+        <div class="p-4 border border-gray-200 rounded-lg space-y-3 relative order-item-card bg-white shadow-sm">
+            <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-500 remove-order-item-btn h-8 w-8 flex items-center justify-center rounded-full hover:bg-red-50" title="Hapus Pilihan Ini">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Jenjang</label>
+                    <select name="jenjang" class="form-input jenjang-select">
+                        <option value="">-- Pilih Jenjang --</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Kelas</label>
+                    <select name="kelas" class="form-input kelas-select" disabled>
+                        <option value="">-- Pilih Jenjang Dulu --</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Mata Pelajaran (Pilih semua yang dibutuhkan)</label>
+                <div class="p-3 border rounded-md bg-gray-50 max-h-48 overflow-y-auto mapel-container">
+                    <p class="text-xs text-gray-500">Pilih jenjang dan kelas untuk melihat daftar mata pelajaran.</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
     <script>
     // --- VALIDATION LOGIC ---
     const operatorPrefixes = {
@@ -1010,9 +1049,12 @@
             productInfoFormTop: document.getElementById('product-info-form-top'),
             detailsAccordionContainer: document.getElementById('details-accordion-container'),
             paymentMethodSelection: document.getElementById('payment-method-selection'),
-            orderDetailsInForm: document.getElementById('order-details-in-form'),
+            orderSummaryContainer: document.getElementById('order-summary-container'),
             testimonialsFull: document.getElementById('testimonials-full'),
             infoSectionFull: document.getElementById('info-section-full'),
+            orderItemsContainer: document.getElementById('order-items-container'),
+            addOrderBtn: document.getElementById('add-order-btn'),
+            orderItemTemplate: document.getElementById('order-item-template'),
             orderForm: document.getElementById('orderForm'),
             submitBtn: document.getElementById('submit-btn'),
             notifBox: document.getElementById('notifBox'),
@@ -1026,12 +1068,13 @@
         let countdownInterval;
         let expiryTime;
         let currentOrderDetails = {};
+        let cart = []; // Holds all the selected order items
 
         const packages = {
             perangkatAjar: {
                 id: 'perangkatAjar',
-                name: "Perangkat Ajar Deep Learning 2025/2026",
-                price: 149000,
+                name: "Perangkat Ajar Lengkap",
+                price: 149000, // Price per selection (jenjang + kelas)
                 title: "Perangkat Ajar Deep Learning 2025/2026",
                 logoIcon: 'fa-solid fa-book-open-reader',
                 description: "Solusi lengkap administrasi mengajar Kurikulum Merdeka untuk jenjang SD, SMP, & SMA.",
@@ -1065,6 +1108,27 @@
         };
 
         let currentPackageId = 'perangkatAjar';
+
+        const educationalData = {
+            "SD": {
+                "Kelas 1": ["Tematik", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "PJOK", "Seni Budaya", "PAI Islam"],
+                "Kelas 2": ["Tematik", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "PJOK", "Seni Budaya", "PAI Islam"],
+                "Kelas 3": ["Tematik", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "PJOK", "Seni Budaya", "PAI Islam"],
+                "Kelas 4": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "IPAS", "PJOK", "Seni Budaya", "PAI Islam"],
+                "Kelas 5": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "IPAS", "PJOK", "Seni Budaya", "PAI Islam"],
+                "Kelas 6": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "IPAS", "PJOK", "Seni Budaya", "PAI Islam"]
+            },
+            "SMP": {
+                "Kelas 7": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "IPS", "IPA", "Seni Budaya", "Prakarya", "PAI Islam"],
+                "Kelas 8": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "IPS", "IPA", "Seni Budaya", "Prakarya", "PAI Islam"],
+                "Kelas 9": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "IPS", "IPA", "Seni Budaya", "Prakarya", "PAI Islam"]
+            },
+            "SMA": {
+                "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "Prakarya", "PAI Islam", "Sosiologi", "Ekonomi", "Geografi", "Biologi", "Kimia", "Fisika"],
+                "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "Prakarya", "PAI Islam", "Sosiologi", "Ekonomi", "Geografi", "Biologi", "Kimia", "Fisika"],
+                "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "Prakarya", "PAI Islam", "Sosiologi", "Ekonomi", "Geografi", "Biologi", "Kimia", "Fisika"]
+            }
+        };
 
         const paymentAccounts = {
             qris: { displayName: 'QRIS', accountHolder: 'Epay', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris' },
@@ -1134,28 +1198,6 @@
             return html;
         };
 
-        const getOrderDetailsHTML = (pkg, totalPrice) => {
-            return `
-            <div class="mt-0 pt-2">
-                 <h3 class="text-lg font-bold mb-4 google-sans">Rincian Pesanan</h3>
-                 <div class="space-y-3 text-gray-600">
-                     <div class="flex justify-between items-center">
-                         <span class="text-sm">${pkg.name}</span>
-                         <span class="font-semibold text-gray-800 text-md">${formatCurrency(pkg.price)}</span>
-                     </div>
-                     <div class="flex justify-between">
-                         <span class="text-xs">Kode Unik</span>
-                         <span class="font-medium text-gray-800 text-sm">${formatCurrency(uniqueCode)}</span>
-                     </div>
-                     <hr class="my-2 border-gray-200">
-                     <div class="flex justify-between font-bold text-lg text-gray-800 google-sans">
-                         <span>Total</span>
-                         <span class="text-google-blue">${formatCurrency(totalPrice)}</span>
-                     </div>
-                 </div>
-            </div>`;
-        }
-
         const getTestimonialsHTML = (pkg) => {
             const images = pkg.testimonials;
             const singleTrackHTML = images.map((url, index) => `
@@ -1219,32 +1261,156 @@
             return `GMT${offset > 0 ? '+' : '-'}${String(Math.abs(Math.floor(offset))).padStart(2, '0')}:00`;
         }
 
-        function updateDisplay() {
+        function updateOrderSummary() {
             const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price + uniqueCode;
+            let subtotal = 0;
+            let summaryHTML = '';
 
-            const infoContainer = elements.productInfoFormTop;
-            const detailsAccordion = elements.detailsAccordionContainer;
+            const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapels.length > 0);
 
-            infoContainer.style.opacity = '0';
-            detailsAccordion.style.opacity = '0';
+            validCartItems.forEach(item => {
+                subtotal += pkg.price;
+            });
+            
+            const totalPrice = subtotal + uniqueCode;
 
-            setTimeout(() => {
-                infoContainer.innerHTML = getProductInfoHTML(pkg);
-                detailsAccordion.innerHTML = getDetailsAccordionHTML(pkg);
-                elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-                elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
-                elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
-                elements.infoSectionFull.innerHTML = getInfoSectionHTML();
-                infoContainer.style.opacity = '1';
-                detailsAccordion.style.opacity = '1';
-            }, 300);
+            if (validCartItems.length > 0) {
+                 summaryHTML = `
+                    <div class="border-t border-gray-200 pt-4">
+                        <h3 class="text-lg font-bold mb-4 google-sans">Rincian Pesanan</h3>
+                        <div class="space-y-3 text-gray-600">
+                 `;
+
+                validCartItems.forEach((item, index) => {
+                    summaryHTML += `
+                         <div class="flex justify-between items-center">
+                            <div class="text-sm">
+                                ${pkg.name} 
+                                <span class="font-medium text-gray-800">(${item.jenjang} - ${item.kelas})</span>
+                                <p class="text-xs text-gray-500 truncate" style="max-width: 250px;">${item.mapels.join(', ')}</p>
+                            </div>
+                             <span class="font-semibold text-gray-800 text-md">${formatCurrency(pkg.price)}</span>
+                         </div>
+                    `;
+                });
+
+                summaryHTML += `
+                     <div class="flex justify-between mt-3">
+                         <span class="text-sm">Kode Unik</span>
+                         <span class="font-medium text-gray-800 text-sm">${formatCurrency(uniqueCode)}</span>
+                     </div>
+                     <hr class="my-2 border-gray-200">
+                     <div class="flex justify-between font-bold text-lg text-gray-800 google-sans">
+                         <span>Total</span>
+                         <span class="text-google-blue">${formatCurrency(totalPrice)}</span>
+                     </div>
+                    </div>
+                 </div>
+                `;
+            }
+
+            elements.orderSummaryContainer.innerHTML = summaryHTML;
         }
 
-        function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
-            const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
+        function updateCart() {
+            cart = [];
+            const orderItemCards = elements.orderItemsContainer.querySelectorAll('.order-item-card');
+            orderItemCards.forEach(card => {
+                const jenjangSelect = card.querySelector('.jenjang-select');
+                const kelasSelect = card.querySelector('.kelas-select');
+                const mapelCheckboxes = card.querySelectorAll('.mapel-checkbox:checked');
+                const selectedMapels = Array.from(mapelCheckboxes).map(cb => cb.value);
+
+                cart.push({
+                    id: card.dataset.id,
+                    jenjang: jenjangSelect.value,
+                    kelas: kelasSelect.value,
+                    mapels: selectedMapels
+                });
+            });
+            updateOrderSummary();
+        }
+
+        function handleJenjangChange(event) {
+            const jenjang = event.target.value;
+            const orderItemCard = event.target.closest('.order-item-card');
+            const kelasSelect = orderItemCard.querySelector('.kelas-select');
+            const mapelContainer = orderItemCard.querySelector('.mapel-container');
+
+            kelasSelect.innerHTML = '<option value="">-- Pilih Kelas --</option>';
+            mapelContainer.innerHTML = '<p class="text-xs text-gray-500">Pilih jenjang dan kelas untuk melihat mata pelajaran.</p>';
+            kelasSelect.disabled = true;
+
+            if (jenjang && educationalData[jenjang]) {
+                Object.keys(educationalData[jenjang]).forEach(kelas => {
+                    const option = document.createElement('option');
+                    option.value = kelas;
+                    option.textContent = kelas;
+                    kelasSelect.appendChild(option);
+                });
+                kelasSelect.disabled = false;
+            }
+            updateCart();
+        }
+
+        function handleKelasChange(event) {
+            const kelas = event.target.value;
+            const orderItemCard = event.target.closest('.order-item-card');
+            const jenjang = orderItemCard.querySelector('.jenjang-select').value;
+            const mapelContainer = orderItemCard.querySelector('.mapel-container');
+
+            mapelContainer.innerHTML = '';
+            if (jenjang && kelas && educationalData[jenjang][kelas]) {
+                const mapels = educationalData[jenjang][kelas];
+                const mapelGrid = document.createElement('div');
+                mapelGrid.className = 'grid grid-cols-2 gap-x-4 gap-y-2';
+                
+                mapels.forEach(mapel => {
+                    const label = document.createElement('label');
+                    label.className = 'flex items-center text-sm font-normal cursor-pointer';
+                    label.innerHTML = `
+                        <input type="checkbox" value="${mapel}" class="form-checkbox h-4 w-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500 mapel-checkbox mr-2">
+                        <span>${mapel}</span>
+                    `;
+                    label.querySelector('.mapel-checkbox').addEventListener('change', updateCart);
+                    mapelGrid.appendChild(label);
+                });
+                mapelContainer.appendChild(mapelGrid);
+            } else {
+                 mapelContainer.innerHTML = '<p class="text-xs text-gray-500">Pilih jenjang dan kelas untuk melihat mata pelajaran.</p>';
+            }
+            updateCart();
+        }
+
+        let orderItemIdCounter = 0;
+        function addOrderItem() {
+            const templateClone = elements.orderItemTemplate.content.cloneNode(true);
+            const orderItemCard = templateClone.querySelector('.order-item-card');
+            
+            const uniqueId = `item-${orderItemIdCounter++}`;
+            orderItemCard.dataset.id = uniqueId;
+
+            const jenjangSelect = templateClone.querySelector('.jenjang-select');
+            Object.keys(educationalData).forEach(jenjang => {
+                jenjangSelect.innerHTML += `<option value="${jenjang}">${jenjang}</option>`;
+            });
+
+            jenjangSelect.addEventListener('change', handleJenjangChange);
+            templateClone.querySelector('.kelas-select').addEventListener('change', handleKelasChange);
+            templateClone.querySelector('.remove-order-item-btn').addEventListener('click', (e) => {
+                 e.currentTarget.closest('.order-item-card').remove();
+                 updateCart();
+            });
+
+            elements.orderItemsContainer.appendChild(templateClone);
+            updateCart();
+        }
+
+        function generateWaLink(formData, orderDetails, totalPrice, paymentMethodName, paymentId) {
+             const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
                           `*ID Pembayaran:* ${paymentId}\n` +
-                          `*Produk:* ${pkg.name}\n` +
+                          `*Produk:* Perangkat Ajar Lengkap\n` +
+                          `*Rincian Pesanan:*${orderDetails}\n\n`+
                           `*Metode Pembayaran:* ${paymentMethodName}\n` +
                           `*Nama:* ${formData.get('nama')}\n` +
                           `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
@@ -1254,10 +1420,11 @@
             return `https://wa.me/6285602152097?text=${encodeURIComponent(pesanWA)}`;
         }
 
-        function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
+        function showPaymentInstructions(formData, orderDetails, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
             window.scrollTo(0, 0);
-
-            currentOrderDetails = { pkg, totalPrice, paymentId, nama: formData.get('nama'), whatsapp: formData.get('whatsapp') };
+            
+            const pkg = packages[currentPackageId];
+            currentOrderDetails = { pkg, totalPrice, paymentId, nama: formData.get('nama'), whatsapp: formData.get('whatsapp'), orderDetails: orderDetails };
             elements.mainContentContainer.parentElement.style.display = 'none';
             elements.footer.style.display = 'none';
 
@@ -1380,7 +1547,7 @@
             const paymentMethodKey = formData.get('payment-method');
 
             if (!nama || !whatsapp || !email || !paymentMethodKey) {
-                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan.');
+                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan (Nama, WhatsApp, Email, dan Metode Pembayaran).');
                 return;
             }
             if (!email.endsWith('@gmail.com')) {
@@ -1392,23 +1559,36 @@
                 showInfoModal('Nomor WhatsApp Tidak Valid', phoneValidationResult.message);
                 return;
             }
+            const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapels.length > 0);
+            if (validCartItems.length === 0) {
+                showInfoModal('Pesanan Belum Lengkap', 'Mohon pilih jenjang, kelas, dan minimal satu mata pelajaran untuk melanjutkan.');
+                return;
+            }
 
             elements.submitBtn.disabled = true;
             elements.submitBtn.innerHTML = '<i class="fas fa-spinner spinner mr-2"></i> Memproses...';
 
             const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price + uniqueCode;
+            const subtotal = validCartItems.length * pkg.price;
+            const totalPrice = subtotal + uniqueCode;
+            
+            const orderDetailsString = validCartItems.map(item => 
+                `\n- ${item.jenjang} - ${item.kelas}:\n  (${item.mapels.join(', ')})`
+            ).join('');
+
             const paymentAccount = paymentAccounts[paymentMethodKey];
             const now = new Date();
             const paymentId = `INV-PA-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
             
             let submissionSuccess = false;
             try {
-                let followUpMessage = `Halo kak ${nama},\n\nTerima kasih telah memesan *${pkg.name}*.\n\nBerikut rincian pembayaran Anda:\n- Invoice: ${paymentId}\n- Total: *${formatCurrency(totalPrice)}*\n\n`;
+                const waLink = generateWaLink(formData, orderDetailsString, totalPrice, paymentAccount.displayName, paymentId);
+                let followUpMessage = `Halo kak ${nama},\n\nTerima kasih telah memesan *Perangkat Ajar Lengkap*.\n\nBerikut rincian pembayaran Anda:\n- Invoice: ${paymentId}\n- Total: *${formatCurrency(totalPrice)}*\n\n`;
+                followUpMessage += `*Rincian Pesanan:*\n${orderDetailsString}\n\n`;
                 followUpMessage += paymentMethodKey === 'qris' 
                     ? `*- Metode:* ${paymentAccount.displayName}\nSilakan pindai QRIS di halaman pembayaran.\n` 
                     : `*- Metode:* ${paymentAccount.displayName}\n*- Nomor:* ${paymentAccount.number}` + (paymentAccount.accountHolder ? `\n*- Atas Nama:* ${paymentAccount.accountHolder}` : ``) + `\n`;
-                followUpMessage += `\n*Penting:* Mohon transfer sesuai total di atas (termasuk kode unik) agar pesanan Anda diproses otomatis.\n\nSetelah transfer, klik tombol konfirmasi di halaman pembayaran.\n\nTerima kasih`;
+                followUpMessage += `\n*Penting:* Mohon transfer sesuai total di atas (termasuk kode unik) agar pesanan Anda diproses otomatis.\n\nSetelah transfer, klik tombol konfirmasi di halaman pembayaran atau melalui link berikut: ${waLink}\n\nTerima kasih`;
                 
                 const formattedWhatsapp = whatsapp.startsWith('0') ? '62' + whatsapp.substring(1) : whatsapp;
                 const followUpLink = `https://wa.me/${formattedWhatsapp}?text=${encodeURIComponent(followUpMessage)}`;
@@ -1420,7 +1600,12 @@
                         replyTo: email,
                         honeypot: formData.get('honeypot'),
                         name: nama, email: email, whatsapp: whatsapp,
-                        '$Nomor Invoice': paymentId, '$Produk': pkg.name, '$Metode Pembayaran': paymentAccount.displayName, '$Total Transfer': formatCurrency(totalPrice), '$Link Follow Up WA': followUpLink
+                        '$Nomor Invoice': paymentId, 
+                        '$Produk': 'Perangkat Ajar Lengkap', 
+                        '$Rincian Pesanan': orderDetailsString,
+                        '$Metode Pembayaran': paymentAccount.displayName, 
+                        '$Total Transfer': formatCurrency(totalPrice), 
+                        '$Link Follow Up WA': followUpLink
                     }),
                     headers: { 'Content-Type': 'application/json' }
                 });
@@ -1431,7 +1616,7 @@
             elements.submitBtn.innerHTML = '<i class="fas fa-download mr-2"></i> Pesan & Unduh Sekarang';
 
             if (submissionSuccess) {
-                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
+                showPaymentInstructions(formData, orderDetailsString, totalPrice, paymentAccount, paymentId, paymentMethodKey);
             } else {
                 showInfoModal('Pengiriman Gagal', 'Terjadi kesalahan saat mengirim data. Silakan coba lagi.');
             }
@@ -1469,14 +1654,49 @@
         }
 
         // --- INITIALIZATION ---
-        elements.currentYear.textContent = new Date().getFullYear();
-        elements.submitBtn.addEventListener('click', handleFormSubmit);
-        updateDisplay();
-        setTimeout(showNextNotification, 6000);
+        function initializePage() {
+            const pkg = packages[currentPackageId];
+            elements.currentYear.textContent = new Date().getFullYear();
+            
+            // Render static content once
+            elements.productInfoFormTop.innerHTML = getProductInfoHTML(pkg);
+            elements.detailsAccordionContainer.innerHTML = getDetailsAccordionHTML(pkg);
+            elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
+            elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
+            elements.infoSectionFull.innerHTML = getInfoSectionHTML();
+
+            // Setup dynamic order functionality
+            elements.addOrderBtn.addEventListener('click', addOrderItem);
+            elements.submitBtn.addEventListener('click', handleFormSubmit);
+            
+            // Add the first order item by default
+            addOrderItem();
+
+            // Start notifications
+            setTimeout(showNextNotification, 6000);
+        }
+
+        initializePage();
 
         // --- DETAILS MODAL LOGIC ---
         function getDetailsModalHTML(details) {
-            const { pkg, totalPrice, paymentId, nama, whatsapp } = details;
+            const { pkg, totalPrice, paymentId, nama, whatsapp, orderDetails } = details;
+            
+            let orderItemsHTML = '';
+            const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapels.length > 0);
+            validCartItems.forEach(item => {
+                orderItemsHTML += `
+                    <div class="py-2">
+                        <div class="flex justify-between text-base">
+                            <span>${pkg.name} (${item.jenjang} - ${item.kelas})</span>
+                            <span class="font-semibold text-gray-800">${formatCurrency(pkg.price)}</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">${item.mapels.join(', ')}</p>
+                    </div>
+                `;
+            });
+
+
             return `
                 <div class="details-modal-header">
                     <h3>Ringkasan Transaksi</h3>
@@ -1491,14 +1711,9 @@
                             <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy"></i></button>
                         </div>
                     </div>
-                    <div class="space-y-4 border-t border-b border-gray-200 py-6 mb-6">
-                        <div>
-                            <div class="flex justify-between text-base">
-                                <span>${pkg.name}</span>
-                                <span class="font-semibold text-gray-800">${formatCurrency(pkg.price)}</span>
-                            </div>
-                        </div>
-                         <div class="flex justify-between text-sm">
+                    <div class="space-y-2 border-t border-b border-gray-200 py-4 mb-4">
+                        ${orderItemsHTML}
+                         <div class="flex justify-between text-sm pt-2">
                             <span class="text-gray-500">Kode Unik</span>
                             <span class="font-medium">${formatCurrency(uniqueCode)}</span>
                         </div>
