@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perangkat Ajar Deep Learning SD/SMP/SMA 2025/2026</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/6nBf625/teacher.png">
+    <title>Merdeka Mengajar SD/SMP/SMA 2025/2026</title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg/100px-Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -862,22 +862,6 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-12 gap-y-8 max-w-7xl mx-auto">
                 <!-- Kolom Kiri: Form & Pembayaran -->
                 <div class="lg:col-span-1 material-card p-5 md:p-8">
-                    <!-- Header Keamanan -->
-                    <div class="grid grid-cols-2 gap-3 text-center border-b border-gray-200 pb-4 mb-4">
-                        <div class="flex">
-                            <div class="security-badge w-full justify-center">
-                                <i class="fas fa-shield-alt text-xs mr-1"></i>
-                                TRANSAKSI AMAN
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="security-badge w-full justify-center" style="background: var(--theme-primary); color: white;">
-                                <i class="fas fa-check-circle text-xs mr-1"></i>
-                                PRODUK TERVERIFIKASI
-                            </div>
-                        </div>
-                    </div>
-                    
                     <!-- Info Produk -->
                     <div id="product-info-form-top" class="mb-4"></div>
 
@@ -889,13 +873,13 @@
                         <h2 class="text-lg font-bold mb-3 google-sans">Lengkapi Data Pemesanan</h2>
                         <div class="space-y-4">
                             <div>
-                                <input type="text" id="nama" name="nama" class="form-input" placeholder="Nama Lengkap & Gelar *">
+                                <input type="text" id="nama" name="nama" class="form-input" placeholder="Nama Lengkap *">
                             </div>
                             <div>
                                 <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="No. WhatsApp Aktif *">
                             </div>
                             <div>
-                                <input type="email" id="email" name="email" class="form-input" placeholder="Alamat Gmail (Untuk Pengiriman File) *">
+                                <input type="email" id="email" name="email" class="form-input" placeholder="Alamat Email *">
                             </div>
                         </div>
 
@@ -937,7 +921,7 @@
         </div>
 
         <footer id="footer" class="text-center mt-8 text-gray-500 text-sm">
-            <p>Copyright © <span id="currentYear">2025</span> Pusat Perangkat Ajar. Semua Hak Dilindungi.</p>
+            <p>Copyright © <span id="currentYear">2025</span> Merdeka Mengajar. Semua Hak Dilindungi.</p>
         </footer>
     </div>
 
@@ -982,7 +966,7 @@
             <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-500 remove-order-item-btn h-8 w-8 flex items-center justify-center rounded-full hover:bg-red-50" title="Hapus Pilihan Ini">
                 <i class="fas fa-times"></i>
             </button>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Jenjang</label>
                     <select name="jenjang" class="form-input jenjang-select">
@@ -992,14 +976,14 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Kelas</label>
                     <select name="kelas" class="form-input kelas-select" disabled>
-                        <option value="">-- Pilih Jenjang Dulu --</option>
+                        <option value="">-- Pilih Jenjang --</option>
                     </select>
                 </div>
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Mata Pelajaran (Pilih semua yang dibutuhkan)</label>
-                <div class="p-3 border rounded-md bg-gray-50 max-h-48 overflow-y-auto mapel-container">
-                    <p class="text-xs text-gray-500">Pilih jenjang dan kelas untuk melihat daftar mata pelajaran.</p>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Mata Pelajaran</label>
+                    <select name="mapel" class="form-input mapel-select" disabled>
+                        <option value="">-- Pilih Kelas --</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -1070,14 +1054,19 @@
         let currentOrderDetails = {};
         let cart = []; // Holds all the selected order items
 
+        const pricing = {
+            "SD": 50000,
+            "SMP": 75000,
+            "SMA": 100000
+        };
+
         const packages = {
             perangkatAjar: {
                 id: 'perangkatAjar',
                 name: "Perangkat Ajar Lengkap",
-                price: 149000, // Price per selection (jenjang + kelas)
                 title: "Perangkat Ajar Deep Learning 2025/2026",
                 logoIcon: 'fa-solid fa-book-open-reader',
-                description: "Solusi lengkap administrasi mengajar Kurikulum Merdeka untuk jenjang SD, SMP, & SMA.",
+                description: "Solusi lengkap administrasi mengajar Kurikulum Nasional untuk jenjang SD, SMP, & SMA.",
                 kelengkapan: [
                     "Modul Ajar Terintegrasi Deep Learning (2 Semester)",
                     "Capaian Pembelajaran (CP)",
@@ -1089,7 +1078,7 @@
                     "Alokasi Waktu Pembelajaran",
                     "Administrasi Wali Kelas Lengkap",
                     "Daftar Nilai & Jurnal Harian",
-                    "Analisis Penilaian Kurikulum Merdeka",
+                    "Analisis Penilaian Kurikulum Nasional",
                     "Bonus: Media Ajar & Materi Presentasi"
                 ],
                  mapel: [
@@ -1099,34 +1088,62 @@
                     "Seni Budaya", "Prakarya", "PAI Islam"
                 ],
                 testimonials: [
-                    "https://placehold.co/600x400/e8f0fe/1a73e8?text=Sangat+Lengkap%21%0A%0AMembantu+sekali+dalam+persiapan%0Amengajar.+Terima+kasih%21%0A%0A-+Ibu+Anisa%2C+Guru+SMA",
-                    "https://placehold.co/600x400/e8f0fe/1a73e8?text=Menghemat+Waktu%0A%0ATidak+perlu+lagi+pusing+membuat%0Aadministrasi+dari+nol.+Semua%0Asudah+tersedia+di+sini.%0A%0A-+Bapak+Budi%2C+Guru+SMP",
-                    "https://placehold.co/600x400/e8f0fe/1a73e8?text=Sesuai+Kurikulum+Merdeka%0A%0AStrukturnya+sudah+sesuai+dengan%0Aarahan+terbaru.+Sangat+relevan%0Adan+mudah+diadaptasi.%0A%0A-+Ibu+Citra%2C+Guru+SD",
-                    "https://placehold.co/600x400/e8f0fe/1a73e8?text=Rekomendasi+Terbaik%21%0A%0ASaya+sudah+rekomendasikan+ke%0Ateman-teman+guru+lainnya.%0AWorth+it+banget%21%0A%0A-+Bapak+Rahmat%2C+Kepala+Sekolah"
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0008.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0009.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0010.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0011.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0012.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0013.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0014.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0015.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0016.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0017.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0018.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0019.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0020.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0021.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0022.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0023.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0024.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0025.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0026.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0027.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0028.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0029.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0030.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0031.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0032.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0033.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0034.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0035.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0036.jpg",
+                    "https://cdn.allthepics.net/images/2025/09/11/IMG-20250827-WA0037.jpg"
                 ]
             }
         };
 
         let currentPackageId = 'perangkatAjar';
 
+        const fullSubjectList = ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "Prakarya", "PAI Islam", "Sosiologi", "Ekonomi", "Geografi", "Biologi", "Kimia", "Fisika", "IPAS", "IPS", "IPA", "Tematik"];
+
         const educationalData = {
             "SD": {
-                "Kelas 1": ["Tematik", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "PJOK", "Seni Budaya", "PAI Islam"],
-                "Kelas 2": ["Tematik", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "PJOK", "Seni Budaya", "PAI Islam"],
-                "Kelas 3": ["Tematik", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "PJOK", "Seni Budaya", "PAI Islam"],
-                "Kelas 4": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "IPAS", "PJOK", "Seni Budaya", "PAI Islam"],
-                "Kelas 5": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "IPAS", "PJOK", "Seni Budaya", "PAI Islam"],
-                "Kelas 6": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "IPAS", "PJOK", "Seni Budaya", "PAI Islam"]
+                "Kelas 1": fullSubjectList,
+                "Kelas 2": fullSubjectList,
+                "Kelas 3": fullSubjectList,
+                "Kelas 4": fullSubjectList,
+                "Kelas 5": fullSubjectList,
+                "Kelas 6": fullSubjectList
             },
             "SMP": {
-                "Kelas 7": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "IPS", "IPA", "Seni Budaya", "Prakarya", "PAI Islam"],
-                "Kelas 8": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "IPS", "IPA", "Seni Budaya", "Prakarya", "PAI Islam"],
-                "Kelas 9": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "IPS", "IPA", "Seni Budaya", "Prakarya", "PAI Islam"]
+                "Kelas 7": fullSubjectList,
+                "Kelas 8": fullSubjectList,
+                "Kelas 9": fullSubjectList
             },
             "SMA": {
-                "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "Prakarya", "PAI Islam", "Sosiologi", "Ekonomi", "Geografi", "Biologi", "Kimia", "Fisika"],
-                "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "Prakarya", "PAI Islam", "Sosiologi", "Ekonomi", "Geografi", "Biologi", "Kimia", "Fisika"],
-                "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "Prakarya", "PAI Islam", "Sosiologi", "Ekonomi", "Geografi", "Biologi", "Kimia", "Fisika"]
+                "Kelas 10": fullSubjectList,
+                "Kelas 11": fullSubjectList,
+                "Kelas 12": fullSubjectList
             }
         };
 
@@ -1151,8 +1168,8 @@
                         <p class="text-md text-gray-600 mt-1">${pkg.description}</p>
                     </div>
                     <div class="text-center md:text-right mt-2 md:mt-0 md:pl-6">
-                        <div class="text-4xl font-bold text-google-blue google-sans">${formatCurrency(pkg.price)}</div>
-                        <p class="text-sm text-gray-500 mt-1">Akses Selamanya</p>
+                        <div class="text-3xl font-bold text-google-blue google-sans">Mulai dari ${formatCurrency(pricing.SD)}</div>
+                        <p class="text-sm text-gray-500 mt-1">Per Mata Pelajaran</p>
                         <div class="mt-2">
                             <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">
                                 <i class="fas fa-tag mr-1"></i>Promo Tahun Ajaran Baru
@@ -1168,7 +1185,7 @@
             const mapelHTML = `<div class="grid grid-cols-2 gap-x-4 gap-y-2">${pkg.mapel.map(m => `<div class="flex items-center text-sm"><i class="fas fa-book text-blue-400 mr-2"></i><span>${m}</span></div>`).join('')}</div>`;
 
             return `
-                <details class="faq-item" open>
+                <details class="faq-item">
                     <summary>Kelengkapan Perangkat Ajar</summary>
                     <div class="faq-content">${kelengkapanHTML}</div>
                 </details>
@@ -1222,11 +1239,11 @@
                 <div class="space-y-0">
                     <details class="faq-item">
                         <summary>Apa itu Perangkat Ajar Deep Learning?</summary>
-                        <div class="faq-content">Ini adalah kumpulan lengkap dokumen administrasi mengajar yang siap pakai, dirancang untuk membantu guru dalam menerapkan Kurikulum Merdeka secara efektif dan efisien.</div>
+                        <div class="faq-content">Ini adalah kumpulan lengkap dokumen administrasi mengajar yang siap pakai, dirancang untuk membantu guru dalam menerapkan Kurikulum Nasional secara efektif dan efisien.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Apakah sudah sesuai Kurikulum Merdeka?</summary>
-                        <div class="faq-content">Ya, 100%. Seluruh komponen, mulai dari CP, TP, ATP, hingga Asesmen disusun berdasarkan panduan terbaru Kurikulum Merdeka dari Kemendikbudristek.</div>
+                        <summary>Apakah sudah sesuai Kurikulum Nasional?</summary>
+                        <div class="faq-content">Ya, 100%. Seluruh komponen, mulai dari CP, TP, ATP, hingga Asesmen disusun berdasarkan panduan terbaru Kurikulum Nasional dari Kemendikbudristek.</div>
                     </details>
                     <details class="faq-item">
                         <summary>Untuk jenjang apa saja perangkat ini?</summary>
@@ -1234,7 +1251,7 @@
                     </details>
                     <details class="faq-item">
                         <summary>Bagaimana saya akan menerima filenya?</summary>
-                        <div class="faq-content">Setelah pembayaran terkonfirmasi, link unduhan Google Drive akan secara otomatis dikirimkan ke alamat email (Gmail) yang Anda daftarkan. Pastikan email Anda aktif.</div>
+                        <div class="faq-content">Setelah pembayaran terkonfirmasi, link unduhan Google Drive akan secara otomatis dikirimkan ke nomor WhatsApp yang Anda daftarkan. Pastikan nomor WhatsApp Anda aktif.</div>
                     </details>
                     <details class="faq-item">
                         <summary>Apa format filenya dan apakah bisa diedit?</summary>
@@ -1262,34 +1279,34 @@
         }
 
         function updateOrderSummary() {
-            const pkg = packages[currentPackageId];
             let subtotal = 0;
             let summaryHTML = '';
-
-            const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapels.length > 0);
+            
+            const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapel);
 
             validCartItems.forEach(item => {
-                subtotal += pkg.price;
+                const pricePerMapel = pricing[item.jenjang] || 0;
+                subtotal += pricePerMapel;
             });
             
             const totalPrice = subtotal + uniqueCode;
 
             if (validCartItems.length > 0) {
-                 summaryHTML = `
+                summaryHTML = `
                     <div class="border-t border-gray-200 pt-4">
                         <h3 class="text-lg font-bold mb-4 google-sans">Rincian Pesanan</h3>
                         <div class="space-y-3 text-gray-600">
-                 `;
+                `;
 
                 validCartItems.forEach((item, index) => {
+                    const pricePerMapel = pricing[item.jenjang] || 0;
                     summaryHTML += `
                          <div class="flex justify-between items-center">
                             <div class="text-sm">
-                                ${pkg.name} 
-                                <span class="font-medium text-gray-800">(${item.jenjang} - ${item.kelas})</span>
-                                <p class="text-xs text-gray-500 truncate" style="max-width: 250px;">${item.mapels.join(', ')}</p>
+                                ${item.jenjang} - ${item.kelas}
+                                <p class="text-xs text-gray-500">${item.mapel}</p>
                             </div>
-                             <span class="font-semibold text-gray-800 text-md">${formatCurrency(pkg.price)}</span>
+                             <span class="font-semibold text-gray-800 text-md">${formatCurrency(pricePerMapel)}</span>
                          </div>
                     `;
                 });
@@ -1318,14 +1335,13 @@
             orderItemCards.forEach(card => {
                 const jenjangSelect = card.querySelector('.jenjang-select');
                 const kelasSelect = card.querySelector('.kelas-select');
-                const mapelCheckboxes = card.querySelectorAll('.mapel-checkbox:checked');
-                const selectedMapels = Array.from(mapelCheckboxes).map(cb => cb.value);
+                const mapelSelect = card.querySelector('.mapel-select');
 
                 cart.push({
                     id: card.dataset.id,
                     jenjang: jenjangSelect.value,
                     kelas: kelasSelect.value,
-                    mapels: selectedMapels
+                    mapel: mapelSelect.value
                 });
             });
             updateOrderSummary();
@@ -1335,11 +1351,12 @@
             const jenjang = event.target.value;
             const orderItemCard = event.target.closest('.order-item-card');
             const kelasSelect = orderItemCard.querySelector('.kelas-select');
-            const mapelContainer = orderItemCard.querySelector('.mapel-container');
+            const mapelSelect = orderItemCard.querySelector('.mapel-select');
 
             kelasSelect.innerHTML = '<option value="">-- Pilih Kelas --</option>';
-            mapelContainer.innerHTML = '<p class="text-xs text-gray-500">Pilih jenjang dan kelas untuk melihat mata pelajaran.</p>';
+            mapelSelect.innerHTML = '<option value="">-- Pilih Kelas --</option>';
             kelasSelect.disabled = true;
+            mapelSelect.disabled = true;
 
             if (jenjang && educationalData[jenjang]) {
                 Object.keys(educationalData[jenjang]).forEach(kelas => {
@@ -1357,27 +1374,20 @@
             const kelas = event.target.value;
             const orderItemCard = event.target.closest('.order-item-card');
             const jenjang = orderItemCard.querySelector('.jenjang-select').value;
-            const mapelContainer = orderItemCard.querySelector('.mapel-container');
+            const mapelSelect = orderItemCard.querySelector('.mapel-select');
 
-            mapelContainer.innerHTML = '';
+            mapelSelect.innerHTML = '<option value="">-- Pilih Mata Pelajaran --</option>';
+            mapelSelect.disabled = true;
+
             if (jenjang && kelas && educationalData[jenjang][kelas]) {
                 const mapels = educationalData[jenjang][kelas];
-                const mapelGrid = document.createElement('div');
-                mapelGrid.className = 'grid grid-cols-2 gap-x-4 gap-y-2';
-                
                 mapels.forEach(mapel => {
-                    const label = document.createElement('label');
-                    label.className = 'flex items-center text-sm font-normal cursor-pointer';
-                    label.innerHTML = `
-                        <input type="checkbox" value="${mapel}" class="form-checkbox h-4 w-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500 mapel-checkbox mr-2">
-                        <span>${mapel}</span>
-                    `;
-                    label.querySelector('.mapel-checkbox').addEventListener('change', updateCart);
-                    mapelGrid.appendChild(label);
+                    const option = document.createElement('option');
+                    option.value = mapel;
+                    option.textContent = mapel;
+                    mapelSelect.appendChild(option);
                 });
-                mapelContainer.appendChild(mapelGrid);
-            } else {
-                 mapelContainer.innerHTML = '<p class="text-xs text-gray-500">Pilih jenjang dan kelas untuk melihat mata pelajaran.</p>';
+                mapelSelect.disabled = false;
             }
             updateCart();
         }
@@ -1397,6 +1407,7 @@
 
             jenjangSelect.addEventListener('change', handleJenjangChange);
             templateClone.querySelector('.kelas-select').addEventListener('change', handleKelasChange);
+            templateClone.querySelector('.mapel-select').addEventListener('change', updateCart); // Update cart on mapel change
             templateClone.querySelector('.remove-order-item-btn').addEventListener('click', (e) => {
                  e.currentTarget.closest('.order-item-card').remove();
                  updateCart();
@@ -1550,31 +1561,29 @@
                 showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan (Nama, WhatsApp, Email, dan Metode Pembayaran).');
                 return;
             }
-            if (!email.endsWith('@gmail.com')) {
-                showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email Gmail (@gmail.com) untuk pengiriman file.');
-                return;
-            }
             const phoneValidationResult = validatePhoneNumber(whatsapp);
             if (!phoneValidationResult.isValid) {
                 showInfoModal('Nomor WhatsApp Tidak Valid', phoneValidationResult.message);
                 return;
             }
-            const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapels.length > 0);
+            const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapel);
             if (validCartItems.length === 0) {
-                showInfoModal('Pesanan Belum Lengkap', 'Mohon pilih jenjang, kelas, dan minimal satu mata pelajaran untuk melanjutkan.');
+                showInfoModal('Pesanan Belum Lengkap', 'Mohon pilih jenjang, kelas, dan mata pelajaran untuk melanjutkan.');
                 return;
             }
 
             elements.submitBtn.disabled = true;
             elements.submitBtn.innerHTML = '<i class="fas fa-spinner spinner mr-2"></i> Memproses...';
 
-            const pkg = packages[currentPackageId];
-            const subtotal = validCartItems.length * pkg.price;
+            const subtotal = validCartItems.reduce((acc, item) => {
+                const pricePerMapel = pricing[item.jenjang] || 0;
+                return acc + pricePerMapel;
+            }, 0);
             const totalPrice = subtotal + uniqueCode;
             
-            const orderDetailsString = validCartItems.map(item => 
-                `\n- ${item.jenjang} - ${item.kelas}:\n  (${item.mapels.join(', ')})`
-            ).join('');
+            const orderDetailsString = validCartItems.map(item => {
+                return `\n- ${item.jenjang} - ${item.kelas} (${item.mapel})`;
+            }).join('');
 
             const paymentAccount = paymentAccounts[paymentMethodKey];
             const now = new Date();
@@ -1656,6 +1665,7 @@
         // --- INITIALIZATION ---
         function initializePage() {
             const pkg = packages[currentPackageId];
+            testimonialImages = pkg.testimonials; // Populate images for modal
             elements.currentYear.textContent = new Date().getFullYear();
             
             // Render static content once
@@ -1683,15 +1693,15 @@
             const { pkg, totalPrice, paymentId, nama, whatsapp, orderDetails } = details;
             
             let orderItemsHTML = '';
-            const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapels.length > 0);
+            const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapel);
             validCartItems.forEach(item => {
+                const pricePerMapel = pricing[item.jenjang] || 0;
                 orderItemsHTML += `
                     <div class="py-2">
                         <div class="flex justify-between text-base">
-                            <span>${pkg.name} (${item.jenjang} - ${item.kelas})</span>
-                            <span class="font-semibold text-gray-800">${formatCurrency(pkg.price)}</span>
+                            <span>${item.jenjang} - ${item.kelas} <span class="text-gray-500">(${item.mapel})</span></span>
+                            <span class="font-semibold text-gray-800">${formatCurrency(pricePerMapel)}</span>
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">${item.mapels.join(', ')}</p>
                     </div>
                 `;
             });
@@ -1805,12 +1815,7 @@
     const imageModal = document.getElementById('imageModal');
     const modalImg = document.getElementById("modalImage");
     let currentImageIndex;
-    const testimonialImages = [
-        "https://placehold.co/600x400/e8f0fe/1a73e8?text=Sangat+Lengkap%21%0A%0AMembantu+sekali+dalam+persiapan%0Amengajar.+Terima+kasih%21%0A%0A-+Ibu+Anisa%2C+Guru+SMA",
-        "https://placehold.co/600x400/e8f0fe/1a73e8?text=Menghemat+Waktu%0A%0ATidak+perlu+lagi+pusing+membuat%0Aadministrasi+dari+nol.+Semua%0Asudah+tersedia+di+sini.%0A%0A-+Bapak+Budi%2C+Guru+SMP",
-        "https://placehold.co/600x400/e8f0fe/1a73e8?text=Sesuai+Kurikulum+Merdeka%0A%0AStrukturnya+sudah+sesuai+dengan%0Aarahan+terbaru.+Sangat+relevan%0Adan+mudah+diadaptasi.%0A%0A-+Ibu+Citra%2C+Guru+SD",
-        "https://placehold.co/600x400/e8f0fe/1a73e8?text=Rekomendasi+Terbaik%21%0A%0ASaya+sudah+rekomendasikan+ke%0Ateman-teman+guru+lainnya.%0AWorth+it+banget%21%0A%0A-+Bapak+Rahmat%2C+Kepala+Sekolah"
-    ];
+    let testimonialImages = []; // Will be populated from the packages object
 
     window.openImageModal = function(event, index) {
         event.stopPropagation();
