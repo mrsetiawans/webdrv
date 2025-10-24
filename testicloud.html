@@ -1280,7 +1280,7 @@
             const images = pkg.testimonials;
             const singleTrackHTML = images.map((url, index) => `
                 <div class="testimonial-slide">
-                    <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\nMuat';">
+                    <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image" loading="lazy" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\nMuat';">
                 </div>
             `).join('');
 
