@@ -483,11 +483,11 @@
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .segmented-control .package-radio#product-google:checked ~ .segmented-control-pill {
+        .segmented-control .package-radio#pkg-drive:checked ~ .segmented-control-pill {
             transform: translateX(0%);
         }
 
-        .segmented-control .package-radio#product-icloud:checked ~ .segmented-control-pill {
+        .segmented-control .package-radio#pkg-photos:checked ~ .segmented-control-pill {
             transform: translateX(100%);
         }
 
@@ -1044,19 +1044,19 @@
                         </div>
                     </div>
                     
-                    <!-- Product Selection -->
-                    <div class="my-4">
-                        <h2 class="text-lg font-bold mb-3 google-sans">Pilih Produk Anda</h2>
-                        <div id="product-selection">
+                    <!-- Pemilihan Paket (Segmented Control) - Dihapus -->
+                    <div class="my-4" style="display:none;">
+                        <h2 class="text-lg font-bold mb-3 google-sans">1. Pilih Paket Anda</h2>
+                        <div id="package-selection">
                             <div class="segmented-control">
-                                <input type="radio" id="product-google" name="product" value="google" class="package-radio" checked>
-                                <label for="product-google" class="package-label">Bundling Google 2TB</label>
-                                <input type="radio" id="product-icloud" name="product" value="icloud" class="package-radio">
-                                <label for="product-icloud" class="package-label">iCloud+ 2TB</label>
-                                <div class="segmented-control-pill"></div>
+                                <input type="radio" id="pkg-drive" name="package" value="drive" class="package-radio" checked>
+                                <label for="pkg-drive" class="package-label">Google<br>Drive</label>
+    
+                                <div class="segmented-control-pill" style="width: calc((100% - 8px) / 1);"></div>
                             </div>
                         </div>
                     </div>
+
                     <!-- Info Produk -->
                     <div id="product-info-form-top" class="mb-4"></div>
 
@@ -1239,10 +1239,10 @@
         let expiryTime;
         let currentOrderDetails = {};
         
-        const products = {
-            google: {
-                id: 'google',
-                name: "Bundling Google 2TB",
+        const packages = {
+            drive: {
+                id: 'bundle',
+                name: "Bundling Drive, Photos, Gmail",
                 price: 250000,
                 normalPrice: 999000,
                 title: "Bundling 2TB: Drive, Photos, Gmail",
@@ -1259,108 +1259,12 @@
                     "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Google yang sudah Anda miliki.",
                     "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
                 ],
-                faq: [
-                    { q: "Apakah ini benar-benar unlimited dan seumur hidup?", a: "Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk Google Drive dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi." },
-                    { q: "Bagaimana proses upgrade untuk Google Drive?", a: "Prosesnya otomatis dan terintegrasi dengan akun Google Anda. Setelah pembayaran, penyimpanan pada Google Drive Anda akan langsung ter-upgrade menjadi unlimited. Anda tidak perlu melakukan apa-apa lagi dan bisa langsung menikmati kapasitas tanpa batas di akun pribadi Anda." },
-                    { q: "Apakah ini aman dan legal?", a: "Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda." },
-                    { q: "Apa bedanya dengan langganan Google One?", a: "Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, melalui metode upgrade langsung pada akun Anda." },
-                    { q: "Bisakah saya memindahkan file lama saya?", a: "Tentu bisa. Karena upgrade ini langsung diterapkan pada akun Google Drive pribadi Anda, semua file lama Anda akan tetap ada di tempatnya dan secara otomatis menjadi bagian dari penyimpanan unlimited yang baru. Anda tidak perlu memindahkan file atau folder apa pun." },
-                    { q: "Berapa lama proses aktivasinya?", a: "Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam." },
-                    { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll)." }
-                ],
-                testimonials: [
-                    "https://cdn.allthepics.net/images/2025/10/24/kE1dC.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE1kC.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE1sE.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE39S.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE3j2.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE3zV.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE4if.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE44B.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE4pm.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE5Xv.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE5gq.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE63A.jpg",
-                    "https://cdn.allthepics.net/images/2025/10/24/kE6sY.jpg"
-                ]
-            },
-            icloud: {
-                id: 'icloud',
-                name: "iCloud+ 2TB",
-                price: 350000,
-                normalPrice: 450000,
-                title: "iCloud+ 2TB",
-                priceDisplay: `Rp350.000`,
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/ICloud_logo.svg/320px-ICloud_logo.svg.png',
-                description: "Penyimpanan 2TB & fitur premium iCloud+ untuk 1 tahun.",
-                features: [
-                    "<strong>Kapasitas 2TB:</strong> Simpan semua foto, video, file, dan backup perangkat Anda dengan aman.",
-                    "<strong>Relai Pribadi iCloud:</strong> Jelajahi web dengan lebih aman dan pribadi di Safari.",
-                    "<strong>Sembunyikan Email Saya:</strong> Buat alamat email acak untuk menjaga kerahasiaan email pribadi Anda.",
-                    "<strong>Domain Email Khusus:</strong> Personalisasi alamat email iCloud Anda dengan domain sendiri.",
-                    "<strong>Video Aman HomeKit:</strong> Simpan rekaman kamera keamanan rumah Anda dengan enkripsi end-to-end.",
-                    "<strong>Gunakan Email Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Apple ID (iCloud) pribadi Anda.",
-                    "<strong>100% Aman & Bergaransi:</strong> Proses legal melalui fitur Apple One Premier, privasi terjamin."
-                ],
-                faq: [
-                    { q: "Apakah ini benar-benar 2TB?", a: "Ya, Anda akan mendapatkan kapasitas 2TB. Kami menawarkan paket berlangganan selama 1 tahun. Paket ini menggunakan email pribadi Anda." },
-                    { q: "Bagaimana proses upgrade iCloud+ ini?", a: "Prosesnya sangat mudah. Kami akan mengundang email (Apple ID) Anda untuk bergabung ke dalam langganan Apple One Premier kami. Setelah Anda menerima undangan, kapasitas iCloud Anda akan otomatis menjadi 2TB beserta semua fitur iCloud+." },
-                    { q: "Apakah ini aman dan legal?", a: "Tentu saja. Metode yang kami gunakan 100% legal melalui fitur Apple Family Sharing. Kami tidak pernah meminta password Apple ID Anda. Privasi data dan file Anda sepenuhnya terjamin karena setiap anggota keluarga memiliki penyimpanan pribadi yang tidak bisa diakses oleh anggota lain." },
-                    { q: "Apa bedanya dengan langganan iCloud+ langsung ke Apple?", a: "Langganan langsung ke Apple memerlukan pembayaran bulanan atau tahunan yang berulang. Dengan paket kami, Anda bisa mendapatkan harga yang jauh lebih murah." },
-                    { q: "Apakah file lama saya akan hilang?", a: "Tidak akan. Karena upgrade ini diterapkan pada akun Apple ID pribadi Anda, semua file dan data lama Anda akan tetap aman di tempatnya dan secara otomatis menjadi bagian dari penyimpanan 2TB yang baru." },
-                    { q: "Berapa lama proses aktivasinya?", a: "Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, undangan akan kami kirimkan dan aktivasi biasanya selesai dalam waktu 5-15 menit." },
-                    { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Garansi tidak berlaku jika akun Anda dibatasi oleh Apple karena melanggar kebijakan mereka (misalnya menyimpan file ilegal, dll)." }
-                ],
-                testimonials: [
-                    "https://pixvid.org/images/2025/10/24/kEZMJ.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEZcj.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEgWD.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEgFp.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEgxI.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEgL0.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEzzW.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEzuR.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEzGt.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEzfK.jpg",
-                    "https://pixvid.org/images/2025/10/24/kE7Hy.jpg",
-                    "https://pixvid.org/images/2025/10/24/kE7KG.jpg",
-                    "https://pixvid.org/images/2025/10/24/kE7as.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEHPL.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEHrU.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEHoZ.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEHXr.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEQUw.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEQlE.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEQ69.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEQsS.jpg",
-                    "https://pixvid.org/images/2025/10/24/kERm2.jpg",
-                    "https://pixvid.org/images/2025/10/24/kERhV.jpg",
-                    "https://pixvid.org/images/2025/10/24/kER9k.jpg",
-                    "https://pixvid.org/images/2025/10/24/kERNg.jpg",
-                    "https://pixvid.org/images/2025/10/24/kErCO.jpg",
-                    "https://pixvid.org/images/2025/10/24/kErwF.jpg",
-                    "https://pixvid.org/images/2025/10/24/kErdn.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEr3M.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEOZa.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEOYB.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEOAf.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEOVm.jpg",
-                    "https://pixvid.org/images/2025/10/24/kEl7z.jpg",
-                    "https://pixvid.org/images/2025/10/24/kElJl.jpg"
-                ]
+                testimonials: testimonialImages
             }
         };
 
-        let currentProductId = 'google'; // Produk default yang dipilih
+        let currentPackageId = 'drive'; // Paket default yang dipilih
         
-        // Event listener for product selection
-        document.querySelectorAll('input[name="product"]').forEach(radio => {
-            radio.addEventListener('change', (event) => {
-                currentProductId = event.target.value;
-                updateDisplay();
-            });
-        });
-
         // --- UPDATED PAYMENT ACCOUNTS ---
         const paymentAccounts = {
             qris: {
@@ -1473,12 +1377,7 @@
         
         // --- MODIFIED: getPaymentMethodsHTML ---
         const getPaymentMethodsHTML = (accounts) => {
-            let html = `
-                <div class="bg-yellow-50 border border-yellow-200 text-yellow-800 text-xs rounded-lg p-3 mb-4 text-center">
-                    <i class="fas fa-exclamation-triangle mr-2"></i>
-                    <strong>Penting:</strong> Pastikan No. WhatsApp & Email Anda sudah benar untuk proses upgrade.
-                </div>
-                <h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">Metode Pembayaran</h2>`;
+            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">Metode Pembayaran</h2>`;
             html += `<div class="payment-group">`;
 
             Object.entries(accounts).forEach(([key, account], index) => {
@@ -1559,18 +1458,41 @@
         }
 
         // --- NEW: Combined Info Section (FAQ + Policy) ---
-        const getInfoSectionHTML = (product) => {
-            let faqItemsHTML = product.faq.map(item => `
-                <details class="faq-item">
-                    <summary>${item.q}</summary>
-                    <div class="faq-content">${item.a}</div>
-                </details>
-            `).join('');
-
-            return `
+        const getInfoSectionHTML = () => {
+             const faqHTML = `
                 <h3 class="text-2xl font-bold mb-4 text-center google-sans">Informasi & Bantuan</h3>
-                <div class="space-y-0">${faqItemsHTML}</div>
+                <div class="space-y-0">
+                    <details class="faq-item">
+                        <summary>Apakah ini benar-benar unlimited dan seumur hidup?</summary>
+                        <div class="faq-content">Ya, benar. Anda akan mendapatkan penyimpanan tanpa batas untuk Google Drive dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Bagaimana proses upgrade untuk Google Drive?</summary>
+                        <div class="faq-content">Prosesnya otomatis dan terintegrasi dengan akun Google Anda. Setelah pembayaran, penyimpanan pada Google Drive Anda akan langsung ter-upgrade menjadi unlimited. Anda tidak perlu melakukan apa-apa lagi dan bisa langsung menikmati kapasitas tanpa batas di akun pribadi Anda.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apakah ini aman dan legal?</summary>
+                        <div class="faq-content">Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apa bedanya dengan langganan Google One?</summary>
+                        <div class="faq-content">Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;unlimited&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, melalui metode upgrade langsung pada akun Anda.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Bisakah saya memindahkan file lama saya?</summary>
+                        <div class="faq-content">Tentu bisa. Karena upgrade ini langsung diterapkan pada akun Google Drive pribadi Anda, semua file lama Anda akan tetap ada di tempatnya dan secara otomatis menjadi bagian dari penyimpanan unlimited yang baru. Anda tidak perlu memindahkan file atau folder apa pun.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Berapa lama proses aktivasinya?</summary>
+                        <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Apakah ada garansi?</summary>
+                        <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll).</div>
+                    </details>
+                </div>
             `;
+            return faqHTML;
         };
 
 
@@ -1590,35 +1512,45 @@
         }
 
         function updateDisplay() {
-            const product = products[currentProductId];
-            const totalPrice = product.price + uniqueCode;
+            testimonialIndex = 0; // Reset carousel on package change
+            const pkg = packages[currentPackageId];
+            const totalPrice = pkg.price + uniqueCode;
 
-            // Update info produk
-            elements.productInfoFormTop.innerHTML = getProductInfoHTML(product);
+            const infoContainer = elements.productInfoFormTop;
+            const detailsAccordion = elements.detailsAccordionContainer;
 
-            // Update detail fitur
-            elements.detailsAccordionContainer.innerHTML = getDetailsAccordionHTML(product);
+            // 1. Start fade-out
+            infoContainer.style.opacity = '0';
+            detailsAccordion.style.opacity = '0';
 
-            // Update metode pembayaran
-            elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
 
-            // Update rincian pesanan
-            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(product, totalPrice);
+            // 2. Wait for fade-out to finish, then update content and fade-in
+            setTimeout(() => {
+                // Update the HTML for the transitioning parts
+                infoContainer.innerHTML = getProductInfoHTML(pkg);
+                detailsAccordion.innerHTML = getDetailsAccordionHTML(pkg);
 
-            // Update testimoni
-            elements.testimonialsFull.innerHTML = getTestimonialsHTML(product);
 
-            // Update FAQ
-            elements.infoSectionFull.innerHTML = getInfoSectionHTML(product);
+                // Update other parts that don't need transition
+                elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
+                elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+                elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
+                elements.infoSectionFull.innerHTML = getInfoSectionHTML();
+
+                // 3. Start fade-in
+                infoContainer.style.opacity = '1';
+                detailsAccordion.style.opacity = '1';
+
+
+            }, 300); // Match CSS transition duration
         }
 
 
-        function generateWaLink(formData, product, totalPrice, paymentMethodName, paymentId) {
-            const emailLabel = currentProductId === 'google' ? '*Email Google:*' : '*Email (Apple ID):*';
-            const detailPesanan = `${emailLabel} ${formData.get('email')}\n`;
+        function generateWaLink(formData, pkg, totalPrice, paymentMethodName, paymentId) {
+            const detailPesanan = `*Email Google:* ${formData.get('email')}\n`;
             const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
                           `*ID Pembayaran:* ${paymentId}\n` +
-                          `*Produk:* ${product.name}\n` +
+                          `*Paket:* ${pkg.name}\n` +
                           `*Metode Pembayaran:* ${paymentMethodName}\n` +
                           `*Nama:* ${formData.get('nama')}\n` +
                           `*No. WhatsApp:* ${formData.get('whatsapp')}\n` +
@@ -1943,17 +1875,17 @@
             elements.submitBtn.innerHTML = '<i class="fas fa-spinner spinner mr-2"></i> Memproses...';
 
             // 3. Prepare Data
-            const product = products[currentProductId];
-            const totalPrice = product.price + uniqueCode;
+            const pkg = packages[currentPackageId];
+            const totalPrice = pkg.price + uniqueCode;
             const paymentAccount = paymentAccounts[paymentMethodKey];
             const now = new Date();
-            const paymentId = `INV-${product.id.toUpperCase()}-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
+            const paymentId = `INV-${pkg.id.toUpperCase()}-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
 
             // 4. Submit to Static Forms
             let submissionSuccess = false;
             try {
                 // Construct the follow-up message with bolding
-                let followUpMessage = `Halo kak ${nama},\n\nTerima kasih telah memesan *${product.name}*.\n\nBerikut adalah rincian pembayaran untuk pesanan Anda:\n- Nomor Invoice: ${paymentId}\n- Total Pembayaran: *${formatCurrency(totalPrice)}*\n\nMohon segera selesaikan pembayaran Anda.\n`;
+                let followUpMessage = `Halo kak ${nama},\n\nTerima kasih telah memesan *${pkg.name}*.\n\nBerikut adalah rincian pembayaran untuk pesanan Anda:\n- Nomor Invoice: ${paymentId}\n- Total Pembayaran: *${formatCurrency(totalPrice)}*\n\nMohon segera selesaikan pembayaran Anda.\n`;
 
                 if (paymentMethodKey === 'qris') {
                     followUpMessage += `*- Metode:* ${paymentAccount.displayName}\nSilakan pindai QRIS yang muncul di halaman pembayaran.\n`;
@@ -1975,7 +1907,7 @@
                     email: email,
                     whatsapp: whatsapp,
                     '$Nomor Invoice': paymentId,
-                    '$Produk': product.name,
+                    '$Paket': pkg.name,
                     '$Metode Pembayaran': paymentAccount.displayName,
                     '$Total Transfer': formatCurrency(totalPrice),
                     '$Link Follow Up WA': followUpLink // Add the follow-up link
@@ -2003,7 +1935,7 @@
 
             // 6. Update UI based on submission result
             if (submissionSuccess) {
-                showPaymentInstructions(formData, product, totalPrice, paymentAccount, paymentId, paymentMethodKey);
+                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
             } else {
                 showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan saat mengirim data Anda. Silakan coba lagi.');
             }
@@ -2078,7 +2010,7 @@
         
         // --- REVISED: DETAILS MODAL LOGIC ---
         function getDetailsModalHTML(details) {
-            const { product, totalPrice, paymentId, nama, whatsapp } = details;
+            const { pkg, totalPrice, paymentId, nama, whatsapp } = details;
             return `
                 <div class="details-modal-header">
                     <h3>Ringkasan Transaksi</h3>
@@ -2098,11 +2030,11 @@
                     <div class="space-y-4 border-t border-b border-gray-200 py-6 mb-6">
                         <div>
                             <div class="flex justify-between text-base">
-                                <span>${product.name}</span>
-                                <span class="font-semibold text-gray-800">${formatCurrency(product.price)}</span>
+                                <span>${pkg.name}</span>
+                                <span class="font-semibold text-gray-800">${formatCurrency(pkg.price)}</span>
                             </div>
                             <div class="flex justify-between text-sm text-gray-500 mt-1">
-                                <span>1x ${formatCurrency(product.price)}</span>
+                                <span>1x ${formatCurrency(pkg.price)}</span>
                             </div>
                         </div>
                          <div class="flex justify-between text-sm">
@@ -2226,6 +2158,21 @@
     const imageModal = document.getElementById('imageModal');
     const modalImg = document.getElementById("modalImage");
     let currentImageIndex;
+    const testimonialImages = [
+        "https://cdn.allthepics.net/images/2025/09/07/gdrive-1.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gdrive-2.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gdrive-3.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gdrive-4.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gphotos-1.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gphotos-2.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gphotos-3.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gphotos-4.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gphotos-5.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gphotos-6.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gphotos-7.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gphotos-8.png",
+        "https://cdn.allthepics.net/images/2025/09/07/gphotos-9.png"
+    ];
 
     window.openImageModal = function(event, index) {
         event.stopPropagation();
@@ -2238,16 +2185,15 @@
     }
 
     function showImage(index) {
-        const currentProduct = products[currentProductId];
-        if (index >= currentProduct.testimonials.length || index < 0) {
+        if (index >= testimonialImages.length || index < 0) {
             return; // Keluar jika index di luar batas
         }
         currentImageIndex = index;
-        modalImg.src = currentProduct.testimonials[index];
+        modalImg.src = testimonialImages[index];
 
         // Perbarui visibilitas tombol navigasi
         document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'flex' : 'none';
-        document.querySelector('.modal-nav.next').style.display = (index < currentProduct.testimonials.length - 1) ? 'flex' : 'none';
+        document.querySelector('.modal-nav.next').style.display = (index < testimonialImages.length - 1) ? 'flex' : 'none';
     }
 
     window.showNextImage = function() {
