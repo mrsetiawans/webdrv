@@ -264,7 +264,7 @@
             display: flex;
             justify-content: flex-start; /* Aligns items to the start */
             min-width: 100%;
-            animation: scroll 40s linear infinite;
+            animation: scroll 60s linear infinite;
         }
 
         .testimonial-carousel-container:hover .testimonial-track {
@@ -1585,22 +1585,6 @@
             const sign = offset > 0 ? '+' : '-';
             const hours = Math.abs(Math.floor(offset));
             return `GMT${sign}${String(hours).padStart(2, '0')}:00`;
-        }
-
-        function updateDisplay() {
-            const product = products[currentProductId];
-            const totalPrice = product.price + uniqueCode;
-
-            // Update email input placeholder
-            document.getElementById('email').placeholder = product.emailPlaceholder;
-            
-            // Update other parts of the UI
-            elements.productInfoFormTop.innerHTML = getProductInfoHTML(product);
-            elements.detailsAccordionContainer.innerHTML = getDetailsAccordionHTML(product);
-            elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-            elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(product, totalPrice);
-            elements.testimonialsFull.innerHTML = getTestimonialsHTML(product);
-            elements.infoSectionFull.innerHTML = getInfoSectionHTML(product);
         }
 
         function generateWaLink(formData, product, totalPrice, paymentMethodName, paymentId) {
