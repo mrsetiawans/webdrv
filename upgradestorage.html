@@ -1929,8 +1929,8 @@
             }
 
             // --- New Validation Rules ---
-            if (!email.endsWith('@gmail.com')) {
-                showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email Gmail yang valid (diakhiri dengan @gmail.com).');
+            if (!email.endsWith('@gmail.com') && !email.endsWith('@icloud.com')) {
+                showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email Gmail atau iCloud yang valid.');
                 return;
             }
 
@@ -2156,6 +2156,75 @@
         }
 
 
+        window.closeDetailsModal = function() {
+            elements.detailsModalContent.classList.remove('is-open');
+            elements.detailsModalContent.classList.add('is-closing');
+            setTimeout(() => {
+                elements.detailsModal.style.display = 'none';
+            }, 300); // Match animation duration
+        }
+
+        // --- Image Modal Functions ---
+        const imageModal = document.getElementById('imageModal');
+        const modalImg = document.getElementById("modalImage");
+        let currentImageIndex;
+
+        window.openImageModal = function(event, index) {
+            event.stopPropagation();
+            imageModal.style.display = "flex"; // Gunakan flexbox untuk centering
+            showImage(index);
+        }
+
+        window.closeImageModal = function() {
+            imageModal.style.display = "none";
+        }
+
+        function showImage(index) {
+            const currentProduct = products[currentProductId];
+            if (!currentProduct || !currentProduct.testimonials) return;
+            if (index >= currentProduct.testimonials.length || index < 0) {
+                return; // Keluar jika index di luar batas
+            }
+            currentImageIndex = index;
+            modalImg.src = currentProduct.testimonials[index];
+
+            // Perbarui visibilitas tombol navigasi
+            const prevButton = document.querySelector('.modal-nav.prev');
+            const nextButton = document.querySelector('.modal-nav.next');
+            if (prevButton) prevButton.style.display = (index > 0) ? 'flex' : 'none';
+            if (nextButton) nextButton.style.display = (index < currentProduct.testimonials.length - 1) ? 'flex' : 'none';
+        }
+
+        window.showNextImage = function() {
+            showImage(currentImageIndex + 1);
+        }
+
+        window.showPrevImage = function() {
+            showImage(currentImageIndex - 1);
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (imageModal && imageModal.style.display === 'flex') {
+                if (event.key === 'ArrowRight') {
+                    showNextImage();
+                } else if (event.key === 'ArrowLeft') {
+                    showPrevImage();
+                } else if (event.key === 'Escape') {
+                    closeImageModal();
+                }
+            }
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == elements.detailsModal) {
+                closeDetailsModal();
+            }
+            if (event.target == imageModal) {
+                closeImageModal();
+            }
+        });
+
+
     });
 
     // --- GLOBAL HELPER FUNCTIONS ---
@@ -2175,8 +2244,7 @@
 
     window.onclick = function(event) {
         if (event.target == infoModal) { closeInfoModal(); }
-        if (event.target == document.getElementById('detailsModal')) { closeDetailsModal(); }
-        if (event.target == document.getElementById('imageModal')) { closeImageModal(); }
+        // The other onclick handlers are now inside DOMContentLoaded
     }
 
     function copyToClipboard(text, entityName) {
@@ -2223,54 +2291,6 @@
 
         return finalQris + crc;
     }
-    
-    // --- Image Modal Functions ---
-    const imageModal = document.getElementById('imageModal');
-    const modalImg = document.getElementById("modalImage");
-    let currentImageIndex;
-
-    window.openImageModal = function(event, index) {
-        event.stopPropagation();
-        imageModal.style.display = "flex"; // Gunakan flexbox untuk centering
-        showImage(index);
-    }
-
-    window.closeImageModal = function() {
-        imageModal.style.display = "none";
-    }
-
-    function showImage(index) {
-        const currentProduct = products[currentProductId];
-        if (index >= currentProduct.testimonials.length || index < 0) {
-            return; // Keluar jika index di luar batas
-        }
-        currentImageIndex = index;
-        modalImg.src = currentProduct.testimonials[index];
-
-        // Perbarui visibilitas tombol navigasi
-        document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'flex' : 'none';
-        document.querySelector('.modal-nav.next').style.display = (index < currentProduct.testimonials.length - 1) ? 'flex' : 'none';
-    }
-
-    window.showNextImage = function() {
-        showImage(currentImageIndex + 1);
-    }
-
-    window.showPrevImage = function() {
-        showImage(currentImageIndex - 1);
-    }
-
-    document.addEventListener('keydown', function(event) {
-        if (imageModal.style.display === 'flex') {
-            if (event.key === 'ArrowRight') {
-                showNextImage();
-            } else if (event.key === 'ArrowLeft') {
-                showPrevImage();
-            } else if (event.key === 'Escape') {
-                closeImageModal();
-            }
-        }
-    });
     </script>
 </body>
 </html>
