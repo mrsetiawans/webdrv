@@ -28,250 +28,764 @@
             --shadow-1: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
             --shadow-2: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
             --shadow-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.3);
+            --shadow-4: 0 8px 16px 4px rgba(60,64,67,.2), 0 2px 6px rgba(60,64,67,.3);
         }
+        
         body {
             font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--theme-background);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
             color: var(--theme-on-surface);
             line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
         }
+        
+        /* Animated Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(26, 115, 232, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(52, 168, 83, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
         .google-sans { font-family: 'Google Sans', sans-serif; }
         .fira-code { font-family: 'Fira Code', monospace; }
+        
         .material-card {
             background: var(--theme-surface);
-            border-radius: 16px;
+            border-radius: 20px;
             box-shadow: var(--shadow-1);
-            transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--theme-outline);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(218, 220, 224, 0.5);
+            position: relative;
+            overflow: hidden;
         }
-        .material-card:hover { box-shadow: var(--shadow-2); }
+        
+        .material-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--google-blue), var(--google-green), var(--google-yellow), var(--google-red));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .material-card:hover {
+            box-shadow: var(--shadow-4);
+            transform: translateY(-4px);
+        }
+        
+        .material-card:hover::before {
+            opacity: 1;
+        }
+        
         .form-input {
             border: 2px solid var(--theme-outline);
-            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 8px;
-            padding: 12px 14px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            padding: 14px 16px;
             width: 100%;
             background-color: var(--theme-surface);
             font-size: 16px;
+            position: relative;
         }
+        
         .form-input:focus {
             border-color: var(--theme-primary);
             outline: none;
-            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+            transform: translateY(-1px);
         }
+        
         .cta-button {
-            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 24px;
-            padding: 12px 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 28px;
+            padding: 14px 32px;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             cursor: pointer;
             width: 100%;
             border: none;
-            min-height: 48px;
-        }
-        .blue-button {
-            background-color: var(--theme-primary);
-            color: white;
-            box-shadow: var(--shadow-1);
-        }
-        .blue-button:hover {
-            background-color: var(--theme-primary-hover);
-            box-shadow: var(--shadow-2);
-            transform: translateY(-1px);
-        }
-        .modal {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center;
-        }
-        .modal-content {
-            background-color: var(--theme-surface); margin: auto; padding: 28px; width: 90%; max-width: 480px;
-            border-radius: 16px; box-shadow: var(--shadow-3); text-align: center; position: relative;
-            animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: scale(0.9) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .modal-ok-button {
-            background-color: var(--theme-primary); color: white; padding: 10px 28px; border: none;
-            border-radius: 24px; cursor: pointer; font-size: 14px; font-weight: 500;
-        }
-        .faq-item { border-bottom: 1px solid var(--theme-outline); }
-        .faq-item:last-child { border-bottom: none; }
-        .faq-item summary {
-            font-weight: 500; font-size: 15px; padding: 16px 12px; cursor: pointer; list-style: none;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after {
-            content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-size: 14px;
-        }
-        .faq-item[open] summary::after { transform: rotate(180deg); }
-        .faq-content { padding: 0 12px 16px 12px; color: var(--theme-on-surface-variant); font-size: 14px; }
-        .payment-radio { position: absolute; opacity: 0; width: 0; height: 0; }
-        .payment-label {
-            display: flex; align-items: center; padding: 12px; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer; border-radius: 12px; margin: 2px;
-        }
-        .payment-label:hover { background-color: var(--theme-background); }
-        .payment-radio:checked + .payment-label { background-color: #e8f0fe; box-shadow: inset 0 0 0 2px var(--theme-primary); }
-        .payment-logo-container {
-            width: 48px; height: 32px; background-color: #ffffff; border-radius: 6px; display: flex;
-            align-items: center; justify-content: center; margin-right: 12px; padding: 4px;
-            border: 1px solid var(--theme-outline, #dadce0); flex-shrink: 0;
-        }
-        .payment-logo { max-height: 100%; max-width: 100%; object-fit: contain; }
-        .custom-radio-button {
-            height: 20px; width: 20px; border: 2px solid var(--theme-outline); border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            flex-shrink: 0; margin-left: auto;
-        }
-        .custom-radio-button .dot { height: 8px; width: 8px; border-radius: 50%; background-color: transparent; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
-        .payment-radio:checked + .payment-label .custom-radio-button { border-color: var(--theme-primary); }
-        .payment-radio:checked + .payment-label .custom-radio-button .dot { background-color: var(--theme-primary); }
-        .payment-header {
-            background: linear-gradient(135deg, #202124 0%, #3c4043 100%); color: #fff; text-align: center;
-            position: sticky; top: 0; z-index: 999; padding: 1rem;
-        }
-        .payment-card {
-            background-color: var(--theme-surface); border: 1px solid var(--theme-outline); border-radius: 12px;
-            padding: 16px; margin-top: 12px; box-shadow: var(--shadow-1);
-        }
-        .copy-button-text { background: none; border: none; color: var(--theme-primary); font-weight: 500; cursor: pointer; padding: 8px; border-radius: 4px; }
-        .confirm-button-outlined {
-            width: 100%; padding: 12px 24px; border: 2px solid var(--theme-primary); color: var(--theme-primary);
-            background-color: transparent; border-radius: 24px; font-weight: 500; cursor: pointer; min-height: 48px;
-        }
-        .payment-accordion summary {
-            font-weight: 500; padding: 14px 0; cursor: pointer; list-style: none; display: flex;
-            justify-content: space-between; align-items: center;
-        }
-        .payment-accordion summary::-webkit-details-marker { display: none; }
-        .payment-accordion summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
-        .payment-accordion[open] summary::after { transform: rotate(180deg); }
-        .payment-accordion-content { padding-bottom: 16px; color: var(--theme-on-surface-variant); }
-        .payment-accordion-content ol { list-style-type: decimal; padding-left: 20px; font-size: 14px; }
-        .countdown-timer { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.5rem; }
-        .countdown-number { background-color: var(--google-red); color: white; padding: 0.25rem 0.5rem; border-radius: 6px; font-weight: 600; font-size: 1.1rem; }
-        .security-badge {
-            background: #e8f0fe; color: #1557b0; padding: 6px 12px; border-radius: 20px;
-            font-size: 10px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px;
-        }
-        html { scroll-behavior: smooth; }
-        .spinner { animation: spin 1s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* --- PROFESSIONAL PROCESSING SCREEN STYLES --- */
-        #processing-screen { display: none; }
-        .terminal {
-            background-color: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            min-height: 52px;
+            position: relative;
             overflow: hidden;
         }
-        .terminal-header {
-            background-color: #333;
-            padding: 8px 12px;
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .blue-button {
+            background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+        
+        .blue-button:hover {
+            box-shadow: 0 6px 20px rgba(26, 115, 232, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+        
+        .modal-content {
+            background-color: var(--theme-surface);
+            margin: auto;
+            padding: 32px;
+            width: 90%;
+            max-width: 480px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-4);
+            text-align: center;
+            position: relative;
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .modal-ok-button {
+            background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-primary-hover) 100%);
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 28px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .modal-ok-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(26, 115, 232, 0.4);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--theme-outline);
+            transition: background-color 0.2s ease;
+        }
+        
+        .faq-item:last-child { border-bottom: none; }
+        
+        .faq-item:hover {
+            background-color: rgba(26, 115, 232, 0.02);
+        }
+        
+        .faq-item summary {
+            font-weight: 600;
+            font-size: 15px;
+            padding: 18px 14px;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+        
+        .faq-item[open] summary {
+            color: var(--theme-primary);
+        }
+        
+        .faq-item summary::-webkit-details-marker { display: none; }
+        
+        .faq-item summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 14px;
+            color: var(--theme-primary);
+        }
+        
+        .faq-item[open] summary::after { transform: rotate(180deg); }
+        
+        .faq-content {
+            padding: 0 14px 18px 14px;
+            color: var(--theme-on-surface-variant);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .payment-radio { position: absolute; opacity: 0; width: 0; height: 0; }
+        
+        .payment-label {
             display: flex;
             align-items: center;
-            color: #ccc;
-            font-size: 12px;
+            padding: 14px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border-radius: 12px;
+            margin: 2px;
         }
-        .terminal-dots { display: flex; gap: 6px; margin-right: 12px; }
-        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
-        .terminal-dot.red { background-color: #ff5f56; }
-        .terminal-dot.yellow { background-color: #ffbd2e; }
-        .terminal-dot.green { background-color: #27c93f; }
-        .terminal-body { padding: 16px; height: 350px; overflow-y: auto; }
+        
+        .payment-label:hover {
+            background-color: rgba(26, 115, 232, 0.04);
+        }
+        
+        .payment-radio:checked + .payment-label {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.08) 0%, rgba(26, 115, 232, 0.12) 100%);
+            box-shadow: inset 0 0 0 2px var(--theme-primary);
+        }
+        
+        .payment-logo-container {
+            width: 52px;
+            height: 36px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 14px;
+            padding: 5px;
+            border: 1px solid var(--theme-outline);
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .payment-logo { max-height: 100%; max-width: 100%; object-fit: contain; }
+        
+        .custom-radio-button {
+            height: 22px;
+            width: 22px;
+            border: 2px solid var(--theme-outline);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+        
+        .custom-radio-button .dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background-color: transparent;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .payment-radio:checked + .payment-label .custom-radio-button {
+            border-color: var(--theme-primary);
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+        }
+        
+        .payment-radio:checked + .payment-label .custom-radio-button .dot {
+            background-color: var(--theme-primary);
+        }
+        
+        .payment-header {
+            background: linear-gradient(135deg, #1a1d23 0%, #2a2f38 100%);
+            color: #fff;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .payment-card {
+            background-color: var(--theme-surface);
+            border: 1px solid var(--theme-outline);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 14px;
+            box-shadow: var(--shadow-2);
+            transition: all 0.3s ease;
+        }
+        
+        .payment-card:hover {
+            box-shadow: var(--shadow-3);
+        }
+        
+        .copy-button-text {
+            background: none;
+            border: none;
+            color: var(--theme-primary);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        
+        .copy-button-text:hover {
+            background-color: rgba(26, 115, 232, 0.08);
+        }
+        
+        .confirm-button-outlined {
+            width: 100%;
+            padding: 14px 28px;
+            border: 2px solid var(--theme-primary);
+            color: var(--theme-primary);
+            background-color: transparent;
+            border-radius: 28px;
+            font-weight: 600;
+            cursor: pointer;
+            min-height: 52px;
+            transition: all 0.3s ease;
+        }
+        
+        .confirm-button-outlined:hover {
+            background-color: var(--theme-primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+        
+        .payment-accordion summary {
+            font-weight: 600;
+            padding: 16px 0;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .payment-accordion summary::-webkit-details-marker { display: none; }
+        
+        .payment-accordion summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .payment-accordion[open] summary::after { transform: rotate(180deg); }
+        
+        .payment-accordion-content {
+            padding-bottom: 18px;
+            color: var(--theme-on-surface-variant);
+        }
+        
+        .payment-accordion-content ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            font-size: 14px;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        
+        .countdown-number {
+            background: linear-gradient(135deg, #EA4335 0%, #c5221f 100%);
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(234, 67, 53, 0.3);
+        }
+        
+        .security-badge {
+            background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 100%);
+            color: #1557b0;
+            padding: 8px 14px;
+            border-radius: 24px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 6px rgba(21, 87, 176, 0.15);
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- ENHANCED PROFESSIONAL PROCESSING/STATUS SCREEN STYLES --- */
+        .processing-container { display: none; }
+        
+        .terminal {
+            background: linear-gradient(135deg, #0d1117 0%, #1a1e26 100%);
+            border: 1px solid #30363d;
+            border-radius: 16px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .terminal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(136, 136, 136, 0.3), transparent);
+        }
+        
+        .terminal-header {
+            background: linear-gradient(135deg, #21262d 0%, #2d333b 100%);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            color: #c9d1d9;
+            font-size: 13px;
+            border-bottom: 1px solid #30363d;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+            margin-right: 16px;
+        }
+        
+        .terminal-dot {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+        
+        .terminal-dot:hover {
+            transform: scale(1.1);
+        }
+        
+        .terminal-dot.red {
+            background: linear-gradient(135deg, #ff5f56 0%, #e03131 100%);
+        }
+        
+        .terminal-dot.yellow {
+            background: linear-gradient(135deg, #ffbd2e 0%, #f59f00 100%);
+        }
+        
+        .terminal-dot.green {
+            background: linear-gradient(135deg, #27c93f 0%, #12b886 100%);
+        }
+        
+        .terminal-body {
+            padding: 20px;
+            height: 380px;
+            overflow-y: auto;
+            background: linear-gradient(180deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 1) 100%);
+        }
+        
+        .terminal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .terminal-body::-webkit-scrollbar-track {
+            background: #161b22;
+        }
+        
+        .terminal-body::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 4px;
+        }
+        
+        .terminal-body::-webkit-scrollbar-thumb:hover {
+            background: #484f58;
+        }
+        
         .log-entry {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             opacity: 0;
-            animation: fadeIn 0.3s forwards;
-            font-size: 14px;
+            animation: fadeInLog 0.4s forwards;
+            font-size: 13px;
+            line-height: 1.6;
+            position: relative;
         }
-        .log-prefix { color: #888; margin-right: 8px; flex-shrink: 0; }
-        .log-message { word-break: break-all; }
-        .log-message.info { color: #bbbbbb; }
-        .log-message.success { color: #27c93f; }
-        .log-message.warning { color: #ffbd2e; }
-        .log-message.error { color: #ff5f56; }
+        
+        .log-entry::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 8px;
+            width: 4px;
+            height: 4px;
+            background: #30363d;
+            border-radius: 50%;
+        }
+        
+        .log-prefix {
+            color: #6e7681;
+            margin-right: 12px;
+            flex-shrink: 0;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(110, 118, 129, 0.3);
+        }
+        
+        .log-message {
+            word-break: break-all;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .log-message.info {
+            color: #c9d1d9;
+        }
+        
+        .log-message.success {
+            color: #3fb950;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(63, 185, 80, 0.3);
+        }
+        
+        .log-message.warning {
+            color: #d29922;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(210, 153, 34, 0.3);
+        }
+        
+        .log-message.error {
+            color: #f85149;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(248, 81, 73, 0.3);
+        }
+        
         .blinking-cursor {
-            animation: blink 1s step-end infinite;
-            color: #f0f0f0;
+            animation: blinkCursor 1s step-end infinite;
+            color: #58a6ff;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
         }
-        @keyframes blink { 50% { opacity: 0; } }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        @keyframes blinkCursor {
+            50% { opacity: 0; }
         }
+        
+        @keyframes fadeInLog {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
         .processing-footer {
-            background-color: #2a2a2a;
-            padding: 12px 16px;
-            border-top: 1px solid #333;
+            background: linear-gradient(135deg, #21262d 0%, #2d333b 100%);
+            padding: 16px 20px;
+            border-top: 1px solid #30363d;
         }
-        .progress-bar-container { width: 100%; background-color: #444; border-radius: 4px; overflow: hidden; }
+        
+        .progress-bar-container {
+            width: 100%;
+            background-color: #161b22;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
         .progress-bar {
-            width: 0%; height: 8px;
-            background: linear-gradient(90deg, var(--google-blue), var(--google-green));
-            border-radius: 4px; transition: width 0.5s ease-in-out;
+            width: 0%;
+            height: 10px;
+            background: linear-gradient(90deg, #58a6ff 0%, #3fb950 100%);
+            border-radius: 8px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
         .status-text {
-            color: #ccc;
-            font-size: 12px;
-            margin-bottom: 8px;
-            height: 16px;
+            color: #8b949e;
+            font-size: 13px;
+            margin-bottom: 10px;
+            height: 18px;
+            font-weight: 500;
         }
         
         .package-radio-btn { position: absolute; opacity: 0; width: 0; height: 0; }
+        
         .package-label {
-            display: block; padding: 16px; border: 2px solid var(--theme-outline); border-radius: 12px;
-            cursor: pointer; transition: all 0.2s ease; position: relative;
+            display: block;
+            padding: 20px;
+            border: 2px solid var(--theme-outline);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
         }
-        .package-label:hover { border-color: var(--theme-primary); }
+        
+        .package-label:hover {
+            border-color: var(--theme-primary);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.15);
+            transform: translateY(-2px);
+        }
+        
         .package-radio-btn:checked + .package-label {
-            border-color: var(--theme-primary); background-color: #e8f0fe;
-            box-shadow: 0 0 0 2px var(--theme-primary);
+            border-color: var(--theme-primary);
+            background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 100%);
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
         }
-        .package-radio-btn:checked + .package-label .custom-radio-button { border-color: var(--theme-primary); }
-        .package-radio-btn:checked + .package-label .custom-radio-button .dot { background-color: var(--theme-primary); }
+        
+        .package-radio-btn:checked + .package-label .custom-radio-button {
+            border-color: var(--theme-primary);
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+        }
+        
+        .package-radio-btn:checked + .package-label .custom-radio-button .dot {
+            background-color: var(--theme-primary);
+        }
+        
+        /* Enhanced Visual Effects */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Floating Animation for Hero Section */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #1a73e8 0%, #34A853 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Loading Dots Animation */
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
 
     </style>
 </head>
 <body class="antialiased">
 
-    <div id="payment-instruction-container"></div>
+    <div id="payment-instruction-container" style="display: none;"></div>
+    <div id="status-check-screen" class="processing-container max-w-2xl mx-auto p-4 sm:p-0"></div>
+
 
     <div class="p-4 sm:p-6 lg:p-8">
         <!-- Initial Screen for IMEI Input -->
-        <div id="initial-screen" class="max-w-xl mx-auto text-center">
-            <div class="material-card p-6 md:p-10">
-                <img src="https://cdn-icons-png.flaticon.com/512/8898/8898433.png" alt="Signal Tower" class="w-24 h-24 mx-auto mb-4">
-                <h1 class="text-3xl md:text-4xl font-bold google-sans mb-2">Sinyal HP Hilang Karena IMEI Terblokir?</h1>
-                <p class="text-md text-gray-600 mb-6">Kami solusinya! Buka blokir IMEI secara resmi, aman, dan bergaransi. Sinyal dijamin kembali normal untuk semua operator.</p>
+        <div id="initial-screen" class="max-w-xl mx-auto text-center px-4">
+            <div class="material-card p-6 md:p-12">
+                <div class="float-animation">
+                    <img src="https://cdn-icons-png.flaticon.com/512/8898/8898433.png" alt="Signal Tower" class="w-28 h-28 mx-auto mb-6 drop-shadow-lg">
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold google-sans mb-3 gradient-text">Sinyal HP Hilang Karena IMEI Terblokir?</h1>
+                <p class="text-md text-gray-600 mb-8 leading-relaxed">Kami solusinya! Buka blokir IMEI secara resmi, aman, dan bergaransi. Sinyal dijamin kembali normal untuk semua operator.</p>
                 <div class="max-w-md mx-auto">
-                    <input type="number" id="imei-input" name="imei" class="form-input text-center text-lg tracking-widest" placeholder="Masukkan 15 Digit IMEI Anda">
-                    <p class="text-xs text-gray-500 mt-2">Anda bisa cek IMEI dengan menekan *#06#</p>
-                    <button id="start-unblock-btn" class="cta-button blue-button mt-4">
-                        <i class="fas fa-unlock-alt mr-2"></i>
+                    <input type="number" id="imei-input" name="imei" class="form-input text-center text-lg tracking-widest font-medium" placeholder="Masukkan 15 Digit IMEI Anda">
+                    <p class="text-xs text-gray-500 mt-3 flex items-center justify-center gap-2">
+                        <i class="fas fa-info-circle text-blue-500"></i>
+                        Anda bisa cek IMEI dengan menekan *#06#
+                    </p>
+                    <button id="start-unblock-btn" class="cta-button blue-button mt-6">
+                        <i class="fas fa-unlock-alt"></i>
                         Mulai Proses Unblock
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- NEW Professional Processing Screen -->
-        <div id="processing-screen" class="max-w-2xl mx-auto">
-             <h2 class="text-2xl font-bold text-center mb-4 google-sans">Sistem Sedang Bekerja</h2>
-             <p class="text-center text-gray-600 mb-4">Harap jangan menutup halaman ini. Proses pendaftaran IMEI sedang berlangsung.</p>
+        <!-- Professional Processing Screen -->
+        <div id="processing-screen" class="processing-container max-w-2xl mx-auto">
+             <h2 class="text-2xl font-bold text-center mb-3 google-sans gradient-text">Memulai Proses Registrasi IMEI</h2>
+             <p class="text-center text-gray-600 mb-6 flex items-center justify-center gap-2">
+                <i class="fas fa-shield-alt text-green-500"></i>
+                Harap jangan menutup halaman ini. Sistem sedang bekerja secara otomatis.
+             </p>
             <div class="terminal fira-code">
                 <div class="terminal-header">
                     <div class="terminal-dots">
@@ -279,13 +793,11 @@
                         <div class="terminal-dot yellow"></div>
                         <div class="terminal-dot green"></div>
                     </div>
-                    <span>/bin/bash - unblock_imei_service</span>
+                    <span><i class="fas fa-terminal mr-2"></i>/bin/bash - imei_reg_service</span>
                 </div>
-                <div class="terminal-body" id="log-container">
-                    <!-- Log entries will be injected here -->
-                </div>
+                <div class="terminal-body" id="log-container"></div>
                 <div class="processing-footer">
-                    <div id="status-text" class="status-text"></div>
+                    <div id="status-text" class="status-text loading-dots"></div>
                     <div class="progress-bar-container">
                         <div id="progress-bar" class="progress-bar"></div>
                     </div>
@@ -295,65 +807,69 @@
 
         <!-- Payment Screen (Initially Hidden) -->
         <div id="payment-screen" style="display: none;">
-            <div class="max-w-4xl mx-auto text-center mb-6">
-                <h1 class="text-3xl font-bold google-sans text-google-green">Proses Verifikasi Berhasil!</h1>
-                <p class="text-lg text-gray-700 mt-2">IMEI Anda terdeteksi dan siap untuk di-unblock. Silakan selesaikan pembayaran untuk mengaktifkan sinyal secara permanen.</p>
+            <div class="max-w-4xl mx-auto text-center mb-8">
+                <div class="inline-block mb-4">
+                    <i class="fas fa-check-circle text-6xl text-green-500 pulse-animation"></i>
+                </div>
+                <h1 class="text-3xl font-bold google-sans gradient-text">Proses Verifikasi Berhasil!</h1>
+                <p class="text-lg text-gray-700 mt-3 max-w-2xl mx-auto leading-relaxed">IMEI Anda terdeteksi dan siap untuk di-unblock. Silakan selesaikan pembayaran untuk mengaktifkan sinyal secara permanen.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-12 gap-y-8 max-w-4xl mx-auto">
                 <!-- Left Column: Form & Payment -->
-                <div class="lg:col-span-1 material-card p-5 md:p-8">
-                     <div class="grid grid-cols-2 gap-3 text-center border-b border-gray-200 pb-4 mb-4">
-                        <div class="flex">
-                            <div class="security-badge w-full justify-center">
-                                <i class="fas fa-shield-alt text-xs mr-1"></i>
-                                TRANSAKSI AMAN
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="security-badge w-full justify-center" style="background: var(--theme-primary); color: white;">
-                                <i class="fas fa-hand-holding-usd text-xs mr-1"></i>
-                                GARANSI UANG KEMBALI
-                            </div>
-                        </div>
+                <div class="lg:col-span-1 material-card p-6 md:p-10">
+                     <div class="grid grid-cols-2 gap-3 text-center border-b border-gray-200 pb-5 mb-6">
+                        <div class="flex"><div class="security-badge w-full justify-center"><i class="fas fa-shield-alt text-xs mr-1"></i> TRANSAKSI AMAN</div></div>
+                        <div class="flex"><div class="security-badge w-full justify-center" style="background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%); color: white;"><i class="fas fa-hand-holding-usd text-xs mr-1"></i> GARANSI UANG KEMBALI</div></div>
                     </div>
-                    
                     <form id="orderForm">
-                        <h2 class="text-lg font-bold mb-3 google-sans">1. Pilih Paket Unblock</h2>
-                        <div id="package-selection" class="space-y-3 mb-4"></div>
-                        <h2 class="text-lg font-bold mb-3 google-sans">2. Lengkapi Data</h2>
+                        <h2 class="text-lg font-bold mb-4 google-sans flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm">1</span>
+                            Pilih Paket Unblock
+                        </h2>
+                        <div id="package-selection" class="space-y-3 mb-6"></div>
+                        <h2 class="text-lg font-bold mb-4 google-sans flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm">2</span>
+                            Lengkapi Data
+                        </h2>
                         <div class="space-y-4">
                             <div><input type="text" id="nama" name="nama" class="form-input" placeholder="Nama Anda *"></div>
                             <div><input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="No. WhatsApp Anda *"></div>
                             <div><input type="email" id="email" name="email" class="form-input" placeholder="Email Anda (Untuk notifikasi) *"></div>
                         </div>
-                        <h2 class="text-lg font-bold mb-4 mt-6 google-sans">3. Metode Pembayaran</h2>
+                        <h2 class="text-lg font-bold mb-4 mt-8 google-sans flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm">3</span>
+                            Metode Pembayaran
+                        </h2>
                         <div id="payment-method-selection"></div>
-                        <div id="order-details-in-form" class="mt-4"></div>
-                        <button type="button" id="submit-btn" class="cta-button blue-button mt-4">
-                            <i class="fas fa-lock mr-2"></i>
-                            Selesaikan Pembayaran
+                        <div id="order-details-in-form" class="mt-5"></div>
+                        <button type="button" id="submit-btn" class="cta-button blue-button mt-6">
+                            <i class="fas fa-lock"></i>
+                            Lanjutkan ke Pembayaran
                         </button>
                     </form>
                 </div>
                 <!-- Right Column: FAQ -->
                 <div class="lg:col-span-1 py-4 space-y-4">
-                   <div class="material-card p-5 md:p-6">
+                   <div class="material-card p-6 md:p-8">
                        <div id="info-section-full"></div>
                    </div>
                 </div>
             </div>
         </div>
 
-        <footer id="footer" class="text-center mt-8 text-gray-500 text-sm">
-            <p>Copyright © <span id="currentYear">2025</span>. Semua Hak Dilindungi.</p>
+        <footer id="footer" class="text-center mt-12 text-gray-500 text-sm">
+            <p class="flex items-center justify-center gap-2">
+                <i class="fas fa-copyright"></i>
+                Copyright © <span id="currentYear">2025</span>. Semua Hak Dilindungi.
+            </p>
         </footer>
     </div>
 
     <!-- Modal for Info/Confirmation -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
-            <h3 id="modalTitle" class="text-lg font-bold mb-2"></h3>
-            <p id="modalMessage" class="text-gray-600 mb-4"></p>
+            <h3 id="modalTitle" class="text-xl font-bold mb-3 google-sans"></h3>
+            <p id="modalMessage" class="text-gray-600 mb-6 leading-relaxed"></p>
             <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
         </div>
     </div>
@@ -366,6 +882,7 @@
             processingScreen: document.getElementById('processing-screen'),
             paymentScreen: document.getElementById('payment-screen'),
             paymentInstructionContainer: document.getElementById('payment-instruction-container'),
+            statusCheckScreen: document.getElementById('status-check-screen'),
             footer: document.getElementById('footer'),
             currentYear: document.getElementById('currentYear'),
             packageSelection: document.getElementById('package-selection'),
@@ -410,12 +927,12 @@
                         <label for="pkg-${key}" class="package-label">
                             <div class="flex items-center">
                                 <div class="flex-grow text-left">
-                                    <h3 class="font-bold google-sans">${pkg.title}</h3>
-                                    <p class="text-sm text-gray-600">${pkg.description}</p>
+                                    <h3 class="font-bold google-sans text-base">${pkg.title}</h3>
+                                    <p class="text-sm text-gray-600 mt-1">${pkg.description}</p>
                                 </div>
                                 <div class="text-right pl-4">
-                                    <p class="font-bold text-lg text-google-blue">${formatCurrency(pkg.price)}</p>
-                                    <p class="text-xs text-gray-500 line-through">${formatCurrency(pkg.normalPrice)}</p>
+                                    <p class="font-bold text-xl text-google-blue">${formatCurrency(pkg.price)}</p>
+                                    <p class="text-xs text-gray-500 line-through mt-1">${formatCurrency(pkg.normalPrice)}</p>
                                 </div>
                                 <div class="ml-4">
                                    <span class="custom-radio-button"><span class="dot"></span></span>
@@ -447,15 +964,15 @@
 
         const getOrderDetailsHTML = (pkg, totalPrice) => {
             return `
-            <div class="mt-4 pt-4 border-t border-gray-200">
-                 <h3 class="text-lg font-bold mb-2 google-sans text-left">Rincian Pesanan</h3>
-                 <div class="space-y-2 text-gray-600 text-sm">
-                     <div class="flex justify-between">
+            <div class="mt-5 pt-5 border-t border-gray-200">
+                 <h3 class="text-lg font-bold mb-3 google-sans text-left">Rincian Pesanan</h3>
+                 <div class="space-y-3 text-gray-600 text-sm">
+                     <div class="flex justify-between items-center">
                          <span>${pkg.name}</span>
-                         <span class="font-medium text-gray-800">${formatCurrency(pkg.price)}</span>
+                         <span class="font-semibold text-gray-800 text-base">${formatCurrency(pkg.price)}</span>
                      </div>
                      <hr class="my-2">
-                     <div class="flex justify-between font-bold text-lg text-gray-800 google-sans">
+                     <div class="flex justify-between font-bold text-xl text-gray-800 google-sans items-center">
                          <span>Total</span>
                          <span class="text-google-blue">${formatCurrency(totalPrice)}</span>
                      </div>
@@ -465,13 +982,13 @@
 
         const getInfoSectionHTML = () => {
              return `
-                <h3 class="text-2xl font-bold mb-4 text-center google-sans">Pertanyaan Umum (FAQ)</h3>
+                <h3 class="text-2xl font-bold mb-6 text-center google-sans gradient-text">Pertanyaan Umum (FAQ)</h3>
                 <div class="space-y-0">
-                    <details class="faq-item" open><summary>Apakah proses ini legal dan aman?</summary><div class="faq-content">100% legal dan aman. Kami mendaftarkan IMEI Anda secara resmi ke database pemerintah (Kemenperin & Bea Cukai) sehingga sinyal aktif permanen dan tidak akan terblokir lagi.</div></details>
-                    <details class="faq-item"><summary>HP apa saja yang didukung?</summary><div class="faq-content">Semua jenis perangkat (iPhone, Android, dll) dari semua merek yang sinyalnya terblokir karena masalah registrasi IMEI.</div></details>
-                    <details class="faq-item"><summary>Berapa lama prosesnya?</summary><div class="faq-content">Setelah pembayaran dikonfirmasi, proses aktivasi sinyal biasanya hanya memakan waktu 10-30 menit. Anda akan menerima notifikasi jika sudah selesai.</div></details>
-                    <details class="faq-item"><summary>Apakah ada garansi?</summary><div class="faq-content">Tentu. Kami memberikan garansi uang kembali 100% jika sinyal Anda tidak aktif setelah proses kami. Kepuasan Anda adalah prioritas kami.</div></details>
-                    <details class="faq-item"><summary>Bagaimana cara mengetahui IMEI saya?</summary><div class="faq-content">Cara termudah adalah dengan menekan *#06# pada menu panggilan telepon Anda. Nomor IMEI akan langsung muncul di layar.</div></details>
+                    <details class="faq-item" open><summary><i class="fas fa-shield-check text-green-500 mr-2"></i>Apakah proses ini legal dan aman?</summary><div class="faq-content">100% legal dan aman. Kami mendaftarkan IMEI Anda secara resmi ke database pemerintah (Kemenperin & Bea Cukai) sehingga sinyal aktif permanen dan tidak akan terblokir lagi.</div></details>
+                    <details class="faq-item"><summary><i class="fas fa-mobile-alt text-blue-500 mr-2"></i>HP apa saja yang didukung?</summary><div class="faq-content">Semua jenis perangkat (iPhone, Android, dll) dari semua merek yang sinyalnya terblokir karena masalah registrasi IMEI.</div></details>
+                    <details class="faq-item"><summary><i class="fas fa-clock text-orange-500 mr-2"></i>Berapa lama prosesnya?</summary><div class="faq-content">Setelah pembayaran dikonfirmasi, proses aktivasi sinyal biasanya hanya memakan waktu 10-30 menit. Anda akan menerima notifikasi jika sudah selesai.</div></details>
+                    <details class="faq-item"><summary><i class="fas fa-money-check-alt text-green-600 mr-2"></i>Apakah ada garansi?</summary><div class="faq-content">Tentu. Kami memberikan garansi uang kembali 100% jika sinyal Anda tidak aktif setelah proses kami. Kepuasan Anda adalah prioritas kami.</div></details>
+                    <details class="faq-item"><summary><i class="fas fa-hashtag text-purple-500 mr-2"></i>Bagaimana cara mengetahui IMEI saya?</summary><div class="faq-content">Cara termudah adalah dengan menekan *#06# pada menu panggilan telepon Anda. Nomor IMEI akan langsung muncul di layar.</div></details>
                 </div>`;
         };
 
@@ -483,65 +1000,77 @@
             const totalPrice = pkg.price;
             elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
         }
+        
+        function getCurrentTimestamp() {
+            const now = new Date();
+            return `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}.${now.getMilliseconds().toString().padStart(3, '0')}]`;
+        }
 
         function startProcessingAnimation() {
             elements.initialScreen.style.display = 'none';
+            elements.paymentScreen.style.display = 'none';
             elements.processingScreen.style.display = 'block';
             elements.logContainer.innerHTML = '';
             elements.progressBar.style.width = '0%';
-            elements.statusText.textContent = 'Initializing...';
+            elements.statusText.textContent = 'Memulai sistem';
 
             const steps = [
-                { text: `Initializing connection...`, delay: 500, progress: 5, status: 'Connecting to server...' },
-                { text: `Connection established to Main Server (ID-JKT-01).`, delay: 1000, progress: 10, type: 'success' },
-                { text: `Transmitting IMEI data: ${enteredImei}`, delay: 1500, progress: 20, status: 'Verifying IMEI...' },
-                { text: `Querying CEIR database...`, delay: 1000, progress: 30 },
-                { text: `Querying Kemenperin database...`, delay: 1500, progress: 40 },
-                { text: `[WARNING] IMEI not found in government databases. Flagged as unofficial device.`, delay: 2000, progress: 50, type: 'warning', status: 'Analyzing registration path...' },
-                { text: `Calculating registration parameters...`, delay: 1000, progress: 60 },
-                { text: `Whitelist slot found. Ready for registration process.`, delay: 1500, progress: 70, type: 'success' },
-                { text: `Awaiting payment confirmation to finalize registration.`, delay: 1000, progress: 75, type: 'info', status: 'Awaiting user action...' }
+                { text: `<span style="color: #58a6ff;">[SYSTEM]</span> Inisialisasi koneksi aman ke server pusat...`, delay: 500, progress: 5, status: 'Menghubungkan ke server' },
+                { text: `<span style="color: #58a6ff;">[CONNECT]</span> Membuat tunnel SSL/TLS dengan enkripsi AES-256-GCM...`, delay: 800, progress: 8 },
+                { text: `<span style="color: #3fb950;">[SUCCESS]</span> Koneksi terenkripsi berhasil ke server: <span style="color: #79c0ff;">id-gov-sv01.kemenperin.go.id</span>`, delay: 1200, progress: 15, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[AUTH]</span> Melakukan autentikasi dengan API Gateway...`, delay: 700, progress: 18, status: 'Autentikasi sistem' },
+                { text: `<span style="color: #3fb950;">[VERIFIED]</span> Token akses diterima. Session ID: ${Math.random().toString(36).substring(2, 15)}`, delay: 900, progress: 22, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[IMEI]</span> Mengirim paket data IMEI: <span style="color: #ffa657;">${enteredImei}</span>`, delay: 1500, progress: 30, status: 'Memverifikasi IMEI' },
+                { text: `<span style="color: #58a6ff;">[PACKET]</span> Payload size: 512 bytes | Checksum: <span style="color: #79c0ff;">0x${Math.random().toString(16).substring(2, 10).toUpperCase()}</span>`, delay: 600, progress: 33 },
+                { text: `<span style="color: #3fb950;">[RECEIVED]</span> Paket data diterima dengan integritas penuh.`, delay: 800, progress: 38, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[DATABASE]</span> Menjalankan query ke CEIR (Central Equipment Identity Register)...`, delay: 1500, progress: 48 },
+                { text: `<span style="color: #58a6ff;">[QUERY]</span> SELECT * FROM imei_registry WHERE imei='${enteredImei}' AND status='active'`, delay: 1200, progress: 52, status: 'Menganalisa database' },
+                { text: `<span style="color: #58a6ff;">[SYNC]</span> Melakukan sinkronisasi dengan database Kemenperin...`, delay: 1800, progress: 60 },
+                { text: `<span style="color: #58a6ff;">[API]</span> Menghubungi endpoint: https://api.kemenperin.go.id/v2/imei/validate`, delay: 1000, progress: 65, status: 'Validasi silang data' },
+                { text: `<span style="color: #d29922;">[WARNING]</span> IMEI tidak terdaftar dalam whitelist resmi Indonesia.`, delay: 1500, progress: 70, type: 'warning' },
+                { text: `<span style="color: #d29922;">[ALERT]</span> Perangkat teridentifikasi sebagai unit non-resmi (belum TKDN).`, delay: 1200, progress: 73, type: 'warning' },
+                { text: `<span style="color: #58a6ff;">[ANALYZE]</span> Mengkalkulasi parameter pendaftaran optimal...`, delay: 1500, progress: 80, status: 'Mencari solusi registrasi' },
+                { text: `<span style="color: #58a6ff;">[ALLOCATION]</span> Mencari slot whitelist yang tersedia di database pusat...`, delay: 1600, progress: 85 },
+                { text: `<span style="color: #3fb950;">[FOUND]</span> Slot pendaftaran tersedia! Reference ID: REG-${Date.now().toString(36).toUpperCase()}`, delay: 1200, progress: 90, type: 'success', status: 'Persiapan registrasi' },
+                { text: `<span style="color: #58a6ff;">[READY]</span> Sistem siap melakukan registrasi IMEI ke database nasional.`, delay: 1000, progress: 93, type: 'success' },
+                { text: `<span style="color: #79c0ff;">[PENDING]</span> Menunggu konfirmasi pembayaran untuk finalisasi proses...`, delay: 1000, progress: 95, type: 'info', status: 'Menunggu pembayaran' }
             ];
 
             let currentStep = 0;
 
-            function addLogEntry(text, type = 'info') {
+            function addLogEntry(container, text, type = 'info') {
                 const logEntry = document.createElement('div');
                 logEntry.className = 'log-entry';
-                logEntry.innerHTML = `<span class="log-prefix">&gt;</span><span class="log-message ${type}">${text}</span>`;
-                elements.logContainer.appendChild(logEntry);
-                elements.logContainer.scrollTop = elements.logContainer.scrollHeight;
+                logEntry.innerHTML = `<span class="log-prefix">${getCurrentTimestamp()}</span><span class="log-message ${type}">${text}</span>`;
+                container.appendChild(logEntry);
+                container.scrollTop = container.scrollHeight;
             }
 
             function processNextStep() {
                 if (currentStep >= steps.length) {
-                    // Add final blinking cursor line
                     const finalLine = document.createElement('div');
                     finalLine.className = 'log-entry';
-                    finalLine.innerHTML = `<span class="log-prefix">&gt;</span><span class="blinking-cursor">_</span>`;
+                    finalLine.innerHTML = `<span class="log-prefix">${getCurrentTimestamp()}</span><span class="blinking-cursor">█</span>`;
                     elements.logContainer.appendChild(finalLine);
                     elements.logContainer.scrollTop = elements.logContainer.scrollHeight;
 
                     setTimeout(() => {
                         elements.processingScreen.style.display = 'none';
                         elements.paymentScreen.style.display = 'block';
-                        window.scrollTo(0, 0);
-                    }, 1500);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 1800);
                     return;
                 }
 
                 const step = steps[currentStep];
                 setTimeout(() => {
-                    addLogEntry(step.text, step.type);
-                    if (step.status) {
-                        elements.statusText.textContent = step.status;
-                    }
+                    addLogEntry(elements.logContainer, step.text, step.type);
+                    if (step.status) elements.statusText.textContent = step.status;
                     elements.progressBar.style.width = `${step.progress}%`;
                     currentStep++;
                     processNextStep();
                 }, step.delay);
             }
-            
             processNextStep();
         }
 
@@ -571,35 +1100,28 @@
 
             setTimeout(() => {
                 elements.submitBtn.disabled = false;
-                elements.submitBtn.innerHTML = '<i class="fas fa-lock mr-2"></i> Selesaikan Pembayaran';
+                elements.submitBtn.innerHTML = '<i class="fas fa-lock mr-2"></i> Lanjutkan ke Pembayaran';
                 showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-            }, 1500);
+            }, 1000);
         }
 
         function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
-            window.scrollTo(0, 0);
-            elements.paymentScreen.parentElement.style.display = 'none';
-            elements.footer.style.display = 'none';
-            
-            const waLink = `https://wa.me/6285602152097?text=${encodeURIComponent(`Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n*ID Pembayaran:* ${paymentId}\n*IMEI:* ${enteredImei}\n*Paket:* ${pkg.name}\n*Total:* ${formatCurrency(totalPrice)}\n\nTerima kasih.`)}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            elements.paymentScreen.style.display = 'none';
+            elements.paymentInstructionContainer.style.display = 'block';
             
             let paymentDetailsBlock = '';
             if (paymentMethodKey === 'qris') {
                 paymentDetailsBlock = `
                     <div class="text-center">
-                        <div id="qrcodeContainer" class="bg-white p-3 rounded-xl border-2 w-full max-w-[250px] mx-auto my-4">
-                            <div id="qrcode" class="flex justify-center items-center"></div>
-                        </div>
-                        <button id="downloadQrisButton" class="cta-button blue-button max-w-xs mx-auto mt-2" style="padding: 10px 24px; min-height: 42px;">
-                            <i class="fas fa-download mr-2"></i> Unduh Kode QR
-                        </button>
+                        <div id="qrcodeContainer" class="bg-white p-3 rounded-xl border-2 w-full max-w-[250px] mx-auto my-4"><div id="qrcode" class="flex justify-center items-center"></div></div>
+                        <button id="downloadQrisButton" class="cta-button blue-button max-w-xs mx-auto mt-2" style="padding: 10px 24px; min-height: 42px;"><i class="fas fa-download mr-2"></i> Unduh Kode QR</button>
                     </div>`;
             } else {
                  paymentDetailsBlock = `<div class="mt-4"><p class="text-xs text-gray-500 mb-1">Nomor Tujuan</p><div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg"><p class="text-xl font-bold tracking-wider">${paymentAccount.number}</p><button onclick="copyToClipboard('${paymentAccount.number}', 'Nomor Tujuan')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div></div>`;
             }
             
             expiryTime = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-            const paymentDeadlineFormatted = expiryTime.toLocaleString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 
             const paymentViewHTML = `
                 <div class="payment-header">
@@ -609,17 +1131,11 @@
                 <div class="max-w-lg mx-auto p-2 sm:p-4">
                     <div class="payment-card">
                         <p class="text-xs text-gray-600">Total Pembayaran</p>
-                        <div class="flex items-center justify-between">
-                            <p class="text-2xl font-bold text-google-blue">${formatCurrency(totalPrice)}</p>
-                            <button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button>
-                        </div>
+                        <div class="flex items-center justify-between"><p class="text-2xl font-bold text-google-blue">${formatCurrency(totalPrice)}</p><button onclick="copyToClipboard('${totalPrice}', 'Total Pembayaran')" class="copy-button-text"><i class="far fa-copy mr-1"></i> Salin</button></div>
                     </div>
                     <div class="payment-card">
                         <div class="flex justify-between items-start">
-                            <div>
-                                <p class="text-sm text-gray-500">${paymentAccount.displayName}</p>
-                                <p class="font-semibold">${paymentAccount.accountHolder}</p>
-                            </div>
+                            <div><p class="text-sm text-gray-500">${paymentAccount.displayName}</p><p class="font-semibold">${paymentAccount.accountHolder}</p></div>
                             <div class="payment-logo-container"><img src="${paymentAccount.logo}" class="payment-logo"></div>
                         </div>
                         ${paymentDetailsBlock}
@@ -629,15 +1145,17 @@
                         <details class="payment-accordion" open><summary>Instruksi Umum</summary><div class="payment-accordion-content"><ol class="space-y-2 text-sm"><li>Buka aplikasi perbankan atau e-wallet Anda.</li><li>Pilih menu transfer atau pembayaran.</li><li>Pastikan nominal transfer sesuai dengan total pembayaran.</li><li>Selesaikan transaksi dan simpan bukti pembayaran Anda.</li></ol></div></details>
                     </div>
                     <div class="payment-card text-center">
-                         <p class="text-sm text-gray-600 mb-2">Setelah transfer, klik tombol di bawah untuk konfirmasi.</p>
-                         <a href="${waLink}" target="_blank" class="block">
-                           <button class="confirm-button-outlined"><i class="fab fa-whatsapp mr-2"></i> Konfirmasi Pembayaran</button>
-                         </a>
+                         <p class="text-sm text-gray-600 mb-2">Sudah melakukan pembayaran? Cek status di sini.</p>
+                         <button id="check-status-btn" class="confirm-button-outlined"><i class="fas fa-search-dollar mr-2"></i> Cek Status Pembayaran</button>
                     </div>
                 </div>`;
             
             elements.paymentInstructionContainer.innerHTML = paymentViewHTML;
             startCountdown();
+
+            document.getElementById('check-status-btn').addEventListener('click', () => {
+                showStatusCheckAnimation(paymentId);
+            });
 
             if (paymentMethodKey === 'qris') {
                 setTimeout(() => {
@@ -658,13 +1176,91 @@
                                     link.click();
                                 });
                             });
-                        } catch (e) {
-                            console.error("QRIS Generation Error:", e.message);
-                            qrcodeContainer.innerHTML = `<p class="text-red-500 text-sm">Gagal membuat QR Code.</p>`;
-                        }
+                        } catch (e) { console.error("QRIS Generation Error:", e.message); qrcodeContainer.innerHTML = `<p class="text-red-500 text-sm">Gagal membuat QR Code.</p>`; }
                     }
                 }, 100);
             }
+        }
+
+        function showStatusCheckAnimation(paymentId) {
+            elements.paymentInstructionContainer.style.display = 'none';
+            elements.statusCheckScreen.style.display = 'block';
+
+            const statusCheckHTML = `
+                <h2 class="text-2xl font-bold text-center mb-3 google-sans gradient-text">Memeriksa Status Pembayaran</h2>
+                <p class="text-center text-gray-600 mb-6 flex items-center justify-center gap-2">
+                    <i class="fas fa-sync-alt spinner text-blue-500"></i>
+                    Sistem kami sedang memverifikasi transaksi Anda secara real-time.
+                </p>
+                <div class="terminal fira-code">
+                    <div class="terminal-header">
+                        <div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div>
+                        <span><i class="fas fa-terminal mr-2"></i>/bin/bash - payment_gateway_check</span>
+                    </div>
+                    <div class="terminal-body" id="status-log-container"></div>
+                    <div class="processing-footer">
+                        <div id="status-check-text" class="status-text loading-dots"></div>
+                        <div class="progress-bar-container"><div id="status-progress-bar" class="progress-bar"></div></div>
+                    </div>
+                </div>
+                <div class="text-center mt-6">
+                    <button id="back-to-payment-btn" class="cta-button blue-button max-w-xs mx-auto">
+                        <i class="fas fa-arrow-left mr-2"></i> Kembali ke Pembayaran
+                    </button>
+                </div>`;
+            elements.statusCheckScreen.innerHTML = statusCheckHTML;
+
+            const logContainer = document.getElementById('status-log-container');
+            const progressBar = document.getElementById('status-progress-bar');
+            const statusText = document.getElementById('status-check-text');
+
+            document.getElementById('back-to-payment-btn').addEventListener('click', () => {
+                elements.statusCheckScreen.style.display = 'none';
+                elements.paymentInstructionContainer.style.display = 'block';
+            });
+
+            const steps = [
+                { text: `<span style="color: #58a6ff;">[GATEWAY]</span> Inisialisasi koneksi ke Payment Gateway API...`, delay: 1000, progress: 15, status: 'Menghubungkan ke gateway' },
+                { text: `<span style="color: #58a6ff;">[API]</span> Endpoint: https://api.payment-gateway.id/v3/transaction/status`, delay: 800, progress: 25 },
+                { text: `<span style="color: #3fb950;">[CONNECTED]</span> Koneksi API berhasil. Response time: 47ms`, delay: 1000, progress: 40, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[QUERY]</span> Mengambil data transaksi untuk Invoice ID: <span style="color: #ffa657;">${paymentId}</span>...`, delay: 1500, progress: 55, status: 'Mengambil data transaksi' },
+                { text: `<span style="color: #58a6ff;">[DATA]</span> Payload received: 2.3 KB | Processing timestamp: ${new Date().toISOString()}`, delay: 900, progress: 65 },
+                { text: `<span style="color: #3fb950;">[RECEIVED]</span> Data transaksi berhasil diambil dari server.`, delay: 1000, progress: 75, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[ANALYZE]</span> Menganalisis status pembayaran dari multiple sources...`, delay: 1200, progress: 82, status: 'Memverifikasi status' },
+                { text: `<span style="color: #f85149;">[ERROR]</span> Status pembayaran: <span style="color: #d29922;">PENDING/UNPAID</span>. Transaksi belum diselesaikan.`, delay: 2000, progress: 85, type: 'error', status: 'Pembayaran belum diterima' },
+                { text: `<span style="color: #d29922;">[ALERT]</span> Tidak ditemukan bukti transfer untuk Invoice ${paymentId}.`, delay: 1000, progress: 87, type: 'warning' },
+                { text: `<span style="color: #79c0ff;">[INFO]</span> Proses registrasi IMEI dijeda hingga pembayaran terverifikasi.`, delay: 1000, progress: 90, type: 'info' },
+                { text: `<span style="color: #58a6ff;">[WAITING]</span> Silakan selesaikan pembayaran untuk melanjutkan proses.`, delay: 1000, progress: 90, type: 'info' }
+            ];
+
+            let currentStep = 0;
+            function addLogEntry(container, text, type = 'info') {
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                logEntry.innerHTML = `<span class="log-prefix">${getCurrentTimestamp()}</span><span class="log-message ${type}">${text}</span>`;
+                container.appendChild(logEntry);
+                container.scrollTop = container.scrollHeight;
+            }
+
+            function processNextStep() {
+                if (currentStep >= steps.length) {
+                    const finalLine = document.createElement('div');
+                    finalLine.className = 'log-entry';
+                    finalLine.innerHTML = `<span class="log-prefix">${getCurrentTimestamp()}</span><span class="blinking-cursor">█</span>`;
+                    logContainer.appendChild(finalLine);
+                    logContainer.scrollTop = logContainer.scrollHeight;
+                    return;
+                }
+                const step = steps[currentStep];
+                setTimeout(() => {
+                    addLogEntry(logContainer, step.text, step.type);
+                    if (step.status) statusText.textContent = step.status;
+                    progressBar.style.width = `${step.progress}%`;
+                    currentStep++;
+                    processNextStep();
+                }, step.delay);
+            }
+            processNextStep();
         }
 
         function startCountdown() {
@@ -672,11 +1268,7 @@
             if (!countdownElement || !expiryTime) return;
             const interval = setInterval(() => {
                 const distance = expiryTime - new Date().getTime();
-                if (distance < 0) {
-                    clearInterval(interval);
-                    countdownElement.innerHTML = "Waktu Habis";
-                    return;
-                }
+                if (distance < 0) { clearInterval(interval); countdownElement.innerHTML = "Waktu Habis"; return; }
                 const h = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
                 const m = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
                 const s = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
