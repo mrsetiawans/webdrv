@@ -756,11 +756,10 @@
     <div id="status-check-screen" class="processing-container max-w-2xl mx-auto p-4 sm:p-0"></div>
 
 
-    <main class="flex-grow">
-    <div class="p-4 sm:p-6 lg:p-8">
+    <div class="p-2 sm:p-6 lg:p-8 flex-grow flex flex-col justify-center">
         <!-- Initial Screen for IMEI Input -->
-        <div id="initial-screen" class="max-w-xl mx-auto text-center px-4">
-            <div class="material-card p-6 md:p-12">
+        <div id="initial-screen" class="max-w-xl mx-auto text-center">
+            <div class="material-card p-8 md:p-12">
                 <div class="float-animation">
                     <img src="https://cdn-icons-png.flaticon.com/512/8898/8898433.png" alt="Signal Tower" class="w-28 h-28 mx-auto mb-6 drop-shadow-lg">
                 </div>
@@ -858,16 +857,13 @@
             </div>
         </div>
 
-        
+        <footer id="footer" class="text-center mt-12 text-gray-500 text-sm">
+            <p class="flex items-center justify-center gap-2">
+                <i class="fas fa-copyright"></i>
+                Copyright © <span id="currentYear">2025</span>. Semua Hak Dilindungi.
+            </p>
+        </footer>
     </div>
-    </main>
-
-    <footer id="footer" class="text-center py-6 text-gray-500 text-sm">
-        <p class="flex items-center justify-center gap-2">
-            <i class="fas fa-copyright"></i>
-            Copyright © <span id="currentYear">2025</span>. Semua Hak Dilindungi.
-        </p>
-    </footer>
 
     <!-- Modal for Info/Confirmation -->
     <div id="infoModal" class="modal">
