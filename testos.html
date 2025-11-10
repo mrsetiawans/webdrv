@@ -767,10 +767,16 @@
                 <p class="text-md text-gray-600 mb-8 leading-relaxed">Kami solusinya! Buka blokir IMEI secara resmi, aman, dan bergaransi. Sinyal dijamin kembali normal untuk semua operator.</p>
                 <div class="max-w-md mx-auto">
                     <input type="number" id="imei-input" name="imei" class="form-input text-center text-lg tracking-widest font-medium" placeholder="Masukkan 15 Digit IMEI 1">
-                    <p class="text-xs text-gray-500 mt-3 flex items-center justify-center gap-2">
-                        <i class="fas fa-info-circle text-blue-500"></i>
-                        Anda bisa cek IMEI dengan menekan *#06#
-                    </p>
+                    <div class="flex items-center justify-center gap-4 mt-3">
+                        <p class="text-xs text-gray-500 flex items-center gap-2">
+                            <i class="fas fa-info-circle text-blue-500"></i>
+                            Anda bisa cek IMEI dengan menekan *#06#
+                        </p>
+                        <button type="button" id="show-imei-example-btn" class="text-xs text-blue-600 font-semibold hover:text-blue-800 transition-colors flex items-center gap-1 border border-blue-300 px-3 py-1.5 rounded-full hover:bg-blue-50">
+                            <i class="fas fa-question-circle"></i>
+                            Contoh IMEI
+                        </button>
+                    </div>
                     
                     <!-- Dual SIM Option -->
                     <div class="mt-4 text-center">
@@ -892,6 +898,37 @@
         </div>
     </div>
 
+    <!-- Modal for IMEI Example -->
+    <div id="imeiExampleModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <h3 class="text-2xl font-bold mb-4 google-sans gradient-text">Cara Melihat Nomor IMEI</h3>
+            <div class="bg-gray-50 p-4 rounded-xl border-2 border-gray-200 mb-4">
+                <img src="https://pixvid.org/images/2025/11/10/k2ip6.jpg" alt="Contoh IMEI" class="w-full rounded-lg shadow-md">
+            </div>
+            <div class="text-left space-y-3 mb-6">
+                <p class="text-sm text-gray-700 flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                    <span>Buka aplikasi <strong>Phone/Telepon</strong> di HP Anda</span>
+                </p>
+                <p class="text-sm text-gray-700 flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                    <span>Ketik <strong class="text-blue-600">*#06#</strong> pada keypad</span>
+                </p>
+                <p class="text-sm text-gray-700 flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                    <span>Nomor IMEI akan langsung muncul (15 digit angka)</span>
+                </p>
+                <p class="text-sm text-gray-700 flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                    <span>Untuk <strong>Dual SIM</strong>, akan muncul 2 IMEI berbeda</span>
+                </p>
+            </div>
+            <button class="modal-ok-button" onclick="closeImeiExampleModal()">
+                <i class="fas fa-check mr-2"></i>Mengerti
+            </button>
+        </div>
+    </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // --- ELEMENTS ---
@@ -925,10 +962,54 @@
         let enteredImei2 = '';
         let isDualSim = false;
 
+        // Fungsi untuk mengecek apakah IMEI adalah pola sederhana/palsu
+        function isFakeImei(imei) {
+            // Pattern sederhana seperti 123456789012345, 111111111111111, dll
+            const patterns = [
+                /^(\d)\1{14}$/, // Semua digit sama (111111111111111)
+                /^(0123456789|9876543210){1,2}\d*$/, // Sequential naik atau turun
+                /^123456789012345$/, // Pattern paling umum
+                /^0{15}$/, // Semua nol
+                /^1{15}$/, // Semua satu
+                /^012345678901234$/, // Sequential dari 0
+                /^098765432109876$/, // Sequential turun
+                /^1234509876512345$/, // Pattern kombinasi
+                /^(\d{1,3})\1{4,}/, // Pengulangan blok digit
+            ];
+
+            // Cek apakah cocok dengan pattern palsu
+            for (let pattern of patterns) {
+                if (pattern.test(imei)) {
+                    return true;
+                }
+            }
+
+            // Cek sequential numbers (naik atau turun)
+            let isSequential = true;
+            for (let i = 1; i < imei.length; i++) {
+                if (Math.abs(parseInt(imei[i]) - parseInt(imei[i-1])) !== 1) {
+                    isSequential = false;
+                    break;
+                }
+            }
+            if (isSequential) return true;
+
+            // Cek jika terlalu banyak digit yang sama
+            const digitCount = {};
+            for (let digit of imei) {
+                digitCount[digit] = (digitCount[digit] || 0) + 1;
+                if (digitCount[digit] > 10) { // Jika ada digit yang muncul lebih dari 10x
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         const packages = {
-            '3months': { id: '3months', name: "Unblock IMEI 3 Bulan", price: 70000, normalPrice: 200000, title: "Paket 3 Bulan", description: "Garansi sinyal aktif selama 3 bulan.", dualSimPrice: 120000 },
-            '1year': { id: '1year', name: "Unblock IMEI 1 Tahun", price: 150000, normalPrice: 400000, title: "Paket 1 Tahun (Best Seller)", description: "Garansi sinyal 1 tahun penuh.", dualSimPrice: 250000 },
-            'permanent': { id: 'permanent', name: "Unblock IMEI Permanen", price: 250000, normalPrice: 700000, title: "Paket Permanen", description: "Sekali bayar untuk selamanya.", dualSimPrice: 400000 }
+            '3months': { id: '3months', name: "Unblock IMEI 3 Bulan", price: 70000, normalPrice: 200000, title: "Paket 3 Bulan", description: "Garansi sinyal aktif selama 3 bulan." },
+            '1year': { id: '1year', name: "Unblock IMEI 1 Tahun", price: 150000, normalPrice: 400000, title: "Paket 1 Tahun (Best Seller)", description: "Garansi sinyal 1 tahun penuh." },
+            'permanent': { id: 'permanent', name: "Unblock IMEI Permanen", price: 250000, normalPrice: 700000, title: "Paket Permanen", description: "Sekali bayar untuk selamanya." }
         };
         
         let currentPackageId = '1year'; // Default selection
@@ -959,7 +1040,6 @@
         const getPackageSelectionHTML = () => {
             let html = '';
             Object.entries(packages).forEach(([key, pkg]) => {
-                const displayPrice = isDualSim ? pkg.dualSimPrice : pkg.price;
                 const priceNote = isDualSim ? ' (2 IMEI)' : '';
                 html += `
                     <div>
@@ -971,7 +1051,7 @@
                                     <p class="text-sm text-gray-600 mt-1">${pkg.description}</p>
                                 </div>
                                 <div class="text-right pl-4">
-                                    <p class="font-bold text-xl text-google-blue">${formatCurrency(displayPrice)}</p>
+                                    <p class="font-bold text-xl text-google-blue">${formatCurrency(pkg.price)}</p>
                                     <p class="text-xs text-gray-500 line-through mt-1">${formatCurrency(pkg.normalPrice)}</p>
                                 </div>
                                 <div class="ml-4">
@@ -1048,7 +1128,7 @@
 
         function updateDisplay() {
             const pkg = packages[currentPackageId];
-            const totalPrice = isDualSim ? pkg.dualSimPrice : pkg.price;
+            const totalPrice = pkg.price;
             elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
         }
 
@@ -1062,7 +1142,7 @@
             return `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}.${now.getMilliseconds().toString().padStart(3, '0')}]`;
         }
 
-        function startProcessingAnimation() {
+        function startProcessingAnimation(isFakeImei1 = false, isFakeImei2 = false) {
             elements.initialScreen.style.display = 'none';
             elements.paymentScreen.style.display = 'none';
             elements.processingScreen.style.display = 'block';
@@ -1072,35 +1152,288 @@
 
             const imeiList = isDualSim ? [enteredImei, enteredImei2] : [enteredImei];
             const imeiText = isDualSim ? `${enteredImei} & ${enteredImei2}` : enteredImei;
+            const sessionId = Math.random().toString(36).substring(2, 15).toUpperCase();
+            const requestId = 'REQ-' + Date.now().toString(36).toUpperCase();
 
             const steps = [
-                { text: `<span style="color: #58a6ff;">[SYSTEM]</span> Inisialisasi koneksi aman ke server pusat...`, delay: 500, progress: 5, status: 'Menghubungkan ke server' },
-                { text: `<span style="color: #58a6ff;">[CONNECT]</span> Membuat tunnel SSL/TLS dengan enkripsi AES-256-GCM...`, delay: 800, progress: 8 },
-                { text: `<span style="color: #3fb950;">[SUCCESS]</span> Koneksi terenkripsi berhasil ke server: <span style="color: #79c0ff;">id-gov-sv01.kemenperin.go.id</span>`, delay: 1200, progress: 15, type: 'success' },
-                { text: `<span style="color: #58a6ff;">[AUTH]</span> Melakukan autentikasi dengan API Gateway...`, delay: 700, progress: 18, status: 'Autentikasi sistem' },
-                { text: `<span style="color: #3fb950;">[VERIFIED]</span> Token akses diterima. Session ID: ${Math.random().toString(36).substring(2, 15)}`, delay: 900, progress: 22, type: 'success' },
-                { text: `<span style="color: #58a6ff;">[IMEI]</span> Mengirim paket data IMEI: <span style="color: #ffa657;">${imeiText}</span>`, delay: 1500, progress: 30, status: 'Memverifikasi IMEI' },
-                { text: `<span style="color: #58a6ff;">[PACKET]</span> Payload size: ${isDualSim ? '1024' : '512'} bytes | Checksum: <span style="color: #79c0ff;">0x${Math.random().toString(16).substring(2, 10).toUpperCase()}</span>`, delay: 600, progress: 33 },
-                { text: `<span style="color: #3fb950;">[RECEIVED]</span> Paket data diterima dengan integritas penuh.`, delay: 800, progress: 38, type: 'success' },
-                { text: `<span style="color: #58a6ff;">[DATABASE]</span> Menjalankan query ke CEIR (Central Equipment Identity Register)...`, delay: 1500, progress: 48 },
+                { text: `<span style="color: #58a6ff;">[INIT]</span> Starting IMEI Registration Service v2.4.1...`, delay: 300, progress: 2, status: 'Inisialisasi sistem' },
+                { text: `<span style="color: #6e7681;">[INFO]</span> Loading configuration from /etc/imei-service/config.yaml`, delay: 400, progress: 3 },
+                { text: `<span style="color: #6e7681;">[INFO]</span> Binding to network interface eth0 (192.168.100.45)`, delay: 500, progress: 5 },
+                { text: `<span style="color: #3fb950;">[OK]</span> Service initialized successfully`, delay: 300, progress: 6, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[NETWORK]</span> Resolving DNS for id-gov-sv01.kemenperin.go.id...`, delay: 600, progress: 8, status: 'Menghubungkan ke server' },
+                { text: `<span style="color: #6e7681;">[DNS]</span> Resolved to 103.15.226.73 (Jakarta, Indonesia)`, delay: 500, progress: 10 },
+                { text: `<span style="color: #58a6ff;">[TCP]</span> Establishing TCP connection... [SYN]`, delay: 700, progress: 12 },
+                { text: `<span style="color: #6e7681;">[TCP]</span> Received [SYN-ACK] from server`, delay: 400, progress: 13 },
+                { text: `<span style="color: #3fb950;">[TCP]</span> Connection established [ACK] - RTT: 23ms`, delay: 500, progress: 15, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[TLS]</span> Initiating TLS 1.3 handshake...`, delay: 600, progress: 17 },
+                { text: `<span style="color: #6e7681;">[TLS]</span> ClientHello sent - Cipher: TLS_AES_256_GCM_SHA384`, delay: 500, progress: 18 },
+                { text: `<span style="color: #6e7681;">[TLS]</span> ServerHello received - Session ID: ${sessionId}`, delay: 600, progress: 20 },
+                { text: `<span style="color: #6e7681;">[TLS]</span> Verifying server certificate chain...`, delay: 700, progress: 22 },
+                { text: `<span style="color: #3fb950;">[TLS]</span> Certificate valid - Issued by: DigiCert Global Root CA`, delay: 500, progress: 24, type: 'success' },
+                { text: `<span style="color: #3fb950;">[SECURE]</span> Encrypted tunnel established - AES-256-GCM`, delay: 400, progress: 26, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[AUTH]</span> Authenticating with API Gateway...`, delay: 800, progress: 28, status: 'Autentikasi sistem' },
+                { text: `<span style="color: #6e7681;">[AUTH]</span> Sending API credentials (HMAC-SHA256)`, delay: 600, progress: 30 },
+                { text: `<span style="color: #6e7681;">[AUTH]</span> Waiting for authentication response...`, delay: 900, progress: 32 },
+                { text: `<span style="color: #3fb950;">[AUTH]</span> Authentication successful`, delay: 400, progress: 34, type: 'success' },
+                { text: `<span style="color: #3fb950;">[TOKEN]</span> Access token received - Valid for 3600s`, delay: 500, progress: 36, type: 'success' },
+                { text: `<span style="color: #6e7681;">[SESSION]</span> Session ID: ${sessionId}`, delay: 300, progress: 37 },
+                { text: `<span style="color: #58a6ff;">[REQUEST]</span> Building IMEI validation request...`, delay: 700, progress: 40, status: 'Menyiapkan data IMEI' },
+                { text: `<span style="color: #6e7681;">[DATA]</span> Request ID: ${requestId}`, delay: 400, progress: 41 },
+                { text: `<span style="color: #6e7681;">[DATA]</span> IMEI Count: ${isDualSim ? '2' : '1'}`, delay: 300, progress: 42 },
+                { text: `<span style="color: #6e7681;">[DATA]</span> IMEI-1: ${enteredImei}`, delay: 400, progress: 43 },
+            );
+
+            // Add IMEI 2 if dual SIM
+            if (isDualSim) {
+                steps.push({ text: `<span style="color: #6e7681;">[DATA]</span> IMEI-2: ${enteredImei2}`, delay: 400, progress: 44 });
+            }
+
+            steps.push(
+                { text: `<span style="color: #58a6ff;">[ENCODE]</span> Serializing payload to JSON format...`, delay: 600, progress: 46 },
+                { text: `<span style="color: #6e7681;">[ENCODE]</span> Payload size: ${isDualSim ? '1847' : '1124'} bytes`, delay: 400, progress: 47 },
+                { text: `<span style="color: #58a6ff;">[HASH]</span> Computing SHA-256 checksum...`, delay: 500, progress: 48 },
+                { text: `<span style="color: #6e7681;">[HASH]</span> Checksum: ${Math.random().toString(16).substring(2, 34)}`, delay: 400, progress: 49 },
+                { text: `<span style="color: #58a6ff;">[SEND]</span> Transmitting encrypted payload to server...`, delay: 800, progress: 52, status: 'Mengirim data' },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> POST /api/v2/imei/validate HTTP/1.1`, delay: 500, progress: 54 },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> Host: id-gov-sv01.kemenperin.go.id`, delay: 400, progress: 55 },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> Content-Type: application/json; charset=utf-8`, delay: 300, progress: 56 },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI...`, delay: 400, progress: 57 },
+                { text: `<span style="color: #6e7681;">[SEND]</span> Bytes sent: ${isDualSim ? '1847' : '1124'} / ${isDualSim ? '1847' : '1124'}`, delay: 600, progress: 60 },
+                { text: `<span style="color: #3fb950;">[SEND]</span> Transmission complete`, delay: 400, progress: 62, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[WAIT]</span> Waiting for server response...`, delay: 1200, progress: 64, status: 'Menunggu respons server' },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Receiving data... [0%]`, delay: 400, progress: 66 },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Receiving data... [34%]`, delay: 500, progress: 68 },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Receiving data... [67%]`, delay: 500, progress: 70 },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Receiving data... [100%]`, delay: 400, progress: 72 },
+                { text: `<span style="color: #3fb950;">[HTTP]</span> HTTP/1.1 200 OK`, delay: 500, progress: 74, type: 'success' },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Response size: 2.3 KB`, delay: 300, progress: 75 },
+                { text: `<span style="color: #58a6ff;">[PARSE]</span> Parsing JSON response...`, delay: 600, progress: 77, status: 'Memproses data' },
+                { text: `<span style="color: #3fb950;">[PARSE]</span> JSON validation successful`, delay: 400, progress: 78, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[DATABASE]</span> Querying CEIR database...`, delay: 900, progress: 80, status: 'Mengecek database CEIR' },
+                { text: `<span style="color: #6e7681;">[SQL]</span> SELECT imei, status, registration_date, operator`, delay: 500, progress: 81 },
+                { text: `<span style="color: #6e7681;">[SQL]</span> FROM imei_registry`, delay: 400, progress: 82 },
+                { text: `<span style="color: #6e7681;">[SQL]</span> WHERE imei IN (${imeiList.map(i => `'${i}'`).join(', ')})`, delay: 600, progress: 83 },
+                { text: `<span style="color: #6e7681;">[SQL]</span> AND country_code = 'ID'`, delay: 400, progress: 84 },
+                { text: `<span style="color: #6e7681;">[DB]</span> Query execution time: 847ms`, delay: 700, progress: 86 },
+                { text: `<span style="color: #3fb950;">[DB]</span> Query completed - ${isDualSim ? '2' : '1'} row(s) returned`, delay: 500, progress: 88, type: 'success' }
+            );
+
+            // Add individual IMEI check results
+            imeiList.forEach((imei, index) => {
+                const isFake = (index === 0 && isFakeImei1) || (index === 1 && isFakeImei2);
+                
+                steps.push({ text: `<span style="color: #58a6ff;">[CHECK]</span> Analyzing IMEI-${index + 1}: ${imei}`, delay: 700, progress: 89 + (index * 2), status: `Menganalisa IMEI ${index + 1}` });
+                
+                if (isFake) {
+                    steps.push(
+                        { text: `<span style="color: #f85149;">[ERROR]</span> LUHN Algorithm Check: FAILED`, delay: 600, progress: 89 + (index * 2), type: 'error' },
+                        { text: `<span style="color: #f85149;">[ERROR]</span> IMEI ${imei} memiliki pattern tidak valid`, delay: 500, progress: 90 + (index * 2), type: 'error' },
+                        { text: `<span style="color: #f85149;">[FRAUD]</span> Terdeteksi sebagai IMEI palsu atau test number`, delay: 700, progress: 90 + (index * 2), type: 'error' },
+                        { text: `<span style="color: #d29922;">[WARNING]</span> IMEI ini tidak dapat diproses lebih lanjut`, delay: 500, progress: 90 + (index * 2), type: 'warning' }
+                    );
+                } else {
+                    steps.push(
+                        { text: `<span style="color: #6e7681;">[LUHN]</span> Validating checksum digit... VALID`, delay: 500, progress: 89 + (index * 2) },
+                        { text: `<span style="color: #6e7681;">[TAC]</span> Type Allocation Code: ${imei.substring(0, 8)}`, delay: 400, progress: 89 + (index * 2) },
+                        { text: `<span style="color: #d29922;">[STATUS]</span> Registration Status: NOT_REGISTERED`, delay: 600, progress: 90 + (index * 2), type: 'warning' },
+                        { text: `<span style="color: #d29922;">[ALERT]</span> IMEI ${imei} tidak ditemukan di whitelist`, delay: 500, progress: 90 + (index * 2), type: 'warning' }
+                    );
+                }
+            });
+
+            // Jika ada IMEI palsu, hentikan proses
+            if (isFakeImei1 || isFakeImei2) {
+                steps.push(
+                    { text: `<span style="color: #f85149;">[ABORT]</span> Proses dihentikan karena IMEI tidak valid`, delay: 800, progress: 95, type: 'error', status: 'Proses dibatalkan' },
+                    { text: `<span style="color: #d29922;">[INFO]</span> Silakan masukkan nomor IMEI yang benar dari perangkat Anda`, delay: 600, progress: 95, type: 'warning' },
+                    { text: `<span style="color: #6e7681;">[TIP]</span> Gunakan *#06# untuk melihat IMEI asli perangkat Anda`, delay: 500, progress: 95 }
+                );
+                
+                let currentStep = 0;
+                function addLogEntry(container, text, type = 'info') {
+                    const logEntry = document.createElement('div');
+                    logEntry.className = 'log-entry';
+                    logEntry.innerHTML = `<span class="log-prefix">${getCurrentTimestamp()}</span><span class="log-message ${type}">${text}</span>`;
+                    container.appendChild(logEntry);
+                    container.scrollTop = container.scrollHeight;
+                }
+
+                function processNextStep() {
+                    if (currentStep >= steps.length) {
+                        setTimeout(() => {
+                            showInfoModal('IMEI Tidak Valid', 'IMEI yang Anda masukkan terdeteksi tidak valid atau merupakan nomor test. Silakan masukkan nomor IMEI asli dari perangkat Anda dengan menekan *#06# pada keypad telepon.');
+                            elements.processingScreen.style.display = 'none';
+                            elements.initialScreen.style.display = 'block';
+                        }, 2000);
+                        return;
+                    }
+                    const step = steps[currentStep];
+                    setTimeout(() => {
+                        addLogEntry(elements.logContainer, step.text, step.type);
+                        if (step.status) elements.statusText.textContent = step.status;
+                        elements.progressBar.style.width = `${step.progress}%`;
+                        currentStep++;
+                        processNextStep();
+                    }, step.delay);
+                }
+                processNextStep();
+                return;
+            }
+
+            steps.push(
+                { text: `<span style="color: #58a6ff;">[SYNC]</span> Cross-checking with Dirjen Bea Cukai database...`, delay: 1000, progress: 92, status: 'Sinkronisasi Bea Cukai' },
+                { text: `<span style="color: #6e7681;">[API]</span> GET https://api.beacukai.go.id/v1/imei/check`, delay: 700, progress: 93 },
+                { text: `<span style="color: #3fb950;">[API]</span> Response: 200 OK - IMEI not in customs database`, delay: 800, progress: 94, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[ANALYZE]</span> Calculating registration requirements...`, delay: 900, progress: 95, status: 'Kalkulasi kebutuhan' },
+                { text: `<span style="color: #6e7681;">[CALC]</span> Required documents: TAX_ID, DEVICE_PROOF, OWNER_ID`, delay: 600, progress: 96 },
+                { text: `<span style="color: #6e7681;">[CALC]</span> Processing fee: IDR ${packages[currentPackageId].price.toLocaleString('id-ID')}`, delay: 500, progress: 97 },
+                { text: `<span style="color: #6e7681;">[CALC]</span> Estimated processing time: 15-30 minutes`, delay: 400, progress: 98 },
+                { text: `<span style="color: #58a6ff;">[SLOT]</span> Searching available registration slots...`, delay: 1000, progress: 99, status: 'Mencari slot registrasi' },
+                { text: `<span style="color: #3fb950;">[SLOT]</span> Found ${isDualSim ? '2' : '1'} available slot(s) in Jakarta region`, delay: 700, progress: 100, type: 'success' },
+                { text: `<span style="color: #3fb950;">[SUCCESS]</span> Pre-validation completed successfully`, delay: 500, progress: 100, type: 'success' },
+                { text: `<span style="color: #6e7681;">[INFO]</span> Registration queue position: #${Math.floor(Math.random() * 50) + 1}`, delay: 400, progress: 100 },
+                { text: `<span style="color: #d29922;">[PENDING]</span> Payment required to proceed with registration`, delay: 600, progress: 100, type: 'warning', status: 'Menunggu pembayaran' },
+                { text: `<span style="color: #6e7681;">[INFO]</span> Please complete payment to activate IMEI(s)`, delay: 500, progress: 100 }
+            );
+
+            let currentStep = 0;
+
+            function addLogEntry(container, text, type = 'info') {
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                logEntry.innerHTML = `<span class="log-prefix">${getCurrentTimestamp()}</span><span class="log-message ${type}">${text}</span>`;
+                container.appendChild(logEntry);
+                container.scrollTop = container.scrollHeight;
+            }
+
+            function processNextStep() {
+                if (currentStep >= steps.length) {
+                    const finalLine = document.createElement('div');
+                    finalLine.className = 'log-entry';
+                    finalLine.innerHTML = `<span class="log-prefix">${getCurrentTimestamp()}</span><span class="blinking-cursor">█</span>`;
+                    elements.logContainer.appendChild(finalLine);
+                    elements.logContainer.scrollTop = elements.logContainer.scrollHeight;
+
+                    setTimeout(() => {
+                        elements.processingScreen.style.display = 'none';
+                        elements.paymentScreen.style.display = 'block';
+                        updatePackageDisplay(); // Update package display with dual SIM prices if needed
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 1800);
+                    return;
+                }
+
+                const step = steps[currentStep];
+                setTimeout(() => {
+                    addLogEntry(elements.logContainer, step.text, step.type);
+                    if (step.status) elements.statusText.textContent = step.status;
+                    elements.progressBar.style.width = `${step.progress}%`;
+                    currentStep++;
+                    processNextStep();
+                }, step.delay);
+            }
+            processNextStep();
+        }
+            elements.initialScreen.style.display = 'none';
+            elements.paymentScreen.style.display = 'none';
+            elements.processingScreen.style.display = 'block';
+            elements.logContainer.innerHTML = '';
+            elements.progressBar.style.width = '0%';
+            elements.statusText.textContent = 'Memulai sistem';
+
+            const imeiList = isDualSim ? [enteredImei, enteredImei2] : [enteredImei];
+            const imeiText = isDualSim ? `${enteredImei} & ${enteredImei2}` : enteredImei;
+            const sessionId = Math.random().toString(36).substring(2, 15).toUpperCase();
+            const requestId = 'REQ-' + Date.now().toString(36).toUpperCase();
+
+            const steps = [
+                { text: `<span style="color: #58a6ff;">[INIT]</span> Starting IMEI Registration Service v2.4.1...`, delay: 300, progress: 2, status: 'Inisialisasi sistem' },
+                { text: `<span style="color: #6e7681;">[INFO]</span> Loading configuration from /etc/imei-service/config.yaml`, delay: 400, progress: 3 },
+                { text: `<span style="color: #6e7681;">[INFO]</span> Binding to network interface eth0 (192.168.100.45)`, delay: 500, progress: 5 },
+                { text: `<span style="color: #3fb950;">[OK]</span> Service initialized successfully`, delay: 300, progress: 6, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[NETWORK]</span> Resolving DNS for id-gov-sv01.kemenperin.go.id...`, delay: 600, progress: 8, status: 'Menghubungkan ke server' },
+                { text: `<span style="color: #6e7681;">[DNS]</span> Resolved to 103.15.226.73 (Jakarta, Indonesia)`, delay: 500, progress: 10 },
+                { text: `<span style="color: #58a6ff;">[TCP]</span> Establishing TCP connection... [SYN]`, delay: 700, progress: 12 },
+                { text: `<span style="color: #6e7681;">[TCP]</span> Received [SYN-ACK] from server`, delay: 400, progress: 13 },
+                { text: `<span style="color: #3fb950;">[TCP]</span> Connection established [ACK] - RTT: 23ms`, delay: 500, progress: 15, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[TLS]</span> Initiating TLS 1.3 handshake...`, delay: 600, progress: 17 },
+                { text: `<span style="color: #6e7681;">[TLS]</span> ClientHello sent - Cipher: TLS_AES_256_GCM_SHA384`, delay: 500, progress: 18 },
+                { text: `<span style="color: #6e7681;">[TLS]</span> ServerHello received - Session ID: ${sessionId}`, delay: 600, progress: 20 },
+                { text: `<span style="color: #6e7681;">[TLS]</span> Verifying server certificate chain...`, delay: 700, progress: 22 },
+                { text: `<span style="color: #3fb950;">[TLS]</span> Certificate valid - Issued by: DigiCert Global Root CA`, delay: 500, progress: 24, type: 'success' },
+                { text: `<span style="color: #3fb950;">[SECURE]</span> Encrypted tunnel established - AES-256-GCM`, delay: 400, progress: 26, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[AUTH]</span> Authenticating with API Gateway...`, delay: 800, progress: 28, status: 'Autentikasi sistem' },
+                { text: `<span style="color: #6e7681;">[AUTH]</span> Sending API credentials (HMAC-SHA256)`, delay: 600, progress: 30 },
+                { text: `<span style="color: #6e7681;">[AUTH]</span> Waiting for authentication response...`, delay: 900, progress: 32 },
+                { text: `<span style="color: #3fb950;">[AUTH]</span> Authentication successful`, delay: 400, progress: 34, type: 'success' },
+                { text: `<span style="color: #3fb950;">[TOKEN]</span> Access token received - Valid for 3600s`, delay: 500, progress: 36, type: 'success' },
+                { text: `<span style="color: #6e7681;">[SESSION]</span> Session ID: ${sessionId}`, delay: 300, progress: 37 },
+                { text: `<span style="color: #58a6ff;">[REQUEST]</span> Building IMEI validation request...`, delay: 700, progress: 40, status: 'Menyiapkan data IMEI' },
+                { text: `<span style="color: #6e7681;">[DATA]</span> Request ID: ${requestId}`, delay: 400, progress: 41 },
+                { text: `<span style="color: #6e7681;">[DATA]</span> IMEI Count: ${isDualSim ? '2' : '1'}`, delay: 300, progress: 42 },
+                { text: `<span style="color: #6e7681;">[DATA]</span> IMEI-1: ${enteredImei}`, delay: 400, progress: 43 },
             ];
 
-            // Add validation for each IMEI
+            // Add IMEI 2 if dual SIM
+            if (isDualSim) {
+                steps.push({ text: `<span style="color: #6e7681;">[DATA]</span> IMEI-2: ${enteredImei2}`, delay: 400, progress: 44 });
+            }
+
+            steps.push(
+                { text: `<span style="color: #58a6ff;">[ENCODE]</span> Serializing payload to JSON format...`, delay: 600, progress: 46 },
+                { text: `<span style="color: #6e7681;">[ENCODE]</span> Payload size: ${isDualSim ? '1847' : '1124'} bytes`, delay: 400, progress: 47 },
+                { text: `<span style="color: #58a6ff;">[HASH]</span> Computing SHA-256 checksum...`, delay: 500, progress: 48 },
+                { text: `<span style="color: #6e7681;">[HASH]</span> Checksum: ${Math.random().toString(16).substring(2, 34)}`, delay: 400, progress: 49 },
+                { text: `<span style="color: #58a6ff;">[SEND]</span> Transmitting encrypted payload to server...`, delay: 800, progress: 52, status: 'Mengirim data' },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> POST /api/v2/imei/validate HTTP/1.1`, delay: 500, progress: 54 },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> Host: id-gov-sv01.kemenperin.go.id`, delay: 400, progress: 55 },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> Content-Type: application/json; charset=utf-8`, delay: 300, progress: 56 },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI...`, delay: 400, progress: 57 },
+                { text: `<span style="color: #6e7681;">[SEND]</span> Bytes sent: ${isDualSim ? '1847' : '1124'} / ${isDualSim ? '1847' : '1124'}`, delay: 600, progress: 60 },
+                { text: `<span style="color: #3fb950;">[SEND]</span> Transmission complete`, delay: 400, progress: 62, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[WAIT]</span> Waiting for server response...`, delay: 1200, progress: 64, status: 'Menunggu respons server' },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Receiving data... [0%]`, delay: 400, progress: 66 },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Receiving data... [34%]`, delay: 500, progress: 68 },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Receiving data... [67%]`, delay: 500, progress: 70 },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Receiving data... [100%]`, delay: 400, progress: 72 },
+                { text: `<span style="color: #3fb950;">[HTTP]</span> HTTP/1.1 200 OK`, delay: 500, progress: 74, type: 'success' },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Response size: 2.3 KB`, delay: 300, progress: 75 },
+                { text: `<span style="color: #58a6ff;">[PARSE]</span> Parsing JSON response...`, delay: 600, progress: 77, status: 'Memproses data' },
+                { text: `<span style="color: #3fb950;">[PARSE]</span> JSON validation successful`, delay: 400, progress: 78, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[DATABASE]</span> Querying CEIR database...`, delay: 900, progress: 80, status: 'Mengecek database CEIR' },
+                { text: `<span style="color: #6e7681;">[SQL]</span> SELECT imei, status, registration_date, operator`, delay: 500, progress: 81 },
+                { text: `<span style="color: #6e7681;">[SQL]</span> FROM imei_registry`, delay: 400, progress: 82 },
+                { text: `<span style="color: #6e7681;">[SQL]</span> WHERE imei IN (${imeiList.map(i => `'${i}'`).join(', ')})`, delay: 600, progress: 83 },
+                { text: `<span style="color: #6e7681;">[SQL]</span> AND country_code = 'ID'`, delay: 400, progress: 84 },
+                { text: `<span style="color: #6e7681;">[DB]</span> Query execution time: 847ms`, delay: 700, progress: 86 },
+                { text: `<span style="color: #3fb950;">[DB]</span> Query completed - ${isDualSim ? '2' : '1'} row(s) returned`, delay: 500, progress: 88, type: 'success' }
+            );
+
+            // Add individual IMEI check results
             imeiList.forEach((imei, index) => {
                 steps.push(
-                    { text: `<span style="color: #58a6ff;">[QUERY]</span> Validasi IMEI ${index + 1}: SELECT * FROM imei_registry WHERE imei='${imei}'`, delay: 1200, progress: 52 + (index * 8), status: `Menganalisa IMEI ${index + 1}` },
-                    { text: `<span style="color: #d29922;">[WARNING]</span> IMEI ${index + 1} (${imei}) tidak terdaftar dalam whitelist resmi.`, delay: 1000, progress: 55 + (index * 8), type: 'warning' }
+                    { text: `<span style="color: #58a6ff;">[CHECK]</span> Analyzing IMEI-${index + 1}: ${imei}`, delay: 700, progress: 89 + index, status: `Menganalisa IMEI ${index + 1}` },
+                    { text: `<span style="color: #6e7681;">[LUHN]</span> Validating checksum digit... VALID`, delay: 500, progress: 89 + index },
+                    { text: `<span style="color: #6e7681;">[TAC]</span> Type Allocation Code: ${imei.substring(0, 8)}`, delay: 400, progress: 89 + index },
+                    { text: `<span style="color: #d29922;">[STATUS]</span> Registration Status: NOT_REGISTERED`, delay: 600, progress: 90 + index, type: 'warning' },
+                    { text: `<span style="color: #d29922;">[ALERT]</span> IMEI ${imei} tidak ditemukan di whitelist`, delay: 500, progress: 90 + index, type: 'warning' }
                 );
             });
 
             steps.push(
-                { text: `<span style="color: #58a6ff;">[SYNC]</span> Melakukan sinkronisasi dengan database Kemenperin...`, delay: 1800, progress: 68, status: 'Sinkronisasi data' },
-                { text: `<span style="color: #58a6ff;">[API]</span> Menghubungi endpoint: https://api.kemenperin.go.id/v2/imei/validate`, delay: 1000, progress: 72 },
-                { text: `<span style="color: #58a6ff;">[ANALYZE]</span> Mengkalkulasi parameter pendaftaran optimal...`, delay: 1500, progress: 80, status: 'Mencari solusi registrasi' },
-                { text: `<span style="color: #58a6ff;">[ALLOCATION]</span> Mencari ${isDualSim ? '2' : '1'} slot whitelist yang tersedia di database pusat...`, delay: 1600, progress: 85 },
-                { text: `<span style="color: #3fb950;">[FOUND]</span> Slot pendaftaran tersedia! Reference ID: REG-${Date.now().toString(36).toUpperCase()}`, delay: 1200, progress: 90, type: 'success', status: 'Persiapan registrasi' },
-                { text: `<span style="color: #58a6ff;">[READY]</span> Sistem siap melakukan registrasi ${isDualSim ? '2 IMEI' : 'IMEI'} ke database nasional.`, delay: 1000, progress: 93, type: 'success' },
-                { text: `<span style="color: #79c0ff;">[PENDING]</span> Menunggu konfirmasi pembayaran untuk finalisasi proses...`, delay: 1000, progress: 95, type: 'info', status: 'Menunggu pembayaran' }
+                { text: `<span style="color: #58a6ff;">[SYNC]</span> Cross-checking with Dirjen Bea Cukai database...`, delay: 1000, progress: 92, status: 'Sinkronisasi Bea Cukai' },
+                { text: `<span style="color: #6e7681;">[API]</span> GET https://api.beacukai.go.id/v1/imei/check`, delay: 700, progress: 93 },
+                { text: `<span style="color: #3fb950;">[API]</span> Response: 200 OK - IMEI not in customs database`, delay: 800, progress: 94, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[ANALYZE]</span> Calculating registration requirements...`, delay: 900, progress: 95, status: 'Kalkulasi kebutuhan' },
+                { text: `<span style="color: #6e7681;">[CALC]</span> Required documents: TAX_ID, DEVICE_PROOF, OWNER_ID`, delay: 600, progress: 96 },
+                { text: `<span style="color: #6e7681;">[CALC]</span> Processing fee: IDR ${isDualSim ? '250000' : '150000'}`, delay: 500, progress: 97 },
+                { text: `<span style="color: #6e7681;">[CALC]</span> Estimated processing time: 15-30 minutes`, delay: 400, progress: 98 },
+                { text: `<span style="color: #58a6ff;">[SLOT]</span> Searching available registration slots...`, delay: 1000, progress: 99, status: 'Mencari slot registrasi' },
+                { text: `<span style="color: #3fb950;">[SLOT]</span> Found ${isDualSim ? '2' : '1'} available slot(s) in Jakarta region`, delay: 700, progress: 100, type: 'success' },
+                { text: `<span style="color: #3fb950;">[SUCCESS]</span> Pre-validation completed successfully`, delay: 500, progress: 100, type: 'success' },
+                { text: `<span style="color: #6e7681;">[INFO]</span> Registration queue position: #${Math.floor(Math.random() * 50) + 1}`, delay: 400, progress: 100 },
+                { text: `<span style="color: #d29922;">[PENDING]</span> Payment required to proceed with registration`, delay: 600, progress: 100, type: 'warning', status: 'Menunggu pembayaran' },
+                { text: `<span style="color: #6e7681;">[INFO]</span> Please complete payment to activate IMEI(s)`, delay: 500, progress: 100 }
             );
 
             let currentStep = 0;
@@ -1162,7 +1495,7 @@
             elements.submitBtn.innerHTML = '<i class="fas fa-spinner spinner mr-2"></i> Memproses...';
             
             const pkg = packages[currentPackageId];
-            const totalPrice = isDualSim ? pkg.dualSimPrice : pkg.price;
+            const totalPrice = pkg.price;
             const paymentAccount = paymentAccounts[paymentMethodKey];
             const paymentId = `INV-IMEI-${new Date().getTime().toString().slice(-6)}`;
 
@@ -1288,17 +1621,48 @@
             });
 
             const steps = [
-                { text: `<span style="color: #58a6ff;">[GATEWAY]</span> Inisialisasi koneksi ke Payment Gateway API...`, delay: 1000, progress: 15, status: 'Menghubungkan ke gateway' },
-                { text: `<span style="color: #58a6ff;">[API]</span> Endpoint: https://api.payment-gateway.id/v3/transaction/status`, delay: 800, progress: 25 },
-                { text: `<span style="color: #3fb950;">[CONNECTED]</span> Koneksi API berhasil. Response time: 47ms`, delay: 1000, progress: 40, type: 'success' },
-                { text: `<span style="color: #58a6ff;">[QUERY]</span> Mengambil data transaksi untuk Invoice ID: <span style="color: #ffa657;">${paymentId}</span>...`, delay: 1500, progress: 55, status: 'Mengambil data transaksi' },
-                { text: `<span style="color: #58a6ff;">[DATA]</span> Payload received: 2.3 KB | Processing timestamp: ${new Date().toISOString()}`, delay: 900, progress: 65 },
-                { text: `<span style="color: #3fb950;">[RECEIVED]</span> Data transaksi berhasil diambil dari server.`, delay: 1000, progress: 75, type: 'success' },
-                { text: `<span style="color: #58a6ff;">[ANALYZE]</span> Menganalisis status pembayaran dari multiple sources...`, delay: 1200, progress: 82, status: 'Memverifikasi status' },
-                { text: `<span style="color: #f85149;">[ERROR]</span> Status pembayaran: <span style="color: #d29922;">PENDING/UNPAID</span>. Transaksi belum diselesaikan.`, delay: 2000, progress: 85, type: 'error', status: 'Pembayaran belum diterima' },
-                { text: `<span style="color: #d29922;">[ALERT]</span> Tidak ditemukan bukti transfer untuk Invoice ${paymentId}.`, delay: 1000, progress: 87, type: 'warning' },
-                { text: `<span style="color: #79c0ff;">[INFO]</span> Proses registrasi IMEI dijeda hingga pembayaran terverifikasi.`, delay: 1000, progress: 90, type: 'info' },
-                { text: `<span style="color: #58a6ff;">[WAITING]</span> Silakan selesaikan pembayaran untuk melanjutkan proses.`, delay: 1000, progress: 90, type: 'info' }
+                { text: `<span style="color: #58a6ff;">[INIT]</span> Payment Gateway Client v3.2.0 starting...`, delay: 400, progress: 5, status: 'Inisialisasi' },
+                { text: `<span style="color: #6e7681;">[CONFIG]</span> Loading configuration from /etc/payment-gateway/client.conf`, delay: 500, progress: 8 },
+                { text: `<span style="color: #3fb950;">[OK]</span> Configuration loaded successfully`, delay: 400, progress: 10, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[DNS]</span> Resolving api.payment-gateway.id...`, delay: 600, progress: 12, status: 'Menghubungkan ke gateway' },
+                { text: `<span style="color: #6e7681;">[DNS]</span> Resolved to 103.127.132.91 (Singapore)`, delay: 500, progress: 15 },
+                { text: `<span style="color: #58a6ff;">[TCP]</span> Establishing TCP connection... [SYN]`, delay: 600, progress: 18 },
+                { text: `<span style="color: #3fb950;">[TCP]</span> Connection established - RTT: 31ms`, delay: 500, progress: 22, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[TLS]</span> Starting TLS 1.3 handshake...`, delay: 700, progress: 25 },
+                { text: `<span style="color: #3fb950;">[TLS]</span> Secure connection established`, delay: 600, progress: 30, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[AUTH]</span> Authenticating with OAuth 2.0...`, delay: 800, progress: 35, status: 'Autentikasi' },
+                { text: `<span style="color: #6e7681;">[AUTH]</span> Client ID: pgw_client_${Math.random().toString(36).substring(2, 10)}`, delay: 500, progress: 38 },
+                { text: `<span style="color: #3fb950;">[AUTH]</span> Access token obtained`, delay: 600, progress: 42, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[REQUEST]</span> Building transaction status query...`, delay: 700, progress: 45, status: 'Menyiapkan request' },
+                { text: `<span style="color: #6e7681;">[DATA]</span> Invoice ID: ${paymentId}`, delay: 400, progress: 47 },
+                { text: `<span style="color: #6e7681;">[DATA]</span> Request timestamp: ${new Date().toISOString()}`, delay: 500, progress: 49 },
+                { text: `<span style="color: #58a6ff;">[SEND]</span> Sending HTTP request...`, delay: 700, progress: 52, status: 'Mengirim request' },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> GET /api/v3/transaction/status?invoice=${paymentId}`, delay: 600, progress: 55 },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> Host: api.payment-gateway.id`, delay: 400, progress: 57 },
+                { text: `<span style="color: #6e7681;">[HTTP]</span> Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...`, delay: 500, progress: 60 },
+                { text: `<span style="color: #58a6ff;">[WAIT]</span> Waiting for server response...`, delay: 1000, progress: 63, status: 'Menunggu respons' },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Receiving response headers...`, delay: 600, progress: 68 },
+                { text: `<span style="color: #3fb950;">[HTTP]</span> HTTP/1.1 200 OK`, delay: 500, progress: 72, type: 'success' },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Content-Type: application/json`, delay: 400, progress: 74 },
+                { text: `<span style="color: #6e7681;">[RECV]</span> Content-Length: 2847 bytes`, delay: 500, progress: 76 },
+                { text: `<span style="color: #58a6ff;">[PARSE]</span> Parsing JSON response...`, delay: 700, progress: 78, status: 'Memproses data' },
+                { text: `<span style="color: #3fb950;">[PARSE]</span> JSON parsed successfully`, delay: 500, progress: 80, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[VALIDATE]</span> Validating response signature...`, delay: 600, progress: 82 },
+                { text: `<span style="color: #3fb950;">[VALIDATE]</span> Signature valid - Response authentic`, delay: 500, progress: 84, type: 'success' },
+                { text: `<span style="color: #58a6ff;">[ANALYZE]</span> Analyzing transaction data...`, delay: 800, progress: 87, status: 'Menganalisa transaksi' },
+                { text: `<span style="color: #6e7681;">[DATA]</span> Transaction ID: ${Math.random().toString(36).substring(2, 15).toUpperCase()}`, delay: 500, progress: 89 },
+                { text: `<span style="color: #6e7681;">[DATA]</span> Created at: ${new Date().toISOString()}`, delay: 400, progress: 90 },
+                { text: `<span style="color: #6e7681;">[DATA]</span> Amount: IDR ${packages[currentPackageId].price.toLocaleString('id-ID')}`, delay: 500, progress: 91 },
+                { text: `<span style="color: #58a6ff;">[CHECK]</span> Checking payment status in database...`, delay: 900, progress: 93, status: 'Cek status database' },
+                { text: `<span style="color: #6e7681;">[SQL]</span> SELECT status, payment_date, payment_method FROM transactions`, delay: 600, progress: 95 },
+                { text: `<span style="color: #6e7681;">[SQL]</span> WHERE invoice_id = '${paymentId}' AND status = 'PAID'`, delay: 700, progress: 97 },
+                { text: `<span style="color: #6e7681;">[DB]</span> Query execution time: 234ms`, delay: 600, progress: 98 },
+                { text: `<span style="color: #6e7681;">[DB]</span> Rows returned: 0`, delay: 500, progress: 99 },
+                { text: `<span style="color: #f85149;">[RESULT]</span> Payment Status: <span style="color: #d29922;">PENDING</span>`, delay: 800, progress: 100, type: 'error', status: 'Status: Belum Bayar' },
+                { text: `<span style="color: #d29922;">[WARNING]</span> No payment confirmation found for invoice ${paymentId}`, delay: 700, progress: 100, type: 'warning' },
+                { text: `<span style="color: #6e7681;">[INFO]</span> Payment channels checked: Bank Transfer, E-Wallet, QRIS`, delay: 600, progress: 100 },
+                { text: `<span style="color: #79c0ff;">[NOTICE]</span> Registration on hold until payment is verified`, delay: 500, progress: 100, type: 'info' },
+                { text: `<span style="color: #6e7681;">[INFO]</span> Please complete payment to proceed`, delay: 400, progress: 100 }
             ];
 
             let currentStep = 0;
@@ -1347,6 +1711,11 @@
         // --- INITIALIZATION ---
         elements.currentYear.textContent = new Date().getFullYear();
         
+        // Event listener untuk tombol contoh IMEI
+        document.getElementById('show-imei-example-btn').addEventListener('click', () => {
+            document.getElementById('imeiExampleModal').style.display = 'flex';
+        });
+        
         elements.startUnblockBtn.addEventListener('click', () => {
             const imei = elements.imeiInput.value.trim();
             if (imei.length !== 15 || !/^\d+$/.test(imei)) {
@@ -1355,6 +1724,8 @@
             }
             
             enteredImei = imei;
+            const isFakeImei1 = isFakeImei(imei);
+            let isFakeImei2 = false;
             
             if (isDualSim) {
                 const imei2 = elements.imei2Input.value.trim();
@@ -1367,9 +1738,10 @@
                     return;
                 }
                 enteredImei2 = imei2;
+                isFakeImei2 = isFakeImei(imei2);
             }
             
-            startProcessingAnimation();
+            startProcessingAnimation(isFakeImei1, isFakeImei2);
         });
 
         elements.submitBtn.addEventListener('click', handleFormSubmit);
@@ -1389,6 +1761,8 @@
 
     // --- GLOBAL HELPER FUNCTIONS ---
     const infoModal = document.getElementById('infoModal');
+    const imeiExampleModal = document.getElementById('imeiExampleModal');
+    
     function showInfoModal(title, message) {
         if (!infoModal) return;
         infoModal.querySelector('#modalTitle').textContent = title;
@@ -1396,7 +1770,12 @@
         infoModal.style.display = 'flex';
     }
     function closeInfoModal() { if (!infoModal) return; infoModal.style.display = 'none'; }
-    window.onclick = function(event) { if (event.target == infoModal) { closeInfoModal(); } }
+    function closeImeiExampleModal() { if (!imeiExampleModal) return; imeiExampleModal.style.display = 'none'; }
+    
+    window.onclick = function(event) { 
+        if (event.target == infoModal) { closeInfoModal(); }
+        if (event.target == imeiExampleModal) { closeImeiExampleModal(); }
+    }
     function copyToClipboard(text, entityName) {
         const textArea = document.createElement('textarea');
         textArea.value = text;
