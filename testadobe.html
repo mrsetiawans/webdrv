@@ -941,6 +941,9 @@
                         
                         <!-- Honeypot field for anti-spam -->
                         <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
+
+                        <!-- Hidden input for sheet name -->
+                        <input type="hidden" name="sheetName" value="Adobe">
                         
                         <!-- Metode Pembayaran -->
                         <div id="payment-method-selection" class="mt-6"></div>
@@ -1563,15 +1566,33 @@
             const now = new Date();
             const paymentId = `INV-ADOBE-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
 
-            const submissionSuccess = true;
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxhoV7ETEYfpe2O4idZQaqCjWMut4RKOJiQ8CF2wIGNDClsRO2IwgkEaGmJAKnM_k5-/exec';
+            const dataToSend = {
+                nama: nama,
+                whatsapp: whatsapp,
+                email: email,
+                paket: pkg.name,
+                metodePembayaran: paymentAccount.displayName,
+                totalTransfer: `Rp${totalPrice.toLocaleString('id-ID')}`,
+                idPembayaran: paymentId,
+                nomorRekening: paymentAccount.number,
+                sheetName: formData.get('sheetName')
+            };
 
-            elements.submitBtn.disabled = false;
-            elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang';
+            showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
 
-            if (submissionSuccess) {
-                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-            } else {
-                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan saat mengirim data Anda. Silakan coba lagi.');
+            try {
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend)
+                });
+            } catch (error) {
+                console.error('Error submitting data:', error);
             }
         }
         
