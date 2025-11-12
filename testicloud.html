@@ -1586,15 +1586,50 @@
             const now = new Date();
             const paymentId = `INV-ICLOUD-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
 
-            const submissionSuccess = true;
+            // Data to be sent to Google Apps Script
+            const dataToSend = {
+                sheetName: 'icloud', // Specify the sheet name here
+                nama: nama,
+                whatsapp: whatsapp,
+                email: email,
+                paket: pkg.name,
+                metodePembayaran: paymentAccount.displayName,
+                totalTransfer: formatCurrency(totalPrice),
+                idPembayaran: paymentId,
+                nomorRekening: paymentAccount.number
+            };
 
-            elements.submitBtn.disabled = false;
-            elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang';
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbxhoV7ETEYfpe2O4idZQaqCjWMut4RKOJiQ8CF2wIGNDClsRO2IwgkEaGmJAKnM_k5-/exec';
 
-            if (submissionSuccess) {
+            try {
+                // We use mode: 'no-cors' because Apps Script web apps don't handle CORS pre-flight requests by default.
+                // This means we can't see the response, but the request will go through.
+                // We also send the data as text/plain, which is an allowed content type for no-cors.
+                const response = await fetch(appsScriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors', 
+                    cache: 'no-cache',
+                    headers: {
+                        // This header might be stripped by the browser in no-cors mode, but we include it anyway.
+                        // The Apps Script will receive the body in e.postData.contents.
+                        'Content-Type': 'text/plain;charset=utf-8', 
+                    },
+                    body: JSON.stringify(dataToSend),
+                    redirect: 'follow'
+                });
+                
+                // Since mode is 'no-cors', we can't inspect the response.
+                // We will assume the data submission was successful and proceed.
+                console.log('Data submission to Apps Script initiated.');
                 showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-            } else {
-                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan saat mengirim data Anda. Silakan coba lagi.');
+
+            } catch (error) {
+                console.error('Network Error:', error);
+                // This will catch network errors, but not errors from the Apps Script itself.
+                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan jaringan saat mengirim data Anda. Silakan periksa koneksi internet Anda dan coba lagi.');
+            } finally {
+                elements.submitBtn.disabled = false;
+                elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang';
             }
         }
         
