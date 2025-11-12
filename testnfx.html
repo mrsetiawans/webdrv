@@ -1854,18 +1854,48 @@
             const now = new Date();
             const paymentId = `INV-${pkg.id.toUpperCase()}-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
 
-            // 4. Submit to Static Forms
-            const submissionSuccess = true;
+            // 4. Prepare data for Apps Script
+            const dataForScript = {
+                nama: nama,
+                whatsapp: whatsapp,
+                email: email,
+                paket: pkg.name,
+                metodePembayaran: paymentAccount.displayName,
+                totalTransfer: formatCurrency(totalPrice),
+                idPembayaran: paymentId,
+                sheetName: 'nfx', // As requested
+                nomorRekening: paymentAccount.number || 'N/A'
+            };
 
-            // 5. Restore Button State
+            // 5. Submit to Google Apps Script
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbxhoV7ETEYfpe2O4idZQaqCjWMut4RKOJiQ8CF2wIGNDClsRO2IwgkEaGmJAKnM_k5-/exec';
+            let submissionSuccess = false;
+            try {
+                const response = await fetch(appsScriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors', 
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dataForScript),
+                    redirect: 'follow'
+                });
+                submissionSuccess = true;
+            } catch (error) {
+                console.error('Error submitting to Apps Script:', error);
+                submissionSuccess = false;
+            }
+            
+            // 6. Restore Button State
             elements.submitBtn.disabled = false;
             elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang';
 
-            // 6. Update UI based on submission result
+            // 7. Update UI based on submission result
             if (submissionSuccess) {
                 showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
             } else {
-                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan saat mengirim data Anda. Silakan coba lagi.');
+                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan saat mengirim data Anda. Silakan coba lagi atau hubungi kami.');
             }
         }
         
