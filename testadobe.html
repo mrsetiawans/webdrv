@@ -1579,8 +1579,7 @@
                 sheetName: formData.get('sheetName')
             };
 
-            showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-
+            let submissionSuccess = false;
             try {
                 await fetch(scriptURL, {
                     method: 'POST',
@@ -1591,8 +1590,19 @@
                     },
                     body: JSON.stringify(dataToSend)
                 });
+                submissionSuccess = true;
             } catch (error) {
                 console.error('Error submitting data:', error);
+                submissionSuccess = false;
+            }
+
+            elements.submitBtn.disabled = false;
+            elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang';
+
+            if (submissionSuccess) {
+                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
+            } else {
+                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan saat mengirim data Anda. Silakan coba lagi atau hubungi kami.');
             }
         }
         
