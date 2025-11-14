@@ -957,8 +957,9 @@
                         </button>
                     </form>
                 </div>
-                <!-- Kolom Kanan: FAQ, Kebijakan -->
+                <!-- Kolom Kanan: Testimoni, FAQ, Kebijakan -->
                 <div class="lg:col-span-1 py-4 space-y-4">
+                   <div id="testimonials-full"></div>
                    <div class="material-card p-5 md:p-6">
                        <div id="info-section-full"></div>
                    </div>
@@ -1089,6 +1090,7 @@
             detailsAccordionContainer: document.getElementById('details-accordion-container'),
             paymentMethodSelection: document.getElementById('payment-method-selection'),
             orderDetailsInForm: document.getElementById('order-details-in-form'),
+            testimonialsFull: document.getElementById('testimonials-full'),
             infoSectionFull: document.getElementById('info-section-full'),
             orderForm: document.getElementById('orderForm'),
             submitBtn: document.getElementById('submit-btn'),
@@ -1130,7 +1132,8 @@
                     "<strong>Akses Offline:</strong> Tetap produktif bahkan saat tidak terhubung ke internet.",
                     "<strong>Keamanan Terenkripsi:</strong> File Anda aman di penyimpanan cloud Adobe.",
                     "<strong>Pusat Bantuan Resmi:</strong> Dapatkan akses ke tutorial, panduan, dan dukungan dari Adobe."
-                ]
+                ],
+                testimonials: testimonialImages
             }
         };
 
@@ -1284,6 +1287,29 @@
             </div>`;
         }
         
+        const getTestimonialsHTML = (pkg) => {
+            const images = pkg.testimonials;
+            const singleTrackHTML = images.map((url, index) => `
+                <div class="testimonial-slide">
+                    <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\nMuat';">
+                </div>
+            `).join('');
+
+            return `
+            <div class="material-card p-3 md:p-4 rounded-2xl">
+                <h2 class="text-xl font-bold text-center mb-2 google-sans">Testimoni Pelanggan</h2>
+                <p class="text-center text-m3-on-surface-variant text-xs mb-4">Ribuan pelanggan telah menikmati Adobe Creative Cloud</p>
+                <div class="testimonial-carousel-container" id="carousel-wrapper">
+                    <div class="testimonial-track">
+                        ${singleTrackHTML}
+                    </div>
+                    <div class="testimonial-track" aria-hidden="true">
+                        ${singleTrackHTML}
+                    </div>
+                </div>
+            </div>`;
+        }
+
         const getInfoSectionHTML = () => {
              const faqHTML = `
                 <h3 class="text-2xl font-bold mb-4 text-center google-sans">Informasi & Bantuan</h3>
@@ -1352,6 +1378,7 @@
                 // Update other parts that don't need transition
                 elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
                 elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
+                elements.testimonialsFull.innerHTML = getTestimonialsHTML(pkg);
                 elements.infoSectionFull.innerHTML = getInfoSectionHTML();
                 
                 // 3. Start fade-in
@@ -1814,6 +1841,83 @@
 
         return finalQris + crc;
     }
+
+    // --- Image Modal Functions ---
+    const imageModal = document.getElementById('imageModal');
+    const modalImg = document.getElementById("modalImage");
+    let currentImageIndex;
+    const testimonialImages = [
+        "https://pixvid.org/images/2025/11/14/mPYhr.jpg",
+        "https://pixvid.org/images/2025/11/14/mPYyw.jpg",
+        "https://pixvid.org/images/2025/11/14/mPYBE.jpg",
+        "https://pixvid.org/images/2025/11/14/mPi89.jpg",
+        "https://pixvid.org/images/2025/11/14/mPitS.jpg",
+        "https://pixvid.org/images/2025/11/14/mPiM2.jpg",
+        "https://pixvid.org/images/2025/11/14/mPicV.jpg",
+        "https://pixvid.org/images/2025/11/14/mPuZk.jpg",
+        "https://pixvid.org/images/2025/11/14/mPuYg.jpg",
+        "https://pixvid.org/images/2025/11/14/mPuAO.jpg",
+        "https://pixvid.org/images/2025/11/14/mPuLF.jpg",
+        "https://pixvid.org/images/2025/11/14/mPJzn.jpg",
+        "https://pixvid.org/images/2025/11/14/mPJuM.jpg",
+        "https://pixvid.org/images/2025/11/14/mPJGa.jpg",
+        "https://pixvid.org/images/2025/11/14/mPJfB.jpg",
+        "https://pixvid.org/images/2025/11/14/mPKHf.jpg",
+        "https://pixvid.org/images/2025/11/14/mPKEm.jpg",
+        "https://pixvid.org/images/2025/11/14/mPKbz.jpg",
+        "https://pixvid.org/images/2025/11/14/mPEel.jpg",
+        "https://pixvid.org/images/2025/11/14/mPErY.jpg",
+        "https://pixvid.org/images/2025/11/14/mPEoo.jpg",
+        "https://pixvid.org/images/2025/11/14/mPEXd.jpg",
+        "https://pixvid.org/images/2025/11/14/mPnUb.jpg",
+        "https://pixvid.org/images/2025/11/14/mPnlN.jpg",
+        "https://pixvid.org/images/2025/11/14/mPn6v.jpg",
+        "https://pixvid.org/images/2025/11/14/mPn25.jpg",
+        "https://pixvid.org/images/2025/11/14/mPo57.jpg",
+        "https://pixvid.org/images/2025/11/14/mPoqT.jpg",
+        "https://pixvid.org/images/2025/11/14/mPo9i.jpg"
+    ];
+
+    window.openImageModal = function(event, index) {
+        event.stopPropagation();
+        imageModal.style.display = "flex";
+        showImage(index);
+    }
+
+    window.closeImageModal = function() {
+        imageModal.style.display = "none";
+    }
+
+    function showImage(index) {
+        if (index >= testimonialImages.length || index < 0) {
+            return;
+        }
+        currentImageIndex = index;
+        modalImg.src = testimonialImages[index];
+        
+        document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'flex' : 'none';
+        document.querySelector('.modal-nav.next').style.display = (index < testimonialImages.length - 1) ? 'flex' : 'none';
+    }
+
+    window.showNextImage = function() {
+        showImage(currentImageIndex + 1);
+    }
+
+    window.showPrevImage = function() {
+        showImage(currentImageIndex - 1);
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (imageModal.style.display === 'flex') {
+            if (event.key === 'ArrowRight') {
+                showNextImage();
+            } else if (event.key === 'ArrowLeft') {
+                showPrevImage();
+            } else if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        }
+    });
     </script>
 </body>
 </html>
