@@ -1122,6 +1122,74 @@
     </div>
 
     <script>
+    // --- VALIDATION LOGIC ---
+    const operatorPrefixes = {
+        'Telkomsel': ['0811', '0812', '0813', '0821', '0822', '0823', '0851', '0852', '0853'],
+        'by.U': ['0851'],
+        'Indosat Ooredoo': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
+        'Tri (3)': ['0895', '0896', '0897', '0898', '0899'],
+        'XL Axiata': ['0817', '0818', '0819', '0859', '0877', '0878', '0879'],
+        'Live.On': ['0859'],
+        'Axis': ['0831', '0832', '0833', '0838'],
+        'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
+    };
+    const blacklistedNumbers = ['081234567890'];
+
+    function isInvalidPattern(nomor) {
+        if (blacklistedNumbers.includes(nomor)) return true;
+        const numberPart = nomor.substring(2);
+        if (/(\d)\1{4,}/.test(numberPart)) return true;
+        for (let i = 0; i < numberPart.length - 4; i++) {
+            const sub = numberPart.substring(i, i + 5);
+            const isAscending = '0123456789'.includes(sub);
+            const isDescending = '9876543210'.includes(sub);
+            if (isAscending || isDescending) return true;
+        }
+        const uniqueDigits = new Set(numberPart.split(''));
+        if (uniqueDigits.size < 4) return true;
+        if (/(..)\1\1/.test(numberPart)) return true;
+        return false;
+    }
+
+    function getOperatorFromNumber(nomor) {
+        const prefix = nomor.substring(0, 4);
+        for (const operator in operatorPrefixes) {
+            if (operatorPrefixes[operator].includes(prefix)) {
+                return operator;
+            }
+        }
+        return null;
+    }
+
+    function validatePhoneNumber(nomorHp) {
+        const genericError = { isValid: false, message: 'Silahkan isi dengan nomor yang benar' };
+
+        if (nomorHp.length < 10) {
+            return genericError;
+        }
+
+        const operator = getOperatorFromNumber(nomorHp);
+        if (!operator) {
+            return genericError;
+        }
+
+        const maxLength = operator === 'Tri (3)' ? 13 : 12;
+        if (nomorHp.length > maxLength) {
+            return genericError;
+        }
+
+        if (isInvalidPattern(nomorHp)) {
+            return genericError;
+        }
+
+        return { isValid: true, message: 'Nomor valid.' };
+    }
+
+    function validateEmail(email) {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         // --- ELEMENTS ---
         const elements = {
@@ -1150,6 +1218,7 @@
         };
 
         // --- CONFIGURATION ---
+        const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
         let expiryTime;
         let enteredImei = '';
         let enteredImei2 = '';
@@ -1345,6 +1414,10 @@
                          <span>${pkg.name}</span>
                          <span class="font-semibold text-gray-800 text-base">${formatCurrency(pkg.price)}</span>
                      </div>
+                     <div class="flex justify-between">
+                         <span class="text-xs">Kode Unik</span>
+                         <span class="font-medium text-m3-on-surface text-sm">${formatCurrency(uniqueCode)}</span>
+                     </div>
                      <hr class="my-2">
                      <div class="flex justify-between font-bold text-xl text-gray-800 google-sans items-center">
                          <span>Total</span>
@@ -1372,7 +1445,7 @@
 
         function updateDisplay() {
             const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price;
+            const totalPrice = pkg.price + uniqueCode;
             elements.orderDetailsInForm.innerHTML = getOrderDetailsHTML(pkg, totalPrice);
         }
         
@@ -1623,24 +1696,64 @@
                 showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data yang diperlukan.');
                 return;
             }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            if (!validateEmail(email)) {
                 showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email yang valid.');
                 return;
             }
+            const phoneValidationResult = validatePhoneNumber(whatsapp);
+            if (!phoneValidationResult.isValid) {
+                showInfoModal('Nomor WhatsApp Tidak Valid', phoneValidationResult.message);
+                return;
+            }
+
 
             elements.submitBtn.disabled = true;
             elements.submitBtn.innerHTML = '<i class="fas fa-spinner spinner mr-2"></i> Memproses...';
             
             const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price;
+            const totalPrice = pkg.price + uniqueCode;
             const paymentAccount = paymentAccounts[paymentMethodKey];
             const paymentId = `INV-IMEI-${new Date().getTime().toString().slice(-6)}`;
 
-            setTimeout(() => {
+            const dataToSend = {
+                sheetName: 'imei', // Specify the sheet name here
+                nama: nama,
+                whatsapp: whatsapp,
+                email: email,
+                paket: pkg.name,
+                metodePembayaran: paymentAccount.displayName,
+                totalTransfer: formatCurrency(totalPrice),
+                idPembayaran: paymentId,
+                nomorRekening: paymentAccount.number,
+                imei1: enteredImei,
+                imei2: enteredImei2 || '-',
+                kodeUnik: uniqueCode
+            };
+
+            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbxhoV7ETEYfpe2O4idZQaqCjWMut4RKOJiQ8CF2wIGNDClsRO2IwgkEaGmJAKnM_k5-/exec';
+
+            try {
+                const response = await fetch(appsScriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                    body: JSON.stringify(dataToSend),
+                    redirect: 'follow'
+                });
+
+                console.log('Data submission to Apps Script initiated.');
+                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
+
+            } catch (error) {
+                console.error('Network Error:', error);
+                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan jaringan saat mengirim data Anda. Silakan periksa koneksi internet Anda dan coba lagi.');
+            } finally {
                 elements.submitBtn.disabled = false;
                 elements.submitBtn.innerHTML = '<i class="fas fa-lock mr-2"></i> Lanjutkan ke Pembayaran';
-                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-            }, 1000);
+            }
         }
 
         function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
