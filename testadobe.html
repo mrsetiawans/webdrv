@@ -436,10 +436,19 @@
             transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .product-info-card {
-            background: linear-gradient(135deg, #e8f0fe 0%, var(--theme-surface) 100%);
+            background: #ffffff;
             border: 1px solid var(--theme-outline);
-            border-radius: 16px;
-            padding: 16px;
+            border-radius: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-info-card:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
         }
         /* Enhanced Payment Method Styles */
         .payment-radio {
@@ -1187,22 +1196,34 @@
 
         // --- TEMPLATE FUNCTIONS ---
         const getProductInfoHTML = (pkg) => {
+            const discount = Math.round(((pkg.normalPrice - pkg.price) / pkg.normalPrice) * 100);
+
             return `
-            <div class="product-info-card">
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                    <div class="text-center mb-2 md:mb-0 flex-grow">
-                        <div class="flex justify-center"><img alt="Logo ${pkg.name}" class="h-12 w-auto" src="${pkg.logo}"></div>
-                        <h1 class="text-2xl font-bold text-m3-on-primary-container mt-3 google-sans">${pkg.title}</h1>
-                        <p class="text-md text-m3-on-surface-variant mt-1">${pkg.description}</p>
+            <div class="product-info-card group">
+                <!-- Top Compartment: Content -->
+                <div class="p-5 flex-grow flex flex-col gap-4">
+                    <div class="flex justify-between items-start">
+                        <img alt="Logo ${pkg.name}" class="w-14 h-14 object-contain" src="${pkg.logo}">
+                        <span class="px-3 py-1.5 rounded-xl bg-green-50 text-green-700 text-[11px] font-bold tracking-wide uppercase border border-green-100">
+                            Hemat ${discount}%
+                        </span>
                     </div>
-                    <div class="text-center md:text-right mt-2 md:mt-0 md:pl-6">
-                        <div class="text-4xl font-bold text-apple-blue google-sans">${formatCurrency(pkg.price)}</div>
-                        <p class="text-sm text-m3-on-surface-variant mt-1">${pkg.durationText}</p>
-                        <div class="mt-2">
-                            <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">
-                                <i class="fas fa-tag mr-1"></i>Promo Terbatas
-                            </span>
-                        </div>
+                    
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900 leading-tight mb-2">${pkg.title}</h1>
+                        <p class="text-sm text-gray-600 leading-relaxed">${pkg.description}</p>
+                    </div>
+                </div>
+
+                <!-- Bottom Compartment: Price & Action -->
+                <div class="bg-blue-50/50 p-5 border-t border-blue-100 flex items-center justify-between mt-auto group-hover:bg-blue-50 transition-colors">
+                    <div class="flex flex-col gap-0.5">
+                        <span class="text-[12px] uppercase tracking-wider text-gray-500 font-bold">Harga Promo</span>
+                        <span class="text-2xs text-gray-400 line-through decoration-red-400">${formatCurrency(pkg.normalPrice)}</span>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold text-apple-blue leading-none tracking-tight">${formatCurrency(pkg.price)}</div>
+                        <span class="text-[12px] text-gray-600 font-medium block mt-1">${pkg.durationText}</span>
                     </div>
                 </div>
             </div>`;
