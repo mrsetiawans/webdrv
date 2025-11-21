@@ -532,9 +532,7 @@
         }
 
         .product-info-card:hover {
-            transform: translateY(-4px);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-            border-color: var(--google-blue);
         }
 
         /* Enhanced Payment Method Styles */
@@ -1490,7 +1488,7 @@
                 <!-- Top Compartment: Content -->
                 <div class="p-5 flex-grow flex flex-col gap-4">
                     <div class="flex justify-between items-start">
-                        <div class="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 shadow-sm group-hover:scale-105 transition-transform duration-300">
+                        <div class="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 shadow-sm">
                              <img alt="Logo ${pkg.name}" class="w-8 h-8 object-contain" src="${pkg.logo}">
                         </div>
                         <span class="px-3 py-1.5 rounded-xl bg-green-50 text-green-700 text-[11px] font-bold tracking-wide uppercase border border-green-100">
@@ -1507,12 +1505,12 @@
                 <!-- Bottom Compartment: Price & Action -->
                 <div class="bg-blue-50/50 p-5 border-t border-blue-100 flex items-center justify-between mt-auto group-hover:bg-blue-50 transition-colors">
                     <div class="flex flex-col gap-0.5">
-                        <span class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Harga Promo</span>
-                        <span class="text-xs text-gray-400 line-through decoration-red-400">${formatCurrency(pkg.normalPrice)}</span>
+                        <span class="text-[12px] uppercase tracking-wider text-gray-500 font-bold">Harga Promo</span>
+                        <span class="text-2xs text-gray-400 line-through decoration-red-400">${formatCurrency(pkg.normalPrice)}</span>
                     </div>
                     <div class="text-right">
-                        <div class="text-2xl font-bold text-google-blue leading-none tracking-tight">${formatCurrency(pkg.price)}</div>
-                        <span class="text-[11px] text-gray-600 font-medium block mt-1">${pkg.paymentTerm}</span>
+                        <div class="text-3xl font-bold text-google-blue leading-none tracking-tight">${formatCurrency(pkg.price)}</div>
+                        <span class="text-[12px] text-gray-600 font-medium block mt-1">${pkg.paymentTerm}</span>
                     </div>
                 </div>
             </div>`;
