@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adobe Creative Cloud - V5</title>
+    <title>Adobe Creative Cloud - V2</title>
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1198,33 +1198,35 @@
         const getProductInfoHTML = (pkg) => {
             const discount = Math.round(((pkg.normalPrice - pkg.price) / pkg.normalPrice) * 100);
             return `
-            <div class="product-info-card h-full bg-blue-50/50 rounded-3xl border border-blue-100 p-1 shadow-sm">
-                <div class="bg-white rounded-[20px] h-full p-5 flex flex-col shadow-sm">
-                    <div class="flex items-center gap-3 mb-4">
-                         <div class="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100 shadow-inner">
-                            <img alt="Logo ${pkg.name}" class="w-8 h-8 object-contain" src="${pkg.logo}">
-                         </div>
-                         <div>
-                            <h1 class="text-base font-bold text-gray-800 leading-none mb-1">${pkg.title}</h1>
-                            <div class="flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                <span class="text-xs text-gray-500">Stok Tersedia</span>
-                            </div>
-                         </div>
+            <div class="product-info-card flex h-full bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-md transition-all">
+                <!-- Left Stripe -->
+                <div class="w-2 bg-gradient-to-b from-[#007aff] to-[#005ecb]"></div>
+                
+                <div class="p-6 flex flex-col flex-grow relative">
+                    <div class="absolute top-4 right-4">
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-md">
+                            -${discount}%
+                        </span>
                     </div>
-                    
-                    <div class="py-4 flex-grow">
-                         <p class="text-sm text-gray-600 leading-relaxed text-justify">${pkg.description}</p>
-                    </div>
-                    
-                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 text-white shadow-lg shadow-blue-200 mt-auto">
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-xs text-blue-100">Harga Spesial</span>
-                            <span class="bg-white/20 px-2 py-0.5 rounded text-[10px] backdrop-blur-sm">Hemat ${discount}%</span>
+
+                    <div class="flex items-center gap-4 mb-4">
+                        <img alt="Logo ${pkg.name}" class="w-12 h-12 object-contain" src="${pkg.logo}">
+                        <div>
+                            <h1 class="text-lg font-bold text-gray-900 leading-tight">${pkg.title}</h1>
+                            <p class="text-xs text-gray-500">Professional License</p>
                         </div>
-                        <div class="flex justify-between items-end">
-                            <span class="text-sm text-blue-200 line-through">${formatCurrency(pkg.normalPrice)}</span>
-                            <span class="text-2xl font-bold">${formatCurrency(pkg.price)}</span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">${pkg.description}</p>
+                    
+                    <div class="flex items-end justify-between mt-auto">
+                        <div>
+                            <p class="text-xs text-gray-400 mb-0.5">Harga Normal</p>
+                            <p class="text-sm text-gray-400 line-through decoration-red-400">${formatCurrency(pkg.normalPrice)}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-bold text-[#007aff]">${formatCurrency(pkg.price)}</p>
+                            <p class="text-[10px] text-gray-500">${pkg.durationText}</p>
                         </div>
                     </div>
                 </div>
