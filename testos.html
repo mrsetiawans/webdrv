@@ -925,7 +925,7 @@
         <div id="main-content-container">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-12 gap-y-8 max-w-7xl mx-auto">
                 <!-- Kolom Kiri: Form & Pembayaran -->
-                <div class="lg:col-span-1 material-card p-4 md:p-6">
+                <div class="lg:col-span-1 material-card p-5 md:p-8">
                     <!-- Header Keamanan -->
                     <div class="grid grid-cols-2 gap-3 text-center border-b border-m3-outline-variant pb-4 mb-4">
                         <div class="flex">
@@ -1324,13 +1324,13 @@
                 <div class="w-2 bg-gradient-to-b from-[#007aff] to-[#005ecb]"></div>
                 
                 <div class="p-4 flex flex-col flex-grow relative">
-                    <div class="absolute top-4 right-4">
+                    <div class="absolute top-3 right-3">
                         <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-md">
                             -${discount}%
                         </span>
                     </div>
 
-                    <div class="flex items-center gap-4 mb-4">
+                    <div class="flex items-center gap-3 mb-2">
                         <img alt="Logo ${pkg.name}" class="w-12 h-12 object-contain" src="${pkg.logo}">
                         <div>
                             <h1 class="text-xl font-bold text-gray-900 leading-tight">${pkg.title}</h1>
@@ -1338,9 +1338,9 @@
                         </div>
                     </div>
                     
-                    <p class="text-base text-gray-600 mb-4 flex-grow">${pkg.description}</p>
+                    <p class="text-[15px] text-gray-600 mb-2 flex-grow leading-snug">${pkg.description}</p>
                     
-                    <div class="flex items-end justify-between mt-auto border-t border-gray-200 pt-4">
+                    <div class="flex items-end justify-between mt-auto border-t border-gray-200 pt-2">
                         <div>
                             <p class="text-sm text-gray-400 mb-0.5">Harga Normal</p>
                             <p class="text-base text-gray-400 line-through decoration-red-400">${formatCurrency(pkg.normalPrice)}</p>
