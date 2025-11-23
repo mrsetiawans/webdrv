@@ -1323,31 +1323,31 @@
                 <!-- Left Stripe -->
                 <div class="w-2 bg-gradient-to-b from-[#007aff] to-[#005ecb]"></div>
                 
-                <div class="p-6 flex flex-col flex-grow relative">
-                    <div class="absolute top-4 right-4">
+                <div class="p-4 flex flex-col flex-grow relative">
+                    <div class="absolute top-3 right-3">
                         <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-md">
                             -${discount}%
                         </span>
                     </div>
 
-                    <div class="flex items-center gap-4 mb-4">
+                    <div class="flex items-center gap-3 mb-2">
                         <img alt="Logo ${pkg.name}" class="w-12 h-12 object-contain" src="${pkg.logo}">
                         <div>
-                            <h1 class="text-lg font-bold text-gray-900 leading-tight">${pkg.title}</h1>
-                            <p class="text-xs text-gray-500">Official Upgrade</p>
+                            <h1 class="text-xl font-bold text-gray-900 leading-tight">${pkg.title}</h1>
+                            <p class="text-sm text-gray-500">Official Upgrade</p>
                         </div>
                     </div>
                     
-                    <p class="text-sm text-gray-600 mb-4 flex-grow">${pkg.description}</p>
+                    <p class="text-[15px] text-gray-600 mb-2 flex-grow leading-snug">${pkg.description}</p>
                     
-                    <div class="flex items-end justify-between mt-auto border-t border-gray-200 pt-4">
+                    <div class="flex items-end justify-between mt-auto border-t border-gray-200 pt-2">
                         <div>
-                            <p class="text-xs text-gray-400 mb-0.5">Harga Normal</p>
-                            <p class="text-sm text-gray-400 line-through decoration-red-400">${formatCurrency(pkg.normalPrice)}</p>
+                            <p class="text-sm text-gray-400 mb-0.5">Harga Normal</p>
+                            <p class="text-base text-gray-400 line-through decoration-red-400">${formatCurrency(pkg.normalPrice)}</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-2xl font-bold text-[#007aff]">${formatCurrency(pkg.price)}</p>
-                            <p class="text-[10px] text-gray-500">${pkg.paymentTerm}</p>
+                            <p class="text-3xl font-bold text-[#007aff]">${formatCurrency(pkg.price)}</p>
+                            <p class="text-xs text-gray-500">${pkg.paymentTerm}</p>
                         </div>
                     </div>
                 </div>
