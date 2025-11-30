@@ -849,6 +849,102 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+/* Enhanced Form Styling */ 
+.form-group { 
+    position: relative; 
+} 
+ 
+.form-input { 
+    border: 2px solid var(--theme-outline); 
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); 
+    border-radius: 10px; 
+    padding: 11px 12px; 
+    width: 100%; 
+    background-color: var(--theme-surface); 
+    font-size: 14px; 
+    font-family: 'Roboto', sans-serif; 
+    color: var(--theme-on-surface); 
+} 
+ 
+.form-input:focus { 
+    border-color: var(--theme-primary); 
+    background-color: #f8f9fa; 
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1); 
+} 
+ 
+.form-input:disabled { 
+    background-color: #f1f3f4; 
+    color: #9aa0a6; 
+    cursor: not-allowed; 
+    border-color: #e8eaed; 
+} 
+ 
+.order-item-card { 
+    animation: slideInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+} 
+ 
+@keyframes slideInUp { 
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+} 
+ 
+.remove-order-item-btn { 
+    opacity: 0.9; 
+} 
+ 
+.remove-order-item-btn:hover { 
+    opacity: 1; 
+} 
+ 
+/* Mobile Optimization */ 
+@media (max-width: 640px) { 
+    .form-input { 
+        font-size: 16px; /* Prevent zoom on iOS */ 
+        padding: 12px; 
+    } 
+     
+    .order-item-card { 
+        padding: 16px; 
+    } 
+     
+    .remove-order-item-btn { 
+        h-8 w-8; 
+        top: -3px; 
+        right: -3px; 
+    } 
+} 
+ 
+/* Smooth transitions for showing/hiding */ 
+.jurusan-group { 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    overflow: hidden; 
+} 
+ 
+.jurusan-group.hidden { 
+    max-height: 0; 
+    opacity: 0; 
+    margin: 0; 
+    padding: 0; 
+} 
+ 
+.price-preview-box { 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+} 
+ 
+.price-preview-box.hidden { 
+    max-height: 0; 
+    opacity: 0; 
+    padding: 0; 
+    margin: 0; 
+    border: none; 
+} 
     </style>
 </head>
 <body class="antialiased">
@@ -961,33 +1057,83 @@
         </div>
     </div>
 
-    <template id="order-item-template">
-        <div class="p-4 border border-gray-200 rounded-lg space-y-3 relative order-item-card bg-white shadow-sm">
-            <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-500 remove-order-item-btn h-8 w-8 flex items-center justify-center rounded-full hover:bg-red-50" title="Hapus Pilihan Ini">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Jenjang</label>
-                    <select name="jenjang" class="form-input jenjang-select">
-                        <option value="">-- Pilih Jenjang --</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Kelas</label>
-                    <select name="kelas" class="form-input kelas-select" disabled>
-                        <option value="">-- Pilih Jenjang --</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Mata Pelajaran</label>
-                    <select name="mapel" class="form-input mapel-select" disabled>
-                        <option value="">-- Pilih Kelas --</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </template>
+<!-- Template untuk Order Item --> 
+<template id="order-item-template"> 
+    <div class="order-item-card bg-white border-2 border-gray-100 rounded-xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all duration-300 relative"> 
+        <button type="button" class="remove-order-item-btn absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full h-7 w-7 flex items-center justify-center shadow-md transition-all duration-200 hover:scale-110 z-10" title="Hapus Pilihan Ini"> 
+            <i class="fas fa-times text-sm"></i> 
+        </button> 
+         
+        <div class="mb-3"> 
+            <div class="flex items-center gap-2 mb-2"> 
+                <i class="fas fa-graduation-cap text-google-blue text-lg"></i> 
+                <h4 class="font-semibold text-gray-800 google-sans text-sm sm:text-base">Pilihan Perangkat Ajar</h4> 
+            </div> 
+        </div> 
+ 
+        <div class="space-y-3 sm:space-y-4"> 
+            <!-- Jenjang --> 
+            <div class="form-group"> 
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 google-sans"> 
+                    <i class="fas fa-school text-blue-500 mr-1.5"></i>Jenjang Pendidikan 
+                </label> 
+                <div class="relative"> 
+                    <select name="jenjang" class="form-input jenjang-select appearance-none pr-10"> 
+                        <option value="">-- Pilih Jenjang --</option> 
+                    </select> 
+                    <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none text-sm"></i> 
+                </div> 
+            </div> 
+ 
+            <!-- Jurusan (hanya untuk SMK) --> 
+            <div class="form-group jurusan-group hidden"> 
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 google-sans"> 
+                    <i class="fas fa-sitemap text-purple-500 mr-1.5"></i>Jurusan 
+                </label> 
+                <div class="relative"> 
+                    <select name="jurusan" class="form-input jurusan-select appearance-none pr-10" disabled> 
+                        <option value="">-- Pilih Jurusan --</option> 
+                    </select> 
+                    <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none text-sm"></i> 
+                </div> 
+            </div> 
+ 
+            <!-- Kelas --> 
+            <div class="form-group"> 
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 google-sans"> 
+                    <i class="fas fa-users text-green-500 mr-1.5"></i>Tingkat Kelas 
+                </label> 
+                <div class="relative"> 
+                    <select name="kelas" class="form-input kelas-select appearance-none pr-10" disabled> 
+                        <option value="">-- Pilih Jenjang Terlebih Dahulu --</option> 
+                    </select> 
+                    <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none text-sm"></i> 
+                </div> 
+            </div> 
+ 
+            <!-- Mata Pelajaran --> 
+            <div class="form-group"> 
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 google-sans"> 
+                    <i class="fas fa-book text-orange-500 mr-1.5"></i>Mata Pelajaran 
+                </label> 
+                <div class="relative"> 
+                    <select name="mapel" class="form-input mapel-select appearance-none pr-10" disabled> 
+                        <option value="">-- Pilih Kelas Terlebih Dahulu --</option> 
+                    </select> 
+                    <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none text-sm"></i> 
+                </div> 
+            </div> 
+ 
+            <!-- Preview Harga --> 
+            <div class="price-preview-box bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-3 border border-blue-100 hidden"> 
+                <div class="flex justify-between items-center"> 
+                    <span class="text-xs sm:text-sm text-gray-600 font-medium">Harga:</span> 
+                    <span class="price-value text-base sm:text-lg font-bold text-google-blue google-sans">-</span> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</template> 
 
     <script>
     // --- VALIDATION LOGIC ---
@@ -1057,7 +1203,8 @@
         const pricing = {
             "SD": 50000,
             "SMP": 75000,
-            "SMA": 100000
+            "SMA": 100000,
+            "SMK": 100000 
         };
 
         const packages = {
@@ -1127,25 +1274,77 @@
         const fullSubjectList = ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "Prakarya", "PAI Islam", "Sosiologi", "Ekonomi", "Geografi", "Biologi", "Kimia", "Fisika", "IPAS", "IPS", "IPA", "Tematik"];
 
         const educationalData = {
-            "SD": {
-                "Kelas 1": fullSubjectList,
-                "Kelas 2": fullSubjectList,
-                "Kelas 3": fullSubjectList,
-                "Kelas 4": fullSubjectList,
-                "Kelas 5": fullSubjectList,
-                "Kelas 6": fullSubjectList
-            },
-            "SMP": {
-                "Kelas 7": fullSubjectList,
-                "Kelas 8": fullSubjectList,
-                "Kelas 9": fullSubjectList
-            },
-            "SMA": {
-                "Kelas 10": fullSubjectList,
-                "Kelas 11": fullSubjectList,
-                "Kelas 12": fullSubjectList
-            }
-        };
+    "SD": { 
+        "Kelas 1": fullSubjectList, 
+        "Kelas 2": fullSubjectList, 
+        "Kelas 3": fullSubjectList, 
+        "Kelas 4": fullSubjectList, 
+        "Kelas 5": fullSubjectList, 
+        "Kelas 6": fullSubjectList 
+    }, 
+    "SMP": { 
+        "Kelas 7": fullSubjectList, 
+        "Kelas 8": fullSubjectList, 
+        "Kelas 9": fullSubjectList 
+    }, 
+    "SMA": { 
+        "Kelas 10": fullSubjectList, 
+        "Kelas 11": fullSubjectList, 
+        "Kelas 12": fullSubjectList 
+    }, 
+    "SMK": { 
+        "Teknik Komputer dan Jaringan (TKJ)": { 
+            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Dasar-Dasar Teknik Komputer dan Jaringan", "Sistem Komputer", "Komputer dan Jaringan Dasar"], 
+            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Administrasi Infrastruktur Jaringan", "Teknologi Layanan Jaringan", "Administrasi Sistem Jaringan"], 
+            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Administrasi Infrastruktur Jaringan", "Teknologi Layanan Jaringan", "Administrasi Sistem Jaringan"] 
+        }, 
+        "Rekayasa Perangkat Lunak (RPL)": { 
+            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Dasar-Dasar Pemrograman", "Basis Data", "Pemrograman Berorientasi Objek"], 
+            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Pemrograman Web dan Mobile", "Basis Data Lanjutan", "Pemodelan Perangkat Lunak"], 
+            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Pemrograman Web dan Mobile", "Testing Perangkat Lunak", "Manajemen Proyek"] 
+        }, 
+        "Multimedia (MM)": { 
+            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Dasar-Dasar Desain Grafis", "Fotografi", "Videografi"], 
+            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Desain Grafis Percetakan", "Animasi 2D dan 3D", "Pengolahan Audio Video"], 
+            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Desain Media Interaktif", "Animasi 2D dan 3D", "Post Production"] 
+        }, 
+        "Teknik Kendaraan Ringan (TKR)": { 
+            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Teknologi Dasar Otomotif", "Gambar Teknik Otomotif", "Kelistrikan Dasar Otomotif"], 
+            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Pemeliharaan Mesin Kendaraan Ringan", "Pemeliharaan Sasis dan Pemindah Tenaga", "Pemeliharaan Kelistrikan Kendaraan Ringan"], 
+            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Pemeliharaan Mesin Kendaraan Ringan", "Pemeliharaan Sasis dan Pemindah Tenaga", "Pemeliharaan Kelistrikan Kendaraan Ringan"] 
+        }, 
+        "Akuntansi dan Keuangan Lembaga (AKL)": { 
+            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Pengantar Ekonomi dan Bisnis", "Pengantar Akuntansi", "Praktikum Akuntansi Perusahaan Jasa"], 
+            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Praktikum Akuntansi Perusahaan Dagang", "Praktikum Akuntansi Perusahaan Manufaktur", "Administrasi Pajak"], 
+            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Akuntansi Keuangan", "Komputer Akuntansi", "Administrasi Pajak"] 
+        }, 
+        "Otomatisasi dan Tata Kelola Perkantoran (OTKP)": { 
+            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Teknologi Perkantoran", "Korespondensi", "Kearsipan"], 
+            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Teknologi Perkantoran", "Otomatisasi Tata Kelola Kepegawaian", "Otomatisasi Tata Kelola Keuangan"], 
+            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Otomatisasi Tata Kelola Sarana dan Prasarana", "Otomatisasi Tata Kelola Humas dan Keprotokolan"] 
+        }, 
+        "Bisnis Daring dan Pemasaran (BDP)": { 
+            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Pengantar Ekonomi Bisnis", "Perencanaan Bisnis", "Komunikasi Bisnis"], 
+            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Pemasaran Online", "Bisnis Online", "Administrasi Transaksi"], 
+            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Pengelolaan Bisnis Online", "Digital Marketing"] 
+        }, 
+        "Perhotelan": { 
+            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Sanitasi Hygiene dan Keselamatan Kerja", "Tata Graha", "Laundry"], 
+            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Front Office", "Housekeeping", "Food and Beverage Service"], 
+            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Front Office", "Housekeeping", "Food and Beverage Service"] 
+        }, 
+        "Tata Boga": { 
+            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Sanitasi Hygiene dan Keselamatan Kerja", "Pengetahuan Bahan Makanan", "Tata Hidang"], 
+            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Pengolahan Makanan Kontinental", "Pengolahan Makanan Indonesia", "Pengolahan Kue dan Roti"], 
+            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Pengolahan Makanan Kontinental", "Pengolahan Makanan Indonesia", "Hidangan Kesempatan Khusus"] 
+        }, 
+        "Tata Busana": { 
+            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Dasar Desain", "Tekstil", "Dasar Pola"], 
+            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Desain Busana", "Pembuatan Pola", "Pembuatan Busana"], 
+            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Desain Busana", "Pembuatan Busana Custom Made", "Pembuatan Busana Industri"] 
+        } 
+    } 
+};
 
         const paymentAccounts = {
             qris: { displayName: 'QRIS', accountHolder: 'Epay', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris' },
@@ -1329,93 +1528,160 @@
             elements.orderSummaryContainer.innerHTML = summaryHTML;
         }
 
-        function updateCart() {
-            cart = [];
-            const orderItemCards = elements.orderItemsContainer.querySelectorAll('.order-item-card');
-            orderItemCards.forEach(card => {
-                const jenjangSelect = card.querySelector('.jenjang-select');
-                const kelasSelect = card.querySelector('.kelas-select');
-                const mapelSelect = card.querySelector('.mapel-select');
-
-                cart.push({
-                    id: card.dataset.id,
-                    jenjang: jenjangSelect.value,
-                    kelas: kelasSelect.value,
-                    mapel: mapelSelect.value
-                });
-            });
-            updateOrderSummary();
-        }
-
-        function handleJenjangChange(event) {
-            const jenjang = event.target.value;
-            const orderItemCard = event.target.closest('.order-item-card');
-            const kelasSelect = orderItemCard.querySelector('.kelas-select');
-            const mapelSelect = orderItemCard.querySelector('.mapel-select');
-
-            kelasSelect.innerHTML = '<option value="">-- Pilih Kelas --</option>';
-            mapelSelect.innerHTML = '<option value="">-- Pilih Kelas --</option>';
-            kelasSelect.disabled = true;
-            mapelSelect.disabled = true;
-
-            if (jenjang && educationalData[jenjang]) {
-                Object.keys(educationalData[jenjang]).forEach(kelas => {
-                    const option = document.createElement('option');
-                    option.value = kelas;
-                    option.textContent = kelas;
-                    kelasSelect.appendChild(option);
-                });
-                kelasSelect.disabled = false;
-            }
-            updateCart();
-        }
-
-        function handleKelasChange(event) {
-            const kelas = event.target.value;
-            const orderItemCard = event.target.closest('.order-item-card');
-            const jenjang = orderItemCard.querySelector('.jenjang-select').value;
-            const mapelSelect = orderItemCard.querySelector('.mapel-select');
-
-            mapelSelect.innerHTML = '<option value="">-- Pilih Mata Pelajaran --</option>';
-            mapelSelect.disabled = true;
-
-            if (jenjang && kelas && educationalData[jenjang][kelas]) {
-                const mapels = educationalData[jenjang][kelas];
-                mapels.forEach(mapel => {
-                    const option = document.createElement('option');
-                    option.value = mapel;
-                    option.textContent = mapel;
-                    mapelSelect.appendChild(option);
-                });
-                mapelSelect.disabled = false;
-            }
-            updateCart();
-        }
-
+        function handleJenjangChange(event) { 
+            const jenjang = event.target.value; 
+            const orderItemCard = event.target.closest('.order-item-card'); 
+            const jurusanGroup = orderItemCard.querySelector('.jurusan-group'); 
+            const jurusanSelect = orderItemCard.querySelector('.jurusan-select'); 
+            const kelasSelect = orderItemCard.querySelector('.kelas-select'); 
+            const mapelSelect = orderItemCard.querySelector('.mapel-select'); 
+            const pricePreview = orderItemCard.querySelector('.price-preview-box'); 
+        
+            // Reset semua 
+            jurusanGroup.classList.add('hidden'); 
+            jurusanSelect.innerHTML = '<option value="">-- Pilih Jurusan --</option>'; 
+            jurusanSelect.disabled = true; 
+            kelasSelect.innerHTML = '<option value="">-- Pilih Jenjang Terlebih Dahulu --</option>'; 
+            kelasSelect.disabled = true; 
+            mapelSelect.innerHTML = '<option value="">-- Pilih Kelas Terlebih Dahulu --</option>'; 
+            mapelSelect.disabled = true; 
+            pricePreview.classList.add('hidden'); 
+        
+            if (jenjang === 'SMK') { 
+                // Tampilkan dropdown jurusan untuk SMK 
+                jurusanGroup.classList.remove('hidden'); 
+                Object.keys(educationalData[jenjang]).forEach(jurusan => { 
+                    const option = document.createElement('option'); 
+                    option.value = jurusan; 
+                    option.textContent = jurusan; 
+                    jurusanSelect.appendChild(option); 
+                }); 
+                jurusanSelect.disabled = false; 
+                kelasSelect.innerHTML = '<option value="">-- Pilih Jurusan Terlebih Dahulu --</option>'; 
+            } else if (jenjang && educationalData[jenjang]) { 
+                // Untuk SD, SMP, SMA - langsung ke kelas 
+                Object.keys(educationalData[jenjang]).forEach(kelas => { 
+                    const option = document.createElement('option'); 
+                    option.value = kelas; 
+                    option.textContent = kelas; 
+                    kelasSelect.appendChild(option); 
+                }); 
+                kelasSelect.disabled = false; 
+            } 
+            updateCart(); 
+        } 
+ 
+        function handleJurusanChange(event) { 
+            const jurusan = event.target.value; 
+            const orderItemCard = event.target.closest('.order-item-card'); 
+            const jenjang = orderItemCard.querySelector('.jenjang-select').value; 
+            const kelasSelect = orderItemCard.querySelector('.kelas-select'); 
+            const mapelSelect = orderItemCard.querySelector('.mapel-select'); 
+        
+            kelasSelect.innerHTML = '<option value="">-- Pilih Kelas --</option>'; 
+            mapelSelect.innerHTML = '<option value="">-- Pilih Kelas Terlebih Dahulu --</option>'; 
+            kelasSelect.disabled = true; 
+            mapelSelect.disabled = true; 
+        
+            if (jenjang === 'SMK' && jurusan && educationalData[jenjang][jurusan]) { 
+                Object.keys(educationalData[jenjang][jurusan]).forEach(kelas => { 
+                    const option = document.createElement('option'); 
+                    option.value = kelas; 
+                    option.textContent = kelas; 
+                    kelasSelect.appendChild(option); 
+                }); 
+                kelasSelect.disabled = false; 
+            } 
+            updateCart(); 
+        } 
+ 
+        function handleKelasChange(event) { 
+            const kelas = event.target.value; 
+            const orderItemCard = event.target.closest('.order-item-card'); 
+            const jenjang = orderItemCard.querySelector('.jenjang-select').value; 
+            const jurusan = orderItemCard.querySelector('.jurusan-select').value; 
+            const mapelSelect = orderItemCard.querySelector('.mapel-select'); 
+            const pricePreview = orderItemCard.querySelector('.price-preview-box'); 
+        
+            mapelSelect.innerHTML = '<option value="">-- Pilih Mata Pelajaran --</option>'; 
+            mapelSelect.disabled = true; 
+        
+            let mapels = []; 
+            if (jenjang === 'SMK' && jurusan && kelas && educationalData[jenjang][jurusan][kelas]) { 
+                mapels = educationalData[jenjang][jurusan][kelas]; 
+            } else if (jenjang && kelas && educationalData[jenjang][kelas]) { 
+                mapels = educationalData[jenjang][kelas]; 
+            } 
+        
+            if (mapels.length > 0) { 
+                mapels.forEach(mapel => { 
+                    const option = document.createElement('option'); 
+                    option.value = mapel; 
+                    option.textContent = mapel; 
+                    mapelSelect.appendChild(option); 
+                }); 
+                mapelSelect.disabled = false; 
+            } 
+        
+            // Update preview harga 
+            if (jenjang) { 
+                const priceValue = orderItemCard.querySelector('.price-value'); 
+                priceValue.textContent = formatCurrency(pricing[jenjang]); 
+                pricePreview.classList.remove('hidden'); 
+            } 
+        
+            updateCart(); 
+        } 
+ 
+        function handleMapelChange(event) { 
+            updateCart(); 
+        } 
+ 
         let orderItemIdCounter = 0;
-        function addOrderItem() {
-            const templateClone = elements.orderItemTemplate.content.cloneNode(true);
-            const orderItemCard = templateClone.querySelector('.order-item-card');
+        function addOrderItem() { 
+            const templateClone = elements.orderItemTemplate.content.cloneNode(true); 
+            const orderItemCard = templateClone.querySelector('.order-item-card'); 
             
-            const uniqueId = `item-${orderItemIdCounter++}`;
-            orderItemCard.dataset.id = uniqueId;
-
-            const jenjangSelect = templateClone.querySelector('.jenjang-select');
-            Object.keys(educationalData).forEach(jenjang => {
-                jenjangSelect.innerHTML += `<option value="${jenjang}">${jenjang}</option>`;
-            });
-
-            jenjangSelect.addEventListener('change', handleJenjangChange);
-            templateClone.querySelector('.kelas-select').addEventListener('change', handleKelasChange);
-            templateClone.querySelector('.mapel-select').addEventListener('change', updateCart); // Update cart on mapel change
-            templateClone.querySelector('.remove-order-item-btn').addEventListener('click', (e) => {
-                 e.currentTarget.closest('.order-item-card').remove();
-                 updateCart();
-            });
-
-            elements.orderItemsContainer.appendChild(templateClone);
-            updateCart();
-        }
+            const uniqueId = `item-${orderItemIdCounter++}`; 
+            orderItemCard.dataset.id = uniqueId; 
+        
+            const jenjangSelect = templateClone.querySelector('.jenjang-select'); 
+            Object.keys(educationalData).forEach(jenjang => { 
+                jenjangSelect.innerHTML += `<option value="${jenjang}">${jenjang}</option>`; 
+            }); 
+        
+            jenjangSelect.addEventListener('change', handleJenjangChange); 
+            templateClone.querySelector('.jurusan-select').addEventListener('change', handleJurusanChange); 
+            templateClone.querySelector('.kelas-select').addEventListener('change', handleKelasChange); 
+            templateClone.querySelector('.mapel-select').addEventListener('change', handleMapelChange); 
+            templateClone.querySelector('.remove-order-item-btn').addEventListener('click', (e) => { 
+                e.currentTarget.closest('.order-item-card').remove(); 
+                updateCart(); 
+            }); 
+        
+            elements.orderItemsContainer.appendChild(templateClone); 
+            updateCart(); 
+        } 
+ 
+        function updateCart() { 
+            cart = []; 
+            const orderItemCards = elements.orderItemsContainer.querySelectorAll('.order-item-card'); 
+            orderItemCards.forEach(card => { 
+                const jenjangSelect = card.querySelector('.jenjang-select'); 
+                const jurusanSelect = card.querySelector('.jurusan-select'); 
+                const kelasSelect = card.querySelector('.kelas-select'); 
+                const mapelSelect = card.querySelector('.mapel-select'); 
+        
+                cart.push({ 
+                    id: card.dataset.id, 
+                    jenjang: jenjangSelect.value, 
+                    jurusan: jurusanSelect.value, 
+                    kelas: kelasSelect.value, 
+                    mapel: mapelSelect.value 
+                }); 
+            }); 
+            updateOrderSummary(); 
+        } 
 
         function generateWaLink(formData, orderDetails, totalPrice, paymentMethodName, paymentId) {
              const pesanWA = `Halo, saya ingin konfirmasi pembayaran untuk pesanan:\n\n` +
