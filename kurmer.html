@@ -983,6 +983,9 @@
                         <!-- Honeypot field for anti-spam -->
                         <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
 
+                        <!-- Hidden input for sheet name -->
+                        <input type="hidden" name="sheetName" value="kurmer">
+
                         <!-- Bagian Pemilihan Perangkat Ajar -->
                         <div class="border-t border-gray-200 pt-4 mt-4">
                             <h2 class="text-lg font-bold mb-3 google-sans">Pilih Perangkat Ajar</h2>
@@ -2001,35 +2004,33 @@
             
             let submissionSuccess = false;
             try {
-                const waLink = generateWaLink(formData, orderDetailsString, totalPrice, paymentAccount.displayName, paymentId);
-                let followUpMessage = `Halo kak ${nama},\n\nTerima kasih telah memesan *Perangkat Ajar Lengkap*.\n\nBerikut rincian pembayaran Anda:\n- Invoice: ${paymentId}\n- Total: *${formatCurrency(totalPrice)}*\n\n`;
-                followUpMessage += `*Rincian Pesanan:*\n${orderDetailsString}\n\n`;
-                followUpMessage += paymentMethodKey === 'qris' 
-                    ? `*- Metode:* ${paymentAccount.displayName}\nSilakan pindai QRIS di halaman pembayaran.\n` 
-                    : `*- Metode:* ${paymentAccount.displayName}\n*- Nomor:* ${paymentAccount.number}` + (paymentAccount.accountHolder ? `\n*- Atas Nama:* ${paymentAccount.accountHolder}` : ``) + `\n`;
-                followUpMessage += `\n*Penting:* Mohon transfer sesuai total di atas (termasuk kode unik) agar pesanan Anda diproses otomatis.\n\nSetelah transfer, klik tombol konfirmasi di halaman pembayaran atau melalui link berikut: ${waLink}\n\nTerima kasih`;
-                
-                const formattedWhatsapp = whatsapp.startsWith('0') ? '62' + whatsapp.substring(1) : whatsapp;
-                const followUpLink = `https://wa.me/${formattedWhatsapp}?text=${encodeURIComponent(followUpMessage)}`;
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
+                const dataToSend = {
+                    nama: nama,
+                    whatsapp: whatsapp,
+                    email: email,
+                    paket: orderDetailsString,
+                    metodePembayaran: paymentAccount.displayName,
+                    totalTransfer: formatCurrency(totalPrice),
+                    idPembayaran: paymentId,
+                    nomorRekening: paymentAccount.number,
+                    sheetName: formData.get('sheetName')
+                };
 
-                const response = await fetch('https://api.staticforms.xyz/submit', {
+                await fetch(scriptURL, {
                     method: 'POST',
-                    body: JSON.stringify({
-                        apiKey: 'sf_195b5fj92dge8l9b391mng1g',
-                        replyTo: email,
-                        honeypot: formData.get('honeypot'),
-                        name: nama, email: email, whatsapp: whatsapp,
-                        '$Nomor Invoice': paymentId, 
-                        '$Produk': 'Perangkat Ajar Lengkap', 
-                        '$Rincian Pesanan': orderDetailsString,
-                        '$Metode Pembayaran': paymentAccount.displayName, 
-                        '$Total Transfer': formatCurrency(totalPrice), 
-                        '$Link Follow Up WA': followUpLink
-                    }),
-                    headers: { 'Content-Type': 'application/json' }
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend)
                 });
-                if (response.ok) submissionSuccess = true;
-            } catch (e) { console.error("Form submission error:", e); }
+                submissionSuccess = true;
+            } catch (error) {
+                console.error('Error submitting data:', error);
+                submissionSuccess = false;
+            }
 
             elements.submitBtn.disabled = false;
             elements.submitBtn.innerHTML = '<i class="fas fa-download mr-2"></i> Pesan & Unduh Sekarang';
