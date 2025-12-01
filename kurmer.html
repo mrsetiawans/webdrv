@@ -1708,14 +1708,15 @@
             mapelSelect.disabled = true;
             pricePreview.classList.add('hidden'); // Hide preview initially
 
-            let mapels = [];
-            if (jenjang === 'SMK/MAK' && jurusan && kelas && educationalData[jenjang][jurusan][kelas]) {
-                mapels = educationalData[jenjang][jurusan][kelas];
+            if (jenjang === 'SMK/MAK' && jurusan && kelas && educationalData[jenjang][jurusan]) {
+                // Handle SMK: General subjects are class-specific, vocational are for the whole major.
                 
+                // 1. Add class-specific general subjects
+                const mapelsForSelectedClass = educationalData[jenjang][jurusan][kelas] || [];
                 const umumGroup = document.createElement('optgroup');
                 umumGroup.label = 'Mapel Umum';
                 mapelSMKUmum.forEach(mapel => {
-                    if (mapels.includes(mapel)) {
+                    if (mapelsForSelectedClass.includes(mapel)) {
                         const option = document.createElement('option');
                         option.value = mapel;
                         option.textContent = mapel;
@@ -1724,22 +1725,32 @@
                 });
                 mapelSelect.appendChild(umumGroup);
 
+                // 2. Add all unique vocational subjects from the entire major
                 const kejuruanGroup = document.createElement('optgroup');
                 kejuruanGroup.label = 'Mapel Kejuruan';
-                mapels.forEach(mapel => {
-                    if (!mapelSMKUmum.includes(mapel)) {
-                        const option = document.createElement('option');
-                        option.value = mapel;
-                        option.textContent = mapel;
-                        kejuruanGroup.appendChild(option);
-                    }
+                
+                let allKejuruanMapels = [];
+                const classesForJurusan = educationalData[jenjang][jurusan]; 
+                for (const className in classesForJurusan) {
+                    const mapelsInClass = classesForJurusan[className];
+                    const kejuruanInClass = mapelsInClass.filter(m => !mapelSMKUmum.includes(m));
+                    allKejuruanMapels.push(...kejuruanInClass);
+                }
+                
+                const uniqueKejuruanMapels = [...new Set(allKejuruanMapels)].sort();
+                uniqueKejuruanMapels.forEach(mapel => {
+                    const option = document.createElement('option');
+                    option.value = mapel;
+                    option.textContent = mapel;
+                    kejuruanGroup.appendChild(option);
                 });
                 mapelSelect.appendChild(kejuruanGroup);
                 
                 mapelSelect.disabled = false;
 
             } else if (jenjang && kelas && educationalData[jenjang][kelas]) {
-                mapels = educationalData[jenjang][kelas];
+                // Handle non-SMK (SD, SMP, SMA)
+                const mapels = educationalData[jenjang][kelas];
                 if (mapels.length > 0) {
                     mapels.forEach(mapel => {
                         const option = document.createElement('option');
@@ -1989,7 +2000,13 @@
             elements.submitBtn.innerHTML = '<i class="fas fa-spinner spinner mr-2"></i> Memproses...';
 
             const subtotal = validCartItems.reduce((acc, item) => {
-                const pricePerMapel = pricing[item.jenjang] || 0;
+                let pricePerMapel = 0;
+                if (item.jenjang === 'SMK/MAK') {
+                    const isUmum = mapelSMKUmum.includes(item.mapel);
+                    pricePerMapel = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
+                } else {
+                    pricePerMapel = pricing[item.jenjang] || 0;
+                }
                 return acc + pricePerMapel;
             }, 0);
             const totalPrice = subtotal + uniqueCode;
@@ -2106,7 +2123,13 @@
             let orderItemsHTML = '';
             const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapel);
             validCartItems.forEach(item => {
-                const pricePerMapel = pricing[item.jenjang] || 0;
+                let pricePerMapel = 0;
+                if (item.jenjang === 'SMK/MAK') {
+                    const isUmum = mapelSMKUmum.includes(item.mapel);
+                    pricePerMapel = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
+                } else {
+                    pricePerMapel = pricing[item.jenjang] || 0;
+                }
                 orderItemsHTML += `
                     <div class="py-2">
                         <div class="flex justify-between text-base">
