@@ -1205,7 +1205,7 @@
             "SD/MI": 50000,
             "SMP/MTS": 75000,
             "SMA/MAN": 100000,
-            "SMK/MAK": 100000
+            "SMK/MAK": { umum: 100000, kejuruan: 125000 }
         };
 
         const packages = {
@@ -1272,10 +1272,10 @@
 
         let currentPackageId = 'perangkatAjar';
 
-        const mapelSD = ["Al-Qur'an Hadis", "Akidah Akhlak", "Fikih", "Sejarah Kebudayaan Islam", "Bahasa Arab", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "Ilmu Pengetahuan Alam dan Sosial", "Pendidikan Jasmani Olahraga dan Kesehatan", "Bahasa Inggris", "Seni Musik", "Seni Rupa", "Seni Teater", "Seni Tari", "Koding dan Kecerdasan Artifisial", "Muatan Lokal"];
-        const mapelSMP = ["Al-Qur'an Hadis", "Akidah Akhlak", "Fikih", "Sejarah Kebudayaan Islam", "Bahasa Arab", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "Ilmu Pengetahuan Alam", "Ilmu Pengetahuan Sosial", "Bahasa Inggris", "Pendidikan Jasmani Olahraga dan Kesehatan", "Informatika", "Seni Musik", "Seni Rupa", "Seni Teater", "Seni Tari", "Prakarya Budi Daya", "Prakarya Kerajinan", "Prakarya Rekayasa", "Prakarya Pengolahan", "Koding dan Kecerdasan Artifisial", "Muatan Lokal"];
-        const mapelSMA = ["Al-Qur'an Hadis", "Akidah Akhlak", "Fikih", "Sejarah Kebudayaan Islam", "Bahasa Arab", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "Bahasa Inggris", "Sejarah", "Pendidikan Jasmani Olahraga dan Kesehatan", "Informatika", "Fisika", "Kimia", "Biologi", "Sosiologi", "Ekonomi", "Geografi", "Antropologi", "Matematika Tingkat Lanjut", "Bahasa Indonesia Tingkat Lanjut", "Bahasa Inggris Tingkat Lanjut", "Sejarah Tingkat Lanjut", "Bahasa Jepang", "Bahasa Jerman", "Bahasa Korea", "Bahasa Mandarin", "Bahasa Prancis", "Seni Musik", "Seni Rupa", "Seni Teater", "Seni Tari", "Prakarya dan Kewirausahaan", "Koding dan Kecerdasan Artifisial", "Muatan Lokal"];
-        const mapelSMKUmum = ["Al-Qur'an Hadis", "Akidah Akhlak", "Fikih", "Sejarah Kebudayaan Islam", "Bahasa Arab", "Pendidikan Pancasila", "Bahasa Indonesia", "Pendidikan Jasmani Olahraga dan Kesehatan", "Sejarah", "Seni Musik", "Seni Rupa", "Seni Teater", "Seni Tari", "Matematika", "Bahasa Inggris", "Informatika", "Projek Ilmu Pengetahuan Alam dan Sosial", "Dasar-Dasar Program Keahlian", "Konsentrasi Keahlian", "Kreativitas Inovasi dan Kewirausahaan", "Praktik Kerja Lapangan", "Koding dan Kecerdasan Artifisial", "Muatan Lokal"];
+        const mapelSD = ["Bahasa Indonesia", "Bahasa Inggris", "Ilmu Pengetahuan Alam dan Sosial", "Koding dan Kecerdasan Artifisial", "Matematika", "Muatan Lokal", "Pendidikan Agama Buddha dan Budi Pekerti", "Pendidikan Agama Hindu dan Budi Pekerti", "Pendidikan Agama Islam dan Budi Pekerti", "Pendidikan Agama Katolik dan Budi Pekerti", "Pendidikan Agama Khonghucu dan Budi Pekerti", "Pendidikan Agama Kristen dan Budi Pekerti", "Pendidikan Jasmani Olahraga dan Kesehatan", "Pendidikan Pancasila", "Seni Musik", "Seni Rupa", "Seni Tari", "Seni Teater"];
+        const mapelSMP = ["Bahasa Indonesia", "Bahasa Inggris", "Ilmu Pengetahuan Alam", "Ilmu Pengetahuan Sosial", "Informatika", "Koding dan Kecerdasan Artifisial", "Matematika", "Muatan Lokal", "Pendidikan Agama Buddha dan Budi Pekerti", "Pendidikan Agama Hindu dan Budi Pekerti", "Pendidikan Agama Islam dan Budi Pekerti", "Pendidikan Agama Katolik dan Budi Pekerti", "Pendidikan Agama Khonghucu dan Budi Pekerti", "Pendidikan Agama Kristen dan Budi Pekerti", "Pendidikan Jasmani Olahraga dan Kesehatan", "Pendidikan Pancasila", "Prakarya Budi Daya", "Prakarya Kerajinan", "Prakarya Pengolahan", "Prakarya Rekayasa", "Seni Musik", "Seni Rupa", "Seni Tari", "Seni Teater"];
+        const mapelSMA = ["Antropologi", "Bahasa Indonesia", "Bahasa Indonesia Tingkat Lanjut", "Bahasa Inggris", "Bahasa Inggris Tingkat Lanjut", "Bahasa Jepang", "Bahasa Jerman", "Bahasa Korea", "Bahasa Mandarin", "Bahasa Prancis", "Biologi", "Ekonomi", "Fisika", "Geografi", "Informatika", "Kimia", "Koding dan Kecerdasan Artifisial", "Matematika", "Matematika Tingkat Lanjut", "Muatan Lokal", "Pendidikan Agama Buddha dan Budi Pekerti", "Pendidikan Agama Hindu dan Budi Pekerti", "Pendidikan Agama Islam dan Budi Pekerti", "Pendidikan Agama Katolik dan Budi Pekerti", "Pendidikan Agama Khonghucu dan Budi Pekerti", "Pendidikan Agama Kristen dan Budi Pekerti", "Pendidikan Jasmani Olahraga dan Kesehatan", "Pendidikan Pancasila", "Prakarya dan Kewirausahaan", "Sejarah", "Sejarah Tingkat Lanjut", "Seni Musik", "Seni Rupa", "Seni Tari", "Seni Teater", "Sosiologi"];
+        const mapelSMKUmum = ["Bahasa Indonesia", "Bahasa Inggris", "Dasar-Dasar Program Keahlian", "Informatika", "Koding dan Kecerdasan Artifisial", "Konsentrasi Keahlian", "Kreativitas Inovasi dan Kewirausahaan", "Matematika", "Muatan Lokal", "Pendidikan Agama Buddha dan Budi Pekerti", "Pendidikan Agama Hindu dan Budi Pekerti", "Pendidikan Agama Islam dan Budi Pekerti", "Pendidikan Agama Katolik dan Budi Pekerti", "Pendidikan Agama Khonghucu dan Budi Pekerti", "Pendidikan Agama Kristen dan Budi Pekerti", "Pendidikan Jasmani Olahraga dan Kesehatan", "Pendidikan Pancasila", "Praktik Kerja Lapangan", "Projek Ilmu Pengetahuan Alam dan Sosial", "Sejarah", "Seni Musik", "Seni Rupa", "Seni Tari", "Seni Teater"];
 
         const educationalData = {
             "SD/MI": {
@@ -1290,144 +1290,144 @@
             },
             "SMK/MAK": {
                 "Akuntansi dan Keuangan Lembaga (AKL)": {
-                    "Kelas 10": [...mapelSMKUmum, "Akuntansi Dasar", "Perbankan Dasar", "Etika Profesi", "Aplikasi Pengolah Angka/Spreadsheet"],
-                    "Kelas 11": [...mapelSMKUmum, "Praktikum Akuntansi Perusahaan Jasa, Dagang, Manufaktur", "Praktikum Akuntansi Lembaga/Instansi Pemerintah", "Akuntansi Keuangan", "Komputer Akuntansi", "Administrasi Pajak"],
-                    "Kelas 12": [...mapelSMKUmum, "Akuntansi Keuangan", "Komputer Akuntansi", "Administrasi Pajak", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Akuntansi Dasar", "Aplikasi Pengolah Angka/Spreadsheet", "Etika Profesi", "Perbankan Dasar"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Administrasi Pajak", "Akuntansi Keuangan", "Komputer Akuntansi", "Praktikum Akuntansi Lembaga/Instansi Pemerintah", "Praktikum Akuntansi Perusahaan Jasa, Dagang, Manufaktur"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Administrasi Pajak", "Akuntansi Keuangan", "Komputer Akuntansi", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Teknik Komputer dan Jaringan (TKJ)": {
-                    "Kelas 10": [...mapelSMKUmum, "Sistem Komputer", "Komputer dan Jaringan Dasar", "Pemrograman Dasar", "Dasar Desain Grafis", "Simulasi dan Komunikasi Digital"],
-                    "Kelas 11": [...mapelSMKUmum, "Teknologi Jaringan Berbasis Luas (WAN)", "Administrasi Infrastruktur Jaringan (AIJ)", "Administrasi Sistem Jaringan (ASJ)", "Teknologi Layanan Jaringan (TLJ)"],
-                    "Kelas 12": [...mapelSMKUmum, "Administrasi Infrastruktur Jaringan (AIJ)", "Administrasi Sistem Jaringan (ASJ)", "Teknologi Layanan Jaringan (TLJ)", "Keamanan Jaringan", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar Desain Grafis", "Komputer dan Jaringan Dasar", "Pemrograman Dasar", "Simulasi dan Komunikasi Digital", "Sistem Komputer"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Administrasi Infrastruktur Jaringan (AIJ)", "Administrasi Sistem Jaringan (ASJ)", "Teknologi Jaringan Berbasis Luas (WAN)", "Teknologi Layanan Jaringan (TLJ)"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Administrasi Infrastruktur Jaringan (AIJ)", "Administrasi Sistem Jaringan (ASJ)", "Keamanan Jaringan", "Produk Kreatif dan Kewirausahaan", "Teknologi Layanan Jaringan (TLJ)"].sort()]
                 },
                 "Farmasi Klinis, Komunitas & Industri": {
-                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Kefarmasian", "Dasar-dasar Farmakologi", "Dasar-dasar Farmakognosi", "Dasar-dasar Kerja di Laboratorium", "Perundang-undangan Kesehatan"],
-                    "Kelas 11": [...mapelSMKUmum, "Administrasi Farmasi", "Farmakologi Dasar", "Teknik Farmasi & Peracikan Obat", "Ilmu Kesehatan Masyarakat", "Farmakognosi", "Kimia Farmasi"],
-                    "Kelas 12": [...mapelSMKUmum, "Teknologi Pengemasan Obat", "Pengujian dan Pengendalian Mutu Produk", "Perencanaan Produksi dan Persediaan", "Manajemen Bahan", "Riset dan Pengembangan Farmasi", "Pelayanan Farmasi", "Teknik Pembuatan Sediaan Obat", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar-dasar Farmakognosi", "Dasar-dasar Farmakologi", "Dasar-dasar Kefarmasian", "Dasar-dasar Kerja di Laboratorium", "Perundang-undangan Kesehatan"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Administrasi Farmasi", "Farmakognosi", "Farmakologi Dasar", "Ilmu Kesehatan Masyarakat", "Kimia Farmasi", "Teknik Farmasi & Peracikan Obat"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Manajemen Bahan", "Pelayanan Farmasi", "Pengujian dan Pengendalian Mutu Produk", "Perencanaan Produksi dan Persediaan", "Produk Kreatif dan Kewirausahaan", "Riset dan Pengembangan Farmasi", "Teknik Pembuatan Sediaan Obat", "Teknologi Pengemasan Obat"].sort()]
                 },
                 "Perhotelan": {
-                    "Kelas 10": [...mapelSMKUmum, "Kepariwisataan", "Tata Hidang", "Sanitasi, Hygiene, dan Keselamatan Kerja"],
-                    "Kelas 11": [...mapelSMKUmum, "Manajemen Hotel", "Room Division (Front Office, Housekeeping, Laundry)", "Pelayanan Pelanggan", "Operasi Dapur dan Tata Boga"],
-                    "Kelas 12": [...mapelSMKUmum, "Manajemen Restoran", "Manajemen Event/Acara", "Administrasi Hotel", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Kepariwisataan", "Sanitasi, Hygiene, dan Keselamatan Kerja", "Tata Hidang"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Manajemen Hotel", "Operasi Dapur dan Tata Boga", "Pelayanan Pelanggan", "Room Division (Front Office, Housekeeping, Laundry)"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Administrasi Hotel", "Manajemen Event/Acara", "Manajemen Restoran", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Teknik Mesin/Pemesinan": {
-                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Teknik Pemesinan", "Teknik Gambar Mesin (manual/CAD)", "Teknologi Mekanik", "Dasar Perancangan Teknik Mesin"],
-                    "Kelas 11": [...mapelSMKUmum, "Teknik Pemesinan Bubut", "Teknik Pemesinan Frais", "Teknik Pemesinan Gerinda", "Teknik Pengelasan (OAW, SMAW, MIG/MAG)", "Praktikum Pemesinan"],
-                    "Kelas 12": [...mapelSMKUmum, "Teknik Pemesinan NC/CNC dan CAM", "Kelistrikan Mesin (mesin industri)", "Gambar Teknik Manufaktur", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar Perancangan Teknik Mesin", "Dasar-dasar Teknik Pemesinan", "Teknik Gambar Mesin (manual/CAD)", "Teknologi Mekanik"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Praktikum Pemesinan", "Teknik Pemesinan Bubut", "Teknik Pemesinan Frais", "Teknik Pemesinan Gerinda", "Teknik Pengelasan (OAW, SMAW, MIG/MAG)"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Gambar Teknik Manufaktur", "Kelistrikan Mesin (mesin industri)", "Produk Kreatif dan Kewirausahaan", "Teknik Pemesinan NC/CNC dan CAM"].sort()]
                 },
                 "Tata Boga/Kuliner": {
-                    "Kelas 10": [...mapelSMKUmum, "Boga Dasar", "Ilmu Gizi", "Pengetahuan Bahan Makanan", "Sanitasi, Hygiene dan Keselamatan Kerja"],
-                    "Kelas 11": [...mapelSMKUmum, "Pengolahan dan Penyajian Makanan Indonesia dan Kontinental", "Tata Hidang"],
-                    "Kelas 12": [...mapelSMKUmum, "Hidangan Kesempatan Khusus & Fusion Food", "Pengelolaan Usaha Boga", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Boga Dasar", "Ilmu Gizi", "Pengetahuan Bahan Makanan", "Sanitasi, Hygiene dan Keselamatan Kerja"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Pengolahan dan Penyajian Makanan Indonesia dan Kontinental", "Tata Hidang"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Hidangan Kesempatan Khusus & Fusion Food", "Pengelolaan Usaha Boga", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Rekayasa Perangkat Lunak (RPL)": {
-                    "Kelas 10": [...mapelSMKUmum, "Sistem Komputer", "Komputer dan Jaringan Dasar", "Pemrograman Dasar", "Dasar Desain Grafis"],
-                    "Kelas 11": [...mapelSMKUmum, "Pemodelan Perangkat Lunak", "Basis Data", "Pemrograman Berorientasi Objek"],
-                    "Kelas 12": [...mapelSMKUmum, "Basis Data", "Pemrograman Web dan Perangkat Bergerak", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar Desain Grafis", "Komputer dan Jaringan Dasar", "Pemrograman Dasar", "Sistem Komputer"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Basis Data", "Pemodelan Perangkat Lunak", "Pemrograman Berorientasi Objek"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Basis Data", "Pemrograman Web dan Perangkat Bergerak", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Multimedia": {
-                    "Kelas 10": [...mapelSMKUmum, "Desain Grafis Percetakan", "Desain Media Interaktif", "Komunikasi Visual", "Desain Interaktif"],
-                    "Kelas 11": [...mapelSMKUmum, "Pengembangan Multimedia", "Pengembangan Game", "Teknik Animasi 2D dan 3D", "Teknik Pengolahan Audio dan Video"],
-                    "Kelas 12": [...mapelSMKUmum, "Produksi Sinema dan Film", "Editing Audio", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Desain Grafis Percetakan", "Desain Interaktif", "Desain Media Interaktif", "Komunikasi Visual"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Pengembangan Game", "Pengembangan Multimedia", "Teknik Animasi 2D dan 3D", "Teknik Pengolahan Audio dan Video"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Editing Audio", "Produk Kreatif dan Kewirausahaan", "Produksi Sinema dan Film"].sort()]
                 },
                 "Teknik Otomotif (TKR: Mobil, TSM: Motor)": {
-                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Mesin Kendaraan", "Chassis dan Sistem Pemindah Tenaga", "Kelistrikan Otomotif"],
-                    "Kelas 11": [...mapelSMKUmum, "Pemeliharaan dan Tune-up Mesin", "Teknologi Otomotif Terbaru (injeksi, ECU, scanner diagnostik)"],
-                    "Kelas 12": [...mapelSMKUmum, "Pemeliharaan Kelistrikan/Mesin/Sasis Kendaraan Ringan", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Chassis dan Sistem Pemindah Tenaga", "Dasar-dasar Mesin Kendaraan", "Kelistrikan Otomotif"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Pemeliharaan dan Tune-up Mesin", "Teknologi Otomotif Terbaru (injeksi, ECU, scanner diagnostik)"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Pemeliharaan Kelistrikan/Mesin/Sasis Kendaraan Ringan", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Teknik Instalasi dan Tenaga Listrik": {
-                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Kelistrikan & Elektronika", "Gambar Teknik Listrik", "Pekerjaan Dasar Elektromekanik"],
-                    "Kelas 11": [...mapelSMKUmum, "Instalasi Tenaga Listrik (rumah, industri, gedung)", "Instalasi Motor Listrik", "Perbaikan Peralatan Listrik", "Sistem Kontrol Otomasi Industri"],
-                    "Kelas 12": [...mapelSMKUmum, "Teknik Pembangkit/Jaringan Tenaga Listrik", "Proteksi Jaringan Tenaga Listrik", "Keselamatan Kerja Listrik", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar-dasar Kelistrikan & Elektronika", "Gambar Teknik Listrik", "Pekerjaan Dasar Elektromekanik"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Instalasi Motor Listrik", "Instalasi Tenaga Listrik (rumah, industri, gedung)", "Perbaikan Peralatan Listrik", "Sistem Kontrol Otomasi Industri"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Keselamatan Kerja Listrik", "Produk Kreatif dan Kewirausahaan", "Proteksi Jaringan Tenaga Listrik", "Teknik Pembangkit/Jaringan Tenaga Listrik"].sort()]
                 },
                 "Tata Busana": {
-                    "Kelas 10": [...mapelSMKUmum, "Pengetahuan Bahan Tekstil", "Dasar Desain", "Pembuatan Pola", "Teknologi Menjahit"],
-                    "Kelas 11": [...mapelSMKUmum, "Desain Busana", "Pembuatan Hiasan Busana", "Pembuatan Busana Custom Made"],
-                    "Kelas 12": [...mapelSMKUmum, "Pembuatan Busana Industri", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar Desain", "Pembuatan Pola", "Pengetahuan Bahan Tekstil", "Teknologi Menjahit"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Desain Busana", "Pembuatan Busana Custom Made", "Pembuatan Hiasan Busana"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Pembuatan Busana Industri", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Animasi": {
-                    "Kelas 10": [...mapelSMKUmum, "Animasi Dasar", "Storyboard", "Desain Karakter", "Teknik Penggambaran", "Estetika Animasi"],
-                    "Kelas 11": [...mapelSMKUmum, "Animasi 2D dan 3D", "Videografi Animasi", "Digital Processing", "Penggunaan perangkat lunak animasi"],
-                    "Kelas 12": [...mapelSMKUmum, "Produksi Animasi (projek nyata)", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Animasi Dasar", "Desain Karakter", "Estetika Animasi", "Storyboard", "Teknik Penggambaran"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Animasi 2D dan 3D", "Digital Processing", "Penggunaan perangkat lunak animasi", "Videografi Animasi"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Produk Kreatif dan Kewirausahaan", "Produksi Animasi (projek nyata)"].sort()]
                 },
                 "Otomatisasi dan Tata Kelola Perkantoran (OTKP)": {
-                    "Kelas 10": [...mapelSMKUmum, "Ekonomi Bisnis", "Dasar-dasar Administrasi", "Dasar-dasar Akuntansi", "Teknologi Perkantoran", "Simulasi Digital"],
-                    "Kelas 11": [...mapelSMKUmum, "Otomatisasi Tata Kelola Kepegawaian", "Otomatisasi Tata Kelola Keuangan", "Kearsipan", "Korespondensi", "Pengelolaan Surat Masuk dan Keluar"],
-                    "Kelas 12": [...mapelSMKUmum, "Otomatisasi Tata Kelola Sarana dan Prasarana", "Otomatisasi Tata Kelola Humas dan Keprotokolan", "Pengelolaan Informasi", "Komputer Administrasi Perkantoran", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar-dasar Administrasi", "Dasar-dasar Akuntansi", "Ekonomi Bisnis", "Simulasi Digital", "Teknologi Perkantoran"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Kearsipan", "Korespondensi", "Otomatisasi Tata Kelola Kepegawaian", "Otomatisasi Tata Kelola Keuangan", "Pengelolaan Surat Masuk dan Keluar"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Komputer Administrasi Perkantoran", "Otomatisasi Tata Kelola Humas dan Keprotokolan", "Otomatisasi Tata Kelola Sarana dan Prasarana", "Pengelolaan Informasi", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Broadcasting dan Perfilman (Produksi dan Siaran Program Televisi)": {
-                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Produksi Siaran dan Film", "Dasar-dasar Fotografi, Tata Kamera, Tata Artistik, Tata Suara", "Pengoperasian Kamera Video dan DSLR", "Teknik Pengambilan Gambar dan Pencahayaan Dasar", "Pengantar Naskah dan Storyboard", "Dasar Editing Video"],
-                    "Kelas 11": [...mapelSMKUmum, "Komunikasi Visual dan Penyajian Pesan Audio-Visual", "Dasar-dasar Jurnalistik dan Penyiaran", "Produksi Program Televisi", "Produksi Film Pendek", "Penulisan Skenario Film dan Televisi", "Estetika Seni Audio Visual", "Peralatan Audio Video"],
-                    "Kelas 12": [...mapelSMKUmum, "Penyutradaraan, Sinematografi, dan Tata Artistik", "Teknik Editing Lanjut (Video, Audio, Color Grading)", "Teknik Penyiaran (Radio & TV Digital)", "Pengelolaan Produksi dan Post-produksi", "Proyek Siaran Sekolah/TV Komunitas", "Media Digital", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar Editing Video", "Dasar-dasar Fotografi, Tata Kamera, Tata Artistik, Tata Suara", "Dasar-dasar Produksi Siaran dan Film", "Pengantar Naskah dan Storyboard", "Pengoperasian Kamera Video dan DSLR", "Teknik Pengambilan Gambar dan Pencahayaan Dasar"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Dasar-dasar Jurnalistik dan Penyiaran", "Estetika Seni Audio Visual", "Komunikasi Visual dan Penyajian Pesan Audio-Visual", "Peralatan Audio Video", "Penulisan Skenario Film dan Televisi", "Produksi Film Pendek", "Produksi Program Televisi"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Media Digital", "Pengelolaan Produksi dan Post-produksi", "Penyutradaraan, Sinematografi, dan Tata Artistik", "Produk Kreatif dan Kewirausahaan", "Proyek Siaran Sekolah/TV Komunitas", "Teknik Editing Lanjut (Video, Audio, Color Grading)", "Teknik Penyiaran (Radio & TV Digital)"].sort()]
                 },
                 "Tata Graha (Housekeeping/Perawatan Kamar)": {
-                    "Kelas 10": [...mapelSMKUmum, "Pembersihan Area Umum Hotel"],
-                    "Kelas 11": [...mapelSMKUmum, "Penataan Ruang Serbaguna", "Penyiapan Kamar Tamu"],
-                    "Kelas 12": [...mapelSMKUmum, "Tata Graha Kamar Hotel", "Housekeeping (Manajemen Tata Graha)", "Praktik Housekeeping", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Pembersihan Area Umum Hotel"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Penataan Ruang Serbaguna", "Penyiapan Kamar Tamu"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Housekeeping (Manajemen Tata Graha)", "Praktik Housekeeping", "Produk Kreatif dan Kewirausahaan", "Tata Graha Kamar Hotel"].sort()]
                 },
                 "Asisten Keperawatan": {
-                    "Kelas 10": [...mapelSMKUmum, "Konsep Dasar Keperawatan", "Anatomi Fisiologi", "Komunikasi Keperawatan", "Ilmu Kesehatan Masyarakat"],
-                    "Kelas 11": [...mapelSMKUmum, "Keterampilan Dasar Tindakan Keperawatan", "Dasar Farmakologi", "Praktik Laboratorium", "Dokumentasi Keperawatan", "Komunikasi Terapeutik"],
-                    "Kelas 12": [...mapelSMKUmum, "Kesehatan Reproduksi", "Dokumentasi Tindakan Keperawatan", "Asuhan Keperawatan", "Pemeriksaan Laboratorium", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Anatomi Fisiologi", "Ilmu Kesehatan Masyarakat", "Komunikasi Keperawatan", "Konsep Dasar Keperawatan"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Dasar Farmakologi", "Dokumentasi Keperawatan", "Keterampilan Dasar Tindakan Keperawatan", "Komunikasi Terapeutik", "Praktik Laboratorium"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Asuhan Keperawatan", "Dokumentasi Tindakan Keperawatan", "Kesehatan Reproduksi", "Pemeriksaan Laboratorium", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Teknik Konstruksi dan Perumahan/Bangunan": {
-                    "Kelas 10": [...mapelSMKUmum, "Gambar Teknik Bangunan", "Mekanika Teknik", "Ukur Tanah", "Simulasi Digital", "Melaksanakan Pekerjaan Pondasi Dangkal"],
-                    "Kelas 11": [...mapelSMKUmum, "Konstruksi Bangunan Gedung", "Konstruksi Bangunan", "Teknik Konstruksi Baja, Kayu, Batu dan Beton", "Melaksanakan Pekerjaan Beton", "Melaksanakan Pemasangan Bata dan Kusen"],
-                    "Kelas 12": [...mapelSMKUmum, "Sistem Utilitas Bangunan Gedung", "Perawatan Gedung", "Estimasi Biaya Konstruksi, Sanitasi dan Perawatan Gedung", "Melaksanakan Pekerjaan Kuda-kuda", "Melaksanakan Pemasangan Rangka dan Penutup Atap", "Melaksanakan Pekerjaan Plester dan Acian", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Gambar Teknik Bangunan", "Melaksanakan Pekerjaan Pondasi Dangkal", "Mekanika Teknik", "Simulasi Digital", "Ukur Tanah"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Konstruksi Bangunan", "Konstruksi Bangunan Gedung", "Melaksanakan Pekerjaan Beton", "Melaksanakan Pemasangan Bata dan Kusen", "Teknik Konstruksi Baja, Kayu, Batu dan Beton"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Estimasi Biaya Konstruksi, Sanitasi dan Perawatan Gedung", "Melaksanakan Pekerjaan Kuda-kuda", "Melaksanakan Pekerjaan Plester dan Acian", "Melaksanakan Pemasangan Rangka dan Penutup Atap", "Perawatan Gedung", "Produk Kreatif dan Kewirausahaan", "Sistem Utilitas Bangunan Gedung"].sort()]
                 },
                 "Desain Grafika (Graphic Design)": {
-                    "Kelas 10": [...mapelSMKUmum, "Dasar-Dasar Seni Rupa", "Gambar Sketsa", "Pengetahuan Bahan Grafika"],
-                    "Kelas 11": [...mapelSMKUmum, "Desain Grafis Percetakan", "Komputer Grafis", "Software Desain (CorelDraw, Adobe Illustrator, Adobe Photoshop)", "Teknik Percetakan"],
-                    "Kelas 12": [...mapelSMKUmum, "Pengembangan Multimedia", "Desain Publikasi", "Videografi", "Desain Media Cetak", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar-Dasar Seni Rupa", "Gambar Sketsa", "Pengetahuan Bahan Grafika"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Desain Grafis Percetakan", "Komputer Grafis", "Software Desain (CorelDraw, Adobe Illustrator, Adobe Photoshop)", "Teknik Percetakan"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Desain Media Cetak", "Desain Publikasi", "Pengembangan Multimedia", "Produk Kreatif dan Kewirausahaan", "Videografi"].sort()]
                 },
                 "Manajemen Logistik/Teknik Logistik": {
-                    "Kelas 10": [...mapelSMKUmum, "Logistik dan Rantai Pasokan", "Regulasi Sektor Logistik dan Keselamatan Kerja"],
-                    "Kelas 11": [...mapelSMKUmum, "Penanganan Transportasi", "Administrasi Pergudangan", "Manajemen Penanganan Bahan", "Sistem Manajemen Logistik"],
-                    "Kelas 12": [...mapelSMKUmum, "Manajemen Distribusi dan Delivery", "Teknologi Logistik", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Logistik dan Rantai Pasokan", "Regulasi Sektor Logistik dan Keselamatan Kerja"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Administrasi Pergudangan", "Manajemen Penanganan Bahan", "Penanganan Transportasi", "Sistem Manajemen Logistik"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Manajemen Distribusi dan Delivery", "Produk Kreatif dan Kewirausahaan", "Teknologi Logistik"].sort()]
                 },
                 "Pariwisata/Usaha Perjalanan Wisata (UPW/ULP)": {
-                    "Kelas 10": [...mapelSMKUmum, "Pengetahuan Destinasi Wisata", "Komunikasi Pariwisata", "Administrasi Pariwisata"],
-                    "Kelas 11": [...mapelSMKUmum, "Ticketing Penerbangan", "Pemandu Perjalanan Wisata", "Tour Planning", "Pemesanan Tempat & Ticket Penerbangan", "Penyusunan Itinerary"],
-                    "Kelas 12": [...mapelSMKUmum, "Perencanaan & Pengelolaan Perjalanan Wisata", "Pemasaran Pariwisata", "Event Management/Manajemen Acara", "Budgeting Wisata", "Praktik Kerja Lapangan di Industri Pariwisata", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Administrasi Pariwisata", "Komunikasi Pariwisata", "Pengetahuan Destinasi Wisata"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Pemandu Perjalanan Wisata", "Pemesanan Tempat & Ticket Penerbangan", "Penyusunan Itinerary", "Ticketing Penerbangan", "Tour Planning"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Budgeting Wisata", "Event Management/Manajemen Acara", "Pemasaran Pariwisata", "Perencanaan & Pengelolaan Perjalanan Wisata", "Praktik Kerja Lapangan di Industri Pariwisata", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Teknik Pengelasan dan Fabrikasi Logam": {
-                    "Kelas 10": [...mapelSMKUmum, "Gambar Teknik Mesin", "Pekerjaan Dasar Teknik Mesin", "Dasar Perancangan Teknik Mesin", "Teknik Gambar dan Simbol Las", "Fabrikasi Logam Dasar"],
-                    "Kelas 11": [...mapelSMKUmum, "Teknik Pengelasan Oksi-Asetelin (OAW)", "Teknik Pengelasan Busur Manual (SMAW)", "Teknik Pengelasan Gas Metal (MIG/MAG)", "Teknik Pengelasan Gas Tungsten (TIG)"],
-                    "Kelas 12": [...mapelSMKUmum, "Teknik Pengelasan FCAW", "Penanganan Material dan Keselamatan Kerja", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar Perancangan Teknik Mesin", "Fabrikasi Logam Dasar", "Gambar Teknik Mesin", "Pekerjaan Dasar Teknik Mesin", "Teknik Gambar dan Simbol Las"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Teknik Pengelasan Busur Manual (SMAW)", "Teknik Pengelasan Gas Metal (MIG/MAG)", "Teknik Pengelasan Gas Tungsten (TIG)", "Teknik Pengelasan Oksi-Asetelin (OAW)"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Penanganan Material dan Keselamatan Kerja", "Produk Kreatif dan Kewirausahaan", "Teknik Pengelasan FCAW"].sort()]
                 },
                 "Kebidanan": {
-                    "Kelas 10": [...mapelSMKUmum, "Konsep dan Pelayanan Kebidanan", "Anatomi & Fisiologi", "Dasar-Dasar Obstetri & Ginekologi", "Ilmu Gizi"],
-                    "Kelas 11": [...mapelSMKUmum, "Asuhan Kebidanan pada Ibu", "Asuhan Kebidanan pada Anak", "Praktik Kebidanan", "Komunikasi & Konseling", "Farmakologi Dalam Kebidanan"],
-                    "Kelas 12": [...mapelSMKUmum, "Keluarga Berencana", "Penatalaksanaan Kegawatdaruratan", "Dokumentasi Kebidanan", "Asuhan Kebidanan Persalinan dan Bayi Baru Lahir", "Kesehatan Perempuan dan Perencanaan Keluarga", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Anatomi & Fisiologi", "Dasar-Dasar Obstetri & Ginekologi", "Ilmu Gizi", "Konsep dan Pelayanan Kebidanan"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Asuhan Kebidanan pada Anak", "Asuhan Kebidanan pada Ibu", "Farmakologi Dalam Kebidanan", "Komunikasi & Konseling", "Praktik Kebidanan"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Asuhan Kebidanan Persalinan dan Bayi Baru Lahir", "Dokumentasi Kebidanan", "Keluarga Berencana", "Kesehatan Perempuan dan Perencanaan Keluarga", "Penatalaksanaan Kegawatdaruratan", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Teknologi Laboratorium Medik (TLM/Analis Kesehatan)": {
-                    "Kelas 10": [...mapelSMKUmum, "Pengantar Laboratorium Medik", "Instrumentasi", "Fisiologi", "Patofisiologi", "Flebotomi", "Biologi Sel dan Molekuler", "Anatomo Fisiologi", "Dasar Manajemen Laboratorium dan Kesehatan Lingkungan"],
-                    "Kelas 11": [...mapelSMKUmum, "Bakteriologi", "Urinalisa dan Cairan Tubuh", "Sitohistoteknologi", "Laboratorium Kesehatan Dasar", "Imunoserologi", "Mikrobiologi Kesehatan", "Kimia Klinik", "Hematologi", "Histologi"],
-                    "Kelas 12": [...mapelSMKUmum, "Pengendalian Mutu Hasil Pertanian", "Pemeriksaan Laboratorium", "Kontrol Kualitas Prosedur Laboratorium", "Penanganan Sampel dan Reagen Laboratorium", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Anatomo Fisiologi", "Biologi Sel dan Molekuler", "Dasar Manajemen Laboratorium dan Kesehatan Lingkungan", "Fisiologi", "Flebotomi", "Instrumentasi", "Patofisiologi", "Pengantar Laboratorium Medik"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Bakteriologi", "Hematologi", "Histologi", "Imunoserologi", "Kimia Klinik", "Laboratorium Kesehatan Dasar", "Mikrobiologi Kesehatan", "Sitohistoteknologi", "Urinalisa dan Cairan Tubuh"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Kontrol Kualitas Prosedur Laboratorium", "Penanganan Sampel dan Reagen Laboratorium", "Pengendalian Mutu Hasil Pertanian", "Pemeriksaan Laboratorium", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Desain Komunikasi Visual (DKV)": {
-                    "Kelas 10": [...mapelSMKUmum, "Dasar-Dasar Seni Rupa", "Gambar Sketsa", "Dasar Desain", "Komunikasi Visual"],
-                    "Kelas 11": [...mapelSMKUmum, "Desain Grafis Percetakan", "Desain Publikasi", "Komputer Grafis", "Desain Media Interaktif", "Videografi"],
-                    "Kelas 12": [...mapelSMKUmum, "Editing Audio", "Pengembangan Multimedia", "Pengembangan Game", "Teknik Animasi 2D dan 3D", "Teknik Pengolahan Audio dan Video", "Editing Video", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar Desain", "Dasar-Dasar Seni Rupa", "Gambar Sketsa", "Komunikasi Visual"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Desain Grafis Percetakan", "Desain Media Interaktif", "Desain Publikasi", "Komputer Grafis", "Videografi"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Editing Audio", "Editing Video", "Pengembangan Game", "Pengembangan Multimedia", "Produk Kreatif dan Kewirausahaan", "Teknik Animasi 2D dan 3D", "Teknik Pengolahan Audio dan Video"].sort()]
                 },
                 "Dental Asisten (Kesehatan Gigi)": {
-                    "Kelas 10": [...mapelSMKUmum, "Anatomi dan Fisiologi Gigi dan Mulut", "Sterilisasi dan Kebersihan", "Radiografi Gigi"],
-                    "Kelas 11": [...mapelSMKUmum, "Prosedur Perawatan Gigi Dasar", "Etika dan Hukum dalam Praktek Dental", "Kesehatan Mulut Anak-Anak", "Instrumen Klinis", "Prosedur Pencegahan Infeksi"],
-                    "Kelas 12": [...mapelSMKUmum, "Aspek Bisnis dalam Praktek Dental", "Penggunaan Perangkat Medis", "Standar Praktik Dental", "Farmakologi Dental", "Dokumentasi Pasien Dental", "Pelayanan Pasien Dental", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Anatomi dan Fisiologi Gigi dan Mulut", "Radiografi Gigi", "Sterilisasi dan Kebersihan"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Etika dan Hukum dalam Praktek Dental", "Instrumen Klinis", "Kesehatan Mulut Anak-Anak", "Prosedur Pencegahan Infeksi", "Prosedur Perawatan Gigi Dasar"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Aspek Bisnis dalam Praktek Dental", "Dokumentasi Pasien Dental", "Farmakologi Dental", "Pelayanan Pasien Dental", "Penggunaan Perangkat Medis", "Produk Kreatif dan Kewirausahaan", "Standar Praktik Dental"].sort()]
                 },
                 "Pekerjaan Sosial & Caregiver (Perawatan Sosial)": {
-                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Keperawatan Sosial", "Kesehatan Mental", "Keterampilan Komunikasi"],
-                    "Kelas 11": [...mapelSMKUmum, "Dukungan Sosial", "Perawatan Jangka Panjang", "Pengembangan Keterampilan Pribadi", "Perawatan Dasar", "Kesehatan dan Kesejahteraan"],
-                    "Kelas 12": [...mapelSMKUmum, "Praktik Keperawatan Sosial", "Perawatan Lanjut Usia", "Manajemen Kesehatan Masyarakat", "Asuhan Sosial", "Komunikasi Terapeutik", "Dokumentasi Asuhan Sosial", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar-dasar Keperawatan Sosial", "Kesehatan Mental", "Keterampilan Komunikasi"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Dukungan Sosial", "Kesehatan dan Kesejahteraan", "Pengembangan Keterampilan Pribadi", "Perawatan Dasar", "Perawatan Jangka Panjang"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Asuhan Sosial", "Dokumentasi Asuhan Sosial", "Komunikasi Terapeutik", "Manajemen Kesehatan Masyarakat", "Perawatan Lanjut Usia", "Praktik Keperawatan Sosial", "Produk Kreatif dan Kewirausahaan"].sort()]
                 },
                 "Agribisnis Pengolahan Hasil Pertanian": {
-                    "Kelas 10": [...mapelSMKUmum, "Dasar Penanganan Bahan Hasil Pertanian", "Dasar Proses Pengolahan Hasil Pertanian", "Dasar Pengendalian Mutu Hasil Pertanian", "Kesehatan dan Keselamatan Kerja (K3)"],
-                    "Kelas 11": [...mapelSMKUmum, "Produksi Pengolahan Hasil Nabati", "Produksi Pengolahan Hasil Hewani", "Produksi Pengolahan Komoditas Perkebunan dan Herbal", "Pengemasan, Penyimpanan dan Penggudangan", "SSOP (Sanitation Standard Operating Procedures)", "GMP (Good Manufacturing Practice)"],
-                    "Kelas 12": [...mapelSMKUmum, "Sistem Manajemen Keamanan Pangan dan Kualitas Produk", "Penanganan Limbah Pengolahan Hasil Pertanian", "Analisa Usaha Pengolahan Hasil Pertanian", "HACCP (Hazard Analysis Critical Control Point)", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar Penanganan Bahan Hasil Pertanian", "Dasar Pengendalian Mutu Hasil Pertanian", "Dasar Proses Pengolahan Hasil Pertanian", "Kesehatan dan Keselamatan Kerja (K3)"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["GMP (Good Manufacturing Practice)", "Pengemasan, Penyimpanan dan Penggudangan", "Produksi Pengolahan Hasil Hewani", "Produksi Pengolahan Hasil Nabati", "Produksi Pengolahan Komoditas Perkebunan dan Herbal", "SSOP (Sanitation Standard Operating Procedures)"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Analisa Usaha Pengolahan Hasil Pertanian", "HACCP (Hazard Analysis Critical Control Point)", "Penanganan Limbah Pengolahan Hasil Pertanian", "Produk Kreatif dan Kewirausahaan", "Sistem Manajemen Keamanan Pangan dan Kualitas Produk"].sort()]
                 },
                 "Agribisnis Perikanan Air Tawar": {
-                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Budidaya Perikanan", "Pengelolaan Kualitas Air", "Pengendalian Hama dan Penyakit", "Kesehatan dan Keselamatan Kerja (K3)"],
-                    "Kelas 11": [...mapelSMKUmum, "Teknik Pendederan Komoditas Perikanan", "Teknik Pembesaran Komoditas Perikanan", "Produksi Pakan Alami dan Pakan Buatan", "Pengelolaan Wadah dan Media Pendederan", "Seleksi Benih"],
-                    "Kelas 12": [...mapelSMKUmum, "Pemantauan Laju Pertumbuhan", "Pemanenan Hasil Produksi", "Pemasaran Hasil Produksi Komoditas Perikanan", "Analisis Kelayakan Usaha Perikanan", "Inovasi Teknologi Perikanan", "Produk Kreatif dan Kewirausahaan"]
+                    "Kelas 10": [...mapelSMKUmum, ...["Dasar-dasar Budidaya Perikanan", "Kesehatan dan Keselamatan Kerja (K3)", "Pengelolaan Kualitas Air", "Pengendalian Hama dan Penyakit"].sort()],
+                    "Kelas 11": [...mapelSMKUmum, ...["Pengelolaan Wadah dan Media Pendederan", "Produksi Pakan Alami dan Pakan Buatan", "Seleksi Benih", "Teknik Pembesaran Komoditas Perikanan", "Teknik Pendederan Komoditas Perikanan"].sort()],
+                    "Kelas 12": [...mapelSMKUmum, ...["Analisis Kelayakan Usaha Perikanan", "Inovasi Teknologi Perikanan", "Pemanenan Hasil Produksi", "Pemasaran Hasil Produksi Komoditas Perikanan", "Pemantauan Laju Pertumbuhan", "Produk Kreatif dan Kewirausahaan"].sort()]
                 }
             }
         };
@@ -1570,7 +1570,13 @@
             const validCartItems = cart.filter(item => item.jenjang && item.kelas && item.mapel);
 
             validCartItems.forEach(item => {
-                const pricePerMapel = pricing[item.jenjang] || 0;
+                let pricePerMapel = 0;
+                if (item.jenjang === 'SMK/MAK') {
+                    const isUmum = mapelSMKUmum.includes(item.mapel);
+                    pricePerMapel = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
+                } else {
+                    pricePerMapel = pricing[item.jenjang] || 0;
+                }
                 subtotal += pricePerMapel;
             });
             
@@ -1584,7 +1590,13 @@
                 `;
 
                 validCartItems.forEach((item, index) => {
-                    const pricePerMapel = pricing[item.jenjang] || 0;
+                    let pricePerMapel = 0;
+                    if (item.jenjang === 'SMK/MAK') {
+                        const isUmum = mapelSMKUmum.includes(item.mapel);
+                        pricePerMapel = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
+                    } else {
+                        pricePerMapel = pricing[item.jenjang] || 0;
+                    }
                     summaryHTML += `
                          <div class="flex justify-between items-center">
                             <div class="text-sm">
@@ -1681,45 +1693,91 @@
             updateCart(); 
         } 
  
-        function handleKelasChange(event) { 
-            const kelas = event.target.value; 
-            const orderItemCard = event.target.closest('.order-item-card'); 
-            const jenjang = orderItemCard.querySelector('.jenjang-select').value; 
-            const jurusan = orderItemCard.querySelector('.jurusan-select').value; 
-            const mapelSelect = orderItemCard.querySelector('.mapel-select'); 
-            const pricePreview = orderItemCard.querySelector('.price-preview-box'); 
-        
-            mapelSelect.innerHTML = '<option value="">-- Pilih Mata Pelajaran --</option>'; 
-            mapelSelect.disabled = true; 
-        
-            let mapels = []; 
-            if (jenjang === 'SMK/MAK' && jurusan && kelas && educationalData[jenjang][jurusan][kelas]) { 
-                mapels = educationalData[jenjang][jurusan][kelas]; 
-            } else if (jenjang && kelas && educationalData[jenjang][kelas]) { 
-                mapels = educationalData[jenjang][kelas]; 
-            } 
-        
-            if (mapels.length > 0) { 
-                mapels.forEach(mapel => { 
-                    const option = document.createElement('option'); 
-                    option.value = mapel; 
-                    option.textContent = mapel; 
-                    mapelSelect.appendChild(option); 
-                }); 
-                mapelSelect.disabled = false; 
-            } 
-        
-            // Update preview harga 
-            if (jenjang) { 
-                const priceValue = orderItemCard.querySelector('.price-value'); 
-                priceValue.textContent = formatCurrency(pricing[jenjang]); 
-                pricePreview.classList.remove('hidden'); 
-            } 
-        
-            updateCart(); 
-        } 
+        function handleKelasChange(event) {
+            const kelas = event.target.value;
+            const orderItemCard = event.target.closest('.order-item-card');
+            const jenjang = orderItemCard.querySelector('.jenjang-select').value;
+            const jurusan = orderItemCard.querySelector('.jurusan-select').value;
+            const mapelSelect = orderItemCard.querySelector('.mapel-select');
+            const pricePreview = orderItemCard.querySelector('.price-preview-box');
+
+            mapelSelect.innerHTML = '<option value="">-- Pilih Mata Pelajaran --</option>';
+            mapelSelect.disabled = true;
+            pricePreview.classList.add('hidden'); // Hide preview initially
+
+            let mapels = [];
+            if (jenjang === 'SMK/MAK' && jurusan && kelas && educationalData[jenjang][jurusan][kelas]) {
+                mapels = educationalData[jenjang][jurusan][kelas];
+                
+                const umumGroup = document.createElement('optgroup');
+                umumGroup.label = 'Mapel Umum';
+                mapelSMKUmum.forEach(mapel => {
+                    if (mapels.includes(mapel)) {
+                        const option = document.createElement('option');
+                        option.value = mapel;
+                        option.textContent = mapel;
+                        umumGroup.appendChild(option);
+                    }
+                });
+                mapelSelect.appendChild(umumGroup);
+
+                const kejuruanGroup = document.createElement('optgroup');
+                kejuruanGroup.label = 'Mapel Kejuruan';
+                mapels.forEach(mapel => {
+                    if (!mapelSMKUmum.includes(mapel)) {
+                        const option = document.createElement('option');
+                        option.value = mapel;
+                        option.textContent = mapel;
+                        kejuruanGroup.appendChild(option);
+                    }
+                });
+                mapelSelect.appendChild(kejuruanGroup);
+                
+                mapelSelect.disabled = false;
+
+            } else if (jenjang && kelas && educationalData[jenjang][kelas]) {
+                mapels = educationalData[jenjang][kelas];
+                if (mapels.length > 0) {
+                    mapels.forEach(mapel => {
+                        const option = document.createElement('option');
+                        option.value = mapel;
+                        option.textContent = mapel;
+                        mapelSelect.appendChild(option);
+                    });
+                    mapelSelect.disabled = false;
+                }
+            }
+
+            // Update preview harga only for non-SMK
+            if (jenjang && jenjang !== 'SMK/MAK') {
+                const priceValue = orderItemCard.querySelector('.price-value');
+                priceValue.textContent = formatCurrency(pricing[jenjang]);
+                pricePreview.classList.remove('hidden');
+            }
+
+            updateCart();
+        }
  
         function handleMapelChange(event) { 
+            const orderItemCard = event.target.closest('.order-item-card');
+            const jenjang = orderItemCard.querySelector('.jenjang-select').value;
+            const mapel = event.target.value;
+            const pricePreview = orderItemCard.querySelector('.price-preview-box');
+
+            if (jenjang === 'SMK/MAK' && mapel) {
+                const isUmum = mapelSMKUmum.includes(mapel);
+                const price = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
+                
+                const priceValue = orderItemCard.querySelector('.price-value');
+                priceValue.textContent = formatCurrency(price);
+                pricePreview.classList.remove('hidden');
+            } else if (jenjang !== 'SMK/MAK') {
+                // For other levels, the price is already shown. Do nothing.
+            } else {
+                // If mapel is unselected for SMK, hide the preview.
+                pricePreview.classList.add('hidden');
+            }
+
             updateCart(); 
         } 
  
