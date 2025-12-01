@@ -915,7 +915,8 @@
     } 
      
     .remove-order-item-btn { 
-        h-8 w-8; 
+        height: 2rem; /* 32px */
+        width: 2rem; /* 32px */
         top: -3px; 
         right: -3px; 
     } 
@@ -1201,10 +1202,10 @@
         let cart = []; // Holds all the selected order items
 
         const pricing = {
-            "SD": 50000,
-            "SMP": 75000,
-            "SMA": 100000,
-            "SMK": 100000 
+            "SD/MI": 50000,
+            "SMP/MTS": 75000,
+            "SMA/MAN": 100000,
+            "SMK/MAK": 100000
         };
 
         const packages = {
@@ -1213,7 +1214,7 @@
                 name: "Perangkat Ajar Lengkap",
                 title: "Perangkat Ajar Deep Learning 2025/2026",
                 logoIcon: 'fa-solid fa-book-open-reader',
-                description: "Solusi lengkap administrasi mengajar Kurikulum Nasional untuk jenjang SD, SMP, & SMA.",
+                description: "Solusi lengkap administrasi mengajar Kurikulum Nasional untuk jenjang SD/MI, SMP/MTS, SMA/MAN, & SMK/MAK.",
                 kelengkapan: [
                     "Modul Ajar Terintegrasi Deep Learning (2 Semester)",
                     "Capaian Pembelajaran (CP)",
@@ -1271,80 +1272,85 @@
 
         let currentPackageId = 'perangkatAjar';
 
-        const fullSubjectList = ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "Prakarya", "PAI Islam", "Sosiologi", "Ekonomi", "Geografi", "Biologi", "Kimia", "Fisika", "IPAS", "IPS", "IPA", "Tematik"];
+        const mapelSD = ["Al-Qur'an Hadis", "Akidah Akhlak", "Fikih", "Sejarah Kebudayaan Islam", "Bahasa Arab", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "Ilmu Pengetahuan Alam dan Sosial", "Pendidikan Jasmani Olahraga dan Kesehatan", "Bahasa Inggris", "Seni Musik", "Seni Rupa", "Seni Teater", "Seni Tari", "Koding dan Kecerdasan Artifisial", "Muatan Lokal"];
+        const mapelSMP = ["Al-Qur'an Hadis", "Akidah Akhlak", "Fikih", "Sejarah Kebudayaan Islam", "Bahasa Arab", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "Ilmu Pengetahuan Alam", "Ilmu Pengetahuan Sosial", "Bahasa Inggris", "Pendidikan Jasmani Olahraga dan Kesehatan", "Informatika", "Seni Musik", "Seni Rupa", "Seni Teater", "Seni Tari", "Prakarya Budi Daya", "Prakarya Kerajinan", "Prakarya Rekayasa", "Prakarya Pengolahan", "Koding dan Kecerdasan Artifisial", "Muatan Lokal"];
+        const mapelSMA = ["Al-Qur'an Hadis", "Akidah Akhlak", "Fikih", "Sejarah Kebudayaan Islam", "Bahasa Arab", "Pendidikan Pancasila", "Bahasa Indonesia", "Matematika", "Bahasa Inggris", "Sejarah", "Pendidikan Jasmani Olahraga dan Kesehatan", "Informatika", "Fisika", "Kimia", "Biologi", "Sosiologi", "Ekonomi", "Geografi", "Antropologi", "Matematika Tingkat Lanjut", "Bahasa Indonesia Tingkat Lanjut", "Bahasa Inggris Tingkat Lanjut", "Sejarah Tingkat Lanjut", "Bahasa Jepang", "Bahasa Jerman", "Bahasa Korea", "Bahasa Mandarin", "Bahasa Prancis", "Seni Musik", "Seni Rupa", "Seni Teater", "Seni Tari", "Prakarya dan Kewirausahaan", "Koding dan Kecerdasan Artifisial", "Muatan Lokal"];
+        const mapelSMKUmum = ["Al-Qur'an Hadis", "Akidah Akhlak", "Fikih", "Sejarah Kebudayaan Islam", "Bahasa Arab", "Pendidikan Pancasila", "Bahasa Indonesia", "Pendidikan Jasmani Olahraga dan Kesehatan", "Sejarah", "Seni Musik", "Seni Rupa", "Seni Teater", "Seni Tari", "Matematika", "Bahasa Inggris", "Informatika", "Projek Ilmu Pengetahuan Alam dan Sosial", "Dasar-Dasar Program Keahlian", "Konsentrasi Keahlian", "Kreativitas Inovasi dan Kewirausahaan", "Praktik Kerja Lapangan", "Koding dan Kecerdasan Artifisial", "Muatan Lokal"];
 
         const educationalData = {
-    "SD": { 
-        "Kelas 1": fullSubjectList, 
-        "Kelas 2": fullSubjectList, 
-        "Kelas 3": fullSubjectList, 
-        "Kelas 4": fullSubjectList, 
-        "Kelas 5": fullSubjectList, 
-        "Kelas 6": fullSubjectList 
-    }, 
-    "SMP": { 
-        "Kelas 7": fullSubjectList, 
-        "Kelas 8": fullSubjectList, 
-        "Kelas 9": fullSubjectList 
-    }, 
-    "SMA": { 
-        "Kelas 10": fullSubjectList, 
-        "Kelas 11": fullSubjectList, 
-        "Kelas 12": fullSubjectList 
-    }, 
-    "SMK": { 
-        "Teknik Komputer dan Jaringan (TKJ)": { 
-            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Dasar-Dasar Teknik Komputer dan Jaringan", "Sistem Komputer", "Komputer dan Jaringan Dasar"], 
-            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Administrasi Infrastruktur Jaringan", "Teknologi Layanan Jaringan", "Administrasi Sistem Jaringan"], 
-            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Administrasi Infrastruktur Jaringan", "Teknologi Layanan Jaringan", "Administrasi Sistem Jaringan"] 
-        }, 
-        "Rekayasa Perangkat Lunak (RPL)": { 
-            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Dasar-Dasar Pemrograman", "Basis Data", "Pemrograman Berorientasi Objek"], 
-            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Pemrograman Web dan Mobile", "Basis Data Lanjutan", "Pemodelan Perangkat Lunak"], 
-            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Pemrograman Web dan Mobile", "Testing Perangkat Lunak", "Manajemen Proyek"] 
-        }, 
-        "Multimedia (MM)": { 
-            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Dasar-Dasar Desain Grafis", "Fotografi", "Videografi"], 
-            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Desain Grafis Percetakan", "Animasi 2D dan 3D", "Pengolahan Audio Video"], 
-            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Desain Media Interaktif", "Animasi 2D dan 3D", "Post Production"] 
-        }, 
-        "Teknik Kendaraan Ringan (TKR)": { 
-            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Teknologi Dasar Otomotif", "Gambar Teknik Otomotif", "Kelistrikan Dasar Otomotif"], 
-            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Pemeliharaan Mesin Kendaraan Ringan", "Pemeliharaan Sasis dan Pemindah Tenaga", "Pemeliharaan Kelistrikan Kendaraan Ringan"], 
-            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Pemeliharaan Mesin Kendaraan Ringan", "Pemeliharaan Sasis dan Pemindah Tenaga", "Pemeliharaan Kelistrikan Kendaraan Ringan"] 
-        }, 
-        "Akuntansi dan Keuangan Lembaga (AKL)": { 
-            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Pengantar Ekonomi dan Bisnis", "Pengantar Akuntansi", "Praktikum Akuntansi Perusahaan Jasa"], 
-            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Praktikum Akuntansi Perusahaan Dagang", "Praktikum Akuntansi Perusahaan Manufaktur", "Administrasi Pajak"], 
-            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Akuntansi Keuangan", "Komputer Akuntansi", "Administrasi Pajak"] 
-        }, 
-        "Otomatisasi dan Tata Kelola Perkantoran (OTKP)": { 
-            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Teknologi Perkantoran", "Korespondensi", "Kearsipan"], 
-            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Teknologi Perkantoran", "Otomatisasi Tata Kelola Kepegawaian", "Otomatisasi Tata Kelola Keuangan"], 
-            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Otomatisasi Tata Kelola Sarana dan Prasarana", "Otomatisasi Tata Kelola Humas dan Keprotokolan"] 
-        }, 
-        "Bisnis Daring dan Pemasaran (BDP)": { 
-            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Pengantar Ekonomi Bisnis", "Perencanaan Bisnis", "Komunikasi Bisnis"], 
-            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Pemasaran Online", "Bisnis Online", "Administrasi Transaksi"], 
-            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Pengelolaan Bisnis Online", "Digital Marketing"] 
-        }, 
-        "Perhotelan": { 
-            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Sanitasi Hygiene dan Keselamatan Kerja", "Tata Graha", "Laundry"], 
-            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Front Office", "Housekeeping", "Food and Beverage Service"], 
-            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Front Office", "Housekeeping", "Food and Beverage Service"] 
-        }, 
-        "Tata Boga": { 
-            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Sanitasi Hygiene dan Keselamatan Kerja", "Pengetahuan Bahan Makanan", "Tata Hidang"], 
-            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Pengolahan Makanan Kontinental", "Pengolahan Makanan Indonesia", "Pengolahan Kue dan Roti"], 
-            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Pengolahan Makanan Kontinental", "Pengolahan Makanan Indonesia", "Hidangan Kesempatan Khusus"] 
-        }, 
-        "Tata Busana": { 
-            "Kelas 10": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Sejarah", "Seni Budaya", "PAI Islam", "Dasar Desain", "Tekstil", "Dasar Pola"], 
-            "Kelas 11": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Informatika", "PJOK", "Desain Busana", "Pembuatan Pola", "Pembuatan Busana"], 
-            "Kelas 12": ["Pendidikan Pancasila", "Bahasa Indonesia", "Bahasa Inggris", "Matematika", "Produk Kreatif dan Kewirausahaan", "Desain Busana", "Pembuatan Busana Custom Made", "Pembuatan Busana Industri"] 
-        } 
-    } 
-};
+            "SD/MI": {
+                "Kelas 1": mapelSD, "Kelas 2": mapelSD, "Kelas 3": mapelSD,
+                "Kelas 4": mapelSD, "Kelas 5": mapelSD, "Kelas 6": mapelSD
+            },
+            "SMP/MTS": {
+                "Kelas 7": mapelSMP, "Kelas 8": mapelSMP, "Kelas 9": mapelSMP
+            },
+            "SMA/MAN": {
+                "Kelas 10": mapelSMA, "Kelas 11": mapelSMA, "Kelas 12": mapelSMA
+            },
+            "SMK/MAK": {
+                "Akuntansi dan Keuangan Lembaga (AKL)": {
+                    "Kelas 10": [...mapelSMKUmum, "Akuntansi Dasar", "Perbankan Dasar", "Etika Profesi", "Aplikasi Pengolah Angka/Spreadsheet"],
+                    "Kelas 11": [...mapelSMKUmum, "Praktikum Akuntansi Perusahaan Jasa, Dagang, Manufaktur", "Praktikum Akuntansi Lembaga/Instansi Pemerintah", "Akuntansi Keuangan", "Komputer Akuntansi", "Administrasi Pajak"],
+                    "Kelas 12": [...mapelSMKUmum, "Akuntansi Keuangan", "Komputer Akuntansi", "Administrasi Pajak", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Teknik Komputer dan Jaringan (TKJ)": {
+                    "Kelas 10": [...mapelSMKUmum, "Sistem Komputer", "Komputer dan Jaringan Dasar", "Pemrograman Dasar", "Dasar Desain Grafis", "Simulasi dan Komunikasi Digital"],
+                    "Kelas 11": [...mapelSMKUmum, "Teknologi Jaringan Berbasis Luas (WAN)", "Administrasi Infrastruktur Jaringan (AIJ)", "Administrasi Sistem Jaringan (ASJ)", "Teknologi Layanan Jaringan (TLJ)"],
+                    "Kelas 12": [...mapelSMKUmum, "Administrasi Infrastruktur Jaringan (AIJ)", "Administrasi Sistem Jaringan (ASJ)", "Teknologi Layanan Jaringan (TLJ)", "Keamanan Jaringan", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Farmasi Klinis, Komunitas & Industri": {
+                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Kefarmasian", "Dasar-dasar Farmakologi", "Dasar-dasar Farmakognosi", "Dasar-dasar Kerja di Laboratorium", "Perundang-undangan Kesehatan"],
+                    "Kelas 11": [...mapelSMKUmum, "Administrasi Farmasi", "Farmakologi Dasar", "Teknik Farmasi & Peracikan Obat", "Ilmu Kesehatan Masyarakat", "Farmakognosi", "Kimia Farmasi"],
+                    "Kelas 12": [...mapelSMKUmum, "Teknologi Pengemasan Obat", "Pengujian dan Pengendalian Mutu Produk", "Perencanaan Produksi dan Persediaan", "Manajemen Bahan", "Riset dan Pengembangan Farmasi", "Pelayanan Farmasi", "Teknik Pembuatan Sediaan Obat", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Perhotelan": {
+                    "Kelas 10": [...mapelSMKUmum, "Kepariwisataan", "Tata Hidang", "Sanitasi, Hygiene, dan Keselamatan Kerja"],
+                    "Kelas 11": [...mapelSMKUmum, "Manajemen Hotel", "Room Division (Front Office, Housekeeping, Laundry)", "Pelayanan Pelanggan", "Operasi Dapur dan Tata Boga"],
+                    "Kelas 12": [...mapelSMKUmum, "Manajemen Restoran", "Manajemen Event/Acara", "Administrasi Hotel", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Teknik Mesin/Pemesinan": {
+                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Teknik Pemesinan", "Teknik Gambar Mesin (manual/CAD)", "Teknologi Mekanik", "Dasar Perancangan Teknik Mesin"],
+                    "Kelas 11": [...mapelSMKUmum, "Teknik Pemesinan Bubut", "Teknik Pemesinan Frais", "Teknik Pemesinan Gerinda", "Teknik Pengelasan (OAW, SMAW, MIG/MAG)", "Praktikum Pemesinan"],
+                    "Kelas 12": [...mapelSMKUmum, "Teknik Pemesinan NC/CNC dan CAM", "Kelistrikan Mesin (mesin industri)", "Gambar Teknik Manufaktur", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Tata Boga/Kuliner": {
+                    "Kelas 10": [...mapelSMKUmum, "Boga Dasar", "Ilmu Gizi", "Pengetahuan Bahan Makanan", "Sanitasi, Hygiene dan Keselamatan Kerja"],
+                    "Kelas 11": [...mapelSMKUmum, "Pengolahan dan Penyajian Makanan Indonesia dan Kontinental", "Tata Hidang"],
+                    "Kelas 12": [...mapelSMKUmum, "Hidangan Kesempatan Khusus & Fusion Food", "Pengelolaan Usaha Boga", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Rekayasa Perangkat Lunak (RPL)": {
+                    "Kelas 10": [...mapelSMKUmum, "Sistem Komputer", "Komputer dan Jaringan Dasar", "Pemrograman Dasar", "Dasar Desain Grafis"],
+                    "Kelas 11": [...mapelSMKUmum, "Pemodelan Perangkat Lunak", "Basis Data", "Pemrograman Berorientasi Objek"],
+                    "Kelas 12": [...mapelSMKUmum, "Basis Data", "Pemrograman Web dan Perangkat Bergerak", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Multimedia": {
+                    "Kelas 10": [...mapelSMKUmum, "Desain Grafis Percetakan", "Desain Media Interaktif", "Komunikasi Visual", "Desain Interaktif"],
+                    "Kelas 11": [...mapelSMKUmum, "Pengembangan Multimedia", "Pengembangan Game", "Teknik Animasi 2D dan 3D", "Teknik Pengolahan Audio dan Video"],
+                    "Kelas 12": [...mapelSMKUmum, "Produksi Sinema dan Film", "Editing Audio", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Teknik Otomotif (TKR: Mobil, TSM: Motor)": {
+                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Mesin Kendaraan", "Chassis dan Sistem Pemindah Tenaga", "Kelistrikan Otomotif"],
+                    "Kelas 11": [...mapelSMKUmum, "Pemeliharaan dan Tune-up Mesin", "Teknologi Otomotif Terbaru (injeksi, ECU, scanner diagnostik)"],
+                    "Kelas 12": [...mapelSMKUmum, "Pemeliharaan Kelistrikan/Mesin/Sasis Kendaraan Ringan", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Teknik Instalasi dan Tenaga Listrik": {
+                    "Kelas 10": [...mapelSMKUmum, "Dasar-dasar Kelistrikan & Elektronika", "Gambar Teknik Listrik", "Pekerjaan Dasar Elektromekanik"],
+                    "Kelas 11": [...mapelSMKUmum, "Instalasi Tenaga Listrik (rumah, industri, gedung)", "Instalasi Motor Listrik", "Perbaikan Peralatan Listrik", "Sistem Kontrol Otomasi Industri"],
+                    "Kelas 12": [...mapelSMKUmum, "Teknik Pembangkit/Jaringan Tenaga Listrik", "Proteksi Jaringan Tenaga Listrik", "Keselamatan Kerja Listrik", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Tata Busana": {
+                    "Kelas 10": [...mapelSMKUmum, "Pengetahuan Bahan Tekstil", "Dasar Desain", "Pembuatan Pola", "Teknologi Menjahit"],
+                    "Kelas 11": [...mapelSMKUmum, "Desain Busana", "Pembuatan Hiasan Busana", "Pembuatan Busana Custom Made"],
+                    "Kelas 12": [...mapelSMKUmum, "Pembuatan Busana Industri", "Produk Kreatif dan Kewirausahaan"]
+                },
+                "Animasi": {
+                    "Kelas 10": [...mapelSMKUmum, "Animasi Dasar", "Storyboard", "Desain Karakter", "Teknik Penggambaran", "Estetika Animasi"],
+                    "Kelas 11": [...mapelSMKUmum, "Animasi 2D dan 3D", "Videografi Animasi", "Digital Processing", "Penggunaan perangkat lunak animasi"],
+                    "Kelas 12": [...mapelSMKUmum, "Produksi Animasi (projek nyata)", "Produk Kreatif dan Kewirausahaan"]
+                }
+            }
+        };
 
         const paymentAccounts = {
             qris: { displayName: 'QRIS', accountHolder: 'Epay', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris' },
@@ -1367,7 +1373,7 @@
                         <p class="text-md text-gray-600 mt-1">${pkg.description}</p>
                     </div>
                     <div class="text-center md:text-right mt-2 md:mt-0 md:pl-6">
-                        <div class="text-3xl font-bold text-google-blue google-sans">Mulai dari ${formatCurrency(pricing.SD)}</div>
+                        <div class="text-3xl font-bold text-google-blue google-sans">Mulai dari ${formatCurrency(pricing['SD/MI'])}</div>
                         <p class="text-sm text-gray-500 mt-1">Per Mata Pelajaran</p>
                         <div class="mt-2">
                             <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">
@@ -1547,7 +1553,7 @@
             mapelSelect.disabled = true; 
             pricePreview.classList.add('hidden'); 
         
-            if (jenjang === 'SMK') { 
+            if (jenjang === 'SMK/MAK') { 
                 // Tampilkan dropdown jurusan untuk SMK 
                 jurusanGroup.classList.remove('hidden'); 
                 Object.keys(educationalData[jenjang]).forEach(jurusan => { 
@@ -1583,7 +1589,7 @@
             kelasSelect.disabled = true; 
             mapelSelect.disabled = true; 
         
-            if (jenjang === 'SMK' && jurusan && educationalData[jenjang][jurusan]) { 
+            if (jenjang === 'SMK/MAK' && jurusan && educationalData[jenjang][jurusan]) { 
                 Object.keys(educationalData[jenjang][jurusan]).forEach(kelas => { 
                     const option = document.createElement('option'); 
                     option.value = kelas; 
@@ -1607,7 +1613,7 @@
             mapelSelect.disabled = true; 
         
             let mapels = []; 
-            if (jenjang === 'SMK' && jurusan && kelas && educationalData[jenjang][jurusan][kelas]) { 
+            if (jenjang === 'SMK/MAK' && jurusan && kelas && educationalData[jenjang][jurusan][kelas]) { 
                 mapels = educationalData[jenjang][jurusan][kelas]; 
             } else if (jenjang && kelas && educationalData[jenjang][kelas]) { 
                 mapels = educationalData[jenjang][kelas]; 
