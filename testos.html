@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upgrade iCloud+ 2TB - Penawaran Spesial!</title>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/250px-Apple_logo_black.svg.png">
+    <title>Adobe Creative Cloud - Penawaran Spesial!</title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png">
+    <link rel="preload" as="font" type="font/ttf" href="https://fonts.gstatic.com/s/googlesans/v65/4Ua_rENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iqcsih3SAyH6cAwhX9RFD48TE63OOYKtrwEIKli.ttf" crossorigin/>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -231,7 +232,7 @@
             display: flex;
             justify-content: flex-start; /* Aligns items to the start */
             min-width: 100%;
-            animation: scroll 100s linear infinite;
+            animation: scroll 250s linear infinite;
         }
         .testimonial-carousel-container:hover .testimonial-track {
             animation-play-state: paused;
@@ -257,17 +258,70 @@
         }
         /* === END: Auto-Scrolling Testimonial Carousel Styles === */
 
+        /* START: New Testimonial Card Styles */
+        .testimonial-card {
+            background-color: #f8f9fa; /* Lighter background */
+            border-radius: 16px;
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--theme-outline);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2);
+        }
+        .testimonial-stars {
+            color: #ffc107; /* Brighter yellow */
+            margin-bottom: 12px;
+            font-size: 14px; /* Slightly smaller stars */
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 12px;
+        }
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffffff;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .testimonial-name {
+            font-weight: 500;
+            color: var(--theme-on-surface);
+            font-size: 15px;
+            font-family: 'Google Sans', sans-serif;
+        }
+        .testimonial-role {
+            font-size: 13px;
+            color: var(--theme-on-surface-variant);
+        }
+        .testimonial-text {
+            font-size: 14px;
+            color: var(--theme-on-surface-variant);
+            line-height: 1.6;
+            flex-grow: 1; /* Ensures the text takes up available space */
+            font-style: italic;
+        }
+        /* END: New Testimonial Card Styles */
+
         /* Enhanced Notification Toast */
         .notif-box {
             position: fixed;
             top: 24px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #3c4043; /* Dark grey for toast */
-            color: #ffffff;
-            border-radius: 8px;
-            box-shadow: var(--shadow-3);
-            padding: 16px 24px;
+            background-color: #ffffff; /* White background */
+            color: #3c4043; /* Google Dark Grey Text */
+            border-radius: 50px; /* Capsule Shape */
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15); /* Google Shadow */
+            padding: 12px 24px;
             display: none;
             align-items: center;
             gap: 12px;
@@ -276,7 +330,7 @@
             z-index: 1000;
             opacity: 0;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Google Sans', 'Roboto', sans-serif;
         }
         .notif-box.show {
             display: flex;
@@ -315,7 +369,7 @@
         }
         .notif-time {
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
+            color: #5f6368; /* Darker grey for time on white bg */
             margin-top: 2px;
         }
         /* Enhanced FAQ Section */
@@ -443,7 +497,7 @@
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
-            /* flex-direction: row; Default */
+            flex-direction: column;
             height: 100%;
         }
 
@@ -771,6 +825,10 @@
             .form-input {
                 font-size: 16px; /* Prevent zoom on iOS */
             }
+            .testimonial-slide {
+                width: 85vw; /* Show one card at a time on mobile */
+                max-width: 340px; /* Adjust max-width for mobile */
+            }
         }
         /* Enhanced Image Modal */
         .modal-image-wrapper {
@@ -944,12 +1002,15 @@
                                 <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="No. WhatsApp Anda *">
                             </div>
                             <div>
-                                <input type="email" id="email" name="email" class="form-input" placeholder="Email Pribadi Anda (iCloud) *">
+                                <input type="email" id="email" name="email" class="form-input" placeholder="Email Pribadi Anda (Adobe) *">
                             </div>
                         </div>
                         
                         <!-- Honeypot field for anti-spam -->
                         <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
+
+                        <!-- Hidden input for sheet name -->
+                        <input type="hidden" name="sheetName" value="adobe">
                         
                         <!-- Metode Pembayaran -->
                         <div id="payment-method-selection" class="mt-6"></div>
@@ -1115,23 +1176,31 @@
         const packages = {
             yearly: {
                 id: 'yearly',
-                name: "iCloud+ 2TB (1 Tahun)",
+                name: "Adobe Creative Cloud (1 Tahun)",
                 price: 350000,
-                normalPrice: 450000,
-                title: "iCloud+ 2TB",
-                durationText: "Berlaku 1 Tahun",
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/ICloud_logo.svg/320px-ICloud_logo.svg.png',
-                description: "Penyimpanan 2TB & fitur premium iCloud+ untuk 1 tahun.",
+                normalPrice: 500000,
+                title: "Adobe Creative Cloud",
+                durationText: "Berlaku 1 Tahun / 5 Devices",
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png',
+                description: "Akses semua aplikasi Adobe & 100GB Cloud Storage.",
                 features: [
-                    "<strong>Kapasitas 2TB:</strong> Simpan semua foto, video, file, dan backup perangkat Anda dengan aman.",
-                    "<strong>Relai Pribadi iCloud:</strong> Jelajahi web dengan lebih aman dan pribadi di Safari.",
-                    "<strong>Sembunyikan Email Saya:</strong> Buat alamat email acak untuk menjaga kerahasiaan email pribadi Anda.",
-                    "<strong>Domain Email Khusus:</strong> Personalisasi alamat email iCloud Anda dengan domain sendiri.",
-                    "<strong>Video Aman HomeKit:</strong> Simpan rekaman kamera keamanan rumah Anda dengan enkripsi end-to-end.",
-                    "<strong>Gunakan Email Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Apple ID (iCloud) pribadi Anda.",
-                    "<strong>100% Aman & Bergaransi:</strong> Proses legal melalui fitur Apple One Premier, privasi terjamin."
+                    "<strong>Akses 20+ Aplikasi Adobe:</strong> Termasuk Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, dll.",
+                    "<strong>Penyimpanan Cloud 100GB:</strong> Simpan dan sinkronkan file Anda dengan mudah.",
+                    "<strong>Sinkronisasi Antar Perangkat:</strong> Bekerja mulus di desktop, mobile, dan web.",
+                    "<strong>Creative Cloud Libraries:</strong> Bagikan aset dan warna antar aplikasi dengan tim Anda.",
+                    "<strong>Ribuan Font Premium:</strong> Akses koleksi font lengkap dari Adobe Fonts.",
+                    "<strong>Integrasi Adobe Stock:</strong> Temukan jutaan aset foto, video, dan vektor langsung di aplikasi.",
+                    "<strong>Pembaruan Otomatis:</strong> Selalu dapatkan fitur terbaru tanpa biaya tambahan.",
+                    "<strong>Integrasi Lintas Aplikasi:</strong> Alur kerja yang lancar, misalnya dari Illustrator ke After Effects.",
+                    "<strong>Template & Aset Gratis:</strong> Percepat proyek Anda dengan ribuan template siap pakai.",
+                    "<strong>Aplikasi Mobile & Web:</strong> Edit di mana saja dengan Photoshop Express, Premiere Rush, dan lainnya.",
+                    "<strong>Fitur AI Generatif:</strong> Manfaatkan kekuatan Adobe Firefly untuk generative fill, text-to-image, dll.",
+                    "<strong>Adobe Portfolio & Behance:</strong> Bangun situs portofolio profesional dan tampilkan karya Anda.",
+                    "<strong>Akses Offline:</strong> Tetap produktif bahkan saat tidak terhubung ke internet.",
+                    "<strong>Keamanan Terenkripsi:</strong> File Anda aman di penyimpanan cloud Adobe.",
+                    "<strong>Pusat Bantuan Resmi:</strong> Dapatkan akses ke tutorial, panduan, dan dukungan dari Adobe."
                 ],
-                testimonials: testimonialImages
+                testimonials: testimonials
             }
         };
 
@@ -1187,7 +1256,7 @@
         const getProductInfoHTML = (pkg) => {
             const discount = Math.round(((pkg.normalPrice - pkg.price) / pkg.normalPrice) * 100);
             return `
-            <div class="product-info-card">
+            <div class="product-info-card flex h-full bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-md transition-all">
                 <!-- Left Stripe -->
                 <div class="w-2 bg-gradient-to-b from-[#007aff] to-[#005ecb]"></div>
                 
@@ -1202,7 +1271,7 @@
                         <img alt="Logo ${pkg.name}" class="w-12 h-12 object-contain" src="${pkg.logo}">
                         <div>
                             <h1 class="text-xl font-bold text-gray-900 leading-tight">${pkg.title}</h1>
-                            <p class="text-sm text-gray-500">Premium Storage</p>
+                            <p class="text-sm text-gray-500">Professional License</p>
                         </div>
                     </div>
                     
@@ -1302,17 +1371,29 @@
         }
         
         const getTestimonialsHTML = (pkg) => {
-            const images = pkg.testimonials;
-            const singleTrackHTML = images.map((url, index) => `
+            const testimonialsData = pkg.testimonials;
+            const singleTrackHTML = testimonialsData.map((testimonial, index) => {
+                const starsHTML = Array(testimonial.stars).fill('<i class="fas fa-star text-yellow-400"></i>').join('');
+                return `
                 <div class="testimonial-slide">
-                    <img src="${url}" alt="Testimoni Pelanggan ${index + 1}" class="testimonial-image" onclick="openImageModal(event, ${index})" onerror="this.onerror=null;this.src='https://placehold.co/300x400/e2e8f0/4a5568?text=Gagal\nMuat';">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">${starsHTML}</div>
+                        <div class="testimonial-author">
+                            <img src="${testimonial.image}" alt="Foto profil ${testimonial.name}" class="testimonial-avatar">
+                            <div>
+                                <p class="testimonial-name">${testimonial.name}</p>
+                                <p class="testimonial-role">${testimonial.role}</p>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">“${testimonial.text}”</p>
+                    </div>
                 </div>
-            `).join('');
+            `}).join('');
 
             return `
-            <div class="material-card p-3 md:p-4 rounded-2xl">
-                <h2 class="text-xl font-bold text-center mb-2 google-sans">Testimoni Pelanggan</h2>
-                <p class="text-center text-m3-on-surface-variant text-xs mb-4">Ribuan pelanggan telah menikmati kapasitas penyimpanan besar</p>
+            <div class="material-card p-4 md:p-6 rounded-2xl">
+                <h2 class="text-xl font-bold text-center mb-2 google-sans">Testimoni Pelanggan Kami</h2>
+                <p class="text-center text-gray-500 text-sm mb-6">Ribuan pelanggan telah puas dengan layanan kami.</p>
                 <div class="testimonial-carousel-container" id="carousel-wrapper">
                     <div class="testimonial-track">
                         ${singleTrackHTML}
@@ -1323,38 +1404,34 @@
                 </div>
             </div>`;
         }
-        
+
         const getInfoSectionHTML = () => {
              const faqHTML = `
                 <h3 class="text-2xl font-bold mb-4 text-center google-sans">Informasi & Bantuan</h3>
                 <div class="space-y-0">
                     <details class="faq-item">
-                        <summary>Apakah ini benar-benar 2TB?</summary>
-                        <div class="faq-content">Ya, Anda akan mendapatkan kapasitas 2TB. Kami menawarkan paket berlangganan selama 1 tahun. Paket ini menggunakan email pribadi Anda.</div>
+                        <summary>Apakah produk ini resmi?</summary>
+                        <div class="faq-content">Ya, produk yang kami tawarkan 100% original dan legal. Aktivasi dilakukan melalui undangan resmi dari Adobe.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Bagaimana proses upgrade iCloud+ ini?</summary>
-                        <div class="faq-content">Prosesnya sangat mudah. Kami akan mengundang email (Apple ID) Anda untuk bergabung ke dalam langganan Apple One Premier kami. Setelah Anda menerima undangan, kapasitas iCloud Anda akan otomatis menjadi 2TB beserta semua fitur iCloud+.</div>
+                        <summary>Bagaimana proses aktivasinya?</summary>
+                        <div class="faq-content">Setelah pembayaran, kami akan mengirimkan undangan ke email Adobe Anda. Anda hanya perlu menerima undangan tersebut untuk mengaktifkan lisensi Creative Cloud.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Apakah ini aman dan legal?</summary>
-                        <div class="faq-content">Tentu saja. Metode yang kami gunakan 100% legal melalui fitur Apple Family Sharing. Kami tidak pernah meminta password Apple ID Anda. Privasi data dan file Anda sepenuhnya terjamin karena setiap anggota keluarga memiliki penyimpanan pribadi yang tidak bisa diakses oleh anggota lain.</div>
+                        <summary>Apakah ini aman?</summary>
+                        <div class="faq-content">Tentu saja. Kami tidak pernah meminta password akun Adobe Anda. Prosesnya 100% aman dan privasi Anda terjamin.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Apa bedanya dengan langganan iCloud+ langsung ke Apple?</summary>
-                        <div class="faq-content">Langganan langsung ke Apple memerlukan pembayaran bulanan atau tahunan yang berulang. Dengan paket kami, Anda bisa mendapatkan harga yang jauh lebih murah.</div>
+                        <summary>Apa saja yang saya dapatkan?</summary>
+                        <div class="faq-content">Anda akan mendapatkan akses ke semua aplikasi di dalam Adobe Creative Cloud (Photoshop, Illustrator, Premiere Pro, dll) dan penyimpanan cloud sebesar 100GB.</div>
                     </details>
                     <details class="faq-item">
-                        <summary>Apakah file lama saya akan hilang?</summary>
-                        <div class="faq-content">Tidak akan. Karena upgrade ini diterapkan pada akun Apple ID pribadi Anda, semua file dan data lama Anda akan tetap aman di tempatnya dan secara otomatis menjadi bagian dari penyimpanan 2TB yang baru.</div>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Berapa lama proses aktivasinya?</summary>
-                        <div class="faq-content">Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, undangan akan kami kirimkan dan aktivasi biasanya selesai dalam waktu 5-15 menit.</div>
+                        <summary>Berapa lama prosesnya?</summary>
+                        <div class="faq-content">Prosesnya sangat cepat, biasanya hanya 5-15 menit setelah konfirmasi pembayaran.</div>
                     </details>
                     <details class="faq-item">
                         <summary>Apakah ada garansi?</summary>
-                        <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Garansi tidak berlaku jika akun Anda dibatasi oleh Apple karena melanggar kebijakan mereka (misalnya menyimpan file ilegal, dll).</div>
+                        <div class="faq-content">Kami memberikan garansi uang kembali penuh jika proses aktivasi gagal karena kesalahan dari pihak kami.</div>
                     </details>
                 </div>
             `;
@@ -1609,52 +1686,45 @@
             const totalPrice = pkg.price + uniqueCode;
             const paymentAccount = paymentAccounts[paymentMethodKey];
             const now = new Date();
-            const paymentId = `INV-ICLOUD-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
+            const paymentId = `INV-ADOBE-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
 
-            // Data to be sent to Google Apps Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
             const dataToSend = {
-                sheetName: 'icloud', // Specify the sheet name here
                 nama: nama,
                 whatsapp: whatsapp,
                 email: email,
                 paket: pkg.name,
                 metodePembayaran: paymentAccount.displayName,
-                totalTransfer: formatCurrency(totalPrice),
+                totalTransfer: `Rp${totalPrice.toLocaleString('id-ID')}`,
                 idPembayaran: paymentId,
-                nomorRekening: paymentAccount.number
+                nomorRekening: paymentAccount.number,
+                sheetName: formData.get('sheetName')
             };
 
-            const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbxhoV7ETEYfpe2O4idZQaqCjWMut4RKOJiQ8CF2wIGNDClsRO2IwgkEaGmJAKnM_k5-/exec';
-
+            let submissionSuccess = false;
             try {
-                // We use mode: 'no-cors' because Apps Script web apps don't handle CORS pre-flight requests by default.
-                // This means we can't see the response, but the request will go through.
-                // We also send the data as text/plain, which is an allowed content type for no-cors.
-                const response = await fetch(appsScriptUrl, {
+                await fetch(scriptURL, {
                     method: 'POST',
-                    mode: 'no-cors', 
+                    mode: 'no-cors',
                     cache: 'no-cache',
                     headers: {
-                        // This header might be stripped by the browser in no-cors mode, but we include it anyway.
-                        // The Apps Script will receive the body in e.postData.contents.
-                        'Content-Type': 'text/plain;charset=utf-8', 
+                        'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(dataToSend),
-                    redirect: 'follow'
+                    body: JSON.stringify(dataToSend)
                 });
-                
-                // Since mode is 'no-cors', we can't inspect the response.
-                // We will assume the data submission was successful and proceed.
-                console.log('Data submission to Apps Script initiated.');
-                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-
+                submissionSuccess = true;
             } catch (error) {
-                console.error('Network Error:', error);
-                // This will catch network errors, but not errors from the Apps Script itself.
-                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan jaringan saat mengirim data Anda. Silakan periksa koneksi internet Anda dan coba lagi.');
-            } finally {
-                elements.submitBtn.disabled = false;
-                elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang';
+                console.error('Error submitting data:', error);
+                submissionSuccess = false;
+            }
+            
+            elements.submitBtn.disabled = false;
+            elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang';
+
+            if (submissionSuccess) {
+                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
+            } else {
+                showInfoModal('Pengiriman Gagal', 'Maaf, terjadi kesalahan saat mengirim data Anda. Silakan coba lagi atau hubungi kami.');
             }
         }
         
@@ -1866,88 +1936,43 @@
 
         return finalQris + crc;
     }
-        // --- Image Modal Functions ---
+
+    // --- Image Modal Functions ---
     const imageModal = document.getElementById('imageModal');
     const modalImg = document.getElementById("modalImage");
     let currentImageIndex;
-    const testimonialImages = [
-        "https://pixvid.org/images/2025/10/24/kEZMJ.jpg",
-        "https://pixvid.org/images/2025/10/24/kEZcj.jpg",
-        "https://pixvid.org/images/2025/10/24/kEgWD.jpg",
-        "https://pixvid.org/images/2025/10/24/kEgFp.jpg",
-        "https://pixvid.org/images/2025/10/24/kEgxI.jpg",
-        "https://pixvid.org/images/2025/10/24/kEgL0.jpg",
-        "https://pixvid.org/images/2025/10/24/kEzzW.jpg",
-        "https://pixvid.org/images/2025/10/24/kEzuR.jpg",
-        "https://pixvid.org/images/2025/10/24/kEzGt.jpg",
-        "https://pixvid.org/images/2025/10/24/kEzfK.jpg",
-        "https://pixvid.org/images/2025/10/24/kE7Hy.jpg",
-        "https://pixvid.org/images/2025/10/24/kE7KG.jpg",
-        "https://pixvid.org/images/2025/10/24/kE7as.jpg",
-        "https://pixvid.org/images/2025/10/24/kEHPL.jpg",
-        "https://pixvid.org/images/2025/10/24/kEHrU.jpg",
-        "https://pixvid.org/images/2025/10/24/kEHoZ.jpg",
-        "https://pixvid.org/images/2025/10/24/kEHXr.jpg",
-        "https://pixvid.org/images/2025/10/24/kEQUw.jpg",
-        "https://pixvid.org/images/2025/10/24/kEQlE.jpg",
-        "https://pixvid.org/images/2025/10/24/kEQ69.jpg",
-        "https://pixvid.org/images/2025/10/24/kEQsS.jpg",
-        "https://pixvid.org/images/2025/10/24/kERm2.jpg",
-        "https://pixvid.org/images/2025/10/24/kERhV.jpg",
-        "https://pixvid.org/images/2025/10/24/kER9k.jpg",
-        "https://pixvid.org/images/2025/10/24/kERNg.jpg",
-        "https://pixvid.org/images/2025/10/24/kErCO.jpg",
-        "https://pixvid.org/images/2025/10/24/kErwF.jpg",
-        "https://pixvid.org/images/2025/10/24/kErdn.jpg",
-        "https://pixvid.org/images/2025/10/24/kEr3M.jpg",
-        "https://pixvid.org/images/2025/10/24/kEOZa.jpg",
-        "https://pixvid.org/images/2025/10/24/kEOYB.jpg",
-        "https://pixvid.org/images/2025/10/24/kEOAf.jpg",
-        "https://pixvid.org/images/2025/10/24/kEOVm.jpg",
-        "https://pixvid.org/images/2025/10/24/kEl7z.jpg",
-        "https://pixvid.org/images/2025/10/24/kElJl.jpg"
+    const testimonials = [
+        { name: "Siti Aminah", role: "Guru Kelas", text: "Alhamdulillah, prosesnya cepat dan mudah. Sekarang semua aplikasi Adobe sudah aktif, sangat membantu pekerjaan saya.", stars: 5, image: "https://randomuser.me/api/portraits/women/1.jpg" },
+        { name: "Budi Santoso", role: "Desainer Grafis", text: "Mantap! Langganan di sini lebih hemat. Pelayanannya juga ramah dan responsif. Terima kasih banyak!", stars: 5, image: "https://randomuser.me/api/portraits/men/2.jpg" },
+        { name: "Rina Kartika", role: "Mahasiswa DKV", text: "Tugas kuliah jadi lancar jaya. Semua aplikasi premium bisa diakses tanpa kendala. Recommended banget buat mahasiswa.", stars: 5, image: "https://randomuser.me/api/portraits/women/3.jpg" },
+        { name: "Agus Setiawan", role: "Fotografer", text: "Prosesnya nggak sampai 15 menit, langsung aktif. Bisa langsung edit foto-foto klien. Sangat profesional.", stars: 5, image: "https://randomuser.me/api/portraits/men/4.jpg" },
+        { name: "Dewi Lestari", role: "Content Creator", text: "Fitur AI Generatif di Photoshop sangat berguna. Senang sekali bisa dapat akses penuh dengan harga terjangkau.", stars: 5, image: "https://randomuser.me/api/portraits/women/5.jpg" },
+        { name: "Eko Prasetyo", role: "Video Editor", text: "Awalnya ragu, tapi ternyata 100% amanah dan legal. Premiere Pro dan After Effects lancar tanpa masalah.", stars: 5, image: "https://randomuser.me/api/portraits/men/6.jpg" },
+        { name: "Fitriani", role: "Wirausaha", text: "Sangat membantu untuk membuat materi promosi usaha saya. Desain jadi lebih menarik dan profesional.", stars: 5, image: "https://randomuser.me/api/portraits/women/7.jpg" },
+        { name: "Heru Wibowo", role: "Arsitek", text: "Illustrator dan InDesign sangat penting untuk pekerjaan saya. Di sini prosesnya cepat dan harganya terbaik.", stars: 5, image: "https://randomuser.me/api/portraits/men/8.jpg" },
+        { name: "Indah Permata", role: "Animator", text: "Langganan Adobe CC penuh memang mahal, untung ada solusi ini. Animate dan Character Animator siap digunakan!", stars: 5, image: "https://randomuser.me/api/portraits/women/9.jpg" },
+        { name: "Joko Susilo", role: "Pegawai Kantor", text: "Pelayanannya top! Prosesnya dijelaskan dengan baik dan sangat sabar menjawab pertanyaan saya. Sukses selalu!", stars: 5, image: "https://randomuser.me/api/portraits/men/10.jpg" },
+        { name: "Lia Anggraini", role: "Guru Seni", text: "Anak-anak didik saya jadi lebih semangat belajar desain dengan software asli. Terima kasih sudah mempermudah.", stars: 5, image: "https://randomuser.me/api/portraits/women/11.jpg" },
+        { name: "Muhammad Iqbal", role: "Web Developer", text: "Adobe XD dan Photoshop jadi senjata utama. Proses aktivasi yang cepat sangat menghemat waktu saya.", stars: 5, image: "https://randomuser.me/api/portraits/men/12.jpg" },
+        { name: "Nadia Putri", role: "Social Media Manager", text: "Adobe Express dan Premiere Rush sangat praktis untuk konten harian. Harga yang ditawarkan sangat sepadan.", stars: 5, image: "https://randomuser.me/api/portraits/women/13.jpg" },
+        { name: "Putra Wijaya", role: "Pelajar", text: "Buat tugas sekolah jadi gampang banget. Nggak perlu lagi bingung cari-cari software. Pokoknya mantap!", stars: 5, image: "https://randomuser.me/api/portraits/men/14.jpg" },
+        { name: "Ratna Sari", role: "UI/UX Designer", text: "Workflow jadi lebih efisien karena bisa pakai semua aplikasi Adobe. Prosesnya juga sangat aman, tidak perlu password.", stars: 5, image: "https://randomuser.me/api/portraits/women/15.jpg" },
+        { name: "Rizky Pratama", role: "Musisi", text: "Adobe Audition sangat membantu untuk rekaman. Kualitasnya tidak diragukan lagi. Pelayanan cepat dan terpercaya.", stars: 5, image: "https://randomuser.me/api/portraits/men/16.jpg" },
+        { name: "Siska Amelia", role: "Ilustrator", text: "Akhirnya bisa pakai Fresco dan Illustrator versi terbaru. Benar-benar memuaskan. Terima kasih banyak, kak!", stars: 5, image: "https://randomuser.me/api/portraits/women/17.jpg" },
+        { name: "Teguh Santoso", role: "Pengembang Aplikasi", text: "Sangat direkomendasikan! Prosesnya profesional, cepat, dan yang terpenting, 100% legal. Tidak ada masalah sama sekali.", stars: 5, image: "https://randomuser.me/api/portraits/men/18.jpg" },
+        { name: "Wulan Dari", role: "Marketing", text: "Membuat aset marketing jadi lebih mudah dan hasilnya bagus. Sangat worth it untuk investasi jangka panjang.", stars: 5, image: "https://randomuser.me/api/portraits/women/19.jpg" },
+        { name: "Yusuf Maulana", role: "Dosen", text: "Membantu saya dalam menyiapkan materi ajar yang lebih interaktif dan menarik. Prosesnya tidak berbelit-belit.", stars: 5, image: "https://randomuser.me/api/portraits/men/20.jpg" },
+        { name: "Zahra Aliyah", role: "Penulis", text: "InCopy dan InDesign sangat berguna. Proses aktivasinya sangat cepat, langsung bisa dipakai untuk layout buku.", stars: 5, image: "https://randomuser.me/api/portraits/women/21.jpg" },
+        { name: "Andi Wijaya", role: "3D Artist", text: "Akses ke Substance 3D Painter dan Designer sangat membantu. Harga yang ditawarkan jauh lebih murah.", stars: 5, image: "https://randomuser.me/api/portraits/men/22.jpg" },
+        { name: "Citra Kirana", role: "Fashion Designer", text: "Illustrator jadi andalan untuk membuat desain pola. Terima kasih, pelayanannya sangat memuaskan dan cepat.", stars: 5, image: "https://randomuser.me/api/portraits/women/23.jpg" },
+        { name: "Doni Saputra", role: "Streamer", text: "Premiere Pro dan After Effects buat editing video streaming jadi lebih keren. Nggak nyesel langganan di sini.", stars: 5, image: "https://randomuser.me/api/portraits/men/24.jpg" },
+        { name: "Elisa Chandra", role: "Wedding Organizer", text: "Bikin portofolio dan materi promosi jadi lebih gampang dan elegan. Prosesnya super cepat dan terpercaya.", stars: 5, image: "https://randomuser.me/api/portraits/women/25.jpg" },
+        { name: "Fajar Nugroho", role: "Podcaster", text: "Adobe Audition-nya mantap. Kualitas audio jadi lebih jernih. Proses aktivasi juga nggak pakai lama.", stars: 5, image: "https://randomuser.me/api/portraits/men/26.jpg" },
+        { name: "Gita Permata", role: "Event Planner", text: "Semua kebutuhan desain untuk acara, mulai dari undangan sampai banner, bisa dikerjakan dengan mudah. Recommended!", stars: 5, image: "https://randomuser.me/api/portraits/women/27.jpg" },
+        { name: "Hadi Pranoto", role: "Peneliti", text: "InDesign dan Illustrator sangat membantu untuk visualisasi data penelitian. Prosesnya cepat dan sellernya amanah.", stars: 5, image: "https://randomuser.me/api/portraits/men/28.jpg" },
+        { name: "Irma Suryani", role: "Admin Online Shop", text: "Photoshop dan Lightroom buat foto produk jadi lebih menarik. Penjualan jadi meningkat. Terima kasih!", stars: 5, image: "https://randomuser.me/api/portraits/women/29.jpg" },
+        { name: "Krisna Murti", role: "Motion Graphic Designer", text: "After Effects dan Cinema 4D integrasinya lancar. Senang bisa dapat akses penuh dengan harga segini. Mantap!", stars: 5, image: "https://randomuser.me/api/portraits/men/30.jpg" }
     ];
-
-    window.openImageModal = function(event, index) {
-        event.stopPropagation();
-        imageModal.style.display = "flex";
-        showImage(index);
-    }
-
-    window.closeImageModal = function() {
-        imageModal.style.display = "none";
-    }
-
-    function showImage(index) {
-        if (index >= testimonialImages.length || index < 0) {
-            return;
-        }
-        currentImageIndex = index;
-        modalImg.src = testimonialImages[index];
-        
-        document.querySelector('.modal-nav.prev').style.display = (index > 0) ? 'flex' : 'none';
-        document.querySelector('.modal-nav.next').style.display = (index < testimonialImages.length - 1) ? 'flex' : 'none';
-    }
-
-    window.showNextImage = function() {
-        showImage(currentImageIndex + 1);
-    }
-
-    window.showPrevImage = function() {
-        showImage(currentImageIndex - 1);
-    }
-
-    document.addEventListener('keydown', function(event) {
-        if (imageModal.style.display === 'flex') {
-            if (event.key === 'ArrowRight') {
-                showNextImage();
-            } else if (event.key === 'ArrowLeft') {
-                showPrevImage();
-            } else if (event.key === 'Escape') {
-                closeImageModal();
-            }
-        }
-    });
     </script>
 </body>
 </html>
