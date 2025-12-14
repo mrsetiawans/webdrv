@@ -1262,7 +1262,19 @@
         }
 
         const getPaymentMethodsHTML = (accounts) => {
-            let html = `<h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">3. Metode Pembayaran</h2>`;
+            let html = `
+            <div class="bg-red-50 border-l-4 border-red-600 p-3 mb-4 rounded-r-lg shadow-sm flex items-center gap-3">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-exclamation-circle text-xl text-red-600 animate-pulse"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-red-700 text-s uppercase">PENTING: Cek Kembali Data Anda!</h3>
+                    <p class="text-s text-gray-700 leading-tight mt-0.5">
+                        Pastikan <strong>No. WhatsApp</strong> & <strong>Email</strong> yang Anda masukkan sudah <strong>BENAR</strong> dan <strong>AKTIF</strong>.
+                    </p>
+                </div>
+            </div>
+            <h2 class="text-lg font-bold mb-4 text-gray-800 google-sans">3. Metode Pembayaran</h2>`;
             html += `<div class="payment-group">`;
 
             Object.entries(accounts).forEach(([key, account], index) => {
