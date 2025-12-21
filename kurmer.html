@@ -1217,7 +1217,7 @@
                 name: "Perangkat Ajar Lengkap",
                 title: "Perangkat Ajar Deep Learning 2025/2026",
                 logoIcon: 'fa-solid fa-book-open-reader',
-                description: "Solusi lengkap administrasi mengajar Kurikulum Nasional untuk jenjang SD/MI, SMP/MTS, & SMA/MAN.",
+                description: "Solusi lengkap administrasi mengajar Kurikulum Nasional untuk jenjang SD/MI, SMP/MTS, SMA/MAN & SMK/MAK.",
                 kelengkapan: [
                     "Modul Ajar Terintegrasi Deep Learning (2 Semester)",
                     "Capaian Pembelajaran (CP)",
@@ -1279,6 +1279,8 @@
         const mapelSMP = ["Bahasa Indonesia", "Bahasa Inggris", "Ilmu Pengetahuan Alam", "Ilmu Pengetahuan Sosial", "Informatika", "Koding dan Kecerdasan Artifisial", "Matematika", "Muatan Lokal", "Pendidikan Agama Buddha dan Budi Pekerti", "Pendidikan Agama Hindu dan Budi Pekerti", "Pendidikan Agama Islam dan Budi Pekerti", "Pendidikan Agama Katolik dan Budi Pekerti", "Pendidikan Agama Khonghucu dan Budi Pekerti", "Pendidikan Agama Kristen dan Budi Pekerti", "Pendidikan Jasmani Olahraga dan Kesehatan", "Pendidikan Pancasila", "Prakarya Budi Daya", "Prakarya Kerajinan", "Prakarya Pengolahan", "Prakarya Rekayasa", "Seni Musik", "Seni Rupa", "Seni Tari", "Seni Teater"];
         const mapelSMA = ["Antropologi", "Bahasa Indonesia", "Bahasa Indonesia Tingkat Lanjut", "Bahasa Inggris", "Bahasa Inggris Tingkat Lanjut", "Bahasa Jepang", "Bahasa Jerman", "Bahasa Korea", "Bahasa Mandarin", "Bahasa Prancis", "Biologi", "Ekonomi", "Fisika", "Geografi", "Informatika", "Kimia", "Koding dan Kecerdasan Artifisial", "Matematika", "Matematika Tingkat Lanjut", "Muatan Lokal", "Pendidikan Agama Buddha dan Budi Pekerti", "Pendidikan Agama Hindu dan Budi Pekerti", "Pendidikan Agama Islam dan Budi Pekerti", "Pendidikan Agama Katolik dan Budi Pekerti", "Pendidikan Agama Khonghucu dan Budi Pekerti", "Pendidikan Agama Kristen dan Budi Pekerti", "Pendidikan Jasmani Olahraga dan Kesehatan", "Pendidikan Pancasila", "Prakarya dan Kewirausahaan", "Sejarah", "Sejarah Tingkat Lanjut", "Seni Musik", "Seni Rupa", "Seni Tari", "Seni Teater", "Sosiologi"];
         const mapelSMKUmum = ["Bahasa Indonesia", "Bahasa Inggris", "Dasar-Dasar Program Keahlian", "Informatika", "Koding dan Kecerdasan Artifisial", "Konsentrasi Keahlian", "Kreativitas Inovasi dan Kewirausahaan", "Matematika", "Muatan Lokal", "Pendidikan Agama Buddha dan Budi Pekerti", "Pendidikan Agama Hindu dan Budi Pekerti", "Pendidikan Agama Islam dan Budi Pekerti", "Pendidikan Agama Katolik dan Budi Pekerti", "Pendidikan Agama Khonghucu dan Budi Pekerti", "Pendidikan Agama Kristen dan Budi Pekerti", "Pendidikan Jasmani Olahraga dan Kesehatan", "Pendidikan Pancasila", "Praktik Kerja Lapangan", "Projek Ilmu Pengetahuan Alam dan Sosial", "Sejarah", "Seni Musik", "Seni Rupa", "Seni Tari", "Seni Teater"];
+
+        const mapelAgama = ["Akidah Akhlak", "Sejarah Kebudayaan Islam", "Al-Quran Hadis", "Bahasa Arab", "Fiqih"];
 
         const educationalData = {
             "SD/MI": {
@@ -1470,16 +1472,11 @@
 
         const getDetailsAccordionHTML = (pkg) => {
             const kelengkapanHTML = `<ul class="space-y-3">${pkg.kelengkapan.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3 text-lg feature-icon"></i><span class="text-theme-on-surface-variant text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>`;
-            const mapelHTML = `<div class="grid grid-cols-2 gap-x-4 gap-y-2">${pkg.mapel.map(m => `<div class="flex items-center text-sm"><i class="fas fa-book text-blue-400 mr-2"></i><span>${m}</span></div>`).join('')}</div>`;
-
+            
             return `
                 <details class="faq-item">
                     <summary>Kelengkapan Perangkat Ajar</summary>
                     <div class="faq-content">${kelengkapanHTML}</div>
-                </details>
-                <details class="faq-item">
-                    <summary>Mata Pelajaran Tersedia</summary>
-                    <div class="faq-content">${mapelHTML}</div>
                 </details>
             `;
         }
@@ -1575,7 +1572,7 @@
             validCartItems.forEach(item => {
                 let pricePerMapel = 0;
                 if (item.jenjang === 'SMK/MAK') {
-                    const isUmum = mapelSMKUmum.includes(item.mapel);
+                    const isUmum = mapelSMKUmum.includes(item.mapel) || mapelAgama.includes(item.mapel);
                     pricePerMapel = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
                 } else {
                     pricePerMapel = pricing[item.jenjang] || 0;
@@ -1595,7 +1592,7 @@
                 validCartItems.forEach((item, index) => {
                     let pricePerMapel = 0;
                     if (item.jenjang === 'SMK/MAK') {
-                        const isUmum = mapelSMKUmum.includes(item.mapel);
+                        const isUmum = mapelSMKUmum.includes(item.mapel) || mapelAgama.includes(item.mapel);
                         pricePerMapel = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
                     } else {
                         pricePerMapel = pricing[item.jenjang] || 0;
@@ -1711,7 +1708,18 @@
             if (jenjang === 'SMK/MAK' && jurusan && kelas && educationalData[jenjang][jurusan]) {
                 // Handle SMK: General subjects are class-specific, vocational are for the whole major.
                 
-                // 1. Add class-specific general subjects
+                // 1. Add Islamic Subjects
+                const agamaGroup = document.createElement('optgroup');
+                agamaGroup.label = 'Mapel Agama Islam';
+                mapelAgama.forEach(mapel => {
+                    const option = document.createElement('option');
+                    option.value = mapel;
+                    option.textContent = mapel;
+                    agamaGroup.appendChild(option);
+                });
+                mapelSelect.appendChild(agamaGroup);
+
+                // 2. Add class-specific general subjects
                 const mapelsForSelectedClass = educationalData[jenjang][jurusan][kelas] || [];
                 const umumGroup = document.createElement('optgroup');
                 umumGroup.label = 'Mapel Umum';
@@ -1725,7 +1733,7 @@
                 });
                 mapelSelect.appendChild(umumGroup);
 
-                // 2. Add all unique vocational subjects from the entire major
+                // 3. Add all unique vocational subjects from the entire major
                 const kejuruanGroup = document.createElement('optgroup');
                 kejuruanGroup.label = 'Mapel Kejuruan';
                 
@@ -1750,16 +1758,33 @@
 
             } else if (jenjang && kelas && educationalData[jenjang][kelas]) {
                 // Handle non-SMK (SD, SMP, SMA)
+                
+                // 1. Mapel Agama Islam
+                const agamaGroup = document.createElement('optgroup');
+                agamaGroup.label = 'Mapel Agama Islam';
+                mapelAgama.forEach(mapel => {
+                    const option = document.createElement('option');
+                    option.value = mapel;
+                    option.textContent = mapel;
+                    agamaGroup.appendChild(option);
+                });
+                mapelSelect.appendChild(agamaGroup);
+
+                // 2. Mapel Umum
+                const umumGroup = document.createElement('optgroup');
+                umumGroup.label = 'Mapel Umum';
                 const mapels = educationalData[jenjang][kelas];
                 if (mapels.length > 0) {
                     mapels.forEach(mapel => {
                         const option = document.createElement('option');
                         option.value = mapel;
                         option.textContent = mapel;
-                        mapelSelect.appendChild(option);
+                        umumGroup.appendChild(option);
                     });
-                    mapelSelect.disabled = false;
+                    mapelSelect.appendChild(umumGroup);
                 }
+
+                mapelSelect.disabled = false;
             }
 
             // Update preview harga only for non-SMK
@@ -1779,7 +1804,7 @@
             const pricePreview = orderItemCard.querySelector('.price-preview-box');
 
             if (jenjang === 'SMK/MAK' && mapel) {
-                const isUmum = mapelSMKUmum.includes(mapel);
+                const isUmum = mapelSMKUmum.includes(mapel) || mapelAgama.includes(mapel);
                 const price = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
                 
                 const priceValue = orderItemCard.querySelector('.price-value');
@@ -2002,7 +2027,7 @@
             const subtotal = validCartItems.reduce((acc, item) => {
                 let pricePerMapel = 0;
                 if (item.jenjang === 'SMK/MAK') {
-                    const isUmum = mapelSMKUmum.includes(item.mapel);
+                    const isUmum = mapelSMKUmum.includes(item.mapel) || mapelAgama.includes(item.mapel);
                     pricePerMapel = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
                 } else {
                     pricePerMapel = pricing[item.jenjang] || 0;
@@ -2125,7 +2150,7 @@
             validCartItems.forEach(item => {
                 let pricePerMapel = 0;
                 if (item.jenjang === 'SMK/MAK') {
-                    const isUmum = mapelSMKUmum.includes(item.mapel);
+                    const isUmum = mapelSMKUmum.includes(item.mapel) || mapelAgama.includes(item.mapel);
                     pricePerMapel = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
                 } else {
                     pricePerMapel = pricing[item.jenjang] || 0;
