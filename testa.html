@@ -1453,23 +1453,23 @@
             const getProductSwitcherHTML = () => {
                 const isYearly = currentProductId === 'chatgpt_12bulan';
                 return `
-                <div class="mb-4">
-                    <div class="flex items-center justify-between mb-2 px-1">
-                        <h2 class="text-[11px] font-black text-slate-400 uppercase tracking-widest">Pilih Durasi</h2>
-                        ${isYearly ? '<span class="text-[10px] font-bold text-green-500 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">Opsi Hemat dipilih</span>' : ''}
+                <div class="mb-5">
+                    <div class="flex items-center justify-between mb-3 px-1">
+                        <h2 class="text-[13px] font-black text-slate-400 uppercase tracking-widest">Pilih Durasi</h2>
+                        ${isYearly ? '<span class="text-[12px] font-bold text-green-500 bg-green-50 px-2.5 py-1 rounded-full border border-green-100">Opsi Hemat dipilih</span>' : ''}
                     </div>
                     <div class="segmented-control">
                         <div class="segmented-pill ${isYearly ? 'pill-right' : 'pill-left'}"></div>
                         <div onclick="switchProduct('chatgpt_1bulan')" 
                              class="segmented-option ${!isYearly ? 'active' : ''}">
-                            <span class="text-xs opacity-70 mb-0.5">Basic</span>
-                            <span>1 Bulan</span>
+                            <span class="text-[13px] opacity-70 mb-0.5">Basic</span>
+                            <span class="text-[16px]">1 Bulan</span>
                         </div>
                         <div onclick="switchProduct('chatgpt_12bulan')" 
                              class="segmented-option ${isYearly ? 'active' : ''}">
-                            <span class="text-xs opacity-70 mb-0.5">Best Value</span>
-                            <span>12 Bulan</span>
-                            <span class="save-tag">Hemat 80%</span>
+                            <span class="text-[13px] opacity-70 mb-0.5">Best Value</span>
+                            <span class="text-[16px]">12 Bulan</span>
+                            <span class="save-tag text-[10px]">Hemat 80%</span>
                         </div>
                     </div>
                 </div>`;
@@ -1478,32 +1478,32 @@
             const getProductInfoHTML = (pkg) => {
                 return `
                 <div class="bg-white rounded-3xl shadow-lg border border-slate-100 mb-8 overflow-hidden">
-                    <div class="flex sm:flex-row flex-col items-center p-6 gap-5 mobile-stack">
+                    <div class="flex sm:flex-row flex-col items-center p-6 gap-6 mobile-stack">
                         <!-- Left: App Icon -->
                         <div class="flex-shrink-0 relative">
                             <div class="absolute inset-0 bg-blue-500 rounded-2xl blur-xl opacity-20"></div>
                             <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
-                                 class="relative w-16 h-16 rounded-2xl shadow-md bg-white p-2 border border-slate-50">
+                                 class="relative w-20 h-20 rounded-2xl shadow-md bg-white p-2.5 border border-slate-50">
                         </div>
                         
                         <!-- Middle: Brand & Badge -->
                         <div class="flex-grow sm:text-left text-center">
-                            <h1 class="text-2xl font-black text-slate-900 tracking-tight">ChatGPT <span class="text-blue-600">PLUS</span></h1>
-                            <div class="flex flex-wrap sm:justify-start justify-center gap-2 mt-1.5">
-                                <span class="text-[10px] font-black px-2 py-0.5 bg-slate-900 text-white rounded-full uppercase">Official</span>
-                                <span class="text-[10px] font-black px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full uppercase border border-blue-100">Private</span>
+                            <h1 class="text-3xl font-black text-slate-900 tracking-tight">ChatGPT <span class="text-blue-600">PLUS</span></h1>
+                            <div class="flex flex-wrap sm:justify-start justify-center gap-2 mt-2">
+                                <span class="text-[12px] font-black px-3 py-1 bg-slate-900 text-white rounded-full uppercase">Official</span>
+                                <span class="text-[12px] font-black px-3 py-1 bg-blue-50 text-blue-600 rounded-full uppercase border border-blue-100">Private</span>
                             </div>
                         </div>
 
                         <!-- Right: Price Area -->
-                        <div class="sm:text-right text-center sm:w-auto w-full pt-4 sm:pt-0 border-t sm:border-t-0 border-slate-50">
+                        <div class="sm:text-right text-center sm:w-auto w-full pt-5 sm:pt-0 border-t sm:border-t-0 border-slate-50">
                             <div class="price-animation">
-                                <span class="text-[11px] font-black text-slate-400 block uppercase tracking-tighter">Total Bayar</span>
+                                <span class="text-[13px] font-black text-slate-400 block uppercase tracking-tighter">Total Bayar</span>
                                 <div class="flex items-baseline sm:justify-end justify-center gap-1">
-                                    <span class="text-sm font-bold text-slate-900">Rp</span>
-                                    <span class="text-5xl font-black text-slate-900 tracking-tighter">${pkg.price / 1000}K</span>
+                                    <span class="text-lg font-bold text-slate-900">Rp</span>
+                                    <span class="text-6xl font-black text-slate-900 tracking-tighter">${pkg.price / 1000}K</span>
                                 </div>
-                                <p class="text-[10px] font-medium text-slate-400 mt-1">Sekali Bayar • No Subscription</p>
+                                <p class="text-[12px] font-medium text-slate-500 mt-1.5">Sekali Bayar • No Subscription</p>
                             </div>
                         </div>
                     </div>
