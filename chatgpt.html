@@ -433,14 +433,11 @@
             z-index: 1;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .segmented-control .package-radio#pkg-monthly:checked ~ .segmented-control-pill {
+            transform: translateX(0%);
+        }
         .segmented-control .package-radio#pkg-yearly:checked ~ .segmented-control-pill {
-            transform: translateX(0%);
-        }
-        .segmented-control .package-radio#pkg-lifetime:checked ~ .segmented-control-pill {
             transform: translateX(100%);
-        }
-        .segmented-control .package-radio#product-google:checked ~ .segmented-control-pill {
-            transform: translateX(0%);
         }
         /* Enhanced Product Info Display */
         #product-info-form-top {
@@ -941,7 +938,16 @@
                     </div>
 
                     <!-- Product Selection -->
-                    <!-- Product Selection Removed -->
+                    <div class="segmented-control mb-4">
+                        <input type="radio" name="package" id="pkg-monthly" value="chatgpt_1bulan" class="package-radio">
+                        <label for="pkg-monthly" class="package-label">1 Bulan</label>
+                        
+                        <input type="radio" name="package" id="pkg-yearly" value="chatgpt_12bulan" class="package-radio" checked>
+                        <label for="pkg-yearly" class="package-label">1 Tahun</label>
+                        
+                        <div class="segmented-control-pill"></div>
+                    </div>
+
                     <!-- Info Produk -->
                     <div id="product-info-form-top" class="mb-4"></div>
 
@@ -1132,7 +1138,7 @@
             // --- CONSTANT DATA ---
             const chatgptCommon = {
                 logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ChatGPT-Logo.svg/250px-ChatGPT-Logo.svg.png",
-                description: "AKUN PRIVATE • BISA PAKAI AKUN KAMU • 100% GARANSI",
+                description: "Akun Private • Bisa Pakai Akun Kamu • 100% Garansi",
                 features: [
                     "<strong>Akses GPT 5.2:</strong> Model terbaru dengan mode Auto, Fast, & Thinking. Termasuk akses ke GPT 5.1 & 4o.",
                     "<strong>Auto Instant:</strong> Akun langsung aktif setelah pembayaran.",
@@ -1165,8 +1171,9 @@
                     id: 'chatgpt_1bulan',
                     name: "ChatGPT Plus 1 Bulan",
                     price: 50000,
-                    normalPrice: 350000,
+                    normalPrice: 300000,
                     title: "ChatGPT Plus - 1 Bulan",
+                    durationText: "Berlaku 1 Bulan / Private Account",
                     paymentTerm: "1 Bulan",
                     ...chatgptCommon
                 },
@@ -1174,22 +1181,18 @@
                     id: 'chatgpt_12bulan',
                     name: "ChatGPT Plus 1 Tahun",
                     price: 250000,
-                    normalPrice: 3500000,
+                    normalPrice: 3000000,
                     title: "ChatGPT Plus - 1 Tahun",
+                    durationText: "Berlaku 1 Tahun / Private Account",
                     paymentTerm: "1 Tahun",
                     ...chatgptCommon
                 }
             };
 
-            let currentProductId = 'chatgpt_12bulan';
+            let currentProductId = 'chatgpt_12bulan'; // Paket default yang dipilih
 
-            window.switchProduct = function(id) {
-                currentProductId = id;
-                updateDisplay();
-            };
-
-            // Event listener for product selection
-            document.querySelectorAll('input[name="product"]').forEach(radio => {
+            // Event listener for product selection (Segmented Control)
+            document.querySelectorAll('input[name="package"]').forEach(radio => {
                 radio.addEventListener('change', (event) => {
                     currentProductId = event.target.value;
                     updateDisplay();
@@ -1244,40 +1247,37 @@
 
             // --- TEMPLATE FUNCTIONS ---
             const getProductInfoHTML = (pkg) => {
-                const isYearly = currentProductId === 'chatgpt_12bulan';
-
+                const discount = Math.round(((pkg.normalPrice - pkg.price) / pkg.normalPrice) * 100);
                 return `
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200">
-                    <!-- Header Area -->
-                    <div class="p-5 text-center bg-gray-50 border-b border-gray-100">
-                        <div class="flex justify-center mb-3">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" class="w-16 h-16 rounded-full shadow-sm bg-white p-1">
+                <div class="product-info-card flex h-full bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-md transition-all">
+                    <!-- Left Stripe -->
+                    <div class="w-2 bg-gradient-to-b from-[#007aff] to-[#005ecb]"></div>
+                    
+                    <div class="p-4 flex flex-col flex-grow relative">
+                        <div class="absolute top-3 right-3">
+                            <span class="px-2 py-1 bg-red-50 text-red-700 text-xs font-bold rounded-md">
+                                -${discount}%
+                            </span>
                         </div>
-                        <h1 class="text-2xl font-extrabold text-gray-900 mb-1">ChatGPT PLUS</h1>
-                        <p class="text-xs font-bold text-gray-500 tracking-wide uppercase">AKUN PRIVATE • BISA PAKAI AKUN KAMU • 100% GARANSI</p>
-                        
-                        <div class="mt-4 flex flex-wrap justify-center gap-2">
-                            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">AKSES GPT 5.2</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">AUTO INSTANT</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full">SORA AI >></span>
-                        </div>
-                    </div>
 
-                    <!-- Pricing Selection -->
-                    <div class="p-5">
-                        <div class="grid grid-cols-2 gap-4">
-                            <!-- Option 1: 1 Bulan -->
-                            <div onclick="switchProduct('chatgpt_1bulan')" 
-                                class="cursor-pointer border-2 rounded-xl p-4 text-center transition-all ${!isYearly ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-300'}">
-                                <div class="text-sm font-semibold text-gray-600 mb-1">1 BULAN</div>
-                                <div class="text-xl font-bold text-gray-900">50K</div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <img alt="Logo ${pkg.name}" class="w-12 h-12 object-contain" src="${pkg.logo}">
+                            <div>
+                                <h1 class="text-xl font-bold text-gray-900 leading-tight">${pkg.title}</h1>
+                                <p class="text-sm text-gray-500">Professional License</p>
                             </div>
-
-                            <!-- Option 2: 12 Bulan -->
-                            <div onclick="switchProduct('chatgpt_12bulan')" 
-                                class="cursor-pointer border-2 rounded-xl p-4 text-center transition-all relative overflow-hidden ${isYearly ? 'border-black bg-gray-900 text-white shadow-lg' : 'border-gray-200 hover:border-gray-300'}">
-                                <div class="text-sm font-semibold ${isYearly ? 'text-gray-300' : 'text-gray-600'} mb-1">12 BULAN</div>
-                                <div class="text-xl font-bold ${isYearly ? 'text-white' : 'text-gray-900'}">250K</div>
+                        </div>
+                        
+                        <p class="text-[15px] text-gray-600 mb-2 flex-grow leading-snug">${pkg.description}</p>
+                        
+                        <div class="flex items-end justify-between mt-auto border-t border-gray-200 pt-2">
+                            <div>
+                                <p class="text-sm text-gray-400 mb-0.5">Harga Normal</p>
+                                <p class="text-base text-gray-400 line-through decoration-red-400">${formatCurrency(pkg.normalPrice)}</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-3xl font-bold text-apple-blue">${formatCurrency(pkg.price)}</p>
+                                <p class="text-xs text-gray-500">${pkg.durationText}</p>
                             </div>
                         </div>
                     </div>
