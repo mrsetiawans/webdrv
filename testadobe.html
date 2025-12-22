@@ -425,10 +425,10 @@
             z-index: 1;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .segmented-control .package-radio#pkg-yearly:checked ~ .segmented-control-pill {
+        .segmented-control .package-radio#pkg-monthly:checked ~ .segmented-control-pill {
             transform: translateX(0%);
         }
-        .segmented-control .package-radio#pkg-lifetime:checked ~ .segmented-control-pill {
+        .segmented-control .package-radio#pkg-yearly:checked ~ .segmented-control-pill {
             transform: translateX(100%);
         }
         /* Enhanced Product Info Display */
@@ -930,6 +930,17 @@
                     </div>
                     
 
+                    <!-- Package Selection -->
+                    <div class="segmented-control mb-4">
+                        <input type="radio" name="package" id="pkg-monthly" value="monthly" class="package-radio">
+                        <label for="pkg-monthly" class="package-label">1 Bulan</label>
+                        
+                        <input type="radio" name="package" id="pkg-yearly" value="yearly" class="package-radio" checked>
+                        <label for="pkg-yearly" class="package-label">1 Tahun</label>
+                        
+                        <div class="segmented-control-pill"></div>
+                    </div>
+
                     <!-- Info Produk -->
                     <div id="product-info-form-top" class="mb-4"></div>
                     
@@ -1119,6 +1130,34 @@
         let currentOrderDetails = {};
 
         const packages = {
+            monthly: {
+                id: 'monthly',
+                name: "Adobe Creative Cloud (1 Bulan)",
+                price: 50000,
+                normalPrice: 250000,
+                title: "Adobe Creative Cloud",
+                durationText: "Berlaku 1 Bulan / 5 Devices",
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png',
+                description: "Akses semua aplikasi Adobe & 100GB Cloud Storage.",
+                features: [
+                    "<strong>Akses 20+ Aplikasi Adobe:</strong> Termasuk Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, dll.",
+                    "<strong>Penyimpanan Cloud 100GB:</strong> Simpan dan sinkronkan file Anda dengan mudah.",
+                    "<strong>Sinkronisasi Antar Perangkat:</strong> Bekerja mulus di desktop, mobile, dan web.",
+                    "<strong>Creative Cloud Libraries:</strong> Bagikan aset dan warna antar aplikasi dengan tim Anda.",
+                    "<strong>Ribuan Font Premium:</strong> Akses koleksi font lengkap dari Adobe Fonts.",
+                    "<strong>Integrasi Adobe Stock:</strong> Temukan jutaan aset foto, video, dan vektor langsung di aplikasi.",
+                    "<strong>Pembaruan Otomatis:</strong> Selalu dapatkan fitur terbaru tanpa biaya tambahan.",
+                    "<strong>Integrasi Lintas Aplikasi:</strong> Alur kerja yang lancar, misalnya dari Illustrator ke After Effects.",
+                    "<strong>Template & Aset Gratis:</strong> Percepat proyek Anda dengan ribuan template siap pakai.",
+                    "<strong>Aplikasi Mobile & Web:</strong> Edit di mana saja dengan Photoshop Express, Premiere Rush, dan lainnya.",
+                    "<strong>Fitur AI Generatif:</strong> Manfaatkan kekuatan Adobe Firefly untuk generative fill, text-to-image, dll.",
+                    "<strong>Adobe Portfolio & Behance:</strong> Bangun situs portofolio profesional dan tampilkan karya Anda.",
+                    "<strong>Akses Offline:</strong> Tetap produktif bahkan saat tidak terhubung ke internet.",
+                    "<strong>Keamanan Terenkripsi:</strong> File Anda aman di penyimpanan cloud Adobe.",
+                    "<strong>Pusat Bantuan Resmi:</strong> Dapatkan akses ke tutorial, panduan, dan dukungan dari Adobe."
+                ],
+                testimonials: testimonialImages
+            },
             yearly: {
                 id: 'yearly',
                 name: "Adobe Creative Cloud (1 Tahun)",
