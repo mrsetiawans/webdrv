@@ -779,7 +779,12 @@
         };
         const blacklistedNumbers = ['081234567890'];
         const allowedEmailDomains = [
-            'gmail.com', 'googlemail.com'
+            'gmail.com', 'googlemail.com', 'outlook.com', 'hotmail.com',
+            'hotmail.co.uk', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.co.id',
+            'yahoo.co.uk', 'ymail.com', 'rocketmail.com', 'icloud.com', 'me.com',
+            'mac.com', 'aol.com', 'zoho.com', 'proton.me', 'protonmail.com',
+            'tutanota.com', 'gmx.com', 'gmx.de', 'mail.com', 'yandex.ru',
+            'yandex.com', 'fastmail.com', 'hey.com'
         ];
     
         function isInvalidPattern(nomor) {
@@ -960,8 +965,7 @@
             const name = document.getElementById('nama').value.trim();
             const wa = document.getElementById('whatsapp').value.trim();
             const email = document.getElementById('email').value.trim();
-            // Google Drive specific email regex (must be gmail)
-            const emailRegex = /^[^\s@]+@gmail\.com$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             if (!name) return { valid: false, msg: 'Nama wajib diisi' };
             
@@ -971,7 +975,12 @@
             }
 
             if (!email || !emailRegex.test(email)) {
-                return { valid: false, msg: 'Mohon gunakan alamat email Gmail yang valid (@gmail.com)' };
+                return { valid: false, msg: 'Email tidak valid' };
+            }
+
+            const domain = email.split('@')[1].toLowerCase();
+            if (!allowedEmailDomains.includes(domain)) {
+                return { valid: false, msg: 'Domain email tidak diizinkan. Harap gunakan email pribadi.' };
             }
             
             return { valid: true };
