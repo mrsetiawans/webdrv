@@ -800,6 +800,14 @@
             'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
         };
         const blacklistedNumbers = ['081234567890'];
+        const allowedEmailDomains = [
+            'gmail.com', 'googlemail.com', 'outlook.com', 'hotmail.com',
+            'hotmail.co.uk', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.co.id',
+            'yahoo.co.uk', 'ymail.com', 'rocketmail.com', 'icloud.com', 'me.com',
+            'mac.com', 'aol.com', 'zoho.com', 'proton.me', 'protonmail.com',
+            'tutanota.com', 'gmx.com', 'gmx.de', 'mail.com', 'yandex.ru',
+            'yandex.com', 'fastmail.com', 'hey.com'
+        ];
     
         function isInvalidPattern(nomor) {
             if (blacklistedNumbers.includes(nomor)) return true;
@@ -1001,8 +1009,9 @@
                 return { valid: false, msg: 'Email tidak valid' };
             }
 
-            if (!email.endsWith('@gmail.com') && !email.endsWith('@icloud.com')) {
-                return { valid: false, msg: 'Harap gunakan alamat email Gmail atau iCloud yang valid.' };
+            const domain = email.split('@')[1];
+            if (!allowedEmailDomains.includes(domain)) {
+                return { valid: false, msg: 'Domain email tidak diizinkan. Harap gunakan email pribadi.' };
             }
             
             return { valid: true };
