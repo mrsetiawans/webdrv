@@ -1513,15 +1513,24 @@
             // Format order details for display
             // orderDetails is a string with newlines, let's parse or just display
             // Better to re-render from cart if available, but for simplicity:
-            const itemsHtml = cart.map(item => `
+            const itemsHtml = cart.map(item => {
+                let price = 0;
+                if (item.jenjang === 'SMK/MAK') {
+                    const isUmum = mapelSMKUmum.includes(item.mapel) || mapelAgama.includes(item.mapel);
+                    price = isUmum ? pricing['SMK/MAK'].umum : pricing['SMK/MAK'].kejuruan;
+                } else {
+                    price = pricing[item.jenjang];
+                }
+
+                return `
                 <div class="flex justify-between text-sm py-1 border-b border-gray-50 last:border-0">
                     <div>
                         <span class="font-medium">${item.jenjang} - ${item.kelas}</span>
                         <div class="text-xs text-gray-500">${item.mapel}</div>
                     </div>
-                    <span class="font-semibold">${formatCurrency(item.price)}</span>
+                    <span class="font-semibold">${formatCurrency(price)}</span>
                 </div>
-            `).join('');
+            `}).join('');
 
             document.getElementById('detailsModalContent').innerHTML = `
                 <div class="details-modal-header p-4 flex items-center justify-between border-b border-gray-100">
