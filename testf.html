@@ -476,11 +476,11 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/ICloud_logo.svg/320px-ICloud_logo.svg.png" alt="iCloud Logo" class="w-8 h-8 object-contain">
                     <div>
                         <h1 class="font-bold text-lg leading-none">iCloud+</h1>
-                        <p class="text-xs text-gray-500 font-medium">Upgrade Resmi</p>
+                        <p class="text-xs text-gray-500 font-medium">Official Upgrade</p>
                     </div>
                 </div>
                 <div class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold">
-                    <i class="fas fa-check-circle mr-1"></i> Garansi
+                    <i class="fas fa-check-circle mr-1"></i> Garansi Resmi
                 </div>
             </div>
 
@@ -1034,7 +1034,12 @@
             const payment = paymentMethods.find(p => p.id === currentPayment);
             const totalPrice = pkg.price + uniqueCode;
             const now = new Date();
-            const paymentId = `INV-ICLOUD-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
+            const year = String(now.getFullYear()).slice(-2);
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const getRandomLetter = () => String.fromCharCode(65 + Math.floor(Math.random() * 26));
+            const getRandomDigit = () => Math.floor(Math.random() * 10);
+            const paymentId = `INV-ICLOUD-${year}${month}${day}-${getRandomLetter()}${getRandomDigit()}${getRandomLetter()}${getRandomDigit()}`;
             
             // Prepare Object for Google Script
             const dataToSend = {
