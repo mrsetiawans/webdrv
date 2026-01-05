@@ -1027,7 +1027,9 @@
             const payment = paymentMethods.find(p => p.id === currentPayment);
             const totalPrice = pkg.price + uniqueCode;
             const now = new Date();
-            const paymentId = `INV-ADOBE-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
+            const rL = () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 26));
+            const rD = () => Math.floor(Math.random() * 10);
+            const paymentId = `INV-ADOBE-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
             
             // Prepare Object for Google Script
             const dataToSend = {
