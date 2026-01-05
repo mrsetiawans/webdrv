@@ -473,7 +473,7 @@
                     <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-bold mb-3 animate-pulse">
                         <i class="fas fa-star mr-1"></i> KURIKULUM NASIONAL
                     </span>
-                    <h2 class="text-2xl font-bold mb-2">Perangkat Ajar Deep Learning</h2>
+                    <h2 class="text-2xl font-bold mb-2">Perangkat Ajar Deep Learning & KBC</h2>
                     <p class="text-gray-500 text-sm px-2">Solusi administrasi lengkap untuk SD/MI, SMP/MTS, SMA/MAN & SMK/MAK. Siap pakai & mudah diedit.</p>
                 </div>
 
@@ -1296,7 +1296,14 @@
 
             const paymentAccount = paymentMethods.find(p => p.id === paymentMethodKey);
             const now = new Date();
-            const paymentId = `INV-PA-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}${String(now.getHours()).padStart(2,'0')}${String(totalPrice).slice(-3)}`;
+
+            const year = String(now.getFullYear()).slice(-2);
+            const month = String(now.getMonth()+1).padStart(2,'0');
+            const day = String(now.getDate()).padStart(2,'0');
+            const randomChar = () => String.fromCharCode(65 + Math.floor(Math.random() * 26));
+            const randomDigit = () => Math.floor(Math.random() * 10);
+
+            const paymentId = `INV-PA-${year}${month}${day}-${randomChar()}${randomDigit()}${randomChar()}${randomDigit()}`;
 
             const dataToSend = {
                 nama, whatsapp, email,
