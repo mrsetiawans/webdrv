@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
     
@@ -32,594 +32,649 @@
 
     <style>
         :root {
-            --primary: #000000;
-            --bg-main: #FFDE00; /* Vibrant Yellow */
-            --surface: #FFFFFF;
-            --accent: #FF5A5F; /* Pop Red */
-            --accent-blue: #3B82F6;
-            --border-width: 2px;
-            --shadow-depth: 4px;
+            --primary: #FF90E8; /* Neo-Brutalist Pink */
+            --primary-dark: #FF5277;
+            --secondary: #23A094; /* Teal */
+            --highlight: #FFC900; /* Yellow */
+            --bg-page: #E0E7FF;
+            --border-black: #000000;
+            --text-main: #000000;
+            --text-secondary: #444444;
+            --shadow-hard: 4px 4px 0px 0px #000000;
         }
 
         body {
-            font-family: 'Public Sans', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--primary);
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Space Mono', monospace;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            background-image: radial-gradient(#000 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
-        h1, h2, h3, h4, h5, .display-font {
-            font-family: 'Space Grotesk', sans-serif;
+        /* RESET / OVERRIDES */
+        .rounded-xl, .rounded-lg, .rounded-md, .rounded-sm, .rounded-full, .rounded-3xl, .rounded-2xl, .rounded {
+            border-radius: 0 !important;
+        }
+        
+        .shadow-lg, .shadow-md, .shadow-sm, .shadow {
+            box-shadow: none !important;
         }
 
-        /* Brutalist Container */
+        /* Main Container */
         .main-container {
-            max-width: 480px;
+            max-width: 520px;
             margin: 0 auto;
             min-height: 100vh;
-            background: #FAFAFA;
-            border-left: var(--border-width) solid black;
-            border-right: var(--border-width) solid black;
+            background: white;
+            border-left: 3px solid black;
+            border-right: 3px solid black;
         }
 
         @media (min-width: 640px) {
             .main-container {
                 min-height: auto;
                 margin: 40px auto;
-                border: var(--border-width) solid black;
-                box-shadow: 8px 8px 0px 0px #000000;
+                border: 3px solid black;
+                box-shadow: 8px 8px 0px black;
+            }
+            body {
+                padding-bottom: 40px;
             }
         }
 
         /* Header */
-        .brutal-header {
-            background: black;
-            color: white;
-            padding: 16px;
-            border-bottom: var(--border-width) solid black;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* Cards */
-        .brutal-card {
-            background: white;
-            border: var(--border-width) solid black;
-            padding: 16px;
-            box-shadow: var(--shadow-depth) var(--shadow-depth) 0px 0px #000000;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-        
-        /* Package Tickets */
-        .package-ticket {
-            position: relative;
-            background: white;
-            border: var(--border-width) solid black;
-            margin-bottom: 16px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            overflow: hidden;
-        }
-
-        .package-ticket:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px 0px #000000;
-        }
-
-        .package-ticket.selected {
-            background: #EFF6FF;
-            box-shadow: 4px 4px 0px 0px #000000;
-        }
-
-        .package-ticket.selected .ticket-stub {
-            background: black;
-            color: white;
-        }
-
-        .ticket-content {
-            padding: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .ticket-stub {
-            background: #E5E7EB;
-            padding: 4px 12px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            border: var(--border-width) solid black;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-
-        /* Dashed Divider for Ticket */
-        .ticket-divider {
-            height: 2px;
-            background-image: linear-gradient(to right, black 50%, transparent 50%);
-            background-size: 10px 100%;
-            margin: 0 16px;
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #fff;
+            border-bottom: 3px solid black;
         }
 
         /* Inputs */
-        .brutal-input-group {
+        .input-group {
+            position: relative;
             margin-bottom: 16px;
         }
-
-        .brutal-label {
-            display: block;
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
-
-        .brutal-input {
+        
+        .modern-input {
             width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            font-weight: 500;
-            border: var(--border-width) solid black;
+            padding: 14px 16px;
+            font-size: 15px;
+            border: 3px solid black;
             outline: none;
-            background: white;
-            transition: all 0.2s;
-            border-radius: 0; /* Strict square */
+            transition: all 0.1s ease;
+            background: #fff;
+            color: var(--text-main);
+            box-shadow: 4px 4px 0px black;
+            font-family: 'Space Mono', monospace;
         }
 
-        .brutal-input:focus {
-            background: #FEF3C7; /* Light Yellow */
-            box-shadow: 4px 4px 0px 0px #000000;
+        .modern-input:focus {
+            background: #FFC900;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px black;
         }
 
-        /* Buttons */
-        .btn-brutal {
-            width: 100%;
+        .input-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: black;
+        }
+
+        /* Package Cards */
+        .package-card {
+            border: 3px solid black;
             padding: 16px;
-            background: black;
-            color: white;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            text-transform: uppercase;
-            border: none;
             cursor: pointer;
-            box-shadow: 6px 6px 0px 0px #9CA3AF;
-            transition: all 0.1s;
+            transition: all 0.1s ease;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 4px 4px 0px black;
+            margin-bottom: 10px;
+        }
+
+        .package-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px black;
+        }
+
+        .package-card.selected {
+            background: var(--highlight);
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px black;
+        }
+
+        .package-check {
+            width: 20px;
+            height: 20px;
+            border: 2px solid black;
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-        }
-        
-        .btn-brutal:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 4px 4px 0px 0px #9CA3AF;
         }
 
-        .btn-brutal:active {
-            transform: translate(6px, 6px);
+        .package-card.selected .package-check {
+            background: black;
+        }
+
+        .package-check::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+            font-size: 12px;
+            opacity: 0;
+        }
+
+        .package-card.selected .package-check::after {
+            opacity: 1;
+        }
+
+        /* Payment Grid */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .payment-option {
+            border: 3px solid black;
+            padding: 12px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.1s;
+            height: 80px;
+            position: relative;
+            background: white;
+            box-shadow: 3px 3px 0px black;
+        }
+
+        .payment-option:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px black;
+        }
+
+        .payment-option.selected {
+            background: var(--highlight);
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px black;
+        }
+
+        .payment-option img {
+            height: 24px;
+            width: auto;
+            object-fit: contain;
+            margin-bottom: 4px;
+            filter: grayscale(100%);
+        }
+        .payment-option.selected img {
+            filter: grayscale(0%);
+        }
+        
+        .payment-option span {
+            font-size: 10px;
+            color: black;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* Checkout Button */
+        .btn-checkout {
+            background: black;
+            color: white;
+            border: 3px solid black;
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow: 5px 5px 0px var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-checkout:hover {
+            background: #222;
+            box-shadow: 7px 7px 0px var(--primary);
+            transform: translate(-2px, -2px);
+        }
+
+        .btn-checkout:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--primary);
+        }
+        
+        .btn-checkout:disabled {
+            background: #ccc;
+            border-color: #999;
+            cursor: not-allowed;
             box-shadow: none;
         }
 
-        .btn-brutal-secondary {
-            background: white;
+        /* Features List */
+        .feature-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
             color: black;
-            border: var(--border-width) solid black;
-            box-shadow: 4px 4px 0px 0px #000000;
-        }
-        
-        .btn-brutal-secondary:hover {
-            background: #F3F4F6;
+            line-height: 1.5;
+            font-weight: 500;
         }
 
-        /* Testimonials (Polaroids) */
-        .testimonial-scroll {
-            display: flex;
-            overflow-x: auto;
-            gap: 16px;
-            padding: 4px 4px 20px 4px; /* Space for shadow */
-            scrollbar-width: none;
-        }
-        .testimonial-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        .polaroid {
-            flex-shrink: 0;
-            width: 180px;
-            background: white;
-            padding: 10px 10px 20px 10px;
-            border: var(--border-width) solid black;
-            box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.2);
-            transform: rotate(-2deg);
-        }
-        
-        .polaroid:nth-child(even) {
-            transform: rotate(2deg);
-        }
-
-        .polaroid-img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border: 1px solid black;
-            background: #eee;
-            margin-bottom: 8px;
-            filter: grayscale(100%);
-            transition: filter 0.3s;
-        }
-
-        .polaroid:hover .polaroid-img {
-            filter: grayscale(0%);
-        }
-
-        .polaroid-caption {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 12px;
-            text-align: center;
-            line-height: 1.2;
-        }
-
-        /* Payment List */
-        .payment-list-brutal {
-            border: var(--border-width) solid black;
-        }
-
-        .payment-item-brutal {
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: var(--border-width) solid black;
-            cursor: pointer;
-            background: white;
-            transition: background 0.2s;
-        }
-
-        .payment-item-brutal:last-child {
-            border-bottom: none;
-        }
-
-        .payment-item-brutal:hover {
-            background: #FEF3C7;
-        }
-
-        .payment-item-brutal.selected {
-            background: black;
-            color: white;
-        }
-        
-        .payment-item-brutal.selected img {
-            filter: brightness(0) invert(1);
-        }
-
-        /* Accordion */
-        .brutal-accordion {
-            border: var(--border-width) solid black;
-            margin-bottom: 8px;
-            background: white;
-        }
-        
-        .brutal-accordion[open] {
-            box-shadow: 4px 4px 0px 0px #000000;
-        }
-
-        .brutal-accordion summary {
-            padding: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid transparent;
-        }
-        
-        .brutal-accordion[open] summary {
-             border-bottom: 2px solid black;
-             background: #FEF3C7;
-        }
-
-        .brutal-accordion summary::after {
-            content: '+';
-            font-size: 24px;
-            font-weight: 700;
-        }
-        
-        .brutal-accordion[open] summary::after {
-            content: '-';
-        }
-
-        .brutal-accordion-content {
-            padding: 16px;
-            font-size: 14px;
-            line-height: 1.6;
+        .feature-icon {
+            color: black;
+            margin-top: 3px;
         }
 
         /* Toast */
-        .brutal-toast {
+        .toast {
             position: fixed;
             top: 20px;
             left: 50%;
             transform: translateX(-50%) translateY(-100px);
-            background: #FF5A5F;
-            color: white;
-            border: 2px solid black;
-            box-shadow: 4px 4px 0px 0px black;
-            padding: 12px 24px;
-            font-weight: 700;
-            font-family: 'Space Grotesk', sans-serif;
-            z-index: 100;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: max-content;
+            background: var(--highlight);
+            padding: 12px 20px;
+            border: 3px solid black;
+            box-shadow: 6px 6px 0px black;
             display: flex;
-            gap: 10px;
             align-items: center;
+            gap: 12px;
+            z-index: 100;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: max-content;
+            max-width: 90%;
         }
 
-        .brutal-toast.show {
+        .toast.show {
             transform: translateX(-50%) translateY(0);
+        }
+
+        /* Testimonials */
+        .testimonial-carousel {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            border-top: 3px solid black;
+            border-bottom: 3px solid black;
+            padding: 10px 0;
+            background: #fff;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            gap: 12px;
+            width: max-content;
+            animation: marquee 40s linear infinite;
+        }
+
+        .testimonial-item {
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            border: 3px solid black;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .testimonial-item:hover {
+            transform: scale(0.95);
+            border-color: var(--primary);
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 3px solid black;
+            margin-bottom: 8px;
+            background: white;
+            box-shadow: 4px 4px 0px black;
+        }
+        .faq-item summary {
+            padding: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+        }
+        .faq-item[open] summary {
+            border-bottom: 3px solid black;
+            background: var(--highlight);
+        }
+        .faq-content {
+            padding: 12px;
+            font-size: 13px;
+            line-height: 1.6;
         }
 
         /* Modals */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(255, 222, 0, 0.9); /* Yellow tint */
-            z-index: 100;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
             display: none;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.2s;
         }
 
         .modal-overlay.active {
             display: flex;
-            opacity: 1;
         }
 
-        .brutal-modal {
+        .modal-box {
             background: white;
-            border: 3px solid black;
-            box-shadow: 10px 10px 0px 0px black;
-            padding: 24px;
             width: 90%;
             max-width: 400px;
-            max-height: 90vh;
-            overflow-y: auto;
+            padding: 24px;
+            border: 4px solid black;
+            box-shadow: 10px 10px 0px black;
             transform: scale(0.9);
             transition: transform 0.2s;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
-        .modal-overlay.active .brutal-modal {
+        .modal-overlay.active .modal-box {
             transform: scale(1);
         }
 
+        #detailsModal .modal-box {
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            transform: translateY(100%);
+            border-bottom: none;
+            box-shadow: 0 -4px 0 black;
+        }
+        #detailsModal.active .modal-box {
+            transform: translateY(0);
+        }
+
+        /* Timer Box */
+        .timer-box {
+            background: black;
+            color: var(--highlight);
+            padding: 16px;
+            border: 3px solid black;
+            margin-bottom: 20px;
+            box-shadow: 6px 6px 0px #888;
+        }
+        
+        /* Helpers */
+        .brutalist-card {
+            background: white;
+            border: 3px solid black;
+            padding: 16px;
+            box-shadow: 6px 6px 0px black;
+        }
+        
+        .brutalist-badge {
+            background: black;
+            color: white;
+            padding: 4px 8px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .animate-fade-in { animation: none; } /* Disable soft animations */
     </style>
 </head>
 <body>
 
     <!-- Notification Toast -->
-    <div id="toast" class="brutal-toast">
-        <i class="fas fa-bolt"></i>
-        <div>
-            <span id="toast-name">USER</span> JUST PURCHASED!
+    <div id="toast" class="toast">
+        <div class="w-8 h-8 bg-black flex items-center justify-center text-white flex-shrink-0 border-2 border-black">
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="text-sm">
+            <p class="font-bold text-black" id="toast-name">Budi Santoso</p>
+            <p class="text-xs font-mono">MEMBELI PAKET 1 TAHUN</p>
         </div>
     </div>
 
     <div class="main-container relative">
-        <!-- View: Form -->
+        <!-- Main Form View -->
         <div id="view-form">
             <!-- Header -->
-            <div class="brutal-header">
+            <div class="sticky-header px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 bg-white border-2 border-white flex items-center justify-center">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png" class="w-6 h-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png" alt="Adobe Logo" class="w-8 h-8 border-2 border-black">
+                    <div>
+                        <h1 class="font-bold text-lg leading-none uppercase tracking-tighter">Adobe CC</h1>
+                        <p class="text-xs font-bold bg-black text-white px-1 inline-block mt-1">OFFICIAL</p>
                     </div>
-                    <span class="font-bold text-xl tracking-tighter uppercase font-display">Adobe CC</span>
                 </div>
-                <div class="bg-red-500 text-white px-2 py-1 text-xs font-bold border-2 border-white transform rotate-3">
-                    OFFICIAL
-                </div>
-            </div>
-
-            <!-- Marquee Bar -->
-            <div class="bg-black text-white text-xs font-mono py-2 overflow-hidden border-b-2 border-black">
-                <div class="whitespace-nowrap animate-[marquee_10s_linear_infinite]">
-                    ★ 100% LEGAL ★ FULL GARANSI ★ PROSES CEPAT ★ TRUSTED SELLER ★ 100% LEGAL ★ FULL GARANSI ★
+                <div class="border-2 border-black bg-green-400 text-black px-3 py-1 text-xs font-bold uppercase shadow-[2px_2px_0px_black]">
+                    <i class="fas fa-check-circle mr-1"></i> Garansi
                 </div>
             </div>
 
-            <div class="p-5 pb-32">
-                <!-- Hero -->
-                <div class="mb-8 border-2 border-black p-4 bg-white shadow-[4px_4px_0_0_#000]">
-                    <h2 class="text-3xl font-black leading-none mb-2 uppercase">Upgrade<br>Your Creative<br><span class="text-blue-600">Power Now.</span></h2>
-                    <p class="font-medium text-sm mt-4 border-t-2 border-black pt-2">
-                        Akses Full Adobe CC di email pribadi. Legal, Aman, Bergaransi.
-                    </p>
+            <div class="p-6 pb-24">
+                <!-- Hero / Product Info -->
+                <div class="text-center mb-8">
+                    <span class="inline-block border-2 border-black bg-yellow-300 text-black px-3 py-1 text-xs font-bold mb-3 shadow-[3px_3px_0px_black]">
+                        🔥 PROMO TERBATAS
+                    </span>
+                    <h2 class="text-3xl font-black mb-2 uppercase tracking-tight">Upgrade Akun Pribadi</h2>
+                    <p class="text-sm px-4 font-bold">Dapatkan akses full Adobe Creative Cloud. Legal. Aman. Bergaransi.</p>
                 </div>
 
-                <form id="orderForm">
+                <!-- Form -->
+                <form id="orderForm" class="space-y-6">
+                    
                     <!-- Package Selection -->
-                    <div class="mb-8">
-                        <div class="flex items-center justify-between mb-2">
-                            <label class="brutal-label">PILIH PAKET</label>
-                            <span class="bg-black text-white text-[10px] px-2 py-0.5 font-bold">STEP 1</span>
-                        </div>
-                        <div id="package-selection-container">
-                            <!-- Injected by JS -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-bold bg-black text-white px-2 py-1 ml-1 inline-block uppercase">Pilih Paket</label>
+                        <div id="package-selection-container" class="space-y-3">
+                            <!-- Package cards will be rendered here by JavaScript -->
                         </div>
                         <input type="hidden" id="selectedPackage" name="package" value="yearly">
                     </div>
 
-                     <!-- Features Link -->
-                    <div class="mb-8">
-                         <div onclick="showFeaturesModal()" class="cursor-pointer bg-blue-100 border-2 border-black p-3 flex justify-between items-center hover:bg-blue-200 transition-colors">
-                            <span class="font-bold font-mono text-sm"><i class="fas fa-star mr-2"></i> 20+ FITUR PREMIUM</span>
-                            <i class="fas fa-arrow-right"></i>
-                         </div>
+                    <!-- Features -->
+                    <div class="brutalist-card">
+                        <div class="feature-item"><i class="fas fa-square feature-icon"></i> <span>AKSES 20+ APLIKASI ADOBE</span></div>
+                        <div class="feature-item"><i class="fas fa-square feature-icon"></i> <span>100GB CLOUD STORAGE</span></div>
+                        <div class="feature-item"><i class="fas fa-square feature-icon"></i> <span>LISENSI KE EMAIL PRIBADI</span></div>
+                        <div class="feature-item"><i class="fas fa-square feature-icon"></i> <span>SUPPORT SEMUA DEVICE</span></div>
+                        <button type="button" onclick="showFeaturesModal()" class="w-full mt-4 border-2 border-black py-2 text-xs font-bold hover:bg-black hover:text-white transition-colors uppercase">Lihat Semua Fitur</button>
                     </div>
 
                     <!-- Testimonials -->
-                    <div class="mb-8">
-                         <label class="brutal-label mb-4">BUKTI NYATA</label>
-                        <div id="testimonial-container" class="testimonial-scroll">
+                    <div class="mt-8">
+                        <label class="text-sm font-bold bg-black text-white px-2 py-1 ml-1 mb-2 inline-block uppercase">Bukti Pelanggan</label>
+                        <div class="testimonial-carousel" id="testimonial-container">
                             <!-- Filled by JS -->
                         </div>
                     </div>
 
                     <!-- User Data -->
-                    <div class="mb-8">
-                        <div class="flex items-center justify-between mb-4">
-                            <label class="brutal-label">DATA DIRI</label>
-                            <span class="bg-black text-white text-[10px] px-2 py-0.5 font-bold">STEP 2</span>
+                    <div class="space-y-4 mt-8">
+                        <label class="text-sm font-bold bg-black text-white px-2 py-1 ml-1 inline-block uppercase">Data Pemesan</label>
+                        
+                        <div class="input-group">
+                            <input type="text" id="nama" name="nama" class="modern-input" placeholder="NAMA LENGKAP" required>
+                            <i class="fas fa-user input-icon"></i>
                         </div>
                         
-                        <div class="brutal-input-group">
-                            <input type="text" id="nama" name="nama" class="brutal-input" placeholder="NAMA LENGKAP" required>
-                        </div>
-                        
-                        <div class="brutal-input-group">
-                            <input type="tel" id="whatsapp" name="whatsapp" class="brutal-input" placeholder="NOMOR WHATSAPP" required inputmode="numeric">
+                        <div class="input-group">
+                            <input type="tel" id="whatsapp" name="whatsapp" class="modern-input" placeholder="NOMOR WHATSAPP (08xx)" required inputmode="numeric">
+                            <i class="fab fa-whatsapp input-icon"></i>
                         </div>
 
-                        <div class="brutal-input-group">
-                            <input type="email" id="email" name="email" class="brutal-input" placeholder="EMAIL ADOBE ID" required>
-                        </div>
-                        
-                        <div class="border-2 border-black bg-red-100 p-2 text-xs font-bold text-center">
-                            ⚠ PASTIKAN EMAIL SUDAH TERDAFTAR DI ADOBE
+                        <div class="input-group">
+                            <input type="email" id="email" name="email" class="modern-input" placeholder="EMAIL UNTUK ADOBE ID" required>
+                            <i class="fas fa-envelope input-icon"></i>
                         </div>
                     </div>
 
-                    <!-- Payment Method -->
-                    <div class="mb-8">
-                         <div class="flex items-center justify-between mb-4">
-                            <label class="brutal-label">PEMBAYARAN</label>
-                            <span class="bg-black text-white text-[10px] px-2 py-0.5 font-bold">STEP 3</span>
+                    <div class="border-3 border-black bg-red-100 p-4 my-6 shadow-[4px_4px_0px_black] flex items-start gap-3">
+                        <div class="flex-shrink-0 mt-1">
+                            <i class="fas fa-exclamation-triangle text-xl text-black"></i>
                         </div>
-                        <div id="payment-list" class="payment-list-brutal">
-                            <!-- Injected by JS -->
+                        <div>
+                            <h3 class="font-black text-black text-sm uppercase underline">PENTING!</h3>
+                            <p class="text-xs font-bold text-black leading-tight mt-1">
+                                Pastikan <strong>No. WhatsApp</strong> & <strong>Email</strong> SUDAH BENAR. Kami tidak bertanggung jawab atas kesalahan input.
+                            </p>
                         </div>
-                        <input type="hidden" id="selectedPayment" name="payment-method" value="qris">
                     </div>
 
                     <!-- Hidden Fields -->
                     <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
                     <input type="hidden" name="sheetName" value="adobe">
+
+                    <!-- Payment Method -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-bold bg-black text-white px-2 py-1 ml-1 inline-block uppercase">Metode Pembayaran</label>
+                        <div class="payment-grid" id="payment-grid">
+                            <!-- Generated by JS -->
+                        </div>
+                        <input type="hidden" id="selectedPayment" name="payment-method" value="qris">
+                    </div>
+
                 </form>
 
-                <!-- FAQ -->
-                <div class="mt-8">
-                    <label class="brutal-label mb-4 text-center">FAQ</label>
+                <!-- FAQ Section -->
+                <div class="mt-12">
+                    <h3 class="font-black text-xl mb-4 uppercase border-b-4 border-black inline-block">FAQ</h3>
                     <div id="faq-container">
                         <!-- Filled by JS -->
                     </div>
                 </div>
 
-                <!-- Footer -->
-                <div class="mt-12 text-center border-t-2 border-black pt-6 font-mono text-xs opacity-60">
-                     <p class="mb-2">SECURE PAYMENT PARTNERS</p>
-                     <div class="flex justify-center gap-4 grayscale mb-4">
-                        <i class="fas fa-qrcode text-xl"></i>
-                        <i class="fas fa-university text-xl"></i>
-                        <i class="fas fa-wallet text-xl"></i>
-                     </div>
-                    <p>&copy; 2025 ADOBE RESELLER. ALL RIGHTS RESERVED.</p>
+                <!-- Trust Badges -->
+                <div class="mt-8 flex justify-center gap-4 grayscale opacity-70">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png" class="h-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png" class="h-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png" class="h-6">
                 </div>
+                
+                <p class="text-center text-xs font-bold mt-8 border-t-2 border-black pt-4">© 2025 ADOBE OFFICIAL RESELLER.</p>
             </div>
 
             <!-- Sticky Bottom Bar -->
-            <div class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-black p-4 z-40 max-w-[480px] mx-auto">
-                <div class="flex gap-4">
-                    <div class="flex-1 border-2 border-black bg-gray-100 flex flex-col justify-center px-4">
-                        <span class="text-[10px] font-bold text-gray-500 uppercase">Total</span>
-                        <span class="text-xl font-black" id="total-price-display">Rp 0</span>
+            <div class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-black p-4 z-40 sm:absolute sm:border-t-4 sm:border-black">
+                <div class="max-w-[520px] mx-auto flex items-center justify-between gap-4">
+                    <div>
+                        <p class="text-[10px] font-bold uppercase tracking-wider">Total Pembayaran</p>
+                        <p class="text-xl font-black bg-yellow-300 px-1 border-2 border-black shadow-[2px_2px_0px_black]" id="total-price-display">Rp 350.xxx</p>
                     </div>
-                    <button type="button" id="submit-btn" class="flex-1 btn-brutal" onclick="handleFormSubmit()">
-                        BAYAR <i class="fas fa-arrow-right"></i>
+                    <button type="button" id="submit-btn" class="btn-checkout flex-1" onclick="handleFormSubmit()">
+                        BELI SEKARANG
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- View: Payment Instruction -->
-        <div id="view-payment" class="hidden min-h-screen bg-white">
-            <div class="brutal-header">
-                <button onclick="backToForm()" class="text-white hover:text-gray-300">
-                    <i class="fas fa-arrow-left text-xl"></i>
+        <!-- Payment Instruction View (Hidden by default) -->
+        <div id="view-payment" class="hidden min-h-screen bg-gray-100">
+             <div class="bg-white p-4 sticky top-0 z-10 border-b-4 border-black flex items-center gap-3">
+                <button onclick="backToForm()" class="border-2 border-black w-8 h-8 flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                    <i class="fas fa-arrow-left text-lg"></i>
                 </button>
-                <span class="font-bold">INVOICE</span>
-                <div class="w-6"></div>
+                <h2 class="font-black text-lg uppercase">Instruksi Pembayaran</h2>
             </div>
 
             <div class="p-6 pb-24">
-                
                 <!-- Timer -->
-                <div class="bg-black text-white p-4 text-center border-b-4 border-red-500 mb-6 font-mono text-xl font-bold">
-                    <span id="countdown">23:59:59</span>
+                <div class="timer-box text-center">
+                    <p class="text-xs font-bold uppercase mb-1">Selesaikan Dalam</p>
+                    <div class="text-3xl font-mono font-black" id="countdown">23:59:59</div>
                 </div>
 
-                <!-- Amount -->
-                <div class="border-2 border-black p-6 mb-6 bg-yellow-100 shadow-[6px_6px_0_0_#000]">
-                    <p class="text-xs font-bold uppercase mb-2 text-gray-600">Total Tagihan</p>
-                    <div class="flex justify-between items-center">
-                        <h1 class="text-3xl font-black" id="payment-amount">Rp 0</h1>
-                        <button onclick="copyText('payment-amount-raw')" class="text-xs border-2 border-black px-2 py-1 bg-white hover:bg-gray-100 font-bold">COPY</button>
+                <!-- Total Amount Card -->
+                <div class="brutalist-card mb-6 text-center relative">
+                    <p class="text-xs font-bold uppercase mb-2">Total Tagihan</p>
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                         <h1 class="text-3xl font-black bg-yellow-300 border-2 border-black px-2 shadow-[3px_3px_0px_black]" id="payment-amount">Rp 350.123</h1>
+                         <button class="border-2 border-black p-1 hover:bg-black hover:text-white transition-colors" onclick="copyText('payment-amount-raw')"><i class="far fa-copy"></i></button>
                     </div>
-                    <div class="mt-4 pt-4 border-t-2 border-black border-dashed flex justify-between text-xs font-mono">
-                        <span>INV-ID:</span>
-                        <span id="invoice-id-display" class="font-bold">...</span>
-                    </div>
+                    <p class="text-xs font-bold text-red-600 border-2 border-red-600 bg-red-100 inline-block px-2 py-1 mb-4">
+                        <i class="fas fa-exclamation-triangle"></i> TRANSFER TEPAT SAMPAI 3 DIGIT TERAKHIR
+                    </p>
+                     <div id="invoice-details-summary" class="border-t-2 border-black pt-3 text-xs font-bold flex justify-between items-center">
+                        <!-- Populated by JS -->
+                     </div>
                 </div>
 
                 <!-- Payment Details -->
-                <div class="mb-6">
-                    <label class="brutal-label">TUJUAN TRANSFER</label>
-                    <div class="border-2 border-black p-4 bg-white">
-                        <div class="flex items-center justify-between mb-4 pb-4 border-b-2 border-black border-dashed">
-                            <span class="font-bold">METODE</span>
-                            <img id="payment-logo-result" src="" class="h-6 object-contain grayscale">
-                        </div>
-                        
-                        <div id="payment-details-content">
-                            <!-- Filled by JS -->
-                        </div>
+                <div class="brutalist-card mb-6">
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b-2 border-black">
+                        <span class="font-bold uppercase text-sm">Metode</span>
+                        <img id="payment-logo-result" src="" class="h-6 object-contain grayscale">
                     </div>
-                </div>
-
-                <!-- Instructions -->
-                <div class="mb-8">
-                     <label class="brutal-label">CARA BAYAR</label>
-                    <div id="instruction-steps" class="border-2 border-black p-4 bg-white space-y-3 font-mono text-sm">
+                    
+                    <!-- Dynamic Content based on Payment Method -->
+                    <div id="payment-details-content">
                         <!-- Filled by JS -->
                     </div>
                 </div>
 
-                <a id="wa-confirm-btn" href="#" target="_blank" class="btn-brutal bg-green-600 shadow-[6px_6px_0_0_#000]">
-                    <i class="fab fa-whatsapp"></i> KONFIRMASI
-                </a>
+                <!-- Instructions -->
+                <div class="brutalist-card">
+                    <h3 class="font-black text-lg uppercase mb-4 border-b-2 border-black pb-2">Cara Bayar</h3>
+                    <div id="instruction-steps">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
                 
-                <button onclick="backToForm()" class="w-full text-center font-bold text-xs mt-6 underline decoration-2">
-                    BATALKAN PESANAN
-                </button>
+                <!-- Confirmation Button -->
+                <a id="wa-confirm-btn" href="#" target="_blank" class="block mt-8 w-full bg-[#25D366] text-black border-4 border-black font-black py-4 text-center shadow-[6px_6px_0px_black] hover:translate-y-1 hover:shadow-[4px_4px_0px_black] transition-all uppercase text-lg">
+                    <i class="fab fa-whatsapp text-2xl mr-2"></i> Konfirmasi Bayar
+                </a>
             </div>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="detailsModal" class="modal-overlay" onclick="closeModal('detailsModal')">
+        <div class="modal-box text-left p-0" id="detailsModalContent" onclick="event.stopPropagation()">
+            <!-- Content will be injected by JS -->
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Info Modal -->
+    <div id="infoModal" class="modal-overlay">
+        <div class="modal-box text-center">
+            <div class="w-16 h-16 bg-black text-white border-4 border-black flex items-center justify-center mx-auto mb-4 text-2xl shadow-[4px_4px_0px_#888]">
+                <i class="fas fa-info"></i>
+            </div>
+            <h3 class="text-xl font-black mb-2 uppercase" id="modalTitle">Judul</h3>
+            <p class="text-sm font-mono mb-6" id="modalMessage">Pesan</p>
+            <button onclick="closeModal('infoModal')" class="w-full bg-black text-white font-bold py-3 border-2 border-black hover:bg-gray-800 uppercase">Mengerti</button>
         </div>
     </div>
 
     <!-- Features Modal -->
     <div id="featuresModal" class="modal-overlay">
-        <div class="brutal-modal">
-            <div class="flex justify-between items-center mb-6 pb-4 border-b-2 border-black">
-                <h3 class="text-xl font-black uppercase">Premium Features</h3>
-                <button onclick="closeModal('featuresModal')" class="font-bold text-xl">X</button>
+        <div class="modal-box text-left">
+            <div class="flex justify-between items-center mb-4 border-b-4 border-black pb-2">
+                <h3 class="text-xl font-black uppercase">FITUR LENGKAP</h3>
+                <button onclick="closeModal('featuresModal')" class="text-black hover:text-red-600"><i class="fas fa-times text-2xl"></i></button>
             </div>
-            <div class="space-y-3" id="features-list-container">
+            <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-2" id="features-list-container">
                 <!-- Features filled by JS -->
             </div>
         </div>
@@ -627,39 +682,60 @@
 
     <!-- Image Modal -->
     <div id="imageModal" class="modal-overlay" onclick="closeModal('imageModal')">
-        <div class="relative max-w-[90%] border-4 border-black bg-white p-2 shadow-[10px_10px_0_0_#000]">
-             <img id="modalImageDisplay" src="" class="w-full h-auto border-2 border-black filter grayscale hover:grayscale-0 transition-all">
-        </div>
-    </div>
-
-    <!-- Info Modal -->
-    <div id="infoModal" class="modal-overlay">
-        <div class="brutal-modal text-center">
-            <i class="fas fa-info-circle text-4xl mb-4"></i>
-            <h3 class="text-xl font-black mb-2 uppercase" id="modalTitle">Info</h3>
-            <p class="mb-6 font-mono text-sm" id="modalMessage">Message goes here</p>
-            <button onclick="closeModal('infoModal')" class="btn-brutal bg-black text-white shadow-[4px_4px_0_0_#9CA3AF]">OK</button>
+        <div class="relative max-w-[90%] max-h-[90vh] border-4 border-black bg-white p-2 shadow-[8px_8px_0px_black]">
+             <img id="modalImageDisplay" src="" class="max-h-[80vh] w-auto border-2 border-black">
+             <button class="absolute -top-4 -right-4 bg-red-600 text-white border-2 border-black w-10 h-10 flex items-center justify-center font-bold shadow-[2px_2px_0px_black]" onclick="closeModal('imageModal')">X</button>
         </div>
     </div>
 
     <script>
-        // --- DATA ---
+        // --- DATA & CONFIG ---
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
         
+        // RESTORED DATA
+        const FIRST_NAMES = [ "Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama" ];
+        
+        const testimonialImages = [
+            "https://pixvid.org/images/2025/11/14/mPYhr.jpg", "https://pixvid.org/images/2025/11/14/mPYyw.jpg", "https://pixvid.org/images/2025/11/14/mPYBE.jpg", "https://pixvid.org/images/2025/11/14/mPi89.jpg", "https://pixvid.org/images/2025/11/14/mPitS.jpg", "https://pixvid.org/images/2025/11/14/mPiM2.jpg", "https://pixvid.org/images/2025/11/14/mPicV.jpg", "https://pixvid.org/images/2025/11/14/mPuZk.jpg", "https://pixvid.org/images/2025/11/14/mPuYg.jpg", "https://pixvid.org/images/2025/11/14/mPuAO.jpg", "https://pixvid.org/images/2025/11/14/mPuLF.jpg", "https://pixvid.org/images/2025/11/14/mPJzn.jpg", "https://pixvid.org/images/2025/11/14/mPJuM.jpg", "https://pixvid.org/images/2025/11/14/mPJGa.jpg", "https://pixvid.org/images/2025/11/14/mPJfB.jpg", "https://pixvid.org/images/2025/11/14/mPKHf.jpg", "https://pixvid.org/images/2025/11/14/mPKEm.jpg", "https://pixvid.org/images/2025/11/14/mPKbz.jpg", "https://pixvid.org/images/2025/11/14/mPEel.jpg", "https://pixvid.org/images/2025/11/14/mPErY.jpg", "https://pixvid.org/images/2025/11/14/mPEoo.jpg", "https://pixvid.org/images/2025/11/14/mPEXd.jpg", "https://pixvid.org/images/2025/11/14/mPnUb.jpg", "https://pixvid.org/images/2025/11/14/mPnlN.jpg", "https://pixvid.org/images/2025/11/14/mPn6v.jpg", "https://pixvid.org/images/2025/11/14/mPn25.jpg", "https://pixvid.org/images/2025/11/14/mPo57.jpg", "https://pixvid.org/images/2025/11/14/mPoqT.jpg", "https://pixvid.org/images/2025/11/14/mPo9i.jpg"
+        ];
+        
+        const fullFeaturesList = [
+            "Akses 20+ Aplikasi Adobe (Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, dll)",
+            "Penyimpanan Cloud 100GB untuk backup file project",
+            "Sinkronisasi Antar Perangkat (Desktop, Mobile, Web)",
+            "Akses ke Adobe Fonts (Ribuan Font Premium)",
+            "Akses ke Adobe Stock (Asset Foto & Video)",
+            "Fitur AI Generatif (Adobe Firefly)",
+            "Update Otomatis Fitur Terbaru",
+            "Adobe Portfolio & Behance",
+            "Akses Offline (Tanpa Internet)",
+            "Keamanan Terenkripsi & Legal",
+            "Support Mac, Windows, iPad, iPhone, Android",
+            "Bisa pindah device (Logout/Login)",
+            "Full Garansi selama durasi langganan"
+        ];
+        
+        const faqList = [
+            { q: "Apakah produk ini resmi?", a: "Ya, produk yang kami tawarkan 100% original dan legal. Aktivasi dilakukan melalui undangan resmi dari Adobe ke email Anda." },
+            { q: "Bagaimana proses aktivasinya?", a: "Setelah pembayaran, kami akan mengirimkan undangan ke email Adobe Anda. Anda hanya perlu menerima undangan tersebut untuk mengaktifkan lisensi Creative Cloud." },
+            { q: "Apakah ini aman?", a: "Tentu saja. Kami tidak pernah meminta password akun Adobe Anda. Prosesnya 100% aman dan privasi Anda terjamin." },
+            { q: "Apa saja yang saya dapatkan?", a: "Anda akan mendapatkan akses ke semua aplikasi di dalam Adobe Creative Cloud (Photoshop, Illustrator, Premiere Pro, dll) dan penyimpanan cloud sebesar 100GB." },
+            { q: "Berapa lama prosesnya?", a: "Prosesnya sangat cepat, biasanya hanya 5-15 menit setelah konfirmasi pembayaran." },
+            { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses aktivasi gagal karena kesalahan dari pihak kami." }
+        ];
+
         const packages = {
-            yearly: {
-                id: 'yearly',
-                name: "1 TAHUN",
-                price: 350000,
-                normalPrice: 2500000,
-                desc: "BEST VALUE"
-            },
             monthly: {
                 id: 'monthly',
-                name: "1 BULAN",
+                name: "Adobe CC (1 Bulan)",
                 price: 50000,
-                normalPrice: 250000,
-                desc: "STARTER"
+                normalPrice: 250000
+            },
+            yearly: {
+                id: 'yearly',
+                name: "Adobe CC (1 Tahun)",
+                price: 350000,
+                normalPrice: 2500000
             }
         };
 
@@ -668,45 +744,84 @@
             { id: 'bca_va', name: 'BCA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'bank', number: '39358089510639366', holder: 'Epayment' },
             { id: 'gopay', name: 'GoPay', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet', number: '089510639366', holder: 'Gopay' },
             { id: 'dana', name: 'DANA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet', number: '089510639366', holder: 'DNID' },
-            { id: 'ovo', name: 'OVO', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', number: '089510639366', holder: 'OVO' }
+            { id: 'ovo', name: 'OVO', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', number: '089510639366', holder: 'OVO' },
+            { id: 'cimb', name: 'CIMB', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'bank', number: '6289510639366', holder: 'Octo Pay' }
         ];
 
-        const testimonialImages = [
-            "https://pixvid.org/images/2025/11/14/mPYhr.jpg", "https://pixvid.org/images/2025/11/14/mPYyw.jpg", "https://pixvid.org/images/2025/11/14/mPYBE.jpg", "https://pixvid.org/images/2025/11/14/mPi89.jpg", "https://pixvid.org/images/2025/11/14/mPitS.jpg", "https://pixvid.org/images/2025/11/14/mPiM2.jpg", "https://pixvid.org/images/2025/11/14/mPicV.jpg", "https://pixvid.org/images/2025/11/14/mPuZk.jpg", "https://pixvid.org/images/2025/11/14/mPuYg.jpg", "https://pixvid.org/images/2025/11/14/mPuAO.jpg", "https://pixvid.org/images/2025/11/14/mPuLF.jpg", "https://pixvid.org/images/2025/11/14/mPJzn.jpg", "https://pixvid.org/images/2025/11/14/mPJuM.jpg", "https://pixvid.org/images/2025/11/14/mPJGa.jpg", "https://pixvid.org/images/2025/11/14/mPJfB.jpg", "https://pixvid.org/images/2025/11/14/mPKHf.jpg", "https://pixvid.org/images/2025/11/14/mPKEm.jpg", "https://pixvid.org/images/2025/11/14/mPKbz.jpg", "https://pixvid.org/images/2025/11/14/mPEel.jpg", "https://pixvid.org/images/2025/11/14/mPErY.jpg", "https://pixvid.org/images/2025/11/14/mPEoo.jpg", "https://pixvid.org/images/2025/11/14/mPEXd.jpg", "https://pixvid.org/images/2025/11/14/mPnUb.jpg", "https://pixvid.org/images/2025/11/14/mPnlN.jpg", "https://pixvid.org/images/2025/11/14/mPn6v.jpg", "https://pixvid.org/images/2025/11/14/mPn25.jpg", "https://pixvid.org/images/2025/11/14/mPo57.jpg", "https://pixvid.org/images/2025/11/14/mPoqT.jpg", "https://pixvid.org/images/2025/11/14/mPo9i.jpg"
+        const operatorPrefixes = {
+            'Telkomsel': ['0811', '0812', '0813', '0821', '0822', '0823', '0851', '0852', '0853'],
+            'by.U': ['0851'],
+            'Indosat Ooredoo': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
+            'Tri (3)': ['0895', '0896', '0897', '0898', '0899'],
+            'XL Axiata': ['0817', '0818', '0819', '0859', '0877', '0878', '0879'],
+            'Live.On': ['0859'],
+            'Axis': ['0831', '0832', '0833', '0838'],
+            'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
+        };
+        const blacklistedNumbers = ['081234567890'];
+        const allowedEmailDomains = [
+            'gmail.com', 'googlemail.com', 'outlook.com', 'hotmail.com',
+            'hotmail.co.uk', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.co.id',
+            'yahoo.co.uk', 'ymail.com', 'rocketmail.com', 'icloud.com', 'me.com',
+            'mac.com', 'aol.com', 'zoho.com', 'proton.me', 'protonmail.com',
+            'tutanota.com', 'gmx.com', 'gmx.de', 'mail.com', 'yandex.ru',
+            'yandex.com', 'fastmail.com', 'hey.com'
         ];
-        
-        const fullFeaturesList = [
-            "Akses 20+ Aplikasi Adobe",
-            "100GB Cloud Storage",
-            "Sync Desktop & Mobile",
-            "Ribuan Adobe Fonts",
-            "Akses Adobe Stock",
-            "Fitur AI Firefly",
-            "Update Otomatis",
-            "Portfolio & Behance",
-            "Akses Offline",
-            "Keamanan Terenkripsi",
-            "Support Multi-Device",
-            "Logout/Login Device",
-            "Full Garansi"
-        ];
-        
-        const faqList = [
-            { q: "RESMI GAK NIH?", a: "100% RESMI & LEGAL. Aktivasi via undangan email dari Adobe langsung." },
-            { q: "AKTIVASI GIMANA?", a: "Abis bayar, cek email. Ada undangan join team. Klik accept. Beres." },
-            { q: "AMAN BUAT AKUN?", a: "AMAN POL. Kita ga minta password. Cuma butuh email doang." },
-            { q: "DAPET APA AJA?", a: "Semua apps (Ps, Ai, Pr, Ae, dll) + 100GB Cloud." },
-            { q: "LAMA GAK?", a: "Kilat bos. 5-15 menit setelah konfirmasi bayar." },
-            { q: "ADA GARANSI?", a: "Ada dong. Kalo error dari kita, uang balik 100%." }
-        ];
-
-        const FIRST_NAMES = [ "Budi", "Ayu", "Rahmat", "Citra", "Bayu", "Lina", "Wulan", "Adi", "Farhan", "Hendra" ];
-
-        // --- STATE ---
+    
+        function isInvalidPattern(nomor) {
+            if (blacklistedNumbers.includes(nomor)) return true;
+            const numberPart = nomor.substring(2);
+            if (/(\d)\1{4,}/.test(numberPart)) return true;
+            for (let i = 0; i < numberPart.length - 4; i++) {
+                const sub = numberPart.substring(i, i + 5);
+                const isAscending = '0123456789'.includes(sub);
+                const isDescending = '9876543210'.includes(sub);
+                if (isAscending || isDescending) return true;
+            }
+            const uniqueDigits = new Set(numberPart.split(''));
+            if (uniqueDigits.size < 4) return true;
+            if (/(..)\1\1/.test(numberPart)) return true;
+            return false;
+        }
+    
+        function getOperatorFromNumber(nomor) {
+            const prefix = nomor.substring(0, 4);
+            for (const operator in operatorPrefixes) {
+                if (operatorPrefixes[operator].includes(prefix)) {
+                    return operator;
+                }
+            }
+            return null;
+        }
+    
+        function validatePhoneNumber(nomorHp) {
+            const genericError = { isValid: false, message: 'Silahkan isi dengan nomor yang benar' };
+    
+            if (nomorHp.length < 10) {
+                return genericError;
+            }
+    
+            const operator = getOperatorFromNumber(nomorHp);
+            if (!operator) {
+                return genericError;
+            }
+    
+            const maxLength = operator === 'Tri (3)' ? 13 : 12;
+            if (nomorHp.length > maxLength) {
+                return genericError;
+            }
+    
+            if (isInvalidPattern(nomorHp)) {
+                return genericError;
+            }
+    
+            return { isValid: true, message: 'Nomor valid.' };
+        }
         let currentPackage = 'yearly';
         let currentPayment = 'qris';
         let expiryTime;
         let countdownInterval;
+        let currentOrderDetails = {};
 
         // --- INIT ---
         document.addEventListener('DOMContentLoaded', () => {
@@ -716,50 +831,57 @@
             renderFAQ();
             updateTotalPrice();
             initNotifications();
-
-             // Input formatting
+            
+            // Input formatting
             const whatsappInput = document.getElementById('whatsapp');
             whatsappInput.addEventListener('input', (e) => {
                 e.target.value = e.target.value.replace(/[^0-9]/g, '');
             });
         });
 
-        // --- RENDERERS ---
-
+        // --- RENDER FUNCTIONS ---
         function renderPackageCards() {
             const container = document.getElementById('package-selection-container');
             if (!container) return;
 
             const formatCurrency = (amount) => `Rp ${amount.toLocaleString('id-ID')}`;
+
             const yearly = packages.yearly;
             const monthly = packages.monthly;
 
+            const yearlyDiscount = Math.round(((yearly.normalPrice - yearly.price) / yearly.normalPrice) * 100);
+
             container.innerHTML = `
-                <div class="package-ticket ${currentPackage === 'yearly' ? 'selected' : ''}" onclick="selectPackage('yearly')">
-                    <div class="ticket-content">
-                        <div>
-                            <span class="ticket-stub">BEST VALUE</span>
-                            <div class="font-black text-2xl">1 TAHUN</div>
-                            <div class="text-xs font-mono line-through text-gray-400">${formatCurrency(yearly.normalPrice)}</div>
+                <div class="package-card ${currentPackage === 'yearly' ? 'selected' : ''}" onclick="selectPackage('yearly')">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="package-check"></div>
+                            <div>
+                                <p class="font-black uppercase">1 TAHUN</p>
+                                <p class="text-xs font-bold text-gray-500">Paling Hemat (Best Seller)</p>
+                            </div>
                         </div>
                         <div class="text-right">
-                             <div class="font-black text-3xl text-blue-600">${formatCurrency(yearly.price)}</div>
+                            <p class="text-xs text-gray-400 line-through decoration-2">${formatCurrency(yearly.normalPrice)}</p>
+                            <p class="text-lg font-black text-black bg-yellow-300 px-1 border-2 border-black">${formatCurrency(yearly.price)}</p>
                         </div>
                     </div>
-                    <div class="ticket-divider"></div>
-                     <div class="p-3 bg-gray-50 text-[10px] font-mono text-center text-gray-500 uppercase">
-                        Hemat 85% • Full Garansi • All Apps
+                    <div class="absolute top-0 right-0 bg-black text-white text-[10px] font-bold px-2 py-1 border-l-2 border-b-2 border-black">
+                        DISKON ${yearlyDiscount}%
                     </div>
                 </div>
-                
-                <div class="package-ticket ${currentPackage === 'monthly' ? 'selected' : ''}" onclick="selectPackage('monthly')">
-                    <div class="ticket-content">
-                        <div>
-                            <span class="ticket-stub">STARTER</span>
-                            <div class="font-black text-2xl">1 BULAN</div>
+                <div class="package-card ${currentPackage === 'monthly' ? 'selected' : ''}" onclick="selectPackage('monthly')">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="package-check"></div>
+                            <div>
+                                <p class="font-black uppercase">1 BULAN</p>
+                                <p class="text-xs font-bold text-gray-500">Coba Dulu</p>
+                            </div>
                         </div>
                         <div class="text-right">
-                             <div class="font-black text-3xl text-blue-600">${formatCurrency(monthly.price)}</div>
+                            <p class="text-xs text-gray-400 line-through decoration-2">${formatCurrency(monthly.normalPrice)}</p>
+                            <p class="text-lg font-black text-black bg-white px-1 border-2 border-black">${formatCurrency(monthly.price)}</p>
                         </div>
                     </div>
                 </div>
@@ -768,32 +890,40 @@
 
         function renderTestimonials() {
             const container = document.getElementById('testimonial-container');
-            container.innerHTML = testimonialImages.map((url, index) => `
-                <div class="polaroid" onclick="openImageModal('${url}')">
-                    <img src="${url}" class="polaroid-img" loading="lazy">
-                    <div class="polaroid-caption">CLIENT #${index + 101}</div>
+            // Duplicate list twice for smoother infinite loop on wide screens
+            const images = [...testimonialImages, ...testimonialImages];
+            
+            container.innerHTML = `
+                <div class="testimonial-track">
+                    ${images.map(url => `
+                        <div class="testimonial-item" onclick="openImageModal('${url}')">
+                            <img src="${url}" alt="Testimoni" loading="lazy" class="w-full h-full object-cover">
+                        </div>
+                    `).join('')}
                 </div>
-            `).join('');
+            `;
         }
 
         function renderFAQ() {
             const container = document.getElementById('faq-container');
             container.innerHTML = faqList.map(item => `
-                <details class="brutal-accordion">
-                    <summary>${item.q}</summary>
-                    <div class="brutal-accordion-content">${item.a}</div>
+                <details class="faq-item">
+                    <summary>${item.q} <i class="fas fa-plus"></i></summary>
+                    <div class="faq-content font-mono text-xs">${item.a}</div>
                 </details>
             `).join('');
         }
         
         function showFeaturesModal() {
             const container = document.getElementById('features-list-container');
-            container.innerHTML = fullFeaturesList.map(feat => `
-                <div class="flex items-center gap-3 font-mono text-sm border-b border-gray-200 pb-2">
-                    <i class="fas fa-check-square text-green-500"></i>
-                    <span>${feat}</span>
-                </div>
-            `).join('');
+            container.innerHTML = `<ul class="space-y-3">
+                ${fullFeaturesList.map(feat => `
+                    <li class="flex items-start gap-3 border-b border-black pb-2">
+                        <i class="fas fa-check-square text-black mt-1"></i>
+                        <span class="text-sm font-bold">${feat}</span>
+                    </li>
+                `).join('')}
+            </ul>`;
             
             document.getElementById('featuresModal').classList.add('active');
         }
@@ -806,66 +936,85 @@
         function selectPackage(pkgId) {
             currentPackage = pkgId;
             document.getElementById('selectedPackage').value = pkgId;
+            
+            // Re-render the package cards to update the 'selected' state visually
             renderPackageCards();
+            
             updateTotalPrice();
         }
 
         function selectPayment(paymentId) {
             currentPayment = paymentId;
             document.getElementById('selectedPayment').value = paymentId;
-            renderPaymentMethods();
+            
+            // Visual Update
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            document.getElementById(`pay-opt-${paymentId}`).classList.add('selected');
         }
 
         function renderPaymentMethods() {
-            const grid = document.getElementById('payment-list');
+            const grid = document.getElementById('payment-grid');
             grid.innerHTML = paymentMethods.map((pm, idx) => `
-                <div class="payment-item-brutal ${currentPayment === pm.id ? 'selected' : ''}" onclick="selectPayment('${pm.id}')">
-                    <span class="font-bold font-mono uppercase">${pm.name}</span>
-                    <img src="${pm.logo}" class="h-6">
+                <div id="pay-opt-${pm.id}" class="payment-option ${idx === 0 ? 'selected' : ''}" onclick="selectPayment('${pm.id}')">
+                    <img src="${pm.logo}" alt="${pm.name}">
+                    <span>${pm.name}</span>
                 </div>
             `).join('');
         }
 
-        function updateTotalDisplay() {
-            const total = packages[currentPackage].price + uniqueCode;
+        function updateTotalPrice() {
+            const pkgPrice = packages[currentPackage].price;
+            const total = pkgPrice + uniqueCode;
             document.getElementById('total-price-display').innerText = `Rp ${total.toLocaleString('id-ID')}`;
         }
 
-        // --- SUBMISSION ---
-
         function validateForm() {
-             const name = document.getElementById('nama').value.trim();
+            const name = document.getElementById('nama').value.trim();
             const wa = document.getElementById('whatsapp').value.trim();
             const email = document.getElementById('email').value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (!name) return { valid: false, msg: 'NAMA WAJIB DIISI BOSS!' };
-            if (wa.length < 9) return { valid: false, msg: 'NOMOR WA GAK VALID!' };
-            if (!email || !emailRegex.test(email)) return { valid: false, msg: 'EMAIL ERROR!' };
+            if (!name) return { valid: false, msg: 'Nama wajib diisi' };
+            
+            const phoneValidationResult = validatePhoneNumber(wa);
+            if (!phoneValidationResult.isValid) {
+                return { valid: false, msg: phoneValidationResult.message };
+            }
 
+            if (!email || !emailRegex.test(email)) {
+                return { valid: false, msg: 'Email tidak valid' };
+            }
+
+            const domain = email.split('@')[1];
+            if (!allowedEmailDomains.includes(domain)) {
+                return { valid: false, msg: 'Domain email tidak diizinkan. Harap gunakan email pribadi.' };
+            }
+            
             return { valid: true };
         }
 
         async function handleFormSubmit() {
             const validation = validateForm();
             if (!validation.valid) {
-                showModal('ERROR', validation.msg);
+                showModal('DATA BELUM LENGKAP', validation.msg);
                 return;
             }
 
             const btn = document.getElementById('submit-btn');
             btn.disabled = true;
-            btn.innerHTML = 'PROCESSING...';
+            btn.innerHTML = '<i class="fas fa-cog fa-spin"></i> MEMPROSES...';
 
+            // Prepare Data
             const formData = new FormData(document.getElementById('orderForm'));
             const pkg = packages[currentPackage];
             const payment = paymentMethods.find(p => p.id === currentPayment);
             const totalPrice = pkg.price + uniqueCode;
             const now = new Date();
-             const rL = () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 26));
+            const rL = () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 26));
             const rD = () => Math.floor(Math.random() * 10);
-            const paymentId = `INV-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
-
+            const paymentId = `INV-ADOBE-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
+            
+            // Prepare Object for Google Script
             const dataToSend = {
                 nama: formData.get('nama'),
                 whatsapp: formData.get('whatsapp'),
@@ -877,7 +1026,8 @@
                 nomorRekening: payment.number || '-',
                 sheetName: formData.get('sheetName')
             };
-
+            
+            // Send to Google Script
             const scriptURL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
 
             try {
@@ -888,115 +1038,170 @@
                     body: JSON.stringify(dataToSend)
                 });
                 
+                // Show Payment Page
                 showPaymentPage(dataToSend, payment, totalPrice);
                 
             } catch (error) {
                 console.error('Error:', error);
-                showModal('ERROR', 'GAGAL KIRIM DATA. COBA LAGI.');
+                showModal('ERROR', 'Gagal memproses pesanan. Silakan coba lagi.');
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = 'BAYAR <i class="fas fa-arrow-right"></i>';
+                btn.innerHTML = 'BELI SEKARANG';
             }
         }
 
         function showPaymentPage(data, paymentMethod, amount) {
+            // Store details for modal
+            const pkgDetails = packages[currentPackage];
+            currentOrderDetails = {
+                pkg: data.paket,
+                totalPrice: amount,
+                paymentId: data.idPembayaran,
+                nama: data.nama,
+                whatsapp: data.whatsapp,
+                email: data.email,
+                price: pkgDetails.price
+            };
+
+            // Hide Form, Show Payment
             document.getElementById('view-form').classList.add('hidden');
             document.getElementById('view-payment').classList.remove('hidden');
-            document.querySelector('.fixed.bottom-0').classList.add('hidden');
             window.scrollTo(0, 0);
 
-            // Timer
+            // Set Timer (24 hours)
             expiryTime = new Date().getTime() + (24 * 60 * 60 * 1000);
             startCountdown();
 
+            // Populate Data
             document.getElementById('payment-amount').innerText = `Rp ${amount.toLocaleString('id-ID')}`;
             document.getElementById('payment-logo-result').src = paymentMethod.logo;
-            document.getElementById('invoice-id-display').innerText = data.idPembayaran;
 
-             // WA Link
-            const waMsg = `Halo, saya sudah transfer:\nInvoice: ${data.idPembayaran}\nTotal: ${data.totalTransfer}\n\nMohon diproses.`;
+            // Populate invoice summary
+            document.getElementById('invoice-details-summary').innerHTML = `
+                <span>NO. INVOICE: <strong>${data.idPembayaran}</strong></span>
+                <a href="#" onclick="showDetailsModal(event)" class="font-black text-black underline uppercase">LIHAT DETAIL</a>
+            `;
+
+            // Generate WA Link
+            const waMsg = `Halo, saya sudah transfer untuk pesanan:\n` +
+                          `No Invoice: ${data.idPembayaran}\n` +
+                          `Email: ${data.email}\n` +
+                          `Total: ${data.totalTransfer}\n\n` +
+                          `Mohon segera diproses.`;
             document.getElementById('wa-confirm-btn').href = `https://wa.me/6285602152097?text=${encodeURIComponent(waMsg)}`;
 
+            // Render Payment Details
             const detailsContainer = document.getElementById('payment-details-content');
             const instructionsContainer = document.getElementById('instruction-steps');
             
-            // Raw amount
-            const rawAmountInput = document.createElement('input');
-            rawAmountInput.type = 'hidden';
-            rawAmountInput.id = 'payment-amount-raw';
-            rawAmountInput.value = amount;
-            document.body.appendChild(rawAmountInput);
-
+            // Raw amount for copy
+            const rawAmountInputCheck = document.getElementById('payment-amount-raw');
+            if (rawAmountInputCheck) {
+                rawAmountInputCheck.value = amount;
+            } else {
+                const rawAmountInput = document.createElement('input');
+                rawAmountInput.type = 'hidden';
+                rawAmountInput.id = 'payment-amount-raw';
+                rawAmountInput.value = amount;
+                document.body.appendChild(rawAmountInput);
+            }
 
             if (paymentMethod.type === 'qr') {
-                const qrisStatic = paymentMethod.number;
-                const qrisDynamic = createDynamicQris(qrisStatic, amount);
-                
+                // Generate QRIS
+                try {
+                    const qrisStatic = paymentMethod.number;
+                    const qrisDynamic = createDynamicQris(qrisStatic, amount);
+                    
+                    detailsContainer.innerHTML = `
+                        <div class="flex flex-col items-center">
+                            <div id="qrcode-canvas" class="p-2 border-2 border-black rounded-none mb-4 bg-white"></div>
+                            <button id="download-qris-btn" class="border-2 border-black bg-white px-6 py-2 text-sm font-bold uppercase hover:bg-black hover:text-white transition-colors">
+                                <i class="fas fa-download mr-2"></i> Unduh QRIS
+                            </button>
+                            <p class="text-xs text-center font-bold mt-4 uppercase">Scan QR Code diatas dengan aplikasi pembayaran apa saja.</p>
+                        </div>
+                    `;
+                    
+                    setTimeout(() => {
+                        const qrContainer = document.getElementById('qrcode-canvas');
+                        qrContainer.innerHTML = ''; // Clear previous QR
+                        const canvas = document.createElement('canvas');
+                        QRCode.toCanvas(canvas, qrisDynamic, { width: 200, margin: 1 }, (err) => {
+                            if (err) {
+                                console.error(err);
+                                return;
+                            }
+                            qrContainer.appendChild(canvas);
+
+                            // Add download functionality
+                            document.getElementById('download-qris-btn').addEventListener('click', () => {
+                                const link = document.createElement('a');
+                                link.download = `QRIS-Pembayaran-${data.idPembayaran}.png`;
+                                link.href = canvas.toDataURL('image/png');
+                                link.click();
+                            });
+                        });
+                    }, 100);
+
+                    instructionsContainer.innerHTML = `
+                        <div class="instruction-step"><div class="step-number bg-black text-white w-6 h-6 flex items-center justify-center font-bold">1</div><p class="text-sm font-bold">Buka aplikasi e-wallet (GoPay/OVO/Dana) atau Mobile Banking.</p></div>
+                        <div class="instruction-step"><div class="step-number bg-black text-white w-6 h-6 flex items-center justify-center font-bold">2</div><p class="text-sm font-bold">Pilih menu Scan / Bayar.</p></div>
+                        <div class="instruction-step"><div class="step-number bg-black text-white w-6 h-6 flex items-center justify-center font-bold">3</div><p class="text-sm font-bold">Scan QR Code yang muncul di layar.</p></div>
+                        <div class="instruction-step"><div class="step-number bg-black text-white w-6 h-6 flex items-center justify-center font-bold">4</div><p class="text-sm font-bold">Cek nominal (pastikan sama) dan selesaikan pembayaran.</p></div>
+                    `;
+
+                } catch (e) {
+                    detailsContainer.innerHTML = '<p class="text-red-500 font-bold">Gagal memuat QRIS.</p>';
+                }
+
+            } else {
+                // Bank / E-Wallet Number
                 detailsContainer.innerHTML = `
-                    <div class="flex flex-col items-center">
-                         <div class="border-2 border-black p-2 bg-white mb-4 shadow-[4px_4px_0_0_#000]">
-                            <div id="qrcode-canvas"></div>
-                         </div>
-                        <p class="font-mono text-xs text-center">SCAN PAKE GOPAY/DANA/OVO/BANKING</p>
+                    <div class="bg-yellow-100 border-2 border-black p-4 flex items-center justify-between shadow-[4px_4px_0px_black]">
+                        <div>
+                            <p class="text-xs font-bold uppercase">Nomor Rekening / VA</p>
+                            <p class="text-lg font-black tracking-wide">${paymentMethod.number}</p>
+                            <p class="text-xs font-bold mt-1 uppercase">A.N ${paymentMethod.holder}</p>
+                        </div>
+                        <button class="border-2 border-black bg-white p-2 hover:bg-black hover:text-white transition-colors" onclick="copyText('${paymentMethod.number}')">
+                            <i class="far fa-copy"></i> SALIN
+                        </button>
                     </div>
                 `;
 
-                setTimeout(() => {
-                    const qrContainer = document.getElementById('qrcode-canvas');
-                    qrContainer.innerHTML = '';
-                    const canvas = document.createElement('canvas');
-                    QRCode.toCanvas(canvas, qrisDynamic, { width: 180, margin: 0 }, (err) => {
-                         if (!err) qrContainer.appendChild(canvas);
-                    });
-                }, 100);
-
                  instructionsContainer.innerHTML = `
-                    <div>1. BUKA APLIKASI E-WALLET/BANKING</div>
-                    <div>2. PILIH SCAN QRIS</div>
-                    <div>3. SCAN KODE DIATAS</div>
-                    <div>4. PASTIKAN NOMINAL <strong>Rp ${amount.toLocaleString('id-ID')}</strong></div>
-                 `;
-
-            } else {
-                 detailsContainer.innerHTML = `
-                    <div class="text-center">
-                        <p class="font-mono text-xs mb-1">NO REKENING:</p>
-                        <h2 class="text-xl font-black bg-yellow-200 p-2 inline-block border-2 border-black">${paymentMethod.number}</h2>
-                        <div class="mt-2">
-                            <button onclick="copyText('${paymentMethod.number}')" class="text-xs font-bold underline">SALIN</button>
-                        </div>
-                    </div>
-                 `;
-
-                 instructionsContainer.innerHTML = `
-                     <div>1. TRANSFER KE <strong>${paymentMethod.name}</strong></div>
-                     <div>2. NO REK: ${paymentMethod.number}</div>
-                     <div>3. NOMINAL: <strong>Rp ${amount.toLocaleString('id-ID')}</strong> (HARUS PAS)</div>
-                 `;
+                        <div class="instruction-step"><div class="step-number bg-black text-white w-6 h-6 flex items-center justify-center font-bold">1</div><p class="text-sm font-bold">Buka aplikasi bank atau e-wallet Anda.</p></div>
+                        <div class="instruction-step"><div class="step-number bg-black text-white w-6 h-6 flex items-center justify-center font-bold">2</div><p class="text-sm font-bold">Pilih menu Transfer ke ${paymentMethod.name}.</p></div>
+                        <div class="instruction-step"><div class="step-number bg-black text-white w-6 h-6 flex items-center justify-center font-bold">3</div><p class="text-sm font-bold">Masukkan nomor rekening: <strong>${paymentMethod.number}</strong></p></div>
+                        <div class="instruction-step"><div class="step-number bg-black text-white w-6 h-6 flex items-center justify-center font-bold">4</div><p class="text-sm font-bold">Masukkan nominal <strong>Rp ${amount.toLocaleString('id-ID')}</strong> (harus tepat).</p></div>
+                    `;
             }
         }
 
         function backToForm() {
             document.getElementById('view-payment').classList.add('hidden');
             document.getElementById('view-form').classList.remove('hidden');
-            document.querySelector('.fixed.bottom-0').classList.remove('hidden');
             window.scrollTo(0, 0);
         }
 
         // --- UTILS ---
+        
         function startCountdown() {
             if (countdownInterval) clearInterval(countdownInterval);
             countdownInterval = setInterval(() => {
                 const now = new Date().getTime();
                 const distance = expiryTime - now;
+
                 if (distance < 0) {
                     clearInterval(countdownInterval);
-                    document.getElementById('countdown').innerHTML = "EXPIRED";
+                    document.getElementById('countdown').innerHTML = "WAKTU HABIS";
                     return;
                 }
+
                 const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const s = Math.floor((distance % (1000 * 60)) / 1000);
+
                 document.getElementById('countdown').innerHTML = 
                     `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
             }, 1000);
@@ -1006,35 +1211,50 @@
             let text = textOrId;
             const element = document.getElementById(textOrId);
             if (element) text = element.value || element.innerText;
-             navigator.clipboard.writeText(text).then(() => {
-                showModal('COPIED!', 'TEKS BERHASIL DISALIN');
+
+            navigator.clipboard.writeText(text).then(() => {
+                showModal('BERHASIL', 'Teks berhasil disalin.');
+            }, () => {
+                // Fallback
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showModal('BERHASIL', 'Teks berhasil disalin.');
+                } catch (err) {
+                    console.error('Copy failed', err);
+                }
+                document.body.removeChild(textArea);
             });
         }
 
         function showModal(title, msg) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalMessage').innerText = msg;
-            document.getElementById('infoModal').classList.add('active');
+            const modal = document.getElementById('infoModal');
+            modal.classList.add('active');
         }
 
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
         }
-
+        
+        // Notifications Logic (RESTORED RANDOM NAMES)
+        
         function initNotifications() {
-             setInterval(() => {
+            setInterval(() => {
                 const name = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
                 const toast = document.getElementById('toast');
-                toast.classList.add('show');
-                document.getElementById('toast-name').innerText = name.toUpperCase();
+                document.getElementById('toast-name').innerText = name;
                 
-                setTimeout(() => {
-                     toast.classList.remove('show');
-                }, 4000);
-            }, 10000 + Math.random() * 5000);
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 4000);
+            }, 15000 + Math.random() * 10000);
         }
 
-        // --- QRIS UTILS ---
+        // --- QRIS GENERATOR UTILS (CRC16) ---
         function createDynamicQris(qris, nominal) {
             let qrisModified = qris.slice(0, -4).replace("010211", "010212");
             const nominalStr = String(Math.round(nominal));
@@ -1044,8 +1264,11 @@
             if (qrisModified.includes("5802ID")) {
                 let parts = qrisModified.split("5802ID");
                 qrisModified = parts[0] + amountPart + "5802ID" + parts[1];
+            } else {
+                 // Fallback
             }
             
+            // Recalculate CRC
             const crc = crc16ccitt(qrisModified);
             return qrisModified + crc;
         }
@@ -1060,6 +1283,64 @@
                 }
             }
             return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
+        }
+
+        function getDetailsModalHTML(details) {
+            const { pkg, totalPrice, paymentId, nama, whatsapp, price } = details;
+            const uniqueCodeAmount = totalPrice - price;
+            return `
+                <div class="details-modal-header p-4 flex items-center justify-between border-b-2 border-black bg-yellow-300">
+                    <h3 class="text-lg font-black uppercase">Ringkasan Transaksi</h3>
+                    <button onclick="closeModal('detailsModal')" class="text-black hover:text-red-600 font-bold">X</button>
+                </div>
+                <div class="details-modal-body p-6 font-mono text-sm">
+                    <p class="text-xs font-bold mb-4 uppercase">Nomor Invoice: <br><span class="text-lg bg-black text-white px-1">${paymentId}</span></p>
+                    <div class="text-center mb-6 border-2 border-black p-4 shadow-[4px_4px_0px_black]">
+                        <p class="text-xs font-bold uppercase mb-1">Total Pembayaran</p>
+                        <div class="flex items-center justify-center">
+                            <p class="text-2xl font-black">Rp ${totalPrice.toLocaleString('id-ID')}</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 border-b-2 border-black pb-4 mb-4 border-dashed">
+                        <div>
+                            <div class="flex justify-between">
+                                <span class="font-bold">${pkg}</span>
+                                <span class="font-bold">Rp ${price.toLocaleString('id-ID')}</span>
+                            </div>
+                        </div>
+                         <div class="flex justify-between">
+                            <span class="text-gray-500">Kode Unik</span>
+                            <span class="font-bold">Rp ${uniqueCodeAmount.toLocaleString('id-ID')}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-black mb-2 uppercase border-b-2 border-black inline-block">Info Pelanggan</h4>
+                        <div class="space-y-2">
+                            <div>
+                                <p class="text-gray-500 text-xs uppercase font-bold">Nama</p>
+                                <p class="font-bold">${nama}</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 text-xs uppercase font-bold">WhatsApp</p>
+                                <p class="font-bold">${whatsapp}</p>
+                            </div>
+                             <div>
+                                <p class="text-gray-500 text-xs uppercase font-bold">Email Adobe ID</p>
+                                <p class="font-bold">${details.email}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showDetailsModal(event) {
+            if(event) event.preventDefault();
+            const modalContent = document.getElementById('detailsModalContent');
+            const modal = document.getElementById('detailsModal');
+            
+            modalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
+            modal.classList.add('active');
         }
 
     </script>
