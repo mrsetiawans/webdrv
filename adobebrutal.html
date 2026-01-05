@@ -107,7 +107,7 @@
             background: #fff;
             color: var(--text-main);
             box-shadow: 4px 4px 0px black;
-            font-family: 'Space Mono', monospace;
+            font-family: 'sans-serif';
         }
 
         .modern-input:focus {
@@ -321,6 +321,11 @@
             gap: 12px;
             width: max-content;
             animation: marquee 40s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .testimonial-item {
@@ -1163,8 +1168,8 @@
                             <p class="text-lg font-black tracking-wide">${paymentMethod.number}</p>
                             <p class="text-xs font-bold mt-1 uppercase">A.N ${paymentMethod.holder}</p>
                         </div>
-                        <button class="border-2 border-black bg-white p-2 hover:bg-black hover:text-white transition-colors" onclick="copyText('${paymentMethod.number}')">
-                            <i class="far fa-copy"></i> SALIN
+                        <button class="border-2 border-black bg-white p-1 hover:bg-black hover:text-white transition-colors" onclick="copyText('${paymentMethod.number}')">
+                            <i class="far fa-copy"></i>
                         </button>
                     </div>
                 `;
