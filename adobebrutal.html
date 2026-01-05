@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Adobe Creative Cloud - Official Resmi</title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '630583642253416');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+        :root {
+            --primary: #000000;
+            --bg-main: #FFDE00; /* Vibrant Yellow */
+            --surface: #FFFFFF;
+            --accent: #FF5A5F; /* Pop Red */
+            --accent-blue: #3B82F6;
+            --border-width: 2px;
+            --shadow-depth: 4px;
+        }
+
+        body {
+            font-family: 'Public Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, .display-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Brutalist Container */
+        .main-container {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #FAFAFA;
+            border-left: var(--border-width) solid black;
+            border-right: var(--border-width) solid black;
+        }
+
+        @media (min-width: 640px) {
+            .main-container {
+                min-height: auto;
+                margin: 40px auto;
+                border: var(--border-width) solid black;
+                box-shadow: 8px 8px 0px 0px #000000;
+            }
+        }
+
+        /* Header */
+        .brutal-header {
+            background: black;
+            color: white;
+            padding: 16px;
+            border-bottom: var(--border-width) solid black;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Cards */
+        .brutal-card {
+            background: white;
+            border: var(--border-width) solid black;
+            padding: 16px;
+            box-shadow: var(--shadow-depth) var(--shadow-depth) 0px 0px #000000;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        /* Package Tickets */
+        .package-ticket {
+            position: relative;
+            background: white;
+            border: var(--border-width) solid black;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            overflow: hidden;
+        }
+
+        .package-ticket:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #000000;
+        }
+
+        .package-ticket.selected {
+            background: #EFF6FF;
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+
+        .package-ticket.selected .ticket-stub {
+            background: black;
+            color: white;
+        }
+
+        .ticket-content {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ticket-stub {
+            background: #E5E7EB;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: var(--border-width) solid black;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* Dashed Divider for Ticket */
+        .ticket-divider {
+            height: 2px;
+            background-image: linear-gradient(to right, black 50%, transparent 50%);
+            background-size: 10px 100%;
+            margin: 0 16px;
+        }
+
+        /* Inputs */
+        .brutal-input-group {
+            margin-bottom: 16px;
+        }
+
+        .brutal-label {
+            display: block;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .brutal-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            border: var(--border-width) solid black;
+            outline: none;
+            background: white;
+            transition: all 0.2s;
+            border-radius: 0; /* Strict square */
+        }
+
+        .brutal-input:focus {
+            background: #FEF3C7; /* Light Yellow */
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+
+        /* Buttons */
+        .btn-brutal {
+            width: 100%;
+            padding: 16px;
+            background: black;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            box-shadow: 6px 6px 0px 0px #9CA3AF;
+            transition: all 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-brutal:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0px 0px #9CA3AF;
+        }
+
+        .btn-brutal:active {
+            transform: translate(6px, 6px);
+            box-shadow: none;
+        }
+
+        .btn-brutal-secondary {
+            background: white;
+            color: black;
+            border: var(--border-width) solid black;
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+        
+        .btn-brutal-secondary:hover {
+            background: #F3F4F6;
+        }
+
+        /* Testimonials (Polaroids) */
+        .testimonial-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 16px;
+            padding: 4px 4px 20px 4px; /* Space for shadow */
+            scrollbar-width: none;
+        }
+        .testimonial-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .polaroid {
+            flex-shrink: 0;
+            width: 180px;
+            background: white;
+            padding: 10px 10px 20px 10px;
+            border: var(--border-width) solid black;
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.2);
+            transform: rotate(-2deg);
+        }
+        
+        .polaroid:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .polaroid-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border: 1px solid black;
+            background: #eee;
+            margin-bottom: 8px;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .polaroid:hover .polaroid-img {
+            filter: grayscale(0%);
+        }
+
+        .polaroid-caption {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* Payment List */
+        .payment-list-brutal {
+            border: var(--border-width) solid black;
+        }
+
+        .payment-item-brutal {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: var(--border-width) solid black;
+            cursor: pointer;
+            background: white;
+            transition: background 0.2s;
+        }
+
+        .payment-item-brutal:last-child {
+            border-bottom: none;
+        }
+
+        .payment-item-brutal:hover {
+            background: #FEF3C7;
+        }
+
+        .payment-item-brutal.selected {
+            background: black;
+            color: white;
+        }
+        
+        .payment-item-brutal.selected img {
+            filter: brightness(0) invert(1);
+        }
+
+        /* Accordion */
+        .brutal-accordion {
+            border: var(--border-width) solid black;
+            margin-bottom: 8px;
+            background: white;
+        }
+        
+        .brutal-accordion[open] {
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+
+        .brutal-accordion summary {
+            padding: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .brutal-accordion[open] summary {
+             border-bottom: 2px solid black;
+             background: #FEF3C7;
+        }
+
+        .brutal-accordion summary::after {
+            content: '+';
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .brutal-accordion[open] summary::after {
+            content: '-';
+        }
+
+        .brutal-accordion-content {
+            padding: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Toast */
+        .brutal-toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: #FF5A5F;
+            color: white;
+            border: 2px solid black;
+            box-shadow: 4px 4px 0px 0px black;
+            padding: 12px 24px;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            z-index: 100;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: max-content;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .brutal-toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 222, 0, 0.9); /* Yellow tint */
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .brutal-modal {
+            background: white;
+            border: 3px solid black;
+            box-shadow: 10px 10px 0px 0px black;
+            padding: 24px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.2s;
+        }
+
+        .modal-overlay.active .brutal-modal {
+            transform: scale(1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="brutal-toast">
+        <i class="fas fa-bolt"></i>
+        <div>
+            <span id="toast-name">USER</span> JUST PURCHASED!
+        </div>
+    </div>
+
+    <div class="main-container relative">
+        <!-- View: Form -->
+        <div id="view-form">
+            <!-- Header -->
+            <div class="brutal-header">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-white border-2 border-white flex items-center justify-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png" class="w-6 h-6">
+                    </div>
+                    <span class="font-bold text-xl tracking-tighter uppercase font-display">Adobe CC</span>
+                </div>
+                <div class="bg-red-500 text-white px-2 py-1 text-xs font-bold border-2 border-white transform rotate-3">
+                    OFFICIAL
+                </div>
+            </div>
+
+            <!-- Marquee Bar -->
+            <div class="bg-black text-white text-xs font-mono py-2 overflow-hidden border-b-2 border-black">
+                <div class="whitespace-nowrap animate-[marquee_10s_linear_infinite]">
+                    ★ 100% LEGAL ★ FULL GARANSI ★ PROSES CEPAT ★ TRUSTED SELLER ★ 100% LEGAL ★ FULL GARANSI ★
+                </div>
+            </div>
+
+            <div class="p-5 pb-32">
+                <!-- Hero -->
+                <div class="mb-8 border-2 border-black p-4 bg-white shadow-[4px_4px_0_0_#000]">
+                    <h2 class="text-3xl font-black leading-none mb-2 uppercase">Upgrade<br>Your Creative<br><span class="text-blue-600">Power Now.</span></h2>
+                    <p class="font-medium text-sm mt-4 border-t-2 border-black pt-2">
+                        Akses Full Adobe CC di email pribadi. Legal, Aman, Bergaransi.
+                    </p>
+                </div>
+
+                <form id="orderForm">
+                    <!-- Package Selection -->
+                    <div class="mb-8">
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="brutal-label">PILIH PAKET</label>
+                            <span class="bg-black text-white text-[10px] px-2 py-0.5 font-bold">STEP 1</span>
+                        </div>
+                        <div id="package-selection-container">
+                            <!-- Injected by JS -->
+                        </div>
+                        <input type="hidden" id="selectedPackage" name="package" value="yearly">
+                    </div>
+
+                     <!-- Features Link -->
+                    <div class="mb-8">
+                         <div onclick="showFeaturesModal()" class="cursor-pointer bg-blue-100 border-2 border-black p-3 flex justify-between items-center hover:bg-blue-200 transition-colors">
+                            <span class="font-bold font-mono text-sm"><i class="fas fa-star mr-2"></i> 20+ FITUR PREMIUM</span>
+                            <i class="fas fa-arrow-right"></i>
+                         </div>
+                    </div>
+
+                    <!-- Testimonials -->
+                    <div class="mb-8">
+                         <label class="brutal-label mb-4">BUKTI NYATA</label>
+                        <div id="testimonial-container" class="testimonial-scroll">
+                            <!-- Filled by JS -->
+                        </div>
+                    </div>
+
+                    <!-- User Data -->
+                    <div class="mb-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <label class="brutal-label">DATA DIRI</label>
+                            <span class="bg-black text-white text-[10px] px-2 py-0.5 font-bold">STEP 2</span>
+                        </div>
+                        
+                        <div class="brutal-input-group">
+                            <input type="text" id="nama" name="nama" class="brutal-input" placeholder="NAMA LENGKAP" required>
+                        </div>
+                        
+                        <div class="brutal-input-group">
+                            <input type="tel" id="whatsapp" name="whatsapp" class="brutal-input" placeholder="NOMOR WHATSAPP" required inputmode="numeric">
+                        </div>
+
+                        <div class="brutal-input-group">
+                            <input type="email" id="email" name="email" class="brutal-input" placeholder="EMAIL ADOBE ID" required>
+                        </div>
+                        
+                        <div class="border-2 border-black bg-red-100 p-2 text-xs font-bold text-center">
+                            ⚠ PASTIKAN EMAIL SUDAH TERDAFTAR DI ADOBE
+                        </div>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="mb-8">
+                         <div class="flex items-center justify-between mb-4">
+                            <label class="brutal-label">PEMBAYARAN</label>
+                            <span class="bg-black text-white text-[10px] px-2 py-0.5 font-bold">STEP 3</span>
+                        </div>
+                        <div id="payment-list" class="payment-list-brutal">
+                            <!-- Injected by JS -->
+                        </div>
+                        <input type="hidden" id="selectedPayment" name="payment-method" value="qris">
+                    </div>
+
+                    <!-- Hidden Fields -->
+                    <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
+                    <input type="hidden" name="sheetName" value="adobe">
+                </form>
+
+                <!-- FAQ -->
+                <div class="mt-8">
+                    <label class="brutal-label mb-4 text-center">FAQ</label>
+                    <div id="faq-container">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="mt-12 text-center border-t-2 border-black pt-6 font-mono text-xs opacity-60">
+                     <p class="mb-2">SECURE PAYMENT PARTNERS</p>
+                     <div class="flex justify-center gap-4 grayscale mb-4">
+                        <i class="fas fa-qrcode text-xl"></i>
+                        <i class="fas fa-university text-xl"></i>
+                        <i class="fas fa-wallet text-xl"></i>
+                     </div>
+                    <p>&copy; 2025 ADOBE RESELLER. ALL RIGHTS RESERVED.</p>
+                </div>
+            </div>
+
+            <!-- Sticky Bottom Bar -->
+            <div class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-black p-4 z-40 max-w-[480px] mx-auto">
+                <div class="flex gap-4">
+                    <div class="flex-1 border-2 border-black bg-gray-100 flex flex-col justify-center px-4">
+                        <span class="text-[10px] font-bold text-gray-500 uppercase">Total</span>
+                        <span class="text-xl font-black" id="total-price-display">Rp 0</span>
+                    </div>
+                    <button type="button" id="submit-btn" class="flex-1 btn-brutal" onclick="handleFormSubmit()">
+                        BAYAR <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View: Payment Instruction -->
+        <div id="view-payment" class="hidden min-h-screen bg-white">
+            <div class="brutal-header">
+                <button onclick="backToForm()" class="text-white hover:text-gray-300">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </button>
+                <span class="font-bold">INVOICE</span>
+                <div class="w-6"></div>
+            </div>
+
+            <div class="p-6 pb-24">
+                
+                <!-- Timer -->
+                <div class="bg-black text-white p-4 text-center border-b-4 border-red-500 mb-6 font-mono text-xl font-bold">
+                    <span id="countdown">23:59:59</span>
+                </div>
+
+                <!-- Amount -->
+                <div class="border-2 border-black p-6 mb-6 bg-yellow-100 shadow-[6px_6px_0_0_#000]">
+                    <p class="text-xs font-bold uppercase mb-2 text-gray-600">Total Tagihan</p>
+                    <div class="flex justify-between items-center">
+                        <h1 class="text-3xl font-black" id="payment-amount">Rp 0</h1>
+                        <button onclick="copyText('payment-amount-raw')" class="text-xs border-2 border-black px-2 py-1 bg-white hover:bg-gray-100 font-bold">COPY</button>
+                    </div>
+                    <div class="mt-4 pt-4 border-t-2 border-black border-dashed flex justify-between text-xs font-mono">
+                        <span>INV-ID:</span>
+                        <span id="invoice-id-display" class="font-bold">...</span>
+                    </div>
+                </div>
+
+                <!-- Payment Details -->
+                <div class="mb-6">
+                    <label class="brutal-label">TUJUAN TRANSFER</label>
+                    <div class="border-2 border-black p-4 bg-white">
+                        <div class="flex items-center justify-between mb-4 pb-4 border-b-2 border-black border-dashed">
+                            <span class="font-bold">METODE</span>
+                            <img id="payment-logo-result" src="" class="h-6 object-contain grayscale">
+                        </div>
+                        
+                        <div id="payment-details-content">
+                            <!-- Filled by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="mb-8">
+                     <label class="brutal-label">CARA BAYAR</label>
+                    <div id="instruction-steps" class="border-2 border-black p-4 bg-white space-y-3 font-mono text-sm">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <a id="wa-confirm-btn" href="#" target="_blank" class="btn-brutal bg-green-600 shadow-[6px_6px_0_0_#000]">
+                    <i class="fab fa-whatsapp"></i> KONFIRMASI
+                </a>
+                
+                <button onclick="backToForm()" class="w-full text-center font-bold text-xs mt-6 underline decoration-2">
+                    BATALKAN PESANAN
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Modal -->
+    <div id="featuresModal" class="modal-overlay">
+        <div class="brutal-modal">
+            <div class="flex justify-between items-center mb-6 pb-4 border-b-2 border-black">
+                <h3 class="text-xl font-black uppercase">Premium Features</h3>
+                <button onclick="closeModal('featuresModal')" class="font-bold text-xl">X</button>
+            </div>
+            <div class="space-y-3" id="features-list-container">
+                <!-- Features filled by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal-overlay" onclick="closeModal('imageModal')">
+        <div class="relative max-w-[90%] border-4 border-black bg-white p-2 shadow-[10px_10px_0_0_#000]">
+             <img id="modalImageDisplay" src="" class="w-full h-auto border-2 border-black filter grayscale hover:grayscale-0 transition-all">
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="infoModal" class="modal-overlay">
+        <div class="brutal-modal text-center">
+            <i class="fas fa-info-circle text-4xl mb-4"></i>
+            <h3 class="text-xl font-black mb-2 uppercase" id="modalTitle">Info</h3>
+            <p class="mb-6 font-mono text-sm" id="modalMessage">Message goes here</p>
+            <button onclick="closeModal('infoModal')" class="btn-brutal bg-black text-white shadow-[4px_4px_0_0_#9CA3AF]">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA ---
+        const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
+        
+        const packages = {
+            yearly: {
+                id: 'yearly',
+                name: "1 TAHUN",
+                price: 350000,
+                normalPrice: 2500000,
+                desc: "BEST VALUE"
+            },
+            monthly: {
+                id: 'monthly',
+                name: "1 BULAN",
+                price: 50000,
+                normalPrice: 250000,
+                desc: "STARTER"
+            }
+        };
+
+        const paymentMethods = [
+            { id: 'qris', name: 'QRIS', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qr', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15' },
+            { id: 'bca_va', name: 'BCA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'bank', number: '39358089510639366', holder: 'Epayment' },
+            { id: 'gopay', name: 'GoPay', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet', number: '089510639366', holder: 'Gopay' },
+            { id: 'dana', name: 'DANA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet', number: '089510639366', holder: 'DNID' },
+            { id: 'ovo', name: 'OVO', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', number: '089510639366', holder: 'OVO' }
+        ];
+
+        const testimonialImages = [
+            "https://pixvid.org/images/2025/11/14/mPYhr.jpg", "https://pixvid.org/images/2025/11/14/mPYyw.jpg", "https://pixvid.org/images/2025/11/14/mPYBE.jpg", "https://pixvid.org/images/2025/11/14/mPi89.jpg", "https://pixvid.org/images/2025/11/14/mPitS.jpg", "https://pixvid.org/images/2025/11/14/mPiM2.jpg", "https://pixvid.org/images/2025/11/14/mPicV.jpg", "https://pixvid.org/images/2025/11/14/mPuZk.jpg", "https://pixvid.org/images/2025/11/14/mPuYg.jpg", "https://pixvid.org/images/2025/11/14/mPuAO.jpg", "https://pixvid.org/images/2025/11/14/mPuLF.jpg", "https://pixvid.org/images/2025/11/14/mPJzn.jpg", "https://pixvid.org/images/2025/11/14/mPJuM.jpg", "https://pixvid.org/images/2025/11/14/mPJGa.jpg", "https://pixvid.org/images/2025/11/14/mPJfB.jpg", "https://pixvid.org/images/2025/11/14/mPKHf.jpg", "https://pixvid.org/images/2025/11/14/mPKEm.jpg", "https://pixvid.org/images/2025/11/14/mPKbz.jpg", "https://pixvid.org/images/2025/11/14/mPEel.jpg", "https://pixvid.org/images/2025/11/14/mPErY.jpg", "https://pixvid.org/images/2025/11/14/mPEoo.jpg", "https://pixvid.org/images/2025/11/14/mPEXd.jpg", "https://pixvid.org/images/2025/11/14/mPnUb.jpg", "https://pixvid.org/images/2025/11/14/mPnlN.jpg", "https://pixvid.org/images/2025/11/14/mPn6v.jpg", "https://pixvid.org/images/2025/11/14/mPn25.jpg", "https://pixvid.org/images/2025/11/14/mPo57.jpg", "https://pixvid.org/images/2025/11/14/mPoqT.jpg", "https://pixvid.org/images/2025/11/14/mPo9i.jpg"
+        ];
+        
+        const fullFeaturesList = [
+            "Akses 20+ Aplikasi Adobe",
+            "100GB Cloud Storage",
+            "Sync Desktop & Mobile",
+            "Ribuan Adobe Fonts",
+            "Akses Adobe Stock",
+            "Fitur AI Firefly",
+            "Update Otomatis",
+            "Portfolio & Behance",
+            "Akses Offline",
+            "Keamanan Terenkripsi",
+            "Support Multi-Device",
+            "Logout/Login Device",
+            "Full Garansi"
+        ];
+        
+        const faqList = [
+            { q: "RESMI GAK NIH?", a: "100% RESMI & LEGAL. Aktivasi via undangan email dari Adobe langsung." },
+            { q: "AKTIVASI GIMANA?", a: "Abis bayar, cek email. Ada undangan join team. Klik accept. Beres." },
+            { q: "AMAN BUAT AKUN?", a: "AMAN POL. Kita ga minta password. Cuma butuh email doang." },
+            { q: "DAPET APA AJA?", a: "Semua apps (Ps, Ai, Pr, Ae, dll) + 100GB Cloud." },
+            { q: "LAMA GAK?", a: "Kilat bos. 5-15 menit setelah konfirmasi bayar." },
+            { q: "ADA GARANSI?", a: "Ada dong. Kalo error dari kita, uang balik 100%." }
+        ];
+
+        const FIRST_NAMES = [ "Budi", "Ayu", "Rahmat", "Citra", "Bayu", "Lina", "Wulan", "Adi", "Farhan", "Hendra" ];
+
+        // --- STATE ---
+        let currentPackage = 'yearly';
+        let currentPayment = 'qris';
+        let expiryTime;
+        let countdownInterval;
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPackageCards();
+            renderPaymentMethods();
+            renderTestimonials();
+            renderFAQ();
+            updateTotalPrice();
+            initNotifications();
+
+             // Input formatting
+            const whatsappInput = document.getElementById('whatsapp');
+            whatsappInput.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            });
+        });
+
+        // --- RENDERERS ---
+
+        function renderPackageCards() {
+            const container = document.getElementById('package-selection-container');
+            if (!container) return;
+
+            const formatCurrency = (amount) => `Rp ${amount.toLocaleString('id-ID')}`;
+            const yearly = packages.yearly;
+            const monthly = packages.monthly;
+
+            container.innerHTML = `
+                <div class="package-ticket ${currentPackage === 'yearly' ? 'selected' : ''}" onclick="selectPackage('yearly')">
+                    <div class="ticket-content">
+                        <div>
+                            <span class="ticket-stub">BEST VALUE</span>
+                            <div class="font-black text-2xl">1 TAHUN</div>
+                            <div class="text-xs font-mono line-through text-gray-400">${formatCurrency(yearly.normalPrice)}</div>
+                        </div>
+                        <div class="text-right">
+                             <div class="font-black text-3xl text-blue-600">${formatCurrency(yearly.price)}</div>
+                        </div>
+                    </div>
+                    <div class="ticket-divider"></div>
+                     <div class="p-3 bg-gray-50 text-[10px] font-mono text-center text-gray-500 uppercase">
+                        Hemat 85% • Full Garansi • All Apps
+                    </div>
+                </div>
+                
+                <div class="package-ticket ${currentPackage === 'monthly' ? 'selected' : ''}" onclick="selectPackage('monthly')">
+                    <div class="ticket-content">
+                        <div>
+                            <span class="ticket-stub">STARTER</span>
+                            <div class="font-black text-2xl">1 BULAN</div>
+                        </div>
+                        <div class="text-right">
+                             <div class="font-black text-3xl text-blue-600">${formatCurrency(monthly.price)}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTestimonials() {
+            const container = document.getElementById('testimonial-container');
+            container.innerHTML = testimonialImages.map((url, index) => `
+                <div class="polaroid" onclick="openImageModal('${url}')">
+                    <img src="${url}" class="polaroid-img" loading="lazy">
+                    <div class="polaroid-caption">CLIENT #${index + 101}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderFAQ() {
+            const container = document.getElementById('faq-container');
+            container.innerHTML = faqList.map(item => `
+                <details class="brutal-accordion">
+                    <summary>${item.q}</summary>
+                    <div class="brutal-accordion-content">${item.a}</div>
+                </details>
+            `).join('');
+        }
+        
+        function showFeaturesModal() {
+            const container = document.getElementById('features-list-container');
+            container.innerHTML = fullFeaturesList.map(feat => `
+                <div class="flex items-center gap-3 font-mono text-sm border-b border-gray-200 pb-2">
+                    <i class="fas fa-check-square text-green-500"></i>
+                    <span>${feat}</span>
+                </div>
+            `).join('');
+            
+            document.getElementById('featuresModal').classList.add('active');
+        }
+
+        function openImageModal(url) {
+            document.getElementById('modalImageDisplay').src = url;
+            document.getElementById('imageModal').classList.add('active');
+        }
+
+        function selectPackage(pkgId) {
+            currentPackage = pkgId;
+            document.getElementById('selectedPackage').value = pkgId;
+            renderPackageCards();
+            updateTotalPrice();
+        }
+
+        function selectPayment(paymentId) {
+            currentPayment = paymentId;
+            document.getElementById('selectedPayment').value = paymentId;
+            renderPaymentMethods();
+        }
+
+        function renderPaymentMethods() {
+            const grid = document.getElementById('payment-list');
+            grid.innerHTML = paymentMethods.map((pm, idx) => `
+                <div class="payment-item-brutal ${currentPayment === pm.id ? 'selected' : ''}" onclick="selectPayment('${pm.id}')">
+                    <span class="font-bold font-mono uppercase">${pm.name}</span>
+                    <img src="${pm.logo}" class="h-6">
+                </div>
+            `).join('');
+        }
+
+        function updateTotalDisplay() {
+            const total = packages[currentPackage].price + uniqueCode;
+            document.getElementById('total-price-display').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        // --- SUBMISSION ---
+
+        function validateForm() {
+             const name = document.getElementById('nama').value.trim();
+            const wa = document.getElementById('whatsapp').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!name) return { valid: false, msg: 'NAMA WAJIB DIISI BOSS!' };
+            if (wa.length < 9) return { valid: false, msg: 'NOMOR WA GAK VALID!' };
+            if (!email || !emailRegex.test(email)) return { valid: false, msg: 'EMAIL ERROR!' };
+
+            return { valid: true };
+        }
+
+        async function handleFormSubmit() {
+            const validation = validateForm();
+            if (!validation.valid) {
+                showModal('ERROR', validation.msg);
+                return;
+            }
+
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = 'PROCESSING...';
+
+            const formData = new FormData(document.getElementById('orderForm'));
+            const pkg = packages[currentPackage];
+            const payment = paymentMethods.find(p => p.id === currentPayment);
+            const totalPrice = pkg.price + uniqueCode;
+            const now = new Date();
+             const rL = () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 26));
+            const rD = () => Math.floor(Math.random() * 10);
+            const paymentId = `INV-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
+
+            const dataToSend = {
+                nama: formData.get('nama'),
+                whatsapp: formData.get('whatsapp'),
+                email: formData.get('email'),
+                paket: pkg.name,
+                metodePembayaran: payment.name,
+                totalTransfer: `Rp${totalPrice.toLocaleString('id-ID')}`,
+                idPembayaran: paymentId,
+                nomorRekening: payment.number || '-',
+                sheetName: formData.get('sheetName')
+            };
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
+
+            try {
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dataToSend)
+                });
+                
+                showPaymentPage(dataToSend, payment, totalPrice);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showModal('ERROR', 'GAGAL KIRIM DATA. COBA LAGI.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'BAYAR <i class="fas fa-arrow-right"></i>';
+            }
+        }
+
+        function showPaymentPage(data, paymentMethod, amount) {
+            document.getElementById('view-form').classList.add('hidden');
+            document.getElementById('view-payment').classList.remove('hidden');
+            document.querySelector('.fixed.bottom-0').classList.add('hidden');
+            window.scrollTo(0, 0);
+
+            // Timer
+            expiryTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+            startCountdown();
+
+            document.getElementById('payment-amount').innerText = `Rp ${amount.toLocaleString('id-ID')}`;
+            document.getElementById('payment-logo-result').src = paymentMethod.logo;
+            document.getElementById('invoice-id-display').innerText = data.idPembayaran;
+
+             // WA Link
+            const waMsg = `Halo, saya sudah transfer:\nInvoice: ${data.idPembayaran}\nTotal: ${data.totalTransfer}\n\nMohon diproses.`;
+            document.getElementById('wa-confirm-btn').href = `https://wa.me/6285602152097?text=${encodeURIComponent(waMsg)}`;
+
+            const detailsContainer = document.getElementById('payment-details-content');
+            const instructionsContainer = document.getElementById('instruction-steps');
+            
+            // Raw amount
+            const rawAmountInput = document.createElement('input');
+            rawAmountInput.type = 'hidden';
+            rawAmountInput.id = 'payment-amount-raw';
+            rawAmountInput.value = amount;
+            document.body.appendChild(rawAmountInput);
+
+
+            if (paymentMethod.type === 'qr') {
+                const qrisStatic = paymentMethod.number;
+                const qrisDynamic = createDynamicQris(qrisStatic, amount);
+                
+                detailsContainer.innerHTML = `
+                    <div class="flex flex-col items-center">
+                         <div class="border-2 border-black p-2 bg-white mb-4 shadow-[4px_4px_0_0_#000]">
+                            <div id="qrcode-canvas"></div>
+                         </div>
+                        <p class="font-mono text-xs text-center">SCAN PAKE GOPAY/DANA/OVO/BANKING</p>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    const qrContainer = document.getElementById('qrcode-canvas');
+                    qrContainer.innerHTML = '';
+                    const canvas = document.createElement('canvas');
+                    QRCode.toCanvas(canvas, qrisDynamic, { width: 180, margin: 0 }, (err) => {
+                         if (!err) qrContainer.appendChild(canvas);
+                    });
+                }, 100);
+
+                 instructionsContainer.innerHTML = `
+                    <div>1. BUKA APLIKASI E-WALLET/BANKING</div>
+                    <div>2. PILIH SCAN QRIS</div>
+                    <div>3. SCAN KODE DIATAS</div>
+                    <div>4. PASTIKAN NOMINAL <strong>Rp ${amount.toLocaleString('id-ID')}</strong></div>
+                 `;
+
+            } else {
+                 detailsContainer.innerHTML = `
+                    <div class="text-center">
+                        <p class="font-mono text-xs mb-1">NO REKENING:</p>
+                        <h2 class="text-xl font-black bg-yellow-200 p-2 inline-block border-2 border-black">${paymentMethod.number}</h2>
+                        <div class="mt-2">
+                            <button onclick="copyText('${paymentMethod.number}')" class="text-xs font-bold underline">SALIN</button>
+                        </div>
+                    </div>
+                 `;
+
+                 instructionsContainer.innerHTML = `
+                     <div>1. TRANSFER KE <strong>${paymentMethod.name}</strong></div>
+                     <div>2. NO REK: ${paymentMethod.number}</div>
+                     <div>3. NOMINAL: <strong>Rp ${amount.toLocaleString('id-ID')}</strong> (HARUS PAS)</div>
+                 `;
+            }
+        }
+
+        function backToForm() {
+            document.getElementById('view-payment').classList.add('hidden');
+            document.getElementById('view-form').classList.remove('hidden');
+            document.querySelector('.fixed.bottom-0').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // --- UTILS ---
+        function startCountdown() {
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = expiryTime - now;
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('countdown').innerHTML = "EXPIRED";
+                    return;
+                }
+                const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById('countdown').innerHTML = 
+                    `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+            }, 1000);
+        }
+
+        function copyText(textOrId) {
+            let text = textOrId;
+            const element = document.getElementById(textOrId);
+            if (element) text = element.value || element.innerText;
+             navigator.clipboard.writeText(text).then(() => {
+                showModal('COPIED!', 'TEKS BERHASIL DISALIN');
+            });
+        }
+
+        function showModal(title, msg) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMessage').innerText = msg;
+            document.getElementById('infoModal').classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function initNotifications() {
+             setInterval(() => {
+                const name = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                document.getElementById('toast-name').innerText = name.toUpperCase();
+                
+                setTimeout(() => {
+                     toast.classList.remove('show');
+                }, 4000);
+            }, 10000 + Math.random() * 5000);
+        }
+
+        // --- QRIS UTILS ---
+        function createDynamicQris(qris, nominal) {
+            let qrisModified = qris.slice(0, -4).replace("010211", "010212");
+            const nominalStr = String(Math.round(nominal));
+            const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
+            const amountPart = "54" + amountLength + nominalStr;
+            
+            if (qrisModified.includes("5802ID")) {
+                let parts = qrisModified.split("5802ID");
+                qrisModified = parts[0] + amountPart + "5802ID" + parts[1];
+            }
+            
+            const crc = crc16ccitt(qrisModified);
+            return qrisModified + crc;
+        }
+
+        function crc16ccitt(str) {
+            let crc = 0xFFFF;
+            for (let c = 0; c < str.length; c++) {
+                crc ^= str.charCodeAt(c) << 8;
+                for (let i = 0; i < 8; i++) {
+                    if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
+                    else crc = crc << 1;
+                }
+            }
+            return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
+        }
+
+    </script>
+</body>
+</html>
