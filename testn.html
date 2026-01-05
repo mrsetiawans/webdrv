@@ -480,7 +480,7 @@
                     </div>
                 </div>
                 <div class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-xs font-semibold">
-                    <i class="fas fa-check-circle mr-1"></i> Garansi
+                    <i class="fas fa-check-circle mr-1"></i> Garansi Resmi
                 </div>
             </div>
 
@@ -1013,7 +1013,13 @@
             const payment = paymentMethods.find(p => p.id === currentPayment);
             const totalPrice = pkg.price + uniqueCode;
             const now = new Date();
-            const paymentId = `INV-NETFLIX-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(totalPrice).slice(-3)}`;
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const getRandomLetter = () => letters.charAt(Math.floor(Math.random() * letters.length));
+            const getRandomDigit = () => Math.floor(Math.random() * 10);
+            
+            const dateStr = `${now.getFullYear().toString().slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
+            const suffix = `${getRandomLetter()}${getRandomDigit()}${getRandomLetter()}${getRandomDigit()}`;
+            const paymentId = `INV-NFX-${dateStr}-${suffix}`;
             
             // Prepare Object for Google Script
             const dataToSend = {
