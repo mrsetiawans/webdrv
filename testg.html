@@ -962,25 +962,28 @@
         }
 
         function validateForm() {
-            const name = document.getElementById('nama').value.trim();
-            const wa = document.getElementById('whatsapp').value.trim();
-            const email = document.getElementById('email').value.trim();
+            const nameInput = document.getElementById('nama');
+            const name = nameInput.value.trim();
+            const waInput = document.getElementById('whatsapp');
+            const wa = waInput.value.trim();
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (!name) return { valid: false, msg: 'Nama wajib diisi' };
+            if (!name) return { valid: false, msg: 'Nama wajib diisi', element: nameInput };
             
             const phoneValidationResult = validatePhoneNumber(wa);
             if (!phoneValidationResult.isValid) {
-                return { valid: false, msg: phoneValidationResult.message };
+                return { valid: false, msg: phoneValidationResult.message, element: waInput };
             }
 
             if (!email || !emailRegex.test(email)) {
-                return { valid: false, msg: 'Email tidak valid' };
+                return { valid: false, msg: 'Email tidak valid', element: emailInput };
             }
 
             const domain = email.split('@')[1].toLowerCase();
             if (!allowedEmailDomains.includes(domain)) {
-                return { valid: false, msg: 'Domain email tidak diizinkan. Harap gunakan email pribadi.' };
+                return { valid: false, msg: 'Domain email tidak diizinkan. Harap gunakan email pribadi.', element: emailInput };
             }
             
             return { valid: true };
@@ -990,6 +993,10 @@
             const validation = validateForm();
             if (!validation.valid) {
                 showModal('Data Belum Lengkap', validation.msg);
+                if (validation.element) {
+                    validation.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    validation.element.focus();
+                }
                 return;
             }
 
