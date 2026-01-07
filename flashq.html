@@ -34,6 +34,7 @@
                         'blob': 'blob 7s infinite',
                         'float': 'float 3s ease-in-out infinite',
                         'marquee': 'marquee 40s linear infinite',
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
                     },
                     keyframes: {
                         blob: {
@@ -49,6 +50,10 @@
                         marquee: {
                             '0%': { transform: 'translateX(0)' },
                             '100%': { transform: 'translateX(-50%)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         }
                     }
                 }
@@ -115,6 +120,14 @@
         /* Utilities */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Toast Animation */
+        .toast {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .toast-enter { transform: translateY(-100%); opacity: 0; }
+        .toast-active { transform: translateY(0); opacity: 1; }
+        .toast-exit { transform: translateY(-100%); opacity: 0; }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-darker text-slate-800 dark:text-slate-200 antialiased transition-colors duration-300 overflow-hidden fixed inset-0">
@@ -127,10 +140,10 @@
     </div>
 
     <!-- Notification Toast -->
-    <div id="toast-container" class="fixed top-6 left-0 right-0 z-[100] pointer-events-none flex flex-col items-center gap-2 px-4"></div>
+    <div id="toast-container" class="fixed top-4 left-0 right-0 z-[100] pointer-events-none flex flex-col items-center gap-2 px-4"></div>
 
     <!-- MAIN APP CONTAINER -->
-    <div class="relative w-full h-full max-w-[500px] mx-auto bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm shadow-2xl sm:rounded-[30px] sm:my-4 sm:h-[calc(100vh-2rem)] border border-white/20 dark:border-white/5 overflow-hidden flex flex-col">
+    <div class="relative w-full h-full max-w-[500px] mx-auto bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm shadow-2xl sm:rounded-[30px] sm:my-4 sm:h-[calc(100vh-2rem)] border border-white/20 dark:border-white/5 overflow-hidden flex flex-col transition-all duration-300">
         
         <!-- Top Bar -->
         <div class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-700/60 px-5 py-3 flex justify-between items-center z-50">
@@ -164,7 +177,7 @@
             <div id="view-home" class="p-5 space-y-6">
                 
                 <!-- Greeting -->
-                <div class="flex justify-between items-end">
+                <div class="flex justify-between items-end animate-fade-in">
                     <div>
                         <p class="text-xs text-slate-500 dark:text-slate-400 mb-1" id="greeting-time">Selamat Datang,</p>
                         <h2 class="text-xl font-bold text-slate-900 dark:text-white">Mau internetan <br><span class="text-blue-600 dark:text-blue-400">tanpa batas?</span> 🚀</h2>
@@ -177,7 +190,7 @@
                 </div>
 
                 <!-- Stats Cards -->
-                <div class="grid grid-cols-3 gap-3">
+                <div class="grid grid-cols-3 gap-3 animate-fade-in" style="animation-delay: 100ms">
                     <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm text-center">
                         <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-1">TERJUAL</p>
                         <p class="font-bold text-slate-800 dark:text-slate-200">15.2k+</p>
@@ -195,7 +208,7 @@
                 </div>
 
                 <!-- Order Form -->
-                <form id="orderForm" class="space-y-5">
+                <form id="orderForm" class="space-y-5 animate-fade-in" style="animation-delay: 200ms">
                     
                     <!-- Section: Penerima -->
                     <div class="space-y-3">
@@ -283,7 +296,7 @@
             </div>
 
             <!-- View: HISTORY (Hidden by default) -->
-            <div id="view-history" class="hidden p-5 space-y-6 min-h-[60vh]">
+            <div id="view-history" class="hidden p-5 space-y-6 min-h-[60vh] animate-fade-in">
                 <h2 class="text-xl font-bold text-slate-900 dark:text-white">Riwayat Transaksi</h2>
                 <div id="history-list" class="space-y-3">
                     <!-- Populated by JS -->
@@ -295,7 +308,7 @@
             </div>
 
             <!-- View: HELP (Hidden by default) -->
-            <div id="view-help" class="hidden p-5 space-y-6">
+            <div id="view-help" class="hidden p-5 space-y-6 animate-fade-in">
                 <h2 class="text-xl font-bold text-slate-900 dark:text-white">Pusat Bantuan</h2>
                 <div class="space-y-3" id="faq-container"></div>
                 
@@ -339,12 +352,21 @@
                                 <h1 class="text-2xl font-bold text-slate-900" id="pay-total">Rp 0</h1>
                                 <button onclick="copyToClip('pay-total')" class="text-blue-500 bg-blue-50 p-1.5 rounded-lg text-xs hover:bg-blue-100 transition"><i class="far fa-copy"></i></button>
                             </div>
+                            <p class="text-[9px] text-red-500 mt-1">*Transfer tepat sampai 3 digit terakhir</p>
                         </div>
                         <img id="pay-logo" src="" class="h-8 object-contain">
                     </div>
 
                     <div id="pay-content" class="space-y-4">
                         <!-- Dynamic Content -->
+                    </div>
+                </div>
+                
+                <!-- Instructions -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm mb-6">
+                    <h3 class="font-bold text-slate-900 dark:text-white mb-4 text-sm">Langkah Pembayaran</h3>
+                    <div id="instruction-steps" class="space-y-3">
+                        <!-- Filled by JS -->
                     </div>
                 </div>
 
@@ -494,13 +516,14 @@
     </div>
 
     <!-- Features Modal -->
-    <div id="featuresModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[120] hidden flex items-center justify-center p-4 transition-all opacity-0" onclick="closeModal('featuresModal')">
-        <div class="bg-white dark:bg-slate-800 w-full max-w-sm rounded-2xl p-6 transform scale-95 transition-all shadow-2xl" onclick="event.stopPropagation()">
+    <div id="featuresModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[120] hidden flex items-end sm:items-center justify-center p-0 sm:p-4 transition-all opacity-0" onclick="closeModal('featuresModal')">
+        <div class="bg-white dark:bg-slate-800 w-full sm:max-w-sm rounded-t-[30px] sm:rounded-2xl p-6 transform translate-y-full sm:translate-y-0 transition-transform duration-300 shadow-2xl" onclick="event.stopPropagation()">
+            <div class="w-12 h-1 bg-slate-300 dark:bg-slate-600 rounded-full mx-auto mb-6 sm:hidden"></div>
             <div class="flex justify-between items-center mb-4">
                 <h3 class="font-bold text-lg text-slate-900 dark:text-white">Detail Paket</h3>
                 <button onclick="closeModal('featuresModal')" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center"><i class="fas fa-times"></i></button>
             </div>
-            <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300" id="feature-list-ul">
+            <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 max-h-[60vh] overflow-y-auto" id="feature-list-ul">
                 <!-- Filled by JS -->
             </ul>
         </div>
@@ -541,7 +564,7 @@
             "Proses Aktivasi 5-15 Menit"
         ];
 
-        // OPERATOR ASSETS
+        // OPERATOR ASSETS (Enhanced Detection)
         const operatorLogos = {
             'Telkomsel': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Telkomsel_2021_icon.svg/1200px-Telkomsel_2021_icon.svg.png',
             'Indosat': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Indosat_Ooredoo_logo_%282019%29.svg/330px-Indosat_Ooredoo_logo_%282019%29.svg.png',
@@ -550,6 +573,16 @@
             'Tri': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Three_logo.svg/250px-Three_logo.svg.png',
             'Smartfren': 'https://siplah.blibli.com/data/images/SACE-0031-00032/d48d6f57-7273-416a-9aab-49625e21f03f.png',
             'by.U': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Byu-logo-blue.svg/330px-Byu-logo-blue.svg.png'
+        };
+
+        const operatorPrefixes = {
+            'Telkomsel': ['0811', '0812', '0813', '0821', '0822', '0823', '0851', '0852', '0853'],
+            'by.U': ['0851'],
+            'Indosat': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
+            'Tri': ['0895', '0896', '0897', '0898', '0899'],
+            'XL': ['0817', '0818', '0819', '0859', '0877', '0878', '0879'],
+            'Axis': ['0831', '0832', '0833', '0838'],
+            'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
         };
 
         // FULL FAQs
@@ -566,12 +599,26 @@
             { q: "Apakah bisa untuk modem/orbit?", a: "Bisa banget! Paket ini support untuk digunakan di Smartphone, Modem, Mifi, maupun Router Orbit." }
         ];
 
+        // FAKE SALES NOTIFICATIONS
+        const FIRST_NAMES = [ "Budi", "Ayu", "Rahmat", "Citra", "Bayu", "Lina", "Wulan", "Adi", "Farhan", "Hendra", "Nana", "Joko", "Mega", "Gilang", "Sari", "Dedi", "Eka", "Teguh", "Putri", "Andi", "Bagus", "Ilham", "Rizal", "Mira", "Puspita", "Hari", "Tri", "Cahya", "Surya", "Wahyu", "Agus", "Indra", "Linda", "Fajar", "Yusuf", "Pramono", "Sinta", "Bima", "Dian", "Hasan", "Nurul", "Arif", "Feri", "Lukman", "Rangga", "Rini", "Tono", "Hadi", "Elisa", "Anisa", "Gunawan", "Melati", "Septi", "Cindy", "Windi", "Galih", "Evi", "Putra", "Slamet", "Latif", "Gita", "Darmawan", "Maya", "Erik", "Jani", "Jefri", "Bella", "Maulana", "Novi", "Fajar", "Taufik", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Ganda", "Wahida", "Robby", "Halim", "Firman", "Berlian", "Ari" ];
+        
+        // 15 UNIQUE TEXT TESTIMONIALS
         const testimonials = [
-            { n: "Rudi Hartono", t: "Awalnya ragu, tapi ternyata beneran work! Hemat banget.", s: 5 },
-            { n: "Siti Aminah", t: "Admin fast respon, 5 menit kuota langsung masuk.", s: 5 },
-            { n: "Budi Santoso", t: "Speed kenceng, buat streaming Netflix lancar jaya.", s: 4 },
-            { n: "Dewi Lestari", t: "Recommended seller! Bakal langganan terus.", s: 5 },
-            { n: "Eko Prasetyo", t: "Mantap gan, no tipu-tipu. Sesuai deskripsi.", s: 5 },
+            { name: "Rudi Hartono", text: "Awalnya ragu, tapi ternyata beneran work! Hemat banget.", stars: 5 },
+            { name: "Siti Aminah", text: "Admin fast respon, 5 menit kuota langsung masuk.", stars: 5 },
+            { name: "Budi Santoso", text: "Speed kenceng, buat streaming Netflix lancar jaya.", stars: 4 },
+            { name: "Dewi Lestari", text: "Recommended seller! Bakal langganan terus.", stars: 5 },
+            { name: "Eko Prasetyo", text: "Mantap gan, no tipu-tipu. Sesuai deskripsi.", stars: 5 },
+            { name: "Andi Wijaya", text: "Harga paling murah dibanding lapak lain. Top!", stars: 5 },
+            { name: "Rina Yulianti", text: "Proses cepat, pelayanan ramah. Terima kasih Flash Quota.", stars: 5 },
+            { name: "Dimas Anggara", text: "Sinyal stabil, gak ada FUP beneran. Puas banget.", stars: 5 },
+            { name: "Maya Sari", text: "Udah order ke-3 kalinya, selalu aman dan cepat.", stars: 5 },
+            { name: "Hendra Gunawan", text: "Solusi hemat kuota sekeluarga. Makasih min!", stars: 5 },
+            { name: "Rizky Pratama", text: "Gokil, injectnya cepet banget. Langsung connect.", stars: 5 },
+            { name: "Fajar Sidik", text: "Buat main game ping stabil, jarang lag.", stars: 4 },
+            { name: "Sari Indah", text: "Customer service sangat membantu pas ada kendala.", stars: 5 },
+            { name: "Bayu Nugroho", text: "Tampilannya pro banget, transaksinya juga mudah.", stars: 5 },
+            { name: "Citra Kirana", text: "Worth it banget parah. Jangan ragu beli disini.", stars: 5 }
         ];
 
         // --- STATE ---
@@ -590,6 +637,7 @@
             loadDraft();
             loadHistory();
             startLoops();
+            initNotifications();
         });
 
         // --- UI RENDERERS ---
@@ -629,16 +677,22 @@
 
             // Testimonials
             const tHtml = testimonials.map(t => `
-                <div class="inline-block bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 p-3 rounded-xl w-60 whitespace-normal shrink-0">
-                    <div class="flex items-center gap-2 mb-1">
-                        <div class="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center text-xs font-bold">${t.n.charAt(0)}</div>
-                        <div class="flex-1">
-                            <p class="text-xs font-bold text-slate-800 dark:text-white">${t.n}</p>
-                            <div class="text-yellow-400 text-[9px]">${'<i class="fas fa-star"></i>'.repeat(t.s)}</div>
-                        </div>
-                        <i class="fas fa-quote-right text-slate-200 dark:text-slate-600"></i>
+                <div class="inline-block bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 p-4 rounded-xl w-64 shrink-0 mx-2 shadow-sm relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-quote-right text-4xl"></i>
                     </div>
-                    <p class="text-[11px] text-slate-500 dark:text-slate-400 italic leading-snug">"${t.t}"</p>
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center font-bold text-xs shadow-md">
+                            ${t.name.charAt(0)}
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-800 dark:text-white leading-tight">${t.name}</p>
+                            <div class="flex text-yellow-400 text-[9px] mt-0.5">
+                                ${'<i class="fas fa-star"></i>'.repeat(t.stars)}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 italic leading-relaxed relative z-10">"${t.text}"</p>
                 </div>
             `).join('');
             document.getElementById('testimonial-track').innerHTML = tHtml + tHtml;
@@ -658,7 +712,7 @@
 
             // Full Features List in Modal
             document.getElementById('feature-list-ul').innerHTML = fullFeatures.map(feat => `
-                <li class="flex gap-3"><i class="fas fa-check text-green-500 mt-1"></i> ${feat}</li>
+                <li class="flex gap-3 items-start"><i class="fas fa-check-circle text-green-500 mt-1"></i> ${feat}</li>
             `).join('');
 
             updateSummary();
@@ -721,39 +775,28 @@
         }
 
         function checkOperator(input) {
-            const num = input.value.replace(/-/g, '');
-            const badge = document.getElementById('op-badge');
+            const rawNum = input.value.replace(/-/g, '');
             const logoImg = document.getElementById('operator-logo');
             
-            if(num.length >= 4) {
-                const pre = num.substring(0,4);
-                const pre5 = num.substring(0,5);
-                let op = '';
-                let logoUrl = '';
+            if(rawNum.length >= 4) {
+                const prefix = rawNum.substring(0, 4);
+                let op = null;
                 
-                // Logic based on previous snippet
-                if(/^08(11|12|13|21|22|23|52|53|51)/.test(pre)) { op = 'Telkomsel'; }
-                else if(/^08(515|516|517)/.test(pre5)) { op = 'by.U'; }
-                else if(/^08(14|15|16|55|56|57|58)/.test(pre)) { op = 'Indosat'; }
-                else if(/^08(17|18|19|59|77|78|79)/.test(pre)) { op = 'XL'; }
-                else if(/^08(31|32|33|38)/.test(pre)) { op = 'Axis'; }
-                else if(/^08(95|96|97|98|99)/.test(pre)) { op = 'Tri'; }
-                else if(/^08(81|82|83|84|85|86|87|88|89)/.test(pre)) { op = 'Smartfren'; }
+                for (const operator in operatorPrefixes) {
+                    if (operatorPrefixes[operator].includes(prefix)) {
+                        op = operator;
+                        break;
+                    }
+                }
 
                 if(op && operatorLogos[op]) {
                     logoImg.src = operatorLogos[op];
                     logoImg.classList.remove('hidden');
-                    
-                    // Fallback badge text if image fails or just as debug
-                    badge.innerText = op;
-                    badge.classList.add('hidden'); // Hide text badge in favor of image
                 } else {
                     logoImg.classList.add('hidden');
-                    badge.classList.add('hidden');
                 }
             } else {
                 logoImg.classList.add('hidden');
-                badge.classList.add('hidden');
             }
         }
 
@@ -767,11 +810,14 @@
                 showToast('Mohon lengkapi semua data', 'error');
                 return;
             }
+            
+            if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showToast('Email tidak valid', 'error');
+                return;
+            }
 
-            // Show Server Connecting Overlay
             await runConnectionAnimation();
 
-            // Create Order
             const p = packages.find(x => x.id === state.pkg);
             const pay = payments.find(x => x.id === state.pay);
             const total = p.price + state.unique - state.discount;
@@ -781,15 +827,24 @@
             const rD = () => Math.floor(Math.random() * 10);
             const orderId = `INV-INJECT-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
 
+            // Save comprehensive order details
             const order = {
                 id: orderId,
                 date: new Date().toLocaleDateString('id-ID'),
-                pkg: p.name,
+                timestamp: now.getTime(),
+                expiry: now.getTime() + (24 * 60 * 60 * 1000), // 24h
+                pkgName: p.name,
                 price: total,
-                status: 'pending'
+                payMethodId: pay.id,
+                payMethodName: pay.name,
+                payAcc: pay.acc,
+                payHolder: pay.holder,
+                payType: pay.type,
+                payLogo: pay.logo,
+                status: 'pending',
+                customer: { nama, wa, email }
             };
 
-            // Save History
             saveHistory(order);
 
             // Submit to Google Sheet (Async)
@@ -813,45 +868,109 @@
                 body: JSON.stringify(dataToSend)
             }).catch(e => console.log('Offline mode'));
 
-            // Setup Payment View
-            document.getElementById('pay-oid').innerText = orderId;
-            document.getElementById('pay-total').innerText = `Rp ${total.toLocaleString()}`;
-            document.getElementById('pay-logo').src = pay.logo;
+            renderPaymentView(order);
+            document.getElementById('view-payment').classList.remove('translate-x-full');
+        }
+
+        function renderPaymentView(order) {
+            document.getElementById('pay-oid').innerText = order.id;
+            document.getElementById('pay-total').innerText = `Rp ${order.price.toLocaleString()}`;
+            document.getElementById('pay-logo').src = order.payLogo;
             
+            // Countdown
+            const timerEl = document.getElementById('pay-timer');
+            // Clear existing interval if any (simple hack: reliable enough for SPA)
+            if(window.payInterval) clearInterval(window.payInterval);
+            
+            window.payInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const dist = order.expiry - now;
+                
+                if (dist < 0) {
+                    clearInterval(window.payInterval);
+                    timerEl.innerText = "EXPIRED";
+                    return;
+                }
+                
+                const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((dist % (1000 * 60)) / 1000);
+                timerEl.innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            }, 1000);
+
             const content = document.getElementById('pay-content');
-            if(pay.type === 'qr') {
-                content.innerHTML = `
-                    <div class="flex flex-col items-center">
-                        <div class="bg-white p-2 border-2 border-slate-800 rounded-xl mb-2">
-                            <div id="qrcode-canvas"></div>
+            const instructions = document.getElementById('instruction-steps');
+
+            if(order.payType === 'qr') {
+                try {
+                    const qrisDynamic = createDynamicQris(order.payAcc, order.price);
+                    content.innerHTML = `
+                        <div class="flex flex-col items-center">
+                            <div class="bg-white p-2 border-2 border-slate-800 rounded-xl mb-2">
+                                <div id="qrcode-canvas"></div>
+                            </div>
+                            <button onclick="downloadQR('${order.id}')" class="text-xs bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-lg font-bold flex items-center gap-1 hover:bg-slate-200">
+                                <i class="fas fa-download"></i> Simpan QRIS
+                            </button>
                         </div>
-                        <p class="text-[10px] text-center text-slate-500">Scan QRIS ini dengan aplikasi apa saja</p>
-                    </div>
-                `;
-                setTimeout(() => {
-                    document.getElementById('qrcode-canvas').innerHTML = '';
-                    new QRCode(document.getElementById("qrcode-canvas"), {
-                        text: generateQRIS(pay.acc, total),
-                        width: 160, height: 160
-                    });
-                }, 100);
+                    `;
+                    setTimeout(() => {
+                        const canvasContainer = document.getElementById('qrcode-canvas');
+                        if(canvasContainer) {
+                            canvasContainer.innerHTML = '';
+                            const canvas = document.createElement('canvas');
+                            QRCode.toCanvas(canvas, qrisDynamic, { width: 180, margin: 1 }, (err) => {
+                                if (!err) canvasContainer.appendChild(canvas);
+                            });
+                        }
+                    }, 100);
+
+                    instructions.innerHTML = `
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">1</div><p class="text-xs text-slate-600 dark:text-slate-300">Buka aplikasi E-Wallet/Banking.</p></div>
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">2</div><p class="text-xs text-slate-600 dark:text-slate-300">Scan QR Code diatas.</p></div>
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">3</div><p class="text-xs text-slate-600 dark:text-slate-300">Pastikan nominal <b>Rp ${order.price.toLocaleString()}</b>.</p></div>
+                    `;
+                } catch (e) {
+                    content.innerHTML = '<p class="text-red-500 text-center text-xs">Gagal memuat QRIS.</p>';
+                }
             } else {
                 content.innerHTML = `
                     <div class="bg-slate-100 p-4 rounded-xl text-center border border-slate-200">
                         <p class="text-xs text-slate-500 mb-1">Nomor Rekening / VA</p>
-                        <p class="text-xl font-mono font-bold text-slate-800 select-all">${pay.acc}</p>
-                        <p class="text-xs font-bold text-slate-600 mt-1">A.N ${pay.holder}</p>
-                        <button onclick="copyToClip('${pay.acc}')" class="text-[10px] text-blue-600 mt-2 font-bold hover:underline">Salin Nomor</button>
+                        <p class="text-xl font-mono font-bold text-slate-800 select-all" id="pay-acc-text">${order.payAcc}</p>
+                        <p class="text-xs font-bold text-slate-600 mt-1">A.N ${order.payHolder || 'Official'}</p>
+                        <button onclick="copyToClip('pay-acc-text')" class="text-[10px] text-blue-600 mt-2 font-bold hover:underline">Salin Nomor</button>
                     </div>
                 `;
+                 instructions.innerHTML = `
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">1</div><p class="text-xs text-slate-600 dark:text-slate-300">Buka aplikasi bank/e-wallet.</p></div>
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">2</div><p class="text-xs text-slate-600 dark:text-slate-300">Transfer ke <b>${order.payMethodName}</b>.</p></div>
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">3</div><p class="text-xs text-slate-600 dark:text-slate-300">Nominal: <b>Rp ${order.price.toLocaleString()}</b>.</p></div>
+                    `;
             }
 
             // WA Link
-            const waMsg = encodeURIComponent(`Halo Admin, saya sudah transfer.\n\nNo Invoice: *${orderId}*\nNomor Target: *${wa}*\nPaket: *${p.name}*\nTotal: *Rp${total.toLocaleString('id-ID')}*\n\nMohon segera diinject paketnya. Terima kasih.`);
+            const waMsg = encodeURIComponent(`Halo Admin, saya sudah transfer.\n\nNo Invoice: *${order.id}*\nNomor Target: *${order.customer.wa}*\nPaket: *${order.pkgName}*\nTotal: *Rp${order.price.toLocaleString('id-ID')}*\n\nMohon dicek. Terima kasih.`);
             document.getElementById('btn-confirm-wa').href = `https://wa.me/6285602152097?text=${waMsg}`;
+        }
 
-            // Show Payment View
-            document.getElementById('view-payment').classList.remove('translate-x-full');
+        function restorePayment(orderId) {
+            const hist = JSON.parse(localStorage.getItem('fq_history') || '[]');
+            const order = hist.find(o => o.id === orderId);
+            if(order) {
+                renderPaymentView(order);
+                document.getElementById('view-payment').classList.remove('translate-x-full');
+            }
+        }
+
+        function downloadQR(filename) {
+            const canvas = document.querySelector('#qrcode-canvas canvas');
+            if(canvas) {
+                const link = document.createElement('a');
+                link.download = `QRIS-${filename || 'Payment'}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
         }
 
         // --- ANIMATIONS & VISUALS ---
@@ -959,23 +1078,17 @@
             btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Mengecek...';
             
             setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-check"></i> Pembayaran Diterima!';
+                // Modified: Now fails by default as requested
+                btn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Belum Diterima';
                 btn.classList.remove('bg-slate-200', 'text-slate-700', 'dark:bg-slate-800', 'dark:text-slate-300');
-                btn.classList.add('bg-green-500', 'text-white');
+                btn.classList.add('bg-red-500', 'text-white');
                 
-                // Confetti
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
-                
-                showToast('Pembayaran Dikonfirmasi!', 'success');
+                showToast('Pembayaran belum masuk. Mohon konfirmasi WA.', 'error');
                 
                 setTimeout(() => {
                     btn.disabled = false;
                     btn.innerHTML = originalText;
-                    btn.classList.remove('bg-green-500', 'text-white');
+                    btn.classList.remove('bg-red-500', 'text-white');
                     btn.classList.add('bg-slate-200', 'text-slate-700');
                 }, 3000);
             }, 2000);
@@ -984,8 +1097,11 @@
         // --- HISTORY & STORAGE ---
         function saveHistory(order) {
             let hist = JSON.parse(localStorage.getItem('fq_history') || '[]');
-            hist.unshift(order);
-            localStorage.setItem('fq_history', JSON.stringify(hist));
+            // Only add if not exists (for updates)
+            if(!hist.find(o => o.id === order.id)) {
+                hist.unshift(order);
+                localStorage.setItem('fq_history', JSON.stringify(hist));
+            }
             loadHistory();
         }
 
@@ -995,21 +1111,36 @@
             
             if(hist.length === 0) return;
 
-            container.innerHTML = hist.map(h => `
-                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm flex justify-between items-center">
-                    <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-[10px] font-mono bg-slate-100 dark:bg-slate-700 px-1.5 rounded text-slate-500">#${h.id.split('-')[1] || h.id}</span>
-                            <span class="text-[10px] text-slate-400">${h.date}</span>
+            const now = new Date().getTime();
+
+            container.innerHTML = hist.map(h => {
+                const isExpired = h.expiry && now > h.expiry;
+                const statusHtml = isExpired 
+                    ? `<span class="text-[10px] text-red-600 bg-red-50 px-2 py-0.5 rounded-full font-bold">Expired</span>`
+                    : `<span class="text-[10px] text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded-full font-bold">Menunggu</span>`;
+                
+                const actionBtn = (!isExpired && h.status === 'pending') 
+                    ? `<button onclick="restorePayment('${h.id}')" class="mt-2 text-xs bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 px-3 py-1.5 rounded-lg font-bold w-full hover:bg-blue-200">Bayar Sekarang</button>`
+                    : ``;
+
+                return `
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-[10px] font-mono bg-slate-100 dark:bg-slate-700 px-1.5 rounded text-slate-500">#${h.id.split('-')[1] || h.id}</span>
+                                <span class="text-[10px] text-slate-400">${h.date}</span>
+                            </div>
+                            <h4 class="font-bold text-sm text-slate-800 dark:text-white">${h.pkgName || h.pkg}</h4>
                         </div>
-                        <h4 class="font-bold text-sm text-slate-800 dark:text-white">${h.pkg}</h4>
+                        <div class="text-right">
+                            <p class="font-bold text-blue-600 dark:text-blue-400 text-sm">Rp${h.price.toLocaleString()}</p>
+                            ${statusHtml}
+                        </div>
                     </div>
-                    <div class="text-right">
-                        <p class="font-bold text-blue-600 dark:text-blue-400 text-sm">Rp${h.price.toLocaleString()}</p>
-                        <span class="text-[10px] text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded-full font-bold">Menunggu</span>
-                    </div>
+                    ${actionBtn}
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         function saveDraft() {
@@ -1039,26 +1170,33 @@
             }
         }
 
-        // --- HELPERS ---
-        function generateQRIS(base, amount) {
-            let qris = base.slice(0, -4).replace("010211", "010212");
-            const amtStr = String(Math.round(amount));
-            const amtPart = "54" + (amtStr.length < 10 ? "0"+amtStr.length : amtStr.length) + amtStr;
+        // --- CORE QRIS LOGIC (FIXED FROM TESTA.HTML) ---
+        function createDynamicQris(qris, nominal) {
+            let qrisModified = qris.slice(0, -4).replace("010211", "010212");
+            const nominalStr = String(Math.round(nominal));
+            const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
+            const amountPart = "54" + amountLength + nominalStr;
             
-            if (qris.includes("5802ID")) {
-                let parts = qris.split("5802ID");
-                qris = parts[0] + amtPart + "5802ID" + parts[1];
+            if (qrisModified.includes("5802ID")) {
+                let parts = qrisModified.split("5802ID");
+                qrisModified = parts[0] + amountPart + "5802ID" + parts[1];
             }
             
+            // Recalculate CRC
+            const crc = crc16ccitt(qrisModified);
+            return qrisModified + crc;
+        }
+
+        function crc16ccitt(str) {
             let crc = 0xFFFF;
-            for (let c = 0; c < qris.length; c++) {
-                crc ^= qris.charCodeAt(c) << 8;
+            for (let c = 0; c < str.length; c++) {
+                crc ^= str.charCodeAt(c) << 8;
                 for (let i = 0; i < 8; i++) {
                     if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
                     else crc = crc << 1;
                 }
             }
-            return qris + (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
+            return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
         }
 
         function applyVoucher() {
@@ -1081,11 +1219,15 @@
         function showToast(msg, type='normal') {
             const el = document.createElement('div');
             const colors = type === 'error' ? 'bg-red-500' : (type === 'success' ? 'bg-green-500' : 'bg-slate-800');
-            el.className = `${colors} text-white px-4 py-2 rounded-full shadow-lg text-xs font-bold transform translate-y-[-20px] opacity-0 transition-all duration-500 flex items-center gap-2`;
+            el.className = `toast ${colors} text-white px-4 py-2 rounded-full shadow-lg text-xs font-bold flex items-center gap-2 transform translate-y-[-20px] opacity-0`;
             el.innerHTML = type === 'success' ? `<i class="fas fa-check-circle"></i> ${msg}` : msg;
             
             document.getElementById('toast-container').appendChild(el);
-            requestAnimationFrame(() => el.classList.remove('translate-y-[-20px]', 'opacity-0'));
+            
+            requestAnimationFrame(() => {
+                el.classList.remove('translate-y-[-20px]', 'opacity-0');
+            });
+
             setTimeout(() => {
                 el.classList.add('opacity-0', 'translate-y-[-20px]');
                 setTimeout(() => el.remove(), 500);
@@ -1093,7 +1235,9 @@
         }
 
         function copyToClip(content) {
-            const txt = content === 'pay-total' ? document.getElementById(content).innerText.replace(/[^0-9]/g,'') : content;
+            const txt = content === 'pay-total' || content === 'pay-acc-text' 
+                ? document.getElementById(content).innerText.replace(/[^0-9]/g,'') 
+                : content;
             navigator.clipboard.writeText(txt).then(() => showToast('Berhasil disalin!', 'success'));
         }
 
@@ -1138,17 +1282,51 @@
         function openModal(id) {
             const m = document.getElementById(id);
             m.classList.remove('hidden');
-            setTimeout(() => { m.classList.remove('opacity-0'); m.children[0].classList.remove('scale-95'); }, 10);
+            setTimeout(() => { 
+                m.classList.remove('opacity-0'); 
+                m.children[0].classList.remove('translate-y-full'); 
+            }, 10);
         }
 
         function closeModal(id) {
             const m = document.getElementById(id);
             m.classList.add('opacity-0');
-            m.children[0].classList.add('scale-95');
+            m.children[0].classList.add('translate-y-full');
             setTimeout(() => m.classList.add('hidden'), 300);
         }
+        
+        // --- NOTIFICATIONS & LOOPS ---
+        function initNotifications() {
+            setInterval(() => {
+                const name = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
+                const pkg = Math.random() > 0.5 ? "Paket Super" : "Paket Sultan";
+                
+                const el = document.createElement('div');
+                el.className = "bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border border-slate-200 dark:border-slate-700 p-3 rounded-2xl shadow-xl flex items-center gap-3 w-max max-w-[90%] toast transform translate-y-[-100%] opacity-0";
+                el.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0"><i class="fas fa-check"></i></div>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-800 dark:text-white">${name}</p>
+                        <p class="text-[9px] text-slate-500">Baru saja membeli ${pkg}</p>
+                    </div>
+                `;
+                
+                document.getElementById('toast-container').appendChild(el);
+                
+                // Animation In
+                requestAnimationFrame(() => {
+                    el.classList.remove('translate-y-[-100%]', 'opacity-0');
+                });
+                
+                // Remove
+                setTimeout(() => {
+                    el.classList.add('translate-y-[-100%]', 'opacity-0');
+                    setTimeout(() => el.remove(), 500);
+                }, 4000);
+                
+            }, 8000 + Math.random() * 5000); // Random interval
+        }
 
-        // --- SYSTEM LOOPS ---
         function startLoops() {
             // Theme
             initTheme();
@@ -1172,6 +1350,7 @@
             let duration = 5 * 3600;
             setInterval(() => {
                 duration--;
+                if(duration < 0) duration = 5 * 3600;
                 const h = Math.floor(duration/3600).toString().padStart(2,'0');
                 const m = Math.floor((duration%3600)/60).toString().padStart(2,'0');
                 const s = (duration%60).toString().padStart(2,'0');
