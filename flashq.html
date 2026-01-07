@@ -268,6 +268,10 @@
                         <input type="text" id="voucher" class="flex-1 bg-transparent text-sm font-semibold text-slate-800 dark:text-white outline-none placeholder:text-blue-300 dark:placeholder:text-blue-700 uppercase" placeholder="KODE PROMO">
                         <button type="button" onclick="applyVoucher()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow-lg shadow-blue-500/20">Gunakan</button>
                     </div>
+                    <div class="mt-2 flex items-center gap-2 text-[10px] bg-blue-50 dark:bg-slate-800/50 p-2.5 rounded-xl border border-dashed border-blue-200 dark:border-slate-700/60">
+                        <i class="fas fa-ticket-alt text-blue-500 animate-pulse"></i> 
+                        <span class="text-slate-600 dark:text-slate-300">Gunakan kode <b class="text-blue-600 dark:text-blue-400 font-extrabold tracking-wide">NEWYEAR</b> hemat Rp15.000!</span>
+                    </div>
                     <p id="voucher-msg" class="text-[10px] px-2 hidden"></p>
 
                     <!-- Section: Pembayaran -->
@@ -533,9 +537,9 @@
     <script>
         // --- CONFIG DATA ---
         const packages = [
-            { id: 'pkg3', name: 'Paket Hemat (3 Bulan)', price: 99000, normal: 150000, label: 'HEMAT' },
-            { id: 'pkg6', name: 'Paket Super (6 Bulan)', price: 179000, normal: 300000, label: 'BEST SELLER', best: true },
-            { id: 'pkg12', name: 'Paket Sultan (12 Bulan)', price: 299000, normal: 600000, label: 'PALING CUAN' }
+            { id: 'pkg3', name: 'Paket 3 Bulan', price: 99000, normal: 150000, label: 'HEMAT' },
+            { id: 'pkg6', name: 'Paket 6 Bulan', price: 179000, normal: 300000, label: 'BEST SELLER', best: true },
+            { id: 'pkg12', name: 'Paket 12 Bulan', price: 299000, normal: 600000, label: 'PALING CUAN' }
         ];
 
         // COMPLETE PAYMENT METHODS
@@ -1203,9 +1207,9 @@
             const code = document.getElementById('voucher').value.toUpperCase();
             const msg = document.getElementById('voucher-msg');
             
-            if(['FLASH50', 'HEMAT', 'DISKON'].includes(code)) {
-                state.discount = 10000;
-                msg.innerHTML = '<i class="fas fa-check"></i> Potongan Rp10.000 digunakan!';
+            if(code === 'NEWYEAR') {
+                state.discount = 15000;
+                msg.innerHTML = '<i class="fas fa-check"></i> Potongan Rp15.000 digunakan!';
                 msg.className = "text-[10px] px-2 text-green-500 font-bold block animate-pulse";
             } else {
                 state.discount = 0;
@@ -1299,7 +1303,7 @@
         function initNotifications() {
             setInterval(() => {
                 const name = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
-                const pkg = Math.random() > 0.5 ? "Paket Super" : "Paket Sultan";
+                const pkg = Math.random() > 0.5 ? "Paket 6 Bulan" : "Paket 12 Bulan";
                 
                 const el = document.createElement('div');
                 el.className = "bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border border-slate-200 dark:border-slate-700 p-3 rounded-2xl shadow-xl flex items-center gap-3 w-max max-w-[90%] toast transform translate-y-[-100%] opacity-0";
