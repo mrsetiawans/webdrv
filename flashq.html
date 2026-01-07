@@ -128,6 +128,23 @@
         .toast-enter { transform: translateY(-100%); opacity: 0; }
         .toast-active { transform: translateY(0); opacity: 1; }
         .toast-exit { transform: translateY(-100%); opacity: 0; }
+
+        /* Fix Autofill Background */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active{
+            -webkit-box-shadow: 0 0 0 30px white inset !important;
+            -webkit-text-fill-color: #1e293b !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+        .dark input:-webkit-autofill,
+        .dark input:-webkit-autofill:hover, 
+        .dark input:-webkit-autofill:focus, 
+        .dark input:-webkit-autofill:active{
+            -webkit-box-shadow: 0 0 0 30px #1e293b inset !important;
+            -webkit-text-fill-color: white !important;
+        }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-darker text-slate-800 dark:text-slate-200 antialiased transition-colors duration-300 overflow-hidden fixed inset-0">
@@ -148,7 +165,7 @@
         <!-- Top Bar -->
         <div class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-700/60 px-5 py-3 flex justify-between items-center z-50">
             <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+                <div id="header-logo" class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
                     <i class="fas fa-bolt text-sm"></i>
                 </div>
                 <div>
@@ -399,7 +416,7 @@
                         <span id="summary-discount" class="hidden text-[10px] bg-red-100 text-red-600 px-1.5 rounded font-bold">-Rp 0</span>
                     </div>
                 </div>
-                <button onclick="processCheckout()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-600/30 active:scale-95 transition text-sm flex items-center gap-2">
+                <button onclick="processCheckout()" id="btn-checkout" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-600/30 active:scale-95 transition text-sm flex items-center gap-2">
                     Beli <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
@@ -580,14 +597,23 @@
         };
 
         const operatorPrefixes = {
-            'Telkomsel': ['0811', '0812', '0813', '0821', '0822', '0823', '0851', '0852', '0853'],
-            'by.U': ['0851'],
+            'Telkomsel': ['0811', '0812', '0813', '0821', '0852', '0853', '0822', '0823', '0825', '0851', '082'],
             'Indosat': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
-            'Tri': ['0895', '0896', '0897', '0898', '0899'],
-            'XL': ['0817', '0818', '0819', '0859', '0877', '0878', '0879'],
-            'Axis': ['0831', '0832', '0833', '0838'],
-            'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
+            'XL': ['0817', '0818', '0819', '0859', '0878', '0877', '0879'],
+            'Tri': ['0896', '0897', '0898', '0899', '0895', '0890'],
+            'Axis': ['0838', '0831', '0876', '0832', '0833'],
+            'Smartfren': ['0881', '0882', '0887', '0888', '0889'],
+            'by.U': ['085154', '085155', '085156', '085157', '085159', '085191']
         };
+
+        const allowedEmailDomains = [
+            'gmail.com', 'googlemail.com', 'outlook.com', 'hotmail.com',
+            'hotmail.co.uk', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.co.id',
+            'yahoo.co.uk', 'ymail.com', 'rocketmail.com', 'icloud.com', 'me.com',
+            'mac.com', 'aol.com', 'zoho.com', 'proton.me', 'protonmail.com',
+            'tutanota.com', 'gmx.com', 'gmx.de', 'mail.com', 'yandex.ru',
+            'yandex.com', 'fastmail.com', 'hey.com'
+        ];
 
         // FULL FAQs
         const faqs = [
@@ -631,7 +657,8 @@
             pay: 'qris',
             unique: Math.floor(Math.random() * (500 - 100) + 100),
             discount: 0,
-            dark: false
+            dark: false,
+            theme: 'blue'
         };
 
         // --- INIT ---
@@ -646,16 +673,17 @@
 
         // --- UI RENDERERS ---
         function initUI() {
+            const theme = state.theme || 'blue';
             // Packages
             document.getElementById('pkg-list').innerHTML = packages.map(p => {
                 const disc = Math.round(((p.normal - p.price) / p.normal) * 100);
                 const isSel = state.pkg === p.id;
                 return `
-                <div onclick="selectPkg('${p.id}')" class="pkg-card group relative overflow-hidden bg-white dark:bg-slate-800 border-2 ${isSel ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-slate-100 dark:border-slate-700'} rounded-2xl p-4 transition-all cursor-pointer hover:border-blue-300">
-                    ${p.best ? '<div class="absolute top-0 right-0 bg-gradient-to-bl from-blue-600 to-blue-400 text-white text-[9px] font-bold px-2 py-1 rounded-bl-xl">BEST SELLER</div>' : ''}
+                <div onclick="selectPkg('${p.id}')" class="pkg-card group relative overflow-hidden bg-white dark:bg-slate-800 border-2 ${isSel ? `border-${theme}-500 bg-${theme}-50 dark:bg-${theme}-900/20` : 'border-slate-100 dark:border-slate-700'} rounded-2xl p-4 transition-all cursor-pointer hover:border-${theme}-300">
+                    ${p.best ? `<div class="absolute top-0 right-0 bg-gradient-to-bl from-${theme}-600 to-${theme}-400 text-white text-[9px] font-bold px-2 py-1 rounded-bl-xl">BEST SELLER</div>` : ''}
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-3">
-                            <div class="w-5 h-5 rounded-full border-2 ${isSel ? 'border-blue-500 bg-blue-500' : 'border-slate-300 dark:border-slate-600'} flex items-center justify-center transition-colors">
+                            <div class="w-5 h-5 rounded-full border-2 ${isSel ? `border-${theme}-500 bg-${theme}-500` : 'border-slate-300 dark:border-slate-600'} flex items-center justify-center transition-colors">
                                 <i class="fas fa-check text-white text-[10px] ${isSel ? 'scale-100' : 'scale-0'} transition-transform"></i>
                             </div>
                             <div>
@@ -666,14 +694,14 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="font-bold text-lg text-blue-600 dark:text-blue-400">Rp${p.price.toLocaleString()}</p>
+                        <p class="font-bold text-lg text-${theme}-600 dark:text-${theme}-400">Rp${p.price.toLocaleString()}</p>
                     </div>
                 </div>`;
             }).join('');
 
             // Payments
             document.getElementById('pay-list').innerHTML = payments.map(p => `
-                <div onclick="selectPay('${p.id}')" class="pay-card border-2 ${state.pay === p.id ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800'} rounded-xl p-3 flex flex-col items-center justify-center gap-2 h-20 cursor-pointer hover:border-blue-300 transition-all">
+                <div onclick="selectPay('${p.id}')" class="pay-card border-2 ${state.pay === p.id ? `border-${theme}-500 bg-${theme}-50 dark:bg-${theme}-900/20` : 'border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800'} rounded-xl p-3 flex flex-col items-center justify-center gap-2 h-20 cursor-pointer hover:border-${theme}-300 transition-all">
                     <img src="${p.logo}" class="h-5 object-contain filter dark:brightness-200 dark:grayscale">
                     <span class="text-[10px] font-bold text-slate-600 dark:text-slate-300 text-center leading-tight">${p.name}</span>
                 </div>
@@ -686,7 +714,7 @@
                         <i class="fas fa-quote-right text-4xl"></i>
                     </div>
                     <div class="flex items-center gap-3 mb-2">
-                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center font-bold text-xs shadow-md">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-${theme}-400 to-${theme}-600 text-white flex items-center justify-center font-bold text-xs shadow-md">
                             ${t.name.charAt(0)}
                         </div>
                         <div>
@@ -782,26 +810,77 @@
             const rawNum = input.value.replace(/-/g, '');
             const logoImg = document.getElementById('operator-logo');
             
-            if(rawNum.length >= 4) {
-                const prefix = rawNum.substring(0, 4);
+            if(rawNum.length >= 3) {
                 let op = null;
-                
+                let longestMatch = 0;
+
                 for (const operator in operatorPrefixes) {
-                    if (operatorPrefixes[operator].includes(prefix)) {
-                        op = operator;
-                        break;
+                    for (const prefix of operatorPrefixes[operator]) {
+                        if (rawNum.startsWith(prefix)) {
+                            if (prefix.length > longestMatch) {
+                                longestMatch = prefix.length;
+                                op = operator;
+                            }
+                        }
                     }
                 }
 
                 if(op && operatorLogos[op]) {
                     logoImg.src = operatorLogos[op];
                     logoImg.classList.remove('hidden');
+                    
+                    // Theme logic
+                    const themes = {
+                        'Telkomsel': 'red',
+                        'Indosat': 'yellow',
+                        'XL': 'blue',
+                        'Axis': 'purple',
+                        'Tri': 'fuchsia',
+                        'Smartfren': 'red',
+                        'by.U': 'sky'
+                    };
+                    
+                    if(themes[op]) updateTheme(themes[op]);
+                    
                 } else {
                     logoImg.classList.add('hidden');
+                    updateTheme('blue');
                 }
             } else {
                 logoImg.classList.add('hidden');
+                updateTheme('blue');
             }
+        }
+
+        function updateTheme(newColor) {
+            if(state.theme === newColor) return;
+            const oldColor = state.theme || 'blue';
+            state.theme = newColor;
+            
+            // Replace classes in DOM
+            const elements = document.querySelectorAll('*');
+            elements.forEach(el => {
+                const classes = Array.from(el.classList);
+                classes.forEach(cls => {
+                    if(cls.includes(oldColor) && !cls.includes('slate')) {
+                        const newCls = cls.replace(oldColor, newColor);
+                        el.classList.replace(cls, newCls);
+                    }
+                });
+            });
+            
+            // Explicitly update static checkout button if missed
+            const checkoutBtn = document.getElementById('btn-checkout');
+            if(checkoutBtn) {
+                 const classes = Array.from(checkoutBtn.classList);
+                 classes.forEach(cls => {
+                    if(cls.includes(oldColor)) {
+                        checkoutBtn.classList.replace(cls, cls.replace(oldColor, newColor));
+                    }
+                });
+            }
+
+            initUI(); 
         }
 
         // --- CHECKOUT PROCESS ---
@@ -817,6 +896,12 @@
             
             if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 showToast('Email tidak valid', 'error');
+                return;
+            }
+
+            const domain = email.split('@')[1];
+            if (!allowedEmailDomains.includes(domain)) {
+                showToast('Domain email tidak diizinkan. Harap gunakan email pribadi.', 'error');
                 return;
             }
 
@@ -1033,7 +1118,7 @@
                 const check = el.querySelector('.step-check');
                 
                 icon.innerHTML = '<i class="fas fa-check"></i>';
-                icon.classList.remove('bg-blue-100', 'text-blue-600');
+                icon.classList.remove(`bg-${state.theme}-100`, `text-${state.theme}-600`);
                 icon.classList.add('bg-green-100', 'text-green-600');
                 
                 check.classList.remove('opacity-0', 'scale-50');
@@ -1263,7 +1348,7 @@
             const area = document.getElementById('chat-messages');
             area.innerHTML += `
                 <div class="flex gap-2 justify-end">
-                    <div class="bg-blue-600 p-2 rounded-tl-xl rounded-b-xl text-xs text-white shadow-sm max-w-[80%]">${msg}</div>
+                    <div class="bg-${state.theme}-600 p-2 rounded-tl-xl rounded-b-xl text-xs text-white shadow-sm max-w-[80%]">${msg}</div>
                 </div>
             `;
             input.value = '';
@@ -1273,7 +1358,7 @@
             setTimeout(() => {
                 area.innerHTML += `
                     <div class="flex gap-2">
-                        <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xs shrink-0 mt-1"><i class="fas fa-robot"></i></div>
+                        <div class="w-6 h-6 rounded-full bg-${state.theme}-100 flex items-center justify-center text-${state.theme}-600 text-xs shrink-0 mt-1"><i class="fas fa-robot"></i></div>
                         <div class="bg-white dark:bg-slate-800 p-2 rounded-tr-xl rounded-b-xl text-xs text-slate-600 dark:text-slate-300 shadow-sm border border-slate-100 dark:border-slate-700 max-w-[80%]">
                             Mohon maaf, saat ini kami sedang melayani banyak pelanggan. Silakan hubungi via WhatsApp untuk respon cepat.
                         </div>
