@@ -152,13 +152,13 @@
                     <i class="fas fa-bolt text-sm"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-sm leading-none text-slate-900 dark:text-white mb-0.5">Flash Quota</h1>
+                    <h1 class="font-bold text-xl leading-none text-slate-900 dark:text-white mb-0.5">Flash Quota</h1>
                     <div class="flex items-center gap-1.5">
                         <span class="relative flex h-1.5 w-1.5">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
                         </span>
-                        <p class="text-[10px] font-medium text-slate-500 dark:text-slate-400">Server Online <span id="ping-val" class="font-mono text-[9px] opacity-70 ml-1">24ms</span></p>
+                        <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Server Online <span id="ping-val" class="font-mono text-xs opacity-70 ml-1">24ms</span></p>
                     </div>
                 </div>
             </div>
@@ -268,7 +268,7 @@
                         <input type="text" id="voucher" class="flex-1 bg-transparent text-sm font-semibold text-slate-800 dark:text-white outline-none placeholder:text-blue-300 dark:placeholder:text-blue-700 uppercase" placeholder="KODE PROMO">
                         <button type="button" onclick="applyVoucher()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow-lg shadow-blue-500/20">Gunakan</button>
                     </div>
-                    <div class="mt-2 flex items-center gap-2 text-[10px] bg-blue-50 dark:bg-slate-800/50 p-2.5 rounded-xl border border-dashed border-blue-200 dark:border-slate-700/60">
+                    <div class="mt-2 flex items-center gap-2 text-sm bg-blue-50 dark:bg-slate-800/50 p-2.5 rounded-xl border border-dashed border-blue-200 dark:border-slate-700/60">
                         <i class="fas fa-ticket-alt text-blue-500 animate-pulse"></i> 
                         <span class="text-slate-600 dark:text-slate-300">Gunakan kode <b class="text-blue-600 dark:text-blue-400 font-extrabold tracking-wide">NEWYEAR</b> hemat Rp15.000!</span>
                     </div>
@@ -335,15 +335,15 @@
                     <i class="fas fa-arrow-left"></i>
                 </button>
                 <div>
-                    <h2 class="font-bold text-slate-800 dark:text-white text-sm">Menunggu Pembayaran</h2>
-                    <p class="text-[10px] text-slate-500">Order ID: <span id="pay-oid" class="font-mono">...</span></p>
+                    <h2 class="font-bold text-slate-800 dark:text-white text-lg">Menunggu Pembayaran</h2>
+                    <p class="text-xs text-slate-500">Order ID: <span id="pay-oid" class="font-mono">...</span></p>
                 </div>
             </div>
 
             <div class="flex-1 overflow-y-auto p-6 pb-32">
                 <!-- Countdown -->
                 <div class="text-center mb-6">
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Sisa Waktu Bayar</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Sisa Waktu Bayar</p>
                     <div id="pay-timer" class="text-3xl font-mono font-bold text-slate-800 dark:text-white tracking-wider">23:59:59</div>
                 </div>
 
@@ -351,12 +351,12 @@
                 <div class="bg-white p-6 rounded-t-2xl shadow-sm receipt-jagged text-slate-800 mb-6">
                     <div class="flex justify-between items-start border-b border-dashed border-slate-200 pb-4 mb-4">
                         <div>
-                            <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">TOTAL TAGIHAN</p>
+                            <p class="text-xs text-slate-400 uppercase font-bold tracking-wider">TOTAL TAGIHAN</p>
                             <div class="flex items-center gap-2">
                                 <h1 class="text-2xl font-bold text-slate-900" id="pay-total">Rp 0</h1>
                                 <button onclick="copyToClip('pay-total')" class="text-blue-500 bg-blue-50 p-1.5 rounded-lg text-xs hover:bg-blue-100 transition"><i class="far fa-copy"></i></button>
                             </div>
-                            <p class="text-[9px] text-red-500 mt-1">*Transfer tepat sampai 3 digit terakhir</p>
+                            <p class="text-xs text-red-500 mt-1">*Transfer tepat sampai 3 digit terakhir</p>
                         </div>
                         <img id="pay-logo" src="" class="h-8 object-contain">
                     </div>
@@ -368,7 +368,7 @@
                 
                 <!-- Instructions -->
                 <div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm mb-6">
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-4 text-sm">Langkah Pembayaran</h3>
+                    <h3 class="font-bold text-slate-900 dark:text-white mb-4 text-lg">Langkah Pembayaran</h3>
                     <div id="instruction-steps" class="space-y-3">
                         <!-- Filled by JS -->
                     </div>
@@ -930,9 +930,9 @@
                     }, 100);
 
                     instructions.innerHTML = `
-                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">1</div><p class="text-xs text-slate-600 dark:text-slate-300">Buka aplikasi E-Wallet/Banking.</p></div>
-                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">2</div><p class="text-xs text-slate-600 dark:text-slate-300">Scan QR Code diatas.</p></div>
-                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">3</div><p class="text-xs text-slate-600 dark:text-slate-300">Pastikan nominal <b>Rp ${order.price.toLocaleString()}</b>.</p></div>
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">1</div><p class="text-sm text-slate-600 dark:text-slate-300">Buka aplikasi E-Wallet/Banking.</p></div>
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">2</div><p class="text-sm text-slate-600 dark:text-slate-300">Scan QR Code diatas.</p></div>
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">3</div><p class="text-sm text-slate-600 dark:text-slate-300">Pastikan nominal <b>Rp ${order.price.toLocaleString()}</b>.</p></div>
                     `;
                 } catch (e) {
                     content.innerHTML = '<p class="text-red-500 text-center text-xs">Gagal memuat QRIS.</p>';
@@ -940,16 +940,16 @@
             } else {
                 content.innerHTML = `
                     <div class="bg-slate-100 p-4 rounded-xl text-center border border-slate-200">
-                        <p class="text-xs text-slate-500 mb-1">Nomor Rekening / VA</p>
+                        <p class="text-sm text-slate-500 mb-1">Nomor Rekening / VA</p>
                         <p class="text-xl font-mono font-bold text-slate-800 select-all" id="pay-acc-text">${order.payAcc}</p>
-                        <p class="text-xs font-bold text-slate-600 mt-1">A.N ${order.payHolder || 'Official'}</p>
-                        <button onclick="copyToClip('pay-acc-text')" class="text-[10px] text-blue-600 mt-2 font-bold hover:underline">Salin Nomor</button>
+                        <p class="text-sm font-bold text-slate-600 mt-1">A.N ${order.payHolder || 'Official'}</p>
+                        <button onclick="copyToClip('pay-acc-text')" class="text-xs text-blue-600 mt-2 font-bold hover:underline">Salin Nomor</button>
                     </div>
                 `;
                  instructions.innerHTML = `
-                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">1</div><p class="text-xs text-slate-600 dark:text-slate-300">Buka aplikasi bank/e-wallet.</p></div>
-                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">2</div><p class="text-xs text-slate-600 dark:text-slate-300">Transfer ke <b>${order.payMethodName}</b>.</p></div>
-                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">3</div><p class="text-xs text-slate-600 dark:text-slate-300">Nominal: <b>Rp ${order.price.toLocaleString()}</b>.</p></div>
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">1</div><p class="text-sm text-slate-600 dark:text-slate-300">Buka aplikasi bank/e-wallet.</p></div>
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">2</div><p class="text-sm text-slate-600 dark:text-slate-300">Transfer ke <b>${order.payMethodName}</b>.</p></div>
+                        <div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shrink-0">3</div><p class="text-sm text-slate-600 dark:text-slate-300">Nominal: <b>Rp ${order.price.toLocaleString()}</b>.</p></div>
                     `;
             }
 
@@ -1223,7 +1223,7 @@
         function showToast(msg, type='normal') {
             const el = document.createElement('div');
             const colors = type === 'error' ? 'bg-red-500' : (type === 'success' ? 'bg-green-500' : 'bg-slate-800');
-            el.className = `toast ${colors} text-white px-4 py-2 rounded-full shadow-lg text-xs font-bold flex items-center gap-2 transform translate-y-[-20px] opacity-0`;
+            el.className = `toast ${colors} text-white px-4 py-2 rounded-full shadow-lg text-sm font-bold flex items-center gap-2 transform translate-y-[-20px] opacity-0`;
             el.innerHTML = type === 'success' ? `<i class="fas fa-check-circle"></i> ${msg}` : msg;
             
             document.getElementById('toast-container').appendChild(el);
@@ -1310,8 +1310,8 @@
                 el.innerHTML = `
                     <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0"><i class="fas fa-check"></i></div>
                     <div>
-                        <p class="text-[10px] font-bold text-slate-800 dark:text-white">${name}</p>
-                        <p class="text-[9px] text-slate-500">Baru saja membeli ${pkg}</p>
+                        <p class="text-sm font-bold text-slate-800 dark:text-white">${name}</p>
+                        <p class="text-xs text-slate-500">Baru saja membeli ${pkg}</p>
                     </div>
                 `;
                 
@@ -1347,7 +1347,7 @@
                 const ping = Math.floor(Math.random() * (45 - 15) + 15);
                 const el = document.getElementById('ping-val');
                 el.innerText = ping + 'ms';
-                el.className = `font-mono text-[9px] ml-1 opacity-70 ${ping > 40 ? 'text-red-500' : 'text-green-500'}`;
+                el.className = `font-mono text-xs ml-1 opacity-70 ${ping > 40 ? 'text-red-500' : 'text-green-500'}`;
             }, 3000);
 
             // Flash Sale Timer
