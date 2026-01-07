@@ -1,735 +1,449 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Flash Quota - Inject Kuota Unlimited All Operator</title>
+    <title>Flash Quota Premium - Official Digital Data Reseller</title>
+    <meta name="theme-color" content="#0F172A">
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3616/3616899.png">
+    
+    <!-- Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
     
-    <!-- Meta Pixel Code -->
+    <!-- Config -->
     <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '630583642253416');
-      fbq('track', 'PageView');
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3B82F6',
+                        dark: '#0F172A',
+                        darker: '#020617',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'marquee': 'marquee 40s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
 
     <style>
-        :root {
-            --primary: #0ea5e9; /* Sky 500 */
-            --primary-dark: #0284c7; /* Sky 600 */
-            --secondary: #F5F5F7;
-            --text-main: #1D1D1F;
-            --text-secondary: #86868B;
-            --success: #34C759;
-            --error: #FF3B30;
-            --border: #D2D2D7;
-            --bg-page: #F0F9FF;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-page);
-            color: var(--text-main);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Modern Card & Layout */
-        .main-container {
-            max-width: 520px;
-            margin: 0 auto;
-            min-height: 100vh;
-            background: white;
-            box-shadow: 0 0 40px rgba(0,0,0,0.05);
-        }
-
-        @media (min-width: 640px) {
-            .main-container {
-                min-height: auto;
-                margin: 40px auto;
-                border-radius: 24px;
-                border: 1px solid rgba(0,0,0,0.05);
-            }
-            body {
-                background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
-                padding-bottom: 40px;
-            }
-        }
-
-        /* Glassmorphism Header */
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.9);
+        body { -webkit-tap-highlight-color: transparent; }
+        
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Inputs */
-        .input-group {
-            position: relative;
-            margin-bottom: 16px;
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 0.6);
         }
-        
-        .modern-input {
-            width: 100%;
-            padding: 22px 16px 8px 16px;
-            font-size: 15px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            outline: none;
-            transition: all 0.2s ease;
-            background: #F5F5F7;
-            color: var(--text-main);
+        .dark .glass-panel {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(51, 65, 85, 0.5);
         }
 
-        .modern-input:focus {
-            border-color: var(--primary);
-            background: white;
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-        }
-
-        .valid-border {
-            border-color: var(--success) !important;
-            box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.1) !important;
-        }
-        
-        .invalid-border {
-            border-color: var(--error) !important;
-        }
-
-        /* Floating Labels */
-        .floating-label {
+        /* Animated Background */
+        .bg-orb {
             position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-            font-size: 15px;
-            pointer-events: none;
-            transition: all 0.2s ease;
-            transform-origin: left top;
-        }
-
-        .modern-input:focus ~ .floating-label,
-        .modern-input:not(:placeholder-shown) ~ .floating-label {
-            top: 8px;
-            transform: none;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .modern-input:focus ~ .floating-label {
-            color: var(--primary);
-        }
-
-        .input-icon {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-        }
-
-        /* Package Selection Cards */
-        .package-card {
-            border: 2px solid transparent;
-            border-radius: 16px;
-            padding: 16px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            background: #fff;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .package-card.selected {
-            border-color: var(--primary);
-            background: #f0f9ff;
-        }
-
-        .package-check {
-            width: 20px;
-            height: 20px;
             border-radius: 50%;
-            border: 2px solid #C7C7CC;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.6;
         }
 
-        .package-card.selected .package-check {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; }
 
-        .package-check::after {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: white;
-            font-size: 10px;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.2s;
-        }
-
-        .package-card.selected .package-check::after {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Payment Grid */
-        .payment-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-
-        .payment-option {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 12px 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            height: 70px;
-            position: relative;
-        }
-
-        .payment-option:hover {
-            border-color: #b0b0b5;
-            background: #fafafa;
-        }
-
-        .payment-option.selected {
-            border-color: var(--primary);
-            background: #f0f9ff;
-            box-shadow: 0 2px 8px rgba(14, 165, 233, 0.1);
-        }
-
-        .payment-option img {
-            height: 24px;
-            width: auto;
-            object-fit: contain;
-            margin-bottom: 4px;
-        }
-        
-        .payment-option span {
-            font-size: 10px;
-            color: var(--text-main);
-            font-weight: 500;
-            text-align: center;
-        }
-
-        /* Checkout Button */
-        .btn-checkout {
-            background: var(--primary);
-            color: white;
-            border: none;
+        /* Receipt Pattern */
+        .receipt-jagged { position: relative; }
+        .receipt-jagged::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 0;
             width: 100%;
-            padding: 16px;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.1s, background 0.2s;
-            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-checkout:active {
-            transform: scale(0.98);
-        }
-        
-        .btn-checkout:disabled {
-            background: #B0B0B5;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        /* Features List */
-        .feature-item {
-            display: flex;
-            align-items: start;
-            gap: 10px;
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: var(--text-main);
-            line-height: 1.5;
-        }
-
-        .feature-icon {
-            color: var(--success);
-            margin-top: 3px;
-        }
-
-        /* Notification Toast */
-        .toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 100;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: max-content;
-            max-width: 90%;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* Testimonial Carousel (Marquee) */
-        .testimonial-carousel {
-            overflow: hidden;
-            width: 100%;
-            position: relative;
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        }
-        
-        .testimonial-track {
-            display: flex;
-            gap: 12px;
-            width: max-content;
-            animation: marquee 40s linear infinite;
-            padding: 4px 0; /* space for shadow/border */
-        }
-
-        .testimonial-track:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .testimonial-item {
-            flex-shrink: 0;
-            width: 140px;
-            height: 140px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .testimonial-item:hover {
-            transform: scale(1.02);
-        }
-
-        .testimonial-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* FAQ Accordion */
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-        }
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        .faq-item summary {
-            padding: 16px 0;
-            cursor: pointer;
-            font-weight: 500;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-item summary::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            transition: transform 0.2s;
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-        .faq-item[open] summary::after {
+            height: 12px;
+            background: linear-gradient(45deg, transparent 33.333%, inherit 33.333%, inherit 66.667%, transparent 66.667%), linear-gradient(-45deg, transparent 33.333%, inherit 33.333%, inherit 66.667%, transparent 66.667%);
+            background-size: 16px 32px;
+            background-position: 0 0; 
             transform: rotate(180deg);
-        }
-        .faq-content {
-            padding-bottom: 16px;
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
+            background-color: inherit; /* Matches parent bg */
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        /* Modals */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .modal-box {
-            background: white;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 20px;
-            padding: 24px;
-            text-align: center;
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .modal-overlay.active .modal-box {
-            transform: scale(1);
-        }
-        
-        /* Details Modal (Bottom Sheet style) */
-        #detailsModal {
-             align-items: flex-end;
-        }
-        #detailsModal .modal-box { /* Override default modal-box for bottom sheet */
-            width: 100%;
-            max-width: 520px; /* Match main container width */
-            margin: 0 auto;
-            border-radius: 20px 20px 0 0;
-            transform: translateY(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #detailsModal.active .modal-box {
-            transform: translateY(0);
-        }
-        
-        /* Payment Instruction Styles */
-        .instruction-step {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-        .step-number {
-            width: 24px;
-            height: 24px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-        
-        .copy-btn {
-            background: rgba(14, 165, 233, 0.1);
-            color: var(--primary);
-            border: none;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-        }
+        /* Utilities */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 dark:bg-darker text-slate-800 dark:text-slate-200 antialiased transition-colors duration-300 overflow-hidden fixed inset-0">
 
-    <!-- Notification Toast -->
-    <div id="toast" class="toast">
-        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
-            <i class="fas fa-check"></i>
-        </div>
-        <div class="text-sm">
-            <p class="font-semibold text-gray-900" id="toast-name">Budi Santoso</p>
-            <p class="text-gray-500 text-xs">Baru saja aktivasi Paket 6 Bulan</p>
-        </div>
+    <!-- Background Animation -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="bg-orb bg-blue-400/30 w-96 h-96 top-0 left-[-100px] animate-blob"></div>
+        <div class="bg-orb bg-purple-400/30 w-96 h-96 bottom-0 right-[-100px] animate-blob animation-delay-2000"></div>
+        <div class="bg-orb bg-teal-400/30 w-80 h-80 top-[40%] left-[20%] animate-blob animation-delay-4000"></div>
     </div>
 
-    <div class="main-container relative">
-        <!-- Main Form View -->
-        <div id="view-form">
-            <!-- Header -->
-            <div class="sticky-header px-6 py-4 flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
-                        <i class="fas fa-bolt text-sm"></i>
-                    </div>
-                    <div>
-                        <h1 class="font-bold text-lg leading-none">Flash Quota</h1>
-                        <p class="text-xs text-gray-500 font-medium">Inject Kuota Unlimited</p>
-                    </div>
+    <!-- Notification Toast -->
+    <div id="toast-container" class="fixed top-6 left-0 right-0 z-[100] pointer-events-none flex flex-col items-center gap-2 px-4"></div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div class="relative w-full h-full max-w-[500px] mx-auto bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm shadow-2xl sm:rounded-[30px] sm:my-4 sm:h-[calc(100vh-2rem)] border border-white/20 dark:border-white/5 overflow-hidden flex flex-col">
+        
+        <!-- Top Bar -->
+        <div class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-700/60 px-5 py-3 flex justify-between items-center z-50">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+                    <i class="fas fa-bolt text-sm"></i>
                 </div>
-                <div class="flex items-center gap-2 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-full">
-                    <div class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </div>
-                    <div class="flex flex-col items-start leading-none">
-                        <span class="text-[8px] text-gray-400 font-mono uppercase tracking-wider mb-0.5">Live Server</span>
-                        <span class="text-[10px] font-bold text-green-600 font-mono">ONLINE</span>
+                <div>
+                    <h1 class="font-bold text-sm leading-none text-slate-900 dark:text-white mb-0.5">Flash Quota</h1>
+                    <div class="flex items-center gap-1.5">
+                        <span class="relative flex h-1.5 w-1.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+                        </span>
+                        <p class="text-[10px] font-medium text-slate-500 dark:text-slate-400">Server Online <span id="ping-val" class="font-mono text-[9px] opacity-70 ml-1">24ms</span></p>
                     </div>
                 </div>
             </div>
+            <div class="flex gap-2">
+                <button onclick="toggleDarkMode()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 transition hover:scale-105 active:scale-95">
+                    <i class="fas fa-moon dark:hidden text-xs"></i>
+                    <i class="fas fa-sun hidden dark:block text-xs text-yellow-400"></i>
+                </button>
+            </div>
+        </div>
 
-            <div class="p-6 pb-24">
-                <!-- Hero / Product Info -->
-                <div class="text-center mb-8 animate-fade-in">
-                    <span class="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold mb-3 animate-pulse">
-                        🚀 SUPPORT ALL OPERATOR
-                    </span>
-                    <h2 class="text-2xl font-bold mb-2">Internet Unlimited Tanpa Batas</h2>
-                    <p class="text-gray-500 text-sm px-4">Nikmati kebebasan berselancar dengan kecepatan penuh tanpa FUP. Aktif 24 Jam di semua jaringan.</p>
+        <!-- SCROLLABLE CONTENT AREA -->
+        <div id="main-content" class="flex-1 overflow-y-auto custom-scrollbar relative scroll-smooth pb-24">
+            
+            <!-- View: HOME -->
+            <div id="view-home" class="p-5 space-y-6">
+                
+                <!-- Greeting -->
+                <div class="flex justify-between items-end">
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-1" id="greeting-time">Selamat Datang,</p>
+                        <h2 class="text-xl font-bold text-slate-900 dark:text-white">Mau internetan <br><span class="text-blue-600 dark:text-blue-400">tanpa batas?</span> 🚀</h2>
+                    </div>
+                    <div class="text-right">
+                        <div class="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-lg animate-pulse inline-flex items-center gap-1 shadow-red-500/30 shadow-lg">
+                            <i class="fas fa-stopwatch"></i> <span id="flash-timer">05:00:00</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Form -->
-                <form id="orderForm" class="space-y-6">
-                    
-                    <!-- User Data (Moved up for logic) -->
-                    <div class="space-y-4 animate-fade-in" style="animation-delay: 0.05s">
-                        <label class="text-sm font-semibold text-gray-700 ml-1">Target Inject</label>
-                        
-                        <div class="input-group">
-                            <input type="text" id="nama" name="nama" class="modern-input" placeholder=" " required>
-                            <label for="nama" class="floating-label">Nama Lengkap</label>
-                            <i class="fas fa-user input-icon"></i>
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm text-center">
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-1">TERJUAL</p>
+                        <p class="font-bold text-slate-800 dark:text-slate-200">15.2k+</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm text-center">
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-1">RATING</p>
+                        <div class="flex justify-center items-center gap-1 text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i> <span class="font-bold text-slate-800 dark:text-slate-200 text-sm">4.9</span>
                         </div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm text-center">
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-1">GARANSI</p>
+                        <p class="font-bold text-green-500 text-xs"><i class="fas fa-check-circle"></i> 100%</p>
+                    </div>
+                </div>
+
+                <!-- Order Form -->
+                <form id="orderForm" class="space-y-5">
+                    
+                    <!-- Section: Penerima -->
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Informasi Penerima</h3>
                         
-                        <div class="input-group">
-                            <input type="tel" id="whatsapp" name="whatsapp" class="modern-input" placeholder=" " required inputmode="numeric">
-                            <label for="whatsapp" class="floating-label">Nomor HP / WhatsApp (08xx)</label>
-                            
-                            <!-- Smart Operator Logo Container -->
-                            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-8 h-8 pointer-events-none">
-                                <!-- Validation Check Icon -->
-                                <i id="wa-check-icon" class="fas fa-check-circle text-green-500 text-lg absolute -left-8 opacity-0 transition-opacity duration-300"></i>
-                                <!-- Default Icon -->
-                                <i id="default-icon" class="fas fa-mobile-alt text-gray-400 text-lg transition-all duration-300 absolute inset-0 flex items-center justify-center transform scale-100 opacity-100"></i>
-                                <!-- Operator Logo -->
-                                <img id="operator-logo" src="" class="w-full h-full object-contain transition-all duration-300 absolute inset-0 transform scale-50 opacity-0" alt="Operator">
+                        <div class="bg-white dark:bg-slate-800 p-1 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm focus-within:ring-2 focus-within:ring-blue-500/50 transition-all">
+                            <div class="relative flex items-center px-4 py-3 border-b border-slate-100 dark:border-slate-700/50">
+                                <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-400 mr-3 shrink-0">
+                                    <i class="fas fa-user text-xs"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-[10px] font-bold text-slate-400 uppercase">Nama Lengkap</label>
+                                    <input type="text" id="nama" name="nama" class="w-full bg-transparent text-sm font-semibold text-slate-800 dark:text-white outline-none placeholder:text-slate-300 dark:placeholder:text-slate-600" placeholder="Contoh: Budi Santoso" onkeyup="saveDraft()">
+                                </div>
+                                <i class="fas fa-check-circle text-green-500 opacity-0 transition-opacity" id="check-nama"></i>
+                            </div>
+
+                            <div class="relative flex items-center px-4 py-3 border-b border-slate-100 dark:border-slate-700/50">
+                                <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-400 mr-3 shrink-0">
+                                    <i class="fas fa-phone text-xs"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-[10px] font-bold text-slate-400 uppercase">Nomor WhatsApp / HP</label>
+                                    <input type="tel" id="whatsapp" name="whatsapp" inputmode="numeric" class="w-full bg-transparent text-sm font-semibold text-slate-800 dark:text-white outline-none placeholder:text-slate-300 dark:placeholder:text-slate-600" placeholder="08xx-xxxx-xxxx" oninput="formatPhone(this); checkOperator(this); saveDraft()">
+                                </div>
+                                <!-- Operator Logo Placeholder -->
+                                <img id="operator-logo" src="" class="hidden h-5 object-contain ml-2" alt="Operator">
+                            </div>
+
+                            <div class="relative flex items-center px-4 py-3">
+                                <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-400 mr-3 shrink-0">
+                                    <i class="fas fa-envelope text-xs"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-[10px] font-bold text-slate-400 uppercase">Email Invoice</label>
+                                    <input type="email" id="email" name="email" class="w-full bg-transparent text-sm font-semibold text-slate-800 dark:text-white outline-none placeholder:text-slate-300 dark:placeholder:text-slate-600" placeholder="email@contoh.com" onkeyup="saveDraft()">
+                                </div>
                             </div>
                         </div>
-
-                        <div class="input-group">
-                            <input type="email" id="email" name="email" class="modern-input" placeholder=" " required>
-                            <label for="email" class="floating-label">Email (untuk Invoice & Backup)</label>
-                            <i id="email-icon" class="fas fa-envelope input-icon"></i>
-                        </div>
                     </div>
 
-                    <!-- Package Selection -->
-                    <div class="space-y-3 animate-fade-in" style="animation-delay: 0.1s">
-                        <label class="text-sm font-semibold text-gray-700 ml-1">Pilih Paket Inject</label>
-                        <div id="package-selection-container" class="space-y-3">
-                            <!-- Package cards will be rendered here by JavaScript -->
+                    <!-- Section: Paket -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center px-1">
+                            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Pilih Paket</h3>
+                            <button type="button" onclick="openModal('featuresModal')" class="text-[10px] font-bold text-blue-500 hover:underline">Lihat Detail</button>
                         </div>
-                        <input type="hidden" id="selectedPackage" name="package" value="pkg6">
+                        <div class="grid gap-3" id="pkg-list">
+                            <!-- JS Injection -->
+                        </div>
+                        <input type="hidden" id="selectedPkg" name="package" value="pkg6">
                     </div>
 
-                    <!-- Features -->
-                    <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 animate-fade-in" style="animation-delay: 0.15s">
-                        <div class="feature-item"><i class="fas fa-bolt feature-icon"></i> <span>Speed up to 100 Mbps</span></div>
-                        <div class="feature-item"><i class="fas fa-infinity feature-icon"></i> <span>Unlimited Kuota 24 Jam</span></div>
-                        <div class="feature-item"><i class="fas fa-ban feature-icon"></i> <span>Anti FUP (No Fair Usage Policy)</span></div>
-                        <div class="feature-item"><i class="fas fa-shield-alt feature-icon"></i> <span>Aman, Legal & Bergaransi</span></div>
-                        <button type="button" onclick="showFeaturesModal()" class="text-blue-600 text-sm font-semibold mt-2 hover:underline">Lihat Semua Fitur</button>
+                    <!-- Section: Voucher -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-1 flex items-center pr-2 border border-blue-100 dark:border-blue-800/50">
+                        <div class="p-3 text-blue-500"><i class="fas fa-ticket-alt"></i></div>
+                        <input type="text" id="voucher" class="flex-1 bg-transparent text-sm font-semibold text-slate-800 dark:text-white outline-none placeholder:text-blue-300 dark:placeholder:text-blue-700 uppercase" placeholder="KODE PROMO">
+                        <button type="button" onclick="applyVoucher()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow-lg shadow-blue-500/20">Gunakan</button>
                     </div>
+                    <p id="voucher-msg" class="text-[10px] px-2 hidden"></p>
 
-                    <!-- Testimonials -->
-                    <div class="animate-fade-in" style="animation-delay: 0.18s">
-                        <label class="text-sm font-semibold text-gray-700 ml-1 mb-2 block">Mereka yang sudah pakai</label>
-                        <div class="testimonial-carousel" id="testimonial-container">
-                            <!-- Filled by JS -->
+                    <!-- Section: Pembayaran -->
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Metode Pembayaran</h3>
+                        <div class="grid grid-cols-3 gap-2" id="pay-list">
+                            <!-- JS Injection -->
                         </div>
+                        <input type="hidden" id="selectedPay" name="payment-method" value="qris">
                     </div>
-
-                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-3 my-4 rounded-r-lg shadow-sm flex items-center gap-3">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-exclamation-triangle text-xl text-yellow-600 animate-pulse"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-yellow-700 text-sm uppercase">PENTING!</h3>
-                            <p class="text-sm text-gray-700 leading-tight mt-0.5">
-                                Pastikan <strong>Nomor HP</strong> target inject sudah benar. Kesalahan input nomor bukan tanggung jawab kami.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Hidden Fields -->
-                    <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
+                    
                     <input type="hidden" name="sheetName" value="inject">
 
-                    <!-- Payment Method -->
-                    <div class="space-y-3 animate-fade-in" style="animation-delay: 0.25s">
-                        <label class="text-sm font-semibold text-gray-700 ml-1">Metode Pembayaran</label>
-                        <div class="payment-grid" id="payment-grid">
-                            <!-- Generated by JS -->
+                    <!-- Testimonials Marquee -->
+                    <div class="pt-4">
+                        <div class="flex items-center gap-2 mb-3 px-1">
+                            <i class="fas fa-heart text-red-500 animate-pulse"></i>
+                            <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Kata Mereka</span>
                         </div>
-                        <input type="hidden" id="selectedPayment" name="payment-method" value="qris">
+                        <div class="relative w-full overflow-hidden mask-linear">
+                            <div class="flex animate-marquee gap-3" id="testimonial-track"></div>
+                        </div>
                     </div>
 
                 </form>
+            </div>
 
-                <!-- FAQ Section -->
-                <div class="mt-8 animate-fade-in" style="animation-delay: 0.3s">
-                    <h3 class="font-bold text-gray-900 mb-4">Pertanyaan Umum (FAQ)</h3>
-                    <div id="faq-container">
-                        <!-- Filled by JS -->
+            <!-- View: HISTORY (Hidden by default) -->
+            <div id="view-history" class="hidden p-5 space-y-6 min-h-[60vh]">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white">Riwayat Transaksi</h2>
+                <div id="history-list" class="space-y-3">
+                    <!-- Populated by JS -->
+                    <div class="text-center py-10 opacity-50">
+                        <i class="fas fa-box-open text-4xl mb-2 text-slate-300"></i>
+                        <p class="text-sm">Belum ada riwayat pesanan.</p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Trust Badges -->
-                <div class="mt-8 flex justify-center gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png" class="h-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png" class="h-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png" class="h-6">
-                </div>
+            <!-- View: HELP (Hidden by default) -->
+            <div id="view-help" class="hidden p-5 space-y-6">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white">Pusat Bantuan</h2>
+                <div class="space-y-3" id="faq-container"></div>
                 
-                <p class="text-center text-xs text-gray-400 mt-8">© 2025 Flash Quota Reseller. All Rights Reserved.</p>
-            </div>
-
-            <!-- Sticky Bottom Bar -->
-            <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40 sm:absolute sm:rounded-b-3xl">
-                <div class="max-w-[520px] mx-auto flex items-center justify-between gap-4">
-                    <div>
-                        <p class="text-xs text-gray-500">Total Pembayaran</p>
-                        <p class="text-xl font-bold text-blue-600" id="total-price-display">Rp 0</p>
-                    </div>
-                    <button type="button" id="submit-btn" class="btn-checkout flex-1" onclick="handleFormSubmit()">
-                        Beli Paket <i class="fas fa-arrow-right"></i>
-                    </button>
+                <div class="mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-6 text-white text-center shadow-xl shadow-blue-500/30">
+                    <p class="text-sm font-medium opacity-90 mb-1">Masih bingung?</p>
+                    <h3 class="text-lg font-bold mb-4">Hubungi CS Kami</h3>
+                    <a href="https://wa.me/6285602152097" target="_blank" class="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-slate-50 transition transform hover:scale-105">
+                        <i class="fab fa-whatsapp text-lg"></i> Chat WhatsApp
+                    </a>
                 </div>
             </div>
+
         </div>
 
-        <!-- Payment Instruction View (Hidden by default) -->
-        <div id="view-payment" class="hidden min-h-screen bg-gray-50 sm:rounded-3xl overflow-hidden">
-             <div class="bg-white p-4 sticky top-0 z-10 border-b flex items-center gap-3 shadow-sm">
-                <button onclick="backToForm()" class="text-gray-500 hover:text-black">
-                    <i class="fas fa-arrow-left text-lg"></i>
+        <!-- View: PAYMENT (Overlay) -->
+        <div id="view-payment" class="absolute inset-0 bg-slate-50 dark:bg-darker z-[60] flex flex-col transform translate-x-full transition-transform duration-300">
+            <!-- Payment Header -->
+            <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center gap-3">
+                <button onclick="closePayment()" class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400">
+                    <i class="fas fa-arrow-left"></i>
                 </button>
-                <h2 class="font-bold text-lg">Instruksi Pembayaran</h2>
+                <div>
+                    <h2 class="font-bold text-slate-800 dark:text-white text-sm">Menunggu Pembayaran</h2>
+                    <p class="text-[10px] text-slate-500">Order ID: <span id="pay-oid" class="font-mono">...</span></p>
+                </div>
             </div>
 
-            <div class="p-6 pb-24">
-                <!-- Timer -->
-                <div class="bg-blue-600 text-white rounded-xl p-4 text-center mb-6 shadow-lg shadow-blue-200">
-                    <p class="text-xs opacity-80 mb-1">Selesaikan pembayaran dalam</p>
-                    <div class="text-2xl font-bold font-mono" id="countdown">23:59:59</div>
+            <div class="flex-1 overflow-y-auto p-6 pb-32">
+                <!-- Countdown -->
+                <div class="text-center mb-6">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Sisa Waktu Bayar</p>
+                    <div id="pay-timer" class="text-3xl font-mono font-bold text-slate-800 dark:text-white tracking-wider">23:59:59</div>
                 </div>
 
-                <!-- Total Amount Card -->
-                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-6 text-center relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gray-200"></div>
-                    <p class="text-gray-500 text-sm mb-1">Total yang harus dibayar</p>
-                    <div class="flex items-center justify-center gap-2 mb-2">
-                         <h1 class="text-3xl font-bold text-gray-900" id="payment-amount">Rp 0</h1>
-                         <button class="copy-btn" onclick="copyText('payment-amount-raw')"><i class="far fa-copy"></i></button>
+                <!-- Receipt -->
+                <div class="bg-white p-6 rounded-t-2xl shadow-sm receipt-jagged text-slate-800 mb-6">
+                    <div class="flex justify-between items-start border-b border-dashed border-slate-200 pb-4 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">TOTAL TAGIHAN</p>
+                            <div class="flex items-center gap-2">
+                                <h1 class="text-2xl font-bold text-slate-900" id="pay-total">Rp 0</h1>
+                                <button onclick="copyToClip('pay-total')" class="text-blue-500 bg-blue-50 p-1.5 rounded-lg text-xs hover:bg-blue-100 transition"><i class="far fa-copy"></i></button>
+                            </div>
+                        </div>
+                        <img id="pay-logo" src="" class="h-8 object-contain">
                     </div>
-            <p class="text-xs text-red-500 bg-red-50 inline-block px-2 py-1 rounded mb-4">
-                        <i class="fas fa-exclamation-circle"></i> Transfer tepat hingga 3 digit terakhir
-                    </p>
-             <div id="invoice-details-summary" class="border-t border-gray-100 pt-3 text-xs text-gray-500 flex justify-between items-center">
-                <!-- Populated by JS -->
-             </div>
+
+                    <div id="pay-content" class="space-y-4">
+                        <!-- Dynamic Content -->
+                    </div>
                 </div>
 
-                <!-- Payment Details -->
-                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-6">
-                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
-                        <span class="text-gray-500 text-sm">Metode</span>
-                        <img id="payment-logo-result" src="" class="h-6 object-contain">
-                    </div>
+                <!-- Action Buttons -->
+                <div class="space-y-3">
+                    <button onclick="checkPaymentStatus()" id="btn-check-status" class="w-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+                        <i class="fas fa-sync-alt"></i> Cek Status Pembayaran
+                    </button>
                     
-                    <!-- Dynamic Content based on Payment Method -->
-                    <div id="payment-details-content">
-                        <!-- Filled by JS -->
-                    </div>
+                    <a id="btn-confirm-wa" href="#" target="_blank" class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 rounded-xl text-center shadow-lg shadow-green-500/20 transition-all active:scale-95 flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-lg"></i> Konfirmasi Manual
+                    </a>
                 </div>
-
-                <!-- Instructions -->
-                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-                    <h3 class="font-bold text-gray-900 mb-4">Langkah Pembayaran</h3>
-                    <div id="instruction-steps">
-                        <!-- Filled by JS -->
-                    </div>
-                </div>
-                
-                <!-- Confirmation Button -->
-                <a id="wa-confirm-btn" href="#" target="_blank" class="block mt-8 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl text-center shadow-lg shadow-green-200 transition-all">
-                    <i class="fab fa-whatsapp text-lg mr-2"></i> Konfirmasi ke Admin
-                </a>
             </div>
         </div>
+
+        <!-- BOTTOM NAVIGATION (App-like) -->
+        <div class="absolute bottom-0 left-0 right-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 z-40 pb-safe">
+            
+            <!-- Checkout Bar (Visible only on Home) -->
+            <div id="checkout-bar" class="px-5 py-3 border-b border-slate-100 dark:border-slate-800/50 flex items-center justify-between transition-transform duration-300">
+                <div>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase">Total Bayar</p>
+                    <div class="flex items-center gap-2">
+                        <p class="text-lg font-bold text-slate-900 dark:text-white leading-none" id="summary-total">Rp 0</p>
+                        <span id="summary-discount" class="hidden text-[10px] bg-red-100 text-red-600 px-1.5 rounded font-bold">-Rp 0</span>
+                    </div>
+                </div>
+                <button onclick="processCheckout()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-600/30 active:scale-95 transition text-sm flex items-center gap-2">
+                    Beli <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Tab Bar -->
+            <div class="flex justify-around items-center h-16">
+                <button onclick="switchTab('home')" class="nav-item active flex-1 flex flex-col items-center justify-center gap-1 text-slate-400 hover:text-blue-500 transition">
+                    <i class="fas fa-home text-xl mb-0.5"></i>
+                    <span class="text-[10px] font-bold">Home</span>
+                </button>
+                <button onclick="switchTab('history')" class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-slate-400 hover:text-blue-500 transition">
+                    <i class="fas fa-history text-xl mb-0.5"></i>
+                    <span class="text-[10px] font-bold">Riwayat</span>
+                </button>
+                <button onclick="switchTab('help')" class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-slate-400 hover:text-blue-500 transition">
+                    <i class="fas fa-question-circle text-xl mb-0.5"></i>
+                    <span class="text-[10px] font-bold">Bantuan</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Widget Button -->
+        <div class="absolute bottom-36 right-4 z-30">
+            <button onclick="toggleChat()" class="w-12 h-12 bg-white dark:bg-slate-800 rounded-full shadow-xl flex items-center justify-center text-blue-600 dark:text-blue-400 hover:scale-110 transition border border-slate-100 dark:border-slate-700 relative">
+                <i class="fas fa-comment-dots text-xl"></i>
+                <span class="absolute top-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-slate-800 rounded-full"></span>
+            </button>
+        </div>
+
+        <!-- Chat Widget Box -->
+        <div id="chat-box" class="absolute bottom-20 right-4 w-72 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-300 z-50 flex flex-col overflow-hidden origin-bottom-right">
+            <div class="bg-blue-600 p-4 text-white flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <p class="text-xs font-bold">CS Flash Quota</p>
+                        <p class="text-[10px] opacity-80">Online</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white/80 hover:text-white"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-4 h-64 overflow-y-auto bg-slate-50 dark:bg-slate-900/50 space-y-3" id="chat-messages">
+                <div class="flex gap-2">
+                    <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xs shrink-0 mt-1"><i class="fas fa-robot"></i></div>
+                    <div class="bg-white dark:bg-slate-800 p-2 rounded-tr-xl rounded-b-xl text-xs text-slate-600 dark:text-slate-300 shadow-sm border border-slate-100 dark:border-slate-700">
+                        Halo Kak! Ada yang bisa dibantu?
+                    </div>
+                </div>
+            </div>
+            <div class="p-2 bg-white dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700 flex gap-2">
+                <input type="text" id="chat-input" class="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full px-3 py-1.5 text-xs outline-none dark:text-white" placeholder="Ketik pesan...">
+                <button onclick="sendChat()" class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs hover:bg-blue-700"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Connecting Server Overlay -->
-    <div id="connecting-overlay" class="fixed inset-0 bg-white/95 backdrop-blur-md z-[100] hidden flex-col items-center justify-center text-center transition-opacity duration-300">
+    <!-- Modals -->
+    <!-- Loading Overlay (Server Connecting) -->
+    <div id="connecting-overlay" class="fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md z-[100] hidden flex-col items-center justify-center text-center transition-opacity duration-300">
         <div class="relative w-32 h-32 mb-8">
             <!-- Ripple Effect -->
-            <div class="absolute inset-0 bg-blue-100 rounded-full animate-ping opacity-75"></div>
-            <div class="absolute inset-4 bg-blue-50 rounded-full animate-pulse"></div>
+            <div class="absolute inset-0 bg-blue-100 dark:bg-blue-900 rounded-full animate-ping opacity-75"></div>
+            <div class="absolute inset-4 bg-blue-50 dark:bg-blue-800 rounded-full animate-pulse"></div>
             
             <!-- Icon -->
             <div class="absolute inset-0 flex items-center justify-center z-10">
                 <div class="relative">
-                    <i class="fas fa-broadcast-tower text-4xl text-blue-600"></i>
-                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-bounce"></div>
+                    <i class="fas fa-broadcast-tower text-4xl text-blue-600 dark:text-blue-400"></i>
+                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-slate-900 animate-bounce"></div>
                 </div>
             </div>
             
@@ -739,13 +453,13 @@
             </div>
         </div>
 
-        <h3 class="text-2xl font-bold text-gray-900 mb-2" id="connecting-title">Menghubungkan...</h3>
-        <p class="text-sm text-gray-500 mb-8 max-w-[280px]" id="connecting-text">Sedang mencari server operator terbaik...</p>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2" id="connecting-title">Menghubungkan...</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-8 max-w-[280px]" id="connecting-text">Sedang mencari server operator terbaik...</p>
 
         <!-- Progress Steps -->
-        <div class="w-72 bg-gray-50 rounded-2xl p-4 border border-gray-100 shadow-sm space-y-3">
+        <div class="w-72 bg-gray-50 dark:bg-slate-800 rounded-2xl p-4 border border-gray-100 dark:border-slate-700 shadow-sm space-y-3">
             <div class="flex items-center gap-3 transition-all duration-300" id="step-1">
-                <div class="step-icon w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-[10px] text-gray-400">
+                <div class="step-icon w-6 h-6 rounded-full bg-gray-200 dark:bg-slate-700 flex items-center justify-center text-[10px] text-gray-400">
                     <i class="fas fa-circle"></i>
                 </div>
                 <div class="text-left">
@@ -756,7 +470,7 @@
             </div>
             
             <div class="flex items-center gap-3 transition-all duration-300" id="step-2">
-                <div class="step-icon w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-[10px] text-gray-400">
+                <div class="step-icon w-6 h-6 rounded-full bg-gray-200 dark:bg-slate-700 flex items-center justify-center text-[10px] text-gray-400">
                     <i class="fas fa-circle"></i>
                 </div>
                 <div class="text-left">
@@ -767,7 +481,7 @@
             </div>
             
             <div class="flex items-center gap-3 transition-all duration-300" id="step-3">
-                <div class="step-icon w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-[10px] text-gray-400">
+                <div class="step-icon w-6 h-6 rounded-full bg-gray-200 dark:bg-slate-700 flex items-center justify-center text-[10px] text-gray-400">
                     <i class="fas fa-circle"></i>
                 </div>
                 <div class="text-left">
@@ -777,65 +491,42 @@
                  <i class="fas fa-check text-green-500 ml-auto opacity-0 transform scale-50 transition-all duration-300 step-check"></i>
             </div>
         </div>
-        
-        <div class="mt-8 text-xs text-gray-400 font-mono">
-            SECURE CONNECTION :: <span class="text-green-500">ENCRYPTED</span>
-        </div>
-    </div>
-
-    <!-- Details Modal -->
-    <div id="detailsModal" class="modal-overlay" onclick="closeModal('detailsModal')">
-        <div class="modal-box text-left p-0" id="detailsModalContent" onclick="event.stopPropagation()">
-            <!-- Content will be injected by JS -->
-        </div>
-    </div>
-
-    <!-- Modals -->
-    <!-- Info Modal -->
-    <div id="infoModal" class="modal-overlay">
-        <div class="modal-box">
-            <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-                <i class="fas fa-info"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2" id="modalTitle">Judul</h3>
-            <p class="text-gray-500 mb-6" id="modalMessage">Pesan</p>
-            <button onclick="closeModal('infoModal')" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl">Mengerti</button>
-        </div>
     </div>
 
     <!-- Features Modal -->
-    <div id="featuresModal" class="modal-overlay">
-        <div class="modal-box text-left">
+    <div id="featuresModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[120] hidden flex items-center justify-center p-4 transition-all opacity-0" onclick="closeModal('featuresModal')">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-sm rounded-2xl p-6 transform scale-95 transition-all shadow-2xl" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Detail Paket Inject</h3>
-                <button onclick="closeModal('featuresModal')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times text-xl"></i></button>
+                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Detail Paket</h3>
+                <button onclick="closeModal('featuresModal')" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center"><i class="fas fa-times"></i></button>
             </div>
-            <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-2" id="features-list-container">
-                <!-- Features filled by JS -->
-            </div>
+            <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300" id="feature-list-ul">
+                <!-- Filled by JS -->
+            </ul>
         </div>
     </div>
 
-    <!-- Image Modal -->
-    <div id="imageModal" class="modal-overlay" onclick="closeModal('imageModal')">
-        <div class="relative max-w-[90%] max-h-[90vh]">
-             <img id="modalImageDisplay" src="" class="rounded-xl shadow-2xl max-h-[80vh] w-auto">
-             <button class="absolute top-4 right-4 bg-black/50 text-white rounded-full w-8 h-8 flex items-center justify-center" onclick="closeModal('imageModal')">&times;</button>
-        </div>
-    </div>
-
+    <!-- LOGIC SCRIPT -->
     <script>
-        // --- DATA & CONFIG ---
-        const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
-        
-        // RESTORED DATA
-        const FIRST_NAMES = [ "Budi", "Ayu", "Rahmat", "Citra", "Bayu", "Lina", "Wulan", "Adi", "Farhan", "Hendra", "Nana", "Joko", "Mega", "Gilang", "Sari", "Dedi", "Eka", "Teguh", "Putri", "Andi", "Bagus", "Ilham", "Rizal", "Mira", "Puspita", "Hari", "Tri", "Cahya", "Surya", "Wahyu", "Agus", "Indra", "Linda", "Fajar", "Yusuf", "Pramono", "Sinta", "Bima", "Dian", "Hasan", "Nurul", "Arif", "Feri", "Lukman", "Rangga", "Rini", "Tono", "Hadi", "Elisa", "Anisa", "Gunawan", "Melati", "Septi", "Cindy", "Windi", "Galih", "Evi", "Putra", "Slamet", "Latif", "Gita", "Darmawan", "Maya", "Erik", "Jani", "Jefri", "Bella", "Maulana", "Novi", "Fajar", "Taufik", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Ganda", "Wahida", "Robby", "Halim", "Firman", "Berlian", "Ari", "Mustika", "Bahar" ];
-        
-        const testimonialImages = [
-            "https://pixvid.org/images/2025/11/14/mPYhr.jpg", "https://pixvid.org/images/2025/11/14/mPYyw.jpg", "https://pixvid.org/images/2025/11/14/mPYBE.jpg", "https://pixvid.org/images/2025/11/14/mPi89.jpg", "https://pixvid.org/images/2025/11/14/mPitS.jpg", "https://pixvid.org/images/2025/11/14/mPiM2.jpg", "https://pixvid.org/images/2025/11/14/mPicV.jpg", "https://pixvid.org/images/2025/11/14/mPuZk.jpg", "https://pixvid.org/images/2025/11/14/mPuYg.jpg", "https://pixvid.org/images/2025/11/14/mPuAO.jpg", "https://pixvid.org/images/2025/11/14/mPuLF.jpg", "https://pixvid.org/images/2025/11/14/mPJzn.jpg"
+        // --- CONFIG DATA ---
+        const packages = [
+            { id: 'pkg3', name: 'Paket Hemat (3 Bulan)', price: 99000, normal: 150000, label: 'HEMAT' },
+            { id: 'pkg6', name: 'Paket Super (6 Bulan)', price: 179000, normal: 300000, label: 'BEST SELLER', best: true },
+            { id: 'pkg12', name: 'Paket Sultan (12 Bulan)', price: 299000, normal: 600000, label: 'PALING CUAN' }
         ];
-        
-        const fullFeaturesList = [
+
+        // COMPLETE PAYMENT METHODS
+        const payments = [
+            { id: 'qris', name: 'QRIS', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png', type: 'qr', acc: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15' },
+            { id: 'bca', name: 'BCA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png', type: 'bank', acc: '39358089510639366', holder: 'Epayment' },
+            { id: 'gopay', name: 'GoPay', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png', type: 'ewallet', acc: '089510639366', holder: 'Gopay' },
+            { id: 'dana', name: 'DANA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet', acc: '089510639366', holder: 'DNID' },
+            { id: 'ovo', name: 'OVO', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', acc: '089510639366', holder: 'OVO' },
+            { id: 'cimb', name: 'CIMB', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'bank', acc: '6289510639366', holder: 'Octo Pay' }
+        ];
+
+        // FULL FEATURE LIST
+        const fullFeatures = [
             "Internet Unlimited Tanpa Kuota (True Unlimited)",
             "Full Speed 24 Jam (Up to 100 Mbps)",
             "Support Semua Operator (Telkomsel, Indosat, XL, Axis, Tri, Smartfren)",
@@ -849,56 +540,8 @@
             "Bisa diperpanjang di nomor yang sama",
             "Proses Aktivasi 5-15 Menit"
         ];
-        
-        const faqList = [
-            { q: "Apakah ini benar-benar unlimited?", a: "Ya, paket ini adalah paket inject unlimited tanpa FUP. Kecepatan tidak akan diturunkan meskipun pemakaian sudah besar." },
-            { q: "Operator apa saja yang didukung?", a: "Kami mendukung semua operator GSM di Indonesia: Telkomsel, Indosat Ooredoo, XL Axiata, Axis, Tri (3), dan Smartfren." },
-            { q: "Bagaimana cara perpanjangan paket?", a: "Untuk memperpanjang paket, Anda cukup melakukan pemesanan ulang di website ini dengan memasukkan nomor HP yang sama sebelum masa aktif berakhir. Paket baru akan otomatis menimpa atau mengakumulasi masa aktif paket lama." },
-            { q: "Bagaimana jika tidak ingin perpanjang?", a: "Tidak masalah. Paket ini sistemnya beli putus (bukan langganan otomatis potong pulsa). Jika masa aktif habis dan Anda tidak ingin memperpanjang, paket akan otomatis berhenti dan kembali ke tarif dasar." },
-            { q: "Apakah ada batas pemakaian wajar (FUP)?", a: "Paket ini benar-benar Unlimited tanpa FUP. Anda bisa download bergiga-giga tanpa takut kecepatan turun (selama sinyal di lokasi Anda bagus)." },
-            { q: "Apakah paket ini legal?", a: "Legal 100%. Kami menggunakan jalur distribusi reseller resmi operator, bukan trik ilegal seperti VPN atau SSH tunneling." },
-            { q: "Apakah aman untuk nomor utama?", a: "Sangat aman. Metode yang kami gunakan adalah inject paket resmi promo khusus reseller, jadi legal dan tidak akan membuat kartu hangus." },
-            { q: "Berapa lama proses masuknya?", a: "Setelah pembayaran terkonfirmasi, proses injeksi paket biasanya memakan waktu 5 hingga 15 menit." },
-            { q: "Jika paket tidak masuk, apakah ada garansi?", a: "Tentu saja. Jika dalam 1x24 jam paket tidak berhasil diaktifkan, uang Anda akan kami kembalikan 100%." },
-            { q: "Apakah bisa untuk modem/orbit?", a: "Bisa banget! Paket ini support untuk digunakan di Smartphone, Modem, Mifi, maupun Router Orbit." }
-        ];
 
-        const packages = {
-            pkg3: {
-                id: 'pkg3',
-                name: "Paket Hemat (3 Bulan)",
-                price: 99000,
-                normalPrice: 150000,
-                duration: "3 Bulan",
-                label: "HEMAT"
-            },
-            pkg6: {
-                id: 'pkg6',
-                name: "Paket Super (6 Bulan)",
-                price: 179000,
-                normalPrice: 300000,
-                duration: "6 Bulan",
-                label: "BEST SELLER"
-            },
-            pkg12: {
-                id: 'pkg12',
-                name: "Paket Sultan (12 Bulan)",
-                price: 299000,
-                normalPrice: 600000,
-                duration: "12 Bulan",
-                label: "PALING CUAN"
-            }
-        };
-
-        const paymentMethods = [
-            { id: 'qris', name: 'QRIS', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qr', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15' },
-            { id: 'bca_va', name: 'BCA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'bank', number: '39358089510639366', holder: 'Epayment' },
-            { id: 'gopay', name: 'GoPay', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet', number: '089510639366', holder: 'Gopay' },
-            { id: 'dana', name: 'DANA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet', number: '089510639366', holder: 'DNID' },
-            { id: 'ovo', name: 'OVO', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', number: '089510639366', holder: 'OVO' },
-            { id: 'cimb', name: 'CIMB', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'bank', number: '6289510639366', holder: 'Octo Pay' }
-        ];
-
+        // OPERATOR ASSETS
         const operatorLogos = {
             'Telkomsel': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Telkomsel_2021_icon.svg/1200px-Telkomsel_2021_icon.svg.png',
             'Indosat': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Indosat_Ooredoo_logo_%282019%29.svg/330px-Indosat_Ooredoo_logo_%282019%29.svg.png',
@@ -909,675 +552,309 @@
             'by.U': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Byu-logo-blue.svg/330px-Byu-logo-blue.svg.png'
         };
 
-        const operatorPrefixes = {
-            'Telkomsel': ['0811', '0812', '0813', '0821', '0822', '0823', '0851', '0852', '0853'],
-            'by.U': ['08515', '08516', '08517'],
-            'Indosat': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
-            'Tri': ['0895', '0896', '0897', '0898', '0899'],
-            'XL': ['0817', '0818', '0819', '0859', '0877', '0878', '0879'],
-            'Axis': ['0831', '0832', '0833', '0838'],
-            'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
+        // FULL FAQs
+        const faqs = [
+            { q: "Apakah ini benar-benar unlimited?", a: "Ya, paket ini adalah paket inject unlimited tanpa FUP. Kecepatan tidak akan diturunkan meskipun pemakaian sudah besar." },
+            { q: "Operator apa saja yang didukung?", a: "Kami mendukung semua operator GSM di Indonesia: Telkomsel, Indosat Ooredoo, XL Axiata, Axis, Tri (3), dan Smartfren." },
+            { q: "Bagaimana cara perpanjangan paket?", a: "Untuk memperpanjang paket, Anda cukup melakukan pemesanan ulang di website ini dengan memasukkan nomor HP yang sama sebelum masa aktif berakhir." },
+            { q: "Bagaimana jika tidak ingin perpanjang?", a: "Tidak masalah. Paket ini sistemnya beli putus. Jika masa aktif habis, paket otomatis berhenti." },
+            { q: "Apakah ada batas pemakaian wajar (FUP)?", a: "Paket ini benar-benar Unlimited tanpa FUP. Anda bisa download bergiga-giga tanpa takut kecepatan turun." },
+            { q: "Apakah paket ini legal?", a: "Legal 100%. Kami menggunakan jalur distribusi reseller resmi operator, bukan trik ilegal." },
+            { q: "Apakah aman untuk nomor utama?", a: "Sangat aman. Metode yang kami gunakan adalah inject paket resmi promo khusus reseller." },
+            { q: "Berapa lama proses masuknya?", a: "Setelah pembayaran terkonfirmasi, proses injeksi paket biasanya memakan waktu 5 hingga 15 menit." },
+            { q: "Jika paket tidak masuk, apakah ada garansi?", a: "Tentu saja. Jika dalam 1x24 jam paket tidak berhasil diaktifkan, uang Anda akan kami kembalikan 100%." },
+            { q: "Apakah bisa untuk modem/orbit?", a: "Bisa banget! Paket ini support untuk digunakan di Smartphone, Modem, Mifi, maupun Router Orbit." }
+        ];
+
+        const testimonials = [
+            { n: "Rudi Hartono", t: "Awalnya ragu, tapi ternyata beneran work! Hemat banget.", s: 5 },
+            { n: "Siti Aminah", t: "Admin fast respon, 5 menit kuota langsung masuk.", s: 5 },
+            { n: "Budi Santoso", t: "Speed kenceng, buat streaming Netflix lancar jaya.", s: 4 },
+            { n: "Dewi Lestari", t: "Recommended seller! Bakal langganan terus.", s: 5 },
+            { n: "Eko Prasetyo", t: "Mantap gan, no tipu-tipu. Sesuai deskripsi.", s: 5 },
+        ];
+
+        // --- STATE ---
+        let state = {
+            pkg: 'pkg6',
+            pay: 'qris',
+            unique: Math.floor(Math.random() * (500 - 100) + 100),
+            discount: 0,
+            dark: false
         };
-        const blacklistedNumbers = ['081234567890'];
-    
-        function getOperatorFromNumber(nomor) {
-            if (nomor.length < 4) return null;
-            const prefix4 = nomor.substring(0, 4);
-            const prefix5 = nomor.substring(0, 5);
-            
-            // Check specific 5 digit prefixes first (like by.U)
-            for (const operator in operatorPrefixes) {
-                if (operatorPrefixes[operator].includes(prefix5)) return operator;
-            }
-             // Check 4 digit prefixes
-            for (const operator in operatorPrefixes) {
-                if (operatorPrefixes[operator].includes(prefix4)) return operator;
-            }
-            return null;
-        }
-    
-        function validatePhoneNumber(nomorHp) {
-            const genericError = { isValid: false, message: 'Silahkan isi dengan nomor yang benar' };
-            
-            // Check numeric
-            if (!/^\d+$/.test(nomorHp)) return genericError;
-
-            // Basic prefix check
-            const operator = getOperatorFromNumber(nomorHp);
-            if (!operator) {
-                 if (nomorHp.length < 4) return genericError; // Allow typing
-                 return { isValid: false, message: 'Operator tidak dikenali' };
-            }
-
-            const len = nomorHp.length;
-            
-            // Min length 10 for all
-            if (len < 10) return { isValid: false, message: 'Nomor terlalu pendek (min 10 angka)' };
-            
-            // Max length logic
-            const maxLen = (operator === 'Tri') ? 13 : 12;
-            
-            if (len > maxLen) return { isValid: false, message: `Nomor terlalu panjang (max ${maxLen} angka)` };
-
-            if (blacklistedNumbers.includes(nomorHp)) return { isValid: false, message: 'Nomor tidak dapat diproses' };
-
-            return { isValid: true, message: 'Nomor valid.', operator: operator };
-        }
-        
-        let currentPackage = 'pkg6';
-        let currentPayment = 'qris';
-        let expiryTime;
-        let countdownInterval;
-        let currentOrderDetails = {};
 
         // --- INIT ---
         document.addEventListener('DOMContentLoaded', () => {
-            renderPackageCards();
-            renderPaymentMethods();
-            renderTestimonials();
-            renderFAQ();
-            updateTotalPrice();
-            initNotifications();
-            
-            // --- Auto-Save & Persistence (Setup Listeners) ---
-            const formFields = ['nama', 'whatsapp', 'email'];
-
-            // Save data on input
-            formFields.forEach(fieldId => {
-                const input = document.getElementById(fieldId);
-                if (input) {
-                    input.addEventListener('input', (e) => {
-                        localStorage.setItem('flashq_' + fieldId, e.target.value);
-                    });
-                }
-            });
-            
-            // Input formatting & Logic
-            const whatsappInput = document.getElementById('whatsapp');
-            const defaultIcon = document.getElementById('default-icon');
-            const operatorLogo = document.getElementById('operator-logo');
-            const waCheckIcon = document.getElementById('wa-check-icon');
-            
-            whatsappInput.addEventListener('input', (e) => {
-                let val = e.target.value.replace(/[^0-9]/g, '');
-                e.target.value = val;
-
-                // Real-time Validation
-                const validation = validatePhoneNumber(val);
-                if (validation.isValid) {
-                     e.target.classList.add('valid-border');
-                     e.target.classList.remove('invalid-border');
-                     waCheckIcon.classList.remove('opacity-0');
-                } else {
-                     if (val.length > 4) { 
-                         e.target.classList.add('invalid-border');
-                     } else {
-                         e.target.classList.remove('invalid-border');
-                     }
-                     e.target.classList.remove('valid-border');
-                     waCheckIcon.classList.add('opacity-0');
-                }
-                
-                if(val.length >= 4) {
-                    const op = getOperatorFromNumber(val);
-                    if(op && operatorLogos[op]) {
-                        // Show Operator Logo
-                        operatorLogo.src = operatorLogos[op];
-                        
-                        defaultIcon.classList.remove('scale-100', 'opacity-100');
-                        defaultIcon.classList.add('scale-0', 'opacity-0');
-                        
-                        operatorLogo.classList.remove('scale-50', 'opacity-0');
-                        operatorLogo.classList.add('scale-100', 'opacity-100');
-                    } else {
-                        // Revert to default
-                        defaultIcon.classList.remove('scale-0', 'opacity-0');
-                        defaultIcon.classList.add('scale-100', 'opacity-100');
-                        
-                        operatorLogo.classList.remove('scale-100', 'opacity-100');
-                        operatorLogo.classList.add('scale-50', 'opacity-0');
-                    }
-                } else {
-                    // Revert to default
-                    defaultIcon.classList.remove('scale-0', 'opacity-0');
-                    defaultIcon.classList.add('scale-100', 'opacity-100');
-                    
-                    operatorLogo.classList.remove('scale-100', 'opacity-100');
-                    operatorLogo.classList.add('scale-50', 'opacity-0');
-                }
-            });
-
-            // Email Validation
-            const emailInput = document.getElementById('email');
-            const emailIcon = document.getElementById('email-icon');
-            
-            function validateEmail(email) {
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-            }
-
-            emailInput.addEventListener('input', (e) => {
-                const val = e.target.value;
-                if (val.length > 0) {
-                    if (validateEmail(val)) {
-                        e.target.classList.add('valid-border');
-                        e.target.classList.remove('invalid-border');
-                        emailIcon.className = 'fas fa-check-circle input-icon text-green-500';
-                    } else {
-                        e.target.classList.add('invalid-border');
-                        e.target.classList.remove('valid-border');
-                        emailIcon.className = 'fas fa-envelope input-icon text-red-500';
-                    }
-                } else {
-                    e.target.classList.remove('valid-border', 'invalid-border');
-                    emailIcon.className = 'fas fa-envelope input-icon';
-                }
-            });
-
-            // --- Auto-Save & Persistence (Load Data) ---
-            // Moved here to ensure listeners are already attached
-            formFields.forEach(fieldId => {
-                const savedValue = localStorage.getItem('flashq_' + fieldId);
-                if (savedValue) {
-                    const input = document.getElementById(fieldId);
-                    if (input) {
-                        input.value = savedValue;
-                        // Trigger input event to update UI (floating labels, operator logo etc)
-                        input.dispatchEvent(new Event('input', { bubbles: true }));
-                    }
-                }
-            });
+            initTheme();
+            initUI();
+            loadDraft();
+            loadHistory();
+            startLoops();
         });
 
-        // --- RENDER FUNCTIONS ---
-        function renderPackageCards() {
-            const container = document.getElementById('package-selection-container');
-            if (!container) return;
-
-            const formatCurrency = (amount) => `Rp ${amount.toLocaleString('id-ID')}`;
-
-            // Order of packages
-            const pkgKeys = ['pkg3', 'pkg6', 'pkg12'];
-
-            container.innerHTML = pkgKeys.map(key => {
-                const p = packages[key];
-                const isSelected = currentPackage === key;
-                const discount = Math.round(((p.normalPrice - p.price) / p.normalPrice) * 100);
-                
+        // --- UI RENDERERS ---
+        function initUI() {
+            // Packages
+            document.getElementById('pkg-list').innerHTML = packages.map(p => {
+                const disc = Math.round(((p.normal - p.price) / p.normal) * 100);
+                const isSel = state.pkg === p.id;
                 return `
-                <div class="package-card ${isSelected ? 'selected' : ''}" onclick="selectPackage('${p.id}')">
-                    <div class="flex items-center justify-between">
+                <div onclick="selectPkg('${p.id}')" class="pkg-card group relative overflow-hidden bg-white dark:bg-slate-800 border-2 ${isSel ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-slate-100 dark:border-slate-700'} rounded-2xl p-4 transition-all cursor-pointer hover:border-blue-300">
+                    ${p.best ? '<div class="absolute top-0 right-0 bg-gradient-to-bl from-blue-600 to-blue-400 text-white text-[9px] font-bold px-2 py-1 rounded-bl-xl">BEST SELLER</div>' : ''}
+                    <div class="flex justify-between items-center">
                         <div class="flex items-center gap-3">
-                            <div class="package-check"></div>
+                            <div class="w-5 h-5 rounded-full border-2 ${isSel ? 'border-blue-500 bg-blue-500' : 'border-slate-300 dark:border-slate-600'} flex items-center justify-center transition-colors">
+                                <i class="fas fa-check text-white text-[10px] ${isSel ? 'scale-100' : 'scale-0'} transition-transform"></i>
+                            </div>
                             <div>
-                                <p class="font-bold text-gray-900 uppercase">${p.duration}</p>
-                                <p class="text-xs text-gray-500">${p.name}</p>
+                                <h4 class="font-bold text-slate-800 dark:text-white text-sm">${p.name}</h4>
+                                <div class="flex items-center gap-2 mt-0.5">
+                                    <span class="text-[9px] bg-red-100 text-red-600 px-1.5 rounded font-bold">HEMAT ${disc}%</span>
+                                    <span class="text-xs text-slate-400 line-through">Rp${p.normal.toLocaleString()}</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="text-right">
-                            <p class="text-xs text-gray-400 line-through">${formatCurrency(p.normalPrice)}</p>
-                            <p class="text-lg font-bold text-blue-600">${formatCurrency(p.price)}</p>
-                        </div>
+                        <p class="font-bold text-lg text-blue-600 dark:text-blue-400">Rp${p.price.toLocaleString()}</p>
                     </div>
-                    ${p.label ? `
-                    <div class="absolute top-0 right-0 bg-blue-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-bl-lg">
-                        ${p.label}
-                    </div>
-                    ` : ''}
-                </div>
-                `;
+                </div>`;
             }).join('');
-        }
 
-        function renderTestimonials() {
-            const container = document.getElementById('testimonial-container');
-            // Duplicate list twice for smoother infinite loop
-            const images = [...testimonialImages, ...testimonialImages];
-            
-            container.innerHTML = `
-                <div class="testimonial-track">
-                    ${images.map(url => `
-                        <div class="testimonial-item" onclick="openImageModal('${url}')">
-                            <img src="${url}" alt="Testimoni" loading="lazy">
-                        </div>
-                    `).join('')}
+            // Payments
+            document.getElementById('pay-list').innerHTML = payments.map(p => `
+                <div onclick="selectPay('${p.id}')" class="pay-card border-2 ${state.pay === p.id ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800'} rounded-xl p-3 flex flex-col items-center justify-center gap-2 h-20 cursor-pointer hover:border-blue-300 transition-all">
+                    <img src="${p.logo}" class="h-5 object-contain filter dark:brightness-200 dark:grayscale">
+                    <span class="text-[10px] font-bold text-slate-600 dark:text-slate-300 text-center leading-tight">${p.name}</span>
                 </div>
-            `;
-        }
+            `).join('');
 
-        function renderFAQ() {
-            const container = document.getElementById('faq-container');
-            container.innerHTML = faqList.map(item => `
-                <details class="faq-item">
-                    <summary>${item.q}</summary>
-                    <div class="faq-content">${item.a}</div>
+            // Testimonials
+            const tHtml = testimonials.map(t => `
+                <div class="inline-block bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 p-3 rounded-xl w-60 whitespace-normal shrink-0">
+                    <div class="flex items-center gap-2 mb-1">
+                        <div class="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center text-xs font-bold">${t.n.charAt(0)}</div>
+                        <div class="flex-1">
+                            <p class="text-xs font-bold text-slate-800 dark:text-white">${t.n}</p>
+                            <div class="text-yellow-400 text-[9px]">${'<i class="fas fa-star"></i>'.repeat(t.s)}</div>
+                        </div>
+                        <i class="fas fa-quote-right text-slate-200 dark:text-slate-600"></i>
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 italic leading-snug">"${t.t}"</p>
+                </div>
+            `).join('');
+            document.getElementById('testimonial-track').innerHTML = tHtml + tHtml;
+
+            // FAQs
+            document.getElementById('faq-container').innerHTML = faqs.map(f => `
+                <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
+                    <summary class="flex justify-between items-center p-4 font-bold text-sm text-slate-700 dark:text-slate-200 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
+                        ${f.q}
+                        <i class="fas fa-chevron-down text-slate-400 transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="px-4 pb-4 text-xs text-slate-500 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-2">
+                        ${f.a}
+                    </div>
                 </details>
             `).join('');
-        }
-        
-        function showFeaturesModal() {
-            const container = document.getElementById('features-list-container');
-            container.innerHTML = `<ul class="space-y-3">
-                ${fullFeaturesList.map(feat => `
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <span class="text-sm text-gray-700">${feat}</span>
-                    </li>
-                `).join('')}
-            </ul>`;
-            
-            document.getElementById('featuresModal').classList.add('active');
-        }
 
-        function openImageModal(url) {
-            document.getElementById('modalImageDisplay').src = url;
-            document.getElementById('imageModal').classList.add('active');
-        }
-
-        function selectPackage(pkgId) {
-            currentPackage = pkgId;
-            document.getElementById('selectedPackage').value = pkgId;
-            renderPackageCards();
-            updateTotalPrice();
-        }
-
-        function selectPayment(paymentId) {
-            currentPayment = paymentId;
-            document.getElementById('selectedPayment').value = paymentId;
-            
-            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
-            document.getElementById(`pay-opt-${paymentId}`).classList.add('selected');
-        }
-
-        function renderPaymentMethods() {
-            const grid = document.getElementById('payment-grid');
-            grid.innerHTML = paymentMethods.map((pm, idx) => `
-                <div id="pay-opt-${pm.id}" class="payment-option ${idx === 0 ? 'selected' : ''}" onclick="selectPayment('${pm.id}')">
-                    <img src="${pm.logo}" alt="${pm.name}">
-                    <span>${pm.name}</span>
-                </div>
+            // Full Features List in Modal
+            document.getElementById('feature-list-ul').innerHTML = fullFeatures.map(feat => `
+                <li class="flex gap-3"><i class="fas fa-check text-green-500 mt-1"></i> ${feat}</li>
             `).join('');
+
+            updateSummary();
         }
 
-        function updateTotalPrice() {
-            const pkgPrice = packages[currentPackage].price;
-            const total = pkgPrice + uniqueCode;
-            document.getElementById('total-price-display').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        // --- ACTIONS ---
+        function selectPkg(id) {
+            state.pkg = id;
+            document.getElementById('selectedPkg').value = id;
+            initUI(); 
         }
 
-        function validateForm() {
-            const nameInput = document.getElementById('nama');
-            const name = nameInput.value.trim();
-            const waInput = document.getElementById('whatsapp');
-            const wa = waInput.value.trim();
-            const emailInput = document.getElementById('email');
-            const email = emailInput.value.trim();
+        function selectPay(id) {
+            state.pay = id;
+            document.getElementById('selectedPay').value = id;
+            initUI();
+        }
 
-            if (!name) return { valid: false, msg: 'Nama wajib diisi', element: nameInput };
-            
-            const phoneValidationResult = validatePhoneNumber(wa);
-            if (!phoneValidationResult.isValid) {
-                return { valid: false, msg: phoneValidationResult.message || 'Nomor HP tidak valid', element: waInput };
+        function updateSummary() {
+            const p = packages.find(x => x.id === state.pkg);
+            let total = p.price + state.unique - state.discount;
+            if (total < 0) total = 0;
+
+            document.getElementById('summary-total').innerText = `Rp${total.toLocaleString()}`;
+            if (state.discount > 0) {
+                const el = document.getElementById('summary-discount');
+                el.classList.remove('hidden');
+                el.innerText = `-Rp${state.discount.toLocaleString()}`;
             }
-
-            if (!email) {
-                return { valid: false, msg: 'Email wajib diisi', element: emailInput };
-            }
-            
-            return { valid: true };
         }
 
-        async function handleFormSubmit() {
-            const validation = validateForm();
-            if (!validation.valid) {
-                showModal('Data Belum Lengkap', validation.msg);
-                if (validation.element) {
-                    validation.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    validation.element.focus();
+        function switchTab(tab) {
+            ['home', 'history', 'help'].forEach(t => {
+                document.getElementById(`view-${t}`).classList.add('hidden');
+            });
+            document.getElementById(`view-${tab}`).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-item').forEach(el => {
+                el.classList.remove('text-blue-600', 'dark:text-blue-400');
+                el.classList.add('text-slate-400');
+                el.querySelector('i').classList.remove('animate-bounce');
+            });
+            const activeBtn = document.querySelector(`.nav-item[onclick="switchTab('${tab}')"]`);
+            activeBtn.classList.remove('text-slate-400');
+            activeBtn.classList.add('text-blue-600', 'dark:text-blue-400');
+            
+            const chk = document.getElementById('checkout-bar');
+            if(tab === 'home') {
+                chk.classList.remove('translate-y-full', 'absolute', 'opacity-0');
+            } else {
+                chk.classList.add('translate-y-full', 'absolute', 'opacity-0');
+            }
+        }
+
+        function formatPhone(input) {
+            let num = input.value.replace(/\D/g, '');
+            if (num.length > 4) num = num.substring(0,4) + '-' + num.substring(4);
+            if (num.length > 9) num = num.substring(0,9) + '-' + num.substring(9);
+            input.value = num.substring(0, 15);
+        }
+
+        function checkOperator(input) {
+            const num = input.value.replace(/-/g, '');
+            const badge = document.getElementById('op-badge');
+            const logoImg = document.getElementById('operator-logo');
+            
+            if(num.length >= 4) {
+                const pre = num.substring(0,4);
+                const pre5 = num.substring(0,5);
+                let op = '';
+                let logoUrl = '';
+                
+                // Logic based on previous snippet
+                if(/^08(11|12|13|21|22|23|52|53|51)/.test(pre)) { op = 'Telkomsel'; }
+                else if(/^08(515|516|517)/.test(pre5)) { op = 'by.U'; }
+                else if(/^08(14|15|16|55|56|57|58)/.test(pre)) { op = 'Indosat'; }
+                else if(/^08(17|18|19|59|77|78|79)/.test(pre)) { op = 'XL'; }
+                else if(/^08(31|32|33|38)/.test(pre)) { op = 'Axis'; }
+                else if(/^08(95|96|97|98|99)/.test(pre)) { op = 'Tri'; }
+                else if(/^08(81|82|83|84|85|86|87|88|89)/.test(pre)) { op = 'Smartfren'; }
+
+                if(op && operatorLogos[op]) {
+                    logoImg.src = operatorLogos[op];
+                    logoImg.classList.remove('hidden');
+                    
+                    // Fallback badge text if image fails or just as debug
+                    badge.innerText = op;
+                    badge.classList.add('hidden'); // Hide text badge in favor of image
+                } else {
+                    logoImg.classList.add('hidden');
+                    badge.classList.add('hidden');
                 }
+            } else {
+                logoImg.classList.add('hidden');
+                badge.classList.add('hidden');
+            }
+        }
+
+        // --- CHECKOUT PROCESS ---
+        async function processCheckout() {
+            const nama = document.getElementById('nama').value;
+            const wa = document.getElementById('whatsapp').value;
+            const email = document.getElementById('email').value;
+            
+            if(!nama || wa.length < 10 || !email) {
+                showToast('Mohon lengkapi semua data', 'error');
                 return;
             }
 
-            // --- START NEW FEATURE: Connecting Server Animation ---
+            // Show Server Connecting Overlay
             await runConnectionAnimation();
-            // --- END NEW FEATURE ---
 
-            const btn = document.getElementById('submit-btn');
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Memproses...';
-
-            // Prepare Data
-            const formData = new FormData(document.getElementById('orderForm'));
-            const pkg = packages[currentPackage];
-            const payment = paymentMethods.find(p => p.id === currentPayment);
-            const totalPrice = pkg.price + uniqueCode;
+            // Create Order
+            const p = packages.find(x => x.id === state.pkg);
+            const pay = payments.find(x => x.id === state.pay);
+            const total = p.price + state.unique - state.discount;
+            
             const now = new Date();
             const rL = () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 26));
             const rD = () => Math.floor(Math.random() * 10);
-            const paymentId = `INV-INJECT-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
-            
-            // Send to Google Script
-            const dataToSend = {
-                nama: formData.get('nama'),
-                whatsapp: formData.get('whatsapp'),
-                email: formData.get('email'),
-                paket: pkg.name,
-                metodePembayaran: payment.name,
-                totalTransfer: `Rp${totalPrice.toLocaleString('id-ID')}`,
-                idPembayaran: paymentId,
-                nomorRekening: payment.number || '-',
-                sheetName: formData.get('sheetName')
+            const orderId = `INV-INJECT-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
+
+            const order = {
+                id: orderId,
+                date: new Date().toLocaleDateString('id-ID'),
+                pkg: p.name,
+                price: total,
+                status: 'pending'
             };
-            
-            // NOTE: Replace with your actual script URL if needed
+
+            // Save History
+            saveHistory(order);
+
+            // Submit to Google Sheet (Async)
             const scriptURL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
-
-            try {
-                await fetch(scriptURL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(dataToSend)
-                });
-                
-                // Show Payment Page
-                showPaymentPage(dataToSend, payment, totalPrice);
-                
-            } catch (error) {
-                console.error('Error:', error);
-                // Fallback success for demo purposes if fetch fails (e.g. CORS/offline)
-                showPaymentPage(dataToSend, payment, totalPrice);
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = 'Beli Paket <i class="fas fa-arrow-right"></i>';
-            }
-        }
-
-        function showPaymentPage(data, paymentMethod, amount) {
-            // Store details for modal
-            const pkgDetails = packages[currentPackage];
-            currentOrderDetails = {
-                pkg: data.paket,
-                totalPrice: amount,
-                paymentId: data.idPembayaran,
-                nama: data.nama,
-                whatsapp: data.whatsapp,
-                email: data.email,
-                price: pkgDetails.price
+            const dataToSend = {
+                nama: nama,
+                whatsapp: wa,
+                email: email,
+                paket: p.name,
+                metodePembayaran: pay.name,
+                totalTransfer: `Rp${total.toLocaleString('id-ID')}`,
+                idPembayaran: orderId,
+                nomorRekening: pay.acc || '-',
+                sheetName: 'inject'
             };
 
-            // Hide Form, Show Payment
-            document.getElementById('view-form').classList.add('hidden');
-            document.getElementById('view-payment').classList.remove('hidden');
-            window.scrollTo(0, 0);
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dataToSend)
+            }).catch(e => console.log('Offline mode'));
 
-            // Set Timer (24 hours)
-            expiryTime = new Date().getTime() + (24 * 60 * 60 * 1000);
-            startCountdown();
-
-            // Populate Data
-            document.getElementById('payment-amount').innerText = `Rp ${amount.toLocaleString('id-ID')}`;
-            document.getElementById('payment-logo-result').src = paymentMethod.logo;
-
-            // Populate invoice summary
-            document.getElementById('invoice-details-summary').innerHTML = `
-                <span>No. Invoice: <strong>${data.idPembayaran}</strong></span>
-                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-blue-600">Lihat detail</a>
-            `;
-
-            // Generate WA Link
-            // Pesan WA: Konfirmasi Pembayaran
-            const waMsg = `Halo Admin, saya sudah transfer.\n\n` +
-                          `No Invoice: *${data.idPembayaran}*\n` +
-                          `Nomor Target: *${data.whatsapp}*\n` +
-                          `Paket: *${data.paket}*\n` +
-                          `Total: *${data.totalTransfer}*\n\n` +
-                          `Mohon segera diinject paketnya. Terima kasih.`;
+            // Setup Payment View
+            document.getElementById('pay-oid').innerText = orderId;
+            document.getElementById('pay-total').innerText = `Rp ${total.toLocaleString()}`;
+            document.getElementById('pay-logo').src = pay.logo;
             
-            document.getElementById('wa-confirm-btn').href = `https://wa.me/6285602152097?text=${encodeURIComponent(waMsg)}`;
-
-            // Render Payment Details
-            const detailsContainer = document.getElementById('payment-details-content');
-            const instructionsContainer = document.getElementById('instruction-steps');
-            
-            // Raw amount for copy
-            const rawAmountInputCheck = document.getElementById('payment-amount-raw');
-            if (rawAmountInputCheck) {
-                rawAmountInputCheck.value = amount;
-            } else {
-                const rawAmountInput = document.createElement('input');
-                rawAmountInput.type = 'hidden';
-                rawAmountInput.id = 'payment-amount-raw';
-                rawAmountInput.value = amount;
-                document.body.appendChild(rawAmountInput);
-            }
-
-            if (paymentMethod.type === 'qr') {
-                try {
-                    const qrisStatic = paymentMethod.number;
-                    const qrisDynamic = createDynamicQris(qrisStatic, amount);
-                    
-                    detailsContainer.innerHTML = `
-                        <div class="flex flex-col items-center">
-                            <div id="qrcode-canvas" class="p-2 border rounded-lg mb-4 bg-white"></div>
-                            <button id="download-qris-btn" class="btn-checkout w-auto px-6 py-2 text-sm" style="box-shadow: none; background: var(--secondary); color: var(--text-main); font-weight: 500;">
-                                <i class="fas fa-download mr-2"></i> Unduh QRIS
-                            </button>
-                            <p class="text-xs text-center text-gray-500 mt-4">Scan QR Code diatas dengan aplikasi pembayaran apa saja.</p>
+            const content = document.getElementById('pay-content');
+            if(pay.type === 'qr') {
+                content.innerHTML = `
+                    <div class="flex flex-col items-center">
+                        <div class="bg-white p-2 border-2 border-slate-800 rounded-xl mb-2">
+                            <div id="qrcode-canvas"></div>
                         </div>
-                    `;
-                    
-                    setTimeout(() => {
-                        const qrContainer = document.getElementById('qrcode-canvas');
-                        qrContainer.innerHTML = '';
-                        const canvas = document.createElement('canvas');
-                        QRCode.toCanvas(canvas, qrisDynamic, { width: 200, margin: 1 }, (err) => {
-                            if (err) {
-                                console.error(err);
-                                return;
-                            }
-                            qrContainer.appendChild(canvas);
-
-                            document.getElementById('download-qris-btn').addEventListener('click', () => {
-                                const link = document.createElement('a');
-                                link.download = `QRIS-Inject-${data.idPembayaran}.png`;
-                                link.href = canvas.toDataURL('image/png');
-                                link.click();
-                            });
-                        });
-                    }, 100);
-
-                    instructionsContainer.innerHTML = `
-                        <div class="instruction-step"><div class="step-number">1</div><p class="text-sm">Buka aplikasi e-wallet (GoPay/OVO/Dana) atau Mobile Banking.</p></div>
-                        <div class="instruction-step"><div class="step-number">2</div><p class="text-sm">Pilih menu Scan / Bayar.</p></div>
-                        <div class="instruction-step"><div class="step-number">3</div><p class="text-sm">Scan QR Code yang muncul di layar.</p></div>
-                        <div class="instruction-step"><div class="step-number">4</div><p class="text-sm">Cek nominal (pastikan sama) dan selesaikan pembayaran.</p></div>
-                    `;
-
-                } catch (e) {
-                    detailsContainer.innerHTML = '<p class="text-red-500">Gagal memuat QRIS.</p>';
-                }
-
-            } else {
-                detailsContainer.innerHTML = `
-                    <div class="bg-gray-50 p-4 rounded-lg flex items-center justify-between">
-                        <div>
-                            <p class="text-xs text-gray-500">Nomor Rekening / VA</p>
-                            <p class="text-lg font-bold text-gray-800 tracking-wide">${paymentMethod.number}</p>
-                            <p class="text-xs text-gray-500 mt-1">A.N ${paymentMethod.holder}</p>
-                        </div>
-                        <button class="copy-btn" onclick="copyText('${paymentMethod.number}')">
-                            <i class="far fa-copy"></i> Salin
-                        </button>
+                        <p class="text-[10px] text-center text-slate-500">Scan QRIS ini dengan aplikasi apa saja</p>
                     </div>
                 `;
-
-                 instructionsContainer.innerHTML = `
-                        <div class="instruction-step"><div class="step-number">1</div><p class="text-sm">Buka aplikasi bank atau e-wallet Anda.</p></div>
-                        <div class="instruction-step"><div class="step-number">2</div><p class="text-sm">Pilih menu Transfer ke ${paymentMethod.name}.</p></div>
-                        <div class="instruction-step"><div class="step-number">3</div><p class="text-sm">Masukkan nomor rekening: <strong>${paymentMethod.number}</strong></p></div>
-                        <div class="instruction-step"><div class="step-number">4</div><p class="text-sm">Masukkan nominal <strong>Rp ${amount.toLocaleString('id-ID')}</strong> (harus tepat).</p></div>
-                    `;
-            }
-        }
-
-        function backToForm() {
-            document.getElementById('view-payment').classList.add('hidden');
-            document.getElementById('view-form').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        // --- UTILS ---
-        
-        function startCountdown() {
-            if (countdownInterval) clearInterval(countdownInterval);
-            countdownInterval = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = expiryTime - now;
-
-                if (distance < 0) {
-                    clearInterval(countdownInterval);
-                    document.getElementById('countdown').innerHTML = "WAKTU HABIS";
-                    return;
-                }
-
-                const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById('countdown').innerHTML = 
-                    `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-            }, 1000);
-        }
-
-        function copyText(textOrId) {
-            let text = textOrId;
-            const element = document.getElementById(textOrId);
-            if (element) text = element.value || element.innerText;
-
-            navigator.clipboard.writeText(text).then(() => {
-                showModal('Berhasil', 'Teks berhasil disalin');
-            }, () => {
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    showModal('Berhasil', 'Teks berhasil disalin');
-                } catch (err) {}
-                document.body.removeChild(textArea);
-            });
-        }
-
-        function showModal(title, msg) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalMessage').innerText = msg;
-            const modal = document.getElementById('infoModal');
-            modal.classList.add('active');
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
-        }
-        
-        function initNotifications() {
-            setInterval(() => {
-                const name = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
-                const toast = document.getElementById('toast');
-                document.getElementById('toast-name').innerText = name;
-                
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 4000);
-            }, 15000 + Math.random() * 10000);
-        }
-
-        // --- QRIS GENERATOR UTILS (CRC16) ---
-        function createDynamicQris(qris, nominal) {
-            let qrisModified = qris.slice(0, -4).replace("010211", "010212");
-            const nominalStr = String(Math.round(nominal));
-            const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
-            const amountPart = "54" + amountLength + nominalStr;
-            
-            if (qrisModified.includes("5802ID")) {
-                let parts = qrisModified.split("5802ID");
-                qrisModified = parts[0] + amountPart + "5802ID" + parts[1];
-            }
-            
-            const crc = crc16ccitt(qrisModified);
-            return qrisModified + crc;
-        }
-
-        function crc16ccitt(str) {
-            let crc = 0xFFFF;
-            for (let c = 0; c < str.length; c++) {
-                crc ^= str.charCodeAt(c) << 8;
-                for (let i = 0; i < 8; i++) {
-                    if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
-                    else crc = crc << 1;
-                }
-            }
-            return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
-        }
-
-        function getDetailsModalHTML(details) {
-            const { pkg, totalPrice, paymentId, nama, whatsapp, price } = details;
-            const uniqueCodeAmount = totalPrice - price;
-            return `
-                <div class="details-modal-header p-4 flex items-center justify-between">
-                    <h3 class="text-lg font-bold">Ringkasan Transaksi</h3>
-                    <button onclick="closeModal('detailsModal')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times text-xl"></i></button>
-                </div>
-                <div class="details-modal-body p-4 pt-2">
-                    <p class="text-xs text-gray-500 mb-3">Nomor Invoice: <strong>${paymentId}</strong></p>
-                    <div class="text-center mb-3">
-                        <p class="text-sm text-gray-600 mb-1">Total Pembayaran</p>
-                        <div class="flex items-center justify-center">
-                            <p class="text-3xl font-bold text-gray-900">Rp ${totalPrice.toLocaleString('id-ID')}</p>
-                        </div>
+                setTimeout(() => {
+                    document.getElementById('qrcode-canvas').innerHTML = '';
+                    new QRCode(document.getElementById("qrcode-canvas"), {
+                        text: generateQRIS(pay.acc, total),
+                        width: 160, height: 160
+                    });
+                }, 100);
+            } else {
+                content.innerHTML = `
+                    <div class="bg-slate-100 p-4 rounded-xl text-center border border-slate-200">
+                        <p class="text-xs text-slate-500 mb-1">Nomor Rekening / VA</p>
+                        <p class="text-xl font-mono font-bold text-slate-800 select-all">${pay.acc}</p>
+                        <p class="text-xs font-bold text-slate-600 mt-1">A.N ${pay.holder}</p>
+                        <button onclick="copyToClip('${pay.acc}')" class="text-[10px] text-blue-600 mt-2 font-bold hover:underline">Salin Nomor</button>
                     </div>
-                    <div class="space-y-2 border-t border-b border-gray-200 py-3 my-3">
-                        <div>
-                            <div class="flex justify-between text-sm">
-                                <span>${pkg}</span>
-                                <span class="font-semibold text-gray-800">Rp ${price.toLocaleString('id-ID')}</span>
-                            </div>
-                        </div>
-                         <div class="flex justify-between text-xs">
-                            <span class="text-gray-500">Kode Unik</span>
-                            <span class="font-medium">Rp ${uniqueCodeAmount.toLocaleString('id-ID')}</span>
-                        </div>
-                    </div>
-                    <div class="pt-2">
-                        <h4 class="font-semibold mb-2 text-sm">Target Inject</h4>
-                        <div class="space-y-2 text-sm">
-                            <div>
-                                <p class="text-gray-500 text-xs mb-0.5">Nama</p>
-                                <p class="font-medium">${nama}</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500 text-xs mb-0.5">Nomor HP / WhatsApp</p>
-                                <p class="font-medium">${whatsapp}</p>
-                            </div>
-                             <div>
-                                <p class="text-gray-500 text-xs mb-0.5">Email Invoice</p>
-                                <p class="font-medium">${details.email}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+                `;
+            }
+
+            // WA Link
+            const waMsg = encodeURIComponent(`Halo Admin, saya sudah transfer.\n\nNo Invoice: *${orderId}*\nNomor Target: *${wa}*\nPaket: *${p.name}*\nTotal: *Rp${total.toLocaleString('id-ID')}*\n\nMohon segera diinject paketnya. Terima kasih.`);
+            document.getElementById('btn-confirm-wa').href = `https://wa.me/6285602152097?text=${waMsg}`;
+
+            // Show Payment View
+            document.getElementById('view-payment').classList.remove('translate-x-full');
         }
 
-        function showDetailsModal(event) {
-            if(event) event.preventDefault();
-            const modalContent = document.getElementById('detailsModalContent');
-            const modal = document.getElementById('detailsModal');
-            
-            modalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
-            modal.classList.add('active');
-        }
-
-        // --- CONNECTING SERVER ANIMATION ---
+        // --- ANIMATIONS & VISUALS ---
         function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
         async function runConnectionAnimation() {
@@ -1587,9 +864,28 @@
             
             overlay.classList.remove('hidden');
             overlay.classList.add('flex');
+            overlay.classList.remove('opacity-0');
             
             // Reset steps
-            resetAnimationSteps();
+            ['step-1', 'step-2', 'step-3'].forEach(id => {
+               const el = document.getElementById(id);
+               const icon = el.querySelector('.step-icon');
+               const label = el.querySelector('.step-label');
+               const desc = el.querySelector('.step-desc');
+               const check = el.querySelector('.step-check');
+
+               icon.className = 'step-icon w-6 h-6 rounded-full bg-gray-200 dark:bg-slate-700 flex items-center justify-center text-[10px] text-gray-400';
+               icon.innerHTML = '<i class="fas fa-circle"></i>';
+               
+               label.classList.remove('text-gray-900', 'dark:text-white');
+               label.classList.add('text-gray-400');
+               
+               desc.classList.remove('text-gray-600', 'dark:text-gray-300');
+               desc.classList.add('text-gray-400');
+               
+               check.classList.add('opacity-0', 'scale-50');
+               check.classList.remove('opacity-100', 'scale-100');
+            });
 
             const activateStep = (id) => {
                 const el = document.getElementById(id);
@@ -1597,15 +893,15 @@
                 const label = el.querySelector('.step-label');
                 const desc = el.querySelector('.step-desc');
                 
-                icon.classList.remove('bg-gray-200', 'text-gray-400');
+                icon.classList.remove('bg-gray-200', 'text-gray-400', 'dark:bg-slate-700');
                 icon.classList.add('bg-blue-100', 'text-blue-600');
                 icon.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
                 
                 label.classList.remove('text-gray-400');
-                label.classList.add('text-gray-900');
+                label.classList.add('text-gray-900', 'dark:text-white');
                 
                 desc.classList.remove('text-gray-400');
-                desc.classList.add('text-gray-600');
+                desc.classList.add('text-gray-600', 'dark:text-gray-300');
             };
             
             const finishStep = (id) => {
@@ -1621,61 +917,285 @@
                 check.classList.add('opacity-100', 'scale-100');
             };
 
-            // Step 1
-            activateStep('step-1');
+            // Sequence
             title.innerText = "Verifikasi Nomor";
-            text.innerText = "Mengecek status aktif nomor...";
+            text.innerText = "Mengecek validitas nomor tujuan...";
+            activateStep('step-1');
             await sleep(1500);
             finishStep('step-1');
 
-            // Step 2
-            activateStep('step-2');
             title.innerText = "Sinkronisasi Server";
             text.innerText = "Menghubungkan ke database operator...";
+            activateStep('step-2');
             await sleep(1500);
             finishStep('step-2');
 
-            // Step 3
-            activateStep('step-3');
             title.innerText = "Finalisasi";
-            text.innerText = "Menyiapkan invoice tagihan...";
+            text.innerText = "Membuat invoice tagihan...";
+            activateStep('step-3');
             await sleep(1500);
             finishStep('step-3');
 
-            title.innerText = "Berhasil Terhubung!";
+            title.innerText = "Berhasil!";
             text.innerText = "Mengalihkan ke halaman pembayaran...";
-            await sleep(1000);
+            await sleep(800);
 
             // Fade out
             overlay.classList.add('opacity-0');
             await sleep(300);
-            overlay.classList.remove('flex', 'opacity-0');
+            overlay.classList.remove('flex');
             overlay.classList.add('hidden');
         }
 
-        function resetAnimationSteps() {
-             ['step-1', 'step-2', 'step-3'].forEach(id => {
-                const el = document.getElementById(id);
-                const icon = el.querySelector('.step-icon');
-                const label = el.querySelector('.step-label');
-                const desc = el.querySelector('.step-desc');
-                const check = el.querySelector('.step-check');
-
-                icon.className = 'step-icon w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-[10px] text-gray-400';
-                icon.innerHTML = '<i class="fas fa-circle"></i>';
-                
-                label.classList.remove('text-gray-900');
-                label.classList.add('text-gray-400');
-                
-                desc.classList.remove('text-gray-600');
-                desc.classList.add('text-gray-400');
-                
-                check.classList.add('opacity-0', 'scale-50');
-                check.classList.remove('opacity-100', 'scale-100');
-             });
-              document.getElementById('connecting-overlay').classList.remove('opacity-0');
+        function closePayment() {
+            document.getElementById('view-payment').classList.add('translate-x-full');
         }
 
+        function checkPaymentStatus() {
+            const btn = document.getElementById('btn-check-status');
+            const originalText = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Mengecek...';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Pembayaran Diterima!';
+                btn.classList.remove('bg-slate-200', 'text-slate-700', 'dark:bg-slate-800', 'dark:text-slate-300');
+                btn.classList.add('bg-green-500', 'text-white');
+                
+                // Confetti
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+                
+                showToast('Pembayaran Dikonfirmasi!', 'success');
+                
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('bg-green-500', 'text-white');
+                    btn.classList.add('bg-slate-200', 'text-slate-700');
+                }, 3000);
+            }, 2000);
+        }
+
+        // --- HISTORY & STORAGE ---
+        function saveHistory(order) {
+            let hist = JSON.parse(localStorage.getItem('fq_history') || '[]');
+            hist.unshift(order);
+            localStorage.setItem('fq_history', JSON.stringify(hist));
+            loadHistory();
+        }
+
+        function loadHistory() {
+            const hist = JSON.parse(localStorage.getItem('fq_history') || '[]');
+            const container = document.getElementById('history-list');
+            
+            if(hist.length === 0) return;
+
+            container.innerHTML = hist.map(h => `
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm flex justify-between items-center">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-mono bg-slate-100 dark:bg-slate-700 px-1.5 rounded text-slate-500">#${h.id.split('-')[1] || h.id}</span>
+                            <span class="text-[10px] text-slate-400">${h.date}</span>
+                        </div>
+                        <h4 class="font-bold text-sm text-slate-800 dark:text-white">${h.pkg}</h4>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-blue-600 dark:text-blue-400 text-sm">Rp${h.price.toLocaleString()}</p>
+                        <span class="text-[10px] text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded-full font-bold">Menunggu</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function saveDraft() {
+            const data = {
+                nama: document.getElementById('nama').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                email: document.getElementById('email').value
+            };
+            localStorage.setItem('fq_draft', JSON.stringify(data));
+            
+            if(data.nama) document.getElementById('check-nama').classList.remove('opacity-0');
+            else document.getElementById('check-nama').classList.add('opacity-0');
+        }
+
+        function loadDraft() {
+            const data = JSON.parse(localStorage.getItem('fq_draft'));
+            if(data) {
+                if(data.nama) {
+                    document.getElementById('nama').value = data.nama;
+                    document.getElementById('check-nama').classList.remove('opacity-0');
+                }
+                if(data.whatsapp) {
+                    document.getElementById('whatsapp').value = data.whatsapp;
+                    checkOperator(document.getElementById('whatsapp'));
+                }
+                if(data.email) document.getElementById('email').value = data.email;
+            }
+        }
+
+        // --- HELPERS ---
+        function generateQRIS(base, amount) {
+            let qris = base.slice(0, -4).replace("010211", "010212");
+            const amtStr = String(Math.round(amount));
+            const amtPart = "54" + (amtStr.length < 10 ? "0"+amtStr.length : amtStr.length) + amtStr;
+            
+            if (qris.includes("5802ID")) {
+                let parts = qris.split("5802ID");
+                qris = parts[0] + amtPart + "5802ID" + parts[1];
+            }
+            
+            let crc = 0xFFFF;
+            for (let c = 0; c < qris.length; c++) {
+                crc ^= qris.charCodeAt(c) << 8;
+                for (let i = 0; i < 8; i++) {
+                    if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
+                    else crc = crc << 1;
+                }
+            }
+            return qris + (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
+        }
+
+        function applyVoucher() {
+            const code = document.getElementById('voucher').value.toUpperCase();
+            const msg = document.getElementById('voucher-msg');
+            
+            if(['FLASH50', 'HEMAT', 'DISKON'].includes(code)) {
+                state.discount = 10000;
+                msg.innerHTML = '<i class="fas fa-check"></i> Potongan Rp10.000 digunakan!';
+                msg.className = "text-[10px] px-2 text-green-500 font-bold block animate-pulse";
+            } else {
+                state.discount = 0;
+                msg.innerHTML = '<i class="fas fa-times"></i> Kode tidak valid';
+                msg.className = "text-[10px] px-2 text-red-500 font-bold block";
+            }
+            msg.classList.remove('hidden');
+            updateSummary();
+        }
+
+        function showToast(msg, type='normal') {
+            const el = document.createElement('div');
+            const colors = type === 'error' ? 'bg-red-500' : (type === 'success' ? 'bg-green-500' : 'bg-slate-800');
+            el.className = `${colors} text-white px-4 py-2 rounded-full shadow-lg text-xs font-bold transform translate-y-[-20px] opacity-0 transition-all duration-500 flex items-center gap-2`;
+            el.innerHTML = type === 'success' ? `<i class="fas fa-check-circle"></i> ${msg}` : msg;
+            
+            document.getElementById('toast-container').appendChild(el);
+            requestAnimationFrame(() => el.classList.remove('translate-y-[-20px]', 'opacity-0'));
+            setTimeout(() => {
+                el.classList.add('opacity-0', 'translate-y-[-20px]');
+                setTimeout(() => el.remove(), 500);
+            }, 3000);
+        }
+
+        function copyToClip(content) {
+            const txt = content === 'pay-total' ? document.getElementById(content).innerText.replace(/[^0-9]/g,'') : content;
+            navigator.clipboard.writeText(txt).then(() => showToast('Berhasil disalin!', 'success'));
+        }
+
+        // --- CHAT & MODALS ---
+        function toggleChat() {
+            const box = document.getElementById('chat-box');
+            if(box.classList.contains('opacity-0')) {
+                box.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+            } else {
+                box.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+            }
+        }
+
+        function sendChat() {
+            const input = document.getElementById('chat-input');
+            const msg = input.value.trim();
+            if(!msg) return;
+            
+            const area = document.getElementById('chat-messages');
+            area.innerHTML += `
+                <div class="flex gap-2 justify-end">
+                    <div class="bg-blue-600 p-2 rounded-tl-xl rounded-b-xl text-xs text-white shadow-sm max-w-[80%]">${msg}</div>
+                </div>
+            `;
+            input.value = '';
+            area.scrollTop = area.scrollHeight;
+
+            // Auto reply
+            setTimeout(() => {
+                area.innerHTML += `
+                    <div class="flex gap-2">
+                        <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xs shrink-0 mt-1"><i class="fas fa-robot"></i></div>
+                        <div class="bg-white dark:bg-slate-800 p-2 rounded-tr-xl rounded-b-xl text-xs text-slate-600 dark:text-slate-300 shadow-sm border border-slate-100 dark:border-slate-700 max-w-[80%]">
+                            Mohon maaf, saat ini kami sedang melayani banyak pelanggan. Silakan hubungi via WhatsApp untuk respon cepat.
+                        </div>
+                    </div>
+                `;
+                area.scrollTop = area.scrollHeight;
+            }, 1500);
+        }
+
+        function openModal(id) {
+            const m = document.getElementById(id);
+            m.classList.remove('hidden');
+            setTimeout(() => { m.classList.remove('opacity-0'); m.children[0].classList.remove('scale-95'); }, 10);
+        }
+
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            m.classList.add('opacity-0');
+            m.children[0].classList.add('scale-95');
+            setTimeout(() => m.classList.add('hidden'), 300);
+        }
+
+        // --- SYSTEM LOOPS ---
+        function startLoops() {
+            // Theme
+            initTheme();
+            
+            // Time
+            setInterval(() => {
+                const h = new Date().getHours();
+                const greet = h < 11 ? 'Selamat Pagi' : (h < 15 ? 'Selamat Siang' : (h < 18 ? 'Selamat Sore' : 'Selamat Malam'));
+                document.getElementById('greeting-time').innerText = greet + ', Kak!';
+            }, 60000);
+            
+            // Ping
+            setInterval(() => {
+                const ping = Math.floor(Math.random() * (45 - 15) + 15);
+                const el = document.getElementById('ping-val');
+                el.innerText = ping + 'ms';
+                el.className = `font-mono text-[9px] ml-1 opacity-70 ${ping > 40 ? 'text-red-500' : 'text-green-500'}`;
+            }, 3000);
+
+            // Flash Sale Timer
+            let duration = 5 * 3600;
+            setInterval(() => {
+                duration--;
+                const h = Math.floor(duration/3600).toString().padStart(2,'0');
+                const m = Math.floor((duration%3600)/60).toString().padStart(2,'0');
+                const s = (duration%60).toString().padStart(2,'0');
+                document.getElementById('flash-timer').innerText = `${h}:${m}:${s}`;
+            }, 1000);
+        }
+
+        function initTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
     </script>
 </body>
 </html>
