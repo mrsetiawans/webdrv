@@ -543,18 +543,6 @@
                         </div>
                     </div>
 
-                    <div class="bg-red-50 border-l-4 border-red-600 p-3 my-4 rounded-r-lg shadow-sm flex items-center gap-3">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-exclamation-circle text-xl text-red-600 animate-pulse"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-red-700 text-sm uppercase">PENTING: Cek Kembali Data Anda!</h3>
-                            <p class="text-sm text-gray-700 leading-tight mt-0.5">
-                                Pastikan <strong>No. WhatsApp</strong> & <strong>Email</strong> yang Anda masukkan sudah <strong>BENAR</strong> dan <strong>AKTIF</strong>.
-                            </p>
-                        </div>
-                    </div>
-
                     <!-- Hidden Fields -->
                     <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
                     <input type="hidden" name="sheetName" value="adobe">
@@ -638,6 +626,11 @@
                         <!-- Populated by JS -->
                     </div>
                 </div>
+
+                <!-- Manual Check Button (NEW) -->
+                <button onclick="manualCheckStatus()" id="manual-check-btn" class="w-full bg-blue-50 text-blue-600 font-bold py-3 rounded-xl border border-blue-100 shadow-sm mb-6 flex items-center justify-center gap-2 hover:bg-blue-100 transition-colors">
+                    <i class="fas fa-sync-alt"></i> Cek Status Pembayaran
+                </button>
 
                 <!-- Payment Details -->
                 <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-6">
@@ -745,17 +738,18 @@
             { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses aktivasi gagal karena kesalahan dari pihak kami." }
         ];
 
+        // --- HARGA DIKEMBALIKAN KE MODE PRODUKSI ---
         const packages = {
             monthly: {
                 id: 'monthly',
                 name: "Adobe CC (1 Bulan)",
-                price: 50000,
+                price: 50000, 
                 normalPrice: 250000
             },
             yearly: {
                 id: 'yearly',
                 name: "Adobe CC (1 Tahun)",
-                price: 1,
+                price: 350000, 
                 normalPrice: 2500000
             }
         };
@@ -1058,6 +1052,7 @@
             };
             
             // Send to Google Script
+            // FIXED: Use the correct URL here and below
             const scriptURL = 'https://script.google.com/macros/s/AKfycbx6cPrMGkXl_DL-FJfbG7C4LWEo9udjkekBPOVjkvGcOC_IiTqYjuDDLgxjIWLqFHIBIA/exec';
 
             try {
@@ -1380,7 +1375,7 @@
             modal.classList.add('active');
         }
 
-        // --- NEW POLLING LOGIC ---
+        // --- NEW POLLING LOGIC & MANUAL CHECK ---
         
         let pollingInterval;
 
@@ -1388,39 +1383,55 @@
             if (pollingInterval) clearInterval(pollingInterval);
             
             // Check immediately then every 5 seconds
-            checkPaymentStatus(invoiceId);
+            checkPaymentStatus(invoiceId, false);
             
             pollingInterval = setInterval(() => {
-                checkPaymentStatus(invoiceId);
+                checkPaymentStatus(invoiceId, false);
             }, 5000); 
         }
 
-        async function checkPaymentStatus(invoiceId) {
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec'; 
+        function manualCheckStatus() {
+            if (!currentOrderDetails.paymentId) return;
+            
+            const btn = document.getElementById('manual-check-btn');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Mengecek...';
+            
+            checkPaymentStatus(currentOrderDetails.paymentId, true).then(() => {
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }, 1000);
+            });
+        }
+
+        async function checkPaymentStatus(invoiceId, isManual = false) {
+            // FIXED URL: Must match the one in handleFormSubmit
+            const scriptBaseURL = 'https://script.google.com/macros/s/AKfycbx6cPrMGkXl_DL-FJfbG7C4LWEo9udjkekBPOVjkvGcOC_IiTqYjuDDLgxjIWLqFHIBIA/exec'; 
+            
+            const url = `${scriptBaseURL}?action=check_status&idPembayaran=${invoiceId}&sheetName=adobe&t=${new Date().getTime()}`;
 
             try {
-                // Using standard fetch to read response
-                // Requires GAS script to return proper ContentService (handled in your backend code)
-                const response = await fetch(scriptURL, {
-                    method: 'POST',
-                    redirect: 'follow', // Important for GAS
-                    body: JSON.stringify({ 
-                        action: 'check_status', 
-                        idPembayaran: invoiceId, 
-                        sheetName: 'adobe' 
-                    })
+                const response = await fetch(url, {
+                    method: 'GET',
                 });
                 
                 if (response.ok) {
                     const result = await response.json();
+                    
                     if (result.status === 'LUNAS') {
                         clearInterval(pollingInterval);
                         showSuccessPage();
+                    } else if (isManual) {
+                        showModal('Status Pembayaran', 'Status: BELUM LUNAS. Jika Anda sudah transfer, mohon tunggu 1-2 menit lalu cek lagi.');
                     }
                 }
             } catch (error) {
-                // Silent catch: network errors, CORS issues, etc.
-                // We just wait for the next poll
+                console.error("Check Error:", error);
+                if (isManual) {
+                    showModal('Gagal Mengecek', 'Terjadi kesalahan saat menghubungi server. Silakan coba lagi.');
+                }
             }
         }
 
