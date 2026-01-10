@@ -2,17 +2,17 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adobe Creative Cloud - Penawaran Spesial!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Adobe Creative Cloud - Official Resmi</title>
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
     
-    <!-- === KODE FACEBOOK PIXEL === -->
+    <!-- Meta Pixel Code -->
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -28,870 +28,1509 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1"
     /></noscript>
-    <!-- === AKHIR KODE FACEBOOK PIXEL === -->
+    <!-- End Meta Pixel Code -->
 
     <style>
         :root {
-            /* Palette */
-            --theme-primary: #1a73e8;
-            --theme-primary-hover: #1557b0;
-            --theme-background: #f8f9fa;
-            --theme-surface: #ffffff;
-            --theme-outline: #dadce0;
-            
-            /* Landing Page Specific Colors */
-            --lp-red: #D93025;
-            --lp-yellow: #FEF7E0;
-            --lp-yellow-border: #FEEFC3;
-            --lp-dark: #202124;
-            
-            /* Shadows */
-            --shadow-1: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
-            --shadow-2: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
-            --shadow-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.3);
+            --primary: #E31E24;
+            --primary-dark: #C21B20;
+            --secondary: #F5F5F7;
+            --text-main: #1D1D1F;
+            --text-secondary: #86868B;
+            --success: #34C759;
+            --error: #FF3B30;
+            --border: #D2D2D7;
+            --bg-page: #FBFBFD;
         }
 
         body {
-            font-family: 'Google Sans', 'Roboto', sans-serif;
-            background-color: var(--theme-background);
-            color: var(--lp-dark);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- LANDING PAGE SPECIFIC STYLES --- */
-        .lp-container {
-            max-width: 800px;
+        /* Modern Card & Layout */
+        .main-container {
+            max-width: 520px;
             margin: 0 auto;
-            padding: 0 20px;
+            min-height: 100vh;
+            background: white;
+            box-shadow: 0 0 40px rgba(0,0,0,0.05);
         }
+
+        @media (min-width: 640px) {
+            .main-container {
+                min-height: auto;
+                margin: 40px auto;
+                border-radius: 24px;
+                border: 1px solid rgba(0,0,0,0.05);
+            }
+            body {
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                padding-bottom: 40px;
+            }
+        }
+
+        /* Flash Sale Card & Sheet */
         
-        .lp-section {
-            padding: 60px 0;
-            border-bottom: 1px solid #eee;
+        .sheet-backdrop { opacity: 0; transition: opacity .18s ease; }
+        .sheet-panel { transform: translateY(14px); opacity: 0; transition: transform .22s ease, opacity .22s ease; }
+        .sheet-open .sheet-backdrop { opacity: 1; }
+        .sheet-open .sheet-panel { transform: translateY(0); opacity: 1; }
+        .no-bounce { overscroll-behavior: contain; }
+
+        /* Glassmorphism Header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .lp-headline {
-            font-size: 2.25rem;
-            line-height: 1.2;
-            font-weight: 800;
-            text-align: center;
-            color: #202124;
-            margin-bottom: 1rem;
-        }
-        
-        .lp-subheadline {
-            font-size: 1.25rem;
-            text-align: center;
-            color: #5f6368;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .highlight-yellow {
-            background-color: #fff9c4;
-            padding: 0 4px;
-        }
-
-        .mockup-container {
+        /* Inputs */
+        .input-group {
             position: relative;
-            margin: 2rem auto;
-            max-width: 100%;
-            text-align: center;
+            margin-bottom: 16px;
         }
         
-        .mockup-image {
-            max-width: 100%;
-            height: auto;
+        .modern-input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            border: 1px solid var(--border);
             border-radius: 12px;
-            box-shadow: var(--shadow-3);
-            transition: transform 0.3s ease;
+            outline: none;
+            transition: all 0.2s ease;
+            background: #F5F5F7;
+            color: var(--text-main);
         }
 
-        .mockup-image:hover {
+        .modern-input:focus {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(227, 30, 36, 0.1);
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* Package Selection Cards */
+        .package-card {
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .package-card.selected {
+            border-color: var(--primary);
+            background: #F0F7FF;
+        }
+
+        .package-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #C7C7CC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .package-card.selected .package-check {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .package-check::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+            font-size: 10px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s;
+        }
+
+        .package-card.selected .package-check::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Payment Grid */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .payment-option {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            height: 70px;
+            position: relative;
+        }
+
+        .payment-option:hover {
+            border-color: #b0b0b5;
+            background: #fafafa;
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary);
+            background: #FEF2F2;
+            box-shadow: 0 2px 8px rgba(227, 30, 36, 0.1);
+        }
+
+        .payment-option img {
+            height: 24px;
+            width: auto;
+            object-fit: contain;
+            margin-bottom: 4px;
+        }
+        
+        .payment-option span {
+            font-size: 10px;
+            color: var(--text-main);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Checkout Button */
+        .btn-checkout {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+            box-shadow: 0 4px 12px rgba(227, 30, 36, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-checkout:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-checkout:disabled {
+            background: #B0B0B5;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Features List */
+        .feature-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .feature-icon {
+            color: var(--success);
+            margin-top: 3px;
+        }
+
+        /* Notification Toast */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 100;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: max-content;
+            max-width: 90%;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Testimonial Carousel (Marquee) */
+        .testimonial-carousel {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        
+        .testimonial-track {
+            display: flex;
+            gap: 12px;
+            width: max-content;
+            animation: marquee 40s linear infinite;
+            padding: 4px 0; /* space for shadow/border */
+        }
+
+        .testimonial-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .testimonial-item {
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .testimonial-item:hover {
             transform: scale(1.02);
         }
 
-        .agitate-box {
-            background-color: #fce8e6;
-            border-left: 5px solid var(--lp-red);
-            padding: 24px;
-            margin: 2rem 0;
-            border-radius: 8px;
-        }
-
-        .cta-button-pulse {
-            background: var(--lp-red);
-            color: white;
-            font-weight: 700;
-            padding: 18px 36px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            text-align: center;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(217, 48, 37, 0.4);
-            animation: pulse 2s infinite;
-            border: none;
-            cursor: pointer;
+        .testimonial-item img {
             width: 100%;
-            max-width: 400px;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .cta-button-pulse:hover {
-            background: #b31412;
-            transform: translateY(-2px);
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
         }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(217, 48, 37, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(217, 48, 37, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(217, 48, 37, 0); }
+        .faq-item:last-child {
+            border-bottom: none;
         }
-
-        .check-list-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .check-icon {
-            color: #188038;
-            font-size: 1.2rem;
-            margin-right: 1rem;
-            margin-top: 2px;
-        }
-
-        .bonus-card {
-            background: white;
-            border: 2px dashed var(--theme-primary);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .value-stack-item {
+        .faq-item summary {
+            padding: 16px 0;
+            cursor: pointer;
+            font-weight: 500;
+            list-style: none;
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px dotted #ccc;
+            align-items: center;
+        }
+        .faq-item summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: transform 0.2s;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .faq-item[open] summary::after {
+            transform: rotate(180deg);
+        }
+        .faq-content {
+            padding-bottom: 16px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
-        /* --- ORIGINAL FORM & UI STYLES --- */
-        .form-input {
-            border: 2px solid var(--theme-outline);
-            border-radius: 8px;
-            padding: 12px;
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-box {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+        
+        /* Details Modal (Bottom Sheet style) */
+        #detailsModal {
+             align-items: flex-end;
+        }
+        #detailsModal .modal-box { /* Override default modal-box for bottom sheet */
             width: 100%;
-            font-size: 16px;
-            transition: all 0.2s;
+            max-width: 520px; /* Match main container width */
+            margin: 0 auto;
+            border-radius: 20px 20px 0 0;
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .form-input:focus {
-            border-color: var(--theme-primary);
-            outline: none;
-        }
-        
-        /* Modal & Notification Styles from Original */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
-        .modal-content { background-color: white; margin: auto; padding: 28px; width: 90%; max-width: 480px; border-radius: 16px; text-align: center; animation: slideUp 0.3s ease; }
-        .modal-ok-button { background-color: var(--theme-primary); color: white; padding: 10px 28px; border: none; border-radius: 24px; cursor: pointer; margin-top: 15px;}
-        
-        .notif-box { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background: white; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); padding: 12px 24px; display: none; align-items: center; gap: 12px; z-index: 999; }
-        .notif-box.show { display: flex; animation: slideDownFade 0.5s ease forwards; }
-        @keyframes slideDownFade { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }
-
-        /* Carousel Styles */
-        .testimonial-carousel-container { overflow: hidden; white-space: nowrap; position: relative; }
-        .testimonial-track { display: inline-block; animation: scroll 40s linear infinite; }
-        .testimonial-slide { display: inline-block; width: 300px; margin-right: 15px; vertical-align: top; white-space: normal;}
-        .testimonial-image { width: 100%; border-radius: 12px; }
-        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        /* Payment Styles */
-        .payment-radio { display: none; }
-        .payment-label { display: flex; align-items: center; padding: 12px; border: 1px solid #dadce0; border-radius: 8px; cursor: pointer; margin-bottom: 8px; transition: all 0.2s; }
-        .payment-radio:checked + .payment-label { border-color: var(--theme-primary); background: #e8f0fe; }
-        .payment-logo { width: 40px; margin-right: 12px; }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .lp-headline { font-size: 1.75rem; }
-            .lp-section { padding: 40px 0; }
+        #detailsModal.active .modal-box {
+            transform: translateY(0);
         }
         
-        /* Utility */
-        .hidden { display: none !important; }
+        /* Payment Instruction Styles */
+        .instruction-step {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .step-number {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .copy-btn {
+            background: rgba(227, 30, 36, 0.1);
+            color: var(--primary);
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
     </style>
 </head>
-<body class="antialiased text-gray-800">
+<body>
 
-    <!-- PAYMENT INSTRUCTION CONTAINER (Hidden Initially) -->
-    <div id="payment-instruction-container"></div>
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="text-sm">
+            <p class="font-semibold text-gray-900" id="toast-name">Budi Santoso</p>
+            <p class="text-gray-500 text-xs">Baru saja membeli paket 1 Tahun</p>
+        </div>
+    </div>
 
-    <!-- MAIN SALES PAGE CONTENT -->
-    <div id="main-content-container">
-        
-        <!-- SECTION 1: PROBLEM SETUP -->
-        <section class="lp-section pt-12 pb-8 bg-white">
-            <div class="lp-container text-center">
-                <!-- (1) HEADLINE: Question/How To -->
-                <h1 class="lp-headline">
-                    Bingung Cari <span class="text-blue-600">Lisensi Adobe Original</span> yang Murah, Resmi & Anti Banned?
-                </h1>
-                
-                <!-- (2) SUB-HEADLINE -->
-                <p class="lp-subheadline">
-                    Cara Mendapatkan Full Akses 20+ Aplikasi Adobe Creative Cloud Tanpa Menguras Dompet, Tanpa Crack, dan 100% Aman.
-                </p>
-
-                <!-- (3) IMAGE MOCKUP -->
-                <div class="mockup-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png" alt="Adobe Creative Cloud" class="w-32 mx-auto mb-6">
-                    <div class="bg-gray-100 p-4 rounded-xl inline-block shadow-inner">
-                        <span class="font-bold text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i>Status: Undangan Resmi Adobe</span>
+    <div class="main-container relative">
+        <!-- Main Form View -->
+        <div id="view-form">
+            <!-- Header -->
+            <div class="sticky-header px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png" alt="Adobe Logo" class="w-8 h-8">
+                    <div>
+                        <h1 class="font-bold text-lg leading-none">Adobe CC</h1>
+                        <p class="text-xs text-gray-500 font-medium">Official Resmi</p>
                     </div>
                 </div>
-
-                <!-- (4) AGITATE -->
-                <div class="agitate-box text-left">
-                    <h3 class="font-bold text-lg mb-2 text-red-700"><i class="fas fa-exclamation-triangle mr-2"></i>Apakah Kamu Mengalami Ini?</h3>
-                    <ul class="space-y-2 text-sm md:text-base">
-                        <li><i class="fas fa-times text-red-500 mr-2"></i>Wajar aja kalau project kamu sering hilang karena software <strong>CRASH</strong> tiba-tiba.</li>
-                        <li><i class="fas fa-times text-red-500 mr-2"></i>Wajar aja kalau komputer kamu lemot karena kena <strong>VIRUS</strong> dari file crack/bajakan.</li>
-                        <li><i class="fas fa-times text-red-500 mr-2"></i>Wajar aja kalau kamu ga bisa pake fitur canggih <strong>AI Generative Fill</strong> karena diblokir Adobe.</li>
-                        <li><i class="fas fa-times text-red-500 mr-2"></i>Karena bisa jadi kamu masih menggunakan <strong>CARA LAMA (Bajakan)</strong> berulang-ulang.</li>
-                    </ul>
-                </div>
-
-                <!-- (5) CALL TO ACTION -->
-                <button onclick="scrollToOffer()" class="cta-button-pulse">
-                    AKU MAU SOLUSINYA <i class="fas fa-arrow-down ml-2"></i>
-                </button>
-            </div>
-        </section>
-
-        <!-- SECTION 2: PRESENT BENEFIT -->
-        <section class="lp-section bg-gray-50">
-            <div class="lp-container">
-                <!-- (6) HEADLINE -->
-                <h2 class="lp-headline text-center mb-10">
-                    Yang Akan Kamu Dapatkan dari <span class="highlight-yellow">Adobe CC Resmi</span>
-                </h2>
-
-                <!-- (7) 5 Points Future Benefit -->
-                <div class="space-y-4">
-                    <div class="check-list-item">
-                        <i class="fas fa-check-circle check-icon"></i>
-                        <div>
-                            <h4 class="font-bold">Akses 20+ Aplikasi Adobe Terbaru</h4>
-                            <p class="text-sm text-gray-600">Photoshop, Illustrator, Premiere Pro, After Effects, dan semuanya. Selalu update otomatis ke versi terbaru.</p>
-                        </div>
-                    </div>
-                    <div class="check-list-item">
-                        <i class="fas fa-check-circle check-icon"></i>
-                        <div>
-                            <h4 class="font-bold">100GB Cloud Storage</h4>
-                            <p class="text-sm text-gray-600">Simpan file projectmu dengan aman di cloud. Tidak perlu takut harddisk rusak atau data hilang.</p>
-                        </div>
-                    </div>
-                    <div class="check-list-item">
-                        <i class="fas fa-check-circle check-icon"></i>
-                        <div>
-                            <h4 class="font-bold">Fitur AI Generative Fill (Firefly)</h4>
-                            <p class="text-sm text-gray-600">Gunakan kecerdasan buatan untuk edit foto dan video dalam hitungan detik. Fitur ini HANYA ada di versi original.</p>
-                        </div>
-                    </div>
-                    <div class="check-list-item">
-                        <i class="fas fa-check-circle check-icon"></i>
-                        <div>
-                            <h4 class="font-bold">Akses Ribuan Font & Aset Premium</h4>
-                            <p class="text-sm text-gray-600">Bebas pakai Adobe Fonts dan aset stock untuk project komersialmu tanpa takut lisensi.</p>
-                        </div>
-                    </div>
-                    <div class="check-list-item">
-                        <i class="fas fa-check-circle check-icon"></i>
-                        <div>
-                            <h4 class="font-bold">Legal & Aman (Bukan Crack)</h4>
-                            <p class="text-sm text-gray-600">Lisensi resmi via invite email. Akun milikmu sendiri, bisa dipakai di Windows, Mac, iPad, dan HP.</p>
-                        </div>
-                    </div>
+                <div class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-xs font-semibold">
+                    <i class="fas fa-check-circle mr-1"></i> Garansi
                 </div>
             </div>
-        </section>
 
-        <!-- SECTION 3: PRODUCT BRIDGING -->
-        <section class="lp-section bg-white">
-            <div class="lp-container">
-                <!-- (8) HEADLINE -->
-                <h2 class="lp-headline text-center">
-                    Permasalahan Klasik Kreator: <br>Software Mahal & Ribet
-                </h2>
-                
-                <!-- (9) MOCKUP -->
-                <div class="mockup-container">
-                     <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 text-white text-center shadow-2xl mx-auto max-w-md">
-                        <i class="fas fa-layer-group text-6xl mb-4 text-white/80"></i>
-                        <h3 class="text-2xl font-bold mb-2">Adobe Creative Cloud</h3>
-                        <p class="text-white/80">All Apps Plan - 1 Year</p>
-                     </div>
+            <div class="p-6 pb-24">
+                <!-- Hero / Product Info -->
+                <div class="text-center mb-8 animate-fade-in">
+                    <span class="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-bold mb-3 animate-pulse">
+                        🔥 PROMO TERBATAS
+                    </span>
+                    <h2 class="text-2xl font-bold mb-2">Upgrade Akun Pribadi</h2>
+                    <p class="text-gray-500 text-sm px-4">Dapatkan akses full Adobe Creative Cloud ke email pribadi Anda. Legal, Aman & Bergaransi.</p>
                 </div>
 
-                <!-- (10) FITUR - BENEFIT - MEANING -->
-                <p class="text-center text-lg max-w-2xl mx-auto leading-relaxed">
-                    Sebuah akses lisensi resmi yang <strong>LENGKAP (Fitur)</strong>, namun sangat <strong>TERJANGKAU (Benefit)</strong>, sehingga kamu bisa <strong>FOKUS BERKARYA (Meaning)</strong> tanpa pusing mikirin biaya langganan jutaan rupiah per bulan.
-                </p>
+                <!-- Form -->
+                <form id="orderForm" class="space-y-6">
+                    
+                    <!-- Package Selection -->
+                    <div class="space-y-3 animate-fade-in" style="animation-delay: 0.1s">
+                        <div id="package-selection-container" class="space-y-3">
+                            <!-- Package cards will be rendered here by JavaScript -->
+                        </div>
+                        <input type="hidden" id="selectedPackage" name="package" value="yearly">
+                    </div>
 
-                <!-- (11) CTA -->
-                <div class="text-center mt-8">
-                    <button onclick="scrollToOffer()" class="cta-button-pulse">
-                        Aku Ingin Adobe CC Resmi!
+                    <!-- Testimonials -->
+                    <div class="animate-fade-in" style="animation-delay: 0.18s">
+                        <label class="text-sm font-semibold text-gray-700 ml-1 mb-2 block">Bukti Pelanggan</label>
+                        <div class="testimonial-carousel" id="testimonial-container">
+                            <!-- Filled by JS -->
+                        </div>
+                    </div>
+
+                    <!-- User Data -->
+                    <div class="space-y-4 animate-fade-in" style="animation-delay: 0.2s">
+                        <label class="text-sm font-semibold text-gray-700 ml-1">Data Pemesan</label>
+                        
+                        <div class="input-group">
+                            <input type="text" id="nama" name="nama" class="modern-input" placeholder="Nama Lengkap" required>
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                        
+                        <div class="input-group">
+                            <input type="tel" id="whatsapp" name="whatsapp" class="modern-input" placeholder="Nomor WhatsApp (08xx)" required inputmode="numeric">
+                            <i class="fab fa-whatsapp input-icon"></i>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="email" id="email" name="email" class="modern-input" placeholder="Email untuk Adobe ID" required>
+                            <i class="fas fa-envelope input-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 border-l-4 border-red-600 p-3 my-4 rounded-r-lg shadow-sm flex items-center gap-3">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-circle text-xl text-red-600 animate-pulse"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-red-700 text-sm uppercase">PENTING: Cek Kembali Data Anda!</h3>
+                            <p class="text-sm text-gray-700 leading-tight mt-0.5">
+                                Pastikan <strong>No. WhatsApp</strong> & <strong>Email</strong> yang Anda masukkan sudah <strong>BENAR</strong> dan <strong>AKTIF</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Fields -->
+                    <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
+                    <input type="hidden" name="sheetName" value="adobe">
+
+                    <!-- Payment Method -->
+                    <div class="space-y-3 animate-fade-in" style="animation-delay: 0.25s">
+                        <label class="text-sm font-semibold text-gray-700 ml-1">Metode Pembayaran</label>
+                        <div class="payment-grid" id="payment-grid">
+                            <!-- Generated by JS -->
+                        </div>
+                        <input type="hidden" id="selectedPayment" name="payment-method" value="qris">
+                    </div>
+
+                </form>
+
+                <!-- FAQ Section -->
+                <div class="mt-8 animate-fade-in" style="animation-delay: 0.3s">
+                    <h3 class="font-bold text-gray-900 mb-4">Pertanyaan Umum (FAQ)</h3>
+                    <div id="faq-container">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="mt-8 flex justify-center gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png" class="h-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png" class="h-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png" class="h-6">
+                </div>
+                
+                <p class="text-center text-xs text-gray-400 mt-8">© 2025 Adobe Official Reseller. All Rights Reserved.</p>
+            </div>
+
+            <!-- Sticky Bottom Bar -->
+            <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40 sm:absolute sm:rounded-b-3xl">
+                <div class="max-w-[520px] mx-auto flex items-center justify-between gap-4">
+                    <div>
+                        <p class="text-xs text-gray-500">Total Pembayaran</p>
+                        <p class="text-xl font-bold text-red-600" id="total-price-display">Rp 350.xxx</p>
+                    </div>
+                    <button type="button" id="submit-btn" class="btn-checkout flex-1" onclick="handleFormSubmit()">
+                        Beli Sekarang <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- SECTION 4: 3 LAYERS BONUS -->
-        <section class="lp-section bg-blue-50">
-            <div class="lp-container">
-                <!-- (12) HEADLINE -->
-                <h2 class="lp-headline text-center mb-2">
-                    BONUS KHUSUS HARI INI!
-                </h2>
-                <p class="text-center mb-8 text-blue-700 font-medium">Jika Kamu Mengamankan Slot Hari Ini</p>
-
-                <!-- BONUS 1 -->
-                <div class="bonus-card">
-                    <div class="text-xs font-bold bg-yellow-400 inline-block px-2 py-1 rounded mb-2 text-yellow-900">BONUS #1</div>
-                    <h3 class="font-bold text-xl mb-1">Adobe Fonts Premium</h3>
-                    <p class="text-gray-500 text-sm mb-3">Senilai Rp 500.000</p>
-                    <div class="h-24 bg-gray-100 rounded-lg flex items-center justify-center mb-3">
-                        <i class="fas fa-font text-4xl text-gray-400"></i>
-                    </div>
-                    <p class="text-sm">Akses ribuan font berbayar secara gratis untuk membuat desainmu tampil beda dan profesional.</p>
-                </div>
-
-                <!-- BONUS 2 -->
-                <div class="bonus-card">
-                    <div class="text-xs font-bold bg-yellow-400 inline-block px-2 py-1 rounded mb-2 text-yellow-900">BONUS #2</div>
-                    <h3 class="font-bold text-xl mb-1">Adobe Portfolio</h3>
-                    <p class="text-gray-500 text-sm mb-3">Senilai Rp 300.000</p>
-                    <div class="h-24 bg-gray-100 rounded-lg flex items-center justify-center mb-3">
-                        <i class="fas fa-globe text-4xl text-gray-400"></i>
-                    </div>
-                    <p class="text-sm">Buat website portofolio profesionalmu sendiri secara instan dan terintegrasi dengan Behance.</p>
-                </div>
-
-                <!-- BONUS 3 -->
-                <div class="bonus-card">
-                    <div class="text-xs font-bold bg-yellow-400 inline-block px-2 py-1 rounded mb-2 text-yellow-900">BONUS #3</div>
-                    <h3 class="font-bold text-xl mb-1">Support & Garansi Full</h3>
-                    <p class="text-gray-500 text-sm mb-3">Senilai Rp 300.000</p>
-                    <div class="h-24 bg-gray-100 rounded-lg flex items-center justify-center mb-3">
-                        <i class="fas fa-headset text-4xl text-gray-400"></i>
-                    </div>
-                    <p class="text-sm">Bantuan teknis penuh jika ada kendala aktivasi dan garansi uang kembali jika gagal.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 5: SOCIAL PROOF -->
-        <section class="lp-section bg-white">
-            <div class="lp-container">
-                <!-- (13) HEADLINE -->
-                <h2 class="lp-headline text-center mb-6">
-                    Mereka yang Sudah Beralih ke Adobe Resmi
-                </h2>
-                
-                <!-- (14) Image Description -->
-                <p class="text-center text-gray-600 mb-8 italic">"Akhirnya bisa kerja tenang tanpa takut crash di tengah jalan..."</p>
-
-                <!-- (15) TESTIMONI CAROUSEL -->
-                <div class="testimonial-carousel-container border-t border-b border-gray-100 py-6 bg-gray-50">
-                    <div class="testimonial-track" id="testimonialTrack">
-                        <!-- JS injected -->
-                    </div>
-                     <div class="testimonial-track" id="testimonialTrackClone">
-                        <!-- JS injected -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 6: OFFER STACK & FORM -->
-        <section id="offer-section" class="lp-section bg-gray-900 text-white relative">
-            <div class="lp-container">
-                <!-- (16) HEADLINE -->
-                <h2 class="lp-headline text-white text-center mb-8">
-                    Jadi, yang Akan Kamu DAPATKAN
-                </h2>
-
-                <!-- (17) ALL MOCKUP -->
-                <div class="bg-white/10 rounded-xl p-6 mb-8 text-center backdrop-blur-sm border border-white/20">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 items-end justify-items-center mb-4">
-                        <div class="flex flex-col items-center"><i class="fas fa-box-open text-3xl mb-2 text-blue-400"></i><span class="text-xs">Adobe CC</span></div>
-                        <div class="flex flex-col items-center"><i class="fas fa-font text-3xl mb-2 text-yellow-400"></i><span class="text-xs">Fonts</span></div>
-                        <div class="flex flex-col items-center"><i class="fas fa-globe text-3xl mb-2 text-green-400"></i><span class="text-xs">Portfolio</span></div>
-                        <div class="flex flex-col items-center"><i class="fas fa-shield-alt text-3xl mb-2 text-red-400"></i><span class="text-xs">Garansi</span></div>
-                    </div>
-                </div>
-
-                <!-- (18) VALUE STACK -->
-                <div class="bg-white text-gray-900 rounded-xl p-6 md:p-8 shadow-2xl max-w-lg mx-auto">
-                    <div class="value-stack-item">
-                        <span>Adobe Creative Cloud (1 Tahun)</span>
-                        <span class="font-bold">Rp 2.500.000</span>
-                    </div>
-                    <div class="value-stack-item">
-                        <span>Bonus #1: Adobe Fonts</span>
-                        <span class="font-bold">Rp 500.000</span>
-                    </div>
-                    <div class="value-stack-item">
-                        <span>Bonus #2: Adobe Portfolio</span>
-                        <span class="font-bold">Rp 300.000</span>
-                    </div>
-                    <div class="value-stack-item">
-                        <span>Bonus #3: Full Support</span>
-                        <span class="font-bold">Rp 300.000</span>
-                    </div>
-                    <div class="value-stack-item text-red-600 font-bold bg-red-50 p-2 mt-2 rounded">
-                        <span>TOTAL VALUE</span>
-                        <span class="line-through decoration-double">Rp 3.600.000</span>
-                    </div>
-
-                    <!-- (19) OFFERING -->
-                    <div class="text-center mt-6">
-                        <p class="text-sm text-gray-500 mb-1">Tapi, Khusus Hari Ini Menjadi</p>
-                        <div class="text-5xl font-extrabold text-blue-600 tracking-tight">
-                            Rp 350.000
-                        </div>
-                        <p class="text-xs text-red-500 font-bold mt-2">Diskon 90% hanya BERLAKU HARI INI SAJA!</p>
-                    </div>
-
-                    <!-- (20) SCARCITY / TIMER -->
-                    <div id="countdown-timer-display" class="flex justify-center gap-2 mt-4 mb-6">
-                        <!-- JS Injected -->
-                    </div>
-
-                    <!-- ORDER FORM INTEGRATION -->
-                    <form id="orderForm" class="mt-6 space-y-4 text-left border-t border-gray-200 pt-6">
-                        <h3 class="font-bold text-center mb-4">Lengkapi Data Pengiriman Undangan</h3>
-                        
-                        <!-- Honeypot -->
-                        <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
-                        <input type="hidden" name="sheetName" value="adobe">
-
-                        <div>
-                            <label class="text-xs font-bold text-gray-500 uppercase">Nama Lengkap</label>
-                            <input type="text" id="nama" name="nama" class="form-input" placeholder="Contoh: Budi Santoso">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-gray-500 uppercase">No. WhatsApp</label>
-                            <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="Contoh: 08123456789">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-gray-500 uppercase">Email Adobe (Aktif)</label>
-                            <input type="email" id="email" name="email" class="form-input" placeholder="email@gmail.com">
-                        </div>
-
-                        <!-- Payment Method -->
-                        <div class="mt-4">
-                            <label class="text-xs font-bold text-gray-500 uppercase mb-2 block">Pilih Pembayaran</label>
-                            <div id="payment-method-selection">
-                                <!-- JS Injected -->
-                            </div>
-                        </div>
-
-                        <!-- (21) CALL TO ACTION - BUTTON -->
-                        <button type="button" id="submit-btn" class="cta-button-pulse w-full mt-4">
-                            <i class="fas fa-shopping-cart mr-2"></i> AMBIL PROMO SEKARANG
-                        </button>
-                        
-                        <p class="text-xs text-center text-gray-400 mt-3">
-                            <i class="fas fa-lock"></i> Data Anda 100% Aman & Terenkripsi
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 7: HANDLING OBJECTION -->
-        <section class="lp-section bg-white text-center pb-12">
-            <div class="lp-container max-w-2xl">
-                <p class="text-lg text-gray-600 italic mb-6">
-                    "Bayangkan... Kita selalu percaya bahwa waktu adalah hal yang lebih berharga daripada uang. 
-                    Kenapa membuang waktu ngurusin crack yang gagal dan virus? 
-                    Investasi sebesar Rp 350.000 setahun (kurang dari Rp 1.000 sehari) sangat kecil 
-                    dibanding produktivitas & ketenangan yang kamu dapatkan."
-                </p>
-                <button onclick="scrollToOffer()" class="text-blue-600 font-bold hover:underline">
-                    Saya Siap Berinvestasi untuk Karir Saya &raquo;
+        <!-- Payment Instruction View (Hidden by default) -->
+        <div id="view-payment" class="hidden min-h-screen bg-gray-50 sm:rounded-3xl overflow-hidden">
+             <div class="bg-white p-4 sticky top-0 z-10 border-b flex items-center gap-3 shadow-sm">
+                <button onclick="backToForm()" class="text-gray-500 hover:text-black">
+                    <i class="fas fa-arrow-left text-lg"></i>
                 </button>
+                <h2 class="font-bold text-lg">Instruksi Pembayaran</h2>
             </div>
-        </section>
 
-        <footer class="bg-gray-100 py-8 text-center text-gray-500 text-sm">
-            <p>Copyright © <span id="currentYear"></span> Adobe Reseller ID. All Rights Reserved.</p>
-        </footer>
-    </div>
+            <div class="p-6 pb-24">
+                <!-- Timer -->
+                <div class="bg-[#E31E24] text-white rounded-xl p-4 text-center mb-6 shadow-lg shadow-red-200">
+                    <p class="text-xs opacity-80 mb-1">Selesaikan pembayaran dalam</p>
+                    <div class="text-2xl font-bold font-mono" id="countdown">23:59:59</div>
+                </div>
 
-    <!-- MODALS & NOTIFICATIONS (Keep Original Logic) -->
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <h3 id="modalTitle" class="text-xl font-bold mb-2"></h3>
-            <p id="modalMessage" class="text-gray-600"></p>
-            <button class="modal-ok-button" onclick="closeInfoModal()">OK</button>
+                <!-- Total Amount Card -->
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-6 text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gray-200"></div>
+                    <p class="text-gray-500 text-sm mb-1">Total yang harus dibayar</p>
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                         <h1 class="text-3xl font-bold text-gray-900" id="payment-amount">Rp 350.123</h1>
+                         <button class="copy-btn" onclick="copyText('payment-amount-raw')"><i class="far fa-copy"></i></button>
+                    </div>
+            <p class="text-xs text-red-500 bg-red-50 inline-block px-2 py-1 rounded mb-4">
+                        <i class="fas fa-exclamation-circle"></i> Transfer tepat hingga 3 digit terakhir
+                    </p>
+             <div id="invoice-details-summary" class="border-t border-gray-100 pt-3 text-xs text-gray-500 flex justify-between items-center">
+                <!-- Populated by JS -->
+             </div>
+                </div>
+
+                <!-- Payment Details -->
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
+                        <span class="text-gray-500 text-sm">Metode</span>
+                        <img id="payment-logo-result" src="" class="h-6 object-contain">
+                    </div>
+                    
+                    <!-- Dynamic Content based on Payment Method -->
+                    <div id="payment-details-content">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <h3 class="font-bold text-gray-900 mb-4">Langkah Pembayaran</h3>
+                    <div id="instruction-steps">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+                
+                <!-- Confirmation Button -->
+                <a id="wa-confirm-btn" href="#" target="_blank" class="block mt-8 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl text-center shadow-lg shadow-green-200 transition-all">
+                    <i class="fab fa-whatsapp text-lg mr-2"></i> Konfirmasi Pembayaran
+                </a>
+            </div>
         </div>
     </div>
 
-    <div id="imageModal" class="modal">
-        <span style="position:absolute;top:20px;right:30px;color:white;font-size:40px;cursor:pointer;" onclick="closeImageModal()">&times;</span>
-        <img class="max-w-[90%] max-h-[80vh] rounded-lg" id="modalImage">
-    </div>
-
-    <div class="notif-box" id="notifBox">
-        <div class="text-green-500 text-xl"><i class="fas fa-check-circle"></i></div>
-        <div class="text-sm">
-             <div><strong class="notif-name">User</strong> baru saja membeli!</div>
-             <div class="text-gray-500 text-xs">Baru saja</div>
+    <!-- Details Modal -->
+    <div id="detailsModal" class="modal-overlay" onclick="closeModal('detailsModal')">
+        <div class="modal-box text-left p-0" id="detailsModalContent" onclick="event.stopPropagation()">
+            <!-- Content will be injected by JS -->
         </div>
     </div>
 
-    <div id="detailsModal" class="modal">
-        <div class="modal-content text-left" id="detailsModalContent"></div>
+    <!-- DETAIL BOTTOM SHEET -->
+    <div id="sheet" class="fixed inset-0 z-[60] hidden" aria-hidden="true">
+      <div id="sheetBackdrop" class="sheet-backdrop absolute inset-0 bg-slate-900/40 backdrop-blur-[2px]"></div>
+
+      <div class="absolute inset-x-0 bottom-0 mx-auto max-w-xl px-4 pb-[calc(14px+env(safe-area-inset-bottom))]">
+        <div id="sheetPanel"
+          class="sheet-panel no-bounce overflow-hidden rounded-3xl bg-white shadow-[0_24px_90px_-45px_rgba(2,6,23,.65)] ring-1 ring-slate-200"
+          role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+
+          <div class="flex items-center justify-between p-4">
+            <div class="min-w-0">
+              <p class="text-[11px] font-semibold tracking-wider text-slate-500">DETAIL PAKET</p>
+              <h4 id="sheetTitle" class="mt-0.5 truncate text-base font-extrabold text-slate-900">Yang kamu dapat</h4>
+            </div>
+
+            <button id="btnClose" type="button"
+              class="grid h-10 w-10 place-items-center rounded-2xl bg-slate-50 text-slate-700 ring-1 ring-slate-200 active:scale-[.98]"
+              aria-label="Tutup">✕</button>
+          </div>
+
+          <div class="px-4 pb-4">
+            <ul id="sheet-features-list" class="space-y-2 text-sm text-slate-700">
+                <!-- Populated by JS -->
+            </ul>
+
+            <button id="btnOk" type="button"
+              class="mt-4 h-12 w-full rounded-2xl bg-[#E31E24] text-sm font-semibold text-white active:scale-[.99]">
+              Oke, Mengerti
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- === JAVASCRIPT LOGIC (Adapted from Original) === -->
+    <!-- Modals -->
+    <!-- Info Modal -->
+    <div id="infoModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                <i class="fas fa-info"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2" id="modalTitle">Judul</h3>
+            <p class="text-gray-500 mb-6" id="modalMessage">Pesan</p>
+            <button onclick="closeModal('infoModal')" class="w-full bg-[#E31E24] text-white font-bold py-3 rounded-xl">Mengerti</button>
+        </div>
+    </div>
+
+    <!-- Features Modal -->
+    <div id="featuresModal" class="modal-overlay">
+        <div class="modal-box text-left">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Detail Fitur</h3>
+                <button onclick="closeModal('featuresModal')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-2" id="features-list-container">
+                <!-- Features filled by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal-overlay" onclick="closeModal('imageModal')">
+        <div class="relative max-w-[90%] max-h-[90vh]">
+             <img id="modalImageDisplay" src="" class="rounded-xl shadow-2xl max-h-[80vh] w-auto">
+             <button class="absolute top-4 right-4 bg-black/50 text-white rounded-full w-8 h-8 flex items-center justify-center" onclick="closeModal('imageModal')">&times;</button>
+        </div>
+    </div>
+
     <script>
-    // --- HELPER FOR SCROLLING ---
-    function scrollToOffer() {
-        document.getElementById('offer-section').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // --- ORIGINAL LOGIC ---
-    const operatorPrefixes = {
-        'Telkomsel': ['0811', '0812', '0813', '0821', '0822', '0823', '0851', '0852', '0853'],
-        'by.U': ['0851'],
-        'Indosat Ooredoo': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
-        'Tri (3)': ['0895', '0896', '0897', '0898', '0899'],
-        'XL Axiata': ['0817', '0818', '0819', '0859', '0877', '0878', '0879'],
-        'Live.On': ['0859'],
-        'Axis': ['0831', '0832', '0833', '0838'],
-        'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
-    };
-    const blacklistedNumbers = ['081234567890'];
-
-    function isInvalidPattern(nomor) {
-        if (blacklistedNumbers.includes(nomor)) return true;
-        const numberPart = nomor.substring(2);
-        if (/(\d)\1{4,}/.test(numberPart)) return true;
-        for (let i = 0; i < numberPart.length - 4; i++) {
-            const sub = numberPart.substring(i, i + 5);
-            const isAscending = '0123456789'.includes(sub);
-            const isDescending = '9876543210'.includes(sub);
-            if (isAscending || isDescending) return true;
-        }
-        const uniqueDigits = new Set(numberPart.split(''));
-        if (uniqueDigits.size < 4) return true;
-        if (/(..)\1\1/.test(numberPart)) return true;
-        return false;
-    }
-
-    function getOperatorFromNumber(nomor) {
-        const prefix = nomor.substring(0, 4);
-        for (const operator in operatorPrefixes) {
-            if (operatorPrefixes[operator].includes(prefix)) {
-                return operator;
-            }
-        }
-        return null;
-    }
-
-    function validatePhoneNumber(nomorHp) {
-        const genericError = { isValid: false, message: 'Silahkan isi dengan nomor yang benar' };
-        if (nomorHp.length < 10) return genericError;
-        const operator = getOperatorFromNumber(nomorHp);
-        if (!operator) return genericError;
-        const maxLength = operator === 'Tri (3)' ? 13 : 12;
-        if (nomorHp.length > maxLength) return genericError;
-        if (isInvalidPattern(nomorHp)) return genericError;
-        return { isValid: true, message: 'Nomor valid.' };
-    }
-
-    function validateEmail(email) {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- ELEMENTS ---
-        const elements = {
-            mainContentContainer: document.getElementById('main-content-container'),
-            paymentInstructionContainer: document.getElementById('payment-instruction-container'),
-            paymentMethodSelection: document.getElementById('payment-method-selection'),
-            orderForm: document.getElementById('orderForm'),
-            submitBtn: document.getElementById('submit-btn'),
-            notifBox: document.getElementById('notifBox'),
-            notifName: document.querySelector('#notifBox .notif-name'),
-            detailsModal: document.getElementById('detailsModal'),
-            detailsModalContent: document.getElementById('detailsModalContent'),
-            testimonialTrack: document.getElementById('testimonialTrack'),
-            testimonialTrackClone: document.getElementById('testimonialTrackClone'),
-        };
-
-        // --- CONFIGURATION ---
+        // --- DATA & CONFIG ---
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
-        let expiryTime;
         
-        const packages = {
-            yearly: {
-                id: 'yearly',
-                name: "Adobe Creative Cloud (1 Tahun)",
-                price: 350000,
-                normalPrice: 2500000,
-            }
-        };
-        const currentPackageId = 'yearly';
-
-        // --- PAYMENT ACCOUNTS ---
-        const paymentAccounts = {
-            qris: { displayName: 'QRIS', accountHolder: 'Epay', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qris' },
-            bca_va: { displayName: 'BCA Virtual Account', accountHolder: 'Epayment', number: '39358089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'va' },
-            gopay: { displayName: 'Gopay', accountHolder: 'Gopay', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet' },
-            dana: { displayName: 'DANA', accountHolder: 'DNID', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet' },
-            ovo: { displayName: 'OVO', accountHolder: 'OVO', number: '089510639366', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet' }
-        };
-
+        // RESTORED DATA
+        const FIRST_NAMES = [ "Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama" ];
+        
         const testimonialImages = [
-            "https://pixvid.org/images/2025/11/14/mPYhr.jpg", "https://pixvid.org/images/2025/11/14/mPYyw.jpg", "https://pixvid.org/images/2025/11/14/mPYBE.jpg",
-            "https://pixvid.org/images/2025/11/14/mPi89.jpg", "https://pixvid.org/images/2025/11/14/mPitS.jpg", "https://pixvid.org/images/2025/11/14/mPiM2.jpg"
+            "https://pixvid.org/images/2026/01/10/84lvT.webp",
+            "https://pixvid.org/images/2026/01/10/84TQi.webp",
+            "https://pixvid.org/images/2026/01/10/84TE1.webp",
+            "https://pixvid.org/images/2026/01/10/84Tbx.webp",
+            "https://pixvid.org/images/2026/01/10/84he4.webp",
+            "https://pixvid.org/images/2026/01/10/84hrc.webp",
+            "https://pixvid.org/images/2026/01/10/84h1P.webp",
+            "https://pixvid.org/images/2026/01/10/84hp8.webp",
+            "https://pixvid.org/images/2026/01/10/84qkH.webp",
+            "https://pixvid.org/images/2026/01/10/84qju.webp",
+            "https://pixvid.org/images/2026/01/10/84q26.webp",
+            "https://pixvid.org/images/2026/01/10/84t5A.webp",
+            "https://pixvid.org/images/2026/01/10/84tqX.webp",
+            "https://pixvid.org/images/2026/01/10/84t93.webp",
+            "https://pixvid.org/images/2026/01/10/84tce.webp",
+            "https://pixvid.org/images/2026/01/10/84wWC.webp",
+            "https://pixvid.org/images/2026/01/10/84wxq.webp",
+            "https://pixvid.org/images/2026/01/10/84wIJ.webp",
+            "https://pixvid.org/images/2026/01/10/84Fgj.webp",
+            "https://pixvid.org/images/2026/01/10/84FiD.webp",
+            "https://pixvid.org/images/2026/01/10/84FDp.webp",
+            "https://pixvid.org/images/2026/01/10/84FVI.webp",
+            "https://pixvid.org/images/2026/01/10/84YH0.webp",
+            "https://pixvid.org/images/2026/01/10/84YKW.webp"
+        ];
+        
+        const fullFeaturesList = [
+            "Akses 20+ Aplikasi Adobe (Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, dll)",
+            "Penyimpanan Cloud 100GB untuk backup file project",
+            "Sinkronisasi Antar Perangkat (Desktop, Mobile, Web)",
+            "Akses ke Adobe Fonts (Ribuan Font Premium)",
+            "Akses ke Adobe Stock (Asset Foto & Video)",
+            "Fitur AI Generatif (Adobe Firefly)",
+            "Update Otomatis Fitur Terbaru",
+            "Adobe Portfolio & Behance",
+            "Akses Offline (Tanpa Internet)",
+            "Keamanan Terenkripsi & Legal",
+            "Support Mac, Windows, iPad, iPhone, Android",
+            "Bisa pindah device (Logout/Login)",
+            "Full Garansi selama durasi langganan"
+        ];
+        
+        const faqList = [
+            { q: "Apakah produk ini resmi?", a: "Ya, produk yang kami tawarkan 100% original dan legal. Aktivasi dilakukan melalui undangan resmi dari Adobe ke email Anda." },
+            { q: "Bagaimana proses aktivasinya?", a: "Setelah pembayaran, kami akan mengirimkan undangan ke email Adobe Anda. Anda hanya perlu menerima undangan tersebut untuk mengaktifkan lisensi Creative Cloud." },
+            { q: "Apakah ini aman?", a: "Tentu saja. Kami tidak pernah meminta password akun Adobe Anda. Prosesnya 100% aman dan privasi Anda terjamin." },
+            { q: "Apa saja yang saya dapatkan?", a: "Anda akan mendapatkan akses ke semua aplikasi di dalam Adobe Creative Cloud (Photoshop, Illustrator, Premiere Pro, dll) dan penyimpanan cloud sebesar 100GB." },
+            { q: "Berapa lama prosesnya?", a: "Prosesnya sangat cepat, biasanya hanya 5-15 menit setelah konfirmasi pembayaran." },
+            { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses aktivasi gagal karena kesalahan dari pihak kami." }
         ];
 
-        // --- RENDER FUNCTIONS ---
-        const getPaymentMethodsHTML = (accounts) => {
-            let html = ``;
-            Object.entries(accounts).forEach(([key, account], index) => {
-                html += `
-                    <div class="relative">
-                        <input type="radio" id="${key}" name="payment-method" value="${key}" class="payment-radio" ${index === 0 ? 'checked' : ''}>
-                        <label for="${key}" class="payment-label">
-                            <img src="${account.logo}" alt="Logo ${account.displayName}" class="payment-logo">
-                            <span class="font-medium text-sm flex-grow">${account.displayName}</span>
-                            <div class="w-4 h-4 rounded-full border border-gray-300 dot"></div>
-                        </label>
-                    </div>
-                `;
-            });
-            return html;
+        const packages = {
+            monthly: {
+                id: 'monthly',
+                name: "Adobe CC (1 Bulan)",
+                price: 50000,
+                normalPrice: 250000
+            },
+            yearly: {
+                id: 'yearly',
+                name: "Adobe CC (1 Tahun)",
+                price: 350000,
+                normalPrice: 2500000
+            }
         };
 
-        const renderTestimonials = () => {
-            const html = testimonialImages.map((url, i) => `
-                <div class="testimonial-slide">
-                    <img src="${url}" class="testimonial-image shadow-sm cursor-pointer hover:scale-105 transition-transform" onclick="openImageModal('${url}')" onerror="this.src='https://placehold.co/300x400?text=Testimoni';">
-                </div>
-            `).join('');
-            elements.testimonialTrack.innerHTML = html;
-            elements.testimonialTrackClone.innerHTML = html;
+        const paymentMethods = [
+            { id: 'qris', name: 'QRIS', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qr', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15' },
+            { id: 'bca_va', name: 'BCA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'bank', number: '39358089510639366', holder: 'Epayment' },
+            { id: 'gopay', name: 'GoPay', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet', number: '089510639366', holder: 'Gopay' },
+            { id: 'dana', name: 'DANA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet', number: '089510639366', holder: 'DNID' },
+            { id: 'ovo', name: 'OVO', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', number: '089510639366', holder: 'OVO' },
+            { id: 'cimb', name: 'CIMB', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'bank', number: '6289510639366', holder: 'Octo Pay' }
+        ];
+
+        const operatorPrefixes = {
+            'Telkomsel': ['0811', '0812', '0813', '0821', '0822', '0823', '0851', '0852', '0853'],
+            'by.U': ['0851'],
+            'Indosat Ooredoo': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
+            'Tri (3)': ['0895', '0896', '0897', '0898', '0899'],
+            'XL Axiata': ['0817', '0818', '0819', '0859', '0877', '0878', '0879'],
+            'Live.On': ['0859'],
+            'Axis': ['0831', '0832', '0833', '0838'],
+            'Smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
         };
-
-        // --- INIT ---
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        elements.paymentMethodSelection.innerHTML = getPaymentMethodsHTML(paymentAccounts);
-        renderTestimonials();
-        elements.submitBtn.addEventListener('click', handleFormSubmit);
-
-        // --- TIMER ---
-        expiryTime = new Date(new Date().getTime() + 6 * 60 * 60 * 1000); // 6 hours from now
-        setInterval(() => {
-            const now = new Date().getTime();
-            const distance = expiryTime - now;
-            if (distance < 0) return;
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            const timerHTML = `
-                <div class="bg-gray-800 p-2 rounded text-center min-w-[60px]"><div class="text-xl font-bold text-white">${String(hours).padStart(2,'0')}</div><div class="text-[10px] text-gray-400">JAM</div></div>
-                <div class="bg-gray-800 p-2 rounded text-center min-w-[60px]"><div class="text-xl font-bold text-white">${String(minutes).padStart(2,'0')}</div><div class="text-[10px] text-gray-400">MENIT</div></div>
-                <div class="bg-gray-800 p-2 rounded text-center min-w-[60px]"><div class="text-xl font-bold text-red-500 animate-pulse">${String(seconds).padStart(2,'0')}</div><div class="text-[10px] text-gray-400">DETIK</div></div>
-            `;
-            document.getElementById('countdown-timer-display').innerHTML = timerHTML;
-        }, 1000);
-
-        // --- NOTIFICATIONS ---
-        const NAMES = ["Budi", "Sari", "Rizky", "Dewi", "Agus", "Putri", "Hendra", "Dian"];
-        const showNotif = () => {
-            if(!elements.notifBox) return;
-            elements.notifName.textContent = NAMES[Math.floor(Math.random() * NAMES.length)];
-            elements.notifBox.classList.remove('show');
-            void elements.notifBox.offsetWidth;
-            elements.notifBox.classList.add('show');
-            setTimeout(showNotif, Math.random() * 15000 + 10000);
-        };
-        setTimeout(showNotif, 5000);
-
-
-        // --- FORM SUBMIT LOGIC ---
-        function formatCurrency(value) { return `Rp${value.toLocaleString('id-ID')}`; }
-
-        async function handleFormSubmit() {
-            const formData = new FormData(elements.orderForm);
-            const nama = formData.get('nama').trim();
-            const whatsapp = formData.get('whatsapp').trim();
-            const email = formData.get('email').trim();
-            const paymentMethodKey = formData.get('payment-method');
-
-            if (!nama || !whatsapp || !email || !paymentMethodKey) {
-                showInfoModal('Data Belum Lengkap', 'Mohon lengkapi semua data.');
-                return;
+        const blacklistedNumbers = ['081234567890'];
+        const allowedEmailDomains = [
+            'gmail.com', 'googlemail.com', 'outlook.com', 'hotmail.com',
+            'hotmail.co.uk', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.co.id',
+            'yahoo.co.uk', 'ymail.com', 'rocketmail.com', 'icloud.com', 'me.com',
+            'mac.com', 'aol.com', 'zoho.com', 'proton.me', 'protonmail.com',
+            'tutanota.com', 'gmx.com', 'gmx.de', 'mail.com', 'yandex.ru',
+            'yandex.com', 'fastmail.com', 'hey.com'
+        ];
+    
+        function isInvalidPattern(nomor) {
+            if (blacklistedNumbers.includes(nomor)) return true;
+            const numberPart = nomor.substring(2);
+            if (/(\d)\1{4,}/.test(numberPart)) return true;
+            for (let i = 0; i < numberPart.length - 4; i++) {
+                const sub = numberPart.substring(i, i + 5);
+                const isAscending = '0123456789'.includes(sub);
+                const isDescending = '9876543210'.includes(sub);
+                if (isAscending || isDescending) return true;
             }
-            if (!validateEmail(email)) {
-                showInfoModal('Email Tidak Valid', 'Harap gunakan alamat email yang valid.');
-                return;
-            }
-            const phoneRes = validatePhoneNumber(whatsapp);
-            if (!phoneRes.isValid) {
-                showInfoModal('Nomor WhatsApp Tidak Valid', phoneRes.message);
-                return;
-            }
-
-            elements.submitBtn.disabled = true;
-            elements.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
-
-            const pkg = packages[currentPackageId];
-            const totalPrice = pkg.price + uniqueCode;
-            const paymentAccount = paymentAccounts[paymentMethodKey];
-            const now = new Date();
-            const paymentId = `INV-ADOBE-${now.getTime().toString().slice(-8)}`;
-
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
-            const dataToSend = {
-                nama: nama, whatsapp: whatsapp, email: email, paket: pkg.name,
-                metodePembayaran: paymentAccount.displayName, totalTransfer: formatCurrency(totalPrice),
-                idPembayaran: paymentId, nomorRekening: paymentAccount.number, sheetName: 'adobe'
-            };
-
-            try {
-                // Use no-cors for Google Script
-                await fetch(scriptURL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataToSend) });
-                // Simulate success since no-cors doesn't return response
-                showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey);
-            } catch (error) {
-                console.error(error);
-                showInfoModal('Gagal', 'Terjadi kesalahan koneksi.');
-            } finally {
-                elements.submitBtn.disabled = false;
-                elements.submitBtn.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> AMBIL PROMO SEKARANG';
-            }
+            const uniqueDigits = new Set(numberPart.split(''));
+            if (uniqueDigits.size < 4) return true;
+            if (/(..)\1\1/.test(numberPart)) return true;
+            return false;
         }
-
-        function showPaymentInstructions(formData, pkg, totalPrice, paymentAccount, paymentId, paymentMethodKey) {
-            window.scrollTo(0, 0);
-            elements.mainContentContainer.style.display = 'none'; // HIDE LANDING PAGE
-            
-            const waText = `Halo, saya ingin konfirmasi pesanan:\nInvoice: ${paymentId}\nNama: ${formData.get('nama')}\nTotal: ${formatCurrency(totalPrice)}`;
-            const waLink = `https://wa.me/6285602152097?text=${encodeURIComponent(waText)}`;
-            
-            let instruction = '';
-            let qrCodeBlock = '';
-            
-            if (paymentMethodKey === 'qris') {
-                qrCodeBlock = `<div class="bg-white p-4 rounded-xl border mx-auto max-w-[250px] mb-4"><div id="qrcode"></div></div>`;
-                instruction = `<p>Scan QRIS di atas menggunakan GoPay, OVO, Dana, atau Mobile Banking.</p>`;
-            } else {
-                instruction = `<p>Silakan transfer ke <strong>${paymentAccount.displayName}</strong><br>No: <span class="font-bold text-xl">${paymentAccount.number}</span><br>A.N ${paymentAccount.accountHolder}</p>`;
-            }
-
-            const html = `
-                <div class="max-w-md mx-auto p-4 pt-10">
-                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                        <div class="bg-gray-900 text-white p-6 text-center">
-                            <h2 class="text-xl font-bold">Selesaikan Pembayaran</h2>
-                            <p class="text-sm opacity-80">Invoice #${paymentId}</p>
-                        </div>
-                        <div class="p-6 text-center">
-                            <p class="text-gray-500 text-sm mb-2">Total Tagihan</p>
-                            <h1 class="text-3xl font-bold text-blue-600 mb-6">${formatCurrency(totalPrice)}</h1>
-                            ${qrCodeBlock}
-                            <div class="bg-blue-50 p-4 rounded-lg text-sm text-gray-700 mb-6 text-left">
-                                ${instruction}
-                            </div>
-                            <div class="text-yellow-600 bg-yellow-50 p-3 rounded text-xs mb-6 font-bold">
-                                <i class="fas fa-exclamation-circle mr-1"></i>
-                                PENTING: Transfer harus SESUAI nominal sampai 3 digit terakhir.
-                            </div>
-                            <a href="${waLink}" target="_blank" class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full transition duration-300">
-                                <i class="fab fa-whatsapp mr-2"></i> Konfirmasi Pembayaran
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `;
-            elements.paymentInstructionContainer.innerHTML = html;
-
-            if (paymentMethodKey === 'qris') {
-                setTimeout(() => {
-                    // Logic to generate QR (Simplified for this view)
-                    const qrisContainer = document.getElementById('qrcode');
-                    // In real implementation, use the dynamic QR logic provided in original code
-                    // Here we just re-use static or dynamic generation if valid
-                    try {
-                        const qrisStatic = paymentAccount.number;
-                        // Use existing helper
-                        const qrisDinamis = createDynamicQrisString(qrisStatic, { nominal: totalPrice });
-                        QRCode.toCanvas(qrisDinamis, { width: 200, margin: 1 }, (err, canvas) => {
-                           if(!err) { canvas.style.width="100%"; qrisContainer.appendChild(canvas); }
-                        });
-                    } catch(e) { qrisContainer.innerText = "Gagal memuat QR"; }
-                }, 100);
-            }
-        }
-        
-        // --- QRIS HELPER (From Original) ---
-        function toCRC16(input) {
-            let crc = 0xFFFF;
-            for (let i = 0; i < input.length; i++) {
-                crc ^= input.charCodeAt(i) << 8;
-                for (let j = 0; j < 8; j++) {
-                    crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1;
+    
+        function getOperatorFromNumber(nomor) {
+            const prefix = nomor.substring(0, 4);
+            for (const operator in operatorPrefixes) {
+                if (operatorPrefixes[operator].includes(prefix)) {
+                    return operator;
                 }
             }
-            return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+            return null;
         }
-        function createDynamicQrisString(qris, { nominal }) {
+    
+        function validatePhoneNumber(nomorHp) {
+            const genericError = { isValid: false, message: 'Silahkan isi dengan nomor yang benar' };
+    
+            if (nomorHp.length < 10) {
+                return genericError;
+            }
+    
+            const operator = getOperatorFromNumber(nomorHp);
+            if (!operator) {
+                return genericError;
+            }
+    
+            const maxLength = operator === 'Tri (3)' ? 13 : 12;
+            if (nomorHp.length > maxLength) {
+                return genericError;
+            }
+    
+            if (isInvalidPattern(nomorHp)) {
+                return genericError;
+            }
+    
+            return { isValid: true, message: 'Nomor valid.' };
+        }
+        let currentPackage = 'yearly';
+        let currentPayment = 'qris';
+        let expiryTime;
+        let countdownInterval;
+        let currentOrderDetails = {};
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPackageCards();
+            renderPaymentMethods();
+            renderTestimonials();
+            renderFAQ();
+            updateTotalPrice();
+            initNotifications();
+            
+            // Input formatting
+            const whatsappInput = document.getElementById('whatsapp');
+            whatsappInput.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            });
+        });
+
+        // --- RENDER FUNCTIONS ---
+        function renderPackageCards() {
+            const container = document.getElementById('package-selection-container');
+            if (!container) return;
+
+            const formatCurrency = (amount) => `Rp ${amount.toLocaleString('id-ID')}`;
+            const pkg = packages[currentPackage];
+            
+            // Determine styles for switcher based on selection
+            const isMonthly = currentPackage === 'monthly';
+            const isYearly = currentPackage === 'yearly';
+            
+            const btnClassBase = "flex-1 py-2 text-xs font-semibold rounded-lg transition-all duration-200";
+            const btnClassActive = "bg-white text-red-600 shadow-sm ring-1 ring-black/5";
+            const btnClassInactive = "text-gray-500 hover:text-gray-700 hover:bg-gray-50";
+
+            // Calculate dynamic quota
+            const now = new Date();
+            let start = new Date();
+            start.setHours(3, 0, 0, 0);
+            if (now < start) start.setDate(start.getDate() - 1);
+            const elapsed = now - start;
+            const duration = 23 * 60 * 60 * 1000; 
+            let p = 100 - (elapsed / duration) * 98;
+            const quota = Math.floor(Math.max(2, Math.min(100, p)));
+
+            container.innerHTML = `
+                <!-- CARD (Flash Sale Style with Embedded Switcher) -->
+                <article class="relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 shadow-[0_18px_60px_-35px_rgba(0,0,0,.25)]">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                      <div class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold text-white">
+                        <span class="h-2 w-2 rounded-full bg-emerald-400"></span> Ready Stock
+                      </div>
+                      <h3 class="mt-1 text-lg font-extrabold text-gray-900 leading-tight">Adobe Creative Cloud</h3>
+                      <p class="mt-1 text-xs text-gray-500">Sisa promo terbatas hari ini</p>
+                    </div>
+                    <span class="shrink-0 rounded-2xl bg-black px-3 py-1 text-[11px] font-bold text-white">Resmi</span>
+                  </div>
+
+                  <!-- Package Switcher -->
+                  <div class="mt-4 bg-gray-100/80 p-1 rounded-xl flex">
+                      <button type="button" onclick="switchPackage('monthly')" class="${btnClassBase} ${isMonthly ? btnClassActive : btnClassInactive}">
+                          1 Bulan
+                      </button>
+                      <button type="button" onclick="switchPackage('yearly')" class="${btnClassBase} ${isYearly ? btnClassActive : btnClassInactive}">
+                          1 Tahun (Hemat)
+                      </button>
+                  </div>
+
+                  <div class="mt-4 rounded-2xl bg-red-50 p-4 ring-1 ring-red-100">
+                    <div class="flex items-center justify-between">
+                      <p class="text-xs text-gray-500">Harga ${pkg.name}</p>
+                      <p class="text-xs font-semibold text-red-600">Berakhir 23:59</p>
+                    </div>
+
+                    <div class="mt-1 flex items-end justify-between">
+                      <p class="text-3xl font-extrabold tracking-tight text-gray-900">${formatCurrency(pkg.price)}</p>
+                      <p class="text-[11px] font-semibold text-gray-400 line-through">${formatCurrency(pkg.normalPrice)}</p>
+                    </div>
+
+                    <div class="mt-3">
+                      <div class="flex items-center justify-between text-[11px] text-gray-500">
+                        <span>Kuota promo</span>
+                        <span class="font-semibold text-gray-800">${quota}% tersisa</span>
+                      </div>
+                      <div class="mt-2 h-2 overflow-hidden rounded-full bg-gray-200">
+                        <div class="h-full rounded-full bg-gradient-to-r from-red-500 to-red-600" style="width: ${quota}%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- CTA -->
+                  <div class="mt-4 flex gap-2">
+                    <button type="button" onclick="document.getElementById('nama').focus()" class="h-12 flex-1 rounded-2xl bg-[#E31E24] px-5 text-sm font-semibold text-white shadow-lg shadow-red-600/20 active:scale-[.99] hover:bg-[#C21B20] transition-colors">
+                      Ambil Promo
+                    </button>
+
+                    <button id="btnDetail"
+                      type="button"
+                      class="h-12 rounded-2xl bg-white px-4 text-sm font-semibold text-gray-700 ring-1 ring-gray-200 active:scale-[.99]">
+                      Detail
+                    </button>
+                  </div>
+
+                  <p class="mt-3 text-center text-[11px] text-gray-400">
+                    Tap <span class="font-semibold text-gray-600">Detail</span> untuk lihat “Yang kamu dapat”
+                  </p>
+                </article>
+            `;
+            
+            initSheetLogic();
+        }
+
+        // Global switcher function
+        window.switchPackage = function(pkgId) {
+            if (currentPackage === pkgId) return;
+            selectPackage(pkgId); // Updates state and re-renders
+        };
+
+        let sheetInitialized = false;
+        function initSheetLogic() {
+            const sheet = document.getElementById("sheet");
+            if(!sheet) return;
+            const btnDetail = document.getElementById("btnDetail");
+            
+            function lockScroll(lock){
+              document.documentElement.style.overflow = lock ? "hidden" : "";
+              document.body.style.overflow = lock ? "hidden" : "";
+            }
+
+            function openSheet(){
+              if (!sheet.classList.contains("hidden") && sheet.classList.contains("sheet-open")) return;
+              
+              sheet.classList.remove("hidden");
+              sheet.setAttribute("aria-hidden", "false");
+              requestAnimationFrame(() => sheet.classList.add("sheet-open"));
+              lockScroll(true);
+            }
+
+            if(btnDetail) btnDetail.addEventListener("click", openSheet);
+
+            if (sheetInitialized) return;
+            
+            const sheetBackdrop = document.getElementById("sheetBackdrop");
+            const btnClose = document.getElementById("btnClose");
+            const btnOk = document.getElementById("btnOk");
+            
+            const listContainer = document.getElementById("sheet-features-list");
+            if(listContainer && typeof fullFeaturesList !== 'undefined') {
+                listContainer.innerHTML = fullFeaturesList.map(feat => `
+                    <li class="flex gap-2">
+                        <span class="mt-0.5 grid h-5 w-5 place-items-center rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs shrink-0">✓</span>
+                        <span class="leading-tight">${feat}</span>
+                    </li>
+                `).join('');
+            }
+
+            function closeSheet(){
+              const isActuallyOpen = sheet.classList.contains("sheet-open");
+              if (!isActuallyOpen) return;
+              
+              sheet.classList.remove("sheet-open");
+              sheet.setAttribute("aria-hidden", "true");
+              setTimeout(() => sheet.classList.add("hidden"), 230);
+              lockScroll(false);
+            }
+            
+            if(btnClose) btnClose.addEventListener("click", closeSheet);
+            if(btnOk) btnOk.addEventListener("click", closeSheet);
+            if(sheetBackdrop) sheetBackdrop.addEventListener("click", closeSheet);
+
+            document.addEventListener("keydown", (e) => {
+              if (e.key === "Escape" && !sheet.classList.contains("hidden")) closeSheet();
+            });
+            
+            sheetInitialized = true;
+        }
+
+        function renderTestimonials() {
+            const container = document.getElementById('testimonial-container');
+            // Duplicate list twice for smoother infinite loop on wide screens
+            const images = [...testimonialImages, ...testimonialImages];
+            
+            container.innerHTML = `
+                <div class="testimonial-track">
+                    ${images.map(url => `
+                        <div class="testimonial-item" onclick="openImageModal('${url}')">
+                            <img src="${url}" alt="Testimoni" loading="lazy">
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderFAQ() {
+            const container = document.getElementById('faq-container');
+            container.innerHTML = faqList.map(item => `
+                <details class="faq-item">
+                    <summary>${item.q}</summary>
+                    <div class="faq-content">${item.a}</div>
+                </details>
+            `).join('');
+        }
+        
+        function showFeaturesModal() {
+            const container = document.getElementById('features-list-container');
+            container.innerHTML = `<ul class="space-y-3">
+                ${fullFeaturesList.map(feat => `
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <span class="text-sm text-gray-700">${feat}</span>
+                    </li>
+                `).join('')}
+            </ul>`;
+            
+            document.getElementById('featuresModal').classList.add('active');
+        }
+
+        function openImageModal(url) {
+            document.getElementById('modalImageDisplay').src = url;
+            document.getElementById('imageModal').classList.add('active');
+        }
+
+        function selectPackage(pkgId) {
+            currentPackage = pkgId;
+            document.getElementById('selectedPackage').value = pkgId;
+            
+            // Re-render the package cards to update the 'selected' state visually
+            renderPackageCards();
+            
+            updateTotalPrice();
+        }
+
+        function selectPayment(paymentId) {
+            currentPayment = paymentId;
+            document.getElementById('selectedPayment').value = paymentId;
+            
+            // Visual Update
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            document.getElementById(`pay-opt-${paymentId}`).classList.add('selected');
+        }
+
+        function renderPaymentMethods() {
+            const grid = document.getElementById('payment-grid');
+            grid.innerHTML = paymentMethods.map((pm, idx) => `
+                <div id="pay-opt-${pm.id}" class="payment-option ${idx === 0 ? 'selected' : ''}" onclick="selectPayment('${pm.id}')">
+                    <img src="${pm.logo}" alt="${pm.name}">
+                    <span>${pm.name}</span>
+                </div>
+            `).join('');
+        }
+
+        function updateTotalPrice() {
+            const pkgPrice = packages[currentPackage].price;
+            const total = pkgPrice + uniqueCode;
+            document.getElementById('total-price-display').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function validateForm() {
+            const nameInput = document.getElementById('nama');
+            const name = nameInput.value.trim();
+            const waInput = document.getElementById('whatsapp');
+            const wa = waInput.value.trim();
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!name) return { valid: false, msg: 'Nama wajib diisi', element: nameInput };
+            
+            const phoneValidationResult = validatePhoneNumber(wa);
+            if (!phoneValidationResult.isValid) {
+                return { valid: false, msg: phoneValidationResult.message, element: waInput };
+            }
+
+            if (!email || !emailRegex.test(email)) {
+                return { valid: false, msg: 'Email tidak valid', element: emailInput };
+            }
+
+            const domain = email.split('@')[1];
+            if (!allowedEmailDomains.includes(domain)) {
+                return { valid: false, msg: 'Domain email tidak diizinkan. Harap gunakan email pribadi.', element: emailInput };
+            }
+            
+            return { valid: true };
+        }
+
+        async function handleFormSubmit() {
+            const validation = validateForm();
+            if (!validation.valid) {
+                showModal('Data Belum Lengkap', validation.msg);
+                if (validation.element) {
+                    validation.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    validation.element.focus();
+                }
+                return;
+            }
+
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Memproses...';
+
+            // Prepare Data
+            const formData = new FormData(document.getElementById('orderForm'));
+            const pkg = packages[currentPackage];
+            const payment = paymentMethods.find(p => p.id === currentPayment);
+            const totalPrice = pkg.price + uniqueCode;
+            const now = new Date();
+            const rL = () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 26));
+            const rD = () => Math.floor(Math.random() * 10);
+            const paymentId = `INV-ADOBE-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
+            
+            // Prepare Object for Google Script
+            const dataToSend = {
+                nama: formData.get('nama'),
+                whatsapp: formData.get('whatsapp'),
+                email: formData.get('email'),
+                paket: pkg.name,
+                metodePembayaran: payment.name,
+                totalTransfer: `Rp${totalPrice.toLocaleString('id-ID')}`,
+                idPembayaran: paymentId,
+                nomorRekening: payment.number || '-',
+                sheetName: formData.get('sheetName')
+            };
+            
+            // Send to Google Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
+
+            try {
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dataToSend)
+                });
+                
+                // Show Payment Page
+                showPaymentPage(dataToSend, payment, totalPrice);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showModal('Error', 'Gagal memproses pesanan. Silakan coba lagi.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Beli Sekarang <i class="fas fa-arrow-right"></i>';
+            }
+        }
+
+        function showPaymentPage(data, paymentMethod, amount) {
+            // Store details for modal
+            const pkgDetails = packages[currentPackage];
+            currentOrderDetails = {
+                pkg: data.paket,
+                totalPrice: amount,
+                paymentId: data.idPembayaran,
+                nama: data.nama,
+                whatsapp: data.whatsapp,
+                email: data.email,
+                price: pkgDetails.price
+            };
+
+            // Hide Form, Show Payment
+            document.getElementById('view-form').classList.add('hidden');
+            document.getElementById('view-payment').classList.remove('hidden');
+            window.scrollTo(0, 0);
+
+            // Set Timer (24 hours)
+            expiryTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+            startCountdown();
+
+            // Populate Data
+            document.getElementById('payment-amount').innerText = `Rp ${amount.toLocaleString('id-ID')}`;
+            document.getElementById('payment-logo-result').src = paymentMethod.logo;
+
+            // Populate invoice summary
+            document.getElementById('invoice-details-summary').innerHTML = `
+                <span>No. Invoice: <strong>${data.idPembayaran}</strong></span>
+                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-red-600">Lihat detail</a>
+            `;
+
+            // Generate WA Link
+            const waMsg = `Halo, saya sudah transfer untuk pesanan:\n` +
+                          `No Invoice: ${data.idPembayaran}\n` +
+                          `Email: ${data.email}\n` +
+                          `Total: ${data.totalTransfer}\n\n` +
+                          `Mohon segera diproses.`;
+            document.getElementById('wa-confirm-btn').href = `https://wa.me/6285602152097?text=${encodeURIComponent(waMsg)}`;
+
+            // Render Payment Details
+            const detailsContainer = document.getElementById('payment-details-content');
+            const instructionsContainer = document.getElementById('instruction-steps');
+            
+            // Raw amount for copy
+            const rawAmountInputCheck = document.getElementById('payment-amount-raw');
+            if (rawAmountInputCheck) {
+                rawAmountInputCheck.value = amount;
+            } else {
+                const rawAmountInput = document.createElement('input');
+                rawAmountInput.type = 'hidden';
+                rawAmountInput.id = 'payment-amount-raw';
+                rawAmountInput.value = amount;
+                document.body.appendChild(rawAmountInput);
+            }
+
+            if (paymentMethod.type === 'qr') {
+                // Generate QRIS
+                try {
+                    const qrisStatic = paymentMethod.number;
+                    const qrisDynamic = createDynamicQris(qrisStatic, amount);
+                    
+                    detailsContainer.innerHTML = `
+                        <div class="flex flex-col items-center">
+                            <div id="qrcode-canvas" class="p-2 border rounded-lg mb-4 bg-white"></div>
+                            <button id="download-qris-btn" class="btn-checkout w-auto px-6 py-2 text-sm" style="box-shadow: none; background: var(--secondary); color: var(--text-main); font-weight: 500;">
+                                <i class="fas fa-download mr-2"></i> Unduh QRIS
+                            </button>
+                            <p class="text-xs text-center text-gray-500 mt-4">Scan QR Code diatas dengan aplikasi pembayaran apa saja.</p>
+                        </div>
+                    `;
+                    
+                    setTimeout(() => {
+                        const qrContainer = document.getElementById('qrcode-canvas');
+                        qrContainer.innerHTML = ''; // Clear previous QR
+                        const canvas = document.createElement('canvas');
+                        QRCode.toCanvas(canvas, qrisDynamic, { width: 200, margin: 1 }, (err) => {
+                            if (err) {
+                                console.error(err);
+                                return;
+                            }
+                            qrContainer.appendChild(canvas);
+
+                            // Add download functionality
+                            document.getElementById('download-qris-btn').addEventListener('click', () => {
+                                const link = document.createElement('a');
+                                link.download = `QRIS-Pembayaran-${data.idPembayaran}.png`;
+                                link.href = canvas.toDataURL('image/png');
+                                link.click();
+                            });
+                        });
+                    }, 100);
+
+                    instructionsContainer.innerHTML = `
+                        <div class="instruction-step"><div class="step-number">1</div><p class="text-sm">Buka aplikasi e-wallet (GoPay/OVO/Dana) atau Mobile Banking.</p></div>
+                        <div class="instruction-step"><div class="step-number">2</div><p class="text-sm">Pilih menu Scan / Bayar.</p></div>
+                        <div class="instruction-step"><div class="step-number">3</div><p class="text-sm">Scan QR Code yang muncul di layar.</p></div>
+                        <div class="instruction-step"><div class="step-number">4</div><p class="text-sm">Cek nominal (pastikan sama) dan selesaikan pembayaran.</p></div>
+                    `;
+
+                } catch (e) {
+                    detailsContainer.innerHTML = '<p class="text-red-500">Gagal memuat QRIS.</p>';
+                }
+
+            } else {
+                // Bank / E-Wallet Number
+                detailsContainer.innerHTML = `
+                    <div class="bg-gray-50 p-4 rounded-lg flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-gray-500">Nomor Rekening / VA</p>
+                            <p class="text-lg font-bold text-gray-800 tracking-wide">${paymentMethod.number}</p>
+                            <p class="text-xs text-gray-500 mt-1">A.N ${paymentMethod.holder}</p>
+                        </div>
+                        <button class="copy-btn" onclick="copyText('${paymentMethod.number}')">
+                            <i class="far fa-copy"></i> Salin
+                        </button>
+                    </div>
+                `;
+
+                 instructionsContainer.innerHTML = `
+                        <div class="instruction-step"><div class="step-number">1</div><p class="text-sm">Buka aplikasi bank atau e-wallet Anda.</p></div>
+                        <div class="instruction-step"><div class="step-number">2</div><p class="text-sm">Pilih menu Transfer ke ${paymentMethod.name}.</p></div>
+                        <div class="instruction-step"><div class="step-number">3</div><p class="text-sm">Masukkan nomor rekening: <strong>${paymentMethod.number}</strong></p></div>
+                        <div class="instruction-step"><div class="step-number">4</div><p class="text-sm">Masukkan nominal <strong>Rp ${amount.toLocaleString('id-ID')}</strong> (harus tepat).</p></div>
+                    `;
+            }
+        }
+
+        function backToForm() {
+            document.getElementById('view-payment').classList.add('hidden');
+            document.getElementById('view-form').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // --- UTILS ---
+        
+        function startCountdown() {
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = expiryTime - now;
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('countdown').innerHTML = "WAKTU HABIS";
+                    return;
+                }
+
+                const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerHTML = 
+                    `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+            }, 1000);
+        }
+
+        function copyText(textOrId) {
+            let text = textOrId;
+            const element = document.getElementById(textOrId);
+            if (element) text = element.value || element.innerText;
+
+            navigator.clipboard.writeText(text).then(() => {
+                showModal('Berhasil', 'Teks berhasil disalin ke clipboard');
+            }, () => {
+                // Fallback
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showModal('Berhasil', 'Teks berhasil disalin');
+                } catch (err) {
+                    console.error('Copy failed', err);
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+
+        function showModal(title, msg) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMessage').innerText = msg;
+            const modal = document.getElementById('infoModal');
+            modal.classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+        
+        // Notifications Logic (RESTORED RANDOM NAMES)
+        
+        function initNotifications() {
+            setInterval(() => {
+                const name = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
+                const toast = document.getElementById('toast');
+                document.getElementById('toast-name').innerText = name;
+                
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 4000);
+            }, 15000 + Math.random() * 10000);
+        }
+
+        // --- QRIS GENERATOR UTILS (CRC16) ---
+        function createDynamicQris(qris, nominal) {
             let qrisModified = qris.slice(0, -4).replace("010211", "010212");
             const nominalStr = String(Math.round(nominal));
             const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
             const amountPart = "54" + amountLength + nominalStr;
-            let finalQris = qrisModified.replace("5802ID", amountPart + "5802ID");
-            return finalQris + toCRC16(finalQris);
+            
+            if (qrisModified.includes("5802ID")) {
+                let parts = qrisModified.split("5802ID");
+                qrisModified = parts[0] + amountPart + "5802ID" + parts[1];
+            } else {
+                 // Fallback
+            }
+            
+            // Recalculate CRC
+            const crc = crc16ccitt(qrisModified);
+            return qrisModified + crc;
         }
 
-    });
+        function crc16ccitt(str) {
+            let crc = 0xFFFF;
+            for (let c = 0; c < str.length; c++) {
+                crc ^= str.charCodeAt(c) << 8;
+                for (let i = 0; i < 8; i++) {
+                    if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
+                    else crc = crc << 1;
+                }
+            }
+            return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
+        }
 
-    // --- GLOBAL ---
-    function showInfoModal(title, msg) {
-        document.getElementById('modalTitle').innerText = title;
-        document.getElementById('modalMessage').innerText = msg;
-        document.getElementById('infoModal').style.display = 'flex';
-    }
-    function closeInfoModal() { document.getElementById('infoModal').style.display = 'none'; }
-    function openImageModal(src) { 
-        document.getElementById('modalImage').src = src; 
-        document.getElementById('imageModal').style.display = 'flex'; 
-    }
-    function closeImageModal() { document.getElementById('imageModal').style.display = 'none'; }
+        function getDetailsModalHTML(details) {
+            const { pkg, totalPrice, paymentId, nama, whatsapp, price } = details;
+            const uniqueCodeAmount = totalPrice - price;
+            return `
+                <div class="details-modal-header p-4 flex items-center justify-between">
+                    <h3 class="text-lg font-bold">Ringkasan Transaksi</h3>
+                    <button onclick="closeModal('detailsModal')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <div class="details-modal-body p-4 pt-2">
+                    <p class="text-xs text-gray-500 mb-3">Nomor Invoice: <strong>${paymentId}</strong></p>
+                    <div class="text-center mb-3">
+                        <p class="text-sm text-gray-600 mb-1">Total Pembayaran</p>
+                        <div class="flex items-center justify-center">
+                            <p class="text-3xl font-bold text-gray-900">Rp ${totalPrice.toLocaleString('id-ID')}</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 border-t border-b border-gray-200 py-3 my-3">
+                        <div>
+                            <div class="flex justify-between text-sm">
+                                <span>${pkg}</span>
+                                <span class="font-semibold text-gray-800">Rp ${price.toLocaleString('id-ID')}</span>
+                            </div>
+                        </div>
+                         <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Kode Unik</span>
+                            <span class="font-medium">Rp ${uniqueCodeAmount.toLocaleString('id-ID')}</span>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <h4 class="font-semibold mb-2 text-sm">Informasi Pelanggan</h4>
+                        <div class="space-y-2 text-sm">
+                            <div>
+                                <p class="text-gray-500 text-xs mb-0.5">Nama</p>
+                                <p class="font-medium">${nama}</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 text-xs mb-0.5">Nomor WhatsApp</p>
+                                <p class="font-medium">${whatsapp}</p>
+                            </div>
+                             <div>
+                                <p class="text-gray-500 text-xs mb-0.5">Email Adobe ID</p>
+                                <p class="font-medium">${details.email}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
 
-    window.onclick = function(e) {
-        if(e.target == document.getElementById('infoModal')) closeInfoModal();
-        if(e.target == document.getElementById('imageModal')) closeImageModal();
-    }
+        function showDetailsModal(event) {
+            if(event) event.preventDefault();
+            const modalContent = document.getElementById('detailsModalContent');
+            const modal = document.getElementById('detailsModal');
+            
+            modalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
+            modal.classList.add('active');
+        }
+
     </script>
 </body>
 </html>
