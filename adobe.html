@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     
     <!-- Meta Pixel Code -->
     <script>
@@ -653,9 +654,38 @@
                     </div>
                 </div>
                 
+                <!-- OCR Payment Verification -->
+                <div id="ocr-container" class="mt-8 bg-white border-2 border-dashed border-blue-200 rounded-xl p-6 text-center hover:bg-blue-50 transition-colors cursor-pointer relative overflow-hidden group" onclick="document.getElementById('payment-proof-input').click()">
+                    <h3 class="font-bold text-gray-900 mb-2">Verifikasi Pembayaran</h3>
+                    
+                    <input type="file" id="payment-proof-input" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
+                    
+                    <!-- Initial State -->
+                    <div id="ocr-initial-state">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-cloud-upload-alt text-2xl"></i>
+                        </div>
+                        <p class="text-sm font-semibold text-gray-700">Klik untuk Upload Bukti Transfer</p>
+                        <p class="text-xs text-gray-400 mt-1">Sistem akan memverifikasi pembayaran anda secara otomatis.</p>
+                    </div>
+
+                    <!-- Scanning State -->
+                    <div id="ocr-scanning-state" class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center z-10">
+                        <div class="relative w-16 h-16 mb-4">
+                             <div class="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
+                             <div class="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+                             <div class="absolute inset-0 flex items-center justify-center text-blue-600">
+                                <i class="fas fa-search"></i>
+                             </div>
+                        </div>
+                        <p class="text-sm font-semibold text-blue-600 animate-pulse">Memverifikasi Bukti...</p>
+                    </div>
+
+                </div>
+
                 <!-- Confirmation Button -->
-                <a id="wa-confirm-btn" href="#" target="_blank" class="block mt-8 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl text-center shadow-lg shadow-green-200 transition-all">
-                    <i class="fab fa-whatsapp text-lg mr-2"></i> Konfirmasi Pembayaran
+                <a id="wa-confirm-btn" href="#" target="_blank" class="block mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl text-center shadow-lg shadow-green-200 transition-all">
+                    <i class="fab fa-whatsapp text-lg mr-2"></i> Konfirmasi Manual (WA)
                 </a>
             </div>
         </div>
@@ -703,6 +733,33 @@
     </div>
 
     <!-- Modals -->
+    <!-- OCR Success Modal -->
+    <div id="ocrSuccessModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-5 text-4xl shadow-sm">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2 text-gray-900">Pembayaran Berhasil!</h3>
+            <p class="text-gray-500 mb-8 px-4 text-sm leading-relaxed">Terima kasih! Bukti pembayaran Anda telah diverifikasi. Pesanan Anda sedang diproses dan akan segera dikirim.</p>
+            <button onclick="closeModal('ocrSuccessModal')" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-green-200">Tutup</button>
+        </div>
+    </div>
+
+    <!-- OCR Failure Modal -->
+    <div id="ocrFailureModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-5 text-4xl shadow-sm">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2 text-gray-900">Verifikasi Gagal</h3>
+            <p class="text-gray-500 mb-8 px-4 text-sm leading-relaxed" id="ocrFailureMsg">Bukti pembayaran tidak valid atau tidak terbaca. Silakan upload ulang bukti yang jelas.</p>
+            <div class="flex flex-col gap-3">
+                <button onclick="retryOCRUpload()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-200">Coba Upload Lagi</button>
+                <button onclick="closeModal('ocrFailureModal')" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-3.5 rounded-xl transition-colors">Tutup</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Info Modal -->
     <div id="infoModal" class="modal-overlay">
         <div class="modal-box">
@@ -738,6 +795,9 @@
 
     <script>
         // --- DATA & CONFIG ---
+        // PENTING: GANTI URL INI DENGAN URL DEPLOYMENT APPS SCRIPT ANDA
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
+        
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
         
         // RESTORED DATA
@@ -1193,10 +1253,8 @@
             };
             
             // Send to Google Script
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
-
             try {
-                await fetch(scriptURL, {
+                await fetch(SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
@@ -1225,7 +1283,8 @@
                 nama: data.nama,
                 whatsapp: data.whatsapp,
                 email: data.email,
-                price: pkgDetails.price
+                price: pkgDetails.price,
+                sheetName: data.sheetName
             };
 
             // Hide Form, Show Payment
@@ -1506,6 +1565,145 @@
             
             modalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
             modal.classList.add('active');
+        }
+
+        // --- OCR & PAYMENT VERIFICATION LOGIC ---
+        
+        let selectedFile = null;
+
+        async function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                selectedFile = file;
+                // Auto start verification
+                await verifyPaymentWithOCR();
+            }
+        }
+
+        async function verifyPaymentWithOCR() {
+            if (!selectedFile) return;
+
+            const scanningState = document.getElementById('ocr-scanning-state');
+            const initialState = document.getElementById('ocr-initial-state');
+
+            // UI: Scanning
+            // Keep initialState visible to maintain container height/width
+            // initialState.classList.add('hidden'); 
+            scanningState.classList.remove('hidden');
+            
+            // Timeout safety
+            let worker = null;
+            const timeoutId = setTimeout(() => {
+                if (worker) worker.terminate();
+                showOCRFailure("Waktu habis. Silakan coba lagi.");
+            }, 60000); 
+
+            try {
+                if (typeof Tesseract === 'undefined') throw new Error("Library missing");
+
+                // Initialize Tesseract (Silent Mode)
+                worker = await Tesseract.createWorker("eng", 1, {
+                    logger: () => {} // Disable console logs for pro look
+                });
+                
+                const { data: { text } } = await worker.recognize(selectedFile);
+                await worker.terminate();
+                worker = null;
+                clearTimeout(timeoutId);
+
+                // --- MATCHING ---
+                let cleanedText = text
+                    .replace(/O|o/g, '0')
+                    .replace(/I|l/g, '1')
+                    .replace(/S|s/g, '5')
+                    .replace(/B/g, '8');
+
+                const digitsOnly = cleanedText.replace(/[^0-9]/g, '');
+                const expectedAmount = currentOrderDetails.totalPrice.toString();
+                
+                if (digitsOnly.includes(expectedAmount)) {
+                    onPaymentSuccess();
+                } else {
+                    // Professional Failure Message
+                    showOCRFailure("Bukti pembayaran tidak valid. Silakan upload kembali atau verifikasi manual via WhatsApp.");
+                }
+
+            } catch (error) {
+                clearTimeout(timeoutId);
+                console.error(error); 
+                showOCRFailure("Gagal memproses gambar. Pastikan format gambar benar (JPG/PNG) dan ukuran tidak terlalu besar.");
+            } finally {
+                if (worker) await worker.terminate();
+            }
+        }
+
+        function showOCRFailure(msg) {
+            // Reset Box UI
+            const scanningState = document.getElementById('ocr-scanning-state');
+            const initialState = document.getElementById('ocr-initial-state');
+            
+            scanningState.classList.add('hidden');
+            initialState.classList.remove('hidden'); // Return to upload state
+            
+            // Show Failure Modal
+            document.getElementById('ocrFailureMsg').innerText = msg;
+            document.getElementById('ocrFailureModal').classList.add('active');
+        }
+        
+        function retryOCRUpload() {
+            closeModal('ocrFailureModal');
+            document.getElementById('payment-proof-input').click();
+        }
+
+        function onPaymentSuccess() {
+             const scanningState = document.getElementById('ocr-scanning-state');
+             const initialState = document.getElementById('ocr-initial-state');
+             const container = document.getElementById('ocr-container');
+
+             // Stop spinner but don't show result inline
+             scanningState.classList.add('hidden');
+             
+             // Show success styling on the box
+             container.classList.add('border-green-500', 'bg-green-50');
+             container.classList.remove('border-blue-200', 'hover:bg-blue-50', 'cursor-pointer');
+             container.onclick = null; 
+             
+             // Change initial state icon/text to success statically (optional, but clean)
+             initialState.innerHTML = `
+                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-check"></i>
+                </div>
+                <p class="text-sm font-bold text-green-700">Bukti Terkirim</p>
+             `;
+             initialState.classList.remove('hidden');
+
+             // Show Success Modal
+             document.getElementById('ocrSuccessModal').classList.add('active');
+             
+             // Send confirmation to backend
+             sendPaymentConfirmationToBackend();
+        }
+
+        async function sendPaymentConfirmationToBackend() {
+            const payload = {
+                action: 'confirm_payment',
+                idPembayaran: String(currentOrderDetails.paymentId).trim(),
+                sheetName: currentOrderDetails.sheetName
+            };
+
+            console.log("Sending confirmation payload:", payload);
+
+            try {
+                 await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                console.log("Confirmation sent to backend (no-cors mode)");
+            } catch (e) {
+                console.error("Failed to send confirmation", e);
+            }
         }
 
     </script>
