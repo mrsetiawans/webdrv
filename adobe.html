@@ -10,8 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Adobe Creative Cloud - Official Resmi</title>
 
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
+    <!-- PWA Manifest - DISABLED (not needed for FB ads) -->
+    <!-- <link rel="manifest" href="manifest.json"> -->
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
@@ -3061,149 +3061,11 @@
         window.AdvancedMobile = AdvancedMobile;
 
         // ============================================
-        // SERVICE WORKER REGISTRATION (PWA)
+        // PWA FEATURES DISABLED
         // ============================================
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then((registration) => {
-                        console.log('✅ Service Worker registered successfully:', registration.scope);
-
-                        // Check for updates periodically
-                        setInterval(() => {
-                            registration.update();
-                        }, 60000); // Check every minute
-
-                        // Handle updates
-                        registration.addEventListener('updatefound', () => {
-                            const newWorker = registration.installing;
-                            newWorker.addEventListener('statechange', () => {
-                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                    // New service worker available, show update notification
-                                    showUpdateNotification();
-                                }
-                            });
-                        });
-                    })
-                    .catch((error) => {
-                        console.log('❌ Service Worker registration failed:', error);
-                    });
-            });
-
-            // Show update notification
-            function showUpdateNotification() {
-                const notification = document.createElement('div');
-                notification.className = 'network-status show online';
-                notification.innerHTML = `
-                    <span>✨ Update tersedia!</span>
-                    <button onclick="window.location.reload()" style="margin-left: 12px; background: white; color: #37B24D; padding: 4px 12px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer;">
-                        Refresh
-                    </button>
-                `;
-                notification.style.transform = 'translateY(0)';
-                document.body.appendChild(notification);
-            }
-        }
-
-        // ============================================
-        // PWA INSTALL PROMPT
-        // ============================================
-        let deferredPrompt;
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
-            e.preventDefault();
-            // Stash the event so it can be triggered later
-            deferredPrompt = e;
-
-            // Show install button/banner
-            showInstallPromotion();
-        });
-
-        function showInstallPromotion() {
-            // Create install banner
-            const installBanner = document.createElement('div');
-            installBanner.id = 'install-banner';
-            installBanner.className = 'fixed bottom-20 left-4 right-4 bg-gradient-to-r from-red-500 to-red-600 text-white p-4 rounded-2xl shadow-2xl z-50 flex items-center justify-between';
-            installBanner.style.animation = 'fadeIn 0.4s ease forwards';
-            installBanner.innerHTML = `
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png" 
-                             alt="Adobe" class="w-8 h-8">
-                    </div>
-                    <div>
-                        <p class="font-bold text-sm">Install Aplikasi</p>
-                        <p class="text-xs opacity-90">Akses lebih cepat & offline</p>
-                    </div>
-                </div>
-                <div class="flex gap-2">
-                    <button onclick="dismissInstallPromotion()" class="px-3 py-2 text-xs font-semibold opacity-80 hover:opacity-100">
-                        Nanti
-                    </button>
-                    <button onclick="installPWA()" class="bg-white text-red-600 px-4 py-2 rounded-lg text-xs font-bold">
-                        Install
-                    </button>
-                </div>
-            `;
-            document.body.appendChild(installBanner);
-        }
-
-        window.installPWA = async function () {
-            if (!deferredPrompt) return;
-
-            // Show the install prompt
-            deferredPrompt.prompt();
-
-            // Wait for the user to respond to the prompt
-            const { outcome } = await deferredPrompt.userChoice;
-
-            if (outcome === 'accepted') {
-                console.log('✅ User accepted the install prompt');
-                showToast('Terima kasih! Aplikasi sedang diinstall...', 'success');
-            } else {
-                console.log('❌ User dismissed the install prompt');
-            }
-
-            // Clear the deferredPrompt
-            deferredPrompt = null;
-
-            // Remove install banner
-            dismissInstallPromotion();
-        };
-
-        window.dismissInstallPromotion = function () {
-            const banner = document.getElementById('install-banner');
-            if (banner) {
-                banner.style.animation = 'fadeOut 0.3s ease forwards';
-                setTimeout(() => banner.remove(), 300);
-            }
-        };
-
-        // Track when app is installed
-        window.addEventListener('appinstalled', () => {
-            console.log('✅ PWA was installed');
-            showToast('Aplikasi berhasil diinstall! 🎉', 'success');
-            deferredPrompt = null;
-        });
-
-        // Helper function for toast notifications
-        function showToast(message, type = 'success') {
-            const toast = document.createElement('div');
-            toast.className = 'toast show';
-            toast.innerHTML = `
-                <div class="w-8 h-8 rounded-full ${type === 'success' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'} flex items-center justify-center flex-shrink-0">
-                    <i class="fas ${type === 'success' ? 'fa-check' : 'fa-exclamation'}"></i>
-                </div>
-                <div class="text-sm font-semibold text-gray-900">${message}</div>
-            `;
-            document.body.appendChild(toast);
-
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 400);
-            }, 3000);
-        }
+        // Service Worker dan PWA install prompt dinonaktifkan
+        // karena web ini digunakan untuk iklan Facebook
+        // yang tidak support PWA features
 
     </script>
 </body>
