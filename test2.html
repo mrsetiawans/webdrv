@@ -5,7 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#E31E24">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Adobe Creative Cloud - Official Resmi</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
@@ -77,12 +83,46 @@
             --safe-area-inset-right: env(safe-area-inset-right);
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-page);
             color: var(--text-main);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+
+            /* Mobile Touch Optimizations */
+            overscroll-behavior-y: contain;
+            /* Prevent pull-to-refresh */
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scrolling on iOS */
+            touch-action: pan-y;
+            /* Allow vertical scroll only */
+        }
+
+        /* Ensure minimum touch target size (48x48px) for accessibility */
+        button,
+        a,
+        input,
+        select,
+        .payment-option,
+        .package-card,
+        .testimonial-item {
+            min-height: 44px;
+            /* Apple's recommended minimum */
+            -webkit-tap-highlight-color: transparent;
+            /* Remove default tap highlight */
+        }
+
+        /* Better active states for touch feedback */
+        button:active,
+        .payment-option:active,
+        .package-card:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
         }
 
         /* Modern Card & Layout */
@@ -153,6 +193,8 @@
         .modern-input {
             width: 100%;
             padding: 14px 16px;
+            padding-right: 40px;
+            /* Space for icon */
             font-size: 15px;
             border: 1px solid var(--border);
             border-radius: 12px;
@@ -168,12 +210,49 @@
             box-shadow: 0 0 0 3px rgba(227, 30, 36, 0.1);
         }
 
+        /* Validation States */
+        .modern-input.valid {
+            border-color: var(--success);
+            background: #F0FFF4;
+        }
+
+        .modern-input.invalid {
+            border-color: var(--error);
+            background: #FFF5F5;
+        }
+
         .input-icon {
             position: absolute;
             right: 16px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-secondary);
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        /* Success Icon */
+        .input-icon.success {
+            color: var(--success);
+        }
+
+        /* Error Icon */
+        .input-icon.error {
+            color: var(--error);
+        }
+
+        /* Error Message */
+        .error-message {
+            font-size: 12px;
+            color: var(--error);
+            margin-top: 4px;
+            margin-left: 4px;
+            display: none;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .error-message.show {
+            display: block;
         }
 
         /* Package Selection Cards */
@@ -535,11 +614,135 @@
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
+            touch-action: manipulation;
+            /* Prevent double-tap zoom */
+        }
+
+        /* Prevent zoom on double-tap for all interactive elements */
+        button,
+        a,
+        input,
+        select,
+        textarea {
+            touch-action: manipulation;
+        }
+
+        /* Smooth momentum scrolling on iOS */
+        .modal-box,
+        .sheet-panel,
+        .testimonial-carousel {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Floating Action Button (FAB) - Mobile optimized */
+        .fab-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 45;
+            display: none;
+            /* Hidden by default, shown via JS when scrolling */
+        }
+
+        .fab-button {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(227, 30, 36, 0.4), 0 8px 24px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .fab-button:active {
+            transform: scale(0.95);
+        }
+
+        .fab-button:hover {
+            box-shadow: 0 6px 16px rgba(227, 30, 36, 0.5), 0 10px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, #FF6B6B 100%);
+            z-index: 100;
+            transition: width 0.1s ease;
+        }
+
+        /* Compact spacing for mobile */
+        @media (max-width: 640px) {
+            .space-y-6>*+* {
+                margin-top: 1.25rem;
+                /* Reduced from 1.5rem */
+            }
+
+            .space-y-4>*+* {
+                margin-top: 0.875rem;
+                /* Reduced from 1rem */
+            }
+
+            .space-y-3>*+* {
+                margin-top: 0.625rem;
+                /* Reduced from 0.75rem */
+            }
+        }
+
+        /* Network Status Indicator */
+        .network-status {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .network-status.show {
+            transform: translateY(0);
+        }
+
+        .network-status.offline {
+            background: linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%);
+            color: white;
+        }
+
+        .network-status.online {
+            background: linear-gradient(135deg, #51CF66 0%, #37B24D 100%);
+            color: white;
         }
     </style>
 </head>
 
 <body>
+
+    <!-- Network Status Indicator -->
+    <div class="network-status" id="networkStatus"></div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Floating Action Button (FAB) -->
+    <div class="fab-container" id="fabContainer">
+        <button class="fab-button" onclick="scrollToCheckout()" aria-label="Scroll to checkout">
+            <i class="fas fa-shopping-cart"></i>
+        </button>
+    </div>
 
     <!-- Notification Toast -->
     <div id="toast" class="toast">
@@ -578,8 +781,30 @@
                         🔥 PROMO TERBATAS
                     </span>
                     <h2 class="text-2xl font-bold mb-2">Upgrade Akun Pribadi</h2>
-                    <p class="text-gray-500 text-sm px-4">Dapatkan akses full Adobe Creative Cloud ke email pribadi
+                    <p class="text-gray-500 text-sm px-4 mb-4">Dapatkan akses full Adobe Creative Cloud ke email pribadi
                         Anda. Legal, Aman & Bergaransi.</p>
+
+                    <!-- Countdown Timer for Urgency -->
+                    <div
+                        class="bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-2xl p-4 mx-4 mb-4">
+                        <p class="text-xs text-red-600 font-semibold mb-2">⏰ Promo berakhir dalam:</p>
+                        <div class="flex justify-center gap-2" id="hero-countdown">
+                            <div class="bg-white rounded-lg px-3 py-2 shadow-sm">
+                                <div class="text-2xl font-bold text-red-600" id="hero-hours">23</div>
+                                <div class="text-xs text-gray-500">Jam</div>
+                            </div>
+                            <div class="text-2xl font-bold text-red-600 self-center">:</div>
+                            <div class="bg-white rounded-lg px-3 py-2 shadow-sm">
+                                <div class="text-2xl font-bold text-red-600" id="hero-minutes">59</div>
+                                <div class="text-xs text-gray-500">Menit</div>
+                            </div>
+                            <div class="text-2xl font-bold text-red-600 self-center">:</div>
+                            <div class="bg-white rounded-lg px-3 py-2 shadow-sm">
+                                <div class="text-2xl font-bold text-red-600" id="hero-seconds">59</div>
+                                <div class="text-xs text-gray-500">Detik</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Form -->
@@ -607,20 +832,23 @@
 
                         <div class="input-group">
                             <input type="text" id="nama" name="nama" class="modern-input" placeholder="Nama Lengkap"
-                                required>
-                            <i class="fas fa-user input-icon"></i>
+                                required autocomplete="name">
+                            <i class="fas fa-user input-icon" id="nama-icon"></i>
+                            <div class="error-message" id="nama-error"></div>
                         </div>
 
                         <div class="input-group">
                             <input type="tel" id="whatsapp" name="whatsapp" class="modern-input"
-                                placeholder="Nomor WhatsApp (08xx)" required inputmode="numeric">
-                            <i class="fab fa-whatsapp input-icon"></i>
+                                placeholder="Nomor WhatsApp (08xx)" required inputmode="numeric" autocomplete="tel">
+                            <i class="fab fa-whatsapp input-icon" id="whatsapp-icon"></i>
+                            <div class="error-message" id="whatsapp-error"></div>
                         </div>
 
                         <div class="input-group">
                             <input type="email" id="email" name="email" class="modern-input"
-                                placeholder="Email untuk Adobe ID" required>
-                            <i class="fas fa-envelope input-icon"></i>
+                                placeholder="Email untuk Adobe ID" required autocomplete="email">
+                            <i class="fas fa-envelope input-icon" id="email-icon"></i>
+                            <div class="error-message" id="email-error"></div>
                         </div>
                     </div>
 
@@ -661,15 +889,35 @@
                     </div>
                 </div>
 
-                <!-- Trust Badges -->
-                <div
-                    class="mt-8 flex justify-center gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png"
-                        class="h-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png"
-                        class="h-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png"
-                        class="h-6">
+                <!-- Trust Badges & Security -->
+                <div class="mt-8 bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                    <h4 class="text-center text-sm font-bold text-gray-900 mb-4">✓ Pembayaran Aman & Terpercaya</h4>
+
+                    <!-- Payment Methods -->
+                    <div class="flex justify-center gap-3 flex-wrap mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png"
+                            class="h-8 opacity-80 hover:opacity-100 transition-opacity" alt="QRIS">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png"
+                            class="h-8 opacity-80 hover:opacity-100 transition-opacity" alt="BCA">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png"
+                            class="h-8 opacity-80 hover:opacity-100 transition-opacity" alt="GoPay">
+                    </div>
+
+                    <!-- Trust Signals -->
+                    <div class="grid grid-cols-3 gap-2 text-center">
+                        <div class="bg-white rounded-lg p-3 border border-gray-100">
+                            <div class="text-green-600 text-xl mb-1">🔒</div>
+                            <p class="text-xs font-semibold text-gray-700">100% Aman</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-gray-100">
+                            <div class="text-blue-600 text-xl mb-1">✓</div>
+                            <p class="text-xs font-semibold text-gray-700">Garansi Uang Kembali</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-gray-100">
+                            <div class="text-purple-600 text-xl mb-1">⚡</div>
+                            <p class="text-xs font-semibold text-gray-700">Proses Cepat</p>
+                        </div>
+                    </div>
                 </div>
 
                 <p class="text-center text-xs text-gray-400 mt-8">© 2025 Adobe Official Reseller. All Rights Reserved.
@@ -680,12 +928,16 @@
             <div
                 class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40 sm:absolute sm:rounded-b-3xl">
                 <div class="max-w-[520px] mx-auto flex items-center justify-between gap-4">
-                    <div>
+                    <div class="flex-shrink-0">
                         <p class="text-xs text-gray-500">Total Pembayaran</p>
                         <p class="text-xl font-bold text-red-600" id="total-price-display">Rp 350.xxx</p>
+                        <p class="text-xs text-green-600 font-semibold">💰 Hemat 86%</p>
                     </div>
                     <button type="button" id="submit-btn" class="btn-checkout flex-1" onclick="handleFormSubmit()">
-                        Beli Sekarang <i class="fas fa-arrow-right"></i>
+                        <span class="flex flex-col items-center">
+                            <span class="font-bold">Ambil Promo Sekarang</span>
+                            <span class="text-xs opacity-90">🔥 Stok Terbatas</span>
+                        </span>
                     </button>
                 </div>
             </div>
@@ -809,7 +1061,12 @@
                 class="sheet-panel no-bounce overflow-hidden rounded-3xl bg-white shadow-[0_24px_90px_-45px_rgba(2,6,23,.65)] ring-1 ring-slate-200"
                 role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
 
-                <div class="flex items-center justify-between p-4">
+                <!-- Swipe Indicator -->
+                <div class="flex justify-center pt-3 pb-1">
+                    <div class="w-10 h-1 bg-gray-300 rounded-full"></div>
+                </div>
+
+                <div class="flex items-center justify-between p-4 pt-2">
                     <div class="min-w-0">
                         <p class="text-[11px] font-semibold tracking-wider text-slate-500">DETAIL PAKET</p>
                         <h4 id="sheetTitle" class="mt-0.5 truncate text-base font-extrabold text-slate-900">Yang kamu
@@ -1190,6 +1447,7 @@
                 sheet.setAttribute("aria-hidden", "false");
                 requestAnimationFrame(() => sheet.classList.add("sheet-open"));
                 lockScroll(true);
+                hapticFeedback('light'); // Haptic on open
             }
 
             if (btnDetail) btnDetail.addEventListener("click", openSheet);
@@ -1199,6 +1457,7 @@
             const sheetBackdrop = document.getElementById("sheetBackdrop");
             const btnClose = document.getElementById("btnClose");
             const btnOk = document.getElementById("btnOk");
+            const sheetPanel = document.getElementById("sheetPanel");
 
             const listContainer = document.getElementById("sheet-features-list");
             if (listContainer && typeof fullFeaturesList !== 'undefined') {
@@ -1214,11 +1473,50 @@
                 const isActuallyOpen = sheet.classList.contains("sheet-open");
                 if (!isActuallyOpen) return;
 
+                hapticFeedback('light'); // Haptic on close
                 sheet.classList.remove("sheet-open");
                 sheet.setAttribute("aria-hidden", "true");
                 setTimeout(() => sheet.classList.add("hidden"), 230);
                 lockScroll(false);
             }
+
+            // Swipe-to-close gesture for bottom sheet
+            let startY = 0;
+            let currentY = 0;
+            let isDragging = false;
+
+            sheetPanel.addEventListener('touchstart', (e) => {
+                startY = e.touches[0].clientY;
+                isDragging = true;
+                sheetPanel.style.transition = 'none';
+            }, { passive: true });
+
+            sheetPanel.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                currentY = e.touches[0].clientY;
+                const deltaY = currentY - startY;
+
+                // Only allow downward swipe
+                if (deltaY > 0) {
+                    sheetPanel.style.transform = `translateY(${deltaY}px)`;
+                }
+            }, { passive: true });
+
+            sheetPanel.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                isDragging = false;
+
+                const deltaY = currentY - startY;
+                sheetPanel.style.transition = '';
+
+                // Close if swiped down more than 100px
+                if (deltaY > 100) {
+                    closeSheet();
+                } else {
+                    // Snap back
+                    sheetPanel.style.transform = '';
+                }
+            }, { passive: true });
 
             if (btnClose) btnClose.addEventListener("click", closeSheet);
             if (btnOk) btnOk.addEventListener("click", closeSheet);
@@ -1303,6 +1601,9 @@
             currentPackage = pkgId;
             document.getElementById('selectedPackage').value = pkgId;
 
+            // Haptic feedback for selection
+            hapticFeedback('light');
+
             // Re-render the package cards to update the 'selected' state visually
             renderPackageCards();
 
@@ -1312,6 +1613,9 @@
         function selectPayment(paymentId) {
             currentPayment = paymentId;
             document.getElementById('selectedPayment').value = paymentId;
+
+            // Haptic feedback for selection
+            hapticFeedback('light');
 
             // Visual Update
             document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
@@ -1365,6 +1669,7 @@
         async function handleFormSubmit() {
             const validation = validateForm();
             if (!validation.valid) {
+                hapticFeedback('error'); // Error vibration
                 showModal('Data Belum Lengkap', validation.msg);
                 if (validation.element) {
                     validation.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1373,6 +1678,7 @@
                 return;
             }
 
+            hapticFeedback('medium'); // Submit vibration
             const btn = document.getElementById('submit-btn');
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Memproses...';
@@ -1558,6 +1864,22 @@
 
         // --- UTILS ---
 
+        // Haptic Feedback for Mobile
+        function hapticFeedback(type = 'light') {
+            // Check if Vibration API is supported
+            if (!navigator.vibrate) return;
+
+            const patterns = {
+                light: 10,      // Quick tap
+                medium: 20,     // Button press
+                heavy: 30,      // Important action
+                success: [10, 50, 10], // Success pattern
+                error: [20, 100, 20]   // Error pattern
+            };
+
+            navigator.vibrate(patterns[type] || patterns.light);
+        }
+
         function startCountdown() {
             if (countdownInterval) clearInterval(countdownInterval);
             countdownInterval = setInterval(() => {
@@ -1585,6 +1907,7 @@
             if (element) text = element.value || element.innerText;
 
             navigator.clipboard.writeText(text).then(() => {
+                hapticFeedback('success'); // Success vibration
                 showModal('Berhasil', 'Teks berhasil disalin ke clipboard');
             }, () => {
                 // Fallback
@@ -1603,6 +1926,7 @@
         }
 
         function showModal(title, msg) {
+            hapticFeedback('light'); // Modal open vibration
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalMessage').innerText = msg;
             const modal = document.getElementById('infoModal');
@@ -1877,6 +2201,864 @@
                 console.error("Failed to send confirmation", e);
             }
         }
+
+        // Scroll Progress & FAB Visibility
+        function initScrollEffects() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const fabContainer = document.getElementById('fabContainer');
+            const stickyBottomBar = document.querySelector('.fixed.bottom-0');
+
+            let ticking = false;
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        updateScrollEffects();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            function updateScrollEffects() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+
+                // Update progress bar
+                if (scrollProgress) {
+                    scrollProgress.style.width = scrollPercent + '%';
+                }
+
+                // Show/hide FAB based on scroll position and bottom bar visibility
+                if (fabContainer && stickyBottomBar) {
+                    const bottomBarRect = stickyBottomBar.getBoundingClientRect();
+                    const isBottomBarVisible = bottomBarRect.top < window.innerHeight;
+
+                    // Show FAB when scrolled down and bottom bar is not visible
+                    if (scrollTop > 300 && !isBottomBarVisible) {
+                        fabContainer.style.display = 'block';
+                    } else {
+                        fabContainer.style.display = 'none';
+                    }
+                }
+            }
+        }
+
+        // Scroll to checkout section
+        function scrollToCheckout() {
+            hapticFeedback('medium');
+            const checkoutSection = document.getElementById('submit-btn');
+            if (checkoutSection) {
+                checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Initialize scroll effects on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initScrollEffects);
+        } else {
+            initScrollEffects();
+        }
+
+        // Real-time Form Validation
+        function initFormValidation() {
+            const namaInput = document.getElementById('nama');
+            const whatsappInput = document.getElementById('whatsapp');
+            const emailInput = document.getElementById('email');
+
+            // Nama validation
+            namaInput.addEventListener('input', debounce(() => {
+                const value = namaInput.value.trim();
+                const icon = document.getElementById('nama-icon');
+                const errorMsg = document.getElementById('nama-error');
+
+                if (value.length === 0) {
+                    resetInputState(namaInput, icon, errorMsg);
+                } else if (value.length < 3) {
+                    setInputError(namaInput, icon, errorMsg, 'Nama terlalu pendek (min. 3 karakter)');
+                } else {
+                    setInputSuccess(namaInput, icon, errorMsg);
+                    // Auto-focus to next field
+                    whatsappInput.focus();
+                }
+            }, 500));
+
+            // WhatsApp validation
+            whatsappInput.addEventListener('input', debounce(() => {
+                const value = whatsappInput.value.trim();
+                const icon = document.getElementById('whatsapp-icon');
+                const errorMsg = document.getElementById('whatsapp-error');
+
+                if (value.length === 0) {
+                    resetInputState(whatsappInput, icon, errorMsg);
+                } else {
+                    const validation = validatePhoneNumber(value);
+                    if (validation.isValid) {
+                        setInputSuccess(whatsappInput, icon, errorMsg);
+                        // Auto-focus to next field
+                        emailInput.focus();
+                    } else {
+                        setInputError(whatsappInput, icon, errorMsg, validation.message);
+                    }
+                }
+            }, 500));
+
+            // Email validation with domain suggestions
+            emailInput.addEventListener('input', debounce(() => {
+                const value = emailInput.value.trim();
+                const icon = document.getElementById('email-icon');
+                const errorMsg = document.getElementById('email-error');
+
+                if (value.length === 0) {
+                    resetInputState(emailInput, icon, errorMsg);
+                } else {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        setInputError(emailInput, icon, errorMsg, 'Format email tidak valid');
+                    } else {
+                        const domain = value.split('@')[1];
+                        if (!allowedEmailDomains.includes(domain)) {
+                            setInputError(emailInput, icon, errorMsg, 'Gunakan email pribadi (Gmail, Yahoo, dll)');
+                        } else {
+                            setInputSuccess(emailInput, icon, errorMsg);
+                        }
+                    }
+                }
+            }, 500));
+
+            // Email domain autocomplete suggestion
+            emailInput.addEventListener('keyup', (e) => {
+                const value = emailInput.value;
+                if (value.includes('@') && !value.includes('.')) {
+                    const parts = value.split('@');
+                    if (parts[1] && parts[1].length > 0) {
+                        const typed = parts[1].toLowerCase();
+                        const suggestions = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com'];
+                        const match = suggestions.find(s => s.startsWith(typed));
+                        if (match && e.key !== 'Backspace') {
+                            // Show suggestion (could be enhanced with datalist)
+                            console.log('Suggestion:', match);
+                        }
+                    }
+                }
+            });
+        }
+
+        // Validation helper functions
+        function setInputSuccess(input, icon, errorMsg) {
+            input.classList.remove('invalid');
+            input.classList.add('valid');
+            icon.classList.remove('fa-user', 'fa-whatsapp', 'fa-envelope', 'error');
+            icon.classList.add('fa-check-circle', 'success');
+            errorMsg.classList.remove('show');
+            hapticFeedback('light');
+        }
+
+        function setInputError(input, icon, errorMsg, message) {
+            input.classList.remove('valid');
+            input.classList.add('invalid');
+            icon.classList.remove('fa-check-circle', 'success');
+            icon.classList.add('fa-exclamation-circle', 'error');
+            errorMsg.textContent = message;
+            errorMsg.classList.add('show');
+        }
+
+        function resetInputState(input, icon, errorMsg) {
+            input.classList.remove('valid', 'invalid');
+            icon.classList.remove('fa-check-circle', 'fa-exclamation-circle', 'success', 'error');
+            // Restore original icon
+            if (input.id === 'nama') icon.className = 'fas fa-user input-icon';
+            if (input.id === 'whatsapp') icon.className = 'fab fa-whatsapp input-icon';
+            if (input.id === 'email') icon.className = 'fas fa-envelope input-icon';
+            errorMsg.classList.remove('show');
+        }
+
+        // Debounce utility
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Initialize form validation on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFormValidation);
+        } else {
+            initFormValidation();
+        }
+
+        // Hero Countdown Timer (Daily Reset at 23:59)
+        function initHeroCountdown() {
+            const hoursEl = document.getElementById('hero-hours');
+            const minutesEl = document.getElementById('hero-minutes');
+            const secondsEl = document.getElementById('hero-seconds');
+
+            if (!hoursEl || !minutesEl || !secondsEl) return;
+
+            function updateHeroCountdown() {
+                const now = new Date();
+                const endOfDay = new Date();
+                endOfDay.setHours(23, 59, 59, 999);
+
+                const diff = endOfDay - now;
+
+                if (diff <= 0) {
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                hoursEl.textContent = String(hours).padStart(2, '0');
+                minutesEl.textContent = String(minutes).padStart(2, '0');
+                secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateHeroCountdown();
+            setInterval(updateHeroCountdown, 1000);
+        }
+
+        // Initialize hero countdown on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initHeroCountdown);
+        } else {
+            initHeroCountdown();
+        }
+
+        // ==========================================
+        // ANALYTICS & TRACKING SYSTEM
+        // ==========================================
+
+        const Analytics = {
+            events: [],
+            scrollDepths: [25, 50, 75, 100],
+            trackedScrollDepths: new Set(),
+
+            // Track event
+            track(eventName, data = {}) {
+                const event = {
+                    name: eventName,
+                    timestamp: new Date().toISOString(),
+                    data: data,
+                    url: window.location.href,
+                    userAgent: navigator.userAgent,
+                    viewport: {
+                        width: window.innerWidth,
+                        height: window.innerHeight
+                    }
+                };
+
+                this.events.push(event);
+
+                // Send to Facebook Pixel if available
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', eventName, data);
+                }
+
+                // Store in localStorage for later analysis
+                this.saveToStorage();
+            },
+
+            // Save events to localStorage
+            saveToStorage() {
+                try {
+                    const stored = JSON.parse(localStorage.getItem('analytics_events') || '[]');
+                    stored.push(...this.events);
+                    // Keep only last 100 events
+                    const trimmed = stored.slice(-100);
+                    localStorage.setItem('analytics_events', JSON.stringify(trimmed));
+                    this.events = [];
+                } catch (e) {
+                    console.error('Failed to save analytics:', e);
+                }
+            },
+
+            // Initialize all tracking
+            init() {
+                this.trackPageView();
+                this.trackScrollDepth();
+                this.trackFormInteractions();
+                this.trackClicks();
+                this.trackPerformance();
+                this.trackErrors();
+            },
+
+            // Track page view
+            trackPageView() {
+                this.track('PageView', {
+                    referrer: document.referrer,
+                    loadTime: performance.now()
+                });
+            },
+
+            // Track scroll depth
+            trackScrollDepth() {
+                let ticking = false;
+
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                            const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+
+                            this.scrollDepths.forEach(depth => {
+                                if (scrollPercent >= depth && !this.trackedScrollDepths.has(depth)) {
+                                    this.trackedScrollDepths.add(depth);
+                                    this.track('ScrollDepth', { depth: depth + '%' });
+                                }
+                            });
+
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
+            },
+
+            // Track form interactions
+            trackFormInteractions() {
+                const fields = ['nama', 'whatsapp', 'email'];
+                const fieldInteractions = {};
+
+                fields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field) return;
+
+                    // Track field focus
+                    field.addEventListener('focus', () => {
+                        if (!fieldInteractions[fieldId]) {
+                            fieldInteractions[fieldId] = { focused: true, completed: false };
+                            this.track('FormFieldFocus', { field: fieldId });
+                        }
+                    });
+
+                    // Track field completion
+                    field.addEventListener('blur', () => {
+                        if (field.value.trim().length > 0) {
+                            fieldInteractions[fieldId].completed = true;
+                            this.track('FormFieldComplete', {
+                                field: fieldId,
+                                length: field.value.length
+                            });
+                        } else if (fieldInteractions[fieldId]?.focused) {
+                            this.track('FormFieldAbandoned', { field: fieldId });
+                        }
+                    });
+                });
+
+                // Track form submission attempts
+                const submitBtn = document.getElementById('submit-btn');
+                if (submitBtn) {
+                    submitBtn.addEventListener('click', () => {
+                        const completedFields = Object.keys(fieldInteractions).filter(
+                            k => fieldInteractions[k]?.completed
+                        );
+                        this.track('FormSubmitAttempt', {
+                            completedFields: completedFields,
+                            totalFields: fields.length
+                        });
+                    });
+                }
+            },
+
+            // Track clicks
+            trackClicks() {
+                // Track package selection
+                document.addEventListener('click', (e) => {
+                    const target = e.target.closest('button, a, .package-card, .payment-option');
+                    if (!target) return;
+
+                    let eventName = 'Click';
+                    let eventData = {
+                        element: target.tagName,
+                        text: target.textContent?.trim().substring(0, 50)
+                    };
+
+                    // Specific tracking for important elements
+                    if (target.closest('.package-card')) {
+                        eventName = 'PackageSelected';
+                        eventData.package = target.textContent.includes('1 Bulan') ? 'monthly' : 'yearly';
+                    } else if (target.closest('.payment-option')) {
+                        eventName = 'PaymentMethodSelected';
+                        eventData.method = target.querySelector('span')?.textContent;
+                    } else if (target.id === 'submit-btn') {
+                        eventName = 'CheckoutButtonClick';
+                    } else if (target.closest('.testimonial-item')) {
+                        eventName = 'TestimonialClick';
+                    } else if (target.id === 'btnDetail') {
+                        eventName = 'DetailButtonClick';
+                    }
+
+                    this.track(eventName, eventData);
+                }, { passive: true });
+            },
+
+            // Track performance metrics
+            trackPerformance() {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const perfData = performance.getEntriesByType('navigation')[0];
+                        if (perfData) {
+                            this.track('Performance', {
+                                loadTime: Math.round(perfData.loadEventEnd - perfData.fetchStart),
+                                domContentLoaded: Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart),
+                                firstPaint: Math.round(performance.getEntriesByType('paint')[0]?.startTime || 0)
+                            });
+                        }
+                    }, 1000);
+                });
+            },
+
+            // Track JavaScript errors
+            trackErrors() {
+                window.addEventListener('error', (e) => {
+                    this.track('JavaScriptError', {
+                        message: e.message,
+                        filename: e.filename,
+                        line: e.lineno,
+                        column: e.colno
+                    });
+                });
+
+                window.addEventListener('unhandledrejection', (e) => {
+                    this.track('PromiseRejection', {
+                        reason: e.reason?.toString()
+                    });
+                });
+            }
+        };
+
+        // Initialize analytics on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => Analytics.init());
+        } else {
+            Analytics.init();
+        }
+
+        // Export analytics for debugging
+        window.Analytics = Analytics;
+
+        // ==========================================
+        // PWA & OFFLINE SUPPORT
+        // ==========================================
+
+        const PWA = {
+            // Register Service Worker
+            registerServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', () => {
+                        navigator.serviceWorker.register('/sw.js')
+                            .then((registration) => {
+                                // Check for updates
+                                registration.addEventListener('updatefound', () => {
+                                    const newWorker = registration.installing;
+                                    newWorker.addEventListener('statechange', () => {
+                                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                            this.showUpdateNotification();
+                                        }
+                                    });
+                                });
+                            })
+                            .catch(() => {
+                                // Service worker registration failed silently
+                            });
+                    });
+                }
+            },
+
+            // Show update notification
+            showUpdateNotification() {
+                const updateBanner = document.createElement('div');
+                updateBanner.className = 'network-status show online';
+                updateBanner.innerHTML = '🔄 Update tersedia! <button onclick="location.reload()" style="margin-left: 8px; padding: 4px 12px; background: white; color: #37B24D; border-radius: 6px; font-weight: bold;">Reload</button>';
+                updateBanner.style.transform = 'translateY(0)';
+                document.body.appendChild(updateBanner);
+            },
+
+            // Monitor network status
+            monitorNetwork() {
+                const statusEl = document.getElementById('networkStatus');
+                if (!statusEl) return;
+
+                let hideTimeout;
+
+                const showStatus = (isOnline) => {
+                    clearTimeout(hideTimeout);
+
+                    statusEl.className = 'network-status show ' + (isOnline ? 'online' : 'offline');
+                    statusEl.textContent = isOnline
+                        ? '✓ Koneksi kembali normal'
+                        : '⚠️ Tidak ada koneksi internet';
+
+                    // Auto-hide online message after 3 seconds
+                    if (isOnline) {
+                        hideTimeout = setTimeout(() => {
+                            statusEl.classList.remove('show');
+                        }, 3000);
+                    }
+
+                    // Track network status
+                    if (typeof Analytics !== 'undefined') {
+                        Analytics.track('NetworkStatus', { online: isOnline });
+                    }
+
+                    // Haptic feedback
+                    if (typeof hapticFeedback !== 'undefined') {
+                        hapticFeedback(isOnline ? 'success' : 'error');
+                    }
+                };
+
+                // Listen to online/offline events
+                window.addEventListener('online', () => showStatus(true));
+                window.addEventListener('offline', () => showStatus(false));
+
+                // Check initial status
+                if (!navigator.onLine) {
+                    showStatus(false);
+                }
+            },
+
+            // Prompt to install PWA
+            promptInstall() {
+                let deferredPrompt;
+
+                window.addEventListener('beforeinstallprompt', (e) => {
+                    e.preventDefault();
+                    deferredPrompt = e;
+
+                    // Track install prompt
+                    if (typeof Analytics !== 'undefined') {
+                        Analytics.track('PWAInstallPromptShown');
+                    }
+                });
+
+                window.addEventListener('appinstalled', () => {
+                    // Track successful install
+                    if (typeof Analytics !== 'undefined') {
+                        Analytics.track('PWAInstalled');
+                    }
+
+                    deferredPrompt = null;
+                });
+            },
+
+            // Initialize all PWA features
+            init() {
+                this.registerServiceWorker();
+                this.monitorNetwork();
+                this.promptInstall();
+            }
+        };
+
+        // Initialize PWA features
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => PWA.init());
+        } else {
+            PWA.init();
+        }
+
+        // Export PWA for debugging
+        window.PWA = PWA;
+
+        // ==========================================
+        // ADVANCED MOBILE FEATURES
+        // ==========================================
+
+        const AdvancedMobile = {
+            wakeLock: null,
+
+            // Web Share API - Share to social media
+            async shareContent() {
+                const shareData = {
+                    title: 'Adobe Creative Cloud - Promo Terbatas!',
+                    text: 'Dapatkan Adobe Creative Cloud dengan harga spesial! Hemat 86% 🔥',
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    try {
+                        await navigator.share(shareData);
+
+                        // Track share
+                        if (typeof Analytics !== 'undefined') {
+                            Analytics.track('ContentShared', { method: 'native' });
+                        }
+
+                        if (typeof hapticFeedback !== 'undefined') {
+                            hapticFeedback('success');
+                        }
+                    } catch (err) {
+                        // Share cancelled or failed
+                    }
+                } else {
+                    // Fallback: Copy link
+                    this.copyToClipboard(window.location.href);
+                    showModal('Link Disalin', 'Link telah disalin ke clipboard. Bagikan ke teman Anda!');
+                }
+            },
+
+            // Enhanced Copy to Clipboard
+            async copyToClipboard(text) {
+                try {
+                    await navigator.clipboard.writeText(text);
+
+                    if (typeof hapticFeedback !== 'undefined') {
+                        hapticFeedback('success');
+                    }
+
+                    return true;
+                } catch (err) {
+
+                    // Fallback method
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+
+                    try {
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        return true;
+                    } catch (e) {
+                        document.body.removeChild(textArea);
+                        return false;
+                    }
+                }
+            },
+
+            // Screen Wake Lock - Prevent sleep during checkout
+            async requestWakeLock() {
+                if ('wakeLock' in navigator) {
+                    try {
+                        this.wakeLock = await navigator.wakeLock.request('screen');
+
+                        // Track wake lock
+                        if (typeof Analytics !== 'undefined') {
+                            Analytics.track('WakeLockActivated');
+                        }
+                    } catch (err) {
+                        // Wake lock not supported or failed
+                    }
+                }
+            },
+
+            // Release wake lock
+            releaseWakeLock() {
+                if (this.wakeLock) {
+                    this.wakeLock.release();
+                    this.wakeLock = null;
+                }
+            },
+
+            // Battery Status API
+            async monitorBattery() {
+                if ('getBattery' in navigator) {
+                    try {
+                        const battery = await navigator.getBattery();
+
+                        const checkBattery = () => {
+                            const level = Math.floor(battery.level * 100);
+                            const charging = battery.charging;
+
+                            // Warn if battery is low and not charging
+                            if (level < 20 && !charging) {
+                                this.showLowBatteryWarning(level);
+                            }
+
+                            // Track battery status
+                            if (typeof Analytics !== 'undefined') {
+                                Analytics.track('BatteryStatus', {
+                                    level: level,
+                                    charging: charging
+                                });
+                            }
+                        };
+
+                        // Check on load
+                        checkBattery();
+
+                        // Listen to battery changes
+                        battery.addEventListener('levelchange', checkBattery);
+                        battery.addEventListener('chargingchange', checkBattery);
+
+                    } catch (err) {
+                        // Battery API not available
+                    }
+                }
+            },
+
+            // Show low battery warning
+            showLowBatteryWarning(level) {
+                const warning = document.createElement('div');
+                warning.className = 'network-status show offline';
+                warning.innerHTML = `🔋 Battery rendah (${level}%). Pertimbangkan untuk charge device Anda.`;
+                warning.style.transform = 'translateY(0)';
+                document.body.appendChild(warning);
+
+                setTimeout(() => {
+                    warning.classList.remove('show');
+                    setTimeout(() => warning.remove(), 300);
+                }, 5000);
+            },
+
+            // Connection Speed Detection
+            detectConnectionSpeed() {
+                if ('connection' in navigator) {
+                    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+                    if (connection) {
+                        const effectiveType = connection.effectiveType; // '4g', '3g', '2g', 'slow-2g'
+                        const downlink = connection.downlink; // Mbps
+                        const rtt = connection.rtt; // Round-trip time in ms
+
+                        // Adjust experience based on connection
+                        if (effectiveType === 'slow-2g' || effectiveType === '2g') {
+                            this.enableLowDataMode();
+                        }
+
+                        // Track connection
+                        if (typeof Analytics !== 'undefined') {
+                            Analytics.track('ConnectionSpeed', {
+                                type: effectiveType,
+                                downlink: downlink,
+                                rtt: rtt
+                            });
+                        }
+
+                        // Listen to connection changes
+                        connection.addEventListener('change', () => {
+                            if (typeof Analytics !== 'undefined') {
+                                Analytics.track('ConnectionChanged', {
+                                    newType: connection.effectiveType
+                                });
+                            }
+                        });
+                    }
+                }
+            },
+
+            // Enable low data mode for slow connections
+            enableLowDataMode() {
+                // Disable auto-playing animations
+                document.querySelectorAll('.animate-pulse').forEach(el => {
+                    el.classList.remove('animate-pulse');
+                });
+
+                // Show notification
+                const notice = document.createElement('div');
+                notice.className = 'network-status show online';
+                notice.textContent = '📉 Mode hemat data aktif (koneksi lambat terdeteksi)';
+                notice.style.transform = 'translateY(0)';
+                document.body.appendChild(notice);
+
+                setTimeout(() => {
+                    notice.classList.remove('show');
+                    setTimeout(() => notice.remove(), 300);
+                }, 4000);
+            },
+
+            // Device Orientation Handler
+            handleOrientation() {
+                let currentOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+
+                window.addEventListener('resize', () => {
+                    const newOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+
+                    if (newOrientation !== currentOrientation) {
+                        currentOrientation = newOrientation;
+
+                        // Track orientation change
+                        if (typeof Analytics !== 'undefined') {
+                            Analytics.track('OrientationChanged', {
+                                orientation: currentOrientation
+                            });
+                        }
+
+                        // Haptic feedback
+                        if (typeof hapticFeedback !== 'undefined') {
+                            hapticFeedback('light');
+                        }
+
+                        // Suggest portrait mode if in landscape
+                        if (currentOrientation === 'landscape') {
+                            this.suggestPortraitMode();
+                        }
+                    }
+                });
+            },
+
+            // Suggest portrait mode
+            suggestPortraitMode() {
+                const suggestion = document.createElement('div');
+                suggestion.className = 'network-status show online';
+                suggestion.innerHTML = '📱 Untuk pengalaman terbaik, gunakan mode portrait';
+                suggestion.style.transform = 'translateY(0)';
+                document.body.appendChild(suggestion);
+
+                setTimeout(() => {
+                    suggestion.classList.remove('show');
+                    setTimeout(() => suggestion.remove(), 300);
+                }, 3000);
+            },
+
+            // Add share button to page
+            addShareButton() {
+                // Add share button to trust badges section
+                const trustSection = document.querySelector('.bg-gray-50.rounded-2xl');
+                if (trustSection && navigator.share) {
+                    const shareBtn = document.createElement('button');
+                    shareBtn.className = 'mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2';
+                    shareBtn.innerHTML = '<i class="fas fa-share-alt"></i> Bagikan ke Teman';
+                    shareBtn.onclick = () => this.shareContent();
+                    trustSection.appendChild(shareBtn);
+                }
+            },
+
+            // Initialize all advanced features
+            init() {
+                this.detectConnectionSpeed();
+                this.monitorBattery();
+                this.handleOrientation();
+                this.addShareButton();
+
+                // Request wake lock when user starts checkout
+                const submitBtn = document.getElementById('submit-btn');
+                if (submitBtn) {
+                    submitBtn.addEventListener('click', () => {
+                        this.requestWakeLock();
+                    });
+                }
+
+                // Release wake lock when leaving page
+                window.addEventListener('beforeunload', () => {
+                    this.releaseWakeLock();
+                });
+            }
+        };
+
+        // Initialize Advanced Mobile Features
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => AdvancedMobile.init());
+        } else {
+            AdvancedMobile.init();
+        }
+
+        // Export for debugging
+        window.AdvancedMobile = AdvancedMobile;
 
     </script>
 </body>
