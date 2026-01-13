@@ -1,34 +1,64 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#E31E24">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Adobe Creative Cloud - Official Resmi</title>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+
+    <link rel="icon" type="image/png"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- DNS Prefetch for Performance -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://upload.wikimedia.org">
+    <link rel="dns-prefetch" href="https://pixvid.org">
+
+    <!-- Optimized Font Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-    
+
+    <!-- QRCode Library - Deferred (only needed on payment page) -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
+
+    <!-- Tesseract.js - Lazy loaded only when user uploads payment proof (see script section) -->
+
     <!-- Meta Pixel Code -->
     <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '630583642253416');
-      fbq('track', 'PageView');
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '630583642253416');
+        fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1"
-    /></noscript>
+            src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
 
     <style>
@@ -42,6 +72,19 @@
             --error: #FF3B30;
             --border: #D2D2D7;
             --bg-page: #FBFBFD;
+
+            /* Mobile Viewport Height Fix (iOS) */
+            --vh: 1vh;
+
+            /* Safe Area Insets for iOS Notch/Dynamic Island */
+            --safe-area-inset-top: env(safe-area-inset-top);
+            --safe-area-inset-bottom: env(safe-area-inset-bottom);
+            --safe-area-inset-left: env(safe-area-inset-left);
+            --safe-area-inset-right: env(safe-area-inset-right);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -50,6 +93,36 @@
             color: var(--text-main);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+
+            /* Mobile Touch Optimizations */
+            overscroll-behavior-y: contain;
+            /* Prevent pull-to-refresh */
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scrolling on iOS */
+            touch-action: pan-y;
+            /* Allow vertical scroll only */
+        }
+
+        /* Ensure minimum touch target size (48x48px) for accessibility */
+        button,
+        a,
+        input,
+        select,
+        .payment-option,
+        .package-card,
+        .testimonial-item {
+            min-height: 44px;
+            /* Apple's recommended minimum */
+            -webkit-tap-highlight-color: transparent;
+            /* Remove default tap highlight */
+        }
+
+        /* Better active states for touch feedback */
+        button:active,
+        .payment-option:active,
+        .package-card:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
         }
 
         /* Modern Card & Layout */
@@ -58,7 +131,7 @@
             margin: 0 auto;
             min-height: 100vh;
             background: white;
-            box-shadow: 0 0 40px rgba(0,0,0,0.05);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
         }
 
         @media (min-width: 640px) {
@@ -66,8 +139,9 @@
                 min-height: auto;
                 margin: 40px auto;
                 border-radius: 24px;
-                border: 1px solid rgba(0,0,0,0.05);
+                border: 1px solid rgba(0, 0, 0, 0.05);
             }
+
             body {
                 background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
                 padding-bottom: 40px;
@@ -75,12 +149,30 @@
         }
 
         /* Flash Sale Card & Sheet */
-        
-        .sheet-backdrop { opacity: 0; transition: opacity .18s ease; }
-        .sheet-panel { transform: translateY(14px); opacity: 0; transition: transform .22s ease, opacity .22s ease; }
-        .sheet-open .sheet-backdrop { opacity: 1; }
-        .sheet-open .sheet-panel { transform: translateY(0); opacity: 1; }
-        .no-bounce { overscroll-behavior: contain; }
+
+        .sheet-backdrop {
+            opacity: 0;
+            transition: opacity .18s ease;
+        }
+
+        .sheet-panel {
+            transform: translateY(14px);
+            opacity: 0;
+            transition: transform .22s ease, opacity .22s ease;
+        }
+
+        .sheet-open .sheet-backdrop {
+            opacity: 1;
+        }
+
+        .sheet-open .sheet-panel {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .no-bounce {
+            overscroll-behavior: contain;
+        }
 
         /* Glassmorphism Header */
         .sticky-header {
@@ -89,7 +181,7 @@
             z-index: 50;
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         /* Inputs */
@@ -97,10 +189,12 @@
             position: relative;
             margin-bottom: 16px;
         }
-        
+
         .modern-input {
             width: 100%;
             padding: 14px 16px;
+            padding-right: 40px;
+            /* Space for icon */
             font-size: 15px;
             border: 1px solid var(--border);
             border-radius: 12px;
@@ -116,12 +210,49 @@
             box-shadow: 0 0 0 3px rgba(227, 30, 36, 0.1);
         }
 
+        /* Validation States */
+        .modern-input.valid {
+            border-color: var(--success);
+            background: #F0FFF4;
+        }
+
+        .modern-input.invalid {
+            border-color: var(--error);
+            background: #FFF5F5;
+        }
+
         .input-icon {
             position: absolute;
             right: 16px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-secondary);
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        /* Success Icon */
+        .input-icon.success {
+            color: var(--success);
+        }
+
+        /* Error Icon */
+        .input-icon.error {
+            color: var(--error);
+        }
+
+        /* Error Message */
+        .error-message {
+            font-size: 12px;
+            color: var(--error);
+            margin-top: 4px;
+            margin-left: 4px;
+            display: none;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .error-message.show {
+            display: block;
         }
 
         /* Package Selection Cards */
@@ -212,7 +343,7 @@
             object-fit: contain;
             margin-bottom: 4px;
         }
-        
+
         .payment-option span {
             font-size: 10px;
             color: var(--text-main);
@@ -242,7 +373,7 @@
         .btn-checkout:active {
             transform: scale(0.98);
         }
-        
+
         .btn-checkout:disabled {
             background: #B0B0B5;
             cursor: not-allowed;
@@ -274,7 +405,7 @@
             background: white;
             padding: 12px 20px;
             border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             gap: 12px;
@@ -296,13 +427,14 @@
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
-        
+
         .testimonial-track {
             display: flex;
             gap: 12px;
             width: max-content;
             animation: marquee 40s linear infinite;
-            padding: 4px 0; /* space for shadow/border */
+            padding: 4px 0;
+            /* space for shadow/border */
         }
 
         .testimonial-track:hover {
@@ -310,8 +442,13 @@
         }
 
         @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .testimonial-item {
@@ -339,9 +476,11 @@
         .faq-item {
             border-bottom: 1px solid var(--border);
         }
+
         .faq-item:last-child {
             border-bottom: none;
         }
+
         .faq-item summary {
             padding: 16px 0;
             cursor: pointer;
@@ -351,6 +490,7 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .faq-item summary::after {
             content: '\f078';
             font-family: 'Font Awesome 6 Free';
@@ -359,9 +499,11 @@
             font-size: 12px;
             color: var(--text-secondary);
         }
+
         .faq-item[open] summary::after {
             transform: rotate(180deg);
         }
+
         .faq-content {
             padding-bottom: 16px;
             font-size: 14px;
@@ -371,10 +513,17 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .animate-fade-in {
             animation: fadeIn 0.4s ease forwards;
         }
@@ -383,7 +532,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(4px);
             z-index: 1000;
             display: none;
@@ -414,29 +563,34 @@
         .modal-overlay.active .modal-box {
             transform: scale(1);
         }
-        
+
         /* Details Modal (Bottom Sheet style) */
         #detailsModal {
-             align-items: flex-end;
+            align-items: flex-end;
         }
-        #detailsModal .modal-box { /* Override default modal-box for bottom sheet */
+
+        #detailsModal .modal-box {
+            /* Override default modal-box for bottom sheet */
             width: 100%;
-            max-width: 520px; /* Match main container width */
+            max-width: 520px;
+            /* Match main container width */
             margin: 0 auto;
             border-radius: 20px 20px 0 0;
             transform: translateY(100%);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         #detailsModal.active .modal-box {
             transform: translateY(0);
         }
-        
+
         /* Payment Instruction Styles */
         .instruction-step {
             display: flex;
             gap: 12px;
             margin-bottom: 16px;
         }
+
         .step-number {
             width: 24px;
             height: 24px;
@@ -450,7 +604,7 @@
             font-weight: bold;
             flex-shrink: 0;
         }
-        
+
         .copy-btn {
             background: rgba(227, 30, 36, 0.1);
             color: var(--primary);
@@ -460,10 +614,135 @@
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
+            touch-action: manipulation;
+            /* Prevent double-tap zoom */
+        }
+
+        /* Prevent zoom on double-tap for all interactive elements */
+        button,
+        a,
+        input,
+        select,
+        textarea {
+            touch-action: manipulation;
+        }
+
+        /* Smooth momentum scrolling on iOS */
+        .modal-box,
+        .sheet-panel,
+        .testimonial-carousel {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Floating Action Button (FAB) - Mobile optimized */
+        .fab-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 45;
+            display: none;
+            /* Hidden by default, shown via JS when scrolling */
+        }
+
+        .fab-button {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(227, 30, 36, 0.4), 0 8px 24px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .fab-button:active {
+            transform: scale(0.95);
+        }
+
+        .fab-button:hover {
+            box-shadow: 0 6px 16px rgba(227, 30, 36, 0.5), 0 10px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, #FF6B6B 100%);
+            z-index: 100;
+            transition: width 0.1s ease;
+        }
+
+        /* Compact spacing for mobile */
+        @media (max-width: 640px) {
+            .space-y-6>*+* {
+                margin-top: 1.25rem;
+                /* Reduced from 1.5rem */
+            }
+
+            .space-y-4>*+* {
+                margin-top: 0.875rem;
+                /* Reduced from 1rem */
+            }
+
+            .space-y-3>*+* {
+                margin-top: 0.625rem;
+                /* Reduced from 0.75rem */
+            }
+        }
+
+        /* Network Status Indicator */
+        .network-status {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .network-status.show {
+            transform: translateY(0);
+        }
+
+        .network-status.offline {
+            background: linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%);
+            color: white;
+        }
+
+        .network-status.online {
+            background: linear-gradient(135deg, #51CF66 0%, #37B24D 100%);
+            color: white;
         }
     </style>
 </head>
+
 <body>
+
+    <!-- Network Status Indicator -->
+    <div class="network-status" id="networkStatus"></div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Floating Action Button (FAB) -->
+    <div class="fab-container" id="fabContainer">
+        <button class="fab-button" onclick="scrollToCheckout()" aria-label="Scroll to checkout">
+            <i class="fas fa-shopping-cart"></i>
+        </button>
+    </div>
 
     <!-- Notification Toast -->
     <div id="toast" class="toast">
@@ -482,7 +761,8 @@
             <!-- Header -->
             <div class="sticky-header px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png" alt="Adobe Logo" class="w-8 h-8">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png"
+                        alt="Adobe Logo" class="w-8 h-8">
                     <div>
                         <h1 class="font-bold text-lg leading-none">Adobe CC</h1>
                         <p class="text-xs text-gray-500 font-medium">Official Resmi</p>
@@ -496,16 +776,40 @@
             <div class="p-6 pb-24">
                 <!-- Hero / Product Info -->
                 <div class="text-center mb-8 animate-fade-in">
-                    <span class="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-bold mb-3 animate-pulse">
+                    <span
+                        class="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-bold mb-3 animate-pulse">
                         🔥 PROMO TERBATAS
                     </span>
                     <h2 class="text-2xl font-bold mb-2">Upgrade Akun Pribadi</h2>
-                    <p class="text-gray-500 text-sm px-4">Dapatkan akses full Adobe Creative Cloud ke email pribadi Anda. Legal, Aman & Bergaransi.</p>
+                    <p class="text-gray-500 text-sm px-4 mb-4">Dapatkan akses full Adobe Creative Cloud ke email pribadi
+                        Anda. Legal, Aman & Bergaransi.</p>
+
+                    <!-- Countdown Timer for Urgency -->
+                    <div
+                        class="bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-2xl p-4 mx-4 mb-4">
+                        <p class="text-xs text-red-600 font-semibold mb-2">⏰ Promo berakhir dalam:</p>
+                        <div class="flex justify-center gap-2" id="hero-countdown">
+                            <div class="bg-white rounded-lg px-3 py-2 shadow-sm">
+                                <div class="text-2xl font-bold text-red-600" id="hero-hours">23</div>
+                                <div class="text-xs text-gray-500">Jam</div>
+                            </div>
+                            <div class="text-2xl font-bold text-red-600 self-center">:</div>
+                            <div class="bg-white rounded-lg px-3 py-2 shadow-sm">
+                                <div class="text-2xl font-bold text-red-600" id="hero-minutes">59</div>
+                                <div class="text-xs text-gray-500">Menit</div>
+                            </div>
+                            <div class="text-2xl font-bold text-red-600 self-center">:</div>
+                            <div class="bg-white rounded-lg px-3 py-2 shadow-sm">
+                                <div class="text-2xl font-bold text-red-600" id="hero-seconds">59</div>
+                                <div class="text-xs text-gray-500">Detik</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Form -->
                 <form id="orderForm" class="space-y-6">
-                    
+
                     <!-- Package Selection -->
                     <div class="space-y-3 animate-fade-in" style="animation-delay: 0.1s">
                         <div id="package-selection-container" class="space-y-3">
@@ -525,31 +829,39 @@
                     <!-- User Data -->
                     <div class="space-y-4 animate-fade-in" style="animation-delay: 0.2s">
                         <label class="text-sm font-semibold text-gray-700 ml-1">Data Pemesan</label>
-                        
+
                         <div class="input-group">
-                            <input type="text" id="nama" name="nama" class="modern-input" placeholder="Nama Lengkap" required>
-                            <i class="fas fa-user input-icon"></i>
-                        </div>
-                        
-                        <div class="input-group">
-                            <input type="tel" id="whatsapp" name="whatsapp" class="modern-input" placeholder="Nomor WhatsApp (08xx)" required inputmode="numeric">
-                            <i class="fab fa-whatsapp input-icon"></i>
+                            <input type="text" id="nama" name="nama" class="modern-input" placeholder="Nama Lengkap"
+                                required autocomplete="name">
+                            <i class="fas fa-user input-icon" id="nama-icon"></i>
+                            <div class="error-message" id="nama-error"></div>
                         </div>
 
                         <div class="input-group">
-                            <input type="email" id="email" name="email" class="modern-input" placeholder="Email untuk Adobe ID" required>
-                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="tel" id="whatsapp" name="whatsapp" class="modern-input"
+                                placeholder="Nomor WhatsApp (08xx)" required inputmode="numeric" autocomplete="tel">
+                            <i class="fab fa-whatsapp input-icon" id="whatsapp-icon"></i>
+                            <div class="error-message" id="whatsapp-error"></div>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="email" id="email" name="email" class="modern-input"
+                                placeholder="Email untuk Adobe ID" required autocomplete="email">
+                            <i class="fas fa-envelope input-icon" id="email-icon"></i>
+                            <div class="error-message" id="email-error"></div>
                         </div>
                     </div>
 
-                    <div class="bg-red-50 border-l-4 border-red-600 p-3 my-4 rounded-r-lg shadow-sm flex items-center gap-3">
+                    <div
+                        class="bg-red-50 border-l-4 border-red-600 p-3 my-4 rounded-r-lg shadow-sm flex items-center gap-3">
                         <div class="flex-shrink-0">
                             <i class="fas fa-exclamation-circle text-xl text-red-600 animate-pulse"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-red-700 text-sm uppercase">PENTING: Cek Kembali Data Anda!</h3>
                             <p class="text-sm text-gray-700 leading-tight mt-0.5">
-                                Pastikan <strong>No. WhatsApp</strong> & <strong>Email</strong> yang Anda masukkan sudah <strong>BENAR</strong> dan <strong>AKTIF</strong>.
+                                Pastikan <strong>No. WhatsApp</strong> & <strong>Email</strong> yang Anda masukkan sudah
+                                <strong>BENAR</strong> dan <strong>AKTIF</strong>.
                             </p>
                         </div>
                     </div>
@@ -577,25 +889,55 @@
                     </div>
                 </div>
 
-                <!-- Trust Badges -->
-                <div class="mt-8 flex justify-center gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png" class="h-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png" class="h-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png" class="h-6">
+                <!-- Trust Badges & Security -->
+                <div class="mt-8 bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                    <h4 class="text-center text-sm font-bold text-gray-900 mb-4">✓ Pembayaran Aman & Terpercaya</h4>
+
+                    <!-- Payment Methods -->
+                    <div class="flex justify-center gap-3 flex-wrap mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png"
+                            class="h-8 opacity-80 hover:opacity-100 transition-opacity" alt="QRIS">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png"
+                            class="h-8 opacity-80 hover:opacity-100 transition-opacity" alt="BCA">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png"
+                            class="h-8 opacity-80 hover:opacity-100 transition-opacity" alt="GoPay">
+                    </div>
+
+                    <!-- Trust Signals -->
+                    <div class="grid grid-cols-3 gap-2 text-center">
+                        <div class="bg-white rounded-lg p-3 border border-gray-100">
+                            <div class="text-green-600 text-xl mb-1">🔒</div>
+                            <p class="text-xs font-semibold text-gray-700">100% Aman</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-gray-100">
+                            <div class="text-blue-600 text-xl mb-1">✓</div>
+                            <p class="text-xs font-semibold text-gray-700">Garansi Uang Kembali</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-gray-100">
+                            <div class="text-purple-600 text-xl mb-1">⚡</div>
+                            <p class="text-xs font-semibold text-gray-700">Proses Cepat</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <p class="text-center text-xs text-gray-400 mt-8">© 2025 Adobe Official Reseller. All Rights Reserved.</p>
+
+                <p class="text-center text-xs text-gray-400 mt-8">© 2025 Adobe Official Reseller. All Rights Reserved.
+                </p>
             </div>
 
             <!-- Sticky Bottom Bar -->
-            <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40 sm:absolute sm:rounded-b-3xl">
+            <div
+                class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40 sm:absolute sm:rounded-b-3xl">
                 <div class="max-w-[520px] mx-auto flex items-center justify-between gap-4">
-                    <div>
+                    <div class="flex-shrink-0">
                         <p class="text-xs text-gray-500">Total Pembayaran</p>
                         <p class="text-xl font-bold text-red-600" id="total-price-display">Rp 350.xxx</p>
+                        <p class="text-xs text-green-600 font-semibold">💰 Hemat 86%</p>
                     </div>
                     <button type="button" id="submit-btn" class="btn-checkout flex-1" onclick="handleFormSubmit()">
-                        Beli Sekarang <i class="fas fa-arrow-right"></i>
+                        <span class="flex flex-col items-center">
+                            <span class="font-bold">Ambil Promo Sekarang</span>
+                            <span class="text-xs opacity-90">🔥 Stok Terbatas</span>
+                        </span>
                     </button>
                 </div>
             </div>
@@ -603,7 +945,7 @@
 
         <!-- Payment Instruction View (Hidden by default) -->
         <div id="view-payment" class="hidden min-h-screen bg-gray-50 sm:rounded-3xl overflow-hidden">
-             <div class="bg-white p-4 sticky top-0 z-10 border-b flex items-center gap-3 shadow-sm">
+            <div class="bg-white p-4 sticky top-0 z-10 border-b flex items-center gap-3 shadow-sm">
                 <button onclick="backToForm()" class="text-gray-500 hover:text-black">
                     <i class="fas fa-arrow-left text-lg"></i>
                 </button>
@@ -618,19 +960,22 @@
                 </div>
 
                 <!-- Total Amount Card -->
-                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-6 text-center relative overflow-hidden">
+                <div
+                    class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-6 text-center relative overflow-hidden">
                     <div class="absolute top-0 left-0 w-full h-1 bg-gray-200"></div>
                     <p class="text-gray-500 text-sm mb-1">Total yang harus dibayar</p>
                     <div class="flex items-center justify-center gap-2 mb-2">
-                         <h1 class="text-3xl font-bold text-gray-900" id="payment-amount">Rp 350.123</h1>
-                         <button class="copy-btn" onclick="copyText('payment-amount-raw')"><i class="far fa-copy"></i></button>
+                        <h1 class="text-3xl font-bold text-gray-900" id="payment-amount">Rp 350.123</h1>
+                        <button class="copy-btn" onclick="copyText('payment-amount-raw')"><i
+                                class="far fa-copy"></i></button>
                     </div>
-            <p class="text-xs text-red-500 bg-red-50 inline-block px-2 py-1 rounded mb-4">
+                    <p class="text-xs text-red-500 bg-red-50 inline-block px-2 py-1 rounded mb-4">
                         <i class="fas fa-exclamation-circle"></i> Transfer tepat hingga 3 digit terakhir
                     </p>
-             <div id="invoice-details-summary" class="border-t border-gray-100 pt-3 text-xs text-gray-500 flex justify-between items-center">
-                <!-- Populated by JS -->
-             </div>
+                    <div id="invoice-details-summary"
+                        class="border-t border-gray-100 pt-3 text-xs text-gray-500 flex justify-between items-center">
+                        <!-- Populated by JS -->
+                    </div>
                 </div>
 
                 <!-- Payment Details -->
@@ -639,7 +984,7 @@
                         <span class="text-gray-500 text-sm">Metode</span>
                         <img id="payment-logo-result" src="" class="h-6 object-contain">
                     </div>
-                    
+
                     <!-- Dynamic Content based on Payment Method -->
                     <div id="payment-details-content">
                         <!-- Filled by JS -->
@@ -653,30 +998,38 @@
                         <!-- Filled by JS -->
                     </div>
                 </div>
-                
+
                 <!-- OCR Payment Verification -->
-                <div id="ocr-container" class="mt-8 bg-white border-2 border-dashed border-blue-200 rounded-xl p-6 text-center hover:bg-blue-50 transition-colors cursor-pointer relative overflow-hidden group" onclick="document.getElementById('payment-proof-input').click()">
+                <div id="ocr-container"
+                    class="mt-8 bg-white border-2 border-dashed border-blue-200 rounded-xl p-6 text-center hover:bg-blue-50 transition-colors cursor-pointer relative overflow-hidden group"
+                    onclick="document.getElementById('payment-proof-input').click()">
                     <h3 class="font-bold text-gray-900 mb-2">Verifikasi Pembayaran</h3>
-                    
-                    <input type="file" id="payment-proof-input" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
-                    
+
+                    <input type="file" id="payment-proof-input" accept="image/*" class="hidden"
+                        onchange="handleImageUpload(event)">
+
                     <!-- Initial State -->
                     <div id="ocr-initial-state">
-                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                        <div
+                            class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                             <i class="fas fa-cloud-upload-alt text-2xl"></i>
                         </div>
                         <p class="text-sm font-semibold text-gray-700">Klik untuk Upload Bukti Transfer</p>
-                        <p class="text-xs text-gray-400 mt-1">Sistem akan memverifikasi pembayaran anda secara otomatis.</p>
+                        <p class="text-xs text-gray-400 mt-1">Sistem akan memverifikasi pembayaran anda secara otomatis.
+                        </p>
                     </div>
 
                     <!-- Scanning State -->
-                    <div id="ocr-scanning-state" class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center z-10">
+                    <div id="ocr-scanning-state"
+                        class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center z-10">
                         <div class="relative w-16 h-16 mb-4">
-                             <div class="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
-                             <div class="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
-                             <div class="absolute inset-0 flex items-center justify-center text-blue-600">
+                            <div class="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
+                            <div
+                                class="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin">
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center text-blue-600">
                                 <i class="fas fa-search"></i>
-                             </div>
+                            </div>
                         </div>
                         <p class="text-sm font-semibold text-blue-600 animate-pulse">Memverifikasi Bukti...</p>
                     </div>
@@ -684,7 +1037,8 @@
                 </div>
 
                 <!-- Confirmation Button -->
-                <a id="wa-confirm-btn" href="#" target="_blank" class="block mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl text-center shadow-lg shadow-green-200 transition-all">
+                <a id="wa-confirm-btn" href="#" target="_blank"
+                    class="block mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl text-center shadow-lg shadow-green-200 transition-all">
                     <i class="fab fa-whatsapp text-lg mr-2"></i> Konfirmasi Manual (WA)
                 </a>
             </div>
@@ -700,62 +1054,76 @@
 
     <!-- DETAIL BOTTOM SHEET -->
     <div id="sheet" class="fixed inset-0 z-[60] hidden" aria-hidden="true">
-      <div id="sheetBackdrop" class="sheet-backdrop absolute inset-0 bg-slate-900/40 backdrop-blur-[2px]"></div>
+        <div id="sheetBackdrop" class="sheet-backdrop absolute inset-0 bg-slate-900/40 backdrop-blur-[2px]"></div>
 
-      <div class="absolute inset-x-0 bottom-0 mx-auto max-w-xl px-4 pb-[calc(14px+env(safe-area-inset-bottom))]">
-        <div id="sheetPanel"
-          class="sheet-panel no-bounce overflow-hidden rounded-3xl bg-white shadow-[0_24px_90px_-45px_rgba(2,6,23,.65)] ring-1 ring-slate-200"
-          role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+        <div class="absolute inset-x-0 bottom-0 mx-auto max-w-xl px-4 pb-[calc(14px+env(safe-area-inset-bottom))]">
+            <div id="sheetPanel"
+                class="sheet-panel no-bounce overflow-hidden rounded-3xl bg-white shadow-[0_24px_90px_-45px_rgba(2,6,23,.65)] ring-1 ring-slate-200"
+                role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
 
-          <div class="flex items-center justify-between p-4">
-            <div class="min-w-0">
-              <p class="text-[11px] font-semibold tracking-wider text-slate-500">DETAIL PAKET</p>
-              <h4 id="sheetTitle" class="mt-0.5 truncate text-base font-extrabold text-slate-900">Yang kamu dapat</h4>
+                <!-- Swipe Indicator -->
+                <div class="flex justify-center pt-3 pb-1">
+                    <div class="w-10 h-1 bg-gray-300 rounded-full"></div>
+                </div>
+
+                <div class="flex items-center justify-between p-4 pt-2">
+                    <div class="min-w-0">
+                        <p class="text-[11px] font-semibold tracking-wider text-slate-500">DETAIL PAKET</p>
+                        <h4 id="sheetTitle" class="mt-0.5 truncate text-base font-extrabold text-slate-900">Yang kamu
+                            dapat</h4>
+                    </div>
+
+                    <button id="btnClose" type="button"
+                        class="grid h-10 w-10 place-items-center rounded-2xl bg-slate-50 text-slate-700 ring-1 ring-slate-200 active:scale-[.98]"
+                        aria-label="Tutup">✕</button>
+                </div>
+
+                <div class="px-4 pb-4">
+                    <ul id="sheet-features-list" class="space-y-2 text-sm text-slate-700">
+                        <!-- Populated by JS -->
+                    </ul>
+
+                    <button id="btnOk" type="button"
+                        class="mt-4 h-12 w-full rounded-2xl bg-[#E31E24] text-sm font-semibold text-white active:scale-[.99]">
+                        Oke, Mengerti
+                    </button>
+                </div>
             </div>
-
-            <button id="btnClose" type="button"
-              class="grid h-10 w-10 place-items-center rounded-2xl bg-slate-50 text-slate-700 ring-1 ring-slate-200 active:scale-[.98]"
-              aria-label="Tutup">✕</button>
-          </div>
-
-          <div class="px-4 pb-4">
-            <ul id="sheet-features-list" class="space-y-2 text-sm text-slate-700">
-                <!-- Populated by JS -->
-            </ul>
-
-            <button id="btnOk" type="button"
-              class="mt-4 h-12 w-full rounded-2xl bg-[#E31E24] text-sm font-semibold text-white active:scale-[.99]">
-              Oke, Mengerti
-            </button>
-          </div>
         </div>
-      </div>
     </div>
 
     <!-- Modals -->
     <!-- OCR Success Modal -->
     <div id="ocrSuccessModal" class="modal-overlay">
         <div class="modal-box">
-            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-5 text-4xl shadow-sm">
+            <div
+                class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-5 text-4xl shadow-sm">
                 <i class="fas fa-check-circle"></i>
             </div>
             <h3 class="text-2xl font-bold mb-2 text-gray-900">Pembayaran Berhasil!</h3>
-            <p class="text-gray-500 mb-8 px-4 text-sm leading-relaxed">Terima kasih! Bukti pembayaran Anda telah diverifikasi. Pesanan Anda sedang diproses dan akan segera dikirim.</p>
-            <button onclick="closeModal('ocrSuccessModal')" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-green-200">Tutup</button>
+            <p class="text-gray-500 mb-8 px-4 text-sm leading-relaxed">Terima kasih! Bukti pembayaran Anda telah
+                diverifikasi. Pesanan Anda sedang diproses dan akan segera dikirim.</p>
+            <button onclick="closeModal('ocrSuccessModal')"
+                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-green-200">Tutup</button>
         </div>
     </div>
 
     <!-- OCR Failure Modal -->
     <div id="ocrFailureModal" class="modal-overlay">
         <div class="modal-box">
-            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-5 text-4xl shadow-sm">
+            <div
+                class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-5 text-4xl shadow-sm">
                 <i class="fas fa-exclamation-triangle"></i>
             </div>
             <h3 class="text-2xl font-bold mb-2 text-gray-900">Verifikasi Gagal</h3>
-            <p class="text-gray-500 mb-8 px-4 text-sm leading-relaxed" id="ocrFailureMsg">Bukti pembayaran tidak valid atau tidak terbaca. Silakan upload ulang bukti yang jelas.</p>
+            <p class="text-gray-500 mb-8 px-4 text-sm leading-relaxed" id="ocrFailureMsg">Bukti pembayaran tidak valid
+                atau tidak terbaca. Silakan upload ulang bukti yang jelas.</p>
             <div class="flex flex-col gap-3">
-                <button onclick="retryOCRUpload()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-200">Coba Upload Lagi</button>
-                <button onclick="closeModal('ocrFailureModal')" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-3.5 rounded-xl transition-colors">Tutup</button>
+                <button onclick="retryOCRUpload()"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-200">Coba
+                    Upload Lagi</button>
+                <button onclick="closeModal('ocrFailureModal')"
+                    class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-3.5 rounded-xl transition-colors">Tutup</button>
             </div>
         </div>
     </div>
@@ -763,12 +1131,14 @@
     <!-- Info Modal -->
     <div id="infoModal" class="modal-overlay">
         <div class="modal-box">
-            <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+            <div
+                class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                 <i class="fas fa-info"></i>
             </div>
             <h3 class="text-xl font-bold mb-2" id="modalTitle">Judul</h3>
             <p class="text-gray-500 mb-6" id="modalMessage">Pesan</p>
-            <button onclick="closeModal('infoModal')" class="w-full bg-[#E31E24] text-white font-bold py-3 rounded-xl">Mengerti</button>
+            <button onclick="closeModal('infoModal')"
+                class="w-full bg-[#E31E24] text-white font-bold py-3 rounded-xl">Mengerti</button>
         </div>
     </div>
 
@@ -777,7 +1147,8 @@
         <div class="modal-box text-left">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-bold">Detail Fitur</h3>
-                <button onclick="closeModal('featuresModal')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times text-xl"></i></button>
+                <button onclick="closeModal('featuresModal')" class="text-gray-400 hover:text-gray-600"><i
+                        class="fas fa-times text-xl"></i></button>
             </div>
             <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-2" id="features-list-container">
                 <!-- Features filled by JS -->
@@ -788,8 +1159,10 @@
     <!-- Image Modal -->
     <div id="imageModal" class="modal-overlay" onclick="closeModal('imageModal')">
         <div class="relative max-w-[90%] max-h-[90vh]">
-             <img id="modalImageDisplay" src="" class="rounded-xl shadow-2xl max-h-[80vh] w-auto">
-             <button class="absolute top-4 right-4 bg-black/50 text-white rounded-full w-8 h-8 flex items-center justify-center" onclick="closeModal('imageModal')">&times;</button>
+            <img id="modalImageDisplay" src="" class="rounded-xl shadow-2xl max-h-[80vh] w-auto">
+            <button
+                class="absolute top-4 right-4 bg-black/50 text-white rounded-full w-8 h-8 flex items-center justify-center"
+                onclick="closeModal('imageModal')">&times;</button>
         </div>
     </div>
 
@@ -797,16 +1170,16 @@
         // --- DATA & CONFIG ---
         // PENTING: GANTI URL INI DENGAN URL DEPLOYMENT APPS SCRIPT ANDA
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbySaAB2WT0D59UlLyZcXliWvNURCnHcRrqz5P8C2LCQbVdk0hn3Qkl1glGiLJSql_Wh/exec';
-        
+
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
-        
+
         // RESTORED DATA
-        const FIRST_NAMES = [ "Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama" ];
-        
+        const FIRST_NAMES = ["Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama"];
+
         const testimonialImages = [
             "https://pixvid.org/images/2025/11/14/mPYhr.jpg", "https://pixvid.org/images/2025/11/14/mPYyw.jpg", "https://pixvid.org/images/2025/11/14/mPYBE.jpg", "https://pixvid.org/images/2025/11/14/mPi89.jpg", "https://pixvid.org/images/2025/11/14/mPitS.jpg", "https://pixvid.org/images/2025/11/14/mPiM2.jpg", "https://pixvid.org/images/2025/11/14/mPicV.jpg", "https://pixvid.org/images/2025/11/14/mPuZk.jpg", "https://pixvid.org/images/2025/11/14/mPuYg.jpg", "https://pixvid.org/images/2025/11/14/mPuAO.jpg", "https://pixvid.org/images/2025/11/14/mPuLF.jpg", "https://pixvid.org/images/2025/11/14/mPJzn.jpg", "https://pixvid.org/images/2025/11/14/mPJuM.jpg", "https://pixvid.org/images/2025/11/14/mPJGa.jpg", "https://pixvid.org/images/2025/11/14/mPJfB.jpg", "https://pixvid.org/images/2025/11/14/mPKHf.jpg", "https://pixvid.org/images/2025/11/14/mPKEm.jpg", "https://pixvid.org/images/2025/11/14/mPKbz.jpg", "https://pixvid.org/images/2025/11/14/mPEel.jpg", "https://pixvid.org/images/2025/11/14/mPErY.jpg", "https://pixvid.org/images/2025/11/14/mPEoo.jpg", "https://pixvid.org/images/2025/11/14/mPEXd.jpg", "https://pixvid.org/images/2025/11/14/mPnUb.jpg", "https://pixvid.org/images/2025/11/14/mPnlN.jpg", "https://pixvid.org/images/2025/11/14/mPn6v.jpg", "https://pixvid.org/images/2025/11/14/mPn25.jpg", "https://pixvid.org/images/2025/11/14/mPo57.jpg", "https://pixvid.org/images/2025/11/14/mPoqT.jpg", "https://pixvid.org/images/2025/11/14/mPo9i.jpg"
         ];
-        
+
         const fullFeaturesList = [
             "Akses 20+ Aplikasi Adobe (Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, dll)",
             "Penyimpanan Cloud 100GB untuk backup file project",
@@ -822,7 +1195,7 @@
             "Bisa pindah device (Logout/Login)",
             "Full Garansi selama durasi langganan"
         ];
-        
+
         const faqList = [
             { q: "Apakah produk ini resmi?", a: "Ya, produk yang kami tawarkan 100% original dan legal. Aktivasi dilakukan melalui undangan resmi dari Adobe ke email Anda." },
             { q: "Bagaimana proses aktivasinya?", a: "Setelah pembayaran, kami akan mengirimkan undangan ke email Adobe Anda. Anda hanya perlu menerima undangan tersebut untuk mengaktifkan lisensi Creative Cloud." },
@@ -875,7 +1248,7 @@
             'tutanota.com', 'gmx.com', 'gmx.de', 'mail.com', 'yandex.ru',
             'yandex.com', 'fastmail.com', 'hey.com'
         ];
-    
+
         function isInvalidPattern(nomor) {
             if (blacklistedNumbers.includes(nomor)) return true;
             const numberPart = nomor.substring(2);
@@ -891,7 +1264,7 @@
             if (/(..)\1\1/.test(numberPart)) return true;
             return false;
         }
-    
+
         function getOperatorFromNumber(nomor) {
             const prefix = nomor.substring(0, 4);
             for (const operator in operatorPrefixes) {
@@ -901,28 +1274,28 @@
             }
             return null;
         }
-    
+
         function validatePhoneNumber(nomorHp) {
             const genericError = { isValid: false, message: 'Silahkan isi dengan nomor yang benar' };
-    
+
             if (nomorHp.length < 10) {
                 return genericError;
             }
-    
+
             const operator = getOperatorFromNumber(nomorHp);
             if (!operator) {
                 return genericError;
             }
-    
+
             const maxLength = operator === 'Tri (3)' ? 13 : 12;
             if (nomorHp.length > maxLength) {
                 return genericError;
             }
-    
+
             if (isInvalidPattern(nomorHp)) {
                 return genericError;
             }
-    
+
             return { isValid: true, message: 'Nomor valid.' };
         }
         let currentPackage = 'yearly';
@@ -933,13 +1306,22 @@
 
         // --- INIT ---
         document.addEventListener('DOMContentLoaded', () => {
+            // iOS Viewport Height Fix
+            const setVH = () => {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            };
+            setVH();
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', setVH);
+
             renderPackageCards();
             renderPaymentMethods();
             renderTestimonials();
             renderFAQ();
             updateTotalPrice();
             initNotifications();
-            
+
             // Input formatting
             const whatsappInput = document.getElementById('whatsapp');
             whatsappInput.addEventListener('input', (e) => {
@@ -954,11 +1336,11 @@
 
             const formatCurrency = (amount) => `Rp ${amount.toLocaleString('id-ID')}`;
             const pkg = packages[currentPackage];
-            
+
             // Determine styles for switcher based on selection
             const isMonthly = currentPackage === 'monthly';
             const isYearly = currentPackage === 'yearly';
-            
+
             const btnClassBase = "flex-1 py-2 text-xs font-semibold rounded-lg transition-all duration-200";
             const btnClassActive = "bg-white text-red-600 shadow-sm ring-1 ring-black/5";
             const btnClassInactive = "text-gray-500 hover:text-gray-700 hover:bg-gray-50";
@@ -969,7 +1351,7 @@
             start.setHours(3, 0, 0, 0);
             if (now < start) start.setDate(start.getDate() - 1);
             const elapsed = now - start;
-            const duration = 23 * 60 * 60 * 1000; 
+            const duration = 23 * 60 * 60 * 1000;
             let p = 100 - (elapsed / duration) * 98;
             const quota = Math.floor(Math.max(2, Math.min(100, p)));
 
@@ -1037,12 +1419,12 @@
                   </p>
                 </article>
             `;
-            
+
             initSheetLogic();
         }
 
         // Global switcher function
-        window.switchPackage = function(pkgId) {
+        window.switchPackage = function (pkgId) {
             if (currentPackage === pkgId) return;
             selectPackage(pkgId); // Updates state and re-renders
         };
@@ -1050,33 +1432,35 @@
         let sheetInitialized = false;
         function initSheetLogic() {
             const sheet = document.getElementById("sheet");
-            if(!sheet) return;
+            if (!sheet) return;
             const btnDetail = document.getElementById("btnDetail");
-            
-            function lockScroll(lock){
-              document.documentElement.style.overflow = lock ? "hidden" : "";
-              document.body.style.overflow = lock ? "hidden" : "";
+
+            function lockScroll(lock) {
+                document.documentElement.style.overflow = lock ? "hidden" : "";
+                document.body.style.overflow = lock ? "hidden" : "";
             }
 
-            function openSheet(){
-              if (!sheet.classList.contains("hidden") && sheet.classList.contains("sheet-open")) return;
-              
-              sheet.classList.remove("hidden");
-              sheet.setAttribute("aria-hidden", "false");
-              requestAnimationFrame(() => sheet.classList.add("sheet-open"));
-              lockScroll(true);
+            function openSheet() {
+                if (!sheet.classList.contains("hidden") && sheet.classList.contains("sheet-open")) return;
+
+                sheet.classList.remove("hidden");
+                sheet.setAttribute("aria-hidden", "false");
+                requestAnimationFrame(() => sheet.classList.add("sheet-open"));
+                lockScroll(true);
+                hapticFeedback('light'); // Haptic on open
             }
 
-            if(btnDetail) btnDetail.addEventListener("click", openSheet);
+            if (btnDetail) btnDetail.addEventListener("click", openSheet);
 
             if (sheetInitialized) return;
-            
+
             const sheetBackdrop = document.getElementById("sheetBackdrop");
             const btnClose = document.getElementById("btnClose");
             const btnOk = document.getElementById("btnOk");
-            
+            const sheetPanel = document.getElementById("sheetPanel");
+
             const listContainer = document.getElementById("sheet-features-list");
-            if(listContainer && typeof fullFeaturesList !== 'undefined') {
+            if (listContainer && typeof fullFeaturesList !== 'undefined') {
                 listContainer.innerHTML = fullFeaturesList.map(feat => `
                     <li class="flex gap-2">
                         <span class="mt-0.5 grid h-5 w-5 place-items-center rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs shrink-0">✓</span>
@@ -1085,24 +1469,63 @@
                 `).join('');
             }
 
-            function closeSheet(){
-              const isActuallyOpen = sheet.classList.contains("sheet-open");
-              if (!isActuallyOpen) return;
-              
-              sheet.classList.remove("sheet-open");
-              sheet.setAttribute("aria-hidden", "true");
-              setTimeout(() => sheet.classList.add("hidden"), 230);
-              lockScroll(false);
+            function closeSheet() {
+                const isActuallyOpen = sheet.classList.contains("sheet-open");
+                if (!isActuallyOpen) return;
+
+                hapticFeedback('light'); // Haptic on close
+                sheet.classList.remove("sheet-open");
+                sheet.setAttribute("aria-hidden", "true");
+                setTimeout(() => sheet.classList.add("hidden"), 230);
+                lockScroll(false);
             }
-            
-            if(btnClose) btnClose.addEventListener("click", closeSheet);
-            if(btnOk) btnOk.addEventListener("click", closeSheet);
-            if(sheetBackdrop) sheetBackdrop.addEventListener("click", closeSheet);
+
+            // Swipe-to-close gesture for bottom sheet
+            let startY = 0;
+            let currentY = 0;
+            let isDragging = false;
+
+            sheetPanel.addEventListener('touchstart', (e) => {
+                startY = e.touches[0].clientY;
+                isDragging = true;
+                sheetPanel.style.transition = 'none';
+            }, { passive: true });
+
+            sheetPanel.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                currentY = e.touches[0].clientY;
+                const deltaY = currentY - startY;
+
+                // Only allow downward swipe
+                if (deltaY > 0) {
+                    sheetPanel.style.transform = `translateY(${deltaY}px)`;
+                }
+            }, { passive: true });
+
+            sheetPanel.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                isDragging = false;
+
+                const deltaY = currentY - startY;
+                sheetPanel.style.transition = '';
+
+                // Close if swiped down more than 100px
+                if (deltaY > 100) {
+                    closeSheet();
+                } else {
+                    // Snap back
+                    sheetPanel.style.transform = '';
+                }
+            }, { passive: true });
+
+            if (btnClose) btnClose.addEventListener("click", closeSheet);
+            if (btnOk) btnOk.addEventListener("click", closeSheet);
+            if (sheetBackdrop) sheetBackdrop.addEventListener("click", closeSheet);
 
             document.addEventListener("keydown", (e) => {
-              if (e.key === "Escape" && !sheet.classList.contains("hidden")) closeSheet();
+                if (e.key === "Escape" && !sheet.classList.contains("hidden")) closeSheet();
             });
-            
+
             sheetInitialized = true;
         }
 
@@ -1110,16 +1533,39 @@
             const container = document.getElementById('testimonial-container');
             // Duplicate list twice for smoother infinite loop on wide screens
             const images = [...testimonialImages, ...testimonialImages];
-            
+
             container.innerHTML = `
                 <div class="testimonial-track">
-                    ${images.map(url => `
+                    ${images.map((url, idx) => `
                         <div class="testimonial-item" onclick="openImageModal('${url}')">
-                            <img src="${url}" alt="Testimoni" loading="lazy">
+                            <img src="${url}" alt="Testimoni" loading="lazy" decoding="async">
                         </div>
                     `).join('')}
                 </div>
             `;
+
+            // Enhanced lazy loading with Intersection Observer for mobile
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                            }
+                            observer.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px' // Load images 50px before they enter viewport
+                });
+
+                // Observe all testimonial images
+                container.querySelectorAll('.testimonial-item img').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
         }
 
         function renderFAQ() {
@@ -1131,7 +1577,7 @@
                 </details>
             `).join('');
         }
-        
+
         function showFeaturesModal() {
             const container = document.getElementById('features-list-container');
             container.innerHTML = `<ul class="space-y-3">
@@ -1142,7 +1588,7 @@
                     </li>
                 `).join('')}
             </ul>`;
-            
+
             document.getElementById('featuresModal').classList.add('active');
         }
 
@@ -1154,17 +1600,23 @@
         function selectPackage(pkgId) {
             currentPackage = pkgId;
             document.getElementById('selectedPackage').value = pkgId;
-            
+
+            // Haptic feedback for selection
+            hapticFeedback('light');
+
             // Re-render the package cards to update the 'selected' state visually
             renderPackageCards();
-            
+
             updateTotalPrice();
         }
 
         function selectPayment(paymentId) {
             currentPayment = paymentId;
             document.getElementById('selectedPayment').value = paymentId;
-            
+
+            // Haptic feedback for selection
+            hapticFeedback('light');
+
             // Visual Update
             document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
             document.getElementById(`pay-opt-${paymentId}`).classList.add('selected');
@@ -1196,7 +1648,7 @@
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             if (!name) return { valid: false, msg: 'Nama wajib diisi', element: nameInput };
-            
+
             const phoneValidationResult = validatePhoneNumber(wa);
             if (!phoneValidationResult.isValid) {
                 return { valid: false, msg: phoneValidationResult.message, element: waInput };
@@ -1210,13 +1662,14 @@
             if (!allowedEmailDomains.includes(domain)) {
                 return { valid: false, msg: 'Domain email tidak diizinkan. Harap gunakan email pribadi.', element: emailInput };
             }
-            
+
             return { valid: true };
         }
 
         async function handleFormSubmit() {
             const validation = validateForm();
             if (!validation.valid) {
+                hapticFeedback('error'); // Error vibration
                 showModal('Data Belum Lengkap', validation.msg);
                 if (validation.element) {
                     validation.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1225,6 +1678,7 @@
                 return;
             }
 
+            hapticFeedback('medium'); // Submit vibration
             const btn = document.getElementById('submit-btn');
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Memproses...';
@@ -1238,7 +1692,7 @@
             const rL = () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 26));
             const rD = () => Math.floor(Math.random() * 10);
             const paymentId = `INV-ADOBE-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
-            
+
             // Prepare Object for Google Script
             const dataToSend = {
                 nama: formData.get('nama'),
@@ -1251,7 +1705,7 @@
                 nomorRekening: payment.number || '-',
                 sheetName: formData.get('sheetName')
             };
-            
+
             // Send to Google Script
             try {
                 await fetch(SCRIPT_URL, {
@@ -1260,10 +1714,10 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dataToSend)
                 });
-                
+
                 // Show Payment Page
                 showPaymentPage(dataToSend, payment, totalPrice);
-                
+
             } catch (error) {
                 console.error('Error:', error);
                 showModal('Error', 'Gagal memproses pesanan. Silakan coba lagi.');
@@ -1308,16 +1762,16 @@
 
             // Generate WA Link
             const waMsg = `Halo, saya sudah transfer untuk pesanan:\n` +
-                          `No Invoice: ${data.idPembayaran}\n` +
-                          `Email: ${data.email}\n` +
-                          `Total: ${data.totalTransfer}\n\n` +
-                          `Mohon segera diproses.`;
+                `No Invoice: ${data.idPembayaran}\n` +
+                `Email: ${data.email}\n` +
+                `Total: ${data.totalTransfer}\n\n` +
+                `Mohon segera diproses.`;
             document.getElementById('wa-confirm-btn').href = `https://wa.me/6285602152097?text=${encodeURIComponent(waMsg)}`;
 
             // Render Payment Details
             const detailsContainer = document.getElementById('payment-details-content');
             const instructionsContainer = document.getElementById('instruction-steps');
-            
+
             // Raw amount for copy
             const rawAmountInputCheck = document.getElementById('payment-amount-raw');
             if (rawAmountInputCheck) {
@@ -1335,7 +1789,7 @@
                 try {
                     const qrisStatic = paymentMethod.number;
                     const qrisDynamic = createDynamicQris(qrisStatic, amount);
-                    
+
                     detailsContainer.innerHTML = `
                         <div class="flex flex-col items-center">
                             <div id="qrcode-canvas" class="p-2 border rounded-lg mb-4 bg-white"></div>
@@ -1345,7 +1799,7 @@
                             <p class="text-xs text-center text-gray-500 mt-4">Scan QR Code diatas dengan aplikasi pembayaran apa saja.</p>
                         </div>
                     `;
-                    
+
                     setTimeout(() => {
                         const qrContainer = document.getElementById('qrcode-canvas');
                         qrContainer.innerHTML = ''; // Clear previous QR
@@ -1393,7 +1847,7 @@
                     </div>
                 `;
 
-                 instructionsContainer.innerHTML = `
+                instructionsContainer.innerHTML = `
                         <div class="instruction-step"><div class="step-number">1</div><p class="text-sm">Buka aplikasi bank atau e-wallet Anda.</p></div>
                         <div class="instruction-step"><div class="step-number">2</div><p class="text-sm">Pilih menu Transfer ke ${paymentMethod.name}.</p></div>
                         <div class="instruction-step"><div class="step-number">3</div><p class="text-sm">Masukkan nomor rekening: <strong>${paymentMethod.number}</strong></p></div>
@@ -1409,7 +1863,23 @@
         }
 
         // --- UTILS ---
-        
+
+        // Haptic Feedback for Mobile
+        function hapticFeedback(type = 'light') {
+            // Check if Vibration API is supported
+            if (!navigator.vibrate) return;
+
+            const patterns = {
+                light: 10,      // Quick tap
+                medium: 20,     // Button press
+                heavy: 30,      // Important action
+                success: [10, 50, 10], // Success pattern
+                error: [20, 100, 20]   // Error pattern
+            };
+
+            navigator.vibrate(patterns[type] || patterns.light);
+        }
+
         function startCountdown() {
             if (countdownInterval) clearInterval(countdownInterval);
             countdownInterval = setInterval(() => {
@@ -1426,8 +1896,8 @@
                 const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const s = Math.floor((distance % (1000 * 60)) / 1000);
 
-                document.getElementById('countdown').innerHTML = 
-                    `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+                document.getElementById('countdown').innerHTML =
+                    `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
             }, 1000);
         }
 
@@ -1437,6 +1907,7 @@
             if (element) text = element.value || element.innerText;
 
             navigator.clipboard.writeText(text).then(() => {
+                hapticFeedback('success'); // Success vibration
                 showModal('Berhasil', 'Teks berhasil disalin ke clipboard');
             }, () => {
                 // Fallback
@@ -1455,6 +1926,7 @@
         }
 
         function showModal(title, msg) {
+            hapticFeedback('light'); // Modal open vibration
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalMessage').innerText = msg;
             const modal = document.getElementById('infoModal');
@@ -1464,15 +1936,15 @@
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
         }
-        
+
         // Notifications Logic (RESTORED RANDOM NAMES)
-        
+
         function initNotifications() {
             setInterval(() => {
                 const name = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
                 const toast = document.getElementById('toast');
                 document.getElementById('toast-name').innerText = name;
-                
+
                 toast.classList.add('show');
                 setTimeout(() => toast.classList.remove('show'), 4000);
             }, 15000 + Math.random() * 10000);
@@ -1484,14 +1956,14 @@
             const nominalStr = String(Math.round(nominal));
             const amountLength = nominalStr.length < 10 ? "0" + nominalStr.length : nominalStr.length.toString();
             const amountPart = "54" + amountLength + nominalStr;
-            
+
             if (qrisModified.includes("5802ID")) {
                 let parts = qrisModified.split("5802ID");
                 qrisModified = parts[0] + amountPart + "5802ID" + parts[1];
             } else {
-                 // Fallback
+                // Fallback
             }
-            
+
             // Recalculate CRC
             const crc = crc16ccitt(qrisModified);
             return qrisModified + crc;
@@ -1559,17 +2031,38 @@
         }
 
         function showDetailsModal(event) {
-            if(event) event.preventDefault();
+            if (event) event.preventDefault();
             const modalContent = document.getElementById('detailsModalContent');
             const modal = document.getElementById('detailsModal');
-            
+
             modalContent.innerHTML = getDetailsModalHTML(currentOrderDetails);
             modal.classList.add('active');
         }
 
         // --- OCR & PAYMENT VERIFICATION LOGIC ---
-        
+
         let selectedFile = null;
+        let tesseractLoaded = false;
+        let tesseractLoadingPromise = null;
+
+        // Lazy load Tesseract.js only when needed
+        async function loadTesseract() {
+            if (tesseractLoaded) return Promise.resolve();
+            if (tesseractLoadingPromise) return tesseractLoadingPromise;
+
+            tesseractLoadingPromise = new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+                script.onload = () => {
+                    tesseractLoaded = true;
+                    resolve();
+                };
+                script.onerror = () => reject(new Error('Failed to load Tesseract'));
+                document.head.appendChild(script);
+            });
+
+            return tesseractLoadingPromise;
+        }
 
         async function handleImageUpload(event) {
             const file = event.target.files[0];
@@ -1590,22 +2083,25 @@
             // Keep initialState visible to maintain container height/width
             // initialState.classList.add('hidden'); 
             scanningState.classList.remove('hidden');
-            
+
             // Timeout safety
             let worker = null;
             const timeoutId = setTimeout(() => {
                 if (worker) worker.terminate();
                 showOCRFailure("Waktu habis. Silakan coba lagi.");
-            }, 60000); 
+            }, 60000);
 
             try {
+                // Lazy load Tesseract if not already loaded
+                await loadTesseract();
+
                 if (typeof Tesseract === 'undefined') throw new Error("Library missing");
 
                 // Initialize Tesseract (Silent Mode)
                 worker = await Tesseract.createWorker("eng", 1, {
-                    logger: () => {} // Disable console logs for pro look
+                    logger: () => { } // Disable console logs for pro look
                 });
-                
+
                 const { data: { text } } = await worker.recognize(selectedFile);
                 await worker.terminate();
                 worker = null;
@@ -1620,7 +2116,7 @@
 
                 const digitsOnly = cleanedText.replace(/[^0-9]/g, '');
                 const expectedAmount = currentOrderDetails.totalPrice.toString();
-                
+
                 if (digitsOnly.includes(expectedAmount)) {
                     onPaymentSuccess();
                 } else {
@@ -1630,7 +2126,7 @@
 
             } catch (error) {
                 clearTimeout(timeoutId);
-                console.error(error); 
+                console.error(error);
                 showOCRFailure("Gagal memproses gambar. Pastikan format gambar benar (JPG/PNG) dan ukuran tidak terlalu besar.");
             } finally {
                 if (worker) await worker.terminate();
@@ -1641,47 +2137,47 @@
             // Reset Box UI
             const scanningState = document.getElementById('ocr-scanning-state');
             const initialState = document.getElementById('ocr-initial-state');
-            
+
             scanningState.classList.add('hidden');
             initialState.classList.remove('hidden'); // Return to upload state
-            
+
             // Show Failure Modal
             document.getElementById('ocrFailureMsg').innerText = msg;
             document.getElementById('ocrFailureModal').classList.add('active');
         }
-        
+
         function retryOCRUpload() {
             closeModal('ocrFailureModal');
             document.getElementById('payment-proof-input').click();
         }
 
         function onPaymentSuccess() {
-             const scanningState = document.getElementById('ocr-scanning-state');
-             const initialState = document.getElementById('ocr-initial-state');
-             const container = document.getElementById('ocr-container');
+            const scanningState = document.getElementById('ocr-scanning-state');
+            const initialState = document.getElementById('ocr-initial-state');
+            const container = document.getElementById('ocr-container');
 
-             // Stop spinner but don't show result inline
-             scanningState.classList.add('hidden');
-             
-             // Show success styling on the box
-             container.classList.add('border-green-500', 'bg-green-50');
-             container.classList.remove('border-blue-200', 'hover:bg-blue-50', 'cursor-pointer');
-             container.onclick = null; 
-             
-             // Change initial state icon/text to success statically (optional, but clean)
-             initialState.innerHTML = `
+            // Stop spinner but don't show result inline
+            scanningState.classList.add('hidden');
+
+            // Show success styling on the box
+            container.classList.add('border-green-500', 'bg-green-50');
+            container.classList.remove('border-blue-200', 'hover:bg-blue-50', 'cursor-pointer');
+            container.onclick = null;
+
+            // Change initial state icon/text to success statically (optional, but clean)
+            initialState.innerHTML = `
                 <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
                     <i class="fas fa-check"></i>
                 </div>
                 <p class="text-sm font-bold text-green-700">Bukti Terkirim</p>
              `;
-             initialState.classList.remove('hidden');
+            initialState.classList.remove('hidden');
 
-             // Show Success Modal
-             document.getElementById('ocrSuccessModal').classList.add('active');
-             
-             // Send confirmation to backend
-             sendPaymentConfirmationToBackend();
+            // Show Success Modal
+            document.getElementById('ocrSuccessModal').classList.add('active');
+
+            // Send confirmation to backend
+            sendPaymentConfirmationToBackend();
         }
 
         async function sendPaymentConfirmationToBackend() {
@@ -1694,7 +2190,7 @@
             console.log("Sending confirmation payload:", payload);
 
             try {
-                 await fetch(SCRIPT_URL, {
+                await fetch(SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
@@ -1706,6 +2202,1010 @@
             }
         }
 
+        // Scroll Progress & FAB Visibility
+        function initScrollEffects() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const fabContainer = document.getElementById('fabContainer');
+            const stickyBottomBar = document.querySelector('.fixed.bottom-0');
+
+            let ticking = false;
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        updateScrollEffects();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            function updateScrollEffects() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+
+                // Update progress bar
+                if (scrollProgress) {
+                    scrollProgress.style.width = scrollPercent + '%';
+                }
+
+                // Show/hide FAB based on scroll position and bottom bar visibility
+                if (fabContainer && stickyBottomBar) {
+                    const bottomBarRect = stickyBottomBar.getBoundingClientRect();
+                    const isBottomBarVisible = bottomBarRect.top < window.innerHeight;
+
+                    // Show FAB when scrolled down and bottom bar is not visible
+                    if (scrollTop > 300 && !isBottomBarVisible) {
+                        fabContainer.style.display = 'block';
+                    } else {
+                        fabContainer.style.display = 'none';
+                    }
+                }
+            }
+        }
+
+        // Scroll to checkout section
+        function scrollToCheckout() {
+            hapticFeedback('medium');
+            const checkoutSection = document.getElementById('submit-btn');
+            if (checkoutSection) {
+                checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Initialize scroll effects on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initScrollEffects);
+        } else {
+            initScrollEffects();
+        }
+
+        // Real-time Form Validation
+        function initFormValidation() {
+            const namaInput = document.getElementById('nama');
+            const whatsappInput = document.getElementById('whatsapp');
+            const emailInput = document.getElementById('email');
+
+            // Nama validation
+            namaInput.addEventListener('input', debounce(() => {
+                const value = namaInput.value.trim();
+                const icon = document.getElementById('nama-icon');
+                const errorMsg = document.getElementById('nama-error');
+
+                if (value.length === 0) {
+                    resetInputState(namaInput, icon, errorMsg);
+                } else if (value.length < 3) {
+                    setInputError(namaInput, icon, errorMsg, 'Nama terlalu pendek (min. 3 karakter)');
+                } else {
+                    setInputSuccess(namaInput, icon, errorMsg);
+                    // Auto-focus to next field
+                    whatsappInput.focus();
+                }
+            }, 500));
+
+            // WhatsApp validation
+            whatsappInput.addEventListener('input', debounce(() => {
+                const value = whatsappInput.value.trim();
+                const icon = document.getElementById('whatsapp-icon');
+                const errorMsg = document.getElementById('whatsapp-error');
+
+                if (value.length === 0) {
+                    resetInputState(whatsappInput, icon, errorMsg);
+                } else {
+                    const validation = validatePhoneNumber(value);
+                    if (validation.isValid) {
+                        setInputSuccess(whatsappInput, icon, errorMsg);
+                        // Auto-focus to next field
+                        emailInput.focus();
+                    } else {
+                        setInputError(whatsappInput, icon, errorMsg, validation.message);
+                    }
+                }
+            }, 500));
+
+            // Email validation with domain suggestions
+            emailInput.addEventListener('input', debounce(() => {
+                const value = emailInput.value.trim();
+                const icon = document.getElementById('email-icon');
+                const errorMsg = document.getElementById('email-error');
+
+                if (value.length === 0) {
+                    resetInputState(emailInput, icon, errorMsg);
+                } else {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        setInputError(emailInput, icon, errorMsg, 'Format email tidak valid');
+                    } else {
+                        const domain = value.split('@')[1];
+                        if (!allowedEmailDomains.includes(domain)) {
+                            setInputError(emailInput, icon, errorMsg, 'Gunakan email pribadi (Gmail, Yahoo, dll)');
+                        } else {
+                            setInputSuccess(emailInput, icon, errorMsg);
+                        }
+                    }
+                }
+            }, 500));
+
+            // Email domain autocomplete suggestion
+            emailInput.addEventListener('keyup', (e) => {
+                const value = emailInput.value;
+                if (value.includes('@') && !value.includes('.')) {
+                    const parts = value.split('@');
+                    if (parts[1] && parts[1].length > 0) {
+                        const typed = parts[1].toLowerCase();
+                        const suggestions = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com'];
+                        const match = suggestions.find(s => s.startsWith(typed));
+                        if (match && e.key !== 'Backspace') {
+                            // Show suggestion (could be enhanced with datalist)
+                            console.log('Suggestion:', match);
+                        }
+                    }
+                }
+            });
+        }
+
+        // Validation helper functions
+        function setInputSuccess(input, icon, errorMsg) {
+            input.classList.remove('invalid');
+            input.classList.add('valid');
+            icon.classList.remove('fa-user', 'fa-whatsapp', 'fa-envelope', 'error');
+            icon.classList.add('fa-check-circle', 'success');
+            errorMsg.classList.remove('show');
+            hapticFeedback('light');
+        }
+
+        function setInputError(input, icon, errorMsg, message) {
+            input.classList.remove('valid');
+            input.classList.add('invalid');
+            icon.classList.remove('fa-check-circle', 'success');
+            icon.classList.add('fa-exclamation-circle', 'error');
+            errorMsg.textContent = message;
+            errorMsg.classList.add('show');
+        }
+
+        function resetInputState(input, icon, errorMsg) {
+            input.classList.remove('valid', 'invalid');
+            icon.classList.remove('fa-check-circle', 'fa-exclamation-circle', 'success', 'error');
+            // Restore original icon
+            if (input.id === 'nama') icon.className = 'fas fa-user input-icon';
+            if (input.id === 'whatsapp') icon.className = 'fab fa-whatsapp input-icon';
+            if (input.id === 'email') icon.className = 'fas fa-envelope input-icon';
+            errorMsg.classList.remove('show');
+        }
+
+        // Debounce utility
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Initialize form validation on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFormValidation);
+        } else {
+            initFormValidation();
+        }
+
+        // Hero Countdown Timer (Daily Reset at 23:59)
+        function initHeroCountdown() {
+            const hoursEl = document.getElementById('hero-hours');
+            const minutesEl = document.getElementById('hero-minutes');
+            const secondsEl = document.getElementById('hero-seconds');
+
+            if (!hoursEl || !minutesEl || !secondsEl) return;
+
+            function updateHeroCountdown() {
+                const now = new Date();
+                const endOfDay = new Date();
+                endOfDay.setHours(23, 59, 59, 999);
+
+                const diff = endOfDay - now;
+
+                if (diff <= 0) {
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                hoursEl.textContent = String(hours).padStart(2, '0');
+                minutesEl.textContent = String(minutes).padStart(2, '0');
+                secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateHeroCountdown();
+            setInterval(updateHeroCountdown, 1000);
+        }
+
+        // Initialize hero countdown on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initHeroCountdown);
+        } else {
+            initHeroCountdown();
+        }
+
+        // ==========================================
+        // ANALYTICS & TRACKING SYSTEM
+        // ==========================================
+
+        const Analytics = {
+            events: [],
+            scrollDepths: [25, 50, 75, 100],
+            trackedScrollDepths: new Set(),
+
+            // Track event
+            track(eventName, data = {}) {
+                const event = {
+                    name: eventName,
+                    timestamp: new Date().toISOString(),
+                    data: data,
+                    url: window.location.href,
+                    userAgent: navigator.userAgent,
+                    viewport: {
+                        width: window.innerWidth,
+                        height: window.innerHeight
+                    }
+                };
+
+                this.events.push(event);
+
+                // Send to Facebook Pixel if available
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', eventName, data);
+                }
+
+                // Store in localStorage for later analysis
+                this.saveToStorage();
+            },
+
+            // Save events to localStorage
+            saveToStorage() {
+                try {
+                    const stored = JSON.parse(localStorage.getItem('analytics_events') || '[]');
+                    stored.push(...this.events);
+                    // Keep only last 100 events
+                    const trimmed = stored.slice(-100);
+                    localStorage.setItem('analytics_events', JSON.stringify(trimmed));
+                    this.events = [];
+                } catch (e) {
+                    console.error('Failed to save analytics:', e);
+                }
+            },
+
+            // Initialize all tracking
+            init() {
+                this.trackPageView();
+                this.trackScrollDepth();
+                this.trackFormInteractions();
+                this.trackClicks();
+                this.trackPerformance();
+                this.trackErrors();
+            },
+
+            // Track page view
+            trackPageView() {
+                this.track('PageView', {
+                    referrer: document.referrer,
+                    loadTime: performance.now()
+                });
+            },
+
+            // Track scroll depth
+            trackScrollDepth() {
+                let ticking = false;
+
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                            const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+
+                            this.scrollDepths.forEach(depth => {
+                                if (scrollPercent >= depth && !this.trackedScrollDepths.has(depth)) {
+                                    this.trackedScrollDepths.add(depth);
+                                    this.track('ScrollDepth', { depth: depth + '%' });
+                                }
+                            });
+
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
+            },
+
+            // Track form interactions
+            trackFormInteractions() {
+                const fields = ['nama', 'whatsapp', 'email'];
+                const fieldInteractions = {};
+
+                fields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field) return;
+
+                    // Track field focus
+                    field.addEventListener('focus', () => {
+                        if (!fieldInteractions[fieldId]) {
+                            fieldInteractions[fieldId] = { focused: true, completed: false };
+                            this.track('FormFieldFocus', { field: fieldId });
+                        }
+                    });
+
+                    // Track field completion
+                    field.addEventListener('blur', () => {
+                        if (field.value.trim().length > 0) {
+                            fieldInteractions[fieldId].completed = true;
+                            this.track('FormFieldComplete', {
+                                field: fieldId,
+                                length: field.value.length
+                            });
+                        } else if (fieldInteractions[fieldId]?.focused) {
+                            this.track('FormFieldAbandoned', { field: fieldId });
+                        }
+                    });
+                });
+
+                // Track form submission attempts
+                const submitBtn = document.getElementById('submit-btn');
+                if (submitBtn) {
+                    submitBtn.addEventListener('click', () => {
+                        const completedFields = Object.keys(fieldInteractions).filter(
+                            k => fieldInteractions[k]?.completed
+                        );
+                        this.track('FormSubmitAttempt', {
+                            completedFields: completedFields,
+                            totalFields: fields.length
+                        });
+                    });
+                }
+            },
+
+            // Track clicks
+            trackClicks() {
+                // Track package selection
+                document.addEventListener('click', (e) => {
+                    const target = e.target.closest('button, a, .package-card, .payment-option');
+                    if (!target) return;
+
+                    let eventName = 'Click';
+                    let eventData = {
+                        element: target.tagName,
+                        text: target.textContent?.trim().substring(0, 50)
+                    };
+
+                    // Specific tracking for important elements
+                    if (target.closest('.package-card')) {
+                        eventName = 'PackageSelected';
+                        eventData.package = target.textContent.includes('1 Bulan') ? 'monthly' : 'yearly';
+                    } else if (target.closest('.payment-option')) {
+                        eventName = 'PaymentMethodSelected';
+                        eventData.method = target.querySelector('span')?.textContent;
+                    } else if (target.id === 'submit-btn') {
+                        eventName = 'CheckoutButtonClick';
+                    } else if (target.closest('.testimonial-item')) {
+                        eventName = 'TestimonialClick';
+                    } else if (target.id === 'btnDetail') {
+                        eventName = 'DetailButtonClick';
+                    }
+
+                    this.track(eventName, eventData);
+                }, { passive: true });
+            },
+
+            // Track performance metrics
+            trackPerformance() {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const perfData = performance.getEntriesByType('navigation')[0];
+                        if (perfData) {
+                            this.track('Performance', {
+                                loadTime: Math.round(perfData.loadEventEnd - perfData.fetchStart),
+                                domContentLoaded: Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart),
+                                firstPaint: Math.round(performance.getEntriesByType('paint')[0]?.startTime || 0)
+                            });
+                        }
+                    }, 1000);
+                });
+            },
+
+            // Track JavaScript errors
+            trackErrors() {
+                window.addEventListener('error', (e) => {
+                    this.track('JavaScriptError', {
+                        message: e.message,
+                        filename: e.filename,
+                        line: e.lineno,
+                        column: e.colno
+                    });
+                });
+
+                window.addEventListener('unhandledrejection', (e) => {
+                    this.track('PromiseRejection', {
+                        reason: e.reason?.toString()
+                    });
+                });
+            }
+        };
+
+        // Initialize analytics on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => Analytics.init());
+        } else {
+            Analytics.init();
+        }
+
+        // Export analytics for debugging
+        window.Analytics = Analytics;
+
+        // ==========================================
+        // PWA & OFFLINE SUPPORT
+        // ==========================================
+
+        const PWA = {
+            // Register Service Worker
+            registerServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', () => {
+                        navigator.serviceWorker.register('/sw.js')
+                            .then((registration) => {
+                                // Check for updates
+                                registration.addEventListener('updatefound', () => {
+                                    const newWorker = registration.installing;
+                                    newWorker.addEventListener('statechange', () => {
+                                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                            this.showUpdateNotification();
+                                        }
+                                    });
+                                });
+                            })
+                            .catch(() => {
+                                // Service worker registration failed silently
+                            });
+                    });
+                }
+            },
+
+            // Show update notification
+            showUpdateNotification() {
+                const updateBanner = document.createElement('div');
+                updateBanner.className = 'network-status show online';
+                updateBanner.innerHTML = '🔄 Update tersedia! <button onclick="location.reload()" style="margin-left: 8px; padding: 4px 12px; background: white; color: #37B24D; border-radius: 6px; font-weight: bold;">Reload</button>';
+                updateBanner.style.transform = 'translateY(0)';
+                document.body.appendChild(updateBanner);
+            },
+
+            // Monitor network status
+            monitorNetwork() {
+                const statusEl = document.getElementById('networkStatus');
+                if (!statusEl) return;
+
+                let hideTimeout;
+
+                const showStatus = (isOnline) => {
+                    clearTimeout(hideTimeout);
+
+                    statusEl.className = 'network-status show ' + (isOnline ? 'online' : 'offline');
+                    statusEl.textContent = isOnline
+                        ? '✓ Koneksi kembali normal'
+                        : '⚠️ Tidak ada koneksi internet';
+
+                    // Auto-hide online message after 3 seconds
+                    if (isOnline) {
+                        hideTimeout = setTimeout(() => {
+                            statusEl.classList.remove('show');
+                        }, 3000);
+                    }
+
+                    // Track network status
+                    if (typeof Analytics !== 'undefined') {
+                        Analytics.track('NetworkStatus', { online: isOnline });
+                    }
+
+                    // Haptic feedback
+                    if (typeof hapticFeedback !== 'undefined') {
+                        hapticFeedback(isOnline ? 'success' : 'error');
+                    }
+                };
+
+                // Listen to online/offline events
+                window.addEventListener('online', () => showStatus(true));
+                window.addEventListener('offline', () => showStatus(false));
+
+                // Check initial status
+                if (!navigator.onLine) {
+                    showStatus(false);
+                }
+            },
+
+            // Prompt to install PWA
+            promptInstall() {
+                let deferredPrompt;
+
+                window.addEventListener('beforeinstallprompt', (e) => {
+                    e.preventDefault();
+                    deferredPrompt = e;
+
+                    // Track install prompt
+                    if (typeof Analytics !== 'undefined') {
+                        Analytics.track('PWAInstallPromptShown');
+                    }
+                });
+
+                window.addEventListener('appinstalled', () => {
+                    // Track successful install
+                    if (typeof Analytics !== 'undefined') {
+                        Analytics.track('PWAInstalled');
+                    }
+
+                    deferredPrompt = null;
+                });
+            },
+
+            // Initialize all PWA features
+            init() {
+                this.registerServiceWorker();
+                this.monitorNetwork();
+                this.promptInstall();
+            }
+        };
+
+        // Initialize PWA features
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => PWA.init());
+        } else {
+            PWA.init();
+        }
+
+        // Export PWA for debugging
+        window.PWA = PWA;
+
+        // ==========================================
+        // ADVANCED MOBILE FEATURES
+        // ==========================================
+
+        const AdvancedMobile = {
+            wakeLock: null,
+
+            // Web Share API - Share to social media
+            async shareContent() {
+                const shareData = {
+                    title: 'Adobe Creative Cloud - Promo Terbatas!',
+                    text: 'Dapatkan Adobe Creative Cloud dengan harga spesial! Hemat 86% 🔥',
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    try {
+                        await navigator.share(shareData);
+
+                        // Track share
+                        if (typeof Analytics !== 'undefined') {
+                            Analytics.track('ContentShared', { method: 'native' });
+                        }
+
+                        if (typeof hapticFeedback !== 'undefined') {
+                            hapticFeedback('success');
+                        }
+                    } catch (err) {
+                        // Share cancelled or failed
+                    }
+                } else {
+                    // Fallback: Copy link
+                    this.copyToClipboard(window.location.href);
+                    showModal('Link Disalin', 'Link telah disalin ke clipboard. Bagikan ke teman Anda!');
+                }
+            },
+
+            // Enhanced Copy to Clipboard
+            async copyToClipboard(text) {
+                try {
+                    await navigator.clipboard.writeText(text);
+
+                    if (typeof hapticFeedback !== 'undefined') {
+                        hapticFeedback('success');
+                    }
+
+                    return true;
+                } catch (err) {
+
+                    // Fallback method
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+
+                    try {
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        return true;
+                    } catch (e) {
+                        document.body.removeChild(textArea);
+                        return false;
+                    }
+                }
+            },
+
+            // Screen Wake Lock - Prevent sleep during checkout
+            async requestWakeLock() {
+                if ('wakeLock' in navigator) {
+                    try {
+                        this.wakeLock = await navigator.wakeLock.request('screen');
+
+                        // Track wake lock
+                        if (typeof Analytics !== 'undefined') {
+                            Analytics.track('WakeLockActivated');
+                        }
+                    } catch (err) {
+                        // Wake lock not supported or failed
+                    }
+                }
+            },
+
+            // Release wake lock
+            releaseWakeLock() {
+                if (this.wakeLock) {
+                    this.wakeLock.release();
+                    this.wakeLock = null;
+                }
+            },
+
+            // Battery Status API
+            async monitorBattery() {
+                if ('getBattery' in navigator) {
+                    try {
+                        const battery = await navigator.getBattery();
+
+                        const checkBattery = () => {
+                            const level = Math.floor(battery.level * 100);
+                            const charging = battery.charging;
+
+                            // Warn if battery is low and not charging
+                            if (level < 20 && !charging) {
+                                this.showLowBatteryWarning(level);
+                            }
+
+                            // Track battery status
+                            if (typeof Analytics !== 'undefined') {
+                                Analytics.track('BatteryStatus', {
+                                    level: level,
+                                    charging: charging
+                                });
+                            }
+                        };
+
+                        // Check on load
+                        checkBattery();
+
+                        // Listen to battery changes
+                        battery.addEventListener('levelchange', checkBattery);
+                        battery.addEventListener('chargingchange', checkBattery);
+
+                    } catch (err) {
+                        // Battery API not available
+                    }
+                }
+            },
+
+            // Show low battery warning
+            showLowBatteryWarning(level) {
+                const warning = document.createElement('div');
+                warning.className = 'network-status show offline';
+                warning.innerHTML = `🔋 Battery rendah (${level}%). Pertimbangkan untuk charge device Anda.`;
+                warning.style.transform = 'translateY(0)';
+                document.body.appendChild(warning);
+
+                setTimeout(() => {
+                    warning.classList.remove('show');
+                    setTimeout(() => warning.remove(), 300);
+                }, 5000);
+            },
+
+            // Connection Speed Detection
+            detectConnectionSpeed() {
+                if ('connection' in navigator) {
+                    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+                    if (connection) {
+                        const effectiveType = connection.effectiveType; // '4g', '3g', '2g', 'slow-2g'
+                        const downlink = connection.downlink; // Mbps
+                        const rtt = connection.rtt; // Round-trip time in ms
+
+                        // Adjust experience based on connection
+                        if (effectiveType === 'slow-2g' || effectiveType === '2g') {
+                            this.enableLowDataMode();
+                        }
+
+                        // Track connection
+                        if (typeof Analytics !== 'undefined') {
+                            Analytics.track('ConnectionSpeed', {
+                                type: effectiveType,
+                                downlink: downlink,
+                                rtt: rtt
+                            });
+                        }
+
+                        // Listen to connection changes
+                        connection.addEventListener('change', () => {
+                            if (typeof Analytics !== 'undefined') {
+                                Analytics.track('ConnectionChanged', {
+                                    newType: connection.effectiveType
+                                });
+                            }
+                        });
+                    }
+                }
+            },
+
+            // Enable low data mode for slow connections
+            enableLowDataMode() {
+                // Disable auto-playing animations
+                document.querySelectorAll('.animate-pulse').forEach(el => {
+                    el.classList.remove('animate-pulse');
+                });
+
+                // Show notification
+                const notice = document.createElement('div');
+                notice.className = 'network-status show online';
+                notice.textContent = '📉 Mode hemat data aktif (koneksi lambat terdeteksi)';
+                notice.style.transform = 'translateY(0)';
+                document.body.appendChild(notice);
+
+                setTimeout(() => {
+                    notice.classList.remove('show');
+                    setTimeout(() => notice.remove(), 300);
+                }, 4000);
+            },
+
+            // Device Orientation Handler
+            handleOrientation() {
+                let currentOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+
+                window.addEventListener('resize', () => {
+                    const newOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+
+                    if (newOrientation !== currentOrientation) {
+                        currentOrientation = newOrientation;
+
+                        // Track orientation change
+                        if (typeof Analytics !== 'undefined') {
+                            Analytics.track('OrientationChanged', {
+                                orientation: currentOrientation
+                            });
+                        }
+
+                        // Haptic feedback
+                        if (typeof hapticFeedback !== 'undefined') {
+                            hapticFeedback('light');
+                        }
+
+                        // Suggest portrait mode if in landscape
+                        if (currentOrientation === 'landscape') {
+                            this.suggestPortraitMode();
+                        }
+                    }
+                });
+            },
+
+            // Suggest portrait mode
+            suggestPortraitMode() {
+                const suggestion = document.createElement('div');
+                suggestion.className = 'network-status show online';
+                suggestion.innerHTML = '📱 Untuk pengalaman terbaik, gunakan mode portrait';
+                suggestion.style.transform = 'translateY(0)';
+                document.body.appendChild(suggestion);
+
+                setTimeout(() => {
+                    suggestion.classList.remove('show');
+                    setTimeout(() => suggestion.remove(), 300);
+                }, 3000);
+            },
+
+            // Add share button to page
+            addShareButton() {
+                // Add share button to trust badges section
+                const trustSection = document.querySelector('.bg-gray-50.rounded-2xl');
+                if (trustSection && navigator.share) {
+                    const shareBtn = document.createElement('button');
+                    shareBtn.className = 'mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2';
+                    shareBtn.innerHTML = '<i class="fas fa-share-alt"></i> Bagikan ke Teman';
+                    shareBtn.onclick = () => this.shareContent();
+                    trustSection.appendChild(shareBtn);
+                }
+            },
+
+            // Initialize all advanced features
+            init() {
+                this.detectConnectionSpeed();
+                this.monitorBattery();
+                this.handleOrientation();
+                this.addShareButton();
+
+                // Request wake lock when user starts checkout
+                const submitBtn = document.getElementById('submit-btn');
+                if (submitBtn) {
+                    submitBtn.addEventListener('click', () => {
+                        this.requestWakeLock();
+                    });
+                }
+
+                // Release wake lock when leaving page
+                window.addEventListener('beforeunload', () => {
+                    this.releaseWakeLock();
+                });
+            }
+        };
+
+        // Initialize Advanced Mobile Features
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => AdvancedMobile.init());
+        } else {
+            AdvancedMobile.init();
+        }
+
+        // Export for debugging
+        window.AdvancedMobile = AdvancedMobile;
+
+        // ============================================
+        // SERVICE WORKER REGISTRATION (PWA)
+        // ============================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker registered successfully:', registration.scope);
+
+                        // Check for updates periodically
+                        setInterval(() => {
+                            registration.update();
+                        }, 60000); // Check every minute
+
+                        // Handle updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New service worker available, show update notification
+                                    showUpdateNotification();
+                                }
+                            });
+                        });
+                    })
+                    .catch((error) => {
+                        console.log('❌ Service Worker registration failed:', error);
+                    });
+            });
+
+            // Show update notification
+            function showUpdateNotification() {
+                const notification = document.createElement('div');
+                notification.className = 'network-status show online';
+                notification.innerHTML = `
+                    <span>✨ Update tersedia!</span>
+                    <button onclick="window.location.reload()" style="margin-left: 12px; background: white; color: #37B24D; padding: 4px 12px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer;">
+                        Refresh
+                    </button>
+                `;
+                notification.style.transform = 'translateY(0)';
+                document.body.appendChild(notification);
+            }
+        }
+
+        // ============================================
+        // PWA INSTALL PROMPT
+        // ============================================
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+
+            // Show install button/banner
+            showInstallPromotion();
+        });
+
+        function showInstallPromotion() {
+            // Create install banner
+            const installBanner = document.createElement('div');
+            installBanner.id = 'install-banner';
+            installBanner.className = 'fixed bottom-20 left-4 right-4 bg-gradient-to-r from-red-500 to-red-600 text-white p-4 rounded-2xl shadow-2xl z-50 flex items-center justify-between';
+            installBanner.style.animation = 'fadeIn 0.4s ease forwards';
+            installBanner.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png" 
+                             alt="Adobe" class="w-8 h-8">
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm">Install Aplikasi</p>
+                        <p class="text-xs opacity-90">Akses lebih cepat & offline</p>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="dismissInstallPromotion()" class="px-3 py-2 text-xs font-semibold opacity-80 hover:opacity-100">
+                        Nanti
+                    </button>
+                    <button onclick="installPWA()" class="bg-white text-red-600 px-4 py-2 rounded-lg text-xs font-bold">
+                        Install
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(installBanner);
+        }
+
+        window.installPWA = async function () {
+            if (!deferredPrompt) return;
+
+            // Show the install prompt
+            deferredPrompt.prompt();
+
+            // Wait for the user to respond to the prompt
+            const { outcome } = await deferredPrompt.userChoice;
+
+            if (outcome === 'accepted') {
+                console.log('✅ User accepted the install prompt');
+                showToast('Terima kasih! Aplikasi sedang diinstall...', 'success');
+            } else {
+                console.log('❌ User dismissed the install prompt');
+            }
+
+            // Clear the deferredPrompt
+            deferredPrompt = null;
+
+            // Remove install banner
+            dismissInstallPromotion();
+        };
+
+        window.dismissInstallPromotion = function () {
+            const banner = document.getElementById('install-banner');
+            if (banner) {
+                banner.style.animation = 'fadeOut 0.3s ease forwards';
+                setTimeout(() => banner.remove(), 300);
+            }
+        };
+
+        // Track when app is installed
+        window.addEventListener('appinstalled', () => {
+            console.log('✅ PWA was installed');
+            showToast('Aplikasi berhasil diinstall! 🎉', 'success');
+            deferredPrompt = null;
+        });
+
+        // Helper function for toast notifications
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = 'toast show';
+            toast.innerHTML = `
+                <div class="w-8 h-8 rounded-full ${type === 'success' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'} flex items-center justify-center flex-shrink-0">
+                    <i class="fas ${type === 'success' ? 'fa-check' : 'fa-exclamation'}"></i>
+                </div>
+                <div class="text-sm font-semibold text-gray-900">${message}</div>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
     </script>
 </body>
+
 </html>
