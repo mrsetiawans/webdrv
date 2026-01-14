@@ -32,21 +32,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js" defer></script>
     <!-- Tesseract.js loaded dynamically when needed (saves ~10MB initial load) -->
 
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code - Deferred for performance -->
     <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '630583642253416');
-        fbq('track', 'PageView');
+        // Performance: Defer analytics until after page is interactive
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                !function (f, b, e, v, n, t, s) {
+                    if (f.fbq) return; n = f.fbq = function () {
+                        n.callMethod ?
+                            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    };
+                    if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+                    n.queue = []; t = b.createElement(e); t.async = !0;
+                    t.src = v; s = b.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t, s)
+                }(window, document, 'script',
+                    'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '630583642253416');
+                fbq('track', 'PageView');
+            }, 100);
+        });
     </script>
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1" /></noscript>
@@ -80,6 +85,8 @@
             min-height: 100vh;
             background: white;
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+            /* Performance: CSS containment for paint isolation */
+            contain: layout style;
         }
 
         @media (min-width: 640px) {
@@ -311,6 +318,8 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%) translateY(-100px);
+            /* Performance: GPU accelerated animation */
+            will-change: transform;
             background: white;
             padding: 12px 20px;
             border-radius: 50px;
@@ -1046,18 +1055,29 @@
 
         // --- INIT ---
         document.addEventListener('DOMContentLoaded', () => {
+            // Critical rendering - execute immediately
             renderPackageCards();
             renderPaymentMethods();
-            renderTestimonials();
-            renderFAQ();
             updateTotalPrice();
-            initNotifications();
 
-            // Input formatting
+            // Input formatting - critical for UX
             const whatsappInput = document.getElementById('whatsapp');
             whatsappInput.addEventListener('input', (e) => {
                 e.target.value = e.target.value.replace(/[^0-9]/g, '');
-            });
+            }, { passive: true });
+
+            // Performance: Defer non-critical rendering to idle time
+            const deferredInit = () => {
+                renderTestimonials();
+                renderFAQ();
+                initNotifications();
+            };
+
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(deferredInit, { timeout: 2000 });
+            } else {
+                setTimeout(deferredInit, 50);
+            }
         });
 
         // --- RENDER FUNCTIONS ---
