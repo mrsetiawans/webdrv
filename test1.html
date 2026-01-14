@@ -958,7 +958,7 @@
                 id: 'lifetime',
                 name: "Google Drive 2TB (Lifetime)",
                 price: 250000,
-                normalPrice: 1579000
+                normalPrice: 899000
             }
         };
 
@@ -1083,87 +1083,90 @@
             const quota = Math.floor(Math.max(2, Math.min(100, p)));
 
             container.innerHTML = `
-                <div class="bg-white rounded-[32px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 relative overflow-hidden">
-                    <!-- Badge Best Seller -->
-                    <div class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl shadow-sm z-10">
+                <div class="bg-white rounded-[24px] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-gray-100 relative overflow-hidden max-w-sm mx-auto">
+                    <!-- Compact Best Seller Badge -->
+                    <div class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[9px] font-bold px-3 py-1 rounded-bl-xl shadow-sm z-10">
                          ★ BEST SELLER
                     </div>
 
-                    <!-- Header -->
-                    <div class="text-center mb-6 mt-2">
-                         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[11px] font-bold tracking-wide uppercase mb-3 ring-1 ring-blue-100">
+                    <!-- Header Section -->
+                    <div class="text-center mb-3 mt-1">
+                        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold tracking-wide uppercase mb-2 ring-1 ring-blue-100">
                             <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
                             Ready Stock
                         </div>
-                        <h2 class="text-2xl font-black text-gray-900 leading-tight">
+                        <h2 class="text-xl font-black text-gray-900 leading-tight">
                             Google Drive 2TB
                         </h2>
-                         <p class="text-sm text-gray-500 font-medium mt-1">Lifetime Access (Seumur Hidup)</p>
+                         <p class="text-xs text-gray-500 font-medium mt-0.5">Lifetime Access (Seumur Hidup)</p>
                     </div>
 
-                    <!-- Price Section -->
-                    <div class="text-center relative py-2 mb-6">
-                        <div class="flex items-center justify-center gap-2 mb-1">
-                             <span class="text-sm text-gray-400 line-through decoration-gray-300 relative">Rp 1.579.000</span>
-                             <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded-full ring-1 ring-red-100">Hemat ${discount}%</span>
+                    <!-- Price & Promo Section (Compact) -->
+                    <div class="text-center relative mb-5">
+                        <div class="flex items-center justify-center gap-2 mb-0.5">
+                             <span class="text-xs text-gray-400 line-through decoration-gray-300">Rp 899rb</span>
+                             <span class="bg-red-50 text-red-600 text-[9px] font-bold px-1.5 py-0.5 rounded ring-1 ring-red-100">Hemat ${discount}%</span>
                         </div>
-                        <div class="text-[40px] font-black text-slate-900 tracking-tight leading-none">
-                            <span class="text-2xl align-top relative top-1 text-slate-400 mr-0.5" style="font-weight: 600;">Rp</span>${(lifetime.price / 1000).toLocaleString('id-ID')}<span class="text-2xl text-slate-400 ml-0.5" style="font-weight: 600;">rb</span>
+                        <div class="text-[36px] font-black text-slate-900 tracking-tight leading-none">
+                            <span class="text-xl align-top relative top-1 text-slate-400 mr-0.5 font-bold">Rp</span>${(lifetime.price / 1000).toLocaleString('id-ID')}<span class="text-xl text-slate-400 ml-0.5 font-bold">rb</span>
                         </div>
-                         <p class="text-[11px] text-gray-400 mt-2 font-medium bg-gray-50 inline-block px-3 py-1 rounded-full">Promo spesial berakhir hari ini!</p>
+                        
+                        <!-- Compact Promo Badge -->
+                        <div class="mt-2 inline-flex items-center gap-1.5 bg-red-600 text-white px-3 py-1 rounded-full shadow-[0_2px_8px_rgba(220,38,38,0.25)] animate-[pulse_3s_infinite]">
+                            <i class="fas fa-clock text-[10px] animate-bounce"></i> 
+                            <span class="text-[10px] font-bold tracking-wide">Promo berakhir hari ini!</span>
+                        </div>
                     </div>
 
-                    <!-- Key Benefits (Quick Scan) -->
-                    <div class="space-y-3 mb-8 px-2 bg-gray-50/50 rounded-2xl p-4 border border-gray-100/50">
-                        <div class="flex items-start gap-3">
-                            <div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xs shrink-0 mt-0.5 shadow-sm">
+                    <!-- Key Benefits (Side-by-side for mobile efficiency) -->
+                    <div class="grid grid-cols-2 gap-2 mb-5">
+                        <div class="bg-gray-50 rounded-xl p-2.5 border border-gray-100 text-center">
+                            <div class="w-6 h-6 mx-auto rounded-full bg-green-100 flex items-center justify-center text-green-600 text-[10px] mb-1.5">
                                 <i class="fas fa-check"></i>
                             </div>
-                            <p class="text-[13px] text-gray-600 leading-snug">
-                                <span class="font-bold text-gray-800">Bayar Sekali Saja</span>, tanpa biaya bulanan selamanya.
+                            <p class="text-[10px] text-gray-600 leading-tight">
+                                <span class="font-bold text-gray-800 block mb-0.5">Bayar Sekali</span>
+                                Tanpa langganan
                             </p>
                         </div>
-                         <div class="flex items-start gap-3">
-                            <div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xs shrink-0 mt-0.5 shadow-sm">
-                                <i class="fas fa-check"></i>
+                         <div class="bg-gray-50 rounded-xl p-2.5 border border-gray-100 text-center">
+                            <div class="w-6 h-6 mx-auto rounded-full bg-green-100 flex items-center justify-center text-green-600 text-[10px] mb-1.5">
+                                <i class="fas fa-shield-alt"></i>
                             </div>
-                            <p class="text-[13px] text-gray-600 leading-snug">
-                                <span class="font-bold text-gray-800">Resmi & Legal</span>, upgrade di akun Google pribadi Anda.
+                            <p class="text-[10px] text-gray-600 leading-tight">
+                                <span class="font-bold text-gray-800 block mb-0.5">Resmi & Legal</span>
+                                Akun pribadi
                             </p>
                         </div>
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="space-y-3">
-                        <button type="button" onclick="document.getElementById('nama').focus()" class="group relative w-full h-14 bg-[#1a73e8] hover:bg-blue-700 text-white font-bold rounded-2xl shadow-[0_10px_20px_-10px_rgba(26,115,232,0.5)] transition-all active:scale-[0.98] overflow-hidden">
+                    <div class="space-y-2">
+                        <button type="button" onclick="document.getElementById('nama').focus()" class="group relative w-full h-12 bg-[#1a73e8] hover:bg-blue-700 text-white font-bold rounded-xl shadow-[0_4px_14px_-4px_rgba(26,115,232,0.5)] transition-all active:scale-[0.98] overflow-hidden">
                              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                             <span class="relative flex items-center justify-center gap-2 text-[15px]">
-                                Ambil Promo Sekarang <i class="fas fa-arrow-right"></i>
+                             <span class="relative flex items-center justify-center gap-2 text-sm">
+                                Ambil Promo Sekarang <i class="fas fa-arrow-right text-xs"></i>
                             </span>
                         </button>
 
-                        <button id="btnDetail" type="button" class="w-full py-3 text-[13px] font-semibold text-gray-500 hover:text-gray-800 transition-colors flex items-center justify-center gap-1 group">
+                        <button id="btnDetail" type="button" class="w-full py-2 text-xs font-semibold text-gray-500 hover:text-gray-800 transition-colors flex items-center justify-center gap-1 group">
                             Lihat detail selengkapnya
-                            <i class="fas fa-chevron-down text-[10px] transition-transform group-hover:translate-y-0.5"></i>
+                            <i class="fas fa-chevron-down text-[9px] transition-transform group-hover:translate-y-0.5"></i>
                         </button>
                     </div>
 
-                    <!-- Quota/Urgency Footer -->
-                    <div class="mt-6 pt-4 border-t border-dashed border-gray-200">
-                         <div class="flex items-center justify-between mb-2">
-                             <span class="text-[11px] font-bold text-slate-700 flex items-center gap-1.5">
-                                <i class="fas fa-bolt text-yellow-500"></i> Kuota Promo
-                             </span>
-                             <span class="text-[10px] font-bold text-slate-500">${quota}% Tersisa</span>
-                         </div>
-                         <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <!-- Quota Bar (Very Subtle) -->
+                    <div class="mt-4 pt-3 border-t border-dashed border-gray-100 flex items-center justify-between gap-3">
+                         <span class="text-[9px] font-bold text-slate-500 whitespace-nowrap">
+                            <i class="fas fa-bolt text-yellow-500 mr-1"></i>Kuota ${quota}%
+                         </span>
+                         <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden max-w-[100px]">
                              <div class="h-full bg-gradient-to-r from-yellow-400 to-red-500 rounded-full" style="width: ${quota}%"></div>
                          </div>
                     </div>
                 </div>
             `;
 
-            // Init Sheet Logic after render
             initSheetLogic();
         }
 
