@@ -8,20 +8,6 @@
     <link rel="icon" type="image/png"
         href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    keyframes: {
-                        shimmer: {
-                            '0%': { transform: 'translateX(-100%)' },
-                            '100%': { transform: 'translateX(100%)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -117,6 +103,16 @@
 
         .no-bounce {
             overscroll-behavior: contain;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         /* Glassmorphism Header */
@@ -338,7 +334,7 @@
             display: flex;
             gap: 12px;
             width: max-content;
-            animation: marquee 40s linear infinite;
+            animation: marquee 120s linear infinite;
             padding: 4px 0;
             /* space for shadow/border */
         }
@@ -359,23 +355,76 @@
 
         .testimonial-item {
             flex-shrink: 0;
-            width: 140px;
-            height: 140px;
-            border-radius: 12px;
-            overflow: hidden;
+            width: 280px;
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
             border: 1px solid var(--border);
-            cursor: pointer;
+            cursor: default;
             transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
         }
 
         .testimonial-item:hover {
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            border-color: var(--primary);
         }
 
-        .testimonial-item img {
+        .t-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .t-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD1D1 0%, #FFE4E4 100%);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .t-review-img {
             width: 100%;
-            height: 100%;
+            height: 120px;
             object-fit: cover;
+            border-radius: 8px;
+            margin-top: 8px;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        .t-info h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .t-stars {
+            color: #FFB400;
+            font-size: 10px;
+            line-height: 1;
+        }
+
+        .t-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         /* FAQ Accordion */
@@ -579,8 +628,17 @@
                     </div>
 
                     <!-- Testimonials -->
+                    <!-- Testimonials -->
                     <div class="animate-fade-in" style="animation-delay: 0.18s">
-                        <label class="text-sm font-semibold text-gray-700 ml-1 mb-2 block">Bukti Pelanggan</label>
+                        <div class="flex items-center justify-between mb-3 px-1">
+                            <label class="text-sm font-semibold text-gray-700 block">Ulasan Pelanggan</label>
+                            <div
+                                class="flex items-center gap-1.5 bg-yellow-50 px-2 py-1 rounded-lg border border-yellow-100">
+                                <i class="fas fa-star text-yellow-500 text-xs"></i>
+                                <span class="text-xs font-bold text-gray-800">4.9/5.0</span>
+                                <span class="text-[10px] text-gray-500">(2.8k+ Ulasan)</span>
+                            </div>
+                        </div>
                         <div class="testimonial-carousel" id="testimonial-container">
                             <!-- Filled by JS -->
                         </div>
@@ -904,8 +962,22 @@
         // RESTORED DATA
         const FIRST_NAMES = ["Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama"];
 
-        const testimonialImages = [
-            "https://pixvid.org/images/2025/11/14/mPYhr.jpg", "https://pixvid.org/images/2025/11/14/mPYyw.jpg", "https://pixvid.org/images/2025/11/14/mPYBE.jpg", "https://pixvid.org/images/2025/11/14/mPi89.jpg", "https://pixvid.org/images/2025/11/14/mPitS.jpg", "https://pixvid.org/images/2025/11/14/mPiM2.jpg", "https://pixvid.org/images/2025/11/14/mPicV.jpg", "https://pixvid.org/images/2025/11/14/mPuZk.jpg", "https://pixvid.org/images/2025/11/14/mPuYg.jpg", "https://pixvid.org/images/2025/11/14/mPuAO.jpg", "https://pixvid.org/images/2025/11/14/mPuLF.jpg", "https://pixvid.org/images/2025/11/14/mPJzn.jpg", "https://pixvid.org/images/2025/11/14/mPJuM.jpg", "https://pixvid.org/images/2025/11/14/mPJGa.jpg", "https://pixvid.org/images/2025/11/14/mPJfB.jpg", "https://pixvid.org/images/2025/11/14/mPKHf.jpg", "https://pixvid.org/images/2025/11/14/mPKEm.jpg", "https://pixvid.org/images/2025/11/14/mPKbz.jpg", "https://pixvid.org/images/2025/11/14/mPEel.jpg", "https://pixvid.org/images/2025/11/14/mPErY.jpg", "https://pixvid.org/images/2025/11/14/mPEoo.jpg", "https://pixvid.org/images/2025/11/14/mPEXd.jpg", "https://pixvid.org/images/2025/11/14/mPnUb.jpg", "https://pixvid.org/images/2025/11/14/mPnlN.jpg", "https://pixvid.org/images/2025/11/14/mPn6v.jpg", "https://pixvid.org/images/2025/11/14/mPn25.jpg", "https://pixvid.org/images/2025/11/14/mPo57.jpg", "https://pixvid.org/images/2025/11/14/mPoqT.jpg", "https://pixvid.org/images/2025/11/14/mPo9i.jpg"
+        const testimonialData = [
+            { name: "Budi Santoso", text: "Proses cepat banget, hitungan menit Adobe langsung aktif di email sendiri. Mantap min!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkXs8.webp" },
+            { name: "Siti Aminah", text: "Awalnya ragu karena murah, tapi ternyata beneran legal dan full fitur. Makasih ya!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkpmH.webp" },
+            { name: "Agus Pratama", text: "Solusi hemat buat desainer freelance kayak saya. Fitur AI Firefly nya jalan lancar jaya.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ckphh.webp" },
+            { name: "Rina Kusuma", text: "Adminnya ramah dan fast respon. Dipandu sampe bisa login. Sangat recommended!", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ckpyu.webp" },
+            { name: "Doni Setiawan", text: "Udah langganan tahun kedua disini. Gak pernah ada masalah, cloud storage aman.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkpB6.webp" },
+            { name: "Sari Wulandari", text: "Harga kaki lima kualitas bintang lima. Jauh lebih hemat daripada beli langsung di website.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Cks8A.webp" },
+            { name: "Eko Saputra", text: "Beneran dapet 100GB cloud, bisa sinkron ke iPad juga. Gak nyesel beli disini.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkstX.webp" },
+            { name: "Dewi Lestari", text: "Prosesnya gampang, tinggal transfer, kirim bukti, langsung diproses. Top markotop!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CksM3.webp" },
+            { name: "Hendra Wijaya", text: "Buat yang cari Adobe murah dan resmi, disini tempatnya. Garansinya juga jelas.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Cks3e.webp" },
+            { name: "Maya Putri", text: "Sangat membantu buat tugas kuliah. Fitur lengkap semua aplikasi bisa di download.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ck2ZC.webp" },
+            { name: "Rizky Ramadhan", text: "Kirain bakal ribet, ternyata simpel banget. Email masuk langsung terima invite.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ck2YQ.webp" },
+            { name: "Putri Anggraini", text: "Kualitas oke, pelayanan oke. Bakal rekomendasiin ke temen-temen kantor.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ck2Aq.webp" },
+            { name: "Anton Kurniawan", text: "Transparan banget, dijelasin detail kalau ini via team plan. Yang penting legal!", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ck2LJ.webp" },
+            { name: "Wulan Dari", text: "Baru pertama kali coba dan puas banget. Semoga awet terus langganannya.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkBzj.webp" },
+            { name: "Bayu Nugroho", text: "Mantap jiwa! Akhirnya bisa pake Photoshop original tanpa crack-crack an.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkBuD.webp" }
         ];
 
         const fullFeaturesList = [
@@ -1069,6 +1141,10 @@
             const isMonthly = currentPackage === 'monthly';
             const isYearly = currentPackage === 'yearly';
 
+            const btnClassBase = "flex-1 py-2 text-xs font-semibold rounded-lg transition-all duration-200";
+            const btnClassActive = "bg-white text-red-600 shadow-sm ring-1 ring-black/5";
+            const btnClassInactive = "text-gray-500 hover:text-gray-700 hover:bg-gray-50";
+
             // Calculate dynamic quota
             const now = new Date();
             let start = new Date();
@@ -1080,103 +1156,124 @@
             const quota = Math.floor(Math.max(2, Math.min(100, p)));
 
             container.innerHTML = `
-                <div class="bg-white rounded-[24px] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-gray-100 relative overflow-hidden max-w-sm mx-auto">
-                    <!-- Badge Best Seller (Only for Yearly) -->
-                    ${isYearly ? `
-                    <div class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[11px] font-bold px-3 py-1.5 rounded-bl-xl shadow-sm z-10">
-                         ★ BEST SELLER
-                    </div>` : ''}
-
-                    <!-- Header Section -->
-                    <div class="text-center mb-4 mt-1">
-                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[11px] font-bold tracking-wide uppercase mb-2 ring-1 ring-blue-100">
-                            <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
-                            Ready Stock
-                        </div>
-                        <h2 class="text-2xl font-black text-gray-900 leading-tight">
-                            Adobe Creative Cloud
-                        </h2>
-                         <p class="text-[13px] text-gray-500 font-medium mt-1">Full Apps (20+ Aplikasi)</p>
-                    </div>
-
-                    <!-- Package Switcher (Segmented Control) -->
-                    <div class="bg-gray-100 p-1 rounded-xl flex mb-6 relative z-0">
-                         <div class="absolute inset-y-1 w-[48%] bg-white rounded-lg shadow-sm transition-all duration-300 ease-out z-[-1] translate-x-1" style="transform: translateX(${isYearly ? '100%' : '2%'})"></div>
-                         <button type="button" onclick="switchPackage('monthly')" class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-colors ${isMonthly ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700'}">
-                            1 Bulan
-                         </button>
-                         <button type="button" onclick="switchPackage('yearly')" class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-colors ${isYearly ? 'text-red-600' : 'text-gray-500 hover:text-gray-700'}">
-                            1 Tahun <span class="align-middle inline-block text-[9px] bg-red-100 text-red-600 px-1.5 py-0.5 rounded ml-0.5 leading-none">Hemat</span>
-                         </button>
-                    </div>
-
-                    <!-- Price & Promo Section -->
-                    <div class="text-center relative mb-6">
-                        <div class="flex items-center justify-center gap-2 mb-1">
-                             <span class="text-sm text-gray-400 line-through decoration-gray-300">${formatCurrency(pkg.normalPrice)}</span>
-                             <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded ring-1 ring-red-100">Hemat Besar</span>
-                        </div>
-                        <div class="text-[42px] font-black text-slate-900 tracking-tight leading-none">
-                            <span class="text-2xl align-top relative top-1.5 text-slate-400 mr-0.5 font-bold">Rp</span>${(pkg.price / 1000).toLocaleString('id-ID')}<span class="text-2xl text-slate-400 ml-0.5 font-bold">rb</span>
+                <!-- Product Info Card - Mobile Optimized -->
+                <article class="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+                    
+                    <!-- Product Header -->
+                    <div class="bg-gradient-to-br from-red-50 via-white to-orange-50 p-4 pb-3 border-b border-gray-100">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-[11px] font-bold text-red-700">
+                                    <span class="relative flex h-1.5 w-1.5">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-600"></span>
+                                    </span>
+                                    Stok Tersedia
+                                </span>
+                            </div>
+                            <span class="rounded-md bg-black px-2 py-0.5 text-[10px] font-bold text-white uppercase tracking-wide">Terlaris</span>
                         </div>
                         
-                        <!-- Compact Promo Badge -->
-                        <div class="mt-3 inline-flex items-center gap-2 bg-red-600 text-white px-4 py-1.5 rounded-full shadow-[0_2px_8px_rgba(220,38,38,0.25)] animate-[pulse_3s_infinite] transform hover:scale-105 transition-transform">
-                            <i class="fas fa-clock text-xs animate-bounce"></i> 
-                            <span class="text-xs font-bold tracking-wide">Promo berakhir hari ini!</span>
+                        <h3 class="text-[19px] font-extrabold text-gray-900 leading-tight mb-1">Adobe Creative Cloud</h3>
+                        <p class="text-[13px] text-gray-600 font-medium flex items-center gap-1">
+                            <i class="fas fa-check-circle text-green-600 text-xs"></i>
+                            All Apps + 100GB Cloud Storage
+                        </p>
+                    </div>
+
+                    <!-- Package Selection -->
+                    <div class="px-4 pt-4 pb-3">
+                        <p class="text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-2">Pilih Durasi Langganan</p>
+                        <div class="bg-gray-50 p-1 rounded-xl flex gap-1 ring-1 ring-gray-200/70">
+                            <button type="button" onclick="switchPackage('monthly')" 
+                                class="${btnClassBase} ${isMonthly ? btnClassActive : btnClassInactive}">
+                                <div class="flex flex-col items-center">
+                                    <span class="font-bold">1 Bulan</span>
+                                </div>
+                            </button>
+                            <button type="button" onclick="switchPackage('yearly')" 
+                                class="${btnClassBase} ${isYearly ? btnClassActive : btnClassInactive}">
+                                <div class="flex flex-col items-center">
+                                    <span class="font-bold">1 Tahun</span>
+                                    <span class="text-[10px] opacity-80">⚡ Hemat 86%</span>
+                                </div>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Key Benefits -->
-                    <div class="grid grid-cols-2 gap-3 mb-6">
-                        <div class="bg-gray-50 rounded-xl p-3 border border-gray-100 text-center">
-                            <div class="w-7 h-7 mx-auto rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xs mb-2">
-                                <i class="fas fa-check"></i>
+                    <!-- Pricing Section -->
+                    <div class="px-4 pb-4">
+                        <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-3 border border-red-100">
+                            <div class="flex items-center justify-between mb-1">
+                                <div>
+                                    <p class="text-[11px] font-semibold text-gray-500 mb-0.5">Harga Promo Hari Ini</p>
+                                    <div class="flex items-baseline gap-2">
+                                        <span class="text-[28px] font-black text-red-600 leading-none tracking-tight">${formatCurrency(pkg.price)}</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[10px] text-gray-500 mb-0.5">Normal</p>
+                                    <span class="text-[13px] font-bold text-gray-400 line-through">${formatCurrency(pkg.normalPrice)}</span>
+                                    <p class="text-[11px] font-bold text-green-600 mt-0.5">Hemat ${Math.round((1 - pkg.price / pkg.normalPrice) * 100)}%</p>
+                                </div>
                             </div>
-                            <p class="text-xs text-gray-600 leading-snug">
-                                <span class="font-bold text-gray-800 block mb-0.5 text-[13px]">Garansi Full</span>
-                                Selama langganan
-                            </p>
                         </div>
-                         <div class="bg-gray-50 rounded-xl p-3 border border-gray-100 text-center">
-                            <div class="w-7 h-7 mx-auto rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xs mb-2">
-                                <i class="fas fa-shield-alt"></i>
+                    </div>
+
+                    <!-- Urgency Section -->
+                    <div class="px-4 pb-4">
+                        <div class="bg-orange-50 rounded-xl p-3 border border-orange-200">
+                            <div class="flex items-center justify-between mb-2.5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-orange-100 flex items-center justify-center">
+                                        <i class="fas fa-fire text-orange-600 text-sm animate-pulse"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[11px] font-bold text-orange-700 leading-none mb-0.5">Promo Terbatas!</p>
+                                        <p class="text-[13px] font-black text-gray-900 leading-none">${quota}% Kuota Tersisa</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[10px] text-gray-600 mb-0.5">Berakhir</p>
+                                    <div class="bg-white px-2 py-1 rounded-md border border-orange-200">
+                                        <span class="text-[12px] font-bold text-gray-900">23:59</span>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="text-xs text-gray-600 leading-snug">
-                                <span class="font-bold text-gray-800 block mb-0.5 text-[13px]">Resmi</span>
-                                Email Pribadi
-                            </p>
+                            
+                            <div class="relative h-2 w-full bg-white rounded-full overflow-hidden border border-orange-200/50">
+                                <div class="h-full bg-gradient-to-r from-orange-400 via-red-500 to-red-600 rounded-full transition-all duration-1000" 
+                                     style="width: ${quota}%">
+                                    <div class="absolute inset-0 bg-white/20 animate-[shimmer_1.5s_infinite]"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="space-y-3">
-                        <button type="button" onclick="document.getElementById('nama').focus()" class="group relative w-full h-14 bg-[#E31E24] hover:bg-red-700 text-white font-bold rounded-2xl shadow-[0_4px_14px_-4px_rgba(227,30,36,0.5)] transition-all active:scale-[0.98] overflow-hidden">
-                             <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                             <span class="relative flex items-center justify-center gap-2 text-[15px]">
-                                Ambil Promo Sekarang <i class="fas fa-arrow-right text-xs"></i>
-                            </span>
-                        </button>
-
-                        <button id="btnDetail" type="button" class="w-full py-2 text-xs font-semibold text-gray-500 hover:text-gray-800 transition-colors flex items-center justify-center gap-1 group">
-                            Lihat detail selengkapnya
-                            <i class="fas fa-chevron-down text-[10px] transition-transform group-hover:translate-y-0.5"></i>
-                        </button>
+                    <div class="px-4 pb-4">
+                        <div class="flex gap-2">
+                            <button type="button" onclick="document.getElementById('nama').focus()" 
+                                class="flex-1 h-12 rounded-xl bg-[#E31E24] text-white shadow-md active:scale-[0.98] transition-all hover:bg-[#C21B20] group">
+                                <div class="flex items-center justify-center gap-2 font-bold text-[15px]">
+                                    <span>Ambil Promo Sekarang</span>
+                                    <i class="fas fa-arrow-right text-sm opacity-80 group-hover:translate-x-1 transition-transform"></i>
+                                </div>
+                            </button>
+                            
+                            <button id="btnDetail" type="button" 
+                                class="h-12 w-12 rounded-xl border-2 border-gray-200 bg-white text-gray-600 flex items-center justify-center active:scale-[0.95] hover:bg-gray-50 hover:border-red-200 transition-all"
+                                aria-label="Lihat Detail Lengkap">
+                                <i class="fas fa-info-circle text-[17px]"></i>
+                            </button>
+                        </div>
+                        
+                        <p class="mt-2.5 text-center text-[11px] text-gray-500 flex items-center justify-center gap-1">
+                            <i class="fas fa-shield-alt text-green-600 text-xs"></i>
+                            <span class="font-medium">Garansi 100% uang kembali</span>
+                        </p>
                     </div>
-
-                    <!-- Quota Bar -->
-                    <div class="mt-4 pt-3 border-t border-dashed border-gray-100 flex items-center justify-between gap-3">
-                         <span class="text-[11px] font-bold text-slate-500 whitespace-nowrap">
-                            <i class="fas fa-bolt text-yellow-500 mr-1.5"></i>Sisa Kuota Promo
-                         </span>
-                         <div class="flex items-center gap-2 w-full max-w-[120px]">
-                            <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-yellow-400 to-red-500 rounded-full" style="width: ${quota}%"></div>
-                            </div>
-                            <span class="text-[10px] font-bold text-slate-400">${quota}%</span>
-                         </div>
-                    </div>
-                </div>
+                </article>
             `;
 
             initSheetLogic();
@@ -1249,14 +1346,26 @@
 
         function renderTestimonials() {
             const container = document.getElementById('testimonial-container');
-            // Duplicate list twice for smoother infinite loop on wide screens
-            const images = [...testimonialImages, ...testimonialImages];
+            // Duplicate list twice for smoother infinite loop
+            const data = [...testimonialData, ...testimonialData];
 
             container.innerHTML = `
                 <div class="testimonial-track">
-                    ${images.map(url => `
-                        <div class="testimonial-item" onclick="openImageModal('${url}')">
-                            <img src="${url}" alt="Testimoni" loading="lazy">
+                    ${data.map(item => `
+                        <div class="testimonial-item">
+                            <div class="t-header">
+                                <div class="t-avatar">
+                                    ${item.name.charAt(0)}
+                                </div>
+                                <div class="t-info">
+                                    <h4>${item.name}</h4>
+                                    <div class="t-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="t-text">"${item.text}"</p>
+                            ${item.img ? `<img src="${item.img}" class="t-review-img" onclick="openImageModal('${item.img}')" alt="Bukti Review" loading="lazy">` : ''}
                         </div>
                     `).join('')}
                 </div>
