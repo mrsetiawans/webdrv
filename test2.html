@@ -4,32 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description"
+        content="Adobe Creative Cloud Official Reseller Indonesia. Dapatkan akses full Adobe CC All Apps dengan harga terjangkau. Legal, aman & bergaransi.">
+    <meta name="theme-color" content="#E31E24">
     <title>Adobe Creative Cloud - Official Resmi</title>
     <link rel="icon" type="image/png"
         href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/240px-Adobe_Creative_Cloud_rainbow_icon.svg.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Preconnect to critical third-party origins -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
+    <link rel="preconnect" href="https://pixvid.org" crossorigin>
 
-    <!-- Meta Pixel Code -->
+    <!-- Preload LCP image (logo in header) -->
+    <link rel="preload" as="image"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png"
+        type="image/png">
+
+    <!-- Critical CSS: TailwindCSS (synchronous but with preload hint) -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts: preload and async load -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+
+    <!-- Font Awesome: async load (non-critical icons) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    </noscript>
+
+    <!-- Non-critical JS: Defer QRCode.js (only needed on payment page) -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
+
+    <!-- Tesseract.js: Lazy load on demand (very large ~45MB) -->
     <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '630583642253416');
-        fbq('track', 'PageView');
+        // Lazy load Tesseract.js only when user needs OCR verification
+        window.loadTesseract = function () {
+            if (window.Tesseract) return Promise.resolve();
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        };
+    </script>
+
+    <!-- Meta Pixel Code - Deferred to not block FCP -->
+    <script>
+        // Defer Meta Pixel loading to after page load
+        window.addEventListener('load', function () {
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return; n = f.fbq = function () {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+                n.queue = []; t = b.createElement(e); t.async = !0;
+                t.src = v; s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '630583642253416');
+            fbq('track', 'PageView');
+        });
     </script>
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=630583642253416&ev=PageView&noscript=1" /></noscript>
@@ -593,7 +645,7 @@
             <div class="sticky-header px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-2">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png"
-                        alt="Adobe Logo" class="w-8 h-8">
+                        alt="Adobe Logo" class="w-8 h-8" width="32" height="32" fetchpriority="high" decoding="async">
                     <div>
                         <h1 class="font-bold text-lg leading-none">Adobe CC</h1>
                         <p class="text-xs text-gray-500 font-medium">Official Resmi</p>
@@ -707,12 +759,12 @@
                 <!-- Trust Badges -->
                 <div
                     class="mt-8 flex justify-center gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png"
-                        class="h-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png"
-                        class="h-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png"
-                        class="h-6">
+                    <img src="https://pixvid.org/images/2026/01/16/CmB6A.png" class="h-6" alt="QRIS" loading="lazy"
+                        decoding="async" width="24" height="24">
+                    <img src="https://pixvid.org/images/2026/01/16/CmBsX.png" class="h-6" alt="BCA" loading="lazy"
+                        decoding="async" width="24" height="24">
+                    <img src="https://pixvid.org/images/2026/01/16/CmBl6.png" class="h-6" alt="GoPay" loading="lazy"
+                        decoding="async" width="24" height="24">
                 </div>
 
                 <p class="text-center text-xs text-gray-400 mt-8">© 2025 Adobe Official Reseller. All Rights Reserved.
@@ -960,24 +1012,24 @@
         const uniqueCode = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
 
         // RESTORED DATA
-        const FIRST_NAMES = ["Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma", "Gunawan", "Melati", "Bagus Prasetyo Ramadhan", "Septi Amelia", "Cindy Amelia", "Windi Saputri", "Galih Pratama", "Evi", "Putra", "Slamet Riyadi", "Latif Hidayat", "Gita Puspita", "Darmawan", "Maya", "Erik Saputra Pratama", "Jani", "Jefri Maulana", "Bella Sari", "Maulana", "Novi Andriana Lestari", "Fajar Nugroho", "Taufik Hidayat", "Prasetyo", "Samsul", "Agung", "Endang", "Indah", "Hana Pertiwi", "Mirna", "Yulia", "Panca", "Niken", "Rio", "Adi Putra Ramadhan", "Ganda", "Wahida", "Robby Saputra", "Halim", "Firman Saputra", "Berlian Putra", "Ari", "Joko Setiawan", "Mustika", "Bahar", "Mega", "Erlangga", "Sofyan", "Doni", "Fatimah", "Dian Purnama Sari", "Rama", "Imam Saputra", "Johan", "Gusman", "Lintang", "Nabila", "Beni", "Purnama", "Murni", "Malik", "Nurlan", "Doni Saputra", "Lastri", "Berlinda", "Rasyid", "Tari", "Nia", "Tirta", "Juli Andriani", "Lutfi", "Suci", "Arman", "Yani", "Citra Ayu", "Harto", "Rangga Pratama", "Febrina", "Indra Gunawan Saputra", "Tomi", "Sutrisno", "Risma", "Jihan Ayu Pratiwi", "Lestari", "Dewi Kusuma", "Fahmi", "Rifki", "Wira", "Putra Wijaya", "Beni Setiawan", "Asep", "Gerry", "Prasetia", "Euis", "Latif", "Pajar", "Rahmat Hidayat", "Rudi", "Tika", "Danu", "Hesti", "Syahrul", "Anwar", "Miranti", "Nuraini", "Nurman", "Eman Kurnia", "Nirmala", "Hari Susanto", "Taufan", "Tono Prabowo", "Bayu Saputra Nugroho", "Darma", "Nurlaila", "Hafid", "Mustofa", "Elok", "Gunarto", "Novi", "Lasman", "Jamaludin", "Andi Wijaya Putra", "Herman", "Mila", "Wibowo", "Prayitno", "Adi Saputra", "Jamal", "Irfan", "Iskandar", "Yudha", "Lutris", "Samsul Hidayat", "Heru", "Bagus", "Rudianto", "Nanda Putri", "Laila Rahma", "Frans", "Hilda", "Cahya", "Rudi Pratama", "Setiawan", "Rangga Saputra", "Puspa", "Doni Prasetyo", "Nurul", "Febri", "Mega Sari Lestari", "Suyatno", "Tomiadi", "Fikri", "Lani", "Intan", "Johan Saputra", "Iwan", "Berliano", "Ilham", "Teddy", "Lani Puspita", "Eka Putri Andayani", "Hani", "Adi Wijaya", "Adit", "Dicky", "Gopal", "Pramono", "Gunadi", "Gilang", "Joko Prayitno Adi", "Mira", "Puspita Sari", "Maulana Hakim", "Putri Ayu Lestari", "Malik Prasetyo", "Toriq", "Joni", "Gilang Pratama", "Bagus Wijaya Putra", "Berlian", "Wandi", "Nurman Saputra", "Fajarudin", "Lutfi Pratama", "Citra", "Nanda", "Laras", "Tuti", "Yani Pratiwi", "Gusman Saputra", "Rangga Putra", "Prasetiawan", "Ismail", "Heri", "Adi Nugroho", "Putri", "Prasetyo Adi", "Dona", "Gani", "Jihan", "Puspita Dewi", "Rizal Maulana", "Mahendra", "Ayu Pratiwi", "Rangga Setiawan", "Lina Sari", "Fani", "Adi Wijaya Putra", "Sari Melati", "Andri", "Bima", "Teguh Santoso Adi", "Fajar", "Wulan Dewi", "Rama Pratama", "Nana", "Farhan", "Dion", "Melati Pertiwi", "Adi Putra", "Joko Santoso", "Doni Setiawan", "Lintang Pertiwi", "Septi", "Gopal Pramana", "Tomi Pratama", "Rio Nugraha", "Cindy", "Hafid Saputra", "Hendra", "Niken Lestari", "Rangga Nugroho", "Putri Ayu", "Sofyan Hidayat", "Robby", "Bima Saputra", "Indra", "Adi Kurniawan", "Nanda Saputra", "Gilang Saputra", "Wahyu", "Puspita Ayu", "Rudi Hartono", "Wulan Dewi Pertiwi", "Ayu Pratiwi Lestari", "Tono Adi", "Dedi Kurniawan", "Prasetyo Ramadhan", "Adi Setiawan", "Mira Lestari", "Farhan Syahputra Adi", "Nurul Hidayah", "Sari Anggraini", "Bayu", "Eman", "Putra Adi Nugroho", "Lestari Ayu", "Bambang", "Rangga Hidayat", "Mega Putri", "Adi Nugraha", "Anisa", "Siska", "Wandi Putra", "Fajar Saputra", "Gunawan Pratama", "Heri Setiawan", "Arif", "Ilham Nugroho", "Bagus Pratama", "Erlangga Putra", "Rian", "Pandu", "Tari Ayu", "Hendro", "Risma Ayu", "Adi Pratama", "Septi Ayu", "Bambang Santoso", "Lukman", "Gani Saputra", "Hasan", "Feri Kurniawan", "Tirta", "Bambang Prasetyo", "Pajar Saputra", "Arman Putra", "Murni Ayu", "Hafiz", "Euis Sari", "Bayu Nugroho", "Tomi Saputra", "Gerry Pratama", "Arif Prasetyo", "Johan Putra", "Hafid Nugraha", "Nabila Pertiwi", "Latif Saputra", "Ari Saputra", "Rio Saputra", "Tono Saputra", "Wandi Saputra", "Mahendra Putra", "Ilham Pratama", "Putri Dewi", "Adi Lestari", "Rangga Maulana", "Bayu Hidayat", "Fani Puspita", "Taufik", "Bagus Saputra", "Novi Puspita", "Rahmat Hidayatullah Putra", "Prayitno Saputra", "Adi Ramadhan", "Bayu Wijaya", "Gilang Nugraha", "Rangga Prasetyo", "Putra Purnama", "Wulan Pertiwi", "Adi Wijaya Ramadhan", "Budi", "Rian Pratama", "Samsul Nugroho", "Wahyu Saputra", "Teguh Prasetyo", "Fikri Nugraha", "Rizki Pratama"];
+        const FIRST_NAMES = ["Budi Santoso", "Ayu", "Rahmat", "Citra Dewi Kusuma", "Bayu Pratama", "Lina", "Wulan", "Adi", "Farhan Syahputra", "Hendra Wijaya", "Nana Puspita Dewi", "Joko", "Mega Sari", "Gilang Pramana Putra", "Sari", "Dedi", "Eka Suryani", "Teguh", "Putri Lestari Ayu", "Andi", "Bagus Wijaya", "Ilham Saputra Nugraha", "Rizal", "Mira Astuti", "Puspita", "Hari", "Tri Saputra", "Cahya Pratama", "Surya Darmawan Putra", "Wahyu Ramadhan", "Agus", "Indra Permana", "Linda", "Fajar Mahendra Saputra", "Yusuf", "Pramono Adi Nugroho", "Sinta Dewi", "Bima Pratama", "Dian", "Hasan Basri", "Nurul Aini", "Arif Budiman", "Feri", "Lukman Hakim", "Rangga", "Rini Anggraini Putri", "Tono", "Hadi Prasetyo", "Elisa Purnama", "Anisa Rahma"];
 
         const testimonialData = [
-            { name: "Budi Santoso", text: "Proses cepat banget, hitungan menit Adobe langsung aktif di email sendiri. Mantap min!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkXs8.webp" },
-            { name: "Siti Aminah", text: "Awalnya ragu karena murah, tapi ternyata beneran legal dan full fitur. Makasih ya!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkpmH.webp" },
-            { name: "Agus Pratama", text: "Solusi hemat buat desainer freelance kayak saya. Fitur AI Firefly nya jalan lancar jaya.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ckphh.webp" },
-            { name: "Rina Kusuma", text: "Adminnya ramah dan fast respon. Dipandu sampe bisa login. Sangat recommended!", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ckpyu.webp" },
-            { name: "Doni Setiawan", text: "Udah langganan tahun kedua disini. Gak pernah ada masalah, cloud storage aman.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkpB6.webp" },
-            { name: "Sari Wulandari", text: "Harga kaki lima kualitas bintang lima. Jauh lebih hemat daripada beli langsung di website.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Cks8A.webp" },
-            { name: "Eko Saputra", text: "Beneran dapet 100GB cloud, bisa sinkron ke iPad juga. Gak nyesel beli disini.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkstX.webp" },
-            { name: "Dewi Lestari", text: "Prosesnya gampang, tinggal transfer, kirim bukti, langsung diproses. Top markotop!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CksM3.webp" },
-            { name: "Hendra Wijaya", text: "Buat yang cari Adobe murah dan resmi, disini tempatnya. Garansinya juga jelas.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Cks3e.webp" },
-            { name: "Maya Putri", text: "Sangat membantu buat tugas kuliah. Fitur lengkap semua aplikasi bisa di download.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ck2ZC.webp" },
-            { name: "Rizky Ramadhan", text: "Kirain bakal ribet, ternyata simpel banget. Email masuk langsung terima invite.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ck2YQ.webp" },
-            { name: "Putri Anggraini", text: "Kualitas oke, pelayanan oke. Bakal rekomendasiin ke temen-temen kantor.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ck2Aq.webp" },
-            { name: "Anton Kurniawan", text: "Transparan banget, dijelasin detail kalau ini via team plan. Yang penting legal!", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ck2LJ.webp" },
-            { name: "Wulan Dari", text: "Baru pertama kali coba dan puas banget. Semoga awet terus langganannya.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkBzj.webp" },
-            { name: "Bayu Nugroho", text: "Mantap jiwa! Akhirnya bisa pake Photoshop original tanpa crack-crack an.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkBuD.webp" }
+            { name: "Budi Santoso", text: "Proses cepat banget, hitungan menit Adobe langsung aktif di email sendiri. Mantap min!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkVgg.webp" },
+            { name: "Siti Aminah", text: "Awalnya ragu karena murah, tapi ternyata beneran legal dan full fitur. Makasih ya!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkViO.webp" },
+            { name: "Agus Pratama", text: "Solusi hemat buat desainer freelance kayak saya. Fitur AI Firefly nya jalan lancar jaya.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkVDF.webp" },
+            { name: "Rina Kusuma", text: "Adminnya ramah dan fast respon. Dipandu sampe bisa login. Sangat recommended!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkVVn.webp" },
+            { name: "Doni Setiawan", text: "Udah langganan tahun kedua disini. Gak pernah ada masalah, cloud storage aman.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ckf7M.webp" },
+            { name: "Sari Wulandari", text: "Harga kaki lima kualitas bintang lima. Jauh lebih hemat daripada beli langsung di website.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkfJa.webp" },
+            { name: "Eko Saputra", text: "Beneran dapet 100GB cloud, bisa sinkron ke iPad juga. Gak nyesel beli disini.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkfSB.webp" },
+            { name: "Dewi Lestari", text: "Prosesnya gampang, tinggal transfer, kirim bukti, langsung diproses. Top markotop!", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ckfvf.webp" },
+            { name: "Hendra Wijaya", text: "Buat yang cari Adobe murah dan resmi, disini tempatnya. Garansinya juga jelas.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CkvRm.webp" },
+            { name: "Maya Putri", text: "Sangat membantu buat tugas kuliah. Fitur lengkap semua aplikasi bisa di download.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ckvnz.webp" },
+            { name: "Rizky Ramadhan", text: "Kirain bakal ribet, ternyata simpel banget. Email masuk langsung terima invite.", rating: 5, img: "https://pixvid.org/images/2026/01/16/Ckv4l.webp" },
+            { name: "Putri Anggraini", text: "Kualitas oke, pelayanan oke. Bakal rekomendasiin ke temen-temen kantor.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmP0Y.webp" },
+            { name: "Anton Kurniawan", text: "Transparan banget, dijelasin detail kalau ini via team plan. Yang penting legal!", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmPOo.webp" },
+            { name: "Wulan Dari", text: "Baru pertama kali coba dan puas banget. Semoga awet terus langganannya.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmP1d.webp" },
+            { name: "Bayu Nugroho", text: "Mantap jiwa! Akhirnya bisa pake Photoshop original tanpa crack-crack an.", rating: 5, img: "https://pixvid.org/images/2026/01/16/CmPpb.webp" }
         ];
 
         const fullFeaturesList = [
@@ -1030,11 +1082,11 @@
         };
 
         const paymentMethods = [
-            { id: 'qris', name: 'QRIS', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/163px-Logo_QRIS.svg.png', type: 'qr', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15' },
-            { id: 'bca_va', name: 'BCA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/330px-Bank_Central_Asia.svg.png', type: 'bank', number: '39358089510639366', holder: 'Epayment' },
-            { id: 'gopay', name: 'GoPay', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/320px-Gopay_logo.svg.png', type: 'ewallet', number: '089510639366', holder: 'Gopay' },
-            { id: 'dana', name: 'DANA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/330px-Logo_dana_blue.svg.png', type: 'ewallet', number: '089510639366', holder: 'DNID' },
-            { id: 'ovo', name: 'OVO', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/330px-Logo_ovo_purple.svg.png', type: 'ewallet', number: '089510639366', holder: 'OVO' },
+            { id: 'qris', name: 'QRIS', logo: 'https://pixvid.org/images/2026/01/16/CmB6A.png', type: 'qr', number: '00020101021126610016ID.CO.SHOPEE.WWW01189360091800223157700208223157700303UMI51440014ID.CO.QRIS.WWW0215ID10254270621910303UMI5204481453033605802ID5904Epay6013JAKARTA PUSAT61051061062070703A0163042F15' },
+            { id: 'bca_va', name: 'BCA', logo: 'https://pixvid.org/images/2026/01/16/CmBsX.png', type: 'bank', number: '39358089510639366', holder: 'Epayment' },
+            { id: 'gopay', name: 'GoPay', logo: 'https://pixvid.org/images/2026/01/16/CmBl6.png', type: 'ewallet', number: '089510639366', holder: 'Gopay' },
+            { id: 'dana', name: 'DANA', logo: 'https://pixvid.org/images/2026/01/16/CmN9C.png', type: 'ewallet', number: '089510639366', holder: 'DNID' },
+            { id: 'ovo', name: 'OVO', logo: 'https://pixvid.org/images/2026/01/16/CmNNQ.png', type: 'ewallet', number: '089510639366', holder: 'OVO' },
             { id: 'cimb', name: 'CIMB', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/CIMB_Niaga_logo.svg/330px-CIMB_Niaga_logo.svg.png', type: 'bank', number: '6289510639366', holder: 'Octo Pay' }
         ];
 
@@ -1424,7 +1476,7 @@
             const grid = document.getElementById('payment-grid');
             grid.innerHTML = paymentMethods.map((pm, idx) => `
                 <div id="pay-opt-${pm.id}" class="payment-option ${idx === 0 ? 'selected' : ''}" onclick="selectPayment('${pm.id}')">
-                    <img src="${pm.logo}" alt="${pm.name}">
+                    <img src="${pm.logo}" alt="${pm.name}" loading="lazy" decoding="async" width="24" height="24">
                     <span>${pm.name}</span>
                 </div>
             `).join('');
@@ -1849,6 +1901,9 @@
             }, 60000);
 
             try {
+                // Lazy load Tesseract.js only when needed (saves ~45MB on initial load)
+                await window.loadTesseract();
+
                 if (typeof Tesseract === 'undefined') throw new Error("Library missing");
 
                 // Initialize Tesseract (Silent Mode)
