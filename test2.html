@@ -25,9 +25,395 @@
         href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/48px-Adobe_Creative_Cloud_rainbow_icon.svg.png"
         type="image/png">
 
-    <!-- Critical CSS: TailwindCSS (synchronous but with preload hint) -->
-    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Critical Inline CSS for Fast First Paint -->
+    <style>
+        /* Critical CSS - Inline for immediate rendering */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid
+        }
+
+        html {
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            font-family: Inter, ui-sans-serif, system-ui, sans-serif
+        }
+
+        body {
+            margin: 0;
+            line-height: inherit;
+            background-color: #FBFBFD;
+            color: #1D1D1F;
+            -webkit-font-smoothing: antialiased
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        .flex {
+            display: flex
+        }
+
+        .items-center {
+            align-items: center
+        }
+
+        .justify-between {
+            justify-content: space-between
+        }
+
+        .gap-2 {
+            gap: .5rem
+        }
+
+        .gap-4 {
+            gap: 1rem
+        }
+
+        .p-4 {
+            padding: 1rem
+        }
+
+        .p-6 {
+            padding: 1.5rem
+        }
+
+        .px-3 {
+            padding-left: .75rem;
+            padding-right: .75rem
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem
+        }
+
+        .py-1 {
+            padding-top: .25rem;
+            padding-bottom: .25rem
+        }
+
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem
+        }
+
+        .pb-24 {
+            padding-bottom: 6rem
+        }
+
+        .w-8 {
+            width: 2rem
+        }
+
+        .h-8 {
+            height: 2rem
+        }
+
+        .text-xs {
+            font-size: .75rem;
+            line-height: 1rem
+        }
+
+        .text-sm {
+            font-size: .875rem;
+            line-height: 1.25rem
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+            line-height: 1.75rem
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            line-height: 2rem
+        }
+
+        .font-medium {
+            font-weight: 500
+        }
+
+        .font-semibold {
+            font-weight: 600
+        }
+
+        .font-bold {
+            font-weight: 700
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .text-white {
+            color: #fff
+        }
+
+        .text-gray-400 {
+            color: #9ca3af
+        }
+
+        .text-gray-500 {
+            color: #6b7280
+        }
+
+        .text-gray-900 {
+            color: #111827
+        }
+
+        .text-red-600 {
+            color: #dc2626
+        }
+
+        .bg-white {
+            background-color: #fff
+        }
+
+        .bg-red-50 {
+            background-color: #fef2f2
+        }
+
+        .bg-red-100 {
+            background-color: #fee2e2
+        }
+
+        .rounded-full {
+            border-radius: 9999px
+        }
+
+        .rounded-xl {
+            border-radius: .75rem
+        }
+
+        .rounded-2xl {
+            border-radius: 1rem
+        }
+
+        .border {
+            border-width: 1px
+        }
+
+        .border-gray-200 {
+            border-color: #e5e7eb
+        }
+
+        .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05)
+        }
+
+        .relative {
+            position: relative
+        }
+
+        .sticky {
+            position: sticky
+        }
+
+        .fixed {
+            position: fixed
+        }
+
+        .top-0 {
+            top: 0
+        }
+
+        .bottom-0 {
+            bottom: 0
+        }
+
+        .left-0 {
+            left: 0
+        }
+
+        .right-0 {
+            right: 0
+        }
+
+        .z-40 {
+            z-index: 40
+        }
+
+        .z-50 {
+            z-index: 50
+        }
+
+        .max-w-\[520px\] {
+            max-width: 520px
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .mb-2 {
+            margin-bottom: .5rem
+        }
+
+        .mb-3 {
+            margin-bottom: .75rem
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem
+        }
+
+        .mt-8 {
+            margin-top: 2rem
+        }
+
+        .mr-1 {
+            margin-right: .25rem
+        }
+
+        .leading-none {
+            line-height: 1
+        }
+
+        .space-y-3>:not([hidden])~:not([hidden]) {
+            margin-top: .75rem
+        }
+
+        .space-y-6>:not([hidden])~:not([hidden]) {
+            margin-top: 1.5rem
+        }
+
+        .flex-1 {
+            flex: 1 1 0%
+        }
+
+        .flex-shrink-0 {
+            flex-shrink: 0
+        }
+
+        .main-container {
+            max-width: 520px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #fff;
+            box-shadow: 0 0 40px rgba(0, 0, 0, .05)
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, .9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, .05)
+        }
+
+        @media(min-width:640px) {
+            .main-container {
+                min-height: auto;
+                margin: 40px auto;
+                border-radius: 24px;
+                border: 1px solid rgba(0, 0, 0, .05)
+            }
+
+            body {
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                padding-bottom: 40px
+            }
+
+            .sm\:rounded-b-3xl {
+                border-bottom-left-radius: 1.5rem;
+                border-bottom-right-radius: 1.5rem
+            }
+
+            .sm\:absolute {
+                position: absolute
+            }
+
+            .sm\:rounded-3xl {
+                border-radius: 1.5rem
+            }
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .5
+            }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite
+        }
+
+        .overflow-hidden {
+            overflow: hidden
+        }
+
+        .rounded {
+            border-radius: .25rem
+        }
+
+        .h-4 {
+            height: 1rem
+        }
+
+        .h-6 {
+            height: 1.5rem
+        }
+
+        .h-10 {
+            height: 2.5rem
+        }
+
+        .w-16 {
+            width: 4rem
+        }
+
+        .w-24 {
+            width: 6rem
+        }
+
+        .w-36 {
+            width: 9rem
+        }
+
+        .w-48 {
+            width: 12rem
+        }
+
+        .w-full {
+            width: 100%
+        }
+
+        .bg-gray-200 {
+            background-color: #e5e7eb
+        }
+
+        .bg-red-100 {
+            background-color: #fee2e2
+        }
+
+        .inline-block {
+            display: inline-block
+        }
+    </style>
+
+    <!-- TailwindCSS: Load async to not block first paint -->
+    <script>
+        // Load TailwindCSS asynchronously after critical CSS is applied
+        (function () {
+            var s = document.createElement('script');
+            s.src = 'https://cdn.tailwindcss.com';
+            s.async = true;
+            document.head.appendChild(s);
+        })();
+    </script>
 
     <!-- Fonts: preload and async load -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
@@ -658,7 +1044,7 @@
 
             <div class="p-6 pb-24">
                 <!-- Hero / Product Info -->
-                <div class="text-center mb-8 animate-fade-in">
+                <div class="text-center mb-8">
                     <span
                         class="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-bold mb-3 animate-pulse">
                         🔥 PROMO TERBATAS
@@ -672,16 +1058,28 @@
                 <form id="orderForm" class="space-y-6">
 
                     <!-- Package Selection -->
-                    <div class="space-y-3 animate-fade-in" style="animation-delay: 0.1s">
+                    <div class="space-y-3">
                         <div id="package-selection-container" class="space-y-3">
-                            <!-- Package cards will be rendered here by JavaScript -->
+                            <!-- Skeleton loader - will be replaced by JS -->
+                            <div
+                                class="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm p-4">
+                                <div class="animate-pulse">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="h-4 bg-gray-200 rounded w-24"></div>
+                                        <div class="h-4 bg-gray-200 rounded w-16"></div>
+                                    </div>
+                                    <div class="h-6 bg-gray-200 rounded w-48 mb-2"></div>
+                                    <div class="h-4 bg-gray-200 rounded w-36 mb-4"></div>
+                                    <div class="h-10 bg-red-100 rounded-xl w-full"></div>
+                                </div>
+                            </div>
                         </div>
                         <input type="hidden" id="selectedPackage" name="package" value="yearly">
                     </div>
 
                     <!-- Testimonials -->
                     <!-- Testimonials -->
-                    <div class="animate-fade-in" style="animation-delay: 0.18s">
+                    <div>
                         <div class="flex items-center justify-between mb-3 px-1">
                             <label class="text-sm font-semibold text-gray-700 block">Ulasan Pelanggan</label>
                             <div
@@ -697,7 +1095,7 @@
                     </div>
 
                     <!-- User Data -->
-                    <div class="space-y-4 animate-fade-in" style="animation-delay: 0.2s">
+                    <div class="space-y-4">
                         <label class="text-sm font-semibold text-gray-700 ml-1">Data Pemesan</label>
 
                         <div class="input-group">
@@ -738,7 +1136,7 @@
                     <input type="hidden" name="sheetName" value="adobe">
 
                     <!-- Payment Method -->
-                    <div class="space-y-3 animate-fade-in" style="animation-delay: 0.25s">
+                    <div class="space-y-3">
                         <label class="text-sm font-semibold text-gray-700 ml-1">Metode Pembayaran</label>
                         <div class="payment-grid" id="payment-grid">
                             <!-- Generated by JS -->
@@ -749,7 +1147,7 @@
                 </form>
 
                 <!-- FAQ Section -->
-                <div class="mt-8 animate-fade-in" style="animation-delay: 0.3s">
+                <div class="mt-8">
                     <h3 class="font-bold text-gray-900 mb-4">Pertanyaan Umum (FAQ)</h3>
                     <div id="faq-container">
                         <!-- Filled by JS -->
