@@ -637,7 +637,20 @@
             return new Promise((resolve, reject) => {
                 const script = document.createElement('script');
                 script.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
-                script.onload = resolve;
+                script.onload = function () {
+                    // Wait a bit for Tesseract to initialize
+                    let attempts = 0;
+                    const checkTesseract = setInterval(() => {
+                        attempts++;
+                        if (window.Tesseract) {
+                            clearInterval(checkTesseract);
+                            resolve();
+                        } else if (attempts > 50) { // 5 seconds max
+                            clearInterval(checkTesseract);
+                            reject(new Error('Tesseract failed to initialize'));
+                        }
+                    }, 100);
+                };
                 script.onerror = reject;
                 document.head.appendChild(script);
             });
@@ -2583,19 +2596,28 @@
 
             try {
                 // Lazy load Tesseract.js only when needed (saves ~45MB on initial load)
+                console.log('Loading Tesseract.js...');
                 await window.loadTesseract();
+                console.log('Tesseract.js loaded successfully');
 
-                if (typeof Tesseract === 'undefined') throw new Error("Library missing");
+                if (typeof Tesseract === 'undefined') throw new Error("Tesseract library not available");
 
                 // Initialize Tesseract (Silent Mode)
+                console.log('Creating Tesseract worker...');
                 worker = await Tesseract.createWorker("eng", 1, {
-                    logger: () => { } // Disable console logs for pro look
+                    logger: (m) => {
+                        if (m.status === 'recognizing text') {
+                            console.log(`OCR Progress: ${Math.round(m.progress * 100)}%`);
+                        }
+                    }
                 });
 
+                console.log('Recognizing image...');
                 const { data: { text } } = await worker.recognize(selectedFile);
                 await worker.terminate();
                 worker = null;
                 clearTimeout(timeoutId);
+                console.log('OCR completed. Text found:', text.substring(0, 100) + '...');
 
                 // --- MATCHING ---
                 let cleanedText = text
@@ -2606,6 +2628,7 @@
 
                 const digitsOnly = cleanedText.replace(/[^0-9]/g, '');
                 const expectedAmount = currentOrderDetails.totalPrice.toString();
+                console.log('Expected amount:', expectedAmount, 'Found digits:', digitsOnly.substring(0, 50));
 
                 if (digitsOnly.includes(expectedAmount)) {
                     onPaymentSuccess();
@@ -2616,8 +2639,8 @@
 
             } catch (error) {
                 clearTimeout(timeoutId);
-                console.error(error);
-                showOCRFailure("Gagal memproses gambar. Pastikan format gambar benar (JPG/PNG) dan ukuran tidak terlalu besar.");
+                console.error('OCR Error:', error);
+                showOCRFailure("Gagal memproses gambar. Silakan coba lagi atau verifikasi manual via WhatsApp.");
             } finally {
                 if (worker) await worker.terminate();
             }
